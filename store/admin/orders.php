@@ -110,7 +110,7 @@ $statusColors = [
   <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-sm mb-lg">
     <h1 class="font-display text-h1 text-on-surface">Objednávky</h1>
     <form method="get" class="flex items-center gap-sm">
-      <select name="status" onchange="this.form.submit()" class="bg-surface border border-outline-variant text-on-surface font-body-md rounded-DEFAULT px-sm py-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary">
+      <select name="status" data-submit-on-change class="bg-surface border border-outline-variant text-on-surface font-body-md rounded-DEFAULT px-sm py-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary">
         <option value="">Všechny stavy</option>
         <?php foreach ($statuses as $k => $v): ?>
         <option value="<?= $k ?>" <?= $statusFilter === $k ? 'selected' : '' ?>><?= $v ?></option>

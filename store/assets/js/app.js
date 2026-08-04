@@ -33,6 +33,21 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+document.addEventListener('change', event => {
+  if (event.target.matches('[data-submit-on-change]')) event.target.form?.requestSubmit();
+});
+
+document.addEventListener('click', event => {
+  const button = event.target.closest('[data-cart-product]');
+  if (!button || !window.Cart) return;
+  try {
+    const product = JSON.parse(button.dataset.cartProduct);
+    window.Cart.add(product);
+  } catch {
+    window.showToast?.('Produkt nelze přidat do košíku.', 'error');
+  }
+});
+
 window.addEventListener('cartchange', () => {
   if (window.Cart) Cart.updateBadge();
 });

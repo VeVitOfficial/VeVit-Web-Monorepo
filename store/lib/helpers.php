@@ -75,14 +75,14 @@ function vv_render_product_card(array $p): void {
             <span class="material-symbols-outlined text-[20px]">block</span>
           </button>
         <?php else: ?>
-          <button onclick='Cart.add(<?= json_encode([
+          <button data-cart-product="<?= h(json_encode([
             "id" => (int)$p["id"],
             "name" => $p["name"],
             "price" => (float)$p["price"],
             "sale_price" => $p["sale_price"] ? (float)$p["sale_price"] : null,
             "type" => $p["type"],
             "slug" => $p["slug"],
-          ], JSON_HEX_TAG|JSON_HEX_APOS|JSON_HEX_AMP|JSON_HEX_QUOT) ?>)' aria-label="Přidat do košíku" class="bg-surface border border-outline hover:border-primary text-on-surface hover:text-primary rounded-full p-2 transition-colors">
+          ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)) ?>" aria-label="Přidat do košíku" class="bg-surface border border-outline hover:border-primary text-on-surface hover:text-primary rounded-full p-2 transition-colors">
             <span class="material-symbols-outlined text-[20px]">add_shopping_cart</span>
           </button>
         <?php endif; ?>

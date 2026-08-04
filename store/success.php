@@ -61,7 +61,7 @@ $noindex   = true;
 include __DIR__ . '/lib/header.php';
 $csrf = store_csrf_token('download');
 ?>
-<main class="flex-1 w-full max-w-[680px] mx-auto px-margin py-12 flex flex-col gap-6">
+<main id="successPage" data-download-csrf="<?= h($csrf) ?>" data-order-id="<?= h((string) $publicId) ?>" class="flex-1 w-full max-w-[680px] mx-auto px-margin py-12 flex flex-col gap-6">
 
   <!-- Status header -->
   <div class="flex flex-col items-center text-center gap-5">
@@ -166,48 +166,5 @@ $csrf = store_csrf_token('download');
   </div>
 </main>
 
-<script>
-document.querySelectorAll('.request-download').forEach(function(button) {
-  button.addEventListener('click', async function() {
-    const btn = this;
-    const originalHtml = btn.innerHTML;
-    btn.disabled = true;
-    btn.innerHTML = '<span class="vevit-spinner"></span> Připravuji…';
-    try {
-      const response = await fetch('api/request-download.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': <?= json_encode($csrf) ?> },
-        body: JSON.stringify({ order: <?= json_encode($publicId) ?>, item_id: Number(btn.dataset.itemId) })
-      });
-      const data = await response.json();
-      if (!data.download?.token) {
-        window.showToast?.(data.error?.message || 'Stažení není k dispozici.', 'error');
-        btn.disabled = false;
-        btn.innerHTML = originalHtml;
-        return;
-      }
-      // Submit token via hidden form (POST — token must NOT appear in URL or logs)
-      const form = document.createElement('form');
-      form.method = 'POST';
-      form.action = 'download.php';
-      [['token', data.download.token], ['csrf', <?= json_encode($csrf) ?>]].forEach(function([name, value]) {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = name;
-        input.value = value;
-        form.appendChild(input);
-      });
-      document.body.appendChild(form);
-      form.submit();
-      // Remove form from DOM immediately after submit (token only in POST body, not in history)
-      setTimeout(() => form.remove(), 0);
-      btn.innerHTML = '<span class="material-symbols-outlined text-[16px]">check</span> Stahování zahájeno';
-    } catch {
-      window.showToast?.('Chyba při komunikaci. Zkuste to znovu.', 'error');
-      btn.disabled = false;
-      btn.innerHTML = originalHtml;
-    }
-  });
-});
-</script>
+<script defer src="assets/js/success-page.js"></script>
 <?php include __DIR__ . '/lib/footer.php'; ?>

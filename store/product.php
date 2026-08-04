@@ -42,7 +42,14 @@ $noindex     = false;
 include __DIR__ . '/lib/header.php';
 ?>
 
-<main class="flex-1 w-full max-w-store mx-auto px-margin py-8">
+<main id="productPage"
+  data-product="<?= h(json_encode([
+    'id' => (int) $product['id'], 'name' => $product['name'], 'price' => (float) $product['price'],
+    'sale_price' => $product['sale_price'] ? (float) $product['sale_price'] : null,
+    'type' => $product['type'], 'slug' => $product['slug'],
+  ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)) ?>"
+  data-favorites-csrf="<?= h(store_csrf_token('favorites')) ?>"
+  class="flex-1 w-full max-w-store mx-auto px-margin py-8">
 
   <!-- Breadcrumbs -->
   <nav class="breadcrumb mb-8" aria-label="Navigační drobky">
@@ -143,23 +150,23 @@ include __DIR__ . '/lib/header.php';
             <span class="material-symbols-outlined text-[18px]" aria-hidden="true">block</span> Vyprodáno
           </button>
         <?php elseif ($isDigital): ?>
-          <button onclick="buyNow()" class="btn btn-lg btn-primary flex-1">
+          <button data-product-action="buy" class="btn btn-lg btn-primary flex-1">
             <span class="material-symbols-outlined text-[18px]" aria-hidden="true">download</span> Koupit a stáhnout
           </button>
-          <button onclick="addToCart()" aria-label="Přidat do košíku" class="btn btn-lg btn-outline btn-icon" style="width: 52px; flex: none">
+          <button data-product-action="add" aria-label="Přidat do košíku" class="btn btn-lg btn-outline btn-icon" style="width: 52px; flex: none">
             <span class="material-symbols-outlined text-[18px]" aria-hidden="true">add_shopping_cart</span>
           </button>
         <?php else: ?>
           <div class="qty-group" role="group" aria-label="Množství">
-            <button onclick="changeQty(-1)" aria-label="Snížit množství">
+            <button data-quantity-delta="-1" aria-label="Snížit množství">
               <span class="material-symbols-outlined text-[18px]" aria-hidden="true">remove</span>
             </button>
             <span id="qtyVal" class="qty-val" aria-live="polite" aria-atomic="true">1</span>
-            <button onclick="changeQty(1)" aria-label="Zvýšit množství">
+            <button data-quantity-delta="1" aria-label="Zvýšit množství">
               <span class="material-symbols-outlined text-[18px]" aria-hidden="true">add</span>
             </button>
           </div>
-          <button onclick="addToCart()" class="btn btn-lg btn-primary flex-1">
+          <button data-product-action="add" class="btn btn-lg btn-primary flex-1">
             <span class="material-symbols-outlined text-[18px]" aria-hidden="true">shopping_bag</span> Do košíku
           </button>
         <?php endif; ?>
@@ -274,7 +281,7 @@ include __DIR__ . '/lib/header.php';
         <div class="mt-auto pt-3 border-t border-outline-variant flex items-center justify-between">
           <span class="font-display text-[16px] font-bold text-primary"><?= vv_format_price($rPrice) ?></span>
           <?php if (!$rStock): ?>
-          <button onclick='Cart.add(<?= json_encode(["id" => (int)$r["id"], "name" => $r["name"], "price" => (float)$r["price"], "sale_price" => $r["sale_price"] ? (float)$r["sale_price"] : null, "type" => $r["type"], "slug" => $r["slug"]], JSON_HEX_TAG|JSON_HEX_APOS|JSON_HEX_AMP|JSON_HEX_QUOT) ?>)'
+          <button data-cart-product="<?= h(json_encode(["id" => (int)$r["id"], "name" => $r["name"], "price" => (float)$r["price"], "sale_price" => $r["sale_price"] ? (float)$r["sale_price"] : null, "type" => $r["type"], "slug" => $r["slug"]], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)) ?>"
             aria-label="Přidat <?= h($r['name']) ?> do košíku"
             class="btn btn-icon btn-sm bg-surface border border-outline-variant hover:border-primary text-on-surface hover:text-primary transition-colors">
             <span class="material-symbols-outlined text-[16px]">add_shopping_cart</span>
@@ -288,40 +295,6 @@ include __DIR__ . '/lib/header.php';
   <?php endif; ?>
 </main>
 
-<script>
-const __product = <?= json_encode([
-  'id' => (int)$product['id'],
-  'name' => $product['name'],
-  'price' => (float)$product['price'],
-  'sale_price' => $product['sale_price'] ? (float)$product['sale_price'] : null,
-  'type' => $product['type'],
-  'slug' => $product['slug']
-], JSON_HEX_TAG|JSON_HEX_APOS|JSON_HEX_AMP|JSON_HEX_QUOT) ?>;
-let __qty = 1;
-function changeQty(delta) {
-  __qty = Math.max(1, __qty + delta);
-  document.getElementById('qtyVal').textContent = __qty;
-}
-function addToCart() { Cart.add(__product, __qty); }
-function buyNow() { Cart.add(__product, 1); window.location.href = 'cart.php'; }
-document.getElementById('favoriteButton')?.addEventListener('click', async function () {
-  const button = this;
-  const status = document.getElementById('favoriteStatus');
-  try {
-    const response = await fetch('api/favorites/add.php', {
-      method: 'POST',
-      credentials: 'same-origin',
-      headers: {'Content-Type':'application/json','X-CSRF-Token':<?= json_encode(store_csrf_token('favorites')) ?>},
-      body: JSON.stringify({product_id: __product.id})
-    });
-    if (!response.ok) throw new Error('unavailable');
-    button.setAttribute('aria-pressed', 'true');
-    button.lastChild.textContent = ' V oblíbených';
-    status.textContent = 'Produkt byl přidán do oblíbených.';
-  } catch (error) {
-    status.textContent = 'Oblíbené produkty vyžadují ověřené přihlášení VeVit Account.';
-  }
-});
-</script>
+<script defer src="assets/js/product-page.js"></script>
 
 <?php include __DIR__ . '/lib/footer.php'; ?>

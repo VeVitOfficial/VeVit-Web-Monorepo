@@ -148,7 +148,7 @@ $currentUser = $currentUser ?? null;
       <span class="font-caption text-[10px] font-semibold tracking-wide uppercase">Odhlásit</span>
     </a>
     <?php else: ?>
-    <button type="button" onclick="if(window.VevitAccount)VevitAccount.openLogin();"
+    <button type="button" data-account-login
        class="flex-1 flex flex-col items-center justify-center gap-0.5 text-on-surface-variant hover:text-primary transition-colors duration-150"
        aria-label="Přihlásit se přes VeVit Account">
       <span class="material-symbols-outlined text-[22px]" aria-hidden="true">person</span>

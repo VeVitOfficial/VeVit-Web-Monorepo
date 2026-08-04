@@ -37,7 +37,12 @@ $announcementLink = '';
 <meta property="og:image" content="<?= $vvBase ?>images/logo_text.png">
 <?php include __DIR__ . '/tw_config.php'; ?>
 </head>
-<body class="bg-background text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col pb-16 md:pb-0">
+<body class="bg-background text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col pb-16 md:pb-0"
+  data-vevit-me-url="<?= h($storeConfig['vevit_account']['me_url'] ?? 'https://vevit.cz/account/api/me.php') ?>"
+  data-vevit-login-url="<?= h($storeConfig['vevit_account']['login_url'] ?? 'https://vevit.cz/account/login') ?>"
+  data-vevit-app-origin="<?= h(rtrim($storeConfig['app_url'] ?? '', '/')) ?>"
+  data-vevit-base="<?= h($vvBase) ?>"
+  data-vevit-hydrate-account="<?= $currentUser ? '0' : '1' ?>">
 
 <!-- Skip link (accessibility) -->
 <a class="skip-link" href="#main-content">Přeskočit na obsah</a>
@@ -127,7 +132,7 @@ $announcementLink = '';
           </div>
         <?php else: ?>
           <!-- Default: login button; vevit-account.js replaces this with user info if authenticated -->
-          <button type="button" onclick="if(window.VevitAccount)VevitAccount.openLogin();" aria-label="Přihlásit se přes VeVit Account" class="p-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors duration-150">
+          <button type="button" data-account-login aria-label="Přihlásit se přes VeVit Account" class="p-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors duration-150">
             <span class="material-symbols-outlined text-[22px]" aria-hidden="true">account_circle</span>
           </button>
         <?php endif; ?>
@@ -252,7 +257,7 @@ $announcementLink = '';
           <span class="material-symbols-outlined text-[18px]" aria-hidden="true">logout</span> Odhlásit se
         </a>
       <?php else: ?>
-        <button type="button" onclick="if(window.VevitAccount){VevitAccount.openLogin();}closeDrawer();" class="btn btn-primary w-full justify-center">
+        <button type="button" data-account-login data-close-drawer class="btn btn-primary w-full justify-center">
           <span class="material-symbols-outlined text-[18px]" aria-hidden="true">login</span> Přihlásit se
         </button>
       <?php endif; ?>
@@ -260,137 +265,9 @@ $announcementLink = '';
   </div>
 </div>
 
-<script>
-/* VeVit Account configuration — read by vevit-account.js.
-   [B1] me_url and [B2] login_url must be confirmed with the VeVit Account team. */
-window.VEVIT_ACCOUNT_CONFIG = {
-  meUrl:     '<?= addslashes($storeConfig['vevit_account']['me_url'] ?? 'https://vevit.cz/account/api/me.php') ?>',
-  loginUrl:  '<?= addslashes($storeConfig['vevit_account']['login_url'] ?? 'https://vevit.cz/account/login') ?>',
-  appOrigin: '<?= addslashes(rtrim($storeConfig['app_url'] ?? '', '/')) ?>',
-};
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeDrawer();
-});
-
-/* ---- Mobile Drawer ---- */
-const drawer = document.getElementById('mobileDrawer');
-const drawerPanel = drawer ? drawer.querySelector('.mobile-drawer__panel') : null;
-const menuBtn = document.getElementById('mobileMenuBtn');
-const closeBtn = document.getElementById('drawerCloseBtn');
-const backdrop = document.getElementById('drawerBackdrop');
-let lastFocusedEl = null;
-
-function openDrawer() {
-  if (!drawer) return;
-  lastFocusedEl = document.activeElement;
-  drawer.classList.add('open');
-  drawer.removeAttribute('inert');
-  document.body.classList.add('drawer-open');
-  menuBtn.setAttribute('aria-expanded', 'true');
-  // Focus first focusable element in panel
-  setTimeout(() => {
-    const first = drawerPanel.querySelector('a, button, input');
-    if (first) first.focus();
-  }, 300);
-}
-function closeDrawer() {
-  if (!drawer) return;
-  drawer.classList.remove('open');
-  drawer.setAttribute('inert', '');
-  document.body.classList.remove('drawer-open');
-  menuBtn.setAttribute('aria-expanded', 'false');
-  if (lastFocusedEl) lastFocusedEl.focus();
-}
-
-if (menuBtn) menuBtn.addEventListener('click', openDrawer);
-if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
-if (backdrop) backdrop.addEventListener('click', closeDrawer);
-
-// Focus trap inside drawer
-if (drawer) {
-  drawer.addEventListener('keydown', function(e) {
-    if (!drawer.classList.contains('open')) return;
-    if (e.key !== 'Tab') return;
-    const focusable = Array.from(drawer.querySelectorAll('a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])')).filter(el => !el.closest('[tabindex="-1"]') && !el.disabled);
-    if (!focusable.length) return;
-    const first = focusable[0];
-    const last = focusable[focusable.length - 1];
-    if (e.shiftKey) {
-      if (document.activeElement === first) { e.preventDefault(); last.focus(); }
-    } else {
-      if (document.activeElement === last) { e.preventDefault(); first.focus(); }
-    }
-  });
-}
-
-// Close drawer on viewport resize to desktop width
-window.addEventListener('resize', function() {
-  if (window.innerWidth >= 768 && drawer && drawer.classList.contains('open')) closeDrawer();
-});
-</script>
-
+<script src="<?= $vvBase ?>assets/js/header.js"></script>
 <script src="<?= $vvBase ?>assets/js/vevit-account.js"></script>
-<?php if (!$currentUser): ?>
-<script>
-// Hydrate #navAuth via VeVit Account (runs only when no legacy local session).
-// On auth: replace login button with user chip. On failure: leave login button.
-(function () {
-  if (!window.VevitAccount) return;
-  var navAuth = document.getElementById('navAuth');
-  if (!navAuth) return;
-
-  VevitAccount.checkSession().then(function (result) {
-    if (result.state !== 'authenticated' || !result.user) return;
-    var u = result.user;
-
-    // Build avatar element
-    var avatarEl;
-    if (u.avatarUrl) {
-      avatarEl = document.createElement('img');
-      avatarEl.width = 32;
-      avatarEl.height = 32;
-      avatarEl.className = 'w-8 h-8 rounded-full object-cover border border-outline-variant';
-      avatarEl.alt = '';
-      avatarEl.src = u.avatarUrl; // validated as https:// in _safeAvatarUrl
-    } else {
-      avatarEl = document.createElement('span');
-      avatarEl.className = 'w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant flex items-center justify-center text-on-surface-variant';
-      var icon = document.createElement('span');
-      icon.className = 'material-symbols-outlined text-[18px]';
-      icon.setAttribute('aria-hidden', 'true');
-      icon.textContent = 'person';
-      avatarEl.appendChild(icon);
-    }
-
-    var nameSpan = document.createElement('span');
-    nameSpan.className = 'font-body-md text-sm text-on-surface max-w-[120px] truncate';
-    nameSpan.textContent = u.displayName || '';
-
-    var logoutA = document.createElement('a');
-    logoutA.href = '<?= addslashes($vvBase) ?>logout.php';
-    logoutA.setAttribute('aria-label', 'Odhlásit se');
-    logoutA.title = 'Odhlásit se';
-    logoutA.className = 'p-1.5 rounded-md text-on-surface-variant hover:text-error transition-colors';
-    var logoutIcon = document.createElement('span');
-    logoutIcon.className = 'material-symbols-outlined text-[18px]';
-    logoutIcon.setAttribute('aria-hidden', 'true');
-    logoutIcon.textContent = 'logout';
-    logoutA.appendChild(logoutIcon);
-
-    var wrapper = document.createElement('div');
-    wrapper.className = 'flex items-center gap-2';
-    wrapper.appendChild(avatarEl);
-    wrapper.appendChild(nameSpan);
-    wrapper.appendChild(logoutA);
-
-    navAuth.innerHTML = '';
-    navAuth.appendChild(wrapper);
-  }).catch(function () {
-    // Leave login button in place on any error.
-  });
-}());
-</script>
-<?php endif; ?>
+<script src="<?= $vvBase ?>assets/js/header-account.js"></script>
 
 <!-- Main content landmark starts here (id used by skip link) -->
 <div id="main-content">

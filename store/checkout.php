@@ -6,7 +6,7 @@ $activeNav = 'cart';
 include __DIR__ . '/lib/header.php';
 ?>
 
-<main class="flex-1 w-full max-w-[1200px] mx-auto px-margin py-xl flex flex-col gap-md">
+<main id="checkoutPage" data-checkout-csrf="<?= h($checkoutCsrfToken) ?>" class="flex-1 w-full max-w-[1200px] mx-auto px-margin py-xl flex flex-col gap-md">
 
   <!-- Heading + Steps -->
   <div class="flex flex-col gap-md mb-md">
@@ -125,121 +125,6 @@ include __DIR__ . '/lib/header.php';
   </div>
 </main>
 
-<script>
-function esc(t) { const d = document.createElement('div'); d.textContent = t; return d.innerHTML; }
-const __catBg = {
-  merch: 'cat-bg-merch',
-  'digitalni-produkty': 'cat-bg-digital',
-  elektronika: 'cat-bg-electronics'
-};
-
-const items = Cart.get();
-if (!items.length) {
-  window.location.href = 'cart.php';
-}
-
-const hasPhysical = Cart.hasPhysical();
-document.getElementById('shippingSection').classList.toggle('hidden', !hasPhysical);
-document.getElementById('notesStep').textContent = hasPhysical ? '3' : '2';
-
-document.getElementById('checkoutItems').innerHTML = items.map(item => {
-  const slug = item.type === 'digital' ? 'digitalni-produkty' : 'merch';
-  const bg = __catBg[slug] || 'cat-bg-default';
-  return `
-    <div class="flex gap-sm items-center pb-sm border-b border-outline-variant/50 last:border-0 last:pb-0">
-      <div class="w-14 h-14 ${bg} rounded shrink-0 flex items-center justify-center">
-        <span class="material-symbols-outlined text-white/30 text-[20px]">image</span>
-      </div>
-      <div class="flex-1 min-w-0">
-        <div class="font-body-md text-body-md text-on-surface truncate">${esc(item.name)}</div>
-        <div class="font-mono-label text-caption text-on-surface-variant">${item.qty}× ${Number(item.price).toLocaleString('cs-CZ')} Kč</div>
-      </div>
-      <div class="font-mono-label text-mono-label text-on-surface">${(Number(item.price) * Number(item.qty)).toLocaleString('cs-CZ')} Kč</div>
-    </div>`;
-}).join('');
-
-const subtotal = Cart.total();
-const shipping = Cart.shipping();
-const total = subtotal + shipping;
-document.getElementById('checkoutSubtotal').textContent = subtotal.toLocaleString('cs-CZ') + ' Kč';
-document.getElementById('checkoutShipping').textContent = shipping === 0 ? 'Zdarma' : shipping.toLocaleString('cs-CZ') + ' Kč';
-document.getElementById('checkoutTotal').textContent = total.toLocaleString('cs-CZ') + ' Kč';
-
-let paying = false;
-function checkoutIdempotencyKey() {
-  const key = 'vevit_checkout_idempotency';
-  const current = sessionStorage.getItem(key);
-  if (current) return current;
-  const generated = window.crypto?.randomUUID ? window.crypto.randomUUID().replaceAll('-', '') : Array.from(window.crypto.getRandomValues(new Uint8Array(24)), b => b.toString(16).padStart(2, '0')).join('');
-  sessionStorage.setItem(key, generated);
-  return generated;
-}
-document.getElementById('payBtn').addEventListener('click', async () => {
-  if (paying) return;
-  const name = document.getElementById('checkoutName').value.trim();
-  const email = document.getElementById('checkoutEmail').value.trim();
-  if (!name || !email) {
-    window.showToast && window.showToast('Vyplňte prosím jméno a e-mail.', 'error');
-    return;
-  }
-  if (!/^\S+@\S+\.\S+$/.test(email)) {
-    window.showToast && window.showToast('Zadejte platný e-mail.', 'error');
-    return;
-  }
-  if (hasPhysical) {
-    const street = document.getElementById('checkoutStreet').value.trim();
-    const city = document.getElementById('checkoutCity').value.trim();
-    const zip = document.getElementById('checkoutZip').value.trim();
-    if (!street || !city || !zip) {
-      window.showToast && window.showToast('Vyplňte prosím doručovací adresu.', 'error');
-      return;
-    }
-  }
-
-  paying = true;
-  const btn = document.getElementById('payBtn');
-  btn.disabled = true;
-  btn.innerHTML = '<span class="vevit-spinner"></span> Zpracovávám...';
-
-  const payload = {
-    items: items.map(i => ({ product_id: i.id, quantity: i.qty })),
-    idempotency_key: checkoutIdempotencyKey(),
-    email,
-    name,
-    shipping: hasPhysical ? {
-      street: document.getElementById('checkoutStreet').value,
-      city: document.getElementById('checkoutCity').value,
-      zip: document.getElementById('checkoutZip').value,
-      country: document.getElementById('checkoutCountry').value
-    } : null,
-    notes: document.getElementById('checkoutNotes').value
-  };
-
-  try {
-    const res = await fetch('api/create-checkout.php', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': <?= json_encode($checkoutCsrfToken) ?>, 'Idempotency-Key': checkoutIdempotencyKey() },
-      body: JSON.stringify(payload)
-    });
-    const data = await res.json();
-    if (data.checkout) {
-      const payment = await fetch('api/create-payment.php', { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': <?= json_encode($checkoutCsrfToken) ?> }, body: JSON.stringify({ snapshot: data.checkout.id }) });
-      const paymentData = await payment.json();
-      if (paymentData.url) { sessionStorage.removeItem('vevit_checkout_idempotency'); window.location.href = paymentData.url; return; }
-      throw new Error(paymentData.error?.message || 'Platbu se nepodařilo připravit.');
-    } else {
-      window.showToast && window.showToast(data.error?.message || 'Chyba při přípravě objednávky.', 'error');
-      paying = false;
-      btn.disabled = false;
-      btn.innerHTML = '<span class="material-symbols-outlined">credit_card</span> Zaplatit přes Stripe';
-    }
-  } catch {
-    window.showToast && window.showToast('Chyba při komunikaci se serverem.', 'error');
-    paying = false;
-    btn.disabled = false;
-    btn.innerHTML = '<span class="material-symbols-outlined">credit_card</span> Zaplatit přes Stripe';
-  }
-});
-</script>
+<script defer src="assets/js/checkout-page.js"></script>
 
 <?php include __DIR__ . '/lib/footer.php'; ?>

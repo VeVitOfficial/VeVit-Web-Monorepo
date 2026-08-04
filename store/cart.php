@@ -60,7 +60,7 @@ include __DIR__ . '/lib/header.php';
         <span class="font-bold text-on-surface">Celkem</span>
         <span id="summaryTotal" class="font-display text-[22px] font-bold text-primary">0 Kč</span>
       </div>
-      <button type="button" onclick="goToCheckout()" class="btn btn-primary btn-lg w-full">
+      <button type="button" id="checkoutButton" class="btn btn-primary btn-lg w-full">
         K pokladně
         <span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span>
       </button>
@@ -88,103 +88,6 @@ include __DIR__ . '/lib/header.php';
   </aside>
 </main>
 
-<script>
-function goToCheckout() {
-  if (!Cart.get().length) {
-    window.showToast?.('Košík je prázdný', 'error');
-    return;
-  }
-  window.location.href = 'checkout.php';
-}
-
-function esc(t) {
-  const d = document.createElement('div');
-  d.textContent = t;
-  // innerHTML escapes <, >, & — but NOT " or ' which can break out of attribute context
-  return d.innerHTML.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-}
-
-const catBgMap = {
-  'digitalni-produkty': 'cat-bg-digital',
-  merch:               'cat-bg-merch',
-  elektronika:         'cat-bg-electronics',
-};
-
-function renderCart() {
-  const items    = Cart.get();
-  const itemsEl  = document.getElementById('cartItems');
-  const emptyEl  = document.getElementById('emptyCart');
-  const summaryEl = document.getElementById('cartSummary');
-  const continueEl = document.getElementById('cartContinue');
-
-  const hasItems = items.length > 0;
-  emptyEl.classList.toggle('hidden', hasItems);
-  continueEl.classList.toggle('hidden', !hasItems);
-  if (summaryEl) summaryEl.style.opacity = hasItems ? '1' : '0.45';
-
-  const typeSlug = (type) => type === 'digital' ? 'digitalni-produkty' : 'merch';
-
-  itemsEl.innerHTML = items.map(item => {
-    const bg       = catBgMap[typeSlug(item.type)] || 'cat-bg-default';
-    const lineTotal = (Number(item.price) * Number(item.qty)).toLocaleString('cs-CZ');
-    const typeLabel = item.type === 'digital' ? 'Digitální' : 'Fyzický';
-    const badgeClass = item.type === 'digital' ? 'badge-primary' : 'badge-neutral';
-    return `
-      <article class="flex flex-col sm:flex-row gap-4 p-5 bg-surface-container border border-outline-variant rounded-xl">
-        <a href="product.php?slug=${encodeURIComponent(item.slug)}"
-           class="w-full sm:w-28 h-28 ${bg} rounded-lg border border-outline-variant/50 flex items-center justify-center shrink-0 overflow-hidden hover:opacity-90 transition-opacity"
-           aria-label="${esc(item.name)}">
-          <span class="material-symbols-outlined text-white/25 text-[40px]" aria-hidden="true">image</span>
-        </a>
-        <div class="flex flex-col flex-grow gap-3">
-          <div class="flex justify-between items-start gap-3">
-            <div class="min-w-0">
-              <span class="badge ${badgeClass} mb-1">${typeLabel}</span>
-              <h2 class="font-semibold text-on-surface text-[15px] leading-snug">${esc(item.name)}</h2>
-              <p class="text-sm text-on-surface-variant mt-0.5">${Number(item.price).toLocaleString('cs-CZ')} Kč / ks</p>
-            </div>
-            <button onclick="Cart.remove(${Number(item.id)})"
-                    class="btn-icon btn-ghost btn-sm text-on-surface-variant hover:text-error shrink-0"
-                    aria-label="Odstranit ${esc(item.name)}">
-              <span class="material-symbols-outlined text-[20px]" aria-hidden="true">delete</span>
-            </button>
-          </div>
-          <div class="flex justify-between items-center mt-auto">
-            <div class="qty-group" role="group" aria-label="Množství">
-              <button onclick="Cart.updateQuantity(${Number(item.id)}, ${Number(item.qty) - 1})"
-                      class="qty-btn" aria-label="Méně">
-                <span class="material-symbols-outlined text-[16px]" aria-hidden="true">remove</span>
-              </button>
-              <span class="qty-val" aria-live="polite">${Number(item.qty)}</span>
-              <button onclick="Cart.updateQuantity(${Number(item.id)}, ${Number(item.qty) + 1})"
-                      class="qty-btn" aria-label="Více">
-                <span class="material-symbols-outlined text-[16px]" aria-hidden="true">add</span>
-              </button>
-            </div>
-            <div class="font-bold text-[17px] text-on-surface">${lineTotal} Kč</div>
-          </div>
-        </div>
-      </article>`;
-  }).join('');
-
-  const subtotal = Cart.total();
-  const shipping = Cart.shipping();
-  const total    = subtotal + shipping;
-  document.getElementById('summarySubtotal').textContent = subtotal.toLocaleString('cs-CZ') + ' Kč';
-  document.getElementById('summaryShipping').textContent = shipping === 0 ? 'Zdarma' : shipping.toLocaleString('cs-CZ') + ' Kč';
-  document.getElementById('summaryTotal').textContent    = total.toLocaleString('cs-CZ') + ' Kč';
-
-  const noteEl = document.getElementById('summaryShippingNote');
-  if (Cart.hasPhysical() && subtotal > 0 && subtotal < 1000) {
-    noteEl.textContent = 'Přidej za ' + (1000 - subtotal).toLocaleString('cs-CZ') + ' Kč pro dopravu zdarma';
-    noteEl.classList.remove('hidden');
-  } else {
-    noteEl.classList.add('hidden');
-  }
-}
-
-window.addEventListener('cartchange', renderCart);
-document.addEventListener('DOMContentLoaded', renderCart);
-</script>
+<script defer src="assets/js/cart-page.js"></script>
 
 <?php include __DIR__ . '/lib/footer.php'; ?>

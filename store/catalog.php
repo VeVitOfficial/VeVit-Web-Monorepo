@@ -241,7 +241,7 @@ if ($search) {
           <?php foreach ($_GET as $k => $v): if ($k === 'sort' || $k === 'page') continue; ?>
             <input type="hidden" name="<?= h($k) ?>" value="<?= h(is_array($v) ? '' : (string)$v) ?>">
           <?php endforeach; ?>
-          <select id="mobileSortSelect" name="sort" onchange="this.form.submit()"
+          <select id="mobileSortSelect" name="sort" data-submit-on-change
             class="form-input form-select text-sm h-[36px] rounded-lg flex-1 max-w-[180px]">
             <option value="featured" <?= $sort === 'featured' ? 'selected' : '' ?>>Doporučené</option>
             <option value="newest" <?= $sort === 'newest' ? 'selected' : '' ?>>Nejnovější</option>
@@ -276,7 +276,7 @@ if ($search) {
           <?php foreach ($_GET as $k => $v): if ($k === 'sort' || $k === 'page') continue; ?>
             <input type="hidden" name="<?= h($k) ?>" value="<?= h(is_array($v) ? '' : (string)$v) ?>">
           <?php endforeach; ?>
-          <select id="desktopSortSelect" name="sort" onchange="this.form.submit()"
+          <select id="desktopSortSelect" name="sort" data-submit-on-change
             class="form-input form-select text-sm h-[36px] rounded-lg w-auto">
             <option value="featured" <?= $sort === 'featured' ? 'selected' : '' ?>>Doporučené</option>
             <option value="newest" <?= $sort === 'newest' ? 'selected' : '' ?>>Nejnovější</option>
@@ -365,12 +365,11 @@ if ($search) {
                   <span class="material-symbols-outlined text-[18px]" aria-hidden="true">block</span>
                 </button>
               <?php else: ?>
-                <button
-                  onclick='Cart.add(<?= json_encode([
+                <button data-cart-product="<?= h(json_encode([
                     "id" => (int)$p["id"], "name" => $p["name"], "price" => (float)$p["price"],
                     "sale_price" => $p["sale_price"] ? (float)$p["sale_price"] : null,
                     "type" => $p["type"], "slug" => $p["slug"]
-                  ], JSON_HEX_TAG|JSON_HEX_APOS|JSON_HEX_AMP|JSON_HEX_QUOT) ?>)'
+                  ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)) ?>"
                   aria-label="Přidat <?= h($p['name']) ?> do košíku"
                   class="btn btn-icon btn-sm bg-surface border border-outline-variant hover:border-primary text-on-surface hover:text-primary transition-colors">
                   <span class="material-symbols-outlined text-[18px]" aria-hidden="true">add_shopping_cart</span>
@@ -511,32 +510,6 @@ if ($search) {
   </div>
 </div>
 
-<script>
-/* Mobile filter drawer */
-const filterDrawer = document.getElementById('mobileFilterDrawer');
-const filterBtn    = document.getElementById('mobileFilterBtn');
-const filterClose  = document.getElementById('filterDrawerClose');
-const filterBd     = document.getElementById('filterBackdrop');
-function openFilter() {
-  if (!filterDrawer) return;
-  filterDrawer.classList.add('open');
-  filterDrawer.removeAttribute('inert');
-  document.body.classList.add('drawer-open');
-  filterBtn?.setAttribute('aria-expanded', 'true');
-  setTimeout(() => filterClose?.focus(), 300);
-}
-function closeFilter() {
-  if (!filterDrawer) return;
-  filterDrawer.classList.remove('open');
-  filterDrawer.setAttribute('inert', '');
-  document.body.classList.remove('drawer-open');
-  filterBtn?.setAttribute('aria-expanded', 'false');
-  filterBtn?.focus();
-}
-filterBtn?.addEventListener('click', openFilter);
-filterClose?.addEventListener('click', closeFilter);
-filterBd?.addEventListener('click', closeFilter);
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeFilter(); });
-</script>
+<script src="assets/js/catalog-page.js"></script>
 
 <?php include __DIR__ . '/lib/footer.php'; ?>

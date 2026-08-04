@@ -16,7 +16,7 @@
 <link rel="icon" href="images/icon.ico" type="image/x-icon">
 
 </head>
-<body class="bg-background text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col pb-16 md:pb-0">
+<body class="bg-background text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col pb-16 md:pb-0" data-vevit-me-url="/account/api/me.php" data-vevit-login-url="/account/login" data-vevit-app-origin="https://vevit.cz" data-vevit-base="/store/" data-vevit-hydrate-account="1">
 
 <!-- Skip link (accessibility) -->
 <a class="skip-link" href="#main-content">Přeskočit na obsah</a>
@@ -82,7 +82,7 @@
       <!-- Account / Login — hydrated by vevit-account.js after page load -->
       <div id="navAuth" class="flex items-center" aria-live="polite" aria-label="Stav přihlášení">
                   <!-- Default: login button; vevit-account.js replaces this with user info if authenticated -->
-          <button type="button" onclick="if(window.VevitAccount)VevitAccount.openLogin();" aria-label="Přihlásit se přes VeVit Account" class="p-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors duration-150">
+          <button type="button" data-account-login aria-label="Přihlásit se přes VeVit Account" class="p-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors duration-150">
             <span class="material-symbols-outlined text-[22px]" aria-hidden="true">account_circle</span>
           </button>
               </div>
@@ -208,142 +208,17 @@
 
     <!-- Drawer footer — auth -->
     <div class="mobile-drawer__footer">
-              <button type="button" onclick="if(window.VevitAccount){VevitAccount.openLogin();}closeDrawer();" class="btn btn-primary w-full justify-center">
+              <button type="button" data-account-login data-close-drawer class="btn btn-primary w-full justify-center">
           <span class="material-symbols-outlined text-[18px]" aria-hidden="true">login</span> Přihlásit se
         </button>
           </div>
   </div>
 </div>
 
-<script>
-/* VeVit Account configuration — read by vevit-account.js.
-   [B1] me_url and [B2] login_url must be confirmed with the VeVit Account team. */
-window.VEVIT_ACCOUNT_CONFIG = {
-  meUrl:     'https://vevit.cz/account/api/me.php',
-  loginUrl:  'https://vevit.cz/account/login',
-  appOrigin: 'http://127.0.0.1',
-};
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeDrawer();
-});
-
-/* ---- Mobile Drawer ---- */
-const drawer = document.getElementById('mobileDrawer');
-const drawerPanel = drawer ? drawer.querySelector('.mobile-drawer__panel') : null;
-const menuBtn = document.getElementById('mobileMenuBtn');
-const closeBtn = document.getElementById('drawerCloseBtn');
-const backdrop = document.getElementById('drawerBackdrop');
-let lastFocusedEl = null;
-
-function openDrawer() {
-  if (!drawer) return;
-  lastFocusedEl = document.activeElement;
-  drawer.classList.add('open');
-  drawer.removeAttribute('inert');
-  document.body.classList.add('drawer-open');
-  menuBtn.setAttribute('aria-expanded', 'true');
-  // Focus first focusable element in panel
-  setTimeout(() => {
-    const first = drawerPanel.querySelector('a, button, input');
-    if (first) first.focus();
-  }, 300);
-}
-function closeDrawer() {
-  if (!drawer) return;
-  drawer.classList.remove('open');
-  drawer.setAttribute('inert', '');
-  document.body.classList.remove('drawer-open');
-  menuBtn.setAttribute('aria-expanded', 'false');
-  if (lastFocusedEl) lastFocusedEl.focus();
-}
-
-if (menuBtn) menuBtn.addEventListener('click', openDrawer);
-if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
-if (backdrop) backdrop.addEventListener('click', closeDrawer);
-
-// Focus trap inside drawer
-if (drawer) {
-  drawer.addEventListener('keydown', function(e) {
-    if (!drawer.classList.contains('open')) return;
-    if (e.key !== 'Tab') return;
-    const focusable = Array.from(drawer.querySelectorAll('a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])')).filter(el => !el.closest('[tabindex="-1"]') && !el.disabled);
-    if (!focusable.length) return;
-    const first = focusable[0];
-    const last = focusable[focusable.length - 1];
-    if (e.shiftKey) {
-      if (document.activeElement === first) { e.preventDefault(); last.focus(); }
-    } else {
-      if (document.activeElement === last) { e.preventDefault(); first.focus(); }
-    }
-  });
-}
-
-// Close drawer on viewport resize to desktop width
-window.addEventListener('resize', function() {
-  if (window.innerWidth >= 768 && drawer && drawer.classList.contains('open')) closeDrawer();
-});
-</script>
+<script src="assets/js/header.js"></script>
 
 <script src="assets/js/vevit-account.js"></script>
-<script>
-// Hydrate #navAuth via VeVit Account (runs only when no legacy local session).
-// On auth: replace login button with user chip. On failure: leave login button.
-(function () {
-  if (!window.VevitAccount) return;
-  var navAuth = document.getElementById('navAuth');
-  if (!navAuth) return;
-
-  VevitAccount.checkSession().then(function (result) {
-    if (result.state !== 'authenticated' || !result.user) return;
-    var u = result.user;
-
-    // Build avatar element
-    var avatarEl;
-    if (u.avatarUrl) {
-      avatarEl = document.createElement('img');
-      avatarEl.width = 32;
-      avatarEl.height = 32;
-      avatarEl.className = 'w-8 h-8 rounded-full object-cover border border-outline-variant';
-      avatarEl.alt = '';
-      avatarEl.src = u.avatarUrl; // validated as https:// in _safeAvatarUrl
-    } else {
-      avatarEl = document.createElement('span');
-      avatarEl.className = 'w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant flex items-center justify-center text-on-surface-variant';
-      var icon = document.createElement('span');
-      icon.className = 'material-symbols-outlined text-[18px]';
-      icon.setAttribute('aria-hidden', 'true');
-      icon.textContent = 'person';
-      avatarEl.appendChild(icon);
-    }
-
-    var nameSpan = document.createElement('span');
-    nameSpan.className = 'font-body-md text-sm text-on-surface max-w-[120px] truncate';
-    nameSpan.textContent = u.displayName || '';
-
-    var logoutA = document.createElement('a');
-    logoutA.href = 'logout.php';
-    logoutA.setAttribute('aria-label', 'Odhlásit se');
-    logoutA.title = 'Odhlásit se';
-    logoutA.className = 'p-1.5 rounded-md text-on-surface-variant hover:text-error transition-colors';
-    var logoutIcon = document.createElement('span');
-    logoutIcon.className = 'material-symbols-outlined text-[18px]';
-    logoutIcon.setAttribute('aria-hidden', 'true');
-    logoutIcon.textContent = 'logout';
-    logoutA.appendChild(logoutIcon);
-
-    var wrapper = document.createElement('div');
-    wrapper.className = 'flex items-center gap-2';
-    wrapper.appendChild(avatarEl);
-    wrapper.appendChild(nameSpan);
-    wrapper.appendChild(logoutA);
-
-    navAuth.innerHTML = '';
-    navAuth.appendChild(wrapper);
-  }).catch(function () {
-    // Leave login button in place on any error.
-  });
-}());
-</script>
+<script src="assets/js/header-account.js"></script>
 
 <!-- Main content landmark starts here (id used by skip link) -->
 <div id="main-content">
@@ -715,158 +590,7 @@ window.addEventListener('resize', function() {
 
 </main>
 
-<script>
-/* ---- Helpers ---- */
-function esc(s) {
-  return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}
-function fmtPrice(v) {
-  return Number(v || 0).toLocaleString('cs-CZ', { maximumFractionDigits: 0 }).replace(/\s/g, ' ') + ' Kč';
-}
-function catBg(slug) {
-  return ({'elektronika-a-prislusenstvi':'cat-bg-electronics','umeni-papirenstvi-a-tvorivost':'cat-bg-digital','domov-kuchyne-a-bydleni':'cat-bg-merch','sport-fitness-a-outdoor':'cat-bg-default','moda-obleceni-a-doplnky':'cat-bg-merch','krasa-zdravi-a-osobni-pece':'cat-bg-default','chovatelske-potreby-pet-products':'cat-bg-default','eko-and-udrzitelny-zivotni-styl':'cat-bg-default'})[slug] || 'cat-bg-default';
-}
-function hasSale(p) { return p.sale_price && Number(p.sale_price) > 0; }
-function priceOf(p) { return hasSale(p) ? Number(p.sale_price) : Number(p.price); }
-function isOutOfStock(p) { return p.type !== 'digital' && p.stock !== null && Number(p.stock) <= 0; }
-
-/* ---- Product card ---- */
-function renderProductCard(p) {
-  const digital  = p.type === 'digital';
-  const soldout  = isOutOfStock(p);
-  const sale     = hasSale(p);
-  const price    = priceOf(p);
-  const bg       = catBg(p.category_slug);
-  const badge    = p.featured
-    ? `<span class="badge badge-primary absolute top-2 left-2 z-10">Nové</span>`
-    : sale ? `<span class="badge badge-danger absolute top-2 left-2 z-10">Sleva</span>` : '';
-  const stockEl  = (!digital && p.stock !== null)
-    ? `<span class="badge ${Number(p.stock) > 0 ? 'badge-success' : 'badge-danger'}">${Number(p.stock) > 0 ? 'Skladem' : 'Vyprodáno'}</span>`
-    : digital ? `<span class="badge badge-primary">Digitální</span>` : '';
-  const payload  = JSON.stringify({id:Number(p.id),name:p.name,price:Number(p.price),sale_price:p.sale_price?Number(p.sale_price):null,type:p.type,slug:p.slug});
-  const addBtn   = soldout
-    ? `<button disabled aria-label="Vyprodáno" class="btn btn-icon btn-sm bg-surface border border-outline-variant text-on-surface-variant cursor-not-allowed opacity-50"><span class="material-symbols-outlined text-[18px]">block</span></button>`
-    : `<button data-add-product="${payload.replace(/"/g,'&quot;')}" aria-label="Přidat ${esc(p.name)} do košíku" class="btn btn-icon btn-sm bg-surface border border-outline-variant hover:border-primary text-on-surface hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">add_shopping_cart</span></button>`;
-
-  const el = document.createElement('article');
-  el.setAttribute('role', 'listitem');
-  el.className = 'product-card bg-surface-container border border-outline-variant rounded-xl p-4 flex flex-col group relative';
-  el.innerHTML = `
-    ${badge}
-    <a href="product.php?slug=${encodeURIComponent(p.slug)}" class="aspect-square ${bg} rounded-lg mb-4 flex items-center justify-center relative overflow-hidden border border-outline-variant/40 group-hover:scale-[1.02] transition-transform duration-300" tabindex="-1">
-      <span class="font-mono-label text-mono-label text-white/60 uppercase tracking-widest text-center px-3 text-[10px]">${esc(p.category_name || 'VeVit')}</span>
-    </a>
-    <div class="flex items-center gap-1.5 flex-wrap mb-1.5">${stockEl}</div>
-    <a href="product.php?slug=${encodeURIComponent(p.slug)}" class="font-h2 text-[15px] font-bold text-on-surface mb-1 line-clamp-2 hover:text-primary transition-colors duration-150 leading-snug">${esc(p.name)}</a>
-    <p class="font-body-md text-[12px] text-on-surface-variant line-clamp-2 mb-3 flex-1 leading-relaxed">${esc(p.short_desc || '')}</p>
-    <div class="flex justify-between items-center mt-auto pt-3 border-t border-outline-variant">
-      <div>
-        <span class="font-display text-[17px] font-bold text-primary block">${fmtPrice(price)}</span>
-        ${sale ? `<span class="font-caption text-caption text-on-surface-variant line-through">${fmtPrice(Number(p.price))}</span>` : ''}
-      </div>
-      ${addBtn}
-    </div>`;
-  return el;
-}
-
-/* ---- Category card ---- */
-function renderCatCard(cat, large) {
-  const bg = catBg(cat.slug);
-  const a  = document.createElement('a');
-  a.href   = `catalog.php?category=${encodeURIComponent(cat.slug)}`;
-  a.className = `${large ? 'sm:col-span-2' : ''} relative group rounded-xl overflow-hidden border border-outline-variant hover:border-primary/50 transition-colors block ${bg} h-[160px]`;
-  a.innerHTML = `
-    <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent"></div>
-    <div class="absolute bottom-3 left-3 right-10">
-      <h3 class="font-display text-[15px] font-bold text-white leading-tight mb-0.5 line-clamp-2">${esc(cat.name)}</h3>
-      <p class="font-mono-label text-[10px] text-white/60 uppercase">${Number(cat.product_count)} produktů</p>
-    </div>
-    <div class="absolute top-2 right-2 bg-black/40 backdrop-blur-sm p-1.5 rounded-lg border border-white/10">
-      <span class="material-symbols-outlined text-primary text-[16px]">${esc(cat.icon || 'category')}</span>
-    </div>`;
-  return a;
-}
-
-/* ---- Fill product row ---- */
-function fillRow(gridId, sectionId, products, showEmpty) {
-  const section = document.getElementById(sectionId);
-  const grid    = document.getElementById(gridId);
-  if (!section || !grid) return;
-  if (!products || !products.length) {
-    if (showEmpty) section.classList.remove('hidden');
-    return;
-  }
-  grid.innerHTML = '';
-  products.slice(0, 8).forEach(p => grid.appendChild(renderProductCard(p)));
-  section.classList.remove('hidden');
-}
-
-/* ---- Render categories ---- */
-function renderCategories(cats) {
-  const grid  = document.getElementById('categoriesGrid');
-  const empty = document.getElementById('catsEmpty');
-  if (!grid) return;
-  const parents = cats.filter(c => c.parent_id === null || c.parent_id === undefined);
-  grid.innerHTML = '';
-  if (!parents.length) {
-    empty && empty.classList.remove('hidden');
-    return;
-  }
-  // Show max 8 parent cats
-  parents.slice(0, 8).forEach((cat, i) => grid.appendChild(renderCatCard(cat, i === 0 && parents.length > 3)));
-  document.getElementById('categoriesSection')?.classList.remove('hidden');
-}
-
-/* ---- Homepage load ---- */
-async function loadHome() {
-  try {
-    const [featRes, dealsRes, bestRes, recentRes, catRes] = await Promise.all([
-      fetch('api/products.php?sort=featured&per_page=8').then(r => r.json()).catch(() => ({})),
-      fetch('api/products.php?deals=1&per_page=8').then(r => r.json()).catch(() => ({})),
-      fetch('api/products.php?sort=bestselling&per_page=8').then(r => r.json()).catch(() => ({})),
-      fetch('api/recent.php').then(r => r.json()).catch(() => ({})),
-      fetch('api/categories.php').then(r => r.json()).catch(() => ({})),
-    ]);
-
-    // Featured: show section with empty state if no products
-    const featGrid    = document.getElementById('featuredGrid');
-    const featEmpty   = document.getElementById('featuredEmpty');
-    if (featGrid) featGrid.innerHTML = '';
-    if (featRes.products && featRes.products.length) {
-      featRes.products.slice(0, 8).forEach(p => featGrid?.appendChild(renderProductCard(p)));
-      featEmpty?.classList.add('hidden');
-    } else {
-      featEmpty?.classList.remove('hidden');
-    }
-
-    if (dealsRes.products && dealsRes.products.length)  fillRow('dealsGrid',  'dealsSection',  dealsRes.products, false);
-    if (bestRes.products  && bestRes.products.length)   fillRow('bestGrid',   'bestSection',   bestRes.products,  false);
-    if (recentRes.products && recentRes.products.length) fillRow('recentGrid', 'recentSection', recentRes.products, false);
-    if (catRes.categories) renderCategories(catRes.categories);
-    else {
-      document.getElementById('categoriesGrid').innerHTML = '';
-      document.getElementById('catsEmpty')?.classList.remove('hidden');
-    }
-
-  } catch (err) {
-    console.error('Homepage load error:', err);
-    // Show empty states on failure
-    document.getElementById('featuredGrid') && (document.getElementById('featuredGrid').innerHTML = '');
-    document.getElementById('featuredEmpty')?.classList.remove('hidden');
-    document.getElementById('categoriesGrid').innerHTML = '';
-    document.getElementById('catsEmpty')?.classList.remove('hidden');
-  }
-}
-
-/* ---- Add-to-cart delegation ---- */
-document.addEventListener('click', function(e) {
-  const btn = e.target.closest('[data-add-product]');
-  if (!btn) return;
-  try { Cart.add(JSON.parse(btn.dataset.addProduct)); } catch { /* malformed */ }
-});
-
-loadHome();
-</script>
+<script defer src="assets/js/index-page.js"></script>
 
 </div><!-- /#main-content -->
 
@@ -1007,7 +731,7 @@ loadHome();
           </a>
 
     <!-- Account -->
-        <button type="button" onclick="if(window.VevitAccount)VevitAccount.openLogin();"
+        <button type="button" data-account-login
        class="flex-1 flex flex-col items-center justify-center gap-0.5 text-on-surface-variant hover:text-primary transition-colors duration-150"
        aria-label="Přihlásit se přes VeVit Account">
       <span class="material-symbols-outlined text-[22px]" aria-hidden="true">person</span>
