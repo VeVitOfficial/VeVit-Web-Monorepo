@@ -43,6 +43,10 @@ rozhodnutí uživatele i bezpečnější výklad rozporů nalezených během rea
 - U sandboxu bez `allow-same-origin` je `event.origin` záměrně `"null"` a samo o
   sobě neověřuje odesílatele; autentizaci zprávy zajišťuje kombinace source a
   nonce.
+- Izolovaný playground používá statický same-origin iframe s opaque originem a
+  uvnitř Blob Web Worker. Pouze `/edu/sandbox-frame.html` proto potřebuje
+  `worker-src blob:` a `frame-ancestors 'self'`; ostatní stránky mohou mít
+  `frame-ancestors 'none'`.
 
 ## Evidovaný technický dluh
 

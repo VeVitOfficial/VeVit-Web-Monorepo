@@ -17,38 +17,6 @@ function starterCode(ex) {
   return `// ${ex.title}\n// Zde napiš svůj kód...\n`;
 }
 
-// Spuštění JS kódu v iframe sandboxu – port runJSInSandbox
-function runJSInSandbox(code) {
-  return new Promise((resolve) => {
-    const iframe = document.createElement("iframe");
-    iframe.style.display = "none";
-    iframe.setAttribute("sandbox", "allow-scripts");
-    document.body.appendChild(iframe);
-    const start = performance.now();
-    const output = [];
-    let resolved = false;
-    const timeout = setTimeout(() => {
-      if (!resolved) { resolved = true; cleanup(); resolve({ output, error: "Timeout: Kód běžel déle než 3 sekundy.", duration: 3000 }); }
-    }, 3000);
-    function cleanup() { clearTimeout(timeout); if (iframe.parentNode) iframe.parentNode.removeChild(iframe); }
-    const sandboxHtml = `<!DOCTYPE html><html><head><meta charset="utf-8"><script>
-      const logs=[];const origLog=console.log;console.log=function(){logs.push([].slice.call(arguments).map(function(a){return typeof a==='object'?JSON.stringify(a):String(a)}).join(' '));origLog.apply(console,arguments);};
-      console.error=function(){logs.push('[ERROR] '+[].slice.call(arguments).map(String).join(' '));};console.warn=function(){logs.push('[WARN] '+[].slice.call(arguments).map(String).join(' '));};
-      window.addEventListener('error',function(e){logs.push('[ERROR] '+e.message);});
-      window.addEventListener('load',function(){try{${code.replace(/\/\/.*$/gm, "")}}catch(err){logs.push('[ERROR] '+err.message);}window.parent.postMessage({type:'sandbox-result',logs:logs},'*');});
-    <\/script></head><body></body></html>`;
-    const blob = new Blob([sandboxHtml], { type: "text/html" });
-    const url = URL.createObjectURL(blob);
-    iframe.src = url;
-    const handler = (event) => {
-      if (event.data && event.data.type === "sandbox-result") {
-        if (!resolved) { resolved = true; cleanup(); URL.revokeObjectURL(url); resolve({ output: event.data.logs || [], duration: Math.round(performance.now() - start) }); }
-      }
-    };
-    window.addEventListener("message", handler);
-  });
-}
-
 // ─── Otevřené cvičení (textová odpověď) ───
 export function mountOpenCard(container, { exercise, index, completed, onComplete }) {
   let answer = "", checked = completed, showHint = false, showSolution = false;
@@ -117,7 +85,7 @@ function mountCodeCard(container, { exercise, index, completed, onComplete, lang
     const codeTa = container.querySelector('[data-field="code"]');
     if (codeTa) codeTa.addEventListener("input", (e) => { code = e.target.value; const rb = container.querySelector('[data-act="run"]'); if (rb) rb.disabled = isRunning || code.trim().length === 0; });
     bind("copy", async () => { await navigator.clipboard?.writeText(code); copied = true; render(); setTimeout(() => { copied = false; render(); }, 2000); });
-    bind("run", async () => { if (!isJS) return; isRunning = true; output = []; render(); const r = await runJSInSandbox(code); output = r.error ? [r.error] : r.output; isRunning = false; render(); });
+    bind("run", async () => { if (!isJS) return; isRunning = true; output = []; render(); const r = await window.VeVitSandboxRunner.run(code); output = r.error ? [`[ERROR] ${r.error}`] : r.output; isRunning = false; render(); });
     bind("complete", () => { if (!completed) onComplete && onComplete(); });
     bind("tests", () => { expandedTests = !expandedTests; render(); });
     bind("hint", () => { if (!showHint) hintPenalty += 5; showHint = !showHint; render(); });

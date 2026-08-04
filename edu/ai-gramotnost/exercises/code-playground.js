@@ -10,14 +10,13 @@ Engines.code_playground = {
     const out = el("div", { class: "cp-out" });
     out.textContent = "// výstup se zobrazí po spuštění";
     const run = el("button", { class: "btn btn-ghost", style: "margin-top:.6rem" }, "Spustit (JS)");
-    run.addEventListener("click", () => {
+    run.addEventListener("click", async () => {
       if (config.language && !["javascript", "js"].includes(String(config.language).toLowerCase())) { out.textContent = "Spuštění je podporováno pro JavaScript. Pro ostatní jazyky použij „Zkontrolovat“."; return; }
-      const logs = [];
-      try {
-        const sandbox = new Function("console", code);
-        sandbox({ log: (...a) => logs.push(a.map((x) => (typeof x === "object" ? JSON.stringify(x) : String(x))).join(" ")), error: (...a) => logs.push("[ERROR] " + a.join(" ")), warn: (...a) => logs.push("[WARN] " + a.join(" ")) });
-        out.textContent = logs.join("\n") || "(bez výstupu)";
-      } catch (e) { out.textContent = "[ERROR] " + e.message; }
+      run.disabled = true;
+      out.textContent = "Spouštění…";
+      const result = await window.VeVitSandboxRunner.run(code);
+      out.textContent = result.error ? `[ERROR] ${result.error}` : (result.output.join("\n") || "(bez výstupu)");
+      run.disabled = false;
     });
     container.appendChild(el("div", { class: "cp-editor" }, [area, run, out]));
     return {
