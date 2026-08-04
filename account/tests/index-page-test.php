@@ -149,7 +149,8 @@ index_page_test('client controller uses canonical history routing and local stat
   index_page_assert_contains("window.history.pushState", $js);
   index_page_assert_contains("window.history.replaceState", $js);
   index_page_assert_contains("window.addEventListener('popstate'", $js);
-  index_page_assert_contains('window.__VV_ROUTE__', $js);
+  index_page_assert_contains("$('vv-bootstrap')", $js);
+  index_page_assert_contains("JSON.parse(bootstrap.dataset.user", $js);
   index_page_assert_contains('const sectionCache = new Map()', $js);
   index_page_assert_contains("fetch('/account/api/' + path", $js);
   index_page_assert_contains("api('account-overview.php')", $js);

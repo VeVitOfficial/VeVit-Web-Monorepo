@@ -9,10 +9,12 @@ declare(strict_types=1);
  */
 
 $html = file_get_contents(__DIR__ . '/../login.html');
-if (!is_string($html)) {
+$script = file_get_contents(__DIR__ . '/../assets/login.js');
+if (!is_string($html) || !is_string($script)) {
   fwrite(STDERR, "Unable to load login.html\n");
   exit(1);
 }
+$html .= "\n" . $script;
 
 $tests = 0;
 $failures = [];

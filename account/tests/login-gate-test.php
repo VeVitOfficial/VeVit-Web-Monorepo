@@ -120,9 +120,9 @@ login_gate_test('members receive the account HTML', function (): void {
   login_gate_assert_same(0, $result['exit']);
   login_gate_assert_same(200, $result['meta']['status'] ?? null);
   login_gate_assert_contains('id="app"', $result['stdout']);
-  login_gate_assert_contains('window.__VV_USER__', $result['stdout']);
-  login_gate_assert_contains('window.__VV_ROUTE__ = "profile"', $result['stdout']);
-  login_gate_assert_contains('"id":"user-1"', $result['stdout']);
+  login_gate_assert_contains('id="vv-bootstrap"', $result['stdout']);
+  login_gate_assert_contains('data-route="profile"', $result['stdout']);
+  login_gate_assert_contains('&quot;id&quot;:&quot;user-1&quot;', $result['stdout']);
 });
 
 login_gate_test('incomplete members are routed to onboarding instead of an account loading state', function (): void {

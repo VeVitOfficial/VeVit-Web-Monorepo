@@ -26,7 +26,7 @@ if (phoneRegistrationChallengeIsValid($challenge)) {
 <!doctype html>
 <html lang="cs">
 <head>
-  <link rel="icon" href="/VeVit-account/images/icon.ico" type="image/x-icon">
+  <link rel="icon" href="/account/images/icon.ico" type="image/x-icon">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="dark">
@@ -54,7 +54,7 @@ if (phoneRegistrationChallengeIsValid($challenge)) {
       <h1>Ověřte telefonní číslo</h1>
       <p>Poslali jsme vám šestimístný ověřovací kód.</p>
       <p class="phone"><?= htmlspecialchars($maskedPhone, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?></p>
-      <form id="verifyForm" novalidate>
+      <form id="verifyForm" data-challenge="<?= htmlspecialchars($challenge, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?>" data-resend-delay="<?= (int) $secondsUntilResend ?>" novalidate>
         <label for="verificationCode">Ověřovací kód</label>
         <input id="verificationCode" name="code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}" placeholder="••••••" required>
         <button id="verifyButton" class="primary" type="submit">Ověřit a vytvořit účet</button>
@@ -62,31 +62,7 @@ if (phoneRegistrationChallengeIsValid($challenge)) {
       <button id="resendButton" class="secondary" type="button">Poslat kód znovu</button>
       <p id="status" class="status" role="alert" aria-live="polite"></p>
       <a class="back" href="/account/register.html?mode=phone">Změnit telefonní číslo</a>
-      <script>
-      (function(){
-        'use strict';
-        var challenge = <?= json_encode($challenge, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?>;
-        var form=document.getElementById('verifyForm'),input=document.getElementById('verificationCode');
-        var verify=document.getElementById('verifyButton'),resend=document.getElementById('resendButton'),status=document.getElementById('status');
-        var remaining=<?= (int) $secondsUntilResend ?>, timer=0;
-        function message(text,ok){status.textContent=text;status.className='status '+(ok?'ok':'error')}
-        function tick(){resend.disabled=remaining>0;resend.textContent=remaining>0?'Poslat kód znovu ('+remaining+' s)':'Poslat kód znovu';if(remaining>0){remaining--;timer=window.setTimeout(tick,1000)}}
-        input.addEventListener('input',function(){input.value=input.value.replace(/\D/g,'').slice(0,6)});
-        input.addEventListener('paste',function(e){var value=(e.clipboardData||window.clipboardData).getData('text').replace(/\D/g,'').slice(0,6);if(value){e.preventDefault();input.value=value}});
-        form.addEventListener('submit',async function(e){
-          e.preventDefault();if(!/^\d{6}$/.test(input.value))return message('Zadejte šestimístný kód.',false);
-          verify.disabled=true;verify.textContent='Ověřuji…';message('',false);
-          try{var r=await fetch('/account/api/phone/register-verify.php',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({challenge:challenge,code:input.value})});var d=await r.json();if(!r.ok)throw new Error(d.error||'Kód je neplatný.');message('Telefonní číslo bylo ověřeno.',true);window.location.assign(d.redirect)}
-          catch(err){message(err.message||'Ověření se nepodařilo.',false);verify.disabled=false;verify.textContent='Ověřit a vytvořit účet'}
-        });
-        resend.addEventListener('click',async function(){
-          resend.disabled=true;message('',false);
-          try{var r=await fetch('/account/api/phone/register-resend.php',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({challenge:challenge})});var d=await r.json();if(!r.ok)throw new Error(d.error||'Kód se nepodařilo odeslat.');message('Nový kód byl odeslán.',true);remaining=60;window.clearTimeout(timer);tick()}
-          catch(err){message(err.message||'Kód se nepodařilo odeslat.',false);resend.disabled=false}
-        });
-        tick();input.focus();
-      }());
-      </script>
+      <script src="/account/assets/verify-phone.js"></script>
     <?php endif; ?>
   </main>
 </body>

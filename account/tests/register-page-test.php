@@ -9,10 +9,12 @@ declare(strict_types=1);
  */
 
 $source = file_get_contents(__DIR__ . '/../register.html');
-if (!is_string($source)) {
+$script = file_get_contents(__DIR__ . '/../assets/register.js');
+if (!is_string($source) || !is_string($script)) {
   fwrite(STDERR, "Unable to load register.html\n");
   exit(1);
 }
+$source .= "\n" . $script;
 
 $checks = [
   'form has a semantic submit target' => 'id="registerForm"',
@@ -28,7 +30,7 @@ $checks = [
   'form has an accessible success status' => 'id="registerSuccess"',
   'page carries the phone flow deployment marker' => '<!-- phone-register-flow-v2 -->',
   'page has a non-submitting identity toggle' => 'id="identityModeToggle"',
-  'page wires the inline identity toggle handler' => "identityModeToggle.addEventListener('click'",
+  'page wires the identity toggle handler' => "identityModeToggle.addEventListener('click'",
 ];
 
 foreach ($checks as $label => $needle) {

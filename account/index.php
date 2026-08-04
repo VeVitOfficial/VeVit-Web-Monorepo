@@ -73,17 +73,11 @@ function login_gate_run(array $cfg): never {
   }
 
   $route = account_route_from_uri((string) ($_SERVER['REQUEST_URI'] ?? '/'));
-  $routeJson = json_encode(
-    $route,
-    JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT
-  );
-  if (!is_string($routeJson)) {
-    http_response_code(500);
-    exit('Unable to render account');
-  }
-
-  $bootstrap = '<script>window.__VV_USER__ = ' . $userJson
-    . '; window.__VV_ROUTE__ = ' . $routeJson . ';</script>';
+  $bootstrap = '<div id="vv-bootstrap" hidden data-user="'
+    . htmlspecialchars($userJson, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8')
+    . '" data-route="'
+    . htmlspecialchars($route, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8')
+    . '"></div>';
   header('Content-Type: text/html; charset=utf-8');
   echo str_replace('<!-- VV_USER_BOOTSTRAP -->', $bootstrap, $page);
   exit;

@@ -918,7 +918,8 @@ function showBootError(message) {
 
 async function boot() {
   try {
-    currentUser = window.__VV_USER__;
+    const bootstrap = $('vv-bootstrap');
+    currentUser = bootstrap ? JSON.parse(bootstrap.dataset.user || '{}') : null;
     if (!currentUser || typeof currentUser !== 'object') {
       const data = await api('me.php');
       currentUser = data.user;
@@ -926,8 +927,9 @@ async function boot() {
     hydrateIdentity(currentUser);
     wireEvents();
     show($('app'));
-    const initialRoute = window.__VV_ROUTE__ in ROUTES
-      ? window.__VV_ROUTE__
+    const bootstrapRoute = bootstrap?.dataset.route || '';
+    const initialRoute = bootstrapRoute in ROUTES
+      ? bootstrapRoute
       : routeFromPath(location.pathname);
     syncRouteUi(initialRoute, false);
     loadSection(initialRoute);
