@@ -29,9 +29,9 @@ rozhodnutí uživatele i bezpečnější výklad rozporů nalezených během rea
   všechny relace a vrací 401.
 - Povinné ruční stop-body jsou po zrušení S-1 pouze: S-2 CSP enforce a S-3
   odstranění fallbacků s migrací `003_drop_plaintext_token`.
-- S-1 byl následně zrušen. Legacy JWT `service_role` se nerotuje; nahradí jej
-  samostatné pojmenované `sb_secret_` klíče a legacy `anon` i `service_role` se
-  po ověření všech konzumentů deaktivují.
+- S-1 byl následně zrušen. Legacy JWT `service_role` nebyl rotován; nahradily
+  jej samostatné pojmenované `sb_secret_` klíče a legacy `anon` i
+  `service_role` byly po ověření všech konzumentů deaktivovány.
 
 ## Bezpečnější výklady rozporů
 
@@ -86,9 +86,9 @@ rozhodnutí uživatele i bezpečnější výklad rozporů nalezených během rea
   používají přímé databázové připojení a vlastní worker secret, nikoli Supabase
   API key.
 - Moderní `sb_secret_` se posílá jen v hlavičce `apikey`, nikdy jako Bearer.
-  Přechodová větev rozlišuje prefix klíče: dokud je nakonfigurovaný legacy JWT,
-  zachová jeho nutnou `Authorization: Bearer`; po vložení `sb_secret_` tato
-  hlavička automaticky zmizí.
+  Během bezvýpadkové výměny krátce existovala typově rozlišená legacy větev;
+  po live ověření všech moderních klíčů a deaktivaci legacy klíčů byla z kódu
+  odstraněna.
 - Frontendový audit nenašel žádné přímé volání Supabase, takže projekt pro SSO
   nevytváří ani nedistribuuje nový publishable key.
 - Databáze má `pg_net`, jeden aktivní cron `stripe-sync-worker` a žádný Database

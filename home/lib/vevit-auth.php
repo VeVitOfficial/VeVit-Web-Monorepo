@@ -67,9 +67,6 @@ function vevitSupabaseHeaders(string $key): array
         'apikey: ' . $key,
         'Prefer: return=minimal',
     ];
-    if ($key !== '' && !str_starts_with($key, 'sb_secret_')) {
-        $headers[] = 'Authorization: Bearer ' . $key;
-    }
     return $headers;
 }
 
@@ -77,7 +74,7 @@ function vevitSupabaseHeaders(string $key): array
 function vevitAuthRest(array $config, string $method, string $table, array $query = []): ?array
 {
     $base = $config['supabase_url'] ?? null;
-    $key = $config['secret_key'] ?? $config['service_role'] ?? null;
+    $key = $config['secret_key'] ?? null;
     if (!is_string($base) || !str_starts_with($base, 'https://') || !is_string($key) || $key === '') {
         return null;
     }

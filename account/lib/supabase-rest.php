@@ -7,22 +7,16 @@ declare(strict_types=1);
  */
 
 function _sb_secret_key(array $cfg): string {
-  $key = $cfg['SUPABASE_SECRET_KEY'] ?? $cfg['SUPABASE_SERVICE_ROLE'] ?? null;
+  $key = $cfg['SUPABASE_SECRET_KEY'] ?? null;
   return is_string($key) ? $key : '';
 }
 
 function _sb_base_headers(array $cfg): array {
-  $key = _sb_secret_key($cfg);
-  $headers = [
+  return [
     'apikey: ' . _sb_secret_key($cfg),
     'Content-Type: application/json',
     'Accept: application/json',
   ];
-  // Přechod bez výpadku: legacy JWT vyžaduje Bearer, nový sb_secret_ jej nesmí dostat.
-  if ($key !== '' && !str_starts_with($key, 'sb_secret_')) {
-    $headers[] = 'Authorization: Bearer ' . $key;
-  }
-  return $headers;
 }
 
 function _sb_curl(string $method, string $url, array $headers, ?string $body = null): array {

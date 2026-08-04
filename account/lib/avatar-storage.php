@@ -22,17 +22,13 @@ function avatar_storage_path(string $value, string $userId): ?string {
 }
 
 function avatar_supabase_secret_key(array $cfg): string {
-  $key = $cfg['SUPABASE_SECRET_KEY'] ?? $cfg['SUPABASE_SERVICE_ROLE'] ?? null;
+  $key = $cfg['SUPABASE_SECRET_KEY'] ?? null;
   return is_string($key) ? $key : '';
 }
 
 function avatar_supabase_headers(array $cfg): array {
   $key = avatar_supabase_secret_key($cfg);
-  $headers = ['apikey: ' . $key];
-  if ($key !== '' && !str_starts_with($key, 'sb_secret_')) {
-    $headers[] = 'Authorization: Bearer ' . $key;
-  }
-  return $headers;
+  return ['apikey: ' . $key];
 }
 
 /** @return array{tmp_name:string,mime:string,extension:string} */

@@ -18,8 +18,8 @@ foreach ($serverConsumers as $relative) {
         $failures[] = "Nelze načíst {$relative}.";
         continue;
     }
-    if (preg_match('/Authorization:\s*Bearer[^\n]*(SUPABASE_SECRET_KEY|secret_key)/i', $source) === 1) {
-        $failures[] = "{$relative} posílá moderní secret key bez typové kontroly jako Bearer token.";
+    if (preg_match('/Authorization:\s*Bearer[^\n]*(SUPABASE|service_role|secret_key|\$key)/i', $source) === 1) {
+        $failures[] = "{$relative} posílá Supabase API key jako Bearer token.";
     }
 }
 
@@ -32,12 +32,8 @@ if (!str_contains($accountRest, "'apikey: ' . _sb_secret_key(\$cfg)")) {
 }
 require_once $root . '/account/lib/supabase-rest.php';
 $modernHeaders = _sb_base_headers(['SUPABASE_SECRET_KEY' => 'sb_secret_component_test_value']);
-$legacyHeaders = _sb_base_headers(['SUPABASE_SERVICE_ROLE' => 'legacy-jwt-test-value']);
 if (array_filter($modernHeaders, static fn(string $header): bool => str_starts_with($header, 'Authorization:')) !== []) {
     $failures[] = 'Moderní sb_secret_ klíč se posílá v Authorization hlavičce.';
-}
-if (array_filter($legacyHeaders, static fn(string $header): bool => str_starts_with($header, 'Authorization: Bearer ')) === []) {
-    $failures[] = 'Dočasná legacy větev nezachovává Bearer hlavičku během bezvýpadkové migrace.';
 }
 if (!str_contains($homeAuth, "'apikey: ' . \$key")) {
     $failures[] = 'Home neposílá komponentní secret key v apikey hlavičce.';
