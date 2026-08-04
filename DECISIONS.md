@@ -54,6 +54,9 @@ rozhodnutí uživatele i bezpečnější výklad rozporů nalezených během rea
   služby do Accountu. Auth endpointy používají `/account/api/`, zatímco Tools AI,
   SSL a feedback používají `/tools/api/` a legacy kurzová API
   `/edu/legacy/api/`. Tím nevzniká kolize ani paralelní autentizační vrstva.
+- Runtime CDN byly nahrazeny lokálními verzemi: Lucide 1.28.0, KaTeX 0.18.1,
+  Prism 1.30.0, mark.js 8.11.1 a statický Tailwind CSS sestavený Tailwindem
+  3.4.17. Fonty a Material Symbols jsou lokální WOFF2 assety.
 
 ## Evidovaný technický dluh
 

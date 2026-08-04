@@ -11,9 +11,7 @@ require_once __DIR__ . '/icons.php';
   <title>VeVit Tools — Nástroje pro vaši práci</title>
   <meta name="description" content="Sada nástrojů pro PDF, obrázky, média, text, AI, vývoj, bezpečnost i kalkulačky. Většinu souborů zpracujeme lokálně v prohlížeči, bez nahrávání na server.">
   <link rel="icon" href="/tools/assets/favicon.ico">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/fonts/vevit-fonts.css">
   <link rel="stylesheet" href="/tools/assets/css/style.css">
   <?php if (!empty($page_head)) echo $page_head; ?>
 </head>

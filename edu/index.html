@@ -9,62 +9,18 @@
     <link rel="icon" href="/edu/favicon.ico" sizes="256x256" type="image/x-icon" />
 
     <!-- Geist font (Vercel) s fallbackem na system-ui -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/fonts/vevit-fonts.css">
 
     <!-- KaTeX pro matematické vzorce -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.17.0/katex.min.css" />
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.17.0/katex.min.js"></script>
+    <link rel="stylesheet" href="/assets/vendor/katex/katex.min.css" />
+    <script defer src="/assets/vendor/katex/katex.min.js"></script>
 
     <!-- Lucide ikony -->
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="/assets/vendor/lucide/lucide.min.js@latest/dist/umd/lucide.min.js"></script>
 
     <!-- Tailwind Play CDN + design tokeny (reprodukce globals.css) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              background: "var(--color-background)",
-              foreground: "var(--color-foreground)",
-              "glass-bg": "var(--color-glass-bg)",
-              "glass-border": "var(--color-glass-border)",
-              "glass-highlight": "var(--color-glass-highlight)",
-              "glass-glow": "var(--color-glass-glow)",
-              muted: "var(--color-muted)",
-              accent: "var(--color-accent)",
-              "accent-foreground": "var(--color-accent-foreground)",
-              success: "var(--color-success)",
-              error: "var(--color-error)",
-              warning: "var(--color-warning)",
-              "card-bg": "var(--color-card-bg)",
-              "border-subtle": "var(--color-border-subtle)",
-              "text-primary": "var(--color-text-primary)",
-              "text-secondary": "var(--color-text-secondary)",
-              "text-muted": "var(--color-text-muted)",
-              "input-bg": "var(--color-input-bg)",
-              "nav-text": "var(--color-nav-text)",
-              "nav-hover": "var(--color-nav-hover)",
-              "prog-primary": "var(--color-prog-primary)",
-              "prog-bg": "var(--color-prog-bg)",
-              "prog-card": "var(--color-prog-card)",
-              "prog-elevated": "var(--color-prog-elevated)",
-              "prog-text": "var(--color-prog-text)",
-              "prog-text-secondary": "var(--color-prog-text-secondary)",
-              "prog-link": "var(--color-prog-link)",
-              "prog-border": "var(--color-prog-border)",
-            },
-            fontFamily: {
-              sans: ["Geist", "var(--font-geist-sans)", "system-ui", "sans-serif"],
-              mono: ["Geist Mono", "var(--font-geist-mono)", "ui-monospace", "monospace"],
-            },
-          },
-        },
-      };
-    </script>
+    <link rel="stylesheet" href="/assets/css/vevit-tailwind.css">
+
 
     <link rel="stylesheet" href="css/styles.css" />
   </head>
