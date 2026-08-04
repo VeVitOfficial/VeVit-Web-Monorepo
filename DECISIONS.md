@@ -98,6 +98,22 @@ rozhodnutí uživatele i bezpečnější výklad rozporů nalezených během rea
 - Zdroj nasazené `stripe-webhook` Edge Function obsahoval tajné hodnoty přímo v
   argumentech `Deno.env.get(...)`. Funkce musí být znovu nasazena pouze s názvy
   environment proměnných a exponovaná Stripe tajemství samostatně vyměněna.
+- Edge Functions `auth`, `api` a `stripe-webhook` byly znovu nasazeny s
+  pojmenovanými položkami `edge_auth`, `edge_api` a `stripe_webhook` z
+  `SUPABASE_SECRET_KEYS`. `stripe-webhook` má `verify_jwt=false`, protože
+  příchozí Stripe webhook nemá Supabase JWT; autentizaci zajišťuje povinné
+  ověření `Stripe-Signature`.
+- Existující Edge secret `STRIPE_SECRET_KEY` se neshodoval s hodnotou dříve
+  vloženou do zdrojového bundlu, proto nebyl přepsán. `STRIPE_WEBHOOK_SECRET`
+  byl přesunut ze zdroje do Edge secrets, ale protože byl již exponován, musí
+  se jeho hodnota samostatně vyměnit ve Stripe a Supabase.
+- Před deaktivací legacy klíčů byly zkontrolovány Supabase OAuth Apps: nejsou
+  publikované žádné integrační aplikace; autorizované položky jsou vývojové
+  agentní konektory používající Management API. Legacy `anon` i `service_role`
+  byly následně deaktivovány a live testy všech pěti konzumentů zůstaly zelené.
+- Původní moderní secret key `default` byl rovněž kompromitovaný zdrojovým
+  bundlem. Po přechodu všech konzumentů na pojmenované klíče byl nevratně
+  odstraněn; následné live testy Accountu, Home a tří Edge Functions prošly.
 
 ## Evidovaný technický dluh
 
@@ -106,6 +122,9 @@ rozhodnutí uživatele i bezpečnější výklad rozporů nalezených během rea
 - Převést `edu/ai-gramotnost.lessons.content` z `MEDIUMTEXT` HTML na
   strukturované bloky. Do té doby se používá úzký DOMPurify allowlist.
 - Provozní CSP report-only sběr musí běžet nejméně týden před S-2.
+- K 5. 8. 2026 produkční cesty `vevit.cz`, `/account`, `/store`, `/tools`,
+  `/edu` a `/home` neposílají report-only CSP hlavičku. Sběr tedy nezačal a S-2
+  je blokované nasazením Nginx konfigurace a následným sedmidenním měřením.
 - Non-browser access/refresh tokeny jsou samostatný release po stabilizaci SSO.
 - Přechod Supabase Auth na asymetrické JWT signing keys je doporučený samostatný
   bezpečnostní krok. Není součástí této implementace a neovlivňuje vlastní
