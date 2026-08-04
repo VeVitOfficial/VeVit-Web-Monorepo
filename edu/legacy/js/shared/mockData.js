@@ -28,7 +28,7 @@ export function getCourseIconUrl(slug) {
 
 export function courseIconImg(slug, size = 40) {
     const url = getCourseIconUrl(slug);
-    return `<img src="${url}" alt="${slug}" class="w-[${size}px] h-[${size}px] object-contain" loading="lazy" onerror="this.style.display='none'">`;
+    return `<img src="${url}" alt="${slug}" class="w-[${size}px] h-[${size}px] object-contain" loading="lazy" data-hide-on-error>`;
 }
 
 export const MOCK_COURSES = [

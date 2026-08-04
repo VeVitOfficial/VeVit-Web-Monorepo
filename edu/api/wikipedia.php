@@ -50,10 +50,17 @@ function wikipedia_fetch(string $url, int $maxBytes, string $accept): array
 }
 
 $action = (string) ($_GET['action'] ?? '');
+$allowedLanguages = ['cs', 'en', 'de', 'uk', 'es'];
+$language = strtolower(trim((string) ($_GET['lang'] ?? 'cs')));
+if (!in_array($language, $allowedLanguages, true)) {
+    wikipedia_error(400, 'Nepovolený jazyk Wikipedie.');
+}
+
 if ($action === 'search') {
     $query = trim((string) ($_GET['q'] ?? ''));
     if ($query === '' || mb_strlen($query) > 200) wikipedia_error(400, 'Neplatný vyhledávací dotaz.');
-    $url = 'https://cs.wikipedia.org/w/rest.php/v1/search/page?q=' . rawurlencode($query) . '&limit=1';
+    $limit = max(1, min(5, (int) ($_GET['limit'] ?? 1)));
+    $url = 'https://' . $language . '.wikipedia.org/w/rest.php/v1/search/page?q=' . rawurlencode($query) . '&limit=' . $limit;
     [$body, $contentType] = wikipedia_fetch($url, 512 * 1024, 'application/json');
     if (!str_contains(strtolower($contentType), 'json') || json_decode($body, true) === null) wikipedia_error(502, 'Wikipedia vrátila neplatná data.');
     header('Content-Type: application/json; charset=utf-8');
@@ -64,11 +71,48 @@ if ($action === 'search') {
 if ($action === 'article') {
     $key = trim((string) ($_GET['key'] ?? ''));
     if ($key === '' || mb_strlen($key) > 300 || preg_match('/[\x00-\x1f]/', $key)) wikipedia_error(400, 'Neplatný klíč článku.');
-    $url = 'https://cs.wikipedia.org/api/rest_v1/page/html/' . rawurlencode($key);
+    $url = 'https://' . $language . '.wikipedia.org/api/rest_v1/page/html/' . rawurlencode($key);
     [$body, $contentType] = wikipedia_fetch($url, 2 * 1024 * 1024, 'text/html');
     if (!str_contains(strtolower($contentType), 'html')) wikipedia_error(502, 'Wikipedia vrátila neočekávaný formát.');
     header('Content-Type: text/html; charset=utf-8');
     echo vevit_wikipedia_sanitize_html($body);
+    exit;
+}
+
+if ($action === 'parse') {
+    $title = trim((string) ($_GET['title'] ?? ''));
+    if ($title === '' || mb_strlen($title) > 300 || preg_match('/[\x00-\x1f]/', $title)) {
+        wikipedia_error(400, 'Neplatný název článku.');
+    }
+    $url = 'https://' . $language . '.wikipedia.org/w/api.php?action=parse&page=' . rawurlencode($title)
+        . '&prop=text%7Csections%7Cdisplaytitle&mobileformat=1&format=json&redirects=1';
+    [$body, $contentType] = wikipedia_fetch($url, 2 * 1024 * 1024, 'application/json');
+    $decoded = json_decode($body, true);
+    if (!str_contains(strtolower($contentType), 'json') || !is_array($decoded)) {
+        wikipedia_error(502, 'Wikipedia vrátila neplatná data.');
+    }
+    if (isset($decoded['error']) || !is_array($decoded['parse'] ?? null) || !is_array($decoded['parse']['text'] ?? null)) {
+        wikipedia_error(404, 'Článek nebyl nalezen.');
+    }
+
+    $parse = $decoded['parse'];
+    $sections = [];
+    foreach (is_array($parse['sections'] ?? null) ? $parse['sections'] : [] as $section) {
+        if (!is_array($section)) continue;
+        $sections[] = [
+            'anchor' => mb_substr(strip_tags((string) ($section['anchor'] ?? '')), 0, 300),
+            'line' => mb_substr(html_entity_decode(strip_tags((string) ($section['line'] ?? '')), ENT_QUOTES | ENT_HTML5, 'UTF-8'), 0, 500),
+            'toclevel' => (int) ($section['toclevel'] ?? 0),
+        ];
+    }
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode([
+        'title' => mb_substr(html_entity_decode(strip_tags((string) ($parse['displaytitle'] ?? $title)), ENT_QUOTES | ENT_HTML5, 'UTF-8'), 0, 500),
+        'content' => vevit_wikipedia_sanitize_html((string) ($parse['text']['*'] ?? '')),
+        'sections' => $sections,
+        'pageid' => isset($parse['pageid']) ? (int) $parse['pageid'] : null,
+        'lang' => $language,
+    ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR);
     exit;
 }
 

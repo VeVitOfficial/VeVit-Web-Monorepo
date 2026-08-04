@@ -267,7 +267,7 @@ function renderResults(isDark) {
                 <a href="#/kurz/${quizData.course_slug || 'python'}" data-link class="px-6 py-3 ${isDark ? 'bg-[#1e1e1e] border-[rgba(255,255,255,0.08)] hover:bg-[#262626]' : 'bg-gray-50 border-gray-200 hover:bg-gray-100'} border rounded-full font-semibold ${isDark ? 'text-text-primary' : 'text-gray-900'} transition-colors">
                     Zpět na kurz
                 </a>
-                <button onclick="location.hash='/kviz/${quizData.id}'" class="px-6 py-3 bg-accent hover:bg-accent-hover text-[#0d0d0d] rounded-full font-bold transition-all active:scale-95">
+                <button data-retry-quiz="${quizData.id}" class="px-6 py-3 bg-accent hover:bg-accent-hover text-[#0d0d0d] rounded-full font-bold transition-all active:scale-95">
                     Zkusit znovu
                 </button>
             </div>
@@ -275,6 +275,9 @@ function renderResults(isDark) {
     </div>`;
 
     lucide.createIcons();
+    app.querySelector('[data-retry-quiz]')?.addEventListener('click', (event) => {
+        location.hash = `/kviz/${event.currentTarget.dataset.retryQuiz}`;
+    });
 
     if (window.showToast) {
         window.showToast(`+${quizData.xp_reward} XP za kvíz!`, 'xp');

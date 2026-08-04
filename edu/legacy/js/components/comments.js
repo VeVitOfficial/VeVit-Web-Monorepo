@@ -85,7 +85,7 @@ function renderCommentForm(user, parentId = null, isReply = false) {
                     <div class="flex items-center justify-between mt-2">
                         <span id="${textareaId}-counter" class="text-xs text-[#6b7280]">0/2000</span>
                         <div class="flex gap-2">
-                            ${isReply ? `<button type="button" onclick="document.getElementById('reply-form-${parentId}').remove()" class="px-4 py-2 text-sm text-[#9ca3af] hover:text-[#f0f0f0] transition-colors">Zrušit</button>` : ''}
+                            ${isReply ? `<button type="button" data-cancel-reply="${parentId}" class="px-4 py-2 text-sm text-[#9ca3af] hover:text-[#f0f0f0] transition-colors">Zrušit</button>` : ''}
                             <button type="button" data-submit-btn="${parentId || 'root'}" class="px-5 py-2 text-sm font-bold bg-accent text-[#0d0d0d] rounded-xl hover:bg-[#059669] transition-colors disabled:opacity-40 disabled:cursor-not-allowed" disabled>${btnText}</button>
                         </div>
                     </div>
@@ -391,6 +391,9 @@ function showReplyForm(commentId, state, container) {
         });
         btn.addEventListener('click', () => submitComment(state, container, textarea, btn, commentId));
     }
+    replyContainer.querySelector('[data-cancel-reply]')?.addEventListener('click', () => {
+        document.getElementById(`reply-form-${commentId}`)?.remove();
+    });
     textarea?.focus();
 }
 

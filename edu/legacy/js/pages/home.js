@@ -1,12 +1,10 @@
 import { COURSE_ICON_URLS, SITE_ITEMS } from '../shared/mockData.js';
 
-const WIKI_APIS = {
-    cs: 'https://cs.wikipedia.org/w/api.php',
-    en: 'https://en.wikipedia.org/w/api.php',
-    de: 'https://de.wikipedia.org/w/api.php',
-    uk: 'https://uk.wikipedia.org/w/api.php',
-    es: 'https://es.wikipedia.org/w/api.php',
-};
+function escapeHtml(value) {
+    return String(value ?? '').replace(/[&<>"']/g, character => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    })[character]);
+}
 
 export async function renderHome() {
     const app = document.getElementById('app');
@@ -208,18 +206,18 @@ async function performUnifiedSearch(query, isDark) {
         item.title.toLowerCase().includes(q) || item.desc.toLowerCase().includes(q)
     );
 
-    const lang = window.getLang();
-    const wikiUrl = WIKI_APIS[lang] || WIKI_APIS.cs;
+    const requestedLang = window.getLang();
+    const lang = ['cs', 'en', 'de', 'uk', 'es'].includes(requestedLang) ? requestedLang : 'cs';
     let wikiResults = [];
     try {
-        const res = await fetch(`${wikiUrl}?action=query&list=search&srsearch=${encodeURIComponent(query)}&srlimit=5&format=json&origin=*&utf8=1`);
+        const res = await fetch(`/edu/api/wikipedia.php?action=search&lang=${encodeURIComponent(lang)}&limit=5&q=${encodeURIComponent(query)}`);
         const data = await res.json();
-        wikiResults = data.query?.search || [];
+        if (res.ok) wikiResults = Array.isArray(data.pages) ? data.pages : [];
     } catch {}
 
     if (siteResults.length === 0 && wikiResults.length === 0) {
         liveDiv.innerHTML = `<div class="p-5 text-center">
-            <p class="text-sm ${t2}">Žádné výsledky pro "${query}"</p>
+            <p class="text-sm ${t2}">Žádné výsledky pro "${escapeHtml(query)}"</p>
         </div>`;
         return;
     }
@@ -228,8 +226,8 @@ async function performUnifiedSearch(query, isDark) {
     const merged = [];
     const wikiItems = wikiResults.map(r => ({
         type: 'wiki',
-        title: r.title,
-        desc: r.snippet.replace(/<[^>]+>/g, ''),
+        title: String(r.title || ''),
+        desc: String(r.excerpt || r.description || '').replace(/<[^>]+>/g, ''),
         href: `#/wiki?article=${encodeURIComponent(r.title)}&q=${encodeURIComponent(query)}`,
     }));
     const vevitItems = siteResults.slice(0, 5).map(item => {
@@ -262,10 +260,10 @@ async function performUnifiedSearch(query, isDark) {
                 <span class="w-5 h-5 flex items-center justify-center text-xs font-black ${tI} shrink-0">W</span>
                 <div class="flex-1 min-w-0">
                     <div class="flex items-center gap-2">
-                        <span class="text-sm font-semibold ${isDark ? 'text-text-primary' : 'text-gray-900'} truncate">${item.title}</span>
+                        <span class="text-sm font-semibold ${isDark ? 'text-text-primary' : 'text-gray-900'} truncate">${escapeHtml(item.title)}</span>
                         <span class="text-xs px-2 py-0.5 rounded-full font-semibold ${isDark ? 'bg-white/5 text-[#6b7280]' : 'bg-gray-100 text-gray-500'}">Wiki</span>
                     </div>
-                    <p class="text-xs ${t2} line-clamp-1">${item.desc}</p>
+                    <p class="text-xs ${t2} line-clamp-1">${escapeHtml(item.desc)}</p>
                 </div>
                 <i data-lucide="chevron-right" class="w-4 h-4 ${isDark ? 'text-[#6b7280]' : 'text-gray-400'} shrink-0"></i>
             </a>`;
@@ -274,8 +272,8 @@ async function performUnifiedSearch(query, isDark) {
                 <i data-lucide="book-open" class="w-4 h-4 ${tI} shrink-0"></i>
                 <div class="flex-1 min-w-0">
                     <div class="flex items-center gap-2">
-                        <span class="text-sm font-semibold ${isDark ? 'text-text-primary' : 'text-gray-900'} truncate">${item.title}</span>
-                        <span class="text-xs px-2 py-0.5 rounded-full font-semibold ${isDark ? 'bg-accent/10 text-accent' : 'bg-emerald-50 text-emerald-600'}">${item.label}</span>
+                        <span class="text-sm font-semibold ${isDark ? 'text-text-primary' : 'text-gray-900'} truncate">${escapeHtml(item.title)}</span>
+                        <span class="text-xs px-2 py-0.5 rounded-full font-semibold ${isDark ? 'bg-accent/10 text-accent' : 'bg-emerald-50 text-emerald-600'}">${escapeHtml(item.label)}</span>
                     </div>
                 </div>
                 <i data-lucide="chevron-right" class="w-4 h-4 ${isDark ? 'text-[#6b7280]' : 'text-gray-400'} shrink-0"></i>

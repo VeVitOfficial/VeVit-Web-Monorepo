@@ -1,15 +1,7 @@
-const WIKI_APIS = {
-    cs: 'https://cs.wikipedia.org/w/api.php',
-    en: 'https://en.wikipedia.org/w/api.php',
-    de: 'https://de.wikipedia.org/w/api.php',
-    uk: 'https://uk.wikipedia.org/w/api.php',
-    es: 'https://es.wikipedia.org/w/api.php',
-};
-
-function stripHtml(html) {
-    const div = document.createElement('div');
-    div.innerHTML = html;
-    return div.textContent || div.innerText || '';
+function escapeHtml(value) {
+    return String(value ?? '').replace(/[&<>"']/g, character => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    })[character]);
 }
 
 export async function renderWiki() {
@@ -18,7 +10,8 @@ export async function renderWiki() {
     const articleTitle = params.get('article');
     const originalQuery = params.get('q');
     const highlightParam = params.get('highlight');
-    const lang = params.get('lang') || window.getLang();
+    const requestedLang = params.get('lang') || window.getLang();
+    const lang = ['cs', 'en', 'de', 'uk', 'es'].includes(requestedLang) ? requestedLang : 'cs';
     const isDark = window.getTheme() === 'dark';
 
     if (!articleTitle) {
@@ -63,18 +56,18 @@ export async function renderWiki() {
     </div>`;
 
     try {
-        const wikiUrl = WIKI_APIS[lang] || WIKI_APIS.cs;
-        const res = await fetch(`${wikiUrl}?action=parse&page=${encodeURIComponent(articleTitle)}&prop=text|sections|displaytitle&mobileformat=1&format=json&origin=*&redirects=1`);
+        const res = await fetch(`/edu/api/wikipedia.php?action=parse&lang=${encodeURIComponent(lang)}&title=${encodeURIComponent(articleTitle)}`);
         const data = await res.json();
 
-        if (data.error || !data.parse?.text) throw new Error('Article not found');
+        if (!res.ok || data.error || typeof data.content !== 'string') throw new Error('Article not found');
 
         const article = {
-            title: stripHtml(data.parse.displaytitle || articleTitle),
-            content: data.parse.text['*'],
-            sections: data.parse.sections || [],
-            pageid: data.parse.pageid
+            title: String(data.title || articleTitle),
+            content: data.content,
+            sections: Array.isArray(data.sections) ? data.sections : [],
+            pageid: data.pageid
         };
+        const safeTitle = escapeHtml(article.title);
 
         document.title = `${article.title} — edu.vevit.fun`;
 
@@ -86,13 +79,11 @@ export async function renderWiki() {
                 <!-- Left Sidebar / TOC (Desktop) — 200px sticky -->
                 <aside class="hidden lg:block w-[200px] flex-shrink-0 sticky top-20 h-[calc(100vh-80px)] overflow-y-auto px-4">
                     <div class="py-6">
-                        <button onclick="window.scrollTo({top:0,behavior:'smooth'})" class="w-full text-left text-sm font-bold ${isDark ? 'text-text-primary hover:text-accent' : 'text-gray-900 hover:text-emerald-600'} transition-colors mb-4 truncate">
-                            ${article.title}
+                        <button id="wiki-scroll-top" class="w-full text-left text-sm font-bold ${isDark ? 'text-text-primary hover:text-accent' : 'text-gray-900 hover:text-emerald-600'} transition-colors mb-4 truncate">
+                            ${safeTitle}
                         </button>
                         <h3 class="text-xs font-bold uppercase tracking-wider ${isDark ? 'text-text-muted' : 'text-gray-400'} mb-3">Obsah</h3>
-                        <nav id="toc-nav" class="space-y-1.5">
-                            ${topLevelSections.map(s => `<button onclick="document.getElementById('${s.anchor}')?.scrollIntoView({behavior:'smooth'})" class="block w-full text-left text-xs ${isDark ? 'text-text-secondary hover:text-accent' : 'text-gray-500 hover:text-emerald-600'} transition-colors truncate py-0.5">${stripHtml(s.line)}</button>`).join('')}
-                        </nav>
+                        <nav id="toc-nav" class="space-y-1.5"></nav>
                     </div>
                 </aside>
 
@@ -125,7 +116,7 @@ export async function renderWiki() {
                             </div>
 
                             <!-- Title -->
-                            <h1 class="text-3xl sm:text-4xl font-extrabold ${isDark ? 'text-text-primary' : 'text-gray-900'} tracking-tight mb-4" style="line-height: 1.2; letter-spacing: -0.02em;">${article.title}</h1>
+                            <h1 class="text-3xl sm:text-4xl font-extrabold ${isDark ? 'text-text-primary' : 'text-gray-900'} tracking-tight mb-4" style="line-height: 1.2; letter-spacing: -0.02em;">${safeTitle}</h1>
 
                             <!-- Author row -->
                             <div class="flex items-center gap-3 text-sm ${isDark ? 'text-text-muted' : 'text-gray-400'}">
@@ -144,7 +135,7 @@ export async function renderWiki() {
                         </header>
 
                         <!-- Article Body -->
-                        <div id="article-content" class="wiki-content">${article.content}</div>
+                        <div id="article-content" class="wiki-content"></div>
 
                         <!-- Footer -->
                         <footer class="mt-16 pt-8 ${isDark ? 'border-[rgba(255,255,255,0.06)]' : 'border-gray-200'} border-t flex flex-col sm:flex-row justify-between items-center gap-4">
@@ -160,8 +151,22 @@ export async function renderWiki() {
 
         lucide.createIcons();
 
+        document.getElementById('wiki-scroll-top')?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        const toc = document.getElementById('toc-nav');
+        toc?.replaceChildren(...topLevelSections.map(section => {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = `block w-full text-left text-xs ${isDark ? 'text-text-secondary hover:text-accent' : 'text-gray-500 hover:text-emerald-600'} transition-colors truncate py-0.5`;
+            button.textContent = String(section.line || '');
+            button.addEventListener('click', () => document.getElementById(String(section.anchor || ''))?.scrollIntoView({ behavior: 'smooth' }));
+            return button;
+        }));
+
         // Handle internal wiki links
         const content = document.getElementById('article-content');
+        const sanitized = window.VeVitContentSanitizer?.sanitizeWikipedia(article.content);
+        if (!(sanitized instanceof HTMLBodyElement)) throw new Error('Bezpečný renderer není dostupný.');
+        content.replaceChildren(...Array.from(sanitized.childNodes));
         content.addEventListener('click', (e) => {
             const target = e.target.closest('a');
             if (!target) return;

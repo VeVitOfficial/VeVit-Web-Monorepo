@@ -120,7 +120,7 @@ function renderKurzKarta(kurz, isDark) {
     return `<a href="#/kurz/${kurz.slug}" data-link class="group ${isDark ? 'bg-[#161616] border-[rgba(255,255,255,0.06)] hover:border-[rgba(16,185,129,0.2)]' : 'bg-white border-gray-200 hover:border-emerald-300'} border rounded-xl p-5 transition-all">
         <div class="flex items-start justify-between mb-3">
             <div class="w-10 h-10 rounded-lg ${isDark ? 'bg-white/5' : 'bg-gray-50'} flex items-center justify-center shrink-0">
-                <img src="${iconUrl}" alt="${kurz.title}" class="w-6 h-6 object-contain" loading="lazy" onerror="this.style.display='none'">
+                <img src="${iconUrl}" alt="${kurz.title}" class="w-6 h-6 object-contain" loading="lazy" data-hide-on-error>
             </div>
             <span class="text-[10px] font-bold px-2 py-0.5 rounded-full ${diffCls}">${diff.label}</span>
         </div>

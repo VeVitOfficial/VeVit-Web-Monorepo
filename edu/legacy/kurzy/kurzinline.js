@@ -1,0 +1,258 @@
+import { MOCK_COURSES, getCourseIconUrl, getMockLessons } from '../js/shared/mockData.js';
+import { getVevitUser } from '../js/auth.js';
+
+const DIFF_MAP = {
+    beginner: { label: 'Začátečník', cls: 'bg-emerald-500/10 text-emerald-400' },
+    intermediate: { label: 'Středně pokročilý', cls: 'bg-amber-500/10 text-amber-400' },
+    advanced: { label: 'Pokročilý', cls: 'bg-red-500/10 text-red-400' },
+};
+
+function svgProgressRing(pct, size = 72, stroke = 5) {
+    const r = (size / 2) - stroke;
+    const circ = 2 * Math.PI * r;
+    const offset = circ - (pct / 100) * circ;
+    return `<svg width="${size}" height="${size}" class="transform -rotate-90">
+        <circle cx="${size/2}" cy="${size/2}" r="${r}" stroke="rgba(255,255,255,0.06)" stroke-width="${stroke}" fill="none"/>
+        <circle cx="${size/2}" cy="${size/2}" r="${r}" stroke="#10b981" stroke-width="${stroke}" fill="none"
+            stroke-dasharray="${circ}" stroke-dashoffset="${offset}" stroke-linecap="round"
+            style="transition: stroke-dashoffset 0.6s ease"/>
+    </svg>`;
+}
+
+function showToast(message) {
+    const container = document.getElementById('toast-container');
+    const toast = document.createElement('div');
+    toast.className = 'flex items-center gap-3 px-5 py-3 rounded-2xl border bg-[#161616] border-accent/30 text-white text-sm font-medium shadow-lg animate-fadeUp';
+    toast.innerHTML = `<i data-lucide="star" class="w-5 h-5 text-accent shrink-0"></i><span>${message}</span>`;
+    container.appendChild(toast);
+    lucide.createIcons();
+    setTimeout(() => { toast.style.opacity = '0'; toast.style.transition = 'opacity 0.3s'; setTimeout(() => toast.remove(), 300); }, 3500);
+}
+
+async function init() {
+    const params = new URLSearchParams(location.search);
+    const slug = params.get('slug');
+    if (!slug) { location.href = 'programovani.html'; return; }
+
+    // Load course data
+    const USE_MOCK = location.protocol === 'file:';
+    let kurz, lessons;
+    if (USE_MOCK) {
+        kurz = MOCK_COURSES.find(c => c.slug === slug);
+        lessons = kurz ? getMockLessons(slug) : [];
+    } else {
+        try {
+            const res = await fetch(`/edu/legacy/api/kurzy/${slug}`);
+            const json = await res.json();
+            kurz = json.data || json;
+            const lRes = await fetch(`/edu/legacy/api/kurzy/${slug}/lekce`);
+            const lJson = await lRes.json();
+            lessons = (lJson.data || lJson).sections ? lJson.data.sections.flatMap(s => s.lessons) : (lJson.data || lJson);
+        } catch {
+            kurz = MOCK_COURSES.find(c => c.slug === slug);
+            lessons = kurz ? getMockLessons(slug) : [];
+        }
+    }
+
+    if (!kurz) { location.href = 'programovani.html'; return; }
+
+    const sections = kurz.sections || groupIntoSections(lessons);
+    const diff = DIFF_MAP[kurz.difficulty] || DIFF_MAP.beginner;
+    const allLessons = sections.flatMap(s => s.lessons);
+    const totalLessons = allLessons.filter(l => (l.type || l.lesson_type) === 'lesson').length;
+    const totalXP = allLessons.reduce((s, l) => s + (l.xp || l.xp_reward || 0), 0);
+    const totalMinutes = allLessons.reduce((s, l) => s + (l.duration || 0), 0);
+    const totalHours = Math.round(totalMinutes / 60 * 10) / 10;
+    const iconUrl = getCourseIconUrl(slug);
+
+    // Progress from localStorage
+    const progressKey = `vevit_progress_${slug}`;
+    const progress = JSON.parse(localStorage.getItem(progressKey) || '{}');
+    const completedCount = allLessons.filter(l => progress[l.id]?.completed).length;
+    const progressPct = allLessons.length > 0 ? Math.round((completedCount / allLessons.length) * 100) : 0;
+    const firstLesson = allLessons.find(l => (l.type || l.lesson_type) === 'lesson');
+    const firstLessonHref = firstLesson ? `lekce.html?id=${firstLesson.id}&kurz=${slug}` : '#';
+
+    document.getElementById('skeleton').classList.add('hidden');
+    const content = document.getElementById('content');
+    content.classList.remove('hidden');
+    content.innerHTML = `
+        <!-- Breadcrumb -->
+        <nav class="flex items-center gap-2 text-xs text-[#6b7280] mb-6">
+            <a href="../index.html" class="hover:text-accent transition-colors">Domů</a>
+            <i data-lucide="chevron-right" class="w-3 h-3"></i>
+            <a href="programovani.html" class="hover:text-accent transition-colors">Kurzy</a>
+            <i data-lucide="chevron-right" class="w-3 h-3"></i>
+            <span class="text-text-primary">${kurz.title}</span>
+        </nav>
+
+        <!-- Hero -->
+        <div class="bg-[#161616] border border-[rgba(255,255,255,0.06)] rounded-2xl p-8 mb-8">
+            <div class="flex flex-col lg:flex-row gap-8">
+                <div class="flex-1 lg:flex-[3]">
+                    <div class="flex items-center gap-4 mb-5">
+                        <div class="w-16 h-16 rounded-xl flex items-center justify-center" style="background: linear-gradient(135deg, ${kurz.thumbnail_color || '#10b981'}20, ${kurz.thumbnail_color || '#10b981'}35)">
+                            <img src="${iconUrl}" alt="${kurz.title}" class="w-10 h-10 object-contain" loading="lazy" data-hide-on-error>
+                        </div>
+                        <div>
+                            <h1 class="text-2xl sm:text-3xl font-extrabold text-text-primary tracking-tight">${kurz.title}</h1>
+                            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold ${diff.cls} mt-1 inline-block">${diff.label}</span>
+                        </div>
+                    </div>
+                    ${kurz.description ? `<p class="text-sm text-[#9ca3af] leading-relaxed">${kurz.description}</p>` : ''}
+                </div>
+                <div class="lg:flex-[2] flex flex-col items-center justify-center border-[rgba(255,255,255,0.06)] lg:border-l border-t lg:border-t-0 pt-6 lg:pt-0 lg:pl-8">
+                    <div class="flex flex-col items-center gap-3">
+                        ${svgProgressRing(progressPct)}
+                        <span class="text-sm font-bold text-text-primary">${progressPct}% dokončeno</span>
+                    </div>
+                    <div class="flex items-center gap-6 mt-5">
+                        <div class="flex items-center gap-1.5 text-xs font-semibold text-[#9ca3af]">
+                            <i data-lucide="zap" class="w-3.5 h-3.5 text-amber-400"></i><span>${totalXP} XP</span>
+                        </div>
+                        <div class="flex items-center gap-1.5 text-xs font-semibold text-[#9ca3af]">
+                            <i data-lucide="book-open" class="w-3.5 h-3.5"></i><span>${totalLessons} lekcí</span>
+                        </div>
+                        <div class="flex items-center gap-1.5 text-xs font-semibold text-[#9ca3af]">
+                            <i data-lucide="clock" class="w-3.5 h-3.5"></i><span>${totalHours}h</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sections -->
+        <div class="space-y-6">
+            ${sections.map((section, si) => renderSection(section, si, allLessons, progress, slug)).join('')}
+        </div>
+    `;
+
+    lucide.createIcons();
+}
+
+function groupIntoSections(lessons) {
+    if (!lessons.length) return [];
+    const hasSections = lessons.some(l => l.section);
+    if (hasSections) {
+        const map = new Map();
+        lessons.forEach(l => { const sec = l.section || 'Kurz'; if (!map.has(sec)) map.set(sec, []); map.get(sec).push(l); });
+        return Array.from(map.entries()).map(([title, lessons]) => ({ title, lessons }));
+    }
+    const sections = [];
+    for (let i = 0; i < lessons.length; i += 10) sections.push({ title: `Kapitola ${sections.length + 1}`, lessons: lessons.slice(i, i + 10) });
+    return sections;
+}
+
+document.addEventListener('error', (event) => {
+    if (event.target instanceof HTMLImageElement && event.target.hasAttribute('data-hide-on-error')) event.target.hidden = true;
+}, true);
+
+let _globalIdx = 0;
+function renderSection(section, sectionIndex, allLessons, progress, slug) {
+    const count = section.lessons.length;
+    return `<div>
+        <div class="flex items-center gap-3 mb-3 px-2">
+            <span class="w-7 h-7 rounded-lg bg-accent/10 flex items-center justify-center text-xs font-bold text-accent">${sectionIndex + 1}</span>
+            <h2 class="text-sm font-bold uppercase tracking-wider text-[#6b7280] flex-1">${section.title}</h2>
+            <span class="text-xs text-[#6b7280]">${count} lekcí</span>
+        </div>
+        <div class="bg-[#161616] border border-[rgba(255,255,255,0.06)] rounded-xl overflow-hidden">
+            ${section.lessons.map((l, i) => { _globalIdx++; return renderLessonRow(l, _globalIdx - 1, progress, slug, i > 0); }).join('')}
+        </div>
+    </div>`;
+}
+
+function renderLessonRow(lesson, globalIdx, progress, slug, hasBorder) {
+    const type = lesson.type || lesson.lesson_type;
+    const isQuiz = type === 'quiz' || type === 'final_quiz';
+    const isCompleted = progress[lesson.id]?.completed;
+    const xp = lesson.xp || lesson.xp_reward || 0;
+
+    let icon, iconColor;
+    if (isCompleted) { icon = 'check-circle'; iconColor = 'text-emerald-400'; }
+    else if (type === 'final_quiz') { icon = 'award'; iconColor = 'text-amber-400'; }
+    else if (isQuiz) { icon = 'help-circle'; iconColor = 'text-accent'; }
+    else { icon = 'play-circle'; iconColor = 'text-accent'; }
+
+    const href = isQuiz ? `lekce.html?id=${lesson.id}&kurz=${slug}` : `lekce.html?id=${lesson.id}&kurz=${slug}`;
+    const borderCls = hasBorder ? 'border-t border-[rgba(255,255,255,0.06)]' : '';
+
+    return `<a href="${href}" class="flex items-center h-12 px-4 hover:bg-white/[0.03] transition-colors group ${borderCls}" style="text-decoration:none">
+        <span class="text-xs font-semibold text-[#6b7280] w-8 shrink-0">${globalIdx + 1}</span>
+        <div class="flex-1 min-w-0 flex items-center gap-2">
+            <span class="text-sm font-semibold text-text-primary group-hover:text-accent transition-colors truncate">${lesson.title}</span>
+            ${isQuiz ? '<span class="text-xs font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 shrink-0">Kvíz</span>' : ''}
+            ${type === 'final_quiz' ? '<span class="text-xs font-bold px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-400 shrink-0">Závěrečný</span>' : ''}
+        </div>
+        <div class="flex items-center gap-3 shrink-0">
+            <span class="text-xs font-semibold text-[#6b7280]">${xp} XP</span>
+            <i data-lucide="${icon}" class="w-4 h-4 ${iconColor} ${isCompleted ? 'opacity-100' : ''}"></i>
+        </div>
+    </a>`;
+}
+
+init();
+
+// ─── CERTIFICATE COMPLETION DETECTION ───
+function zkontrolujDokonceni(kurz) {
+    const progressKey = `vevit_progress_${kurz.slug}`;
+    const progress = JSON.parse(localStorage.getItem(progressKey) || '{}');
+    const allIds = (kurz.sections || []).flatMap(s => s.lessons || []).map(l => l.id);
+    if (allIds.length === 0) return;
+    const vseDokonceno = allIds.every(id => progress[id]?.completed);
+    if (vseDokonceno) zobrazDokonceniModal(kurz);
+}
+
+function zobrazDokonceniModal(kurz) {
+    const shownKey = `vevit_cert_shown_${kurz.slug}`;
+    if (sessionStorage.getItem(shownKey)) return;
+    sessionStorage.setItem(shownKey, '1');
+
+    const overlay = document.createElement('div');
+    overlay.className = 'fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4';
+    overlay.innerHTML = `
+        <div class="bg-[#161616] border border-white/10 rounded-2xl p-8 max-w-md w-full text-center animate-fadeUp">
+            <div class="text-5xl mb-4">🎉</div>
+            <h2 class="text-2xl font-extrabold text-[#f0f0f0] mb-2">Kurz dokončen!</h2>
+            <p class="text-[#9ca3af] mb-6">Gratulujeme! Dokončil jsi kurz <strong class="text-[#f0f0f0]">${kurz.title}</strong>.</p>
+            <div class="flex flex-col gap-3">
+                <button id="cert-btn" class="py-3 bg-accent hover:bg-[#059669] text-[#0d0d0d] font-bold rounded-xl transition-colors">
+                    Získat certifikát
+                </button>
+                <button id="cert-skip" class="py-3 text-[#6b7280] hover:text-[#f0f0f0] text-sm transition-colors">
+                    Přeskočit
+                </button>
+            </div>
+        </div>`;
+    document.body.appendChild(overlay);
+
+    document.getElementById('cert-btn').onclick = async () => {
+        const user = getVevitUser();
+        if (!user) { location.href = 'https://account.vevit.fun'; return; }
+        try {
+            const res = await fetch('/edu/legacy/api/certificates/issue', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                credentials: 'include',
+                body: JSON.stringify({ course_slug: kurz.slug })
+            });
+            const json = await res.json();
+            const certUuid = json.data?.uuid;
+            if (certUuid) location.href = `certifikat.html?uuid=${certUuid}`;
+        } catch {
+            location.href = `certifikat.html?slug=${kurz.slug}`;
+        }
+    };
+    document.getElementById('cert-skip').onclick = () => overlay.remove();
+    overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
+}
+
+// Check for course completion after init
+(async () => {
+    const params = new URLSearchParams(location.search);
+    const slug = params.get('slug');
+    if (slug) {
+        const kurz = MOCK_COURSES.find(c => c.slug === slug);
+        if (kurz) zkontrolujDokonceni(kurz);
+    }
+})();

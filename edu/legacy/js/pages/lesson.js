@@ -104,7 +104,7 @@ export async function renderLesson(id) {
             <!-- Footer -->
             <footer class="mt-12 pt-8 ${isDark ? 'border-[rgba(255,255,255,0.06)]' : 'border-gray-200'} border-t flex justify-between items-center">
                 <span class="text-sm ${isDark ? 'text-text-muted' : 'text-gray-500'}">Zdroj: VeVit Edu</span>
-                <button onclick="window.scrollTo({top:0,behavior:'smooth'})" class="px-5 py-2.5 bg-accent hover:bg-accent-hover text-[#0d0d0d] rounded-full font-semibold transition-all active:scale-95 flex items-center gap-2">
+                <button data-scroll-top class="px-5 py-2.5 bg-accent hover:bg-accent-hover text-[#0d0d0d] rounded-full font-semibold transition-all active:scale-95 flex items-center gap-2">
                     <i data-lucide="arrow-up" class="w-4 h-4"></i> Nahoru
                 </button>
             </footer>
@@ -112,4 +112,7 @@ export async function renderLesson(id) {
     </div>`;
 
     lucide.createIcons();
+    app.querySelector('[data-scroll-top]')?.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 }

@@ -34,14 +34,6 @@ const LANGUAGES = [
     { code: 'es', label: 'ES', name: 'Español' },
 ];
 
-const WIKI_APIS = {
-    cs: 'https://cs.wikipedia.org/w/api.php',
-    en: 'https://en.wikipedia.org/w/api.php',
-    de: 'https://de.wikipedia.org/w/api.php',
-    uk: 'https://uk.wikipedia.org/w/api.php',
-    es: 'https://es.wikipedia.org/w/api.php',
-};
-
 function getLang() {
     return localStorage.getItem('vevit-lang') || 'cs';
 }
@@ -53,7 +45,6 @@ function setLang(lang) {
 
 // Make globally available
 window.getLang = getLang;
-window.WIKI_APIS = WIKI_APIS;
 window.showToast = showToast;
 window.setTheme = setTheme;
 window.getTheme = getTheme;
@@ -117,16 +108,16 @@ function renderNavbar() {
                 <a href="#" data-nav-scroll="section-clanky" class="text-sm ${isDark ? 'text-text-secondary hover:text-text-primary' : 'text-gray-500 hover:text-gray-900'} transition-colors">Články</a>
             </div>
             <div class="flex items-center gap-3">
-                <button onclick="window.setTheme('${isDark ? 'light' : 'dark'}')" class="p-2 rounded-md ${isDark ? 'text-text-secondary hover:text-text-primary hover:bg-white/5' : 'text-gray-400 hover:text-gray-900 hover:bg-gray-100'} transition-colors" title="${isDark ? 'Světlý režim' : 'Tmavý režim'}">
+                <button data-set-theme="${isDark ? 'light' : 'dark'}" class="p-2 rounded-md ${isDark ? 'text-text-secondary hover:text-text-primary hover:bg-white/5' : 'text-gray-400 hover:text-gray-900 hover:bg-gray-100'} transition-colors" title="${isDark ? 'Světlý režim' : 'Tmavý režim'}">
                     <i data-lucide="${isDark ? 'sun' : 'moon'}" class="w-4 h-4"></i>
                 </button>
                 <div class="relative" id="lang-dropdown">
-                    <button onclick="document.getElementById('lang-menu').classList.toggle('hidden')" class="flex items-center gap-1 px-2 py-1.5 rounded-md text-xs font-semibold ${isDark ? 'text-text-secondary hover:text-text-primary hover:bg-white/5' : 'text-gray-500 hover:text-gray-900 hover:bg-gray-100'} transition-colors">
+                    <button data-toggle-lang class="flex items-center gap-1 px-2 py-1.5 rounded-md text-xs font-semibold ${isDark ? 'text-text-secondary hover:text-text-primary hover:bg-white/5' : 'text-gray-500 hover:text-gray-900 hover:bg-gray-100'} transition-colors">
                         ${currentLangObj.label}
                         <i data-lucide="chevron-down" class="w-3 h-3"></i>
                     </button>
                     <div id="lang-menu" class="hidden absolute right-0 top-full mt-1 w-36 rounded-lg ${isDark ? 'bg-[#1e1e1e] border-white/10' : 'bg-white border-gray-200'} border shadow-xl py-1 z-50">
-                        ${LANGUAGES.map(l => `<button onclick="window.setLang('${l.code}'); document.getElementById('lang-menu').classList.add('hidden')" class="w-full text-left px-3 py-2 text-sm ${isDark ? 'text-text-secondary hover:text-text-primary hover:bg-white/5' : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'} transition-colors ${l.code === lang ? 'text-accent font-semibold' : ''}">${l.name}</button>`).join('')}
+                        ${LANGUAGES.map(l => `<button data-set-lang="${l.code}" class="w-full text-left px-3 py-2 text-sm ${isDark ? 'text-text-secondary hover:text-text-primary hover:bg-white/5' : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'} transition-colors ${l.code === lang ? 'text-accent font-semibold' : ''}">${l.name}</button>`).join('')}
                     </div>
                 </div>
                 ${userSection}
@@ -135,6 +126,12 @@ function renderNavbar() {
     </header>`;
 
     lucide.createIcons();
+    navbar.querySelector('[data-set-theme]')?.addEventListener('click', (event) => window.setTheme(event.currentTarget.dataset.setTheme));
+    navbar.querySelector('[data-toggle-lang]')?.addEventListener('click', () => document.getElementById('lang-menu')?.classList.toggle('hidden'));
+    navbar.querySelectorAll('[data-set-lang]').forEach((button) => button.addEventListener('click', () => {
+        window.setLang(button.dataset.setLang);
+        document.getElementById('lang-menu')?.classList.add('hidden');
+    }));
 
     // Close lang menu on outside click
     document.addEventListener('click', (e) => {
@@ -219,3 +216,8 @@ document.addEventListener('click', (e) => {
         menu.classList.add('hidden');
     }
 });
+
+document.addEventListener('error', (event) => {
+    const image = event.target;
+    if (image instanceof HTMLImageElement && image.hasAttribute('data-hide-on-error')) image.hidden = true;
+}, true);

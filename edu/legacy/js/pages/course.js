@@ -135,6 +135,9 @@ export async function renderCourse(slug) {
     </div>`;
 
     lucide.createIcons();
+    app.querySelectorAll('[data-locked="true"]').forEach((link) => {
+        link.addEventListener('click', (event) => event.preventDefault());
+    });
 }
 
 function groupLessonsIntoSections(lessons) {
@@ -184,11 +187,11 @@ function renderLessonRow(lesson, index, completedIds, isDark) {
     }
 
     const href = (!isLocked && !isQuiz) ? `#/lekce/${lesson.id}` : (isQuiz ? `#/kviz/${lesson.id}` : '#');
-    const clickHandler = isLocked ? 'onclick="event.preventDefault()"' : '';
+    const lockedState = isLocked ? 'data-locked="true"' : '';
     const lockedOverlay = isLocked ? 'opacity-50' : '';
     const borderClass = index > 0 ? `border-t ${isDark ? 'border-[rgba(255,255,255,0.06)]' : 'border-gray-200'}` : '';
 
-    return `<a href="${href}" data-link ${clickHandler} class="flex items-center h-12 px-4 ${isDark ? 'hover:bg-white/[0.03]' : 'hover:bg-gray-50'} transition-colors group ${lockedOverlay} ${borderClass}" style="text-decoration:none">
+    return `<a href="${href}" data-link ${lockedState} class="flex items-center h-12 px-4 ${isDark ? 'hover:bg-white/[0.03]' : 'hover:bg-gray-50'} transition-colors group ${lockedOverlay} ${borderClass}" style="text-decoration:none">
         <span class="text-xs font-semibold ${isDark ? 'text-gray-600' : 'text-gray-400'} w-8 shrink-0">${index + 1}</span>
         <div class="flex-1 min-w-0 flex items-center gap-2">
             <span class="text-sm font-semibold ${isDark ? 'text-text-primary group-hover:text-accent' : 'text-gray-900 group-hover:text-emerald-600'} transition-colors truncate">${lesson.title}</span>
