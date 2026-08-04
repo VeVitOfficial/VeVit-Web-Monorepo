@@ -98,13 +98,20 @@ async function renderLesson(slug) {
   if (!lesson || lesson.error) { renderError(lesson && lesson.error ? lesson.error : "Lekce nenalezena."); return; }
   AppState.setLesson(lesson);
   const completed = LocalProgress.isCompleted(lesson.id);
+  let safeLessonContent = '';
+  try {
+    safeLessonContent = window.VeVitContentSanitizer.sanitizeLesson(lesson.content || '');
+  } catch (error) {
+    console.error(error);
+    safeLessonContent = '<p class="error-text">Obsah lekce nelze bezpečně vykreslit.</p>';
+  }
   view.innerHTML = `
     <div class="lesson-layout">
       <div class="lesson-content card">
         <a href="#course" style="display:inline-flex;align-items:center;gap:.4rem;color:var(--text-secondary);font-size:.85rem;margin-bottom:1rem">${icon("arrow","icon")} Zpět na kurz</a>
         <h1>${escapeHTML(lesson.title)}</h1>
         <p style="color:var(--text-muted);font-size:.85rem;margin-bottom:1.5rem">${lesson.duration || 15} min • +${lesson.xp_reward || 25} XP</p>
-        <div class="lesson-body">${lesson.content || ""}</div>
+        <div class="lesson-body">${safeLessonContent}</div>
         <h2 style="margin-top:2rem">Cvičení</h2>
         <div id="exercise-list"></div>
         <div id="complete-wrap" style="margin-top:1.5rem"></div>

@@ -1,12 +1,12 @@
 // Wikipedia integrace – search REST API + načtení HTML článku + sanitizace + TOC
 
-const WIKI = "https://cs.wikipedia.org";
+const WIKI_PROXY = "/edu/api/wikipedia.php";
 
 // Vyhledání nejlepšího článku k dotazu. Vrací {title, key, description, thumbnail} | null
 export async function searchWikipedia(query) {
   const q = query.trim();
   if (!q) return null;
-  const url = `${WIKI}/w/rest.php/v1/search/page?q=${encodeURIComponent(q)}&limit=1`;
+  const url = `${WIKI_PROXY}?action=search&q=${encodeURIComponent(q)}`;
   const res = await fetch(url, { headers: { Accept: "application/json" } });
   if (!res.ok) throw new Error(`Wikipedia search HTTP ${res.status}`);
   const data = await res.json();
@@ -22,8 +22,7 @@ export async function searchWikipedia(query) {
 
 // Stažení HTML článku podle klíče (page.key) nebo titulku
 export async function fetchArticleHTML(keyOrTitle) {
-  const k = encodeURIComponent(keyOrTitle);
-  const url = `${WIKI}/api/rest_v1/page/html/${k}`;
+  const url = `${WIKI_PROXY}?action=article&key=${encodeURIComponent(keyOrTitle)}`;
   const res = await fetch(url, { headers: { Accept: "text/html" } });
   if (!res.ok) throw new Error(`Wikipedia article HTTP ${res.status}`);
   return await res.text();
@@ -32,9 +31,8 @@ export async function fetchArticleHTML(keyOrTitle) {
 // Sanitizace + příprava obsahu článku. Vrací { contentEl, title }
 export function parseArticle(html, fallbackTitle) {
   const doc = new DOMParser().parseFromString(html, "text/html");
-  // odstranění base, styly, skripty z head
-  doc.querySelectorAll("base, script, style, link[rel='stylesheet']").forEach((e) => e.remove());
-  let root = doc.querySelector(".mw-parser-output") || doc.body;
+  const cleanDocument = window.VeVitContentSanitizer.sanitizeWikipedia(html);
+  let root = cleanDocument.querySelector(".mw-parser-output") || cleanDocument;
   if (!root) return { contentEl: null, title: fallbackTitle };
 
   // Titulek z <title> nebo firstHeading
@@ -46,14 +44,6 @@ export function parseArticle(html, fallbackTitle) {
   ).forEach((e) => e.remove());
   // citation sup.reference
   root.querySelectorAll("sup.reference").forEach((e) => e.remove());
-
-  // Odstranění případných on* atributů a javascript: href
-  root.querySelectorAll("*").forEach((el) => {
-    [...el.attributes].forEach((a) => {
-      if (/^on/i.test(a.name)) el.removeAttribute(a.name);
-      if (a.name === "href" && /^\s*javascript:/i.test(a.value)) el.removeAttribute("href");
-    });
-  });
 
   // Přepis interních odkazů (./Název → in-app /hledat?q=Název) a externích (target _blank)
   root.querySelectorAll("a[href]").forEach((a) => {

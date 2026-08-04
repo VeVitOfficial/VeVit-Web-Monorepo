@@ -47,6 +47,9 @@ rozhodnutí uživatele i bezpečnější výklad rozporů nalezených během rea
   uvnitř Blob Web Worker. Pouze `/edu/sandbox-frame.html` proto potřebuje
   `worker-src blob:` a `frame-ancestors 'self'`; ostatní stránky mohou mít
   `frame-ancestors 'none'`.
+- Původní vendored DOMPurify 3.1.6 byl nahrazen aktuálním vydáním 3.4.12 z npm
+  balíčku `dompurify`; auditovaný soubor má SHA-256
+  `c45ba939765574f96cbf35ee9b6d89f73756a17921814425e74b82f7c54603ce`.
 
 ## Evidovaný technický dluh
 
