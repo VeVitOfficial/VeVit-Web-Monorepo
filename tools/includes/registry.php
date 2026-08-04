@@ -174,6 +174,15 @@ const TOOL_AVAILABILITY = ['available', 'requires_external_service', 'requires_b
 const TOOL_TEST_TARGETS = ['structural', 'browser_smoke', 'happy_path'];
 
 function tool_policy_overrides(string $slug): array {
+    $ffmpegTools = ['audio-convert', 'audio-trim-normalize', 'video-convert', 'video-compress', 'video-trim', 'video-extract-audio', 'video-to-gif', 'video-merge', 'video-target-size'];
+    if (in_array($slug, $ffmpegTools, true)) {
+        return [
+            'status' => 'limited', 'availability' => 'requires_browser_support',
+            'note' => 'Dočasně vypnuto: schválená CSP script-src self nepovoluje kompilaci WebAssembly bez wasm-unsafe-eval.',
+            'requirements' => ['browser_features' => ['WebAssembly and an approved isolated wasm CSP'], 'local_assets' => ['/tools/assets/js/lib/ffmpeg/index.js', '/tools/assets/js/lib/ffmpeg/ffmpeg-core.js', '/tools/assets/js/lib/ffmpeg/ffmpeg-core.wasm'], 'php_extensions' => [], 'external_services' => [], 'hosting_constraints' => ['disabled under the strict site-wide CSP'], 'verified' => true],
+            'privacy_note' => 'Nástroj je dočasně vypnutý; soubor se nikam neodesílá.',
+        ];
+    }
     $overrides = [
         'pdf-password' => [
             'status' => 'unavailable_on_wedos', 'availability' => 'unavailable_on_wedos',

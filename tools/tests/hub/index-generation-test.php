@@ -8,7 +8,7 @@ hub_assert(hub_command(['python3', 'scripts/generate-index.py'], $output) === 0,
 $first = (string)file_get_contents(HUB_ROOT . '/index.html');
 hub_assert(hub_command(['python3', 'scripts/generate-index.py'], $output) === 0, 'second index generation failed: ' . $output);
 hub_assert($first === (string)file_get_contents(HUB_ROOT . '/index.html'), 'index.html is not deterministic');
-$datasetPath = HUB_ROOT . '/tools/assets/data/tools-index.json';
+$datasetPath = HUB_ROOT . '/assets/data/tools-index.json';
 $hiddenDatasetPath = $datasetPath . '.task1-test';
 hub_assert(rename($datasetPath, $hiddenDatasetPath), 'cannot temporarily hide generator dataset');
 try {

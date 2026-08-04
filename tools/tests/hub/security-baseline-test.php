@@ -2,8 +2,8 @@
 declare(strict_types=1);
 require __DIR__ . '/test-lib.php';
 
-$htmlPdf = (string)file_get_contents(HUB_ROOT . '/tools/assets/js/tools/html-to-pdf.js');
-$sanitizer = (string)file_get_contents(HUB_ROOT . '/tools/assets/js/lib/html-pdf-sanitize.js');
+$htmlPdf = (string)file_get_contents(HUB_ROOT . '/assets/js/tools/html-to-pdf.js');
+$sanitizer = (string)file_get_contents(HUB_ROOT . '/assets/js/lib/html-pdf-sanitize.js');
 $ssl = (string)file_get_contents(HUB_ROOT . '/includes/ssl-checker.php');
 $feedback = (string)file_get_contents(HUB_ROOT . '/api/feedback.php');
 $ai = (string)file_get_contents(HUB_ROOT . '/api/ai/ollama.php');

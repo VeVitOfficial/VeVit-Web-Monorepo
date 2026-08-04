@@ -57,6 +57,16 @@ rozhodnutí uživatele i bezpečnější výklad rozporů nalezených během rea
 - Runtime CDN byly nahrazeny lokálními verzemi: Lucide 1.28.0, KaTeX 0.18.1,
   Prism 1.30.0, mark.js 8.11.1 a statický Tailwind CSS sestavený Tailwindem
   3.4.17. Fonty a Material Symbols jsou lokální WOFF2 assety.
+- Přísné `script-src 'self'` v Chromium blokuje nejen JavaScriptový `eval`, ale
+  také `WebAssembly.compile`; ffmpeg.wasm by vyžadoval další zdroj
+  `'wasm-unsafe-eval'`. Protože uživatel schválil politiku bez výjimek, devět
+  FFmpeg nástrojů je dočasně označeno jako omezených a wrapper failuje zavřeně
+  ještě před načtením WASM. Starý UMD bundle 0.11.6 s `new Function` byl přesto
+  nahrazen ESM verzemi `@ffmpeg/ffmpeg` 0.12.15 a `@ffmpeg/core` 0.12.10. Budoucí
+  zapnutí vyžaduje samostatně schválený izolovaný mediální origin nebo CSP.
+- Hub testy po přesunu do `/tools` stále skládaly fyzickou cestu jako
+  `tools/tools/assets`. Testovací filesystem kontrakty byly opraveny na lokální
+  `tools/assets`, zatímco veřejné URL zůstávají `/tools/assets/...`.
 
 ## Evidovaný technický dluh
 

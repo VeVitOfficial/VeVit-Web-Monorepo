@@ -7,7 +7,7 @@ $missing = [];
 foreach (all_tools() as $tool) {
     $slug = $tool['slug'];
     $template = HUB_ROOT . '/includes/tools/' . $slug . '.php';
-    $script = HUB_ROOT . '/tools/assets/js/tools/' . $slug . '.js';
+    $script = HUB_ROOT . '/assets/js/tools/' . $slug . '.js';
     $informational = in_array($tool['status'], ['coming_soon', 'unavailable_on_wedos', 'broken'], true);
     if ($informational) {
         hub_assert(!is_file($template) && !is_file($script), $slug . ' informational tool must not pretend an active implementation');
@@ -17,12 +17,13 @@ foreach (all_tools() as $tool) {
     if (!is_file($script)) $missing[] = $script;
     foreach ($tool['requirements']['local_assets'] as $asset) {
         hub_assert(is_string($asset) && str_starts_with($asset, '/tools/assets/') && !str_contains($asset, '..'), $slug . ' unsafe local asset declaration');
-        if (!is_file(HUB_ROOT . $asset)) $missing[] = HUB_ROOT . $asset;
+        $assetPath = HUB_ROOT . substr($asset, strlen('/tools'));
+        if (!is_file($assetPath)) $missing[] = $assetPath;
     }
 }
 hub_assert($missing === [], 'missing declared implementation assets: ' . implode(', ', $missing));
 
-$publicFiles = [HUB_ROOT . '/index.html', HUB_ROOT . '/tools/assets/data/tools.json', HUB_ROOT . '/tools/assets/data/tools-index.json'];
+$publicFiles = [HUB_ROOT . '/index.html', HUB_ROOT . '/assets/data/tools.json', HUB_ROOT . '/assets/data/tools-index.json'];
 foreach ($publicFiles as $file) {
     $contents = (string)file_get_contents($file);
     hub_assert(!preg_match('/(service[_-]?role|STRIPE_(SECRET|WEBHOOK)|SUPABASE_SERVICE_ROLE|sk-[A-Za-z0-9]{16,})/i', $contents), 'possible secret in public file ' . basename($file));

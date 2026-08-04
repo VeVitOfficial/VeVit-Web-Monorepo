@@ -1,11 +1,9 @@
-// Sdílený lazy-loaded wrapper pro ffmpeg.wasm (@ffmpeg/ffmpeg 0.11 API).
-// Jediný načtený ~24 MB WASM balíček napříč všemi nástroji kategorie Média (Dávka 11).
+// Sdílený lazy-loaded wrapper pro ffmpeg.wasm (@ffmpeg/ffmpeg 0.12 API).
+// ESM build nevyžaduje unsafe-eval a jádro se načítá pouze ze stejného originu.
 //
 // Vendoorované soubory (task #12) v /assets/js/lib/ffmpeg/:
-//   ffmpeg.js             — @ffmpeg/ffmpeg@0.11.6 UMD (window.FFmpeg: createFFmpeg, fetchFile)
-//   ffmpeg-core.js        — @ffmpeg/core@0.11.0
-//   ffmpeg-core.wasm      — jádro (24 MB)
-//   ffmpeg-core.worker.js — worker (ffmpeg-core.js si ho načte sám ze stejné složky)
+//   index.js + moduly     — @ffmpeg/ffmpeg@0.12.15 ESM
+//   ffmpeg-core.js/.wasm — @ffmpeg/core@0.12.10 ESM
 //
 // Použití:
 //   FFmpegWrapper.ready().then(function(ffmpeg){ ... FFmpegWrapper.run(ffmpeg, ['-i','in','out']) ... })
@@ -18,27 +16,46 @@
   if (window.FFmpegWrapper) return;
 
   var BASE = '/tools/assets/js/lib/ffmpeg/';
+  // Produkční CSP záměrně nepovoluje wasm-unsafe-eval. Zapnout lze až po
+  // schválení oddělené izolované politiky pro mediální sandbox.
+  var ENABLED = false;
   var loadPromise = null;
   var instance = null;
+  var progressHandler = null;
 
   function ready(onProgress) {
+    if (!ENABLED) return Promise.reject(new Error('Mediální převod je dočasně nedostupný: přísná bezpečnostní politika nepovoluje spuštění WebAssembly.'));
+    if (typeof onProgress === 'function') progressHandler = onProgress;
     if (loadPromise) return loadPromise;
-    loadPromise = ToolUI.loadScript(BASE + 'ffmpeg.js').then(function () {
-      var FF = window.FFmpeg;
-      if (!FF || !FF.createFFmpeg) throw new Error('ffmpeg.wasm se nepodařilo načíst (chybí window.FFmpeg).');
-      var opts = { corePath: BASE + 'ffmpeg-core.js', log: false };
-      if (typeof onProgress === 'function') opts.progress = onProgress;
-      instance = FF.createFFmpeg(opts);
-      return instance.load().then(function () { return instance; });
+    loadPromise = import(BASE + 'index.js').then(function (module) {
+      if (!module || typeof module.FFmpeg !== 'function') throw new Error('ffmpeg.wasm se nepodařilo načíst.');
+      instance = new module.FFmpeg();
+      instance.on('progress', function (event) {
+        if (progressHandler) progressHandler(event.progress);
+      });
+      return instance.load({
+        coreURL: BASE + 'ffmpeg-core.js',
+        wasmURL: BASE + 'ffmpeg-core.wasm'
+      }).then(function () { return instance; });
     });
     return loadPromise;
   }
 
-  function write(ffmpeg, name, data) { return Promise.resolve(ffmpeg.FS('writeFile', name, data)); }
-  function read(ffmpeg, name) { return Promise.resolve(ffmpeg.FS('readFile', name)); }
-  function remove(ffmpeg, name) { try { ffmpeg.FS('unlink', name); } catch (e) {} return Promise.resolve(); }
-  function run(ffmpeg, args) { return Promise.resolve(ffmpeg.run.apply(ffmpeg, args)); }
-  function fetchFile(file) { return window.FFmpeg.fetchFile(file); }
+  function write(ffmpeg, name, data) { return Promise.resolve(data).then(function (bytes) { return ffmpeg.writeFile(name, bytes); }); }
+  function read(ffmpeg, name) { return ffmpeg.readFile(name); }
+  function remove(ffmpeg, name) { return ffmpeg.deleteFile(name).catch(function () {}); }
+  function run(ffmpeg, args) {
+    return ffmpeg.exec(args).then(function (exitCode) {
+      if (exitCode !== 0) throw new Error('ffmpeg skončil s kódem ' + exitCode + '.');
+    });
+  }
+  function fetchFile(file) {
+    if (file instanceof Blob) return file.arrayBuffer().then(function (buffer) { return new Uint8Array(buffer); });
+    return fetch(file).then(function (response) {
+      if (!response.ok) throw new Error('Vstupní soubor nelze načíst.');
+      return response.arrayBuffer();
+    }).then(function (buffer) { return new Uint8Array(buffer); });
+  }
 
   window.FFmpegWrapper = {
     ready: ready,
@@ -47,6 +64,7 @@
     remove: remove,
     run: run,
     fetchFile: fetchFile,
-    LOADING_NOTE: 'Poprvé se načítá ffmpeg.wasm (~24 MB) — může trvat několik sekund. Další nástroje už balíček sdílejí. WASM je pomalejší než nativní ffmpeg; u velkých souborů počítejte s prodlevou.'
+    ENABLED: ENABLED,
+    LOADING_NOTE: 'Poprvé se načítá ffmpeg.wasm (~32 MB) — může trvat několik sekund. Další nástroje už balíček sdílejí. WASM je pomalejší než nativní ffmpeg; u velkých souborů počítejte s prodlevou.'
   };
 })();
