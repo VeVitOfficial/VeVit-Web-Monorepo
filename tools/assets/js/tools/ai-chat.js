@@ -1,5 +1,4 @@
-// AI chat — stream z /api/ai/ollama (NDJSON), markdown přes marked + DOMPurify.
-// innerHTML se používá JEN na DOMPurify.sanitize(...) výstup — schválený bezpečný vzor.
+// AI chat — stream z /api/ai/ollama (NDJSON), výstup přes VeVitMarkdown.
 (function () {
   var NS = 'http://www.w3.org/2000/svg';
   var messagesEl = document.getElementById('ai-messages');
@@ -37,9 +36,9 @@
   function hideError() { errorEl.classList.add('hidden'); }
 
   function renderMarkdown(text) {
-    var html = window.marked.parse(text, { async: false });
-    // Jediné povolené innerHTML: výstup je sanitizován DOMPurify (odstraňuje XSS).
-    assistantContentEl.innerHTML = window.DOMPurify.sanitize(html);
+    if (!window.VeVitMarkdown || !window.VeVitMarkdown.renderInto(assistantContentEl, text)) {
+      showError('Odpověď nelze bezpečně vykreslit.');
+    }
   }
 
   function addUserMsg(text) {

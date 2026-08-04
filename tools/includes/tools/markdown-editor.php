@@ -1,6 +1,7 @@
 <?php // Načti vendored marked + DOMPurify lokálně (žádný CDN). ?>
 <script src="/tools/assets/js/lib/marked.min.js"></script>
 <script src="/tools/assets/js/lib/purify.min.js"></script>
+<script src="/tools/assets/js/lib/safe-markdown.js"></script>
 <div class="stack" style="max-width:60rem;margin:0 auto">
   <div class="row" style="flex-wrap:wrap;gap:0.5rem">
     <div class="row" style="gap:0.25rem;flex-wrap:wrap">

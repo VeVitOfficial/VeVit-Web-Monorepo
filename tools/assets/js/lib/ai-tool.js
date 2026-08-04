@@ -1,9 +1,8 @@
 // Sdílený helper AI nástrojů (Dávka 12). Zapouzdřuje volání /api/ai/ollama
-// s NDJSON streamem a bezpečné vykreslení markdownu přes DOMPurify.
+// s NDJSON streamem a bezpečné vykreslení přes jediný VeVitMarkdown renderer.
 //
 // Bezpečnost: system prompt nikdy neposílá klient (posílá jen `tool` identifikátor,
-// proxy si prompt dohledá). Uživatelský text jde jako `prompt`. innerHTML se použije
-// JEN na DOMPurify.sanitize(marked.parse(...)) výstup — schválená výjimka.
+// proxy si prompt dohledá). Uživatelský text jde jako `prompt`.
 (function () {
   'use strict';
   if (window.AITool) return;
@@ -62,9 +61,12 @@
 
   // Bezpečné vykreslení markdownu do elementu (DOMPurify sanitize).
   function renderMarkdown(el, text) {
-    if (!window.marked || !window.DOMPurify) { el.textContent = text; return; }
-    var html = window.marked.parse(text, { async: false });
-    el.innerHTML = window.DOMPurify.sanitize(html);
+    if (!window.VeVitMarkdown) {
+      el.replaceChildren(document.createTextNode('Odpověď nelze bezpečně vykreslit.'));
+      el.dataset.renderState = 'error';
+      return false;
+    }
+    return window.VeVitMarkdown.renderInto(el, text);
   }
 
   // Přečte File jako base64 (bez data URL prefixu) — pro vision obrázky.

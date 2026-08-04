@@ -11,4 +11,5 @@
 </div>
 <script src="/tools/assets/js/lib/marked.min.js"></script>
 <script src="/tools/assets/js/lib/purify.min.js"></script>
+<script src="/tools/assets/js/lib/safe-markdown.js"></script>
 <script src="/tools/assets/js/lib/ai-tool.js"></script>

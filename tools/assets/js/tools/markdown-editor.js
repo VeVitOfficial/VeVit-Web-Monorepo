@@ -8,14 +8,12 @@
 
   function render() {
     var text = input.value;
-    try {
-      // marked.parse vrací HTML řetězec; před vložením do DOMu se sanitizuje DOMPurify.
-      var raw = (window.marked && (marked.parse ? marked.parse(text, { async: false }) : marked(text))) || '';
-      var clean = window.DOMPurify ? DOMPurify.sanitize(raw) : raw;
-      preview.innerHTML = clean; // schválený vzor: sanitizovaný markdown výstup
-    } catch (e) {
-      preview.textContent = 'Chyba vykreslení: ' + (e && e.message ? e.message : e);
+    if (!window.VeVitMarkdown) {
+      preview.replaceChildren(document.createTextNode('Náhled nelze bezpečně vykreslit.'));
+      preview.dataset.renderState = 'error';
+      return;
     }
+    window.VeVitMarkdown.renderInto(preview, text);
   }
 
   function schedule() {
