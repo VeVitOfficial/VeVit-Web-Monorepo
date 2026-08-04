@@ -1,0 +1,54 @@
+# VEVIT SSO — rozhodnutí a technický dluh
+
+Tento soubor doplňuje schválený implementační plán. Zaznamenává závazná
+rozhodnutí uživatele i bezpečnější výklad rozporů nalezených během realizace.
+
+## Závazná rozhodnutí
+
+- Autoritativní pracovní kopie je tento monorepo adresář. Před změnami vznikl
+  externí archiv a baseline commit `28c724f`.
+- Mobilní aplikace a CLI budou pouze first-party klienti. Ve verzi browser SSO
+  zůstává Bearer větev vypnutá.
+- `api_refresh_tokens.user_id` je `text`, protože `public.users.id` je `text`.
+- Existující `session_token` se před hashovým čtením backfilluje do
+  `token_hash`; migrace nesmí odhlásit žádnou z 15 aktivních relací.
+- Zrušení relace je soft revoke přes `revoked_at` a `revoked_reason`. Fyzické
+  mazání provádí až cleanup po 30 dnech.
+- Browser cookie je `__Host-vvsession`, bez `Domain`, s pevnou expirací 99 dní
+  nebo serverovým limitem 24 hodin u session cookie. Aktivita expiraci neposouvá.
+- Chyba databáze nebo sítě je 503 a zachovává cookie; neplatná relace je 401.
+- Skripty musí splnit `script-src 'self'` bez `unsafe-inline` a `unsafe-eval`.
+  Styly mají dočasně `style-src 'self' 'unsafe-inline'`.
+- Google Fonts, Lucide, KaTeX a Prism se obsluhují lokálně. Tailwind Play CDN
+  nahrazuje staticky sestavené CSS.
+- Wikipedia se načítá přes same-origin proxy s pevným upstreamem, timeoutem a
+  limitem odpovědi; obsah se sanitizuje na serveru i klientovi.
+- Opaque sandbox zprávy musí současně ověřit `origin === "null"`, přesný
+  `event.source`, jednorázový nonce a schéma dat; listener se vždy odstraní.
+- Účet má stav `active`, `blocked` nebo `deleted`. Jiný než `active` revokuje
+  všechny relace a vrací 401.
+- Povinné ruční stop-body jsou pouze: S-1 rotace service role, S-2 CSP enforce a
+  S-3 odstranění fallbacků s migrací `003_drop_plaintext_token`.
+
+## Bezpečnější výklady rozporů
+
+- Aktivní tajné konfigurace se nepřidávají do Git historie. Baseline rollback
+  pro ně zajišťuje externí archiv, ne commit.
+- Soubory pojmenované `config.php`, které jsou pouze bezpečný aplikační loader
+  (`store/config.php`, `store/lib/config.php`, `tools/includes/config.php`), se
+  verzují; aktivní konfigurace s tajemstvími jsou ignorované.
+- `shared/auth/` nesmí být dostupné přes HTTP. Veřejný session JavaScript proto
+  nebude zpřístupněn pod URL, kterou Nginx blokuje pro celé `/shared/`; veřejná
+  URL bude mapována odděleně a serverová auth vrstva zůstane privátní.
+- U sandboxu bez `allow-same-origin` je `event.origin` záměrně `"null"` a samo o
+  sobě neověřuje odesílatele; autentizaci zprávy zajišťuje kombinace source a
+  nonce.
+
+## Evidovaný technický dluh
+
+- Odstranit stovky inline `style=` atributů a následně odebrat
+  `'unsafe-inline'` ze `style-src`. Tento dluh neblokuje SSO.
+- Převést `edu/ai-gramotnost.lessons.content` z `MEDIUMTEXT` HTML na
+  strukturované bloky. Do té doby se používá úzký DOMPurify allowlist.
+- Provozní CSP report-only sběr musí běžet nejméně týden před S-2.
+- Non-browser access/refresh tokeny jsou samostatný release po stabilizaci SSO.
