@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programování — kurzy — edu.vevit.fun</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        base: '#0d0d0d',
+                        surface: '#161616',
+                        'surface-elevated': '#1e1e1e',
+                        'surface-border': 'rgba(255,255,255,0.06)',
+                        'surface-border-hover': 'rgba(255,255,255,0.12)',
+                        accent: '#10b981',
+                        'accent-hover': '#059669',
+                        'accent-glow': 'rgba(16, 185, 129, 0.12)',
+                        'text-primary': '#f0f0f0',
+                        'text-secondary': '#9ca3af',
+                        'text-muted': '#6b7280',
+                        success: '#22c55e',
+                        warning: '#f59e0b',
+                        error: '#ef4444',
+                        info: '#3b82f6',
+                    },
+                    fontFamily: {
+                        sora: ['Sora', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="../css/custom.css">
+    <style>
+        body { font-family: 'Sora', sans-serif; }
+        .scrollbar-none::-webkit-scrollbar { display: none; }
+        .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+        @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+        .animate-fadeUp { animation: fadeUp 0.4s ease both; }
+        .skeleton { background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%); background-size:200% 100%; animation: shimmer 1.5s ease-in-out infinite; border-radius:8px; }
+        @keyframes shimmer { from{background-position:200% 0} to{background-position:-200% 0} }
+    </style>
+</head>
+<body class="bg-base text-text-primary min-h-screen font-sora">
+
+<!-- NAVBAR -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-[#0d0d0d]/95 backdrop-blur-sm border-b border-white/[0.06]">
+    <div class="max-w-7xl mx-auto px-3 sm:px-5 lg:px-6 h-16 flex items-center justify-between">
+        <a href="../index.html" class="flex items-center gap-3 hover:opacity-90 transition-opacity">
+            <div class="w-8 h-8 rounded-md bg-accent flex items-center justify-center">
+                <i data-lucide="book-open" class="w-4 h-4 text-[#0d0d0d]"></i>
+            </div>
+            <span class="text-lg font-semibold text-text-primary">edu<span class="text-accent">.vevit</span>.fun</span>
+        </a>
+        <div class="hidden md:flex items-center gap-6">
+            <a href="../index.html" class="text-sm text-text-secondary hover:text-text-primary transition-colors">Domů</a>
+            <span class="text-sm text-accent font-semibold">Kurzy</span>
+            <a href="../index.html#/lekcе" class="text-sm text-text-secondary hover:text-text-primary transition-colors">Lekce</a>
+            <a href="../index.html#/clanky" class="text-sm text-text-secondary hover:text-text-primary transition-colors">Články</a>
+        </div>
+        <div class="flex items-center gap-3">
+            <a href="https://account.vevit.fun" target="_blank" class="px-4 py-2 text-sm font-semibold text-base bg-accent hover:bg-accent-hover rounded-md transition-colors">
+                Přihlásit se
+            </a>
+        </div>
+    </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<div id="app" class="flex-1 pt-24 pb-16 px-3 sm:px-5 lg:px-6 max-w-7xl mx-auto w-full animate-fadeUp">
+    <div class="mb-8">
+        <a href="../index.html" class="inline-flex items-center gap-2 text-text-secondary hover:text-accent font-medium transition-colors">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Zpět na úvod
+        </a>
+    </div>
+
+    <!-- Header -->
+    <div class="text-center mb-10">
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-text-primary tracking-tight mb-3">
+            <span class="text-accent">Kurzy</span> programování
+        </h1>
+        <p class="text-lg text-[#6b7280]">Vyber si kurz a začně se učit.</p>
+    </div>
+
+    <!-- Category pills -->
+    <div id="category-bar" class="flex gap-2 overflow-x-auto scrollbar-none pb-3 mb-6" style="-ms-overflow-style:none; scrollbar-width:none;">
+    </div>
+
+    <!-- Course count + search -->
+    <div class="flex items-center justify-between mb-4">
+        <p class="text-sm text-[#6b7280]">
+            Zobrazeno <span id="count-number">0</span> kurzů
+        </p>
+        <div class="relative">
+            <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#6b7280]"></i>
+            <input id="kurz-search" type="text" placeholder="Hledat kurz..." class="bg-[#161616] border border-[rgba(255,255,255,0.08)] text-text-primary placeholder-[#6b7280] focus:border-accent focus:ring-2 focus:ring-accent/20 rounded-xl pl-9 pr-4 py-2 text-sm focus:outline-none w-48 transition-all" />
+        </div>
+    </div>
+
+    <!-- Course grid -->
+    <div id="kurzy-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-14">
+        <div class="skeleton h-48 rounded-xl"></div>
+        <div class="skeleton h-48 rounded-xl"></div>
+        <div class="skeleton h-48 rounded-xl"></div>
+        <div class="skeleton h-48 rounded-xl"></div>
+    </div>
+
+    <!-- Empty state -->
+    <div id="prazdny-stav" class="hidden text-center py-20">
+        <i data-lucide="search-x" class="w-12 h-12 text-[#6b7280] mx-auto mb-4"></i>
+        <p class="text-[#6b7280] text-lg">Žádné kurzy nenalezeny</p>
+        <button id="reset-filter-btn" class="mt-4 text-accent text-sm underline hover:no-underline">Zobrazit všechny kurzy</button>
+    </div>
+</div>
+
+<!-- Toast container -->
+<div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-3"></div>
+
+<script type="module">
+import { MOCK_COURSES, getCourseIconUrl } from '../js/shared/mockData.js';
+
+const CATEGORIES = [
+    { id: 'vse', label: 'Vše', icon: 'layout-grid', slugs: null, difficulty: null },
+    { id: 'programovani', label: 'Programování', icon: 'code-2', slugs: ['python','javascript','typescript','php','java','csharp','cpp','rust','golang','kotlin','swift','ruby'], difficulty: null },
+    { id: 'web', label: 'Web & DB', icon: 'globe', slugs: ['html-css','sql'], difficulty: null },
+    { id: 'nastroje', label: 'Nástroje', icon: 'wrench', slugs: ['git','docker','terminal'], difficulty: null },
+    { id: 'zaklady', label: 'Základy', icon: 'graduation-cap', slugs: ['zaklady-programovani'], difficulty: null },
+    { id: 'zacatecnik', label: 'Pro začátečníky', icon: 'star', slugs: null, difficulty: 'beginner' },
+    { id: 'pokrocily', label: 'Pokročilé', icon: 'zap', slugs: null, difficulty: ['intermediate','advanced'] },
+];
+
+const DIFF_MAP = {
+    beginner:     { label: 'Začátečník', darkCls: 'bg-emerald-500/10 text-emerald-400' },
+    intermediate: { label: 'Pokročilý',  darkCls: 'bg-amber-500/10 text-amber-400' },
+    advanced:     { label: 'Expert',      darkCls: 'bg-red-500/10 text-red-400' },
+};
+
+let vsechnyKurzy = [];
+let aktivniKategorie = 'programovani'; // default na této stránce
+let hledaniText = '';
+
+function countCategory(cat) {
+    if (!cat.slugs && !cat.difficulty) return vsechnyKurzy.length;
+    if (cat.slugs) return vsechnyKurzy.filter(k => cat.slugs.includes(k.slug)).length;
+    const diff = Array.isArray(cat.difficulty) ? cat.difficulty : [cat.difficulty];
+    return vsechnyKurzy.filter(k => diff.includes(k.difficulty)).length;
+}
+
+function renderCategoryBar() {
+    const bar = document.getElementById('category-bar');
+    bar.innerHTML = CATEGORIES.map(cat => {
+        const count = countCategory(cat);
+        const isActive = cat.id === aktivniKategorie;
+        return `<button data-category="${cat.id}" class="category-pill flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-200 flex-shrink-0 ${isActive
+            ? 'bg-accent text-[#0d0d0d] shadow-lg shadow-accent/25'
+            : 'bg-[#161616] text-[#8b8ba8] hover:bg-[#1e1e1e] hover:text-[#e2e2f0] border border-[rgba(255,255,255,0.08)]'
+        }">
+            <i data-lucide="${cat.icon}" class="w-4 h-4"></i>
+            ${cat.label}
+            <span class="${isActive ? 'bg-white/20' : 'bg-white/10'} text-xs px-1.5 py-0.5 rounded-full">${count}</span>
+        </button>`;
+    }).join('');
+    lucide.createIcons();
+}
+
+function renderKurzKarta(kurz) {
+    const iconUrl = getCourseIconUrl(kurz.slug);
+    const hasContent = (kurz.lesson_count || 0) > 0;
+    const diff = DIFF_MAP[kurz.difficulty] || DIFF_MAP.beginner;
+
+    // Build link to course detail page
+    const href = hasContent ? `kurz.html?slug=${kurz.slug}` : '#';
+
+    return `<a href="${href}" class="group bg-[#161616] border border-[rgba(255,255,255,0.06)] hover:border-[rgba(16,185,129,0.2)] rounded-xl p-5 transition-all block ${hasContent ? '' : 'opacity-50 pointer-events-none'}">
+        <div class="flex items-start justify-between mb-3">
+            <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center shrink-0">
+                <img src="${iconUrl}" alt="${kurz.title}" class="w-6 h-6 object-contain" loading="lazy" onerror="this.style.display='none'">
+            </div>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full ${diff.darkCls}">${diff.label}</span>
+        </div>
+        <h3 class="text-sm font-bold text-text-primary group-hover:text-accent transition-colors">${kurz.title}</h3>
+        <p class="text-xs text-[#6b7280] mt-1 line-clamp-2 leading-relaxed">${kurz.description || ''}</p>
+        <div class="flex items-center gap-3 mt-3 text-xs font-semibold text-[#6b7280]">
+            ${hasContent
+                ? `<span class="flex items-center gap-1"><i data-lucide="book-open" class="w-3 h-3"></i>${kurz.lesson_count} lekcí</span>`
+                : '<span class="flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i>Již brzy</span>'}
+            <span class="flex items-center gap-1 text-accent"><i data-lucide="star" class="w-3 h-3"></i>${kurz.xp_reward} XP</span>
+        </div>
+    </a>`;
+}
+
+function zobrazFiltrovane() {
+    const kategorie = CATEGORIES.find(c => c.id === aktivniKategorie);
+    const query = hledaniText.toLowerCase().trim();
+
+    let filtrovane = vsechnyKurzy.filter(kurz => {
+        let matchKat = true;
+        if (kategorie && kategorie.slugs) {
+            matchKat = kategorie.slugs.includes(kurz.slug);
+        } else if (kategorie && kategorie.difficulty) {
+            const diff = Array.isArray(kategorie.difficulty) ? kategorie.difficulty : [kategorie.difficulty];
+            matchKat = diff.includes(kurz.difficulty);
+        }
+        const matchSearch = !query ||
+            kurz.title.toLowerCase().includes(query) ||
+            (kurz.description || '').toLowerCase().includes(query);
+        return matchKat && matchSearch;
+    });
+
+    document.getElementById('count-number').textContent = filtrovane.length;
+
+    const prazdny = document.getElementById('prazdny-stav');
+    const grid = document.getElementById('kurzy-grid');
+
+    if (filtrovane.length === 0) {
+        grid.classList.add('hidden');
+        prazdny.classList.remove('hidden');
+    } else {
+        grid.classList.remove('hidden');
+        prazdny.classList.add('hidden');
+    }
+
+    // Fade animation
+    grid.style.opacity = '0';
+    grid.style.transform = 'translateY(8px)';
+    grid.style.transition = 'opacity 200ms ease, transform 200ms ease';
+
+    setTimeout(() => {
+        grid.innerHTML = filtrovane.map(k => renderKurzKarta(k)).join('');
+        lucide.createIcons();
+        grid.style.opacity = '1';
+        grid.style.transform = 'translateY(0)';
+    }, 200);
+}
+
+function filterKurzy(categoryId) {
+    aktivniKategorie = categoryId;
+    renderCategoryBar();
+    zobrazFiltrovane();
+}
+
+// Init
+async function init() {
+    // Use mock data (same as SPA when file:// protocol)
+    const USE_MOCK = location.protocol === 'file:';
+    if (USE_MOCK) {
+        vsechnyKurzy = MOCK_COURSES;
+    } else {
+        try {
+            const res = await fetch('/api/kurzy');
+            const json = await res.json();
+            vsechnyKurzy = json.data ?? json;
+        } catch {
+            vsechnyKurzy = MOCK_COURSES;
+        }
+    }
+
+    // Read category from URL hash (e.g. #programovani, #web, #vse)
+    const hashCat = location.hash.slice(1);
+    if (hashCat && CATEGORIES.find(c => c.id === hashCat)) {
+        aktivniKategorie = hashCat;
+    }
+
+    renderCategoryBar();
+    zobrazFiltrovane();
+
+    // Category click
+    document.getElementById('category-bar').addEventListener('click', (e) => {
+        const pill = e.target.closest('.category-pill');
+        if (!pill) return;
+        filterKurzy(pill.dataset.category);
+    });
+
+    // Reset button
+    document.getElementById('reset-filter-btn').addEventListener('click', () => filterKurzy('vse'));
+
+    // Search
+    document.getElementById('kurz-search').addEventListener('input', (e) => {
+        hledaniText = e.target.value;
+        zobrazFiltrovane();
+    });
+}
+
+init();
+</script>
+
+</body>
+</html>

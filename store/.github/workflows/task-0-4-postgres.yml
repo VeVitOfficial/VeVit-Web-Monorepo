@@ -1,0 +1,49 @@
+name: Task 0.4 PostgreSQL security tests
+
+on:
+  push:
+    paths:
+      - '**.php'
+      - 'migrations/**'
+      - '.github/workflows/task-0-4-postgres.yml'
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  payment-flow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_DB: vevit_store_test
+          POSTGRES_USER: vevit_test
+          POSTGRES_PASSWORD: test-only-password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U vevit_test -d vevit_store_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: pdo_pgsql, pcntl, curl, mbstring, fileinfo
+          coverage: none
+      - name: PHP syntax
+        run: find . -type f -name '*.php' -not -path './vendor/*' -print0 | xargs -0 -n1 php -l
+      - name: JavaScript syntax
+        run: find assets -type f -name '*.js' -print0 | xargs -0 -n1 node --check
+      - name: Task 0.4 tests
+        env:
+          VEVIT_STORE_TEST_DSN: pgsql:host=127.0.0.1;port=5432;dbname=vevit_store_test
+          VEVIT_STORE_TEST_DB_USER: vevit_test
+          VEVIT_STORE_TEST_DB_PASS: test-only-password
+        run: bash tests/run-task-0-4.sh

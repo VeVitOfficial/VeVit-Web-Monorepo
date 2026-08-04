@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-07-30T01:59:34.745Z",
+  "projectRoot": "/home/vitekeee/Projects/VeVit-store",
+  "structure": {
+    "hasPackageJson": true,
+    "hasTsConfig": false,
+    "hasClaudeConfig": true,
+    "hasClaudeFlow": true
+  },
+  "scannedAt": 1785376774746
+}

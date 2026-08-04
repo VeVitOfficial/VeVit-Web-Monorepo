@@ -1,0 +1,1235 @@
+{
+  "id": "prog-ruby",
+  "slug": "ruby",
+  "title": "Ruby",
+  "description": "Elegantní dynamický jazyk — metaprogramování, Rails a konvence na předpis.",
+  "longDescription": "Ruby je elegantní, dynamický jazyk známý svou čitelností.",
+  "category": "programovani",
+  "color": "#cc342d",
+  "icon": "Gem",
+  "difficulty": "advanced",
+  "totalXP": 410,
+  "totalLessons": 12,
+  "language": "Ruby",
+  "chapters": [
+    {
+      "id": "ruby-ch1",
+      "slug": "ruby-kurz",
+      "title": "Kompletní kurz Ruby",
+      "lessons": [
+        {
+          "id": "ruby-lesson-01",
+          "slug": "ruby-01-úvod-do-ruby",
+          "title": "Úvod do Ruby",
+          "description": "Elegantní syntaxe, irb, první skript",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Úvod do Ruby"
+            },
+            {
+              "type": "paragraph",
+              "text": "Elegantní syntaxe, irb, první skript"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Úvod do Ruby'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 20 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "ruby",
+              "code": "# Ukázka z lekce: Úvod do Ruby\n# Zde bude váš kód...\nprint('Začínáme s Úvod do Ruby!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "ruby-lesson-01-ex-01",
+              "title": "Cvičení: Úvod do Ruby",
+              "type": "code",
+              "task": "Script co generuje básničku.",
+              "description": "Ruby je elegantní a čitelný jazyk.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Úvod do Ruby\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 20,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-ruby-01-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Úvod do Ruby'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti úvod do ruby.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Úvod do Ruby' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 20,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "ruby-lesson-02",
+          "slug": "ruby-02-proměnné-a-typy",
+          "title": "Proměnné a typy",
+          "description": "Lokální, instance, třída, globální, symboly",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Proměnné a typy"
+            },
+            {
+              "type": "paragraph",
+              "text": "Lokální, instance, třída, globální, symboly"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Proměnné a typy'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 20 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "ruby",
+              "code": "# Ukázka z lekce: Proměnné a typy\n# Zde bude váš kód...\nprint('Začínáme s Proměnné a typy!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "ruby-lesson-02-ex-01",
+              "title": "Cvičení: Proměnné a typy",
+              "type": "code",
+              "task": "Evidence knih s různými scope.",
+              "description": "Ruby má flexibilní systém proměnných.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Proměnné a typy\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 20,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-ruby-02-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Proměnné a typy'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti proměnné a typy.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Proměnné a typy' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 20,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "ruby-lesson-03",
+          "slug": "ruby-03-metody-a-bloky",
+          "title": "Metody a bloky",
+          "description": "Definice, yield, procs, lambdas",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Metody a bloky"
+            },
+            {
+              "type": "paragraph",
+              "text": "Definice, yield, procs, lambdas"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Metody a bloky'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 25 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "ruby",
+              "code": "# Ukázka z lekce: Metody a bloky\n# Zde bude váš kód...\nprint('Začínáme s Metody a bloky!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "ruby-lesson-03-ex-01",
+              "title": "Cvičení: Metody a bloky",
+              "type": "code",
+              "task": "Iterator přes vlastní kolekci.",
+              "description": "Bloky jsou základním konceptem Ruby.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Metody a bloky\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 25,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-ruby-03-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Metody a bloky'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti metody a bloky.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Metody a bloky' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 25,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "ruby-lesson-04",
+          "slug": "ruby-04-řetězce-a-regex",
+          "title": "Řetězce a regex",
+          "description": "Interpolace, heredoc, pattern matching",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Řetězce a regex"
+            },
+            {
+              "type": "paragraph",
+              "text": "Interpolace, heredoc, pattern matching"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Řetězce a regex'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 25 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "ruby",
+              "code": "# Ukázka z lekce: Řetězce a regex\n# Zde bude váš kód...\nprint('Začínáme s Řetězce a regex!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "ruby-lesson-04-ex-01",
+              "title": "Cvičení: Řetězce a regex",
+              "type": "code",
+              "task": "Log parser s regex.",
+              "description": "Ruby má výkonné textové nástroje.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Řetězce a regex\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 25,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-ruby-04-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Řetězce a regex'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti řetězce a regex.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Řetězce a regex' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 25,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "ruby-lesson-05",
+          "slug": "ruby-05-pole-a-hashe",
+          "title": "Pole a hashe",
+          "description": "Array, Hash, ranges, enumerables",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Pole a hashe"
+            },
+            {
+              "type": "paragraph",
+              "text": "Array, Hash, ranges, enumerables"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Pole a hashe'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 25 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "ruby",
+              "code": "# Ukázka z lekce: Pole a hashe\n# Zde bude váš kód...\nprint('Začínáme s Pole a hashe!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "ruby-lesson-05-ex-01",
+              "title": "Cvičení: Pole a hashe",
+              "type": "code",
+              "task": "Analýza anketních výsledků.",
+              "description": "Pole a hashe jsou centrální kolekce.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Pole a hashe\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 25,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-ruby-05-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Pole a hashe'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti pole a hashe.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Pole a hashe' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 25,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "ruby-lesson-06",
+          "slug": "ruby-06-oop-třídy",
+          "title": "OOP — třídy",
+          "description": "class, initialize, attr_accessor, self",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "OOP — třídy"
+            },
+            {
+              "type": "paragraph",
+              "text": "class, initialize, attr_accessor, self"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'OOP — třídy'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 30 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "ruby",
+              "code": "# Ukázka z lekce: OOP — třídy\n# Zde bude váš kód...\nprint('Začínáme s OOP — třídy!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "ruby-lesson-06-ex-01",
+              "title": "Cvičení: OOP — třídy",
+              "type": "code",
+              "task": "Model e-shopu s přístupovými metodami.",
+              "description": "Vše v Ruby je objekt.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: OOP — třídy\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 30,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-ruby-06-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'OOP — třídy'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti oop — třídy.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'OOP — třídy' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 30,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "ruby-lesson-07",
+          "slug": "ruby-07-oop-pokročilé",
+          "title": "OOP — pokročilé",
+          "description": "Modules, mixins, singleton, private",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "OOP — pokročilé"
+            },
+            {
+              "type": "paragraph",
+              "text": "Modules, mixins, singleton, private"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'OOP — pokročilé'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 30 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "ruby",
+              "code": "# Ukázka z lekce: OOP — pokročilé\n# Zde bude váš kód...\nprint('Začínáme s OOP — pokročilé!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "ruby-lesson-07-ex-01",
+              "title": "Cvičení: OOP — pokročilé",
+              "type": "code",
+              "task": "Composable behavior s moduly.",
+              "description": "Moduly umožňují sdílení kódu.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: OOP — pokročilé\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 30,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-ruby-07-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'OOP — pokročilé'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti oop — pokročilé.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'OOP — pokročilé' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 30,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "ruby-lesson-08",
+          "slug": "ruby-08-metaprogramování",
+          "title": "Metaprogramování",
+          "description": "define_method, method_missing, send",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Metaprogramování"
+            },
+            {
+              "type": "paragraph",
+              "text": "define_method, method_missing, send"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Metaprogramování'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 40 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "ruby",
+              "code": "# Ukázka z lekce: Metaprogramování\n# Zde bude váš kód...\nprint('Začínáme s Metaprogramování!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "ruby-lesson-08-ex-01",
+              "title": "Cvičení: Metaprogramování",
+              "type": "code",
+              "task": "DSL pro konfiguraci.",
+              "description": "Metaprogramování otevírá nové možnosti.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Metaprogramování\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 40,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-ruby-08-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Metaprogramování'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti metaprogramování.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Metaprogramování' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 40,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "ruby-lesson-09",
+          "slug": "ruby-09-error-handling",
+          "title": "Error handling",
+          "description": "begin/rescue/ensure, raise, custom",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Error handling"
+            },
+            {
+              "type": "paragraph",
+              "text": "begin/rescue/ensure, raise, custom"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Error handling'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 25 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "ruby",
+              "code": "# Ukázka z lekce: Error handling\n# Zde bude váš kód...\nprint('Začínáme s Error handling!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "ruby-lesson-09-ex-01",
+              "title": "Cvičení: Error handling",
+              "type": "code",
+              "task": "Retry wrapper s exp. backoff.",
+              "description": "Ruby elegantně řeší chyby.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Error handling\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 25,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-ruby-09-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Error handling'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti error handling.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Error handling' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 25,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "ruby-lesson-10",
+          "slug": "ruby-10-file-io",
+          "title": "File I/O",
+          "description": "File class, CSV, JSON, YAML",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "File I/O"
+            },
+            {
+              "type": "paragraph",
+              "text": "File class, CSV, JSON, YAML"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'File I/O'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 25 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "ruby",
+              "code": "# Ukázka z lekce: File I/O\n# Zde bude váš kód...\nprint('Začínáme s File I/O!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "ruby-lesson-10-ex-01",
+              "title": "Cvičení: File I/O",
+              "type": "code",
+              "task": "Data migrátor mezi formáty.",
+              "description": "Ruby zjednodušuje práci se soubory.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: File I/O\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 25,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-ruby-10-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'File I/O'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti file i/o.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'File I/O' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 25,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "ruby-lesson-11",
+          "slug": "ruby-11-rails-základy",
+          "title": "Rails základy",
+          "description": "MVC, scaffolding, routing, ActiveRecord",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Rails základy"
+            },
+            {
+              "type": "paragraph",
+              "text": "MVC, scaffolding, routing, ActiveRecord"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Rails základy'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 45 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "ruby",
+              "code": "# Ukázka z lekce: Rails základy\n# Zde bude váš kód...\nprint('Začínáme s Rails základy!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "ruby-lesson-11-ex-01",
+              "title": "Cvičení: Rails základy",
+              "type": "code",
+              "task": "Jednoduchý blog s Rails.",
+              "description": "Rails revolučně změnil webový vývoj.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Rails základy\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 45,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-ruby-11-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Rails základy'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti rails základy.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Rails základy' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 45,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "ruby-lesson-12",
+          "slug": "ruby-12-malý-projekt",
+          "title": "Malý projekt",
+          "description": "URL bookmark manager",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Malý projekt"
+            },
+            {
+              "type": "paragraph",
+              "text": "URL bookmark manager"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Malý projekt'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 100 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "ruby",
+              "code": "# Ukázka z lekce: Malý projekt\n# Zde bude váš kód...\nprint('Začínáme s Malý projekt!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "ruby-lesson-12-ex-01",
+              "title": "Cvičení: Malý projekt",
+              "type": "code",
+              "task": "Kompletní Rails app s autentizací.",
+              "description": "Projekt integruje všechny Ruby dovednosti.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Malý projekt\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 100,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-ruby-12-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Malý projekt'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti malý projekt.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Malý projekt' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 100,
+          "estimatedMinutes": 15
+        }
+      ]
+    }
+  ]
+}

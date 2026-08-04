@@ -1,0 +1,15 @@
+# OS
+.DS_Store
+
+# Editory
+.idea/
+.vscode/
+
+# Dočasné / testovací soubory
+_smoke.mjs
+_interact.mjs
+_final.mjs
+
+# Cache
+.cache/
+dev-server.php

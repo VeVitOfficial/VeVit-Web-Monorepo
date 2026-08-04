@@ -1,0 +1,164 @@
+/* ========================================
+   VeVit Design System — ANF Framework
+   ======================================== */
+
+/* Typography */
+* { font-family: 'Inter', system-ui, sans-serif; }
+
+/* Sora font for Premium section */
+.font-sora, #premium h2, #premium h3 {
+    font-family: 'Sora', 'Inter', system-ui, sans-serif;
+}
+
+/* Headings — Semibold (600) */
+h1, h2, h3, h4, h5, h6, .font-heading {
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+/* Body — Regular (400) */
+body, p, span, div { font-weight: 400; }
+
+/* Labels — Medium (500) */
+button, .btn, label, .font-label { font-weight: 500; }
+
+/* Scrollbar — subtler */
+html {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.1) transparent;
+}
+html::-webkit-scrollbar { width: 6px; }
+html::-webkit-scrollbar-track { background: transparent; }
+html::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+html::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+/* ========================================
+   Background Pattern — Jemný gradient
+   ======================================== */
+body::before {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50vh;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse at 20% 80%, rgba(16, 185, 129, 0.03) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 60%, rgba(5, 150, 105, 0.02) 0%, transparent 50%);
+    z-index: -1;
+}
+
+/* ========================================
+   Disco Mode — Easter Egg (zachováno)
+   ======================================== */
+.disco-mode, .disco-mode body, .disco-mode #root, .disco-mode nav, .disco-mode main, .disco-mode section, .disco-mode div, .disco-mode footer {
+    background-color: transparent !important;
+    border-color: rgba(255,255,255,0.2) !important;
+}
+
+body.disco-mode {
+    animation: disco-bg 0.8s infinite alternate !important;
+}
+
+.disco-mode * {
+    text-shadow: 0 0 5px rgba(255,255,255,0.5);
+}
+
+.disco-mode h1, .disco-mode h2, .disco-mode h3, .disco-mode p, .disco-mode span, .disco-mode a, .disco-mode button, .disco-mode li {
+    background-image: linear-gradient(to right, #ff0055, #00ffcc, #ffcc00, #cc00ff, #00ccff, #33ff00, #ff0055) !important;
+    background-size: 30% auto !important;
+    color: transparent !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    animation: disco-text-gradient 1s linear infinite !important;
+    text-shadow: none !important;
+}
+
+.disco-mode svg {
+    color: #fff !important;
+    animation: disco-svg 0.5s infinite alternate !important;
+}
+
+@keyframes disco-bg {
+    0% { background-color: #ff0055 !important; }
+    20% { background-color: #00ffcc !important; }
+    40% { background-color: #ffcc00 !important; }
+    60% { background-color: #cc00ff !important; }
+    80% { background-color: #00ccff !important; }
+    100% { background-color: #33ff00 !important; }
+}
+
+@keyframes disco-text-gradient {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
+
+@keyframes disco-svg {
+    0% { color: #ff0055 !important; }
+    50% { color: #ffff00 !important; }
+    100% { color: #00ffff !important; }
+}
+
+@keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes ray-1 { 0% { transform: rotate(-60deg); } 50% { transform: rotate(60deg); } 100% { transform: rotate(-60deg); } }
+@keyframes ray-2 { 0% { transform: rotate(45deg); } 50% { transform: rotate(-75deg); } 100% { transform: rotate(45deg); } }
+@keyframes ray-3 { 0% { transform: rotate(-30deg); } 50% { transform: rotate(90deg); } 100% { transform: rotate(-30deg); } }
+@keyframes ray-4 { 0% { transform: rotate(80deg); } 50% { transform: rotate(-40deg); } 100% { transform: rotate(80deg); } }
+@keyframes ray-5 { 0% { transform: rotate(0deg); } 50% { transform: rotate(120deg); } 100% { transform: rotate(0deg); } }
+
+.animate-ray-1 { animation: ray-1 2.5s ease-in-out infinite; }
+.animate-ray-2 { animation: ray-2 3.2s ease-in-out infinite; }
+.animate-ray-3 { animation: ray-3 4.1s ease-in-out infinite; }
+.animate-ray-4 { animation: ray-4 2.8s ease-in-out infinite; }
+.animate-ray-5 { animation: ray-5 3.7s ease-in-out infinite; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@keyframes drop-ball {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(0); }
+}
+.animate-drop-ball {
+    animation: drop-ball 2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* ========================================
+   Utility Classes — Jemné animace
+   ======================================== */
+.animate-fade-in { animation: fadeIn 150ms ease-out; }
+.animate-slide-up { animation: slideUp 200ms ease-out; }
+
+/* Premium section slide reveal */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.animate-slide-down {
+    animation: slideDown 400ms ease-out forwards;
+}
+
+/* Hover stavy pro karty */
+.hover-lift {
+    transition: transform 200ms ease-out, box-shadow 200ms ease-out;
+}
+.hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -10px rgba(16, 185, 129, 0.15);
+}
+
+/* Focus stavy */
+.focus-ring:focus-visible {
+    outline: 2px solid rgba(16, 185, 129, 0.5);
+    outline-offset: 2px;
+}

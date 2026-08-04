@@ -1,0 +1,36 @@
+<?php // Načti vendored marked + DOMPurify lokálně (žádný CDN). ?>
+<script src="/tools/assets/js/lib/marked.min.js"></script>
+<script src="/tools/assets/js/lib/purify.min.js"></script>
+<div class="stack" style="max-width:60rem;margin:0 auto">
+  <div class="row" style="flex-wrap:wrap;gap:0.5rem">
+    <div class="row" style="gap:0.25rem;flex-wrap:wrap">
+      <button class="btn btn-ghost btn-sm" data-md="bold" type="button" title="Tučné (Ctrl+B)"><strong>B</strong></button>
+      <button class="btn btn-ghost btn-sm" data-md="italic" type="button" title="Kurzíva (Ctrl+I)"><em>I</em></button>
+      <button class="btn btn-ghost btn-sm" data-md="h1" type="button" title="Nadpis 1">H1</button>
+      <button class="btn btn-ghost btn-sm" data-md="h2" type="button" title="Nadpis 2">H2</button>
+      <button class="btn btn-ghost btn-sm" data-md="quote" type="button" title="Citace">“</button>
+      <button class="btn btn-ghost btn-sm" data-md="code" type="button" title="Kód">{ }</button>
+      <button class="btn btn-ghost btn-sm" data-md="link" type="button" title="Odkaz">🔗</button>
+      <button class="btn btn-ghost btn-sm" data-md="list" type="button" title="Seznam">•</button>
+    </div>
+    <div class="grow"></div>
+    <div class="row" style="gap:0.25rem">
+      <button class="btn btn-ghost btn-sm" id="md-export-md" type="button"><?= icon_svg('Download', 16) ?> .md</button>
+      <button class="btn btn-ghost btn-sm" id="md-export-html" type="button"><?= icon_svg('Download', 16) ?> .html</button>
+      <button class="btn btn-ghost btn-sm" id="md-clear" type="button"><?= icon_svg('Trash', 16) ?></button>
+    </div>
+  </div>
+
+  <div class="split-2">
+    <div class="stack-sm">
+      <span class="muted" style="font-size:0.75rem;font-weight:500">Markdown</span>
+      <textarea class="textarea input-mono" id="md-input" placeholder="# Nadpis&#10;&#10;Napište **Markdown**…" spellcheck="false"></textarea>
+    </div>
+    <div class="stack-sm">
+      <span class="muted" style="font-size:0.75rem;font-weight:500">Náhled</span>
+      <div class="preview markdown-body" id="md-preview" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <p class="muted" style="font-size:0.8rem">Text se automaticky ukládá do prohlížeče. Zpracování běží lokálně — nic se neodesílá.</p>
+</div>

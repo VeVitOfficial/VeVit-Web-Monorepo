@@ -1,0 +1,42 @@
+DirectoryIndex index.html index.php
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^product/([^/]+)$ product.php?slug=$1 [L,QSA]
+RewriteRule ^category/([^/]+)$ index.html?category=$1 [L,QSA]
+
+# The repository is deployed with its document root at this directory. Keep
+# implementation, migrations, tests, CI metadata and documentation unreachable
+# over HTTP even when directory listing is disabled.
+RewriteRule ^(?:lib|migrations|tests|docs|\.github|\.claude)(?:/|$) - [F,L,NC]
+
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "(^config(?:\.example|_secret)?\.php$|\.(?:sql|md|json|ya?ml|lock)$)">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+Options -Indexes
+ServerSignature Off
+
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options DENY
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
+
+# Keep these at or above CASE_ATTACHMENT_MAX_BYTES (default 10 MiB). Hosts that
+# disallow php_value must configure the equivalent limits in their PHP panel.
+php_value upload_max_filesize 10M
+php_value post_max_size 11M

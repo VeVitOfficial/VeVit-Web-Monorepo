@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "project_path": "/home/vitekeee/Projects/VeVit_tools",
+  "generated_at_utc": "2026-07-29T01:52:00Z",
+  "tests": [
+    {"name":"search core","command":"node tests/hub/search-test.js","status":"passed","type":"automatic"},
+    {"name":"Task 1 regression","command":"php tests/hub/run-task-1.php","status":"passed","type":"automatic"},
+    {"name":"Chromium landing smoke","command":"chromium --headless --dump-dom http://127.0.0.1:3972/?q=json","status":"passed","type":"browser_smoke_limited"},
+    {"name":"Playwright keyboard and mobile interaction","status":"not_run","reason":"managed Playwright browser is unavailable in this environment"}
+  ],
+  "limitations": ["No browser happy-path audit of all tools.", "No account or SSO integration."]
+}

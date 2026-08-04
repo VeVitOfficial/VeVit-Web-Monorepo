@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="cs" class="dark h-full antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/edu/" /><!-- monorepo: SPA běží pod /edu/ -->
+    <title>VeVit Edu – Moderní výuková platforma</title>
+    <meta name="description" content="Interaktivní studijní materiály, kvízy a AI tutor pro střední školy." />
+    <link rel="icon" href="/edu/favicon.ico" sizes="256x256" type="image/x-icon" />
+
+    <!-- Geist font (Vercel) s fallbackem na system-ui -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <!-- KaTeX pro matematické vzorce -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.17.0/katex.min.css" />
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.17.0/katex.min.js"></script>
+
+    <!-- Lucide ikony -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+    <!-- Tailwind Play CDN + design tokeny (reprodukce globals.css) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              background: "var(--color-background)",
+              foreground: "var(--color-foreground)",
+              "glass-bg": "var(--color-glass-bg)",
+              "glass-border": "var(--color-glass-border)",
+              "glass-highlight": "var(--color-glass-highlight)",
+              "glass-glow": "var(--color-glass-glow)",
+              muted: "var(--color-muted)",
+              accent: "var(--color-accent)",
+              "accent-foreground": "var(--color-accent-foreground)",
+              success: "var(--color-success)",
+              error: "var(--color-error)",
+              warning: "var(--color-warning)",
+              "card-bg": "var(--color-card-bg)",
+              "border-subtle": "var(--color-border-subtle)",
+              "text-primary": "var(--color-text-primary)",
+              "text-secondary": "var(--color-text-secondary)",
+              "text-muted": "var(--color-text-muted)",
+              "input-bg": "var(--color-input-bg)",
+              "nav-text": "var(--color-nav-text)",
+              "nav-hover": "var(--color-nav-hover)",
+              "prog-primary": "var(--color-prog-primary)",
+              "prog-bg": "var(--color-prog-bg)",
+              "prog-card": "var(--color-prog-card)",
+              "prog-elevated": "var(--color-prog-elevated)",
+              "prog-text": "var(--color-prog-text)",
+              "prog-text-secondary": "var(--color-prog-text-secondary)",
+              "prog-link": "var(--color-prog-link)",
+              "prog-border": "var(--color-prog-border)",
+            },
+            fontFamily: {
+              sans: ["Geist", "var(--font-geist-sans)", "system-ui", "sans-serif"],
+              mono: ["Geist Mono", "var(--font-geist-mono)", "ui-monospace", "monospace"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body class="min-h-full flex flex-col bg-background text-foreground font-sans">
+    <div id="navbar"></div>
+    <div id="app" class="flex-1"></div>
+    <div id="toast-container" class="fixed bottom-6 right-6 z-[60] flex flex-col gap-3"></div>
+
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>

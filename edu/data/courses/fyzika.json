@@ -1,0 +1,133 @@
+{
+  "id": "fyz",
+  "slug": "fyzika",
+  "title": "Fyzika",
+  "description": "Mechanika, elektromagnetismus a moderní fyzika.",
+  "category": "prirodni",
+  "color": "#06b6d4",
+  "icon": "Atom",
+  "chapters": [
+    {
+      "id": "fyz-ch1",
+      "slug": "elektrostatika",
+      "title": "Elektrostatika a elektrické pole",
+      "lessons": [
+        {
+          "id": "fyz-lesson-1",
+          "slug": "elektricke-pole",
+          "title": "Elektrostatika a elektrické pole",
+          "description": "Pochopíte Coulombův zákon, intenzitu elektrického pole a Gaussovu větu pro výpočet sil mezi elektrickými náboji a symetrickými rozloženími.",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Elektrostatika a elektrické pole"
+            },
+            {
+              "type": "paragraph",
+              "text": "Elektrostatika je obor fyziky zabývající se statickými elektrickými náboji a silami mezi nimi. Klíčovým pojmem je elektrické pole, které každý náboj vytváří ve svém okolí."
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Coulombův zákon"
+            },
+            {
+              "type": "paragraph",
+              "text": "Velikost elektrické síly mezi dvěma bodovými náboji je přímo úměrná součinu jejich velikostí a nepřímo úměrná druhé mocnině jejich vzdálenosti:"
+            },
+            {
+              "type": "math",
+              "latex": "F = k_e \\frac{|q_1 q_2|}{r^2}",
+              "display": true
+            },
+            {
+              "type": "paragraph",
+              "text": "kde kₑ ≈ 8,99 · 10⁹ N·m²·C⁻² je Coulombova konstanta."
+            },
+            {
+              "type": "callout",
+              "variant": "tip",
+              "text": "Coulombův zákon je analogický Newtonovu gravitačnímu zákonu, ale elektrická síla může být přitažlivá i odpudivá."
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Intenzita elektrického pole"
+            },
+            {
+              "type": "paragraph",
+              "text": "Elektrické pole je vektorové pole, které v každém bodě prostoru udává sílu působící na jednotkový kladný náboj. Intenzitu definujeme jako:"
+            },
+            {
+              "type": "math",
+              "latex": "\\vec{E} = \\frac{\\vec{F}}{q} = k_e \\frac{Q}{r^2} \\hat{r}",
+              "display": true
+            },
+            {
+              "type": "paragraph",
+              "text": "Jednotkou intenzity elektrického pole je volt na metr (V/m) nebo newton na coulomb (N/C)."
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Gaussova věta"
+            },
+            {
+              "type": "paragraph",
+              "text": "Gaussova věta je jedním z Maxwellových rovnic a tvoří mocný nástroj pro výpočet elektrického pole u symetrických rozložení náboje:"
+            },
+            {
+              "type": "math",
+              "latex": "\\oint_S \\vec{E} \\cdot d\\vec{A} = \\frac{Q_{\\text{enc}}}{\\varepsilon_0}",
+              "display": true
+            },
+            {
+              "type": "code",
+              "language": "python",
+              "code": "import numpy as np\n\ndef coulomb_force(q1, q2, r):\n    ke = 8.99e9  # N m^2 / C^2\n    return ke * abs(q1 * q2) / r**2\n\n# Síla mezi dvěma náboji 1 μC ve vzdálenosti 10 cm\nF = coulomb_force(1e-6, 1e-6, 0.1)\nprint(f'Síla: {F:.3f} N')  # ~0.899 N"
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-fyz-1",
+              "question": "Jakým způsobem elektrické síla mezi náboji závisí na vzdálenosti?",
+              "options": [
+                "Přímo úměrná vzdálenosti",
+                "Nepřímo úměrná druhé mocnině vzdálenosti",
+                "Přímo úměrná druhé mocnině vzdálenosti",
+                "Nezávisí na vzdálenosti"
+              ],
+              "correctIndex": 1,
+              "explanation": "Podle Coulombova zákona F = kₑ·|q₁q₂|/r² je síla nepřímo úměrná druhé mocnině vzdálenosti."
+            },
+            {
+              "id": "q-fyz-2",
+              "question": "Jaká je jednotka intenzity elektrického pole?",
+              "options": [
+                "Newton",
+                "Coulomb",
+                "Volt na metr (V/m)",
+                "Watt"
+              ],
+              "correctIndex": 2,
+              "explanation": "Intenzita elektrického pole se měří ve voltech na metr (V/m), což odpovídá síle na jednotkový náboj."
+            },
+            {
+              "id": "q-fyz-3",
+              "question": "Které z následujících je základním nástrojem pro výpočet elektrického pole při symetrických úlohách?",
+              "options": [
+                "Pythagorova věta",
+                "Gaussova věta",
+                "Talesova věta",
+                "Fermatův princip"
+              ],
+              "correctIndex": 1,
+              "explanation": "Gaussova věta umožňuje elegantně vypočítat elektrické pole pro sférickou, válcovou nebo rovinnou symetrii."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

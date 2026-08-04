@@ -1,0 +1,1942 @@
+{
+  "id": "prog-zaklady",
+  "slug": "zaklady-programovani",
+  "title": "Základy programování",
+  "description": "Algoritmy, datové struktury, OOP a základní koncepty programování bez ohledu na jazyk.",
+  "longDescription": "Než se pustíš do konkrétního jazyka, je důležité pochopit univerzální principy programování.",
+  "category": "programovani",
+  "color": "#8b5cf6",
+  "icon": "BookOpen",
+  "difficulty": "beginner",
+  "totalXP": 510,
+  "totalLessons": 19,
+  "language": "Pseudokód",
+  "chapters": [
+    {
+      "id": "zaklady-ch1",
+      "slug": "zaklady-kurz",
+      "title": "Základy programování",
+      "lessons": [
+        {
+          "id": "zaklady-lesson-01",
+          "slug": "zaklady-01-co-je-programování",
+          "title": "Co je programování",
+          "description": "Algoritmus, kód, jazyky, kompilace vs interpretace",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Co je programování"
+            },
+            {
+              "type": "paragraph",
+              "text": "Algoritmus, kód, jazyky, kompilace vs interpretace"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Co je programování'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 20 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "python",
+              "code": "# Ukázka z lekce: Co je programování\n# Zde bude váš kód...\nprint('Začínáme s Co je programování!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "zaklady-lesson-01-ex-01",
+              "title": "Cvičení: Co je programování",
+              "type": "code",
+              "task": "Napiš algoritmus pro vaření kávy v pseudokódu.",
+              "description": "Programování je umění řešit problémy pomocí kódu.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Co je programování\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 20,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-zaklady-01-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Co je programování'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti co je programování.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Co je programování' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 20,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "zaklady-lesson-02",
+          "slug": "zaklady-02-proměnné-a-paměť",
+          "title": "Proměnné a paměť",
+          "description": "Pojmenované úložiště, typy, deklarace",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Proměnné a paměť"
+            },
+            {
+              "type": "paragraph",
+              "text": "Pojmenované úložiště, typy, deklarace"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Proměnné a paměť'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 20 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "python",
+              "code": "# Ukázka z lekce: Proměnné a paměť\n# Zde bude váš kód...\nprint('Začínáme s Proměnné a paměť!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "zaklady-lesson-02-ex-01",
+              "title": "Cvičení: Proměnné a paměť",
+              "type": "code",
+              "task": "Vymodeluj paměť jako šuplíkový regál.",
+              "description": "Proměnné jsou základním stavebním kamenem.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Proměnné a paměť\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 20,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-zaklady-02-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Proměnné a paměť'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti proměnné a paměť.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Proměnné a paměť' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 20,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "zaklady-lesson-03",
+          "slug": "zaklady-03-datové-typy",
+          "title": "Datové typy",
+          "description": "Čísla, text, boolean, kolekce",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Datové typy"
+            },
+            {
+              "type": "paragraph",
+              "text": "Čísla, text, boolean, kolekce"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Datové typy'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 20 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "python",
+              "code": "# Ukázka z lekce: Datové typy\n# Zde bude váš kód...\nprint('Začínáme s Datové typy!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "zaklady-lesson-03-ex-01",
+              "title": "Cvičení: Datové typy",
+              "type": "code",
+              "task": "Tabulka typů a jejich vlastností.",
+              "description": "Typy určují, co můžeme s daty dělat.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Datové typy\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 20,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-zaklady-03-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Datové typy'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti datové typy.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Datové typy' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 20,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "zaklady-lesson-04",
+          "slug": "zaklady-04-podmínky",
+          "title": "Podmínky",
+          "description": "If-then-else, rozhodovací stromy",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Podmínky"
+            },
+            {
+              "type": "paragraph",
+              "text": "If-then-else, rozhodovací stromy"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Podmínky'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 25 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "python",
+              "code": "# Ukázka z lekce: Podmínky\n# Zde bude váš kód...\nprint('Začínáme s Podmínky!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "zaklady-lesson-04-ex-01",
+              "title": "Cvičení: Podmínky",
+              "type": "code",
+              "task": "Flowchart pro rozhodovací strom oběda.",
+              "description": "Podmínky řídí tok programu.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Podmínky\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 25,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-zaklady-04-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Podmínky'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti podmínky.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Podmínky' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 25,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "zaklady-lesson-05",
+          "slug": "zaklady-05-smyčky",
+          "title": "Smyčky",
+          "description": "For, while, do-while, iterace",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Smyčky"
+            },
+            {
+              "type": "paragraph",
+              "text": "For, while, do-while, iterace"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Smyčky'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 25 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "python",
+              "code": "# Ukázka z lekce: Smyčky\n# Zde bude váš kód...\nprint('Začínáme s Smyčky!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "zaklady-lesson-05-ex-01",
+              "title": "Cvičení: Smyčky",
+              "type": "code",
+              "task": "Pseudokód pro tisk násobilky.",
+              "description": "Smyčky opakují operace.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Smyčky\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 25,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-zaklady-05-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Smyčky'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti smyčky.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Smyčky' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 25,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "zaklady-lesson-06",
+          "slug": "zaklady-06-funkce",
+          "title": "Funkce",
+          "description": "Dekompozice, parametry, návratové hodnoty",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Funkce"
+            },
+            {
+              "type": "paragraph",
+              "text": "Dekompozice, parametry, návratové hodnoty"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Funkce'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 25 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "python",
+              "code": "# Ukázka z lekce: Funkce\n# Zde bude váš kód...\nprint('Začínáme s Funkce!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "zaklady-lesson-06-ex-01",
+              "title": "Cvičení: Funkce",
+              "type": "code",
+              "task": "Rozděl úlohu na 5 funkcí.",
+              "description": "Funkce organizují kód do menších celků.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Funkce\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 25,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-zaklady-06-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Funkce'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti funkce.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Funkce' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 25,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "zaklady-lesson-07",
+          "slug": "zaklady-07-pole-a-seznamy",
+          "title": "Pole a seznamy",
+          "description": "Indexovaná kolekce, základní operace",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Pole a seznamy"
+            },
+            {
+              "type": "paragraph",
+              "text": "Indexovaná kolekce, základní operace"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Pole a seznamy'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 20 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "python",
+              "code": "# Ukázka z lekce: Pole a seznamy\n# Zde bude váš kód...\nprint('Začínáme s Pole a seznamy!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "zaklady-lesson-07-ex-01",
+              "title": "Cvičení: Pole a seznamy",
+              "type": "code",
+              "task": "Vizualizace pole a operací s ním.",
+              "description": "Pole ukládají více hodnot.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Pole a seznamy\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 20,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-zaklady-07-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Pole a seznamy'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti pole a seznamy.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Pole a seznamy' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 20,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "zaklady-lesson-08",
+          "slug": "zaklady-08-vyhledávání",
+          "title": "Vyhledávání",
+          "description": "Lineární, binární vyhledávání",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Vyhledávání"
+            },
+            {
+              "type": "paragraph",
+              "text": "Lineární, binární vyhledávání"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Vyhledávání'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 30 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "python",
+              "code": "# Ukázka z lekce: Vyhledávání\n# Zde bude váš kód...\nprint('Začínáme s Vyhledávání!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "zaklady-lesson-08-ex-01",
+              "title": "Cvičení: Vyhledávání",
+              "type": "code",
+              "task": "Hraj si na počítač — proveď binární vyhledávání ručně.",
+              "description": "Vyhledávání hledá data v kolekcích.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Vyhledávání\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 30,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-zaklady-08-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Vyhledávání'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti vyhledávání.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Vyhledávání' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 30,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "zaklady-lesson-09",
+          "slug": "zaklady-09-řazení",
+          "title": "Řazení",
+          "description": "Bubble sort, selection sort, insertion sort",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Řazení"
+            },
+            {
+              "type": "paragraph",
+              "text": "Bubble sort, selection sort, insertion sort"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Řazení'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 30 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "python",
+              "code": "# Ukázka z lekce: Řazení\n# Zde bude váš kód...\nprint('Začínáme s Řazení!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "zaklady-lesson-09-ex-01",
+              "title": "Cvičení: Řazení",
+              "type": "code",
+              "task": "Karetní trik: seřaď karty pomocí algoritmu.",
+              "description": "Řazení uspořádává data.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Řazení\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 30,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-zaklady-09-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Řazení'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti řazení.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Řazení' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 30,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "zaklady-lesson-10",
+          "slug": "zaklady-10-složitost-algoritmů",
+          "title": "Složitost algoritmů",
+          "description": "Big O notation, časová a paměťová",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Složitost algoritmů"
+            },
+            {
+              "type": "paragraph",
+              "text": "Big O notation, časová a paměťová"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Složitost algoritmů'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 35 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "python",
+              "code": "# Ukázka z lekce: Složitost algoritmů\n# Zde bude váš kód...\nprint('Začínáme s Složitost algoritmů!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "zaklady-lesson-10-ex-01",
+              "title": "Cvičení: Složitost algoritmů",
+              "type": "code",
+              "task": "Porovnej složitost 5 algoritmů.",
+              "description": "Big O popisuje efektivitu algoritmu.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Složitost algoritmů\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 35,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-zaklady-10-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Složitost algoritmů'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti složitost algoritmů.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Složitost algoritmů' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 35,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "zaklady-lesson-11",
+          "slug": "zaklady-11-zásobník-stack",
+          "title": "Zásobník (Stack)",
+          "description": "LIFO, push, pop, praktické použití",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Zásobník (Stack)"
+            },
+            {
+              "type": "paragraph",
+              "text": "LIFO, push, pop, praktické použití"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Zásobník (Stack)'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 25 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "python",
+              "code": "# Ukázka z lekce: Zásobník (Stack)\n# Zde bude váš kód...\nprint('Začínáme s Zásobník (Stack)!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "zaklady-lesson-11-ex-01",
+              "title": "Cvičení: Zásobník (Stack)",
+              "type": "code",
+              "task": "Simulace undo/redo s papírovým zásobníkem.",
+              "description": "Stack je LIFO struktura.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Zásobník (Stack)\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 25,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-zaklady-11-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Zásobník (Stack)'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti zásobník (stack).",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Zásobník (Stack)' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 25,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "zaklady-lesson-12",
+          "slug": "zaklady-12-fronta-queue",
+          "title": "Fronta (Queue)",
+          "description": "FIFO, enqueue, dequeue, prioritní fronta",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Fronta (Queue)"
+            },
+            {
+              "type": "paragraph",
+              "text": "FIFO, enqueue, dequeue, prioritní fronta"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Fronta (Queue)'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 25 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "python",
+              "code": "# Ukázka z lekce: Fronta (Queue)\n# Zde bude váš kód...\nprint('Začínáme s Fronta (Queue)!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "zaklady-lesson-12-ex-01",
+              "title": "Cvičení: Fronta (Queue)",
+              "type": "code",
+              "task": "Simulace fronty v obchodě s priority.",
+              "description": "Fronta je FIFO struktura.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Fronta (Queue)\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 25,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-zaklady-12-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Fronta (Queue)'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti fronta (queue).",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Fronta (Queue)' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 25,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "zaklady-lesson-13",
+          "slug": "zaklady-13-spojový-seznam",
+          "title": "Spojový seznam",
+          "description": "Uzly, pointery, jednosměrný, obousměrný",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Spojový seznam"
+            },
+            {
+              "type": "paragraph",
+              "text": "Uzly, pointery, jednosměrný, obousměrný"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Spojový seznam'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 30 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "python",
+              "code": "# Ukázka z lekce: Spojový seznam\n# Zde bude váš kód...\nprint('Začínáme s Spojový seznam!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "zaklady-lesson-13-ex-01",
+              "title": "Cvičení: Spojový seznam",
+              "type": "code",
+              "task": "Vytvoř si spojový seznam z papíru.",
+              "description": "Spojový seznam je dynamická kolekce.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Spojový seznam\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 30,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-zaklady-13-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Spojový seznam'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti spojový seznam.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Spojový seznam' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 30,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "zaklady-lesson-14",
+          "slug": "zaklady-14-stromová-struktura",
+          "title": "Stromová struktura",
+          "description": "Kořen, uzly, listy, binární strom",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Stromová struktura"
+            },
+            {
+              "type": "paragraph",
+              "text": "Kořen, uzly, listy, binární strom"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Stromová struktura'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 30 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "python",
+              "code": "# Ukázka z lekce: Stromová struktura\n# Zde bude váš kód...\nprint('Začínáme s Stromová struktura!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "zaklady-lesson-14-ex-01",
+              "title": "Cvičení: Stromová struktura",
+              "type": "code",
+              "task": "Nakresli rodokmen jako binární strom.",
+              "description": "Stromy organizují data hierarchicky.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Stromová struktura\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 30,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-zaklady-14-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Stromová struktura'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti stromová struktura.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Stromová struktura' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 30,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "zaklady-lesson-15",
+          "slug": "zaklady-15-hash-tabulka",
+          "title": "Hash tabulka",
+          "description": "Klíč-hodnota, hash funkce, kolize",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Hash tabulka"
+            },
+            {
+              "type": "paragraph",
+              "text": "Klíč-hodnota, hash funkce, kolize"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Hash tabulka'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 30 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "python",
+              "code": "# Ukázka z lekce: Hash tabulka\n# Zde bude váš kód...\nprint('Začínáme s Hash tabulka!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "zaklady-lesson-15-ex-01",
+              "title": "Cvičení: Hash tabulka",
+              "type": "code",
+              "task": "Adresář s hashováním jmen.",
+              "description": "Hash tabulky umožňují rychlé vyhledávání.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Hash tabulka\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 30,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-zaklady-15-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Hash tabulka'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti hash tabulka.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Hash tabulka' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 30,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "zaklady-lesson-16",
+          "slug": "zaklady-16-oop-principy",
+          "title": "OOP principy",
+          "description": "Třída, objekt, zapouzdření, dědičnost",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "OOP principy"
+            },
+            {
+              "type": "paragraph",
+              "text": "Třída, objekt, zapouzdření, dědičnost"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'OOP principy'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 35 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "python",
+              "code": "# Ukázka z lekce: OOP principy\n# Zde bude váš kód...\nprint('Začínáme s OOP principy!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "zaklady-lesson-16-ex-01",
+              "title": "Cvičení: OOP principy",
+              "type": "code",
+              "task": "Navrhni třídy pro zoo (Zvíře, Lev, Pták).",
+              "description": "OOP modeluje reálný svět pomocí objektů.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: OOP principy\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 35,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-zaklady-16-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'OOP principy'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti oop principy.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'OOP principy' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 35,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "zaklady-lesson-17",
+          "slug": "zaklady-17-polymorfismus",
+          "title": "Polymorfismus",
+          "description": "Jednotné rozhraní, různé implementace",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Polymorfismus"
+            },
+            {
+              "type": "paragraph",
+              "text": "Jednotné rozhraní, různé implementace"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Polymorfismus'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 30 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "python",
+              "code": "# Ukázka z lekce: Polymorfismus\n# Zde bude váš kód...\nprint('Začínáme s Polymorfismus!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "zaklady-lesson-17-ex-01",
+              "title": "Cvičení: Polymorfismus",
+              "type": "code",
+              "task": "Kalkulačka s různými operacemi.",
+              "description": "Polymorfismus umožňuje jednotné rozhraní.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Polymorfismus\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 30,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-zaklady-17-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Polymorfismus'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti polymorfismus.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Polymorfismus' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 30,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "zaklady-lesson-18",
+          "slug": "zaklady-18-clean-code",
+          "title": "Clean code",
+          "description": "Pojmenování, funkce, formátování, KISS",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Clean code"
+            },
+            {
+              "type": "paragraph",
+              "text": "Pojmenování, funkce, formátování, KISS"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Clean code'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 25 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "python",
+              "code": "# Ukázka z lekce: Clean code\n# Zde bude váš kód...\nprint('Začínáme s Clean code!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "zaklady-lesson-18-ex-01",
+              "title": "Cvičení: Clean code",
+              "type": "code",
+              "task": "Refaktoring špatného kódu.",
+              "description": "Čistý kód je čitelný a udržovatelný.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Clean code\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 25,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-zaklady-18-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Clean code'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti clean code.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Clean code' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 25,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "zaklady-lesson-19",
+          "slug": "zaklady-19-debugging",
+          "title": "Debugging",
+          "description": "Strategie hledání chyb, logování, breakpointy",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Debugging"
+            },
+            {
+              "type": "paragraph",
+              "text": "Strategie hledání chyb, logování, breakpointy"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Debugging'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 30 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "python",
+              "code": "# Ukázka z lekce: Debugging\n# Zde bude váš kód...\nprint('Začínáme s Debugging!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "zaklady-lesson-19-ex-01",
+              "title": "Cvičení: Debugging",
+              "type": "code",
+              "task": "Najdi 5 chyb v záměrně rozbitém kódu.",
+              "description": "Ladění je esenciální dovednost.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Debugging\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 30,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-zaklady-19-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Debugging'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti debugging.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Debugging' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 30,
+          "estimatedMinutes": 15
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3191 @@
+{
+    "schema_version": 1,
+    "source_digest": "4e973b5330f973013b75da1c413dbdf0688a556b95a8bf40e00834f57ada8bd8",
+    "categories": [
+        {
+            "id": "pdf",
+            "name": "PDF",
+            "description": "Slučování, dělení, komprese a převody PDF dokumentů.",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "image",
+            "name": "Obrázky",
+            "description": "Komprese, úpravy a vylepšení obrázků.",
+            "color": "#8b5cf6"
+        },
+        {
+            "id": "media",
+            "name": "Média",
+            "description": "Práce s videem a zvukem — konverze, komprese, střih.",
+            "color": "#ec4899"
+        },
+        {
+            "id": "text",
+            "name": "Text",
+            "description": "Překlad, shrnutí, Markdown a vizualizace myšlenek.",
+            "color": "#6b7280"
+        },
+        {
+            "id": "ai",
+            "name": "AI",
+            "description": "Asistent, generování obsahu i obrázků pomocí AI.",
+            "color": "#0ea5e9"
+        },
+        {
+            "id": "dev",
+            "name": "Dev",
+            "description": "Regex, JSON, UUID, JWT a další pomůcky pro vývoj.",
+            "color": "#06b6d4"
+        },
+        {
+            "id": "security",
+            "name": "Bezpečnost",
+            "description": "Hashe, hesla, šifrování a kontrola certifikátů.",
+            "color": "#10b981"
+        },
+        {
+            "id": "calc",
+            "name": "Kalkulačky",
+            "description": "Procenta, půjčky, převody jednotek a barev.",
+            "color": "#ef4444"
+        }
+    ],
+    "tools": [
+        {
+            "slug": "ai-chat",
+            "name": "AI asistent",
+            "description": "Chatujte s AI asistentem pro různé úkoly.",
+            "category": "ai",
+            "processing_location": "external_ai",
+            "icon": "MessageSquare",
+            "new": false,
+            "keywords": [
+                "ai",
+                "chat",
+                "ai-chat"
+            ],
+            "aliases": [],
+            "status": "limited",
+            "availability": "requires_external_service",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Před použitím ověřte podmínky zpracování uvedené u nástroje.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "ai-code-explainer",
+            "name": "AI vysvětlení kódu",
+            "description": "Vysvětlí, co dělá kód, srozumitelně a v češtině.",
+            "category": "dev",
+            "processing_location": "external_ai",
+            "icon": "FileCode",
+            "new": true,
+            "keywords": [
+                "ai",
+                "code",
+                "explainer",
+                "ai-code-explainer"
+            ],
+            "aliases": [],
+            "status": "limited",
+            "availability": "requires_external_service",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Před použitím ověřte podmínky zpracování uvedené u nástroje.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "ai-commit-message",
+            "name": "AI commit zpráva",
+            "description": "Vygeneruje commit zprávu z diffu (conventional commits).",
+            "category": "dev",
+            "processing_location": "external_ai",
+            "icon": "GitCommit",
+            "new": true,
+            "keywords": [
+                "ai",
+                "commit",
+                "message",
+                "ai-commit-message"
+            ],
+            "aliases": [],
+            "status": "limited",
+            "availability": "requires_external_service",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Před použitím ověřte podmínky zpracování uvedené u nástroje.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "ai-email-writer",
+            "name": "AI psaní e-mailu",
+            "description": "Vytvořte e-mail podle zadání a zvoleného tónu.",
+            "category": "text",
+            "processing_location": "external_ai",
+            "icon": "Mail",
+            "new": true,
+            "keywords": [
+                "ai",
+                "email",
+                "writer",
+                "ai-email-writer"
+            ],
+            "aliases": [],
+            "status": "limited",
+            "availability": "requires_external_service",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Před použitím ověřte podmínky zpracování uvedené u nástroje.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "ai-image-gen",
+            "name": "AI generátor obrázku",
+            "description": "Vytvořte unikátní obrázky z textového popisu.",
+            "category": "ai",
+            "processing_location": "external_ai",
+            "icon": "ImagePlus",
+            "new": true,
+            "keywords": [
+                "ai",
+                "image",
+                "gen",
+                "ai-image-gen"
+            ],
+            "aliases": [],
+            "status": "coming_soon",
+            "availability": "not_implemented",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [
+                    "image-generation provider (not configured)"
+                ],
+                "hosting_constraints": [
+                    "requires external provider or separate infrastructure"
+                ],
+                "verified": true
+            },
+            "privacy_note": "Nástroj zatím nevykonává žádné zpracování ani neodesílá zadání.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "ai-regex-generator",
+            "name": "AI regex generátor",
+            "description": "Popište pattern, dostanete regulární výraz.",
+            "category": "dev",
+            "processing_location": "external_ai",
+            "icon": "Regex",
+            "new": true,
+            "keywords": [
+                "ai",
+                "regex",
+                "generator",
+                "ai-regex-generator"
+            ],
+            "aliases": [],
+            "status": "limited",
+            "availability": "requires_external_service",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Před použitím ověřte podmínky zpracování uvedené u nástroje.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "ai-seo",
+            "name": "SEO meta generátor",
+            "description": "Generujte SEO titulky a popisky automaticky.",
+            "category": "ai",
+            "processing_location": "external_ai",
+            "icon": "Search",
+            "new": true,
+            "keywords": [
+                "ai",
+                "seo",
+                "ai-seo"
+            ],
+            "aliases": [],
+            "status": "limited",
+            "availability": "requires_external_service",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Před použitím ověřte podmínky zpracování uvedené u nástroje.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "ai-sql-gen",
+            "name": "AI generátor SQL",
+            "description": "Převeďte přirozený jazyk na SQL dotazy.",
+            "category": "ai",
+            "processing_location": "external_ai",
+            "icon": "Database",
+            "new": true,
+            "keywords": [
+                "ai",
+                "sql",
+                "gen",
+                "ai-sql-gen"
+            ],
+            "aliases": [],
+            "status": "limited",
+            "availability": "requires_external_service",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Před použitím ověřte podmínky zpracování uvedené u nástroje.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "ai-text-qa",
+            "name": "AI otázky nad textem",
+            "description": "Ptejte se na cokoliv k dodanému textu (kontext).",
+            "category": "ai",
+            "processing_location": "external_ai",
+            "icon": "HelpCircle",
+            "new": true,
+            "keywords": [
+                "ai",
+                "text",
+                "qa",
+                "ai-text-qa"
+            ],
+            "aliases": [],
+            "status": "limited",
+            "availability": "requires_external_service",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Před použitím ověřte podmínky zpracování uvedené u nástroje.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "ai-vision",
+            "name": "AI analýza obrázku",
+            "description": "Popište a analyzujte obsah obrázku pomocí AI.",
+            "category": "ai",
+            "processing_location": "external_ai",
+            "icon": "Eye",
+            "new": false,
+            "keywords": [
+                "ai",
+                "vision",
+                "ai-vision"
+            ],
+            "aliases": [],
+            "status": "limited",
+            "availability": "requires_external_service",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Před použitím ověřte podmínky zpracování uvedené u nástroje.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "audio-convert",
+            "name": "Konverze audia",
+            "description": "Převeďte audio mezi MP3/WAV/OGG/FLAC (ffmpeg.wasm).",
+            "category": "media",
+            "processing_location": "client",
+            "icon": "Music",
+            "new": false,
+            "keywords": [
+                "audio",
+                "convert",
+                "audio-convert"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "audio-trim-normalize",
+            "name": "Ořez+normalizace audia",
+            "description": "Ořízne a normalizuje hlasitost audia.",
+            "category": "media",
+            "processing_location": "client",
+            "icon": "SlidersHorizontal",
+            "new": true,
+            "keywords": [
+                "audio",
+                "trim",
+                "normalize",
+                "audio-trim-normalize"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "audio-waveform",
+            "name": "Křivka audia",
+            "description": "Vykreslí křivku hlasitosti audia (Web Audio API).",
+            "category": "media",
+            "processing_location": "client",
+            "icon": "Volume2",
+            "new": true,
+            "keywords": [
+                "audio",
+                "waveform",
+                "audio-waveform"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "base64-tool",
+            "name": "Base64 kodér/dekodér",
+            "description": "Kódujte a dekódujte Base64 (text i soubory).",
+            "category": "dev",
+            "processing_location": "client",
+            "icon": "Code",
+            "new": true,
+            "keywords": [
+                "base64",
+                "tool",
+                "base64-tool"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "bg-remover",
+            "name": "Odstranit pozadí",
+            "description": "AI odstranění pozadí z fotografií (ONNX MODNet).",
+            "category": "image",
+            "processing_location": "external_ai",
+            "icon": "Eraser",
+            "new": true,
+            "keywords": [
+                "bg",
+                "remover",
+                "bg-remover"
+            ],
+            "aliases": [],
+            "status": "limited",
+            "availability": "requires_external_service",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Před použitím ověřte podmínky zpracování uvedené u nástroje.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "birth-number-validator",
+            "name": "Validátor rodného čísla",
+            "description": "Ověří formát a kontrolní součet rodného čísla.",
+            "category": "calc",
+            "processing_location": "client",
+            "icon": "BadgeCheck",
+            "new": true,
+            "keywords": [
+                "birth",
+                "number",
+                "validator",
+                "birth-number-validator"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "bmi-calc",
+            "name": "BMI kalkulačka",
+            "description": "Vypočítejte index tělesné hmotnosti a kategorii.",
+            "category": "calc",
+            "processing_location": "client",
+            "icon": "Scale",
+            "new": true,
+            "keywords": [
+                "bmi",
+                "calc",
+                "bmi-calc"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "bmr-calc",
+            "name": "BMR a kalorie",
+            "description": "Bazální metabolismus a denní příjem kalorií.",
+            "category": "calc",
+            "processing_location": "client",
+            "icon": "Flame",
+            "new": true,
+            "keywords": [
+                "bmr",
+                "calc",
+                "bmr-calc"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "certificate-info",
+            "name": "SSL certifikát info",
+            "description": "Zkontrolujte platnost a detaily SSL certifikátu.",
+            "category": "security",
+            "processing_location": "vevit_server",
+            "icon": "GlobeLock",
+            "new": true,
+            "keywords": [
+                "certificate",
+                "info",
+                "certificate-info"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [
+                    "openssl"
+                ],
+                "external_services": [
+                    "public DNS and TLS endpoint"
+                ],
+                "hosting_constraints": [
+                    "outbound TCP/443 required"
+                ],
+                "verified": true
+            },
+            "privacy_note": "Na server se posílá pouze doménové jméno pro jednorázové TLS ověření.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "code-diff",
+            "name": "Code diff",
+            "description": "Porovnejte dva texty/kód a zobrazte změny.",
+            "category": "dev",
+            "processing_location": "client",
+            "icon": "GitCompare",
+            "new": true,
+            "keywords": [
+                "code",
+                "diff",
+                "code-diff"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "color-converter",
+            "name": "Převodník barev",
+            "description": "Převádějte mezi HEX, RGB, HSL a CMYK.",
+            "category": "calc",
+            "processing_location": "client",
+            "icon": "Palette",
+            "new": false,
+            "keywords": [
+                "color",
+                "converter",
+                "color-converter"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "color-palette-generator",
+            "name": "Paleta barev",
+            "description": "Vytvořte paletu (komplementární, analogická…).",
+            "category": "dev",
+            "processing_location": "client",
+            "icon": "SwatchBook",
+            "new": true,
+            "keywords": [
+                "color",
+                "palette",
+                "generator",
+                "color-palette-generator"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "compound-interest-calc",
+            "name": "Složené úročení",
+            "description": "Spočítejte výnos složeného úročení.",
+            "category": "calc",
+            "processing_location": "client",
+            "icon": "TrendingUp",
+            "new": true,
+            "keywords": [
+                "compound",
+                "interest",
+                "calc",
+                "compound-interest-calc"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "contrast-checker",
+            "name": "Kontrast (WCAG)",
+            "description": "Ověřte kontrast barev dle WCAG AA/AAA.",
+            "category": "dev",
+            "processing_location": "client",
+            "icon": "Contrast",
+            "new": true,
+            "keywords": [
+                "contrast",
+                "checker",
+                "contrast-checker"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "cron-builder",
+            "name": "Cron výraz builder",
+            "description": "Sestavte a vysvětlete cron výraz obousměrně.",
+            "category": "dev",
+            "processing_location": "client",
+            "icon": "CalendarClock",
+            "new": true,
+            "keywords": [
+                "cron",
+                "builder",
+                "cron-builder"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "css-js-html-formatter",
+            "name": "CSS/JS/HTML formátovač",
+            "description": "Naformátujte nebo zminifikujte CSS, JS a HTML.",
+            "category": "dev",
+            "processing_location": "client",
+            "icon": "SquareCode",
+            "new": true,
+            "keywords": [
+                "css",
+                "js",
+                "html",
+                "formatter",
+                "css-js-html-formatter"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "csv-json-converter",
+            "name": "CSV ↔ JSON",
+            "description": "Převádějte mezi CSV a JSON obousměrně.",
+            "category": "dev",
+            "processing_location": "client",
+            "icon": "FileSpreadsheet",
+            "new": true,
+            "keywords": [
+                "csv",
+                "json",
+                "converter",
+                "csv-json-converter"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "date-diff-calc",
+            "name": "Rozdíl datumů",
+            "description": "Vypočítejte rozdíl mezi dvěma daty v dnech.",
+            "category": "calc",
+            "processing_location": "client",
+            "icon": "CalendarDays",
+            "new": true,
+            "keywords": [
+                "date",
+                "diff",
+                "calc",
+                "date-diff-calc"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "discount-calc",
+            "name": "Kalkulačka slev",
+            "description": "Spočítejte cenu po slevě, i vícenásobné slevy.",
+            "category": "calc",
+            "processing_location": "client",
+            "icon": "Tag",
+            "new": true,
+            "keywords": [
+                "discount",
+                "calc",
+                "discount-calc"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "encrypt-decrypt",
+            "name": "Šifrování textu",
+            "description": "Zašifrujte a dešifrujte text pomocí AES-256-GCM.",
+            "category": "security",
+            "processing_location": "client",
+            "icon": "Shield",
+            "new": false,
+            "keywords": [
+                "encrypt",
+                "decrypt",
+                "encrypt-decrypt"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "fake-data-generator",
+            "name": "Fake data generátor",
+            "description": "Generujte testovací data a exportujte CSV/JSON.",
+            "category": "dev",
+            "processing_location": "client",
+            "icon": "Database",
+            "new": true,
+            "keywords": [
+                "fake",
+                "data",
+                "generator",
+                "fake-data-generator"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "favicon-generator",
+            "name": "Favicon generátor",
+            "description": "Vygeneruje favicony (PNG více velikostí + ICO).",
+            "category": "image",
+            "processing_location": "client",
+            "icon": "Globe",
+            "new": true,
+            "keywords": [
+                "favicon",
+                "generator",
+                "favicon-generator"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "file-encryption",
+            "name": "Šifrování souborů",
+            "description": "Zašifruje/dešifruje soubor AES-256-GCM (Web Crypto).",
+            "category": "security",
+            "processing_location": "client",
+            "icon": "FileKey",
+            "new": true,
+            "keywords": [
+                "file",
+                "encryption",
+                "file-encryption"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "fuel-consumption-calc",
+            "name": "Spotřeba paliva",
+            "description": "Převod mezi l/100 km a mpg.",
+            "category": "calc",
+            "processing_location": "client",
+            "icon": "Fuel",
+            "new": true,
+            "keywords": [
+                "fuel",
+                "consumption",
+                "calc",
+                "fuel-consumption-calc"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "gif-maker",
+            "name": "Tvůrce GIFu",
+            "description": "Vytvořte animovaný GIF ze sekvence obrázků.",
+            "category": "image",
+            "processing_location": "client",
+            "icon": "Film",
+            "new": true,
+            "keywords": [
+                "gif",
+                "maker",
+                "gif-maker"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "gitignore-generator",
+            "name": ".gitignore generátor",
+            "description": "Sestavte .gitignore podle jazyka/nástroje.",
+            "category": "dev",
+            "processing_location": "client",
+            "icon": "FileX",
+            "new": true,
+            "keywords": [
+                "gitignore",
+                "generator",
+                "gitignore-generator"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "grade-average-calc",
+            "name": "Průměr známek",
+            "description": "Vypočítejte vážený průměr známek.",
+            "category": "calc",
+            "processing_location": "client",
+            "icon": "GraduationCap",
+            "new": true,
+            "keywords": [
+                "grade",
+                "average",
+                "calc",
+                "grade-average-calc"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "gradient-gen",
+            "name": "CSS Gradient Editor",
+            "description": "Vytvářejte a upravujte CSS gradienty interaktivně.",
+            "category": "dev",
+            "processing_location": "client",
+            "icon": "Palette",
+            "new": true,
+            "keywords": [
+                "gradient",
+                "gen",
+                "gradient-gen"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "grammar-check",
+            "name": "AI kontrola pravopisu",
+            "description": "Opravte pravopis a gramatiku českého textu.",
+            "category": "text",
+            "processing_location": "external_ai",
+            "icon": "SpellCheck",
+            "new": true,
+            "keywords": [
+                "grammar",
+                "check",
+                "grammar-check"
+            ],
+            "aliases": [],
+            "status": "limited",
+            "availability": "requires_external_service",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Před použitím ověřte podmínky zpracování uvedené u nástroje.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "hash-gen",
+            "name": "Hash generátor",
+            "description": "Generujte MD5, SHA-256, SHA-512 hashe.",
+            "category": "security",
+            "processing_location": "client",
+            "icon": "Hash",
+            "new": false,
+            "keywords": [
+                "hash",
+                "gen",
+                "hash-gen"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "html-to-pdf",
+            "name": "HTML → PDF",
+            "description": "Převede HTML kód na PDF (html2canvas+jsPDF).",
+            "category": "pdf",
+            "processing_location": "client",
+            "icon": "FileCode",
+            "new": false,
+            "keywords": [
+                "html",
+                "to",
+                "pdf",
+                "html-to-pdf"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "iban-converter",
+            "name": "Převodník IBAN",
+            "description": "Převede české číslo účtu na IBAN a zpět.",
+            "category": "calc",
+            "processing_location": "client",
+            "icon": "Banknote",
+            "new": true,
+            "keywords": [
+                "iban",
+                "converter",
+                "iban-converter"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "image-collage",
+            "name": "Koláž obrázků",
+            "description": "Spojte více obrázků do koláže (různá rozvržení).",
+            "category": "image",
+            "processing_location": "client",
+            "icon": "Images",
+            "new": true,
+            "keywords": [
+                "image",
+                "collage",
+                "image-collage"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "image-convert",
+            "name": "Převod formátu",
+            "description": "Převeďte PNG/JPG/WebP/BMP přes canvas.",
+            "category": "image",
+            "processing_location": "client",
+            "icon": "Repeat",
+            "new": true,
+            "keywords": [
+                "image",
+                "convert",
+                "image-convert"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "image-crop",
+            "name": "Oříznutí obrázku",
+            "description": "Interaktivně ořízněte obrázek v canvasu.",
+            "category": "image",
+            "processing_location": "client",
+            "icon": "Crop",
+            "new": true,
+            "keywords": [
+                "image",
+                "crop",
+                "image-crop"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "image-exif",
+            "name": "EXIF metadata",
+            "description": "Prohlížejte a odstraňujte EXIF (vč. GPS).",
+            "category": "image",
+            "processing_location": "client",
+            "icon": "ScanLine",
+            "new": true,
+            "keywords": [
+                "image",
+                "exif",
+                "image-exif"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "image-filters",
+            "name": "Filtry obrázku",
+            "description": "Grayscale, sepia, jas, kontrast, saturace.",
+            "category": "image",
+            "processing_location": "client",
+            "icon": "SlidersHorizontal",
+            "new": true,
+            "keywords": [
+                "image",
+                "filters",
+                "image-filters"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "image-rotate-flip",
+            "name": "Otočení/Překlopení",
+            "description": "Otočte nebo překlopte obrázek (90/180/270/flip).",
+            "category": "image",
+            "processing_location": "client",
+            "icon": "RotateCw",
+            "new": true,
+            "keywords": [
+                "image",
+                "rotate",
+                "flip",
+                "image-rotate-flip"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "image-watermark",
+            "name": "Vodoznak",
+            "description": "Přidejte textový nebo obrázkový vodoznak.",
+            "category": "image",
+            "processing_location": "client",
+            "icon": "Stamp",
+            "new": true,
+            "keywords": [
+                "image",
+                "watermark",
+                "image-watermark"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "images-to-pdf",
+            "name": "Obrázky → PDF",
+            "description": "Spojí více obrázků do jednoho PDF.",
+            "category": "pdf",
+            "processing_location": "client",
+            "icon": "Files",
+            "new": true,
+            "keywords": [
+                "images",
+                "to",
+                "pdf",
+                "images-to-pdf"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "img-compress",
+            "name": "Komprese obrázku",
+            "description": "Zmenšete obrázek přes canvas (kvalita, JPEG/WebP).",
+            "category": "image",
+            "processing_location": "client",
+            "icon": "Image",
+            "new": false,
+            "keywords": [
+                "img",
+                "compress",
+                "img-compress"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "img-upscaler",
+            "name": "Zvětšení kvality",
+            "description": "Zvětší rozlišení obrázku (2×/3×/4×) přes canvas.",
+            "category": "image",
+            "processing_location": "client",
+            "icon": "Maximize",
+            "new": true,
+            "keywords": [
+                "img",
+                "upscaler",
+                "img-upscaler"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "invoice-gen",
+            "name": "Faktura generátor",
+            "description": "Generujte profesionální faktury s QR kódem.",
+            "category": "pdf",
+            "processing_location": "client",
+            "icon": "Receipt",
+            "new": true,
+            "keywords": [
+                "invoice",
+                "gen",
+                "invoice-gen"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "json-formatter",
+            "name": "JSON formátovač",
+            "description": "Formátujte a validujte JSON strukturu.",
+            "category": "dev",
+            "processing_location": "client",
+            "icon": "Braces",
+            "new": false,
+            "keywords": [
+                "json",
+                "formatter",
+                "json-formatter"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "jwt-decoder",
+            "name": "JWT dekodér",
+            "description": "Dekódujte a ověřte JWT tokeny.",
+            "category": "dev",
+            "processing_location": "client",
+            "icon": "KeyRound",
+            "new": true,
+            "keywords": [
+                "jwt",
+                "decoder",
+                "jwt-decoder"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "jwt-generator",
+            "name": "JWT generátor",
+            "description": "Vytvořte a podepište JWT token (HMAC).",
+            "category": "dev",
+            "processing_location": "client",
+            "icon": "FileKey",
+            "new": true,
+            "keywords": [
+                "jwt",
+                "generator",
+                "jwt-generator"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "loan-calc",
+            "name": "Kalkulačka půjčky",
+            "description": "Vypočítejte splátky a amortizační tabulku.",
+            "category": "calc",
+            "processing_location": "client",
+            "icon": "Calculator",
+            "new": false,
+            "keywords": [
+                "loan",
+                "calc",
+                "loan-calc"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "lorem-ipsum",
+            "name": "Lorem ipsum",
+            "description": "Generujte zástupný text (věty/odstavce/slova).",
+            "category": "text",
+            "processing_location": "client",
+            "icon": "Pilcrow",
+            "new": true,
+            "keywords": [
+                "lorem",
+                "ipsum",
+                "lorem-ipsum"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "markdown-editor",
+            "name": "Markdown editor",
+            "description": "Editujte a náhledněte Markdown v reálném čase.",
+            "category": "text",
+            "processing_location": "client",
+            "icon": "FileCode",
+            "new": false,
+            "keywords": [
+                "markdown",
+                "editor",
+                "markdown-editor"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "meme-generator",
+            "name": "Meme generátor",
+            "description": "Vytvořte meme s horním/dolním textem (Impact).",
+            "category": "image",
+            "processing_location": "client",
+            "icon": "Laugh",
+            "new": true,
+            "keywords": [
+                "meme",
+                "generator",
+                "meme-generator"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "mind-map",
+            "name": "Myšlenková mapa",
+            "description": "Vizualizujte strukturu myšlenek jako radiální strom.",
+            "category": "text",
+            "processing_location": "client",
+            "icon": "GitBranch",
+            "new": true,
+            "keywords": [
+                "mind",
+                "map",
+                "mind-map"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "net-salary-calc",
+            "name": "Kalkulačka čisté mzdy",
+            "description": "Odhad čisté mzdy ze hrubé (CZ sazby).",
+            "category": "calc",
+            "processing_location": "client",
+            "icon": "Wallet",
+            "new": true,
+            "keywords": [
+                "net",
+                "salary",
+                "calc",
+                "net-salary-calc"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "number-base-converter",
+            "name": "Soustava čísel",
+            "description": "Převádějte mezi decimální, binární, oktálovou a hexadecimální soustavou.",
+            "category": "calc",
+            "processing_location": "client",
+            "icon": "Binary",
+            "new": true,
+            "keywords": [
+                "number",
+                "base",
+                "converter",
+                "number-base-converter"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "og-meta-generator",
+            "name": "OG meta generátor",
+            "description": "Vygenerujte Open Graph meta tagy s náhledem.",
+            "category": "dev",
+            "processing_location": "client",
+            "icon": "Share2",
+            "new": true,
+            "keywords": [
+                "og",
+                "meta",
+                "generator",
+                "og-meta-generator"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "password-breach-check",
+            "name": "Kontrola úniku hesla",
+            "description": "Ověří, jestli heslo uniklo (HIBP k-anonymity).",
+            "category": "security",
+            "processing_location": "client",
+            "icon": "Fingerprint",
+            "new": true,
+            "keywords": [
+                "password",
+                "breach",
+                "check",
+                "password-breach-check"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "password-gen",
+            "name": "Generátor hesel",
+            "description": "Vytvářejte bezpečná hesla na míru.",
+            "category": "security",
+            "processing_location": "client",
+            "icon": "Lock",
+            "new": false,
+            "keywords": [
+                "password",
+                "gen",
+                "password-gen"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "password-strength",
+            "name": "Síla hesla",
+            "description": "Odhadněte entropii a dobu prolomení hesla.",
+            "category": "security",
+            "processing_location": "client",
+            "icon": "ShieldCheck",
+            "new": true,
+            "keywords": [
+                "password",
+                "strength",
+                "password-strength"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "pdf-compress",
+            "name": "Komprese PDF",
+            "description": "Zmenší velikost PDF souboru.",
+            "category": "pdf",
+            "processing_location": "client",
+            "icon": "Shrink",
+            "new": false,
+            "keywords": [
+                "pdf",
+                "compress",
+                "pdf-compress"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "pdf-extract-text",
+            "name": "Extrakce textu PDF",
+            "description": "Vytáhne text z PDF (pdf.js).",
+            "category": "pdf",
+            "processing_location": "client",
+            "icon": "AlignLeft",
+            "new": true,
+            "keywords": [
+                "pdf",
+                "extract",
+                "text",
+                "pdf-extract-text"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "pdf-merge",
+            "name": "Sloučení PDF",
+            "description": "Sloučí více PDF souborů do jednoho.",
+            "category": "pdf",
+            "processing_location": "client",
+            "icon": "Files",
+            "new": false,
+            "keywords": [
+                "pdf",
+                "merge",
+                "pdf-merge"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "pdf-organize",
+            "name": "Organizace PDF",
+            "description": "Odstraňte nebo přerovnejte stránky PDF.",
+            "category": "pdf",
+            "processing_location": "client",
+            "icon": "Maximize",
+            "new": true,
+            "keywords": [
+                "pdf",
+                "organize",
+                "pdf-organize"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "pdf-page-numbers",
+            "name": "Číslování stránek",
+            "description": "Přidá čísla stránek do PDF.",
+            "category": "pdf",
+            "processing_location": "client",
+            "icon": "Hash",
+            "new": true,
+            "keywords": [
+                "pdf",
+                "page",
+                "numbers",
+                "pdf-page-numbers"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "pdf-password",
+            "name": "Ochrana PDF heslem",
+            "description": "Nastaví nebo odstraní heslo PDF (qpdf).",
+            "category": "pdf",
+            "processing_location": "vevit_server",
+            "icon": "FileKey",
+            "new": false,
+            "keywords": [
+                "pdf",
+                "password",
+                "pdf-password"
+            ],
+            "aliases": [],
+            "status": "unavailable_on_wedos",
+            "availability": "unavailable_on_wedos",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [
+                    "qpdf and shell_exec; unavailable on shared WEDOS"
+                ],
+                "verified": true
+            },
+            "privacy_note": "Nástroj je na sdíleném WEDOS deaktivovaný; soubor se nikam neodesílá.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "pdf-rotate",
+            "name": "Otočení PDF",
+            "description": "Otočí nebo překlopí stránky PDF.",
+            "category": "pdf",
+            "processing_location": "client",
+            "icon": "RotateCw",
+            "new": true,
+            "keywords": [
+                "pdf",
+                "rotate",
+                "pdf-rotate"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "pdf-split",
+            "name": "Rozdělení PDF",
+            "description": "Rozdělí PDF na jednotlivé stránky.",
+            "category": "pdf",
+            "processing_location": "client",
+            "icon": "Scissors",
+            "new": false,
+            "keywords": [
+                "pdf",
+                "split",
+                "pdf-split"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "pdf-to-images",
+            "name": "PDF → obrázky",
+            "description": "Převede stránky PDF na obrázky (PNG/JPEG ZIP).",
+            "category": "pdf",
+            "processing_location": "client",
+            "icon": "ImagePlus",
+            "new": true,
+            "keywords": [
+                "pdf",
+                "to",
+                "images",
+                "pdf-to-images"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "pdf-to-word",
+            "name": "PDF → Word",
+            "description": "Vytáhne text z PDF a sestaví .docx.",
+            "category": "pdf",
+            "processing_location": "client",
+            "icon": "FileText",
+            "new": false,
+            "keywords": [
+                "pdf",
+                "to",
+                "word",
+                "pdf-to-word"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "pdf-watermark",
+            "name": "Vodoznak PDF",
+            "description": "Přidá textový vodoznak do PDF.",
+            "category": "pdf",
+            "processing_location": "client",
+            "icon": "Stamp",
+            "new": true,
+            "keywords": [
+                "pdf",
+                "watermark",
+                "pdf-watermark"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "percentage-calc",
+            "name": "Kalkulačka procent",
+            "description": "Rychle spočítejte procenta, zvýšení a snížení.",
+            "category": "calc",
+            "processing_location": "client",
+            "icon": "Percent",
+            "new": false,
+            "keywords": [
+                "percentage",
+                "calc",
+                "percentage-calc"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "qr-generator",
+            "name": "QR generátor",
+            "description": "Vytvořte QR kód (text, URL, Wi-Fi, vCard).",
+            "category": "dev",
+            "processing_location": "client",
+            "icon": "QrCode",
+            "new": true,
+            "keywords": [
+                "qr",
+                "generator",
+                "qr-generator"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "regex-tester",
+            "name": "Regex tester",
+            "description": "Testujte regulární výrazy v reálném čase.",
+            "category": "dev",
+            "processing_location": "client",
+            "icon": "Regex",
+            "new": false,
+            "keywords": [
+                "regex",
+                "tester",
+                "regex-tester"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "remove-diacritics",
+            "name": "Odstranění diakritiky",
+            "description": "Převeďte text bez diakritiky (ASCII fold).",
+            "category": "text",
+            "processing_location": "client",
+            "icon": "SpellCheck",
+            "new": true,
+            "keywords": [
+                "remove",
+                "diacritics",
+                "remove-diacritics"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "screenshot-tool",
+            "name": "Screenshot URL",
+            "description": "Pořiďte screenshot libovolné webové stránky.",
+            "category": "image",
+            "processing_location": "vevit_server",
+            "icon": "Camera",
+            "new": true,
+            "keywords": [
+                "screenshot",
+                "tool",
+                "screenshot-tool"
+            ],
+            "aliases": [],
+            "status": "unavailable_on_wedos",
+            "availability": "unavailable_on_wedos",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [
+                    "headless Chromium and controlled network isolation; unavailable on shared WEDOS"
+                ],
+                "verified": true
+            },
+            "privacy_note": "Nástroj je na sdíleném WEDOS deaktivovaný; URL se nekontroluje.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "steganography",
+            "name": "Steganografie",
+            "description": "Skryjte text v obrázku pomocí LSB encoding.",
+            "category": "security",
+            "processing_location": "client",
+            "icon": "EyeOff",
+            "new": true,
+            "keywords": [
+                "steganography"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "summarize-text",
+            "name": "Shrnutí textu",
+            "description": "Vytvořte stručné shrnutí dlouhého textu.",
+            "category": "text",
+            "processing_location": "external_ai",
+            "icon": "AlignLeft",
+            "new": true,
+            "keywords": [
+                "summarize",
+                "text",
+                "summarize-text"
+            ],
+            "aliases": [],
+            "status": "limited",
+            "availability": "requires_external_service",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Před použitím ověřte podmínky zpracování uvedené u nástroje.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "text-case-converter",
+            "name": "Velikost písmen",
+            "description": "Převod UPPER/lower/Title/camelCase/snake_case.",
+            "category": "text",
+            "processing_location": "client",
+            "icon": "CaseSensitive",
+            "new": true,
+            "keywords": [
+                "text",
+                "case",
+                "converter",
+                "text-case-converter"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "text-counter",
+            "name": "Počítadlo textu",
+            "description": "Spočítejte znaky, slova, věty a odhad doby čtení.",
+            "category": "text",
+            "processing_location": "client",
+            "icon": "Type",
+            "new": true,
+            "keywords": [
+                "text",
+                "counter",
+                "text-counter"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "text-lines-tool",
+            "name": "Práce s řádky",
+            "description": "Duplicity, řazení, prázdné řádky, unique.",
+            "category": "text",
+            "processing_location": "client",
+            "icon": "Rows3",
+            "new": true,
+            "keywords": [
+                "text",
+                "lines",
+                "tool",
+                "text-lines-tool"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "text-to-speech",
+            "name": "Text na řeč (TTS)",
+            "description": "Přečtěte text nahlas přes Web Speech API.",
+            "category": "text",
+            "processing_location": "client",
+            "icon": "Volume2",
+            "new": true,
+            "keywords": [
+                "text",
+                "to",
+                "speech",
+                "text-to-speech"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "time-calc",
+            "name": "Časová kalkulačka",
+            "description": "Sčítání a odčítání časových údajů.",
+            "category": "calc",
+            "processing_location": "client",
+            "icon": "Clock",
+            "new": true,
+            "keywords": [
+                "time",
+                "calc",
+                "time-calc"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "timestamp-converter",
+            "name": "Unix timestamp",
+            "description": "Převod mezi Unix timestampem a datem (i pásma).",
+            "category": "dev",
+            "processing_location": "client",
+            "icon": "Timer",
+            "new": true,
+            "keywords": [
+                "timestamp",
+                "converter",
+                "timestamp-converter"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "token-generator",
+            "name": "Token generátor",
+            "description": "Generuje náhodné tokeny (délka, znaková sada).",
+            "category": "security",
+            "processing_location": "client",
+            "icon": "Zap",
+            "new": true,
+            "keywords": [
+                "token",
+                "generator",
+                "token-generator"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "totp-generator",
+            "name": "TOTP generátor",
+            "description": "Vygenerujte 2FA TOTP kódy (RFC 6238) z tajemství.",
+            "category": "security",
+            "processing_location": "client",
+            "icon": "Timer",
+            "new": true,
+            "keywords": [
+                "totp",
+                "generator",
+                "totp-generator"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "translate",
+            "name": "Překlad textu",
+            "description": "Přeložte text mezi jazyky pomocí AI.",
+            "category": "text",
+            "processing_location": "external_ai",
+            "icon": "Languages",
+            "new": true,
+            "keywords": [
+                "translate"
+            ],
+            "aliases": [],
+            "status": "limited",
+            "availability": "requires_external_service",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Před použitím ověřte podmínky zpracování uvedené u nástroje.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "unit-converter",
+            "name": "Převodník jednotek",
+            "description": "Převádějte délku, hmotnost, teplotu, objem a další.",
+            "category": "calc",
+            "processing_location": "client",
+            "icon": "Ruler",
+            "new": false,
+            "keywords": [
+                "unit",
+                "converter",
+                "unit-converter"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "url-encoder",
+            "name": "URL kodér/dekodér",
+            "description": "Kódujte a dekódujte URL (percent encoding).",
+            "category": "dev",
+            "processing_location": "client",
+            "icon": "Link2",
+            "new": true,
+            "keywords": [
+                "url",
+                "encoder",
+                "url-encoder"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "uuid-gen",
+            "name": "UUID generátor",
+            "description": "Generujte náhodné UUID v4 a v7.",
+            "category": "dev",
+            "processing_location": "client",
+            "icon": "Fingerprint",
+            "new": true,
+            "keywords": [
+                "uuid",
+                "gen",
+                "uuid-gen"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "vat-calc",
+            "name": "DPH kalkulačka",
+            "description": "Převeďte částku mezi bez DPH a s DPH (CZ sazby).",
+            "category": "calc",
+            "processing_location": "client",
+            "icon": "Landmark",
+            "new": true,
+            "keywords": [
+                "vat",
+                "calc",
+                "vat-calc"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "video-compress",
+            "name": "Komprese videa",
+            "description": "Zmenší velikost videa (ffmpeg.wasm, nastavitelná kvalita).",
+            "category": "media",
+            "processing_location": "client",
+            "icon": "Shrink",
+            "new": false,
+            "keywords": [
+                "video",
+                "compress",
+                "video-compress"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "video-convert",
+            "name": "Konverze videa",
+            "description": "Převeďte video mezi formáty MP4, WebM (ffmpeg.wasm).",
+            "category": "media",
+            "processing_location": "client",
+            "icon": "Video",
+            "new": false,
+            "keywords": [
+                "video",
+                "convert",
+                "video-convert"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "video-extract-audio",
+            "name": "Extrakce audia",
+            "description": "Vytáhne zvukovou stopu z videa (ffmpeg.wasm).",
+            "category": "media",
+            "processing_location": "client",
+            "icon": "Music",
+            "new": true,
+            "keywords": [
+                "video",
+                "extract",
+                "audio",
+                "video-extract-audio"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "video-merge",
+            "name": "Spojení videí",
+            "description": "Spojí více videí (stejný kodek/rozlišení, ffmpeg.wasm).",
+            "category": "media",
+            "processing_location": "client",
+            "icon": "Plus",
+            "new": true,
+            "keywords": [
+                "video",
+                "merge",
+                "video-merge"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "video-target-size",
+            "name": "Cílová velikost",
+            "description": "Dopočítá bitrate pro cílovou velikost videa.",
+            "category": "media",
+            "processing_location": "client",
+            "icon": "Scale",
+            "new": true,
+            "keywords": [
+                "video",
+                "target",
+                "size",
+                "video-target-size"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "video-thumbnail",
+            "name": "Náhled videa",
+            "description": "Vygeneruje náhled/snímek z videa (bez ffmpeg).",
+            "category": "media",
+            "processing_location": "client",
+            "icon": "Camera",
+            "new": true,
+            "keywords": [
+                "video",
+                "thumbnail",
+                "video-thumbnail"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "video-to-gif",
+            "name": "Video → GIF",
+            "description": "Vytvoří animovaný GIF z videa (ffmpeg.wasm).",
+            "category": "media",
+            "processing_location": "client",
+            "icon": "Film",
+            "new": true,
+            "keywords": [
+                "video",
+                "to",
+                "gif",
+                "video-to-gif"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "video-trim",
+            "name": "Ořez videa",
+            "description": "Vyberte část videa a odstraňte zbytek (ffmpeg.wasm).",
+            "category": "media",
+            "processing_location": "client",
+            "icon": "Scissors",
+            "new": false,
+            "keywords": [
+                "video",
+                "trim",
+                "video-trim"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        },
+        {
+            "slug": "yaml-json-converter",
+            "name": "YAML ↔ JSON",
+            "description": "Převádějte mezi YAML a JSON obousměrně.",
+            "category": "dev",
+            "processing_location": "client",
+            "icon": "FileCode",
+            "new": true,
+            "keywords": [
+                "yaml",
+                "json",
+                "converter",
+                "yaml-json-converter"
+            ],
+            "aliases": [],
+            "status": "working",
+            "availability": "available",
+            "requirements": {
+                "browser_features": [],
+                "local_assets": [],
+                "php_extensions": [],
+                "external_services": [],
+                "hosting_constraints": [],
+                "verified": false
+            },
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
+            "declared_test_target": "structural",
+            "verified_test_level": "structural"
+        }
+    ],
+    "icons": {
+        "Box": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z\"/><path d=\"m3.3 7 8.7 5 8.7-5\"/><path d=\"M12 22V12\"/></svg>",
+        "ChevronDown": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m6 9 6 6 6-6\"/></svg>",
+        "LogIn": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m10 17 5-5-5-5\"/><path d=\"M15 12H3\"/><path d=\"M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4\"/></svg>",
+        "Wrench": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z\"/></svg>",
+        "Zap": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z\"/></svg>",
+        "ShieldCheck": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z\"/><path d=\"m9 12 2 2 4-4\"/></svg>",
+        "Gift": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 7v14\"/><path d=\"M20 11v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8\"/><path d=\"M7.5 7a1 1 0 0 1 0-5A4.8 8 0 0 1 12 7a4.8 8 0 0 1 4.5-5 1 1 0 0 1 0 5\"/><rect x=\"3\" y=\"7\" width=\"18\" height=\"4\" rx=\"1\"/></svg>",
+        "Search": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m21 21-4.34-4.34\"/><circle cx=\"11\" cy=\"11\" r=\"8\"/></svg>",
+        "ArrowLeft": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m12 19-7-7 7-7\"/><path d=\"M19 12H5\"/></svg>",
+        "Bug": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m8 2 1.88 1.88\"/><path d=\"M14.12 3.88 16 2\"/><path d=\"M9 7.13v-1a3.003 3.003 0 1 1 6 0v1\"/><path d=\"M12 20c-3.3 0-6-2.7-6-6v-3a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v3c0 3.3-2.7 6-6 6\"/><path d=\"M12 20v-9\"/><path d=\"M6.53 9C4.6 8.8 3 7.1 3 5\"/><path d=\"M6 13H2\"/><path d=\"M3 21c0-2.1 1.7-3.9 3.8-4\"/><path d=\"M20.97 5c0 2.1-1.6 3.8-3.5 4\"/><path d=\"M22 13h-4\"/><path d=\"M17.2 17c2.1.1 3.8 1.9 3.8 4\"/></svg>",
+        "Send": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z\"/><path d=\"m21.854 2.147-10.94 10.939\"/></svg>",
+        "Server": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect width=\"20\" height=\"8\" x=\"2\" y=\"2\" rx=\"2\" ry=\"2\"/><rect width=\"20\" height=\"8\" x=\"2\" y=\"14\" rx=\"2\" ry=\"2\"/><line x1=\"6\" x2=\"6.01\" y1=\"6\" y2=\"6\"/><line x1=\"6\" x2=\"6.01\" y1=\"18\" y2=\"18\"/></svg>",
+        "Sparkles": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z\"/><path d=\"M20 2v4\"/><path d=\"M22 4h-4\"/><circle cx=\"4\" cy=\"20\" r=\"2\"/></svg>",
+        "MessageSquare": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z\"/></svg>",
+        "FileCode": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z\"/><path d=\"M14 2v5a1 1 0 0 0 1 1h5\"/><path d=\"M10 12.5 8 15l2 2.5\"/><path d=\"m14 12.5 2 2.5-2 2.5\"/></svg>",
+        "GitCommit": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"3\"/><line x1=\"5\" x2=\"5\" y1=\"12\" y2=\"12\"/><line x1=\"3\" x2=\"5\" y1=\"12\" y2=\"12\"/><line x1=\"19\" x2=\"21\" y1=\"12\" y2=\"12\"/><line x1=\"19\" x2=\"19\" y1=\"12\" y2=\"12\"/></svg>",
+        "Mail": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect width=\"20\" height=\"16\" x=\"2\" y=\"4\" rx=\"2\"/><path d=\"m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7\"/></svg>",
+        "ImagePlus": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M16 5h6\"/><path d=\"M19 2v6\"/><path d=\"M21 11.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7.5\"/><path d=\"m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21\"/><circle cx=\"9\" cy=\"9\" r=\"2\"/></svg>",
+        "Regex": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M17 3v10\"/><path d=\"m12.67 5.5 8.66 5\"/><path d=\"m12.67 10.5 8.66-5\"/><path d=\"M9 17a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2z\"/></svg>",
+        "Database": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><ellipse cx=\"12\" cy=\"5\" rx=\"9\" ry=\"3\" /> <path d=\"M3 5V19A9 3 0 0 0 21 19V5\" /> <path d=\"M3 12A9 3 0 0 0 21 12\" /></svg>",
+        "HelpCircle": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3\"/><path d=\"M12 17h.01\"/></svg>",
+        "Eye": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/></svg>",
+        "Music": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9 18V5l12-2v13\"/><circle cx=\"6\" cy=\"18\" r=\"3\"/><circle cx=\"18\" cy=\"16\" r=\"3\"/></svg>",
+        "SlidersHorizontal": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M10 5H3\" /> <path d=\"M12 19H3\" /> <path d=\"M14 3v4\" /> <path d=\"M16 17v4\" /> <path d=\"M21 12h-9\" /> <path d=\"M21 19h-5\" /> <path d=\"M21 5h-7\" /> <path d=\"M8 10v4\" /> <path d=\"M8 12H3\" /></svg>",
+        "Volume2": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z\" /> <path d=\"M16 9a5 5 0 0 1 0 6\" /> <path d=\"M19.364 18.364a9 9 0 0 0 0-12.728\" /></svg>",
+        "Code": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m16 18 6-6-6-6\" /> <path d=\"m8 6-6 6 6 6\" /></svg>",
+        "Eraser": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 21H8a2 2 0 0 1-1.42-.587l-3.994-3.999a2 2 0 0 1 0-2.828l10-10a2 2 0 0 1 2.829 0l5.999 6a2 2 0 0 1 0 2.828L12.834 21\"/><path d=\"m5.082 11.09 8.828 8.828\"/></svg>",
+        "BadgeCheck": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z\" /> <path d=\"m9 12 2 2 4-4\" /></svg>",
+        "Scale": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v18\" /> <path d=\"m19 8 3 8a5 5 0 0 1-6 0zV7\" /> <path d=\"M3 7h1a17 17 0 0 0 8-2 17 17 0 0 0 8 2h1\" /> <path d=\"m5 8 3 8a5 5 0 0 1-6 0zV7\" /> <path d=\"M7 21h10\" /></svg>",
+        "Flame": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4\" /></svg>",
+        "GlobeLock": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M15.686 15A14.5 14.5 0 0 1 12 22a14.5 14.5 0 0 1 0-20 10 10 0 1 0 9.542 13\"/><path d=\"M2 12h8.5\"/><path d=\"M20 6V4a2 2 0 1 0-4 0v2\"/><rect width=\"8\" height=\"5\" x=\"14\" y=\"6\" rx=\"1\"/></svg>",
+        "GitCompare": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"18\" cy=\"18\" r=\"3\" /> <circle cx=\"6\" cy=\"6\" r=\"3\" /> <path d=\"M13 6h3a2 2 0 0 1 2 2v7\" /> <path d=\"M11 18H8a2 2 0 0 1-2-2V9\" /></svg>",
+        "Palette": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z\"/><circle cx=\"13.5\" cy=\"6.5\" r=\".5\" fill=\"currentColor\"/><circle cx=\"17.5\" cy=\"10.5\" r=\".5\" fill=\"currentColor\"/><circle cx=\"6.5\" cy=\"12.5\" r=\".5\" fill=\"currentColor\"/><circle cx=\"8.5\" cy=\"7.5\" r=\".5\" fill=\"currentColor\"/></svg>",
+        "SwatchBook": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M11 17a4 4 0 0 1-8 0V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2Z\" /> <path d=\"M16.7 13H19a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H7\" /> <path d=\"M 7 17h.01\" /> <path d=\"m11 8 2.3-2.3a2.4 2.4 0 0 1 3.404.004L18.6 7.6a2.4 2.4 0 0 1 .026 3.434L9.9 19.8\" /></svg>",
+        "TrendingUp": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M16 7h6v6\" /> <path d=\"m22 7-8.5 8.5-5-5L2 17\" /></svg>",
+        "Contrast": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\" /> <path d=\"M12 18a6 6 0 0 0 0-12v12z\" /></svg>",
+        "CalendarClock": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M16 14v2.2l1.6 1\" /> <path d=\"M16 2v4\" /> <path d=\"M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3.5\" /> <path d=\"M3 10h5\" /> <path d=\"M8 2v4\" /> <circle cx=\"16\" cy=\"16\" r=\"6\" /></svg>",
+        "SquareCode": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m10 9-3 3 3 3\" /> <path d=\"m14 15 3-3-3-3\" /> <rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\" /></svg>",
+        "FileSpreadsheet": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z\" /> <path d=\"M14 2v5a1 1 0 0 0 1 1h5\" /> <path d=\"M8 13h2\" /> <path d=\"M14 13h2\" /> <path d=\"M8 17h2\" /> <path d=\"M14 17h2\" /></svg>",
+        "CalendarDays": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M8 2v4\" /> <path d=\"M16 2v4\" /> <rect width=\"18\" height=\"18\" x=\"3\" y=\"4\" rx=\"2\" /> <path d=\"M3 10h18\" /> <path d=\"M8 14h.01\" /> <path d=\"M12 14h.01\" /> <path d=\"M16 14h.01\" /> <path d=\"M8 18h.01\" /> <path d=\"M12 18h.01\" /> <path d=\"M16 18h.01\" /></svg>",
+        "Tag": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z\" /> <circle cx=\"7.5\" cy=\"7.5\" r=\".5\" fill=\"currentColor\" /></svg>",
+        "Shield": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z\"/></svg>",
+        "Globe": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\" /> <path d=\"M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20\" /> <path d=\"M2 12h20\" /></svg>",
+        "FileKey": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M14 2v5a1 1 0 0 0 1 1h5\" /> <path d=\"M4 12v6\" /> <path d=\"M4 14h2\" /> <path d=\"M9.65 22H18a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v4\" /> <circle cx=\"4\" cy=\"20\" r=\"2\" /></svg>",
+        "Fuel": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 4 0v-6.998a2 2 0 0 0-.59-1.42L18 5\" /> <path d=\"M14 21V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v16\" /> <path d=\"M2 21h13\" /> <path d=\"M3 9h11\" /></svg>",
+        "Film": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect width=\"18\" height=\"18\" x=\"3\" y=\"3\" rx=\"2\"/><path d=\"M7 3v18\"/><path d=\"M3 7.5h4\"/><path d=\"M3 12h18\"/><path d=\"M3 16.5h4\"/><path d=\"M17 3v18\"/><path d=\"M17 7.5h4\"/><path d=\"M17 16.5h4\"/></svg>",
+        "FileX": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z\" /> <path d=\"M14 2v5a1 1 0 0 0 1 1h5\" /> <path d=\"m14.5 12.5-5 5\" /> <path d=\"m9.5 12.5 5 5\" /></svg>",
+        "GraduationCap": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z\" /> <path d=\"M22 10v6\" /> <path d=\"M6 12.5V16a6 3 0 0 0 12 0v-3.5\" /></svg>",
+        "SpellCheck": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m6 16 6-12 6 12\" /> <path d=\"M8 12h8\" /> <path d=\"m16 20 2 2 4-4\" /></svg>",
+        "Hash": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"4\" x2=\"20\" y1=\"9\" y2=\"9\"/><line x1=\"4\" x2=\"20\" y1=\"15\" y2=\"15\"/><line x1=\"10\" x2=\"8\" y1=\"3\" y2=\"21\"/><line x1=\"16\" x2=\"14\" y1=\"3\" y2=\"21\"/></svg>",
+        "Banknote": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect width=\"20\" height=\"12\" x=\"2\" y=\"6\" rx=\"2\" /> <circle cx=\"12\" cy=\"12\" r=\"2\" /> <path d=\"M6 12h.01M18 12h.01\" /></svg>",
+        "Images": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m22 11-1.296-1.296a2.4 2.4 0 0 0-3.408 0L11 16\" /> <path d=\"M4 8a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2\" /> <circle cx=\"13\" cy=\"7\" r=\"1\" fill=\"currentColor\" /> <rect x=\"8\" y=\"2\" width=\"14\" height=\"14\" rx=\"2\" /></svg>",
+        "Repeat": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m17 2 4 4-4 4\" /> <path d=\"M3 11v-1a4 4 0 0 1 4-4h14\" /> <path d=\"m7 22-4-4 4-4\" /> <path d=\"M21 13v1a4 4 0 0 1-4 4H3\" /></svg>",
+        "Crop": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 2v14a2 2 0 0 0 2 2h14\" /> <path d=\"M18 22V8a2 2 0 0 0-2-2H2\" /></svg>",
+        "ScanLine": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 7V5a2 2 0 0 1 2-2h2\" /> <path d=\"M17 3h2a2 2 0 0 1 2 2v2\" /> <path d=\"M21 17v2a2 2 0 0 1-2 2h-2\" /> <path d=\"M7 21H5a2 2 0 0 1-2-2v-2\" /> <path d=\"M7 12h10\" /></svg>",
+        "RotateCw": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8\" /> <path d=\"M21 3v5h-5\" /></svg>",
+        "Stamp": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M14 13V8.5C14 7 15 7 15 5a3 3 0 0 0-6 0c0 2 1 2 1 3.5V13\" /> <path d=\"M20 15.5a2.5 2.5 0 0 0-2.5-2.5h-11A2.5 2.5 0 0 0 4 15.5V17a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1z\" /> <path d=\"M5 22h14\" /></svg>",
+        "Files": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M15 2h-4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V8\"/><path d=\"M16.706 2.706A2.4 2.4 0 0 0 15 2v5a1 1 0 0 0 1 1h5a2.4 2.4 0 0 0-.706-1.706z\"/><path d=\"M5 7a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h8a2 2 0 0 0 1.732-1\"/></svg>",
+        "Image": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect width=\"18\" height=\"18\" x=\"3\" y=\"3\" rx=\"2\" ry=\"2\"/><circle cx=\"9\" cy=\"9\" r=\"2\"/><path d=\"m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21\"/></svg>",
+        "Maximize": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M8 3H5a2 2 0 0 0-2 2v3\"/><path d=\"M21 8V5a2 2 0 0 0-2-2h-3\"/><path d=\"M3 16v3a2 2 0 0 0 2 2h3\"/><path d=\"M16 21h3a2 2 0 0 0 2-2v-3\"/></svg>",
+        "Receipt": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 17V7\"/><path d=\"M16 8h-6a2 2 0 0 0 0 4h4a2 2 0 0 1 0 4H8\"/><path d=\"M4 3a1 1 0 0 1 1-1 1.3 1.3 0 0 1 .7.2l.933.6a1.3 1.3 0 0 0 1.4 0l.934-.6a1.3 1.3 0 0 1 1.4 0l.933.6a1.3 1.3 0 0 0 1.4 0l.933-.6a1.3 1.3 0 0 1 1.4 0l.934.6a1.3 1.3 0 0 0 1.4 0l.933-.6A1.3 1.3 0 0 1 19 2a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1 1.3 1.3 0 0 1-.7-.2l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.934.6a1.3 1.3 0 0 1-1.4 0l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-1.4 0l-.934-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-.7.2 1 1 0 0 1-1-1z\"/></svg>",
+        "Braces": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5c0 1.1.9 2 2 2h1\"/><path d=\"M16 21h1a2 2 0 0 0 2-2v-5c0-1.1.9-2 2-2a2 2 0 0 1-2-2V5a2 2 0 0 0-2-2h-1\"/></svg>",
+        "KeyRound": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z\"/><circle cx=\"16.5\" cy=\"7.5\" r=\".5\" fill=\"currentColor\"/></svg>",
+        "Calculator": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect width=\"16\" height=\"20\" x=\"4\" y=\"2\" rx=\"2\"/><line x1=\"8\" x2=\"16\" y1=\"6\" y2=\"6\"/><line x1=\"16\" x2=\"16\" y1=\"14\" y2=\"18\"/><path d=\"M16 10h.01\"/><path d=\"M12 10h.01\"/><path d=\"M8 10h.01\"/><path d=\"M12 14h.01\"/><path d=\"M8 14h.01\"/><path d=\"M12 18h.01\"/><path d=\"M8 18h.01\"/></svg>",
+        "Pilcrow": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M13 4v16\" /> <path d=\"M17 4v16\" /> <path d=\"M19 4H9.5a4.5 4.5 0 0 0 0 9H13\" /></svg>",
+        "Laugh": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\" /> <path d=\"M18 13a6 6 0 0 1-6 5 6 6 0 0 1-6-5h12Z\" /> <line x1=\"9\" x2=\"9.01\" y1=\"9\" y2=\"9\" /> <line x1=\"15\" x2=\"15.01\" y1=\"9\" y2=\"9\" /></svg>",
+        "GitBranch": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M15 6a9 9 0 0 0-9 9V3\"/><circle cx=\"18\" cy=\"6\" r=\"3\"/><circle cx=\"6\" cy=\"18\" r=\"3\"/></svg>",
+        "Wallet": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1\" /> <path d=\"M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4\" /></svg>",
+        "Binary": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"14\" y=\"14\" width=\"4\" height=\"6\" rx=\"2\"/><rect x=\"6\" y=\"4\" width=\"4\" height=\"6\" rx=\"2\"/><path d=\"M6 20h4\"/><path d=\"M14 10h4\"/><path d=\"M6 14h2v6\"/><path d=\"M14 4h2v6\"/></svg>",
+        "Share2": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"18\" cy=\"5\" r=\"3\" /> <circle cx=\"6\" cy=\"12\" r=\"3\" /> <circle cx=\"18\" cy=\"19\" r=\"3\" /> <line x1=\"8.59\" x2=\"15.42\" y1=\"13.51\" y2=\"17.49\" /> <line x1=\"15.41\" x2=\"8.59\" y1=\"6.51\" y2=\"10.49\" /></svg>",
+        "Fingerprint": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4\"/><path d=\"M14 13.12c0 2.38 0 6.38-1 8.88\"/><path d=\"M17.29 21.02c.12-.6.43-2.3.5-3.02\"/><path d=\"M2 12a10 10 0 0 1 18-6\"/><path d=\"M2 16h.01\"/><path d=\"M21.8 16c.2-2 .131-5.354 0-6\"/><path d=\"M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2\"/><path d=\"M8.65 22c.21-.66.45-1.32.57-2\"/><path d=\"M9 6.8a6 6 0 0 1 9 5.2v2\"/></svg>",
+        "Lock": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect width=\"18\" height=\"11\" x=\"3\" y=\"11\" rx=\"2\" ry=\"2\"/><path d=\"M7 11V7a5 5 0 0 1 10 0v4\"/></svg>",
+        "Shrink": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m15 15 6 6m-6-6v4.8m0-4.8h4.8\"/><path d=\"M9 19.8V15m0 0H4.2M9 15l-6 6\"/><path d=\"M15 4.2V9m0 0h4.8M15 9l6-6\"/><path d=\"M9 4.2V9m0 0H4.2M9 9 3 3\"/></svg>",
+        "AlignLeft": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 5H3\"/><path d=\"M15 12H3\"/><path d=\"M17 19H3\"/></svg>",
+        "Scissors": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"6\" cy=\"6\" r=\"3\"/><path d=\"M8.12 8.12 12 12\"/><path d=\"M20 4 8.12 15.88\"/><circle cx=\"6\" cy=\"18\" r=\"3\"/><path d=\"M14.8 14.8 20 20\"/></svg>",
+        "FileText": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z\"/><path d=\"M14 2v5a1 1 0 0 0 1 1h5\"/><path d=\"M10 9H8\"/><path d=\"M16 13H8\"/><path d=\"M16 17H8\"/></svg>",
+        "Percent": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"19\" x2=\"5\" y1=\"5\" y2=\"19\"/><circle cx=\"6.5\" cy=\"6.5\" r=\"2.5\"/><circle cx=\"17.5\" cy=\"17.5\" r=\"2.5\"/></svg>",
+        "QrCode": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect width=\"5\" height=\"5\" x=\"3\" y=\"3\" rx=\"1\" /> <rect width=\"5\" height=\"5\" x=\"16\" y=\"3\" rx=\"1\" /> <rect width=\"5\" height=\"5\" x=\"3\" y=\"16\" rx=\"1\" /> <path d=\"M21 16h-3a2 2 0 0 0-2 2v3\" /> <path d=\"M21 21v.01\" /> <path d=\"M12 7v3a2 2 0 0 1-2 2H7\" /> <path d=\"M3 12h.01\" /> <path d=\"M12 3h.01\" /> <path d=\"M12 16v.01\" /> <path d=\"M16 12h1\" /> <path d=\"M21 12v.01\" /> <path d=\"M12 21v-1\" /></svg>",
+        "Camera": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z\"/><circle cx=\"12\" cy=\"13\" r=\"3\"/></svg>",
+        "EyeOff": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49\"/><path d=\"M14.084 14.158a3 3 0 0 1-4.242-4.242\"/><path d=\"M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143\"/><path d=\"m2 2 20 20\"/></svg>",
+        "CaseSensitive": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m2 16 4.039-9.69a.5.5 0 0 1 .923 0L11 16\" /> <path d=\"M22 9v7\" /> <path d=\"M3.304 13h6.392\" /> <circle cx=\"18.5\" cy=\"12.5\" r=\"3.5\" /></svg>",
+        "Type": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 4v16\" /> <path d=\"M4 7V5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2\" /> <path d=\"M9 20h6\" /></svg>",
+        "Rows3": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect width=\"18\" height=\"18\" x=\"3\" y=\"3\" rx=\"2\" /> <path d=\"M21 9H3\" /> <path d=\"M21 15H3\" /></svg>",
+        "Clock": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\" /> <path d=\"M12 6v6l4 2\" /></svg>",
+        "Timer": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"10\" x2=\"14\" y1=\"2\" y2=\"2\" /> <line x1=\"12\" x2=\"15\" y1=\"14\" y2=\"11\" /> <circle cx=\"12\" cy=\"14\" r=\"8\" /></svg>",
+        "Languages": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m5 8 6 6\"/><path d=\"m4 14 6-6 2-3\"/><path d=\"M2 5h12\"/><path d=\"M7 2h1\"/><path d=\"m22 22-5-10-5 10\"/><path d=\"M14 18h6\"/></svg>",
+        "Ruler": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z\"/><path d=\"m14.5 12.5 2-2\"/><path d=\"m11.5 9.5 2-2\"/><path d=\"m8.5 6.5 2-2\"/><path d=\"m17.5 15.5 2-2\"/></svg>",
+        "Link2": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9 17H7A5 5 0 0 1 7 7h2\" /> <path d=\"M15 7h2a5 5 0 1 1 0 10h-2\" /> <line x1=\"8\" x2=\"16\" y1=\"12\" y2=\"12\" /></svg>",
+        "Landmark": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M10 18v-7\" /> <path d=\"M11.119 2.205a2 2 0 0 1 1.762 0l7.84 3.846A.5.5 0 0 1 20.5 7h-17a.5.5 0 0 1-.22-.949z\" /> <path d=\"M14 18v-7\" /> <path d=\"M18 18v-7\" /> <path d=\"M3 22h18\" /> <path d=\"M6 18v-7\" /></svg>",
+        "Video": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5\"/><rect x=\"2\" y=\"6\" width=\"14\" height=\"12\" rx=\"2\"/></svg>",
+        "Plus": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14\" /> <path d=\"M12 5v14\" /></svg>"
+    }
+}

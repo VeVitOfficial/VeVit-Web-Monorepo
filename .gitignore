@@ -1,0 +1,34 @@
+# Server-only configuration and environment
+**/config.php
+**/config_secret.php
+**/config.production.php
+**/.env
+**/.env.*
+!**/.env.example
+!**/config.example.php
+
+# Safe application loaders named config.php
+!/store/config.php
+!/store/lib/config.php
+!/tools/includes/config.php
+
+# Dependencies and generated caches
+**/node_modules/
+**/vendor/
+**/.cache/
+**/.parcel-cache/
+**/.playwright-cli/
+
+# Runtime data
+**/uploads/
+**/logs/
+**/*.log
+**/*.pid
+**/*.tmp
+**/*.bak
+
+# Local OS/editor state
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

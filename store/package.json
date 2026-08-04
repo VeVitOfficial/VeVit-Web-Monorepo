@@ -1,0 +1,10 @@
+{
+  "name": "vevit-store",
+  "version": "1.0.0",
+  "description": "VeVit Store — E-commerce platform",
+  "scripts": {
+    "dev": "php -S localhost:8000 -t ."
+  },
+  "keywords": ["ecommerce", "php", "stripe"],
+  "license": "UNLICENSED"
+}

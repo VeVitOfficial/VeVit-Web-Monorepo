@@ -1,0 +1,37 @@
+# Hezké URL pro VeVit Tools (Apache). Pro `php -S` používejte router.php.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Obecná ochrana citlivé lokální konfigurace a dočasných souborů.
+  RewriteRule ^(?:\.env(?:\..*)?|.*\.(?:log|sql|bak|backup))$ - [F,L,NC]
+
+  # Pretty URL nástrojů: /<slug> → tools.php?slug=<slug>
+  # V monorepu tento .htaccess leží pod /tools/, takže URL /tools/<slug>
+  # Apache předá tomuto .htaccess bez prefixu "tools/".
+  RewriteRule ^([a-z0-9-]+)/?$ tools.php?slug=$1 [L,QSA]
+
+  # AI proxy: /api/ai/ollama → api/ai/ollama.php
+  RewriteRule ^api/ai/ollama/?$ api/ai/ollama.php [L,QSA]
+
+</IfModule>
+
+Options -Indexes
+
+# Bezpečnost: zakaž přístup k konfiguraci a includům.
+<IfModule mod_authz_core.c>
+  <FilesMatch "\.(php)$">
+    Require all granted
+  </FilesMatch>
+</IfModule>
+<FilesMatch "^(config|registry|icons|header|footer)\.php$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+# Výchozí stránka — statický index.html (landing), /tools/* a /api/* běží v PHP.
+DirectoryIndex index.html
