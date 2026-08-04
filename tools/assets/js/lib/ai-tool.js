@@ -1,4 +1,4 @@
-// Sdílený helper AI nástrojů (Dávka 12). Zapouzdřuje volání /api/ai/ollama
+// Sdílený helper AI nástrojů (Dávka 12). Zapouzdřuje volání /tools/api/ai/ollama
 // s NDJSON streamem a bezpečné vykreslení přes jediný VeVitMarkdown renderer.
 //
 // Bezpečnost: system prompt nikdy neposílá klient (posílá jen `tool` identifikátor,
@@ -18,7 +18,7 @@
     if (opts.model) body.model = opts.model;
     if (opts.images && opts.images.length) body.images = opts.images;
 
-    fetch('/api/ai/ollama', {
+    fetch('/tools/api/ai/ollama', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),

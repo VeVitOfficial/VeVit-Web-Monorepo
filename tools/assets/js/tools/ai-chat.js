@@ -1,4 +1,4 @@
-// AI chat — stream z /api/ai/ollama (NDJSON), výstup přes VeVitMarkdown.
+// AI chat — stream z /tools/api/ai/ollama (NDJSON), výstup přes VeVitMarkdown.
 (function () {
   var NS = 'http://www.w3.org/2000/svg';
   var messagesEl = document.getElementById('ai-messages');
@@ -91,7 +91,7 @@
 
     controller = new AbortController();
     try {
-      var res = await fetch('/api/ai/ollama', {
+      var res = await fetch('/tools/api/ai/ollama', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ prompt: prompt.trim(), tool: 'ai-chat', model: 'llama3.2', stream: true }),

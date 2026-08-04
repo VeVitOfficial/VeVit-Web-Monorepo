@@ -72,7 +72,7 @@ account_routing_test('Apache internally serves account paths through the auth ga
     throw new RuntimeException('unable to load .htaccess');
   }
 
-  account_routing_assert_contains('RewriteRule ^/?account(/.*)?$ index.php [L,QSA]', $rules);
+  account_routing_assert_contains('RewriteRule ^(/.*)?$ index.php [L,QSA]', $rules);
   account_routing_assert_contains('index.php [L,QSA]', $rules);
   account_routing_assert_contains('^login/?$', $rules);
 });

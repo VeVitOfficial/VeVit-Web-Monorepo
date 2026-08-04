@@ -1,9 +1,9 @@
 (() => {
   'use strict';
 
-  const ACCOUNT_ORIGIN = '';
-  const ME_ENDPOINT = '/api/auth/me.php';
-  const LOGOUT_ENDPOINT = '/api/auth/logout.php';
+  const ACCOUNT_ORIGIN = window.location.origin;
+  const ME_ENDPOINT = '/account/api/me.php';
+  const LOGOUT_ENDPOINT = '/account/api/logout.php';
   const TRUSTED_RETURN_HOSTS = new Set([
     'vevit.cz',
     'www.vevit.cz',
@@ -33,7 +33,7 @@
   };
 
   const loginUrl = () => {
-    const url = new URL('/login.html', ACCOUNT_ORIGIN);
+    const url = new URL('/account/login', ACCOUNT_ORIGIN);
     if (window.location.protocol === 'https:' && TRUSTED_RETURN_HOSTS.has(window.location.hostname)) {
       url.searchParams.set('next', window.location.href);
     }
@@ -93,7 +93,7 @@
     actions.className = 'account-session-actions';
     actions.append(
       link('Přihlásit se', loginUrl(), 'btn btn-ghost btn-sm'),
-      link('Vytvořit účet', `${ACCOUNT_ORIGIN}/register.html`, 'btn btn-primary btn-sm'),
+      link('Vytvořit účet', `${ACCOUNT_ORIGIN}/account/register.html`, 'btn btn-primary btn-sm'),
     );
     root.append(actions);
   };

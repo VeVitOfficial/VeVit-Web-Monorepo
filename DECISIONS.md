@@ -50,6 +50,10 @@ rozhodnutí uživatele i bezpečnější výklad rozporů nalezených během rea
 - Původní vendored DOMPurify 3.1.6 byl nahrazen aktuálním vydáním 3.4.12 z npm
   balíčku `dompurify`; auditovaný soubor má SHA-256
   `c45ba939765574f96cbf35ee9b6d89f73756a17921814425e74b82f7c54603ce`.
+- Pokyn odstranit kořenové `/api/` kontrakty neznamená směrovat neautentizační
+  služby do Accountu. Auth endpointy používají `/account/api/`, zatímco Tools AI,
+  SSL a feedback používají `/tools/api/` a legacy kurzová API
+  `/edu/legacy/api/`. Tím nevzniká kolize ani paralelní autentizační vrstva.
 
 ## Evidovaný technický dluh
 

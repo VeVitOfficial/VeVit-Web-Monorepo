@@ -64,7 +64,7 @@ function oauth_provider_config(array $cfg, string $provider): ?array {
 
 function oauth_redirect_to_login(string $error): never {
   header('Cache-Control: no-store');
-  header('Location: /login?error=' . rawurlencode(oauth_safe_error_code($error)), true, 302);
+  header('Location: /account/login?error=' . rawurlencode(oauth_safe_error_code($error)), true, 302);
   exit;
 }
 

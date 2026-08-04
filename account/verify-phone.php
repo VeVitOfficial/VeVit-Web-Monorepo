@@ -49,7 +49,7 @@ if (phoneRegistrationChallengeIsValid($challenge)) {
     <?php if ($maskedPhone === null): ?>
       <h1>Ověření vypršelo</h1>
       <p>Registraci je potřeba zahájit znovu.</p>
-      <a class="back" href="/register.html?mode=phone">Zpět na registraci</a>
+      <a class="back" href="/account/register.html?mode=phone">Zpět na registraci</a>
     <?php else: ?>
       <h1>Ověřte telefonní číslo</h1>
       <p>Poslali jsme vám šestimístný ověřovací kód.</p>
@@ -61,7 +61,7 @@ if (phoneRegistrationChallengeIsValid($challenge)) {
       </form>
       <button id="resendButton" class="secondary" type="button">Poslat kód znovu</button>
       <p id="status" class="status" role="alert" aria-live="polite"></p>
-      <a class="back" href="/register.html?mode=phone">Změnit telefonní číslo</a>
+      <a class="back" href="/account/register.html?mode=phone">Změnit telefonní číslo</a>
       <script>
       (function(){
         'use strict';
@@ -76,12 +76,12 @@ if (phoneRegistrationChallengeIsValid($challenge)) {
         form.addEventListener('submit',async function(e){
           e.preventDefault();if(!/^\d{6}$/.test(input.value))return message('Zadejte šestimístný kód.',false);
           verify.disabled=true;verify.textContent='Ověřuji…';message('',false);
-          try{var r=await fetch('/api/phone/register-verify.php',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({challenge:challenge,code:input.value})});var d=await r.json();if(!r.ok)throw new Error(d.error||'Kód je neplatný.');message('Telefonní číslo bylo ověřeno.',true);window.location.assign(d.redirect)}
+          try{var r=await fetch('/account/api/phone/register-verify.php',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({challenge:challenge,code:input.value})});var d=await r.json();if(!r.ok)throw new Error(d.error||'Kód je neplatný.');message('Telefonní číslo bylo ověřeno.',true);window.location.assign(d.redirect)}
           catch(err){message(err.message||'Ověření se nepodařilo.',false);verify.disabled=false;verify.textContent='Ověřit a vytvořit účet'}
         });
         resend.addEventListener('click',async function(){
           resend.disabled=true;message('',false);
-          try{var r=await fetch('/api/phone/register-resend.php',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({challenge:challenge})});var d=await r.json();if(!r.ok)throw new Error(d.error||'Kód se nepodařilo odeslat.');message('Nový kód byl odeslán.',true);remaining=60;window.clearTimeout(timer);tick()}
+          try{var r=await fetch('/account/api/phone/register-resend.php',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({challenge:challenge})});var d=await r.json();if(!r.ok)throw new Error(d.error||'Kód se nepodařilo odeslat.');message('Nový kód byl odeslán.',true);remaining=60;window.clearTimeout(timer);tick()}
           catch(err){message(err.message||'Kód se nepodařilo odeslat.',false);resend.disabled=false}
         });
         tick();input.focus();

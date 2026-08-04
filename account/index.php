@@ -45,14 +45,14 @@ function account_route_from_uri(string $requestUri): string {
 function login_gate_run(array $cfg): never {
   $user = getCurrentUser($cfg);
   if ($user === null) {
-    header('Location: /login', true, 302);
+    header('Location: /account/login', true, 302);
     exit;
   }
   if (
     !is_string($user['full_name'] ?? null) || trim($user['full_name']) === ''
     || !is_string($user['nickname'] ?? null) || trim($user['nickname']) === ''
   ) {
-    header('Location: /onboarding', true, 302);
+    header('Location: /account/onboarding.php', true, 302);
     exit;
   }
 

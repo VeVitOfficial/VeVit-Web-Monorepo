@@ -18,19 +18,19 @@ async function safeFetch(url, fallback) {
 
 export const api = {
     getKurzy: () =>
-        safeFetch('/api/kurzy', MOCK_COURSES),
+        safeFetch('/edu/legacy/api/kurzy', MOCK_COURSES),
 
     getKurz: (slug) =>
-        safeFetch(`/api/kurzy/${slug}`, MOCK_COURSES.find(c => c.slug === slug)),
+        safeFetch(`/edu/legacy/api/kurzy/${slug}`, MOCK_COURSES.find(c => c.slug === slug)),
 
     getKurzLekce: (slug) =>
-        safeFetch(`/api/kurzy/${slug}/lekce`, getMockLessons(slug)),
+        safeFetch(`/edu/legacy/api/kurzy/${slug}/lekce`, getMockLessons(slug)),
 
     getLekce: (id) =>
-        safeFetch(`/api/lekce/${id}`, getMockLesson(id)),
+        safeFetch(`/edu/legacy/api/lekce/${id}`, getMockLesson(id)),
 
     getKviz: (lessonId) =>
-        safeFetch(`/api/kviz/${lessonId}`, getMockQuizQuestions(lessonId)),
+        safeFetch(`/edu/legacy/api/kviz/${lessonId}`, getMockQuizQuestions(lessonId)),
 
     saveProgress: async (lessonId, skore = null) => {
         if (USE_MOCK) {
@@ -38,7 +38,7 @@ export const api = {
             return { ok: true, xp_ziskano: 10, xp_celkem: 100, level: 1, level_up: false };
         }
         try {
-            const res = await fetch('/api/progress', {
+            const res = await fetch('/edu/legacy/api/progress', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ lesson_id: lessonId, skore })

@@ -83,7 +83,7 @@ function oauth_callback_run(string $provider): never {
     $challenge = createTotpLoginChallenge($cfg, $userId, false, oauth_profile_is_complete($user['data']) ? '/account' : '/onboarding');
     if ($challenge === null) oauth_redirect_to_login('oauth_profile_failed');
     header('Cache-Control: no-store');
-    header('Location: /verify-2fa.php?challenge=' . rawurlencode($challenge), true, 302);
+    header('Location: /account/verify-2fa.php?challenge=' . rawurlencode($challenge), true, 302);
     exit;
   }
   createSession($cfg, $userId, false);

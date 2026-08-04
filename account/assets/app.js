@@ -82,9 +82,9 @@ async function api(path, { method = 'GET', body, signal } = {}) {
   if (body !== undefined) options.body = JSON.stringify(body);
 
   try {
-    const response = await fetch('/api/' + path, options);
+    const response = await fetch('/account/api/' + path, options);
     if (response.status === 401) {
-      location.replace('/login');
+      location.replace('/account/login');
       throw new Error('unauthorized');
     }
     const payload = response.status === 204
@@ -123,7 +123,7 @@ function setAvatar(image, fallback, user) {
   const avatarUrl = typeof user?.avatar_url === 'string' ? user.avatar_url.trim() : '';
   fallback.textContent = initialsFor(user);
   if (avatarUrl) {
-    image.src = avatarUrl.startsWith('storage:') ? '/api/avatar.php?v=' + encodeURIComponent(avatarUrl) : avatarUrl;
+    image.src = avatarUrl.startsWith('storage:') ? '/account/api/avatar.php?v=' + encodeURIComponent(avatarUrl) : avatarUrl;
     image.hidden = false;
     fallback.hidden = true;
   } else {
@@ -159,7 +159,7 @@ async function uploadAvatar(file) {
   uploadTrigger.disabled = true; uploadTrigger.setAttribute('aria-busy', 'true'); uploadTrigger.setAttribute('aria-label', 'Nahrávám profilovou fotografii'); removeButton.disabled = true;
   try {
     const form = new FormData(); form.append('avatar', file);
-    const response = await fetch('/api/avatar-upload.php', { method: 'POST', credentials: 'same-origin', body: form });
+    const response = await fetch('/account/api/avatar-upload.php', { method: 'POST', credentials: 'same-origin', body: form });
     const payload = await response.json().catch(() => ({}));
     if (!response.ok) throw new Error(payload.error || 'Fotografii se nepodařilo nahrát.');
     currentUser = { ...currentUser, avatar_url: payload.avatar_url || '' };
@@ -802,7 +802,7 @@ function wireEvents() {
     } catch (error) {
       console.error('Logout failed', error);
     } finally {
-      location.replace('/login');
+      location.replace('/account/login');
     }
   });
 
@@ -860,7 +860,7 @@ function wireEvents() {
 
 async function handleAccountAction(action) {
   const type = action.dataset.action;
-  if (type === 'connect-provider') { location.assign('/api/oauth/start.php?provider=' + encodeURIComponent(action.dataset.provider) + '&mode=connect'); return; }
+  if (type === 'connect-provider') { location.assign('/account/api/oauth/start.php?provider=' + encodeURIComponent(action.dataset.provider) + '&mode=connect'); return; }
   if (type === 'disconnect-provider') {
     if (!confirm('Opravdu chcete tento účet odpojit?')) return;
     try { await api('connections-disconnect.php', { method:'POST', body:{ provider: action.dataset.provider } }); sectionCache.delete('connections'); showToast('Účet byl odpojen.'); loadConnections(true); } catch (error) { showToast(error.message, 'error'); } return;
@@ -876,27 +876,27 @@ async function handleAccountAction(action) {
     try { await api('change-password.php', { method:'POST', body:{ current_password:current, new_password:next } }); sectionCache.delete('security'); sectionCache.delete('connections'); sectionCache.delete('overview-core'); showToast('Heslo bylo změněno.'); loadSecurity(true); } catch (error) { showToast(error.message, 'error'); } return;
   }
   if (type === 'enable-2fa') {
-    if(action.dataset.hasPassword!=='1'){const provider=action.dataset.oauthProvider;if(!provider){showToast('Nejdříve připojte OAuth účet nebo nastavte heslo.','error');return;}location.assign('/api/oauth/start.php?mode=twofa_reauth&provider='+encodeURIComponent(provider));return;}
+    if(action.dataset.hasPassword!=='1'){const provider=action.dataset.oauthProvider;if(!provider){showToast('Nejdříve připojte OAuth účet nebo nastavte heslo.','error');return;}location.assign('/account/api/oauth/start.php?mode=twofa_reauth&provider='+encodeURIComponent(provider));return;}
     const password=prompt('Pro potvrzení zadejte současné heslo:');if(password===null)return;
     try{showTotpSetup(await api('2fa/setup-start.php',{method:'POST',body:{password}}));}catch(error){showToast(error.message,'error');}return;
   }
   if (type === 'regenerate-2fa') {
-    if(action.dataset.hasPassword!=='1'){const provider=action.dataset.oauthProvider;if(!provider){showToast('Nejdříve připojte OAuth účet nebo nastavte heslo.','error');return;}location.assign('/api/oauth/start.php?mode=twofa_reauth&twofa_action=regenerate&provider='+encodeURIComponent(provider));return;}
+    if(action.dataset.hasPassword!=='1'){const provider=action.dataset.oauthProvider;if(!provider){showToast('Nejdříve připojte OAuth účet nebo nastavte heslo.','error');return;}location.assign('/account/api/oauth/start.php?mode=twofa_reauth&twofa_action=regenerate&provider='+encodeURIComponent(provider));return;}
     const password=prompt('Zadejte současné heslo:');if(password===null)return;const code=prompt('Zadejte aktuální kód z aplikace:');if(code===null)return;
     try{const result=await api('2fa/recovery-regenerate.php',{method:'POST',body:{password,code}});showRecoveryCodes(result.recovery_codes||[]);}catch(error){showToast(error.message,'error');}return;
   }
   if (type === 'disable-2fa') {
-    if(action.dataset.hasPassword!=='1'){const provider=action.dataset.oauthProvider;if(!provider){showToast('Nejdříve připojte OAuth účet nebo nastavte heslo.','error');return;}location.assign('/api/oauth/start.php?mode=twofa_reauth&twofa_action=disable&provider='+encodeURIComponent(provider));return;}
+    if(action.dataset.hasPassword!=='1'){const provider=action.dataset.oauthProvider;if(!provider){showToast('Nejdříve připojte OAuth účet nebo nastavte heslo.','error');return;}location.assign('/account/api/oauth/start.php?mode=twofa_reauth&twofa_action=disable&provider='+encodeURIComponent(provider));return;}
     if(!confirm('Opravdu chcete vypnout dvoufázové ověření? Ostatní zařízení budou odhlášena.'))return;const password=prompt('Zadejte současné heslo:');if(password===null)return;const code=prompt('Zadejte aktuální kód z aplikace:');if(code===null)return;
     try{await api('2fa/disable.php',{method:'POST',body:{password,code}});sectionCache.delete('security');sectionCache.delete('overview-core');showToast('Dvoufázové ověření bylo vypnuto.');loadSecurity(true);}catch(error){showToast(error.message,'error');}return;
   }
   if (type === 'export-data') {
-    try { const response = await fetch('/api/export-data.php', { method:'POST', credentials:'same-origin', headers:{'Content-Type':'application/json'}, body:'{}' }); if (!response.ok) throw new Error('Export se nepodařilo vytvořit.'); const blob = await response.blob(); const url = URL.createObjectURL(blob); const link = document.createElement('a'); link.href=url; link.download='vevit-export.json'; link.click(); URL.revokeObjectURL(url); showToast('Export dat byl vytvořen.'); } catch (error) { showToast(error.message, 'error'); } return;
+    try { const response = await fetch('/account/api/export-data.php', { method:'POST', credentials:'same-origin', headers:{'Content-Type':'application/json'}, body:'{}' }); if (!response.ok) throw new Error('Export se nepodařilo vytvořit.'); const blob = await response.blob(); const url = URL.createObjectURL(blob); const link = document.createElement('a'); link.href=url; link.download='vevit-export.json'; link.click(); URL.revokeObjectURL(url); showToast('Export dat byl vytvořen.'); } catch (error) { showToast(error.message, 'error'); } return;
   }
   if (type === 'delete-account') {
     if ((prompt('Pro potvrzení napište SMAZAT:') || '') !== 'SMAZAT') return;
     const password = prompt('Současné heslo (OAuth účet může nechat prázdné):') ?? null; if (password === null) return;
-    try { await api('delete-account.php', { method:'POST', body:{ confirmation:'SMAZAT', current_password:password } }); location.replace('/login'); } catch (error) { showToast(error.message, 'error'); }
+    try { await api('delete-account.php', { method:'POST', body:{ confirmation:'SMAZAT', current_password:password } }); location.replace('/account/login'); } catch (error) { showToast(error.message, 'error'); }
   }
 }
 

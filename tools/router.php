@@ -42,8 +42,8 @@ if (preg_match('#^/tools/([a-z0-9-]+)/?$#', $uri, $m)) {
     return true;
 }
 
-// 4) AI proxy: /api/ai/ollama
-if (preg_match('#^/api/ai/ollama/?$#', $uri)) {
+// 4) AI proxy: /tools/api/ai/ollama
+if (preg_match('#^/tools/api/ai/ollama/?$#', $uri)) {
     require $root . '/api/ai/ollama.php';
     return true;
 }

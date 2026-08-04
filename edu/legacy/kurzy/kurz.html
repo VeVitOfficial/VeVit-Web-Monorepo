@@ -127,10 +127,10 @@ async function init() {
         lessons = kurz ? getMockLessons(slug) : [];
     } else {
         try {
-            const res = await fetch(`/api/kurzy/${slug}`);
+            const res = await fetch(`/edu/legacy/api/kurzy/${slug}`);
             const json = await res.json();
             kurz = json.data || json;
-            const lRes = await fetch(`/api/kurzy/${slug}/lekce`);
+            const lRes = await fetch(`/edu/legacy/api/kurzy/${slug}/lekce`);
             const lJson = await lRes.json();
             lessons = (lJson.data || lJson).sections ? lJson.data.sections.flatMap(s => s.lessons) : (lJson.data || lJson);
         } catch {
@@ -311,7 +311,7 @@ function zobrazDokonceniModal(kurz) {
         const user = getVevitUser();
         if (!user) { location.href = 'https://account.vevit.fun'; return; }
         try {
-            const res = await fetch('/api/certificates/issue', {
+            const res = await fetch('/edu/legacy/api/certificates/issue', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 credentials: 'include',

@@ -253,7 +253,7 @@ async function init() {
         vsechnyKurzy = MOCK_COURSES;
     } else {
         try {
-            const res = await fetch('/api/kurzy');
+            const res = await fetch('/edu/legacy/api/kurzy');
             const json = await res.json();
             vsechnyKurzy = json.data ?? json;
         } catch {

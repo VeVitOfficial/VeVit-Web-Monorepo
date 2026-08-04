@@ -141,7 +141,7 @@ async function init() {
         lesson = allLessons.find(l => l.id === lessonId);
     } else {
         try {
-            const res = await fetch(`/api/lekce/${lessonId}`);
+            const res = await fetch(`/edu/legacy/api/lekce/${lessonId}`);
             const json = await res.json();
             lesson = json.data || json;
             kurz = { slug: kurzSlug, title: kurzSlug };
@@ -251,7 +251,7 @@ function renderQuiz(content, bottomInner, lesson, kurzSlug, xp, currentIdx, tota
     const loadQuestions = async () => {
         if (USE_MOCK) return getMockQuizQuestions(lesson.id);
         try {
-            const res = await fetch(`/api/kviz/${lesson.id}`);
+            const res = await fetch(`/edu/legacy/api/kviz/${lesson.id}`);
             const json = await res.json();
             const data = json.data || json;
             const questions = data.questions || data;

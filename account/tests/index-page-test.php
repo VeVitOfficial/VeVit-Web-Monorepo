@@ -50,8 +50,8 @@ index_page_test('account page omits removed and demo-only data', function () use
   index_page_assert_not_contains('24. 8. 2026', $html);
   index_page_assert_not_contains('QR kód<br>placeholder', $html);
   index_page_assert_not_contains('Spravováno přes Clerk', $html);
-  index_page_assert_contains('href="/assets/styles.css?', $html);
-  index_page_assert_contains('src="/assets/app.js?', $html);
+  index_page_assert_contains('href="/account/assets/styles.css?', $html);
+  index_page_assert_contains('src="/account/assets/app.js?', $html);
 });
 
 index_page_test('desktop navigation exposes all canonical destinations', function () use ($html): void {
@@ -151,7 +151,7 @@ index_page_test('client controller uses canonical history routing and local stat
   index_page_assert_contains("window.addEventListener('popstate'", $js);
   index_page_assert_contains('window.__VV_ROUTE__', $js);
   index_page_assert_contains('const sectionCache = new Map()', $js);
-  index_page_assert_contains("fetch('/api/' + path", $js);
+  index_page_assert_contains("fetch('/account/api/' + path", $js);
   index_page_assert_contains("api('account-overview.php')", $js);
   index_page_assert_contains('data.errors?.security', $js);
   index_page_assert_contains('data.errors?.activity', $js);

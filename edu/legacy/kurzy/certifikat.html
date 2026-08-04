@@ -85,7 +85,7 @@ if (uuid) {
     // Public verification page
     showLoading();
     try {
-        const res = await fetch(`/api/certificates/verify?uuid=${encodeURIComponent(uuid)}`);
+        const res = await fetch(`/edu/legacy/api/certificates/verify?uuid=${encodeURIComponent(uuid)}`);
         if (!res.ok) {
             if (res.status === 404) {
                 showError('Certifikát nenalezen', 'Tento certifikát neexistuje nebo byl zneplatněn.');
@@ -173,7 +173,7 @@ if (uuid) {
     } else {
         showLoading();
         try {
-            const res = await fetch('/api/certificates/my', { credentials: 'include' });
+            const res = await fetch('/edu/legacy/api/certificates/my', { credentials: 'include' });
             const json = await res.json();
             const certs = json.data || [];
             const cert = certs.find(c => c.course_slug === slug);
@@ -264,7 +264,7 @@ if (uuid) {
     } else {
         showLoading();
         try {
-            const res = await fetch('/api/certificates/my', { credentials: 'include' });
+            const res = await fetch('/edu/legacy/api/certificates/my', { credentials: 'include' });
             const json = await res.json();
             const certs = json.data || [];
 

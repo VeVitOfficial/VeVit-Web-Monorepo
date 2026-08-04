@@ -189,7 +189,7 @@ function updateLoadMore(state) {
 
 async function fetchComments(state, container) {
     try {
-        const res = await fetch(`/api/comments?lesson_id=${state.lessonId}&offset=0&limit=20`);
+        const res = await fetch(`/edu/legacy/api/comments?lesson_id=${state.lessonId}&offset=0&limit=20`);
         if (!res.ok) throw new Error('Failed');
         const json = await res.json();
         state.comments = json.data.comments;
@@ -205,7 +205,7 @@ async function fetchComments(state, container) {
 async function loadMoreComments(state) {
     const newOffset = state.offset + 20;
     try {
-        const res = await fetch(`/api/comments?lesson_id=${state.lessonId}&offset=${newOffset}&limit=20`);
+        const res = await fetch(`/edu/legacy/api/comments?lesson_id=${state.lessonId}&offset=${newOffset}&limit=20`);
         if (!res.ok) throw new Error('Failed');
         const json = await res.json();
         state.comments = [...state.comments, ...json.data.comments];
@@ -276,7 +276,7 @@ async function submitComment(state, container, textarea, btn, parentId = null) {
         const body = { lesson_id: state.lessonId, content };
         if (parentId) body.parent_id = parentId;
 
-        const res = await fetch('/api/comments', {
+        const res = await fetch('/edu/legacy/api/comments', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include',
@@ -324,7 +324,7 @@ async function toggleLike(commentId, state, container) {
     updateLikeUI(btn, countEl, newLiked, Math.max(0, newCount));
 
     try {
-        const res = await fetch('/api/comments/like', {
+        const res = await fetch('/edu/legacy/api/comments/like', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include',
@@ -398,7 +398,7 @@ async function deleteComment(commentId, state, container) {
     if (!confirm('Opravdu chceš smazat tento komentář?')) return;
 
     try {
-        const res = await fetch(`/api/comments?id=${commentId}`, {
+        const res = await fetch(`/edu/legacy/api/comments?id=${commentId}`, {
             method: 'DELETE',
             credentials: 'include',
         });

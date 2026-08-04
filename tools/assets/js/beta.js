@@ -1,4 +1,4 @@
-// Obsluha „Beta testing" formuláře na landingu. Jediné textové pole → /api/feedback.php.
+// Obsluha „Beta testing" formuláře na landingu. Jediné textové pole → /tools/api/feedback.php.
 (function () {
   'use strict';
   var form = document.getElementById('beta-form');
@@ -20,7 +20,7 @@
     if (msg.length > 5000) { if (window.toast) toast.error('Zpráva je příliš dlouhá (max 5000 znaků).'); return; }
     setBusy(true);
     if (note) note.classList.add('hidden');
-    fetch('/api/feedback.php', {
+    fetch('/tools/api/feedback.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ message: msg })

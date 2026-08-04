@@ -18,7 +18,7 @@
     run.disabled = true;
     prog.classList.remove('hidden'); progLabel.classList.remove('hidden');
     ToolUI.setProgress(prog, 30, 'Připojuji se k ' + d + ':443…');
-    fetch('/api/ssl-check.php?domain=' + encodeURIComponent(d), { headers: { 'Accept': 'application/json' } })
+    fetch('/tools/api/ssl-check.php?domain=' + encodeURIComponent(d), { headers: { 'Accept': 'application/json' } })
       .then(function (r) {
         return r.json().then(function (body) { return { ok: r.ok, status: r.status, body: body }; });
       }).then(function (res) {
