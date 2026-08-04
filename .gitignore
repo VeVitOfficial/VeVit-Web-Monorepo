@@ -17,6 +17,8 @@
 **/vendor/
 !**/assets/js/vendor/
 !**/assets/js/vendor/**
+!/assets/vendor/
+!/assets/vendor/**
 **/.cache/
 **/.parcel-cache/
 **/.playwright-cli/
