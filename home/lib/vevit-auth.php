@@ -60,11 +60,24 @@ function vevitAuthAdapter(string $name): ?callable
         : null;
 }
 
+function vevitSupabaseHeaders(string $key): array
+{
+    $headers = [
+        'Accept: application/json',
+        'apikey: ' . $key,
+        'Prefer: return=minimal',
+    ];
+    if ($key !== '' && !str_starts_with($key, 'sb_secret_')) {
+        $headers[] = 'Authorization: Bearer ' . $key;
+    }
+    return $headers;
+}
+
 /** Execute one server-to-server PostgREST request. */
 function vevitAuthRest(array $config, string $method, string $table, array $query = []): ?array
 {
     $base = $config['supabase_url'] ?? null;
-    $key = $config['service_role'] ?? null;
+    $key = $config['secret_key'] ?? $config['service_role'] ?? null;
     if (!is_string($base) || !str_starts_with($base, 'https://') || !is_string($key) || $key === '') {
         return null;
     }
@@ -72,17 +85,13 @@ function vevitAuthRest(array $config, string $method, string $table, array $quer
     if ($query !== []) $url .= '?' . http_build_query($query, '', '&', PHP_QUERY_RFC3986);
     $curl = curl_init($url);
     if ($curl === false) return null;
+    $requestHeaders = vevitSupabaseHeaders($key);
     curl_setopt_array($curl, [
         CURLOPT_CUSTOMREQUEST => $method,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_CONNECTTIMEOUT => 4,
         CURLOPT_TIMEOUT => 8,
-        CURLOPT_HTTPHEADER => [
-            'Accept: application/json',
-            'apikey: ' . $key,
-            'Authorization: Bearer ' . $key,
-            'Prefer: return=minimal',
-        ],
+        CURLOPT_HTTPHEADER => $requestHeaders,
     ]);
     $body = curl_exec($curl);
     $status = (int) curl_getinfo($curl, CURLINFO_RESPONSE_CODE);

@@ -24,11 +24,7 @@ $qs   = [
   'select=id',
   'limit=1',
 ];
-$headers = [
-  'apikey: '         . $cfg['SUPABASE_SERVICE_ROLE'],
-  'Authorization: Bearer ' . $cfg['SUPABASE_SERVICE_ROLE'],
-  'Accept: application/json',
-];
+$headers = _sb_base_headers($cfg);
 $ch = curl_init($base . '?' . implode('&', $qs));
 curl_setopt_array($ch, [CURLOPT_RETURNTRANSFER => true, CURLOPT_HTTPHEADER => $headers, CURLOPT_TIMEOUT => 10]);
 $raw  = curl_exec($ch);

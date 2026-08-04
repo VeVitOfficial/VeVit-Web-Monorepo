@@ -27,8 +27,11 @@ rozhodnutí uživatele i bezpečnější výklad rozporů nalezených během rea
   `event.source`, jednorázový nonce a schéma dat; listener se vždy odstraní.
 - Účet má stav `active`, `blocked` nebo `deleted`. Jiný než `active` revokuje
   všechny relace a vrací 401.
-- Povinné ruční stop-body jsou pouze: S-1 rotace service role, S-2 CSP enforce a
-  S-3 odstranění fallbacků s migrací `003_drop_plaintext_token`.
+- Povinné ruční stop-body jsou po zrušení S-1 pouze: S-2 CSP enforce a S-3
+  odstranění fallbacků s migrací `003_drop_plaintext_token`.
+- S-1 byl následně zrušen. Legacy JWT `service_role` se nerotuje; nahradí jej
+  samostatné pojmenované `sb_secret_` klíče a legacy `anon` i `service_role` se
+  po ověření všech konzumentů deaktivují.
 
 ## Bezpečnější výklady rozporů
 
@@ -77,6 +80,24 @@ rozhodnutí uživatele i bezpečnější výklad rozporů nalezených během rea
   `service_role`. Samotné názvy proměnných `SUPABASE_*` jsou povolené, protože
   jsou nezbytnou součástí serverového kontraktu; explicitní ukázkové hodnoty v
   dokumentaci jsou rozpoznány pouze úzkým seznamem placeholderů.
+- Každý serverový konzument má vlastní secret key, aby šel při incidentu
+  revokovat nezávisle. Audit doložil PHP konzumenty `account` a `home` a Edge
+  Function konzumenty `auth`, `api` a `stripe-webhook`; Stripe setup/worker
+  používají přímé databázové připojení a vlastní worker secret, nikoli Supabase
+  API key.
+- Moderní `sb_secret_` se posílá jen v hlavičce `apikey`, nikdy jako Bearer.
+  Přechodová větev rozlišuje prefix klíče: dokud je nakonfigurovaný legacy JWT,
+  zachová jeho nutnou `Authorization: Bearer`; po vložení `sb_secret_` tato
+  hlavička automaticky zmizí.
+- Frontendový audit nenašel žádné přímé volání Supabase, takže projekt pro SSO
+  nevytváří ani nedistribuuje nový publishable key.
+- Databáze má `pg_net`, jeden aktivní cron `stripe-sync-worker` a žádný Database
+  Webhook. Cron čte vlastní `stripe_sync_worker_secret` z Vaultu a posílá jej
+  jako aplikační Bearer do `stripe-worker`; nejde o Supabase API key a kontrakt
+  se nemění.
+- Zdroj nasazené `stripe-webhook` Edge Function obsahoval tajné hodnoty přímo v
+  argumentech `Deno.env.get(...)`. Funkce musí být znovu nasazena pouze s názvy
+  environment proměnných a exponovaná Stripe tajemství samostatně vyměněna.
 
 ## Evidovaný technický dluh
 
@@ -86,3 +107,6 @@ rozhodnutí uživatele i bezpečnější výklad rozporů nalezených během rea
   strukturované bloky. Do té doby se používá úzký DOMPurify allowlist.
 - Provozní CSP report-only sběr musí běžet nejméně týden před S-2.
 - Non-browser access/refresh tokeny jsou samostatný release po stabilizaci SSO.
+- Přechod Supabase Auth na asymetrické JWT signing keys je doporučený samostatný
+  bezpečnostní krok. Není součástí této implementace a neovlivňuje vlastní
+  opaque SSO session.

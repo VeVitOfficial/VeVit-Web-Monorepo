@@ -16,10 +16,7 @@ if (!empty($body['all_others'])) {
     'user_id=eq.'        . rawurlencode($user['id']),
     'session_token=neq.' . rawurlencode($currentToken),
   ];
-  $headers = [
-    'apikey: '         . $cfg['SUPABASE_SERVICE_ROLE'],
-    'Authorization: Bearer ' . $cfg['SUPABASE_SERVICE_ROLE'],
-  ];
+  $headers = _sb_base_headers($cfg);
   $ch = curl_init($base . '?' . implode('&', $qs));
   curl_setopt_array($ch, [CURLOPT_CUSTOMREQUEST => 'DELETE', CURLOPT_RETURNTRANSFER => true, CURLOPT_HTTPHEADER => $headers, CURLOPT_TIMEOUT => 10, CURLOPT_SSL_VERIFYPEER => true, CURLOPT_SSL_VERIFYHOST => 2]);
   $raw = curl_exec($ch); $status = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE); curl_close($ch);

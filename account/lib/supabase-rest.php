@@ -6,13 +6,23 @@ declare(strict_types=1);
  * All query-string values must be pre-encoded by caller.
  */
 
+function _sb_secret_key(array $cfg): string {
+  $key = $cfg['SUPABASE_SECRET_KEY'] ?? $cfg['SUPABASE_SERVICE_ROLE'] ?? null;
+  return is_string($key) ? $key : '';
+}
+
 function _sb_base_headers(array $cfg): array {
-  return [
-    'apikey: '         . $cfg['SUPABASE_SERVICE_ROLE'],
-    'Authorization: Bearer ' . $cfg['SUPABASE_SERVICE_ROLE'],
+  $key = _sb_secret_key($cfg);
+  $headers = [
+    'apikey: ' . _sb_secret_key($cfg),
     'Content-Type: application/json',
     'Accept: application/json',
   ];
+  // Přechod bez výpadku: legacy JWT vyžaduje Bearer, nový sb_secret_ jej nesmí dostat.
+  if ($key !== '' && !str_starts_with($key, 'sb_secret_')) {
+    $headers[] = 'Authorization: Bearer ' . $key;
+  }
+  return $headers;
 }
 
 function _sb_curl(string $method, string $url, array $headers, ?string $body = null): array {

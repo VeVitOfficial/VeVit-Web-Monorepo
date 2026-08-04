@@ -146,9 +146,9 @@ function _auth_filtered_get(
   }
 
   if (
-    !isset($cfg['SUPABASE_URL'], $cfg['SUPABASE_SERVICE_ROLE'])
+    !isset($cfg['SUPABASE_URL'])
     || !is_string($cfg['SUPABASE_URL'])
-    || !is_string($cfg['SUPABASE_SERVICE_ROLE'])
+    || _sb_secret_key($cfg) === ''
   ) {
     return ['error' => 'Invalid server configuration'];
   }

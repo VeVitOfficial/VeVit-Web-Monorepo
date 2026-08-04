@@ -33,6 +33,10 @@ auth_expect($options === [
     'httponly' => true,
     'samesite' => 'Lax',
 ], 'Cookie attributes do not match the central session contract.');
+$modernHeaders = vevitSupabaseHeaders('sb_secret_home_test_value');
+$legacyHeaders = vevitSupabaseHeaders('legacy-jwt-test-value');
+auth_expect(!in_array('Authorization: Bearer sb_secret_home_test_value', $modernHeaders, true), 'Modern Supabase secret must not be sent as Bearer.');
+auth_expect(in_array('Authorization: Bearer legacy-jwt-test-value', $legacyHeaders, true), 'Legacy transition must retain its required Bearer header.');
 auth_expect(vevitMaskEmail('jan.novak@example.cz') === 'j***@example.cz', 'Email masking failed.');
 
 $token = str_repeat('a', 64);

@@ -21,6 +21,20 @@ function avatar_storage_path(string $value, string $userId): ?string {
   return preg_match('/\A' . preg_quote($userId, '/') . '\/[a-f0-9]{32}\.(jpg|png|webp)\z/D', $path) === 1 ? $path : null;
 }
 
+function avatar_supabase_secret_key(array $cfg): string {
+  $key = $cfg['SUPABASE_SECRET_KEY'] ?? $cfg['SUPABASE_SERVICE_ROLE'] ?? null;
+  return is_string($key) ? $key : '';
+}
+
+function avatar_supabase_headers(array $cfg): array {
+  $key = avatar_supabase_secret_key($cfg);
+  $headers = ['apikey: ' . $key];
+  if ($key !== '' && !str_starts_with($key, 'sb_secret_')) {
+    $headers[] = 'Authorization: Bearer ' . $key;
+  }
+  return $headers;
+}
+
 /** @return array{tmp_name:string,mime:string,extension:string} */
 function avatar_validate_upload(array $file): array {
   if (($file['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_OK) throw new RuntimeException('Soubor se nepodařilo nahrát.');
@@ -41,7 +55,7 @@ function avatar_validate_upload(array $file): array {
 function avatar_storage_request(array $cfg, string $method, string $path, array $headers = [], ?string $body = null): array {
   $url = rtrim((string) $cfg['SUPABASE_URL'], '/') . '/storage/v1/' . ltrim($path, '/');
   $responseHeaders = []; $ch = curl_init($url);
-  curl_setopt_array($ch, [CURLOPT_RETURNTRANSFER => true, CURLOPT_TIMEOUT => 20, CURLOPT_CONNECTTIMEOUT => 8, CURLOPT_FOLLOWLOCATION => false, CURLOPT_SSL_VERIFYPEER => true, CURLOPT_SSL_VERIFYHOST => 2, CURLOPT_CUSTOMREQUEST => $method, CURLOPT_HTTPHEADER => array_merge(['apikey: ' . $cfg['SUPABASE_SERVICE_ROLE'], 'Authorization: Bearer ' . $cfg['SUPABASE_SERVICE_ROLE']], $headers), CURLOPT_HEADERFUNCTION => static function ($curl, string $line) use (&$responseHeaders): int { $parts = explode(':', $line, 2); if (count($parts) === 2) $responseHeaders[strtolower(trim($parts[0]))] = trim($parts[1]); return strlen($line); }]);
+  curl_setopt_array($ch, [CURLOPT_RETURNTRANSFER => true, CURLOPT_TIMEOUT => 20, CURLOPT_CONNECTTIMEOUT => 8, CURLOPT_FOLLOWLOCATION => false, CURLOPT_SSL_VERIFYPEER => true, CURLOPT_SSL_VERIFYHOST => 2, CURLOPT_CUSTOMREQUEST => $method, CURLOPT_HTTPHEADER => array_merge(avatar_supabase_headers($cfg), $headers), CURLOPT_HEADERFUNCTION => static function ($curl, string $line) use (&$responseHeaders): int { $parts = explode(':', $line, 2); if (count($parts) === 2) $responseHeaders[strtolower(trim($parts[0]))] = trim($parts[1]); return strlen($line); }]);
   if ($body !== null) curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
   $raw = curl_exec($ch); $http = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE); $error = curl_error($ch) ?: null; curl_close($ch);
   return ['http' => $http, 'body' => is_string($raw) ? $raw : '', 'error' => $error, 'content_type' => $responseHeaders['content-type'] ?? null];

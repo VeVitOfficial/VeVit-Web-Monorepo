@@ -37,7 +37,8 @@ sql/schema.sql          Supabase tabulky + RLS
 4. Zkopíruj **Frontend API URL** (issuer, např. `https://xxx.clerk.accounts.dev`)
 
 ### 2. Supabase (supabase.com)
-1. Vytvoř projekt → **Settings → API**: zkopíruj `URL`, `anon` key, `service_role` key
+1. Vytvoř projekt → **Settings → API Keys**: vytvoř pojmenovaný serverový
+   `sb_secret_` klíč pouze pro Account.
 2. **Authentication → Third-party auth → Clerk**: zapni integraci (zadej Clerk domain)
    — díky tomu `auth.jwt()->>'sub'` = Clerk user id a RLS funguje
 3. **SQL editor** → spusť obsah `sql/schema.sql`
@@ -54,7 +55,7 @@ FTP celý obsah složky do web rootu. Ověř, že běží PHP (WEDOS: PHP 8.x, c
 ---
 
 ## Bezpečnost
-- Secret klíče (Clerk secret, Supabase service_role) jsou jen v serverové
+- Secret klíče (Clerk secret, Supabase `sb_secret_`) jsou jen v serverové
   konfiguraci mimo document root — nikdy v JS ani ve verzovaném repozitáři.
 - Každý PHP endpoint ověří Clerk JWT proti JWKS (`_verify.php`) než něco udělá.
 - RLS v Supabase omezuje čtení/zápis jen na vlastní řádek uživatele.

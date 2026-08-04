@@ -5,7 +5,7 @@
 // Never commit a config file containing real values.
 return [
   'SUPABASE_URL' => 'https://your-project.supabase.co',
-  'SUPABASE_SERVICE_ROLE' => 'replace-with-server-only-key',
+  'SUPABASE_SECRET_KEY' => 'replace-with-component-specific-sb-secret-key',
   'ALLOWED_ORIGIN' => 'https://account.example.com',
   'COOKIE_DOMAIN' => 'account.example.com',
   'TRUSTED_PROXY_CIDRS' => [],

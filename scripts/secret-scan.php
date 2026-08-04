@@ -6,7 +6,7 @@ $root = dirname(__DIR__);
 $failures = [];
 $skipDirectories = ['.git', 'node_modules', 'vendor', 'uploads', 'logs', '.cache', '.playwright-cli'];
 $skipExtensions = ['wasm', 'woff', 'woff2', 'png', 'jpg', 'jpeg', 'webp', 'gif', 'ico', 'pdf', 'zip', 'gz'];
-$dummyMarkers = ['replace-', 'example', 'test-key', 'dummy', 'placeholder', 'your-project', 'your_', 'changeme'];
+$dummyMarkers = ['replace-', 'example', 'test-key', 'test-value', '_test_', 'dummy', 'placeholder', 'your-project', 'your_', 'changeme'];
 
 $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($root, FilesystemIterator::SKIP_DOTS));
 foreach ($iterator as $file) {
