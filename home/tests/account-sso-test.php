@@ -31,11 +31,11 @@ foreach ([
     "fetch(ME_ENDPOINT",
     "credentials: 'include'",
     "'Accept': 'application/json'",
-    "const ME_ENDPOINT = '/api/auth/me.php'",
-    "const LOGOUT_ENDPOINT = '/api/auth/logout.php'",
+    "const ME_ENDPOINT = '/account/api/me.php'",
+    "const LOGOUT_ENDPOINT = '/account/api/logout.php'",
     "'X-CSRF-Token': csrfToken",
-    "https://account.vevit.cz/account",
-    "https://account.vevit.cz/account/profile",
+    "link('Můj účet', '/account')",
+    "link('Nastavení', '/account/profile')",
     'Můj účet',
     'Nastavení',
     'Odhlásit se',
@@ -51,16 +51,12 @@ foreach (['document.cookie', 'localStorage', 'sessionStorage', '__vvsession', 'v
 }
 
 $helper = is_file($root . '/lib/vevit-auth.php') ? (file_get_contents($root . '/lib/vevit-auth.php') ?: '') : '';
-$serverConfig = is_file($root . '/api/config.php') ? (file_get_contents($root . '/api/config.php') ?: '') : '';
 $meEndpoint = is_file($root . '/api/auth/me.php') ? (file_get_contents($root . '/api/auth/me.php') ?: '') : '';
 $logoutEndpoint = is_file($root . '/api/auth/logout.php') ? (file_get_contents($root . '/api/auth/logout.php') ?: '') : '';
 sso_expect(str_contains($helper, "const VEVIT_SESSION_COOKIE = '__vvsession'"), 'Shared helper must use the central session cookie.');
-sso_expect(str_contains($helper, "require __DIR__ . '/../api/config.php'"), 'Shared helper must load the central config.php.');
-sso_expect(!str_contains($helper, "getenv('VEVIT_"), 'Auth keys must not be distributed across helper environment lookups.');
-foreach (['supabase_url', 'service_role', 'csrf_secret', 'gemini_api_key', 'openrouter_api_key', 'cookie_domain', 'allowed_origins'] as $key) {
-    sso_expect(str_contains($serverConfig, "'{$key}' =>"), "Central config.php is missing {$key}.");
-}
-sso_expect(str_contains($serverConfig, 'VEVIT_CONFIG_INCLUDED'), 'Central config.php must deny direct HTTP execution.');
+sso_expect(str_contains($helper, "getenv('VEVIT_HOME_CONFIG_PATH')"), 'Shared helper must support the server config path.');
+sso_expect(str_contains($helper, '/etc/vevit/home.php'), 'Shared helper must support config outside document root.');
+sso_expect(!is_file($root . '/api/config.php'), 'Active Home config must not exist in document root.');
 sso_expect(str_contains($helper, "'domain' => '.vevit.cz'"), 'Shared cookie must use the approved .vevit.cz domain.');
 sso_expect(str_contains($helper, 'VEVIT_AUTH_INCLUDED'), 'Shared helper must deny direct HTTP execution.');
 sso_expect(str_contains($meEndpoint, 'requireVevitAuth($config)'), 'Local me endpoint must verify the central session server-side.');

@@ -67,6 +67,16 @@ rozhodnutí uživatele i bezpečnější výklad rozporů nalezených během rea
 - Hub testy po přesunu do `/tools` stále skládaly fyzickou cestu jako
   `tools/tools/assets`. Testovací filesystem kontrakty byly opraveny na lokální
   `tools/assets`, zatímco veřejné URL zůstávají `/tools/assets/...`.
+- Aktivní konfigurace Accountu a Home byly přesunuty do sourozeneckého
+  `vevit-private/` s právy `0600`; produkční preferovaná cesta je
+  `/etc/vevit/`. Loadery podporují explicitní absolutní cestu přes
+  `VEVIT_ACCOUNT_CONFIG_PATH` a `VEVIT_HOME_CONFIG_PATH` a nemají fallback do
+  document rootu.
+- CI secret scan prochází celý verzovaný webroot a selhává na skutečně
+  použitelném JWT, Supabase `sb_secret_` klíči nebo natvrdo přiřazeném
+  `service_role`. Samotné názvy proměnných `SUPABASE_*` jsou povolené, protože
+  jsou nezbytnou součástí serverového kontraktu; explicitní ukázkové hodnoty v
+  dokumentaci jsou rozpoznány pouze úzkým seznamem placeholderů.
 
 ## Evidovaný technický dluh
 

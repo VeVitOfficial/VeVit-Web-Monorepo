@@ -90,13 +90,12 @@ function _auth_find_one(
  * Load the server-only application configuration.
  */
 function auth_load_config(): array {
-  $configuredPath = getenv('VEVIT_CONFIG_PATH');
+  $configuredPath = getenv('VEVIT_ACCOUNT_CONFIG_PATH');
   $paths = [];
   if (is_string($configuredPath) && $configuredPath !== '') $paths[] = $configuredPath;
-  $paths[] = dirname(__DIR__, 2) . '/private/vevit-config.php';
-  // Compatibility fallback for the current WEDOS deployment. The file is
-  // ignored by Git and protected by .htaccess until it is moved outside root.
-  $paths[] = __DIR__ . '/../config.php';
+  $paths[] = '/etc/vevit/account.php';
+  // Lokální vývoj: sourozenec repozitáře, tedy stále mimo document root.
+  $paths[] = dirname(__DIR__, 3) . '/vevit-private/account.php';
   $path = null;
   foreach ($paths as $candidate) {
     if (is_file($candidate)) { $path = $candidate; break; }

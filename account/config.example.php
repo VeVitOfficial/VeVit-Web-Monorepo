@@ -1,6 +1,7 @@
 <?php
-// Copy outside the public document root (recommended) and point
-// VEVIT_CONFIG_PATH to it, or use /private/vevit-config.php on WEDOS.
+// Copy outside the public document root and point VEVIT_ACCOUNT_CONFIG_PATH
+// to it. Production default is /etc/vevit/account.php; local development may
+// use ../vevit-private/account.php next to this repository.
 // Never commit a config file containing real values.
 return [
   'SUPABASE_URL' => 'https://your-project.supabase.co',

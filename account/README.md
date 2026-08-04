@@ -11,8 +11,8 @@ assets/
   styles.css            design tokeny + komponenty
   config.js             PUBLIC klíče (Clerk publishable, Supabase URL+anon)
   app.js                Clerk auth + Supabase data + UI logika
+config.example.php      šablona serverových secretů
 api/
-  config.sample.php     šablona secretů → zkopírovat na config.php na serveru
   _verify.php           ověření Clerk session JWT (RS256 vs JWKS)
   delete-account.php    smazání účtu (Clerk backend API + Supabase)
   export-data.php       GDPR export dat
@@ -44,8 +44,9 @@ sql/schema.sql          Supabase tabulky + RLS
 
 ### 3. Vyplň klíče
 - `assets/config.js` → Clerk **publishable** key, Supabase URL + **anon** key (jsou public)
-- Na WEDOSu zkopíruj `api/config.sample.php` → `api/config.php` a vyplň
-  **secret** key, issuer, service_role, doménu. `config.php` se necommituje.
+- Na serveru vytvoř konfiguraci z `config.example.php` mimo document root,
+  preferovaně `/etc/vevit/account.php`, s právy `0600`. Alternativní absolutní
+  cestu nastav přes `VEVIT_ACCOUNT_CONFIG_PATH`.
 
 ### 4. Nahraj na WEDOS
 FTP celý obsah složky do web rootu. Ověř, že běží PHP (WEDOS: PHP 8.x, cURL + openssl zapnuté).
@@ -53,10 +54,12 @@ FTP celý obsah složky do web rootu. Ověř, že běží PHP (WEDOS: PHP 8.x, c
 ---
 
 ## Bezpečnost
-- Secret klíče (Clerk secret, Supabase service_role) jsou **jen** v `api/config.php` na serveru — nikdy v JS.
+- Secret klíče (Clerk secret, Supabase service_role) jsou jen v serverové
+  konfiguraci mimo document root — nikdy v JS ani ve verzovaném repozitáři.
 - Každý PHP endpoint ověří Clerk JWT proti JWKS (`_verify.php`) než něco udělá.
 - RLS v Supabase omezuje čtení/zápis jen na vlastní řádek uživatele.
-- `.htaccess` blokuje přístup k `config.php`, `*.sql`, `*.md`.
+- Nginx blokuje `/shared/` a všechny požadavky na `config.php`; konfigurace je
+  navíc fyzicky mimo document root.
 
 ## Poznámky / TODO
 - **Billing** (platby, faktury) je zatím mock v UI. Reálně napojit přes platební bránu

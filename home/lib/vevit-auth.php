@@ -12,9 +12,21 @@ const VEVIT_SESSION_COOKIE = '__vvsession';
 /** Load server-only Account connectivity without exposing credentials to JS. */
 function vevitAuthConfig(): array
 {
-    if (!defined('VEVIT_CONFIG_INCLUDED')) define('VEVIT_CONFIG_INCLUDED', true);
-    $config = require __DIR__ . '/../api/config.php';
-    return is_array($config) ? $config : [];
+    if (!defined('VEVIT_CONFIG_INCLUDED')) {
+        define('VEVIT_CONFIG_INCLUDED', true);
+    }
+
+    $configuredPath = getenv('VEVIT_HOME_CONFIG_PATH');
+    $paths = [];
+    if (is_string($configuredPath) && $configuredPath !== '') $paths[] = $configuredPath;
+    $paths[] = '/etc/vevit/home.php';
+    $paths[] = dirname(__DIR__, 3) . '/vevit-private/home.php';
+    foreach ($paths as $path) {
+        if (!is_file($path)) continue;
+        $config = require $path;
+        return is_array($config) ? $config : [];
+    }
+    return [];
 }
 
 function vevitJsonHeaders(): void
