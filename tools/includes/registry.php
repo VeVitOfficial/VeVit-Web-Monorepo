@@ -177,10 +177,9 @@ function tool_policy_overrides(string $slug): array {
     $ffmpegTools = ['audio-convert', 'audio-trim-normalize', 'video-convert', 'video-compress', 'video-trim', 'video-extract-audio', 'video-to-gif', 'video-merge', 'video-target-size'];
     if (in_array($slug, $ffmpegTools, true)) {
         return [
-            'status' => 'limited', 'availability' => 'requires_browser_support',
-            'note' => 'Dočasně vypnuto: schválená CSP script-src self nepovoluje kompilaci WebAssembly bez wasm-unsafe-eval.',
-            'requirements' => ['browser_features' => ['WebAssembly and an approved isolated wasm CSP'], 'local_assets' => ['/tools/assets/js/lib/ffmpeg/index.js', '/tools/assets/js/lib/ffmpeg/ffmpeg-core.js', '/tools/assets/js/lib/ffmpeg/ffmpeg-core.wasm'], 'php_extensions' => [], 'external_services' => [], 'hosting_constraints' => ['disabled under the strict site-wide CSP'], 'verified' => true],
-            'privacy_note' => 'Nástroj je dočasně vypnutý; soubor se nikam neodesílá.',
+            'status' => 'working', 'availability' => 'requires_browser_support',
+            'requirements' => ['browser_features' => ['WebAssembly'], 'local_assets' => ['/tools/assets/js/lib/ffmpeg/index.js', '/tools/assets/js/lib/ffmpeg/ffmpeg-core.js', '/tools/assets/js/lib/ffmpeg/ffmpeg-core.wasm'], 'php_extensions' => [], 'external_services' => [], 'hosting_constraints' => ["scoped 'wasm-unsafe-eval' v CSP jen pro těchto 9 stránek (tools/.htaccess)"], 'verified' => true],
+            'privacy_note' => 'Zpracování probíhá lokálně v prohlížeči; soubor se nikam neodesílá.',
         ];
     }
     $overrides = [

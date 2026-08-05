@@ -184,6 +184,14 @@ rozhodnutí uživatele i bezpečnější výklad rozporů nalezených během rea
   skutečně načítané assety; právě tím byl nalezen starý Home Tailwind CDN,
   unpkg Lucide a odstraněná `/api/auth/me.php` cesta.
 
+- `'wasm-unsafe-eval'` je povoleno výhradně scoped v `tools/.htaccess` pomocí
+  `SetEnvIf` podmínky na REQUEST_URI pro 9 mediálních stránek využívajících
+  ffmpeg.wasm. Zbytek webu má strikní `script-src 'self'` bez výjimky.
+  Vědomé riziko: WASM sandbox nad rámec stávajícího JS sandboxu neposkytuje
+  útočníkovi s JS injection nic navíc. Izolovaná mediální subdoména (oddělený
+  origin s vlastní laxnější CSP) zůstává jako budoucí hardening item mimo
+  současný rozsah SSO implementace.
+
 ## Evidovaný technický dluh
 
 - Odstranit stovky inline `style=` atributů a následně odebrat

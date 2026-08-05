@@ -16,15 +16,14 @@
   if (window.FFmpegWrapper) return;
 
   var BASE = '/tools/assets/js/lib/ffmpeg/';
-  // Produkční CSP záměrně nepovoluje wasm-unsafe-eval. Zapnout lze až po
-  // schválení oddělené izolované politiky pro mediální sandbox.
-  var ENABLED = false;
+  // Povoleno pro mediální nástroje — tools/.htaccess přidává 'wasm-unsafe-eval'
+  // do script-src pouze pro těchto 9 stránek. Ostatní stránky mají strikní CSP.
+  var ENABLED = true;
   var loadPromise = null;
   var instance = null;
   var progressHandler = null;
 
   function ready(onProgress) {
-    if (!ENABLED) return Promise.reject(new Error('Mediální převod je dočasně nedostupný: přísná bezpečnostní politika nepovoluje spuštění WebAssembly.'));
     if (typeof onProgress === 'function') progressHandler = onProgress;
     if (loadPromise) return loadPromise;
     loadPromise = import(BASE + 'index.js').then(function (module) {
@@ -64,7 +63,7 @@
     remove: remove,
     run: run,
     fetchFile: fetchFile,
-    ENABLED: ENABLED,
+    ENABLED: true,
     LOADING_NOTE: 'Poprvé se načítá ffmpeg.wasm (~32 MB) — může trvat několik sekund. Další nástroje už balíček sdílejí. WASM je pomalejší než nativní ffmpeg; u velkých souborů počítejte s prodlevou.'
   };
 })();

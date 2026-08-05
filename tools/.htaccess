@@ -35,3 +35,14 @@ Options -Indexes
 
 # Výchozí stránka — statický index.html (landing), /tools/* a /api/* běží v PHP.
 DirectoryIndex index.html
+
+# Scoped wasm-unsafe-eval pro 9 mediálních nástrojů využívajících ffmpeg.wasm.
+# Rozšiřuje POUZE script-src — ostatní direktivy jsou shodné s root .htaccess.
+# Při změně základní CSP politiky v root .htaccess aktualizovat i tuto hodnotu.
+<IfModule mod_setenvif.c>
+  SetEnvIf Request_URI "^/tools/(audio-convert|audio-trim-normalize|video-convert|video-compress|video-trim|video-extract-audio|video-to-gif|video-merge|video-target-size)(/?|/\?.*)?$" FFMPEG_TOOL
+</IfModule>
+<IfModule mod_headers.c>
+  Header always unset Content-Security-Policy-Report-Only env=FFMPEG_TOOL
+  Header always set Content-Security-Policy-Report-Only "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https:; connect-src 'self'; frame-src 'self' blob:; worker-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'; report-uri /account/api/csp-report.php; report-to vevit-csp" env=FFMPEG_TOOL
+</IfModule>
