@@ -1,6 +1,6 @@
 # CSP report-only — podklad pro S-2
 
-Stav k 5. 8. 2026. Tento dokument odděluje lokálně ověřený kontrakt od
+Stav k 5. 8. 2026 03:07 CEST. Tento dokument odděluje lokálně ověřený kontrakt od
 produkčního report-only sběru. Enforce nebyl zapnut.
 
 ## Lokální ověření
@@ -13,37 +13,57 @@ produkčního report-only sběru. Enforce nebyl zapnut.
 - FFmpeg nástroje zůstávají fail-closed, protože Chromium pod striktním
   `script-src 'self'` blokuje WebAssembly kompilaci bez další CSP výjimky.
 
-## Produkční kontrola
+## Produkční sběr
+
+Sběr byl spuštěn 5. 8. 2026 v 03:05 CEST na aktivním WEDOS Apache/PHP stacku.
+Nejdřívější datum S-2 je 12. 8. 2026 po 03:05 CEST; interval zahrnuje víkend
+8.–9. 8. Enforce zůstává vypnutý.
 
 | Cesta | HTTP | CSP report-only | CSP enforce |
 |---|---:|---|---|
-| `/` | 301 | ne | ne |
-| `/account/` | 302 | ne | ne |
-| `/store/` | 500 | ne | ne |
-| `/tools/` | 200 | ne | ne |
-| `/edu/` | 200 | ne | ne |
-| `/home/` | 200 | ne | ne |
+| `/account/login` | 200 | ano | ne |
+| `/store/` | 200 | ano | ne |
+| `/tools/` | 200 | ano | ne |
+| `/edu/` | 200 | ano | ne |
+| `/home/` | 200 | ano | ne |
 
-Produkce zatím neposílá report-only politiku, takže počet skutečných CSP
-violations je **nezměřený**, nikoli nula. Endpoint nemůže dodat reprezentativní
-data, dokud nebude nasazen Nginx include z `config/nginx/`.
+Collector je dostupný pouze pro POST, normalizuje URL bez query parametrů,
+deduplikuje podle `document-uri + blocked-uri + directive`, agreguje počty v
+denních souborech mimo webroot, limituje klienta na 120 reportů/minutu a drží
+14denní retenci. Produkční smoke jej každých 15 minut ověřuje zvláštním
+`/__csp_smoke__` záznamem, který se do vyhodnocení violations nezapočítá.
+
+Aktuální soubor byl po dvou záměrných shodných probech ověřen jako jediný
+agregovaný záznam; reprezentativní provozní počet zatím není k dispozici.
+
+### První syntetický průchod (03:09 CEST)
+
+Po odečtení smoke záznamu zachytil 11 unikátních violations / 12 výskytů:
+
+- Account: 8× vzdálený Google font, 1× Google Fonts stylesheet, 1× inline
+  script.
+- Store: 2× inline script.
+- Tools, Edu a Home: při prvním průchodu bez reportu.
+
+Příčinou byl produkční drift: Account a Store měly starší HTML/asset verze než
+autoritativní repo. Lokální fonty a aktuální externí JS byly nasazeny; opakovaný
+browser průchod už tyto zdroje nepřidal. Historické počty zůstávají v denním
+agregátu a při finálním vyhodnocení se označí jako opravené, nikoli smažou.
 
 ## Známé violations a blokery
 
 | Oblast | Zbývající violation | Blokuje S-2 |
 |---|---|---|
 | Lokální regresní sada | žádná reprodukovaná script/XSS violation | ne |
-| Produkční provoz | nezměřeno — report-only hlavička není nasazená | ano |
-| `/store/` | HTTP 500 před vyhodnocením CSP | ano, pro Store vzorek |
+| Produkční provoz | sedmidenní vzorek právě běží | ano, do 12. 8. 2026 |
+| `/store/` | obnoveno na HTTP 200, hlavička ověřena | ne |
 | Inline styly | povolené dokumentovanou výjimkou `style-src 'self' 'unsafe-inline'` | ne |
 | FFmpeg/WASM | funkce je fail-closed; zapnutí by vyžadovalo nepovolenou CSP výjimku nebo izolovaný origin | ne pro SSO |
-| Stripe webhook secret | dříve exponovaný signing secret čeká na samostatnou výměnu | bezpečnostní release blocker, ne CSP violation |
+| Stripe webhook | secret vyměněn, testovací event doručen 200 | ne |
 
 ## Podmínky pro S-2
 
-1. Nasadit aktuální Nginx routing a report-only include bez enforce.
-2. Opravit produkční HTTP 500 na `/store/`.
-3. Sbírat reporty nejméně sedm dní na všech pěti aplikacích.
-4. Roztřídit každý report podle directive, URL a zdroje; odstranit skutečné
+1. Dokončit nejméně sedm dní sběru na všech pěti aplikacích.
+2. Roztřídit každý report podle directive, URL a zdroje; odstranit skutečné
    violations bez rozšíření `script-src`.
-5. Teprve potom požádat o S-2 a přepnout report-only na enforce.
+3. Teprve potom požádat o S-2 a přepnout report-only na enforce.

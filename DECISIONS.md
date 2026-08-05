@@ -157,6 +157,18 @@ rozhodnutí uživatele i bezpečnější výklad rozporů nalezených během rea
   rotován s hodinovým překryvem, nová hodnota byla předána do Edge secrets bez
   výpisu a `stripe-worker` po změně vrátil HTTP 200. Dočasné browser artefakty
   se po dokončení provozních zásahů bezpečně odstraní.
+- Produkční stack je WEDOS Apache/PHP, přestože repo obsahuje cílovou Nginx
+  konfiguraci. Report-only CSP proto byla nasazena ekvivalentním kořenovým
+  `.htaccess`; Nginx include zůstává verzovaným kontraktem pro budoucí přesun.
+  S-2 se tím nemění a enforce nebyl zapnut.
+- CSP collector nepoužívá veřejný log. Denně agreguje normalizované reporty v
+  adresáři mimo webroot s právy `0700`, soubory mají `0600`, klíčem deduplikace
+  je document + blocked URI + directive, klient má limit 120 reportů/minutu a
+  retence je 14 dní. Produkční smoke kontroluje endpoint každých 15 minut.
+- První CSP vzorek odhalil, že produkční Account a Store byly starší než
+  autoritativní repo. Nasazení aktuálního HTML, JS a lokálních fontů odstranilo
+  Google Fonts i inline-script reporty. Produkční drift se proto považuje za
+  samostatnou třídu rizika a smoke ověřuje vedle HTTP stavu také CSP hlavičku.
 
 ## Evidovaný technický dluh
 

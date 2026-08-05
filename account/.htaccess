@@ -8,6 +8,8 @@ DirectoryIndex index.php
 # Keep public login URLs clean and run account entry requests through PHP.
 RewriteRule ^login/?$ login.html [L]
 RewriteRule ^onboarding/?$ onboarding.php [L]
+# Reporting endpoint musí obejít Account front controller.
+RewriteRule ^api/csp-report\.php$ - [L]
 # V monorepu tento .htaccess leží pod /account/ — Apache předává URL bez prefixu /account/
 # Proto ^account(/.*)?$ → stačí ^(/.*)?$ nebo prázdné pravidlo.
 RewriteRule ^(/.*)?$ index.php [L,QSA]

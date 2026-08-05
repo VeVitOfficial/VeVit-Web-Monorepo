@@ -30,7 +30,10 @@ if ($reports === []) {
     http_response_code(400);
     exit;
 }
-foreach ($reports as $report) {
-    error_log('[csp-report] ' . json_encode($report, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
+// Agregace ukládá pouze normalizovaná pole bez query parametrů.
+$clientAddress = (string) ($_SERVER['REMOTE_ADDR'] ?? 'unknown');
+if (!csp_report_store($reports, csp_report_storage_dir(), $clientAddress)) {
+    http_response_code(429);
+    exit;
 }
 http_response_code(204);

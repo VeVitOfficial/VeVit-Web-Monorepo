@@ -26,4 +26,26 @@ $modern = csp_report_parse(json_encode([['type' => 'csp-violation', 'body' => ['
 if (count($modern) !== 1 || $modern[0]['blocked_uri'] !== 'inline') throw new RuntimeException('Reporting API formát selhal.');
 if (csp_report_parse('{invalid') !== []) throw new RuntimeException('Neplatné JSON musí failovat zavřeně.');
 
+$storage = sys_get_temp_dir() . '/vevit-csp-test-' . bin2hex(random_bytes(6));
+mkdir($storage, 0700, true);
+$now = new DateTimeImmutable('2026-08-05T10:00:00+00:00');
+if (!csp_report_store($reports, $storage, '198.51.100.7', $now)) {
+    throw new RuntimeException('CSP report se neuložil.');
+}
+if (!csp_report_store($reports, $storage, '198.51.100.7', $now)) {
+    throw new RuntimeException('Duplicitní CSP report se neagregoval.');
+}
+$daily = json_decode((string) file_get_contents($storage . '/violations-2026-08-05.json'), true, 32, JSON_THROW_ON_ERROR);
+if (count($daily) !== 1 || (int) (reset($daily)['count'] ?? 0) !== 2) {
+    throw new RuntimeException('Deduplikace CSP reportu nefunguje.');
+}
+file_put_contents($storage . '/violations-2026-07-01.json', '{}');
+touch($storage . '/violations-2026-07-01.json', $now->getTimestamp() - 20 * 86400);
+csp_report_rotate($storage, $now, 14);
+if (is_file($storage . '/violations-2026-07-01.json')) {
+    throw new RuntimeException('Rotace CSP reportů nefunguje.');
+}
+foreach (glob($storage . '/*') ?: [] as $file) unlink($file);
+rmdir($storage);
+
 fwrite(STDOUT, "csp-report-test: PASS\n");

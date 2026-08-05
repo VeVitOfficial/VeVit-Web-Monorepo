@@ -24,6 +24,10 @@ ServerSignature Off
     Header always set X-Content-Type-Options nosniff
     Header always set X-Frame-Options SAMEORIGIN
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(self)"
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+    Header always set Reporting-Endpoints "vevit-csp=\"https://vevit.cz/account/api/csp-report.php\""
+    Header always set Content-Security-Policy-Report-Only "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https:; connect-src 'self'; frame-src 'self' blob:; worker-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'; report-uri /account/api/csp-report.php; report-to vevit-csp"
 </IfModule>
 
 DirectoryIndex index.html index.php
