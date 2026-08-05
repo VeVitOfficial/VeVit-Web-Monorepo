@@ -211,3 +211,8 @@ rozhodnutí uživatele i bezpečnější výklad rozporů nalezených během rea
   definované PostgREST/RPC operace. Veřejný katalog nyní dočasně agreguje nejvýše
   1000 produktů v PHP; před růstem katalogu se stránkování a řazení přesune na
   databázovou RPC funkci.
+- **Rate limiting na sessions-revoke.php** — backlog pro Task 12.
+  Endpoint vyžaduje platnou session + Origin check (beginJson), takže
+  zneužití bez platného cookie je nemožné. Burst ochrana (např. 10 req/min
+  per user_id) se přidá v jednom uceleném průchodu přes všechny autentizační
+  endpointy v Task 12, nikoli ad-hoc po jednom.

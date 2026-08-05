@@ -188,15 +188,49 @@ function getCurrentUser(array $cfg): ?array {
 }
 
 /**
- * Require an authenticated user or terminate with a JSON 401 response.
+ * Clears both session cookies without touching the DB.
+ * Called on 401 to remove stale browser cookie; NOT called on 503
+ * so a DB outage doesn't log the user out.
+ */
+function _auth_clear_stale_cookies(array $cfg): void {
+  $past = time() - 3600;
+  @_auth_set_cookie(VV_COOKIE,   '', _auth_cookie_options($cfg, $past));
+  @_auth_set_cookie(COOKIE_NAME, '', _auth_cookie_options($cfg, $past));
+  unset($_COOKIE[VV_COOKIE], $_COOKIE[COOKIE_NAME]);
+}
+
+/**
+ * Resolve session state without side-effects or exit().
+ * Returns ['code' => 200, 'user' => array] | ['code' => 401] | ['code' => 503].
+ * Testable via DB adapters; requireAuth() is the exit()-calling wrapper.
+ */
+function _auth_require_result(array $cfg): array {
+  try {
+    $user = vv_session_validate($cfg);
+  } catch (VvDbException) {
+    return ['code' => 503];
+  }
+  if ($user === null) {
+    return ['code' => 401];
+  }
+  return ['code' => 200, 'user' => $user];
+}
+
+/**
+ * Require an authenticated user or terminate.
+ * 401 on unauthenticated/revoked/blocked (stale cookies cleared).
+ * 503 on DB/network error (cookies NOT cleared — outage must not log user out).
  */
 function requireAuth(array $cfg): array {
-  $user = getCurrentUser($cfg);
-  if ($user === null) {
+  $result = _auth_require_result($cfg);
+  if ($result['code'] === 503) {
+    jsonErr('Service temporarily unavailable', 503);
+  }
+  if ($result['code'] === 401) {
+    _auth_clear_stale_cookies($cfg);
     jsonErr('Unauthorized', 401);
   }
-
-  return $user;
+  return $result['user'];
 }
 
 /**
