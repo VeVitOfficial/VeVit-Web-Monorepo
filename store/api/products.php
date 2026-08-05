@@ -16,6 +16,54 @@ $page = isset($_GET['page']) ? max(1, (int) $_GET['page']) : 1;
 // per_page volitelné (homepage řádky chtějí méně), s bezpečným rozsahem
 $perPage = isset($_GET['per_page']) ? max(1, min(48, (int) $_GET['per_page'])) : 12;
 
+if ($storeDataApi instanceof StoreDataApi) {
+    $products = $storeDataApi->select('store_products', [
+        'select' => 'id,category_id,name,slug,description,short_desc,price,sale_price,type,stock,images,brand,created_at,featured,is_active,store_categories(name,slug)',
+        'is_active' => 'eq.true',
+        'limit' => '1000',
+    ]);
+    $categorySlugs = array_values(array_filter(array_map('trim', explode(',', $category))));
+    $products = array_values(array_filter($products, static function (array $product) use ($categorySlugs, $type, $brand, $deals, $search, $maxPrice): bool {
+        $productCategory = $product['store_categories']['slug'] ?? null;
+        $effectivePrice = $product['sale_price'] !== null ? (float) $product['sale_price'] : (float) $product['price'];
+        if ($categorySlugs !== [] && !in_array($productCategory, $categorySlugs, true)) return false;
+        if ($type !== '' && in_array($type, ['physical', 'digital'], true) && ($product['type'] ?? null) !== $type) return false;
+        if ($brand !== '' && ($product['brand'] ?? null) !== $brand) return false;
+        if ($deals && ($product['sale_price'] === null || (float) $product['sale_price'] <= 0)) return false;
+        if ($effectivePrice > $maxPrice) return false;
+        if ($search !== '') {
+            $haystack = mb_strtolower((string) ($product['name'] ?? '') . ' ' . (string) ($product['short_desc'] ?? ''));
+            if (!str_contains($haystack, mb_strtolower($search))) return false;
+        }
+        return true;
+    }));
+    usort($products, static function (array $left, array $right) use ($sort): int {
+        $leftPrice = $left['sale_price'] !== null ? (float) $left['sale_price'] : (float) $left['price'];
+        $rightPrice = $right['sale_price'] !== null ? (float) $right['sale_price'] : (float) $right['price'];
+        return match ($sort) {
+            'newest' => strcmp((string) $right['created_at'], (string) $left['created_at']),
+            'cheapest' => $leftPrice <=> $rightPrice,
+            'expensive' => $rightPrice <=> $leftPrice,
+            default => ((int) ($right['featured'] ?? 0) <=> (int) ($left['featured'] ?? 0))
+                ?: strcmp((string) $right['created_at'], (string) $left['created_at']),
+        };
+    });
+    $total = count($products);
+    $totalPages = max(1, (int) ceil($total / $perPage));
+    $page = min($page, $totalPages);
+    $products = array_slice($products, ($page - 1) * $perPage, $perPage);
+    foreach ($products as &$product) {
+        $product['featured'] = (int) ($product['featured'] ?? 0);
+        $product['is_active'] = (int) ($product['is_active'] ?? 0);
+        $product['category_name'] = $product['store_categories']['name'] ?? null;
+        $product['category_slug'] = $product['store_categories']['slug'] ?? null;
+        unset($product['store_categories']);
+    }
+    unset($product);
+    echo json_encode(['products' => $products, 'page' => $page, 'total_pages' => $totalPages, 'total' => $total]);
+    exit;
+}
+
 $where = ['p.is_active = TRUE'];
 $params = [];
 

@@ -52,8 +52,18 @@ function store_load_config(?array $source = null): array
         throw new StoreConfigurationException('Production APP_URL must use HTTPS.');
     }
 
+    $supabaseUrl = rtrim(trim((string) $read('SUPABASE_URL')), '/');
+    $supabaseSecretKey = trim((string) $read('SUPABASE_SECRET_KEY'));
+    $databaseMode = strtolower(trim((string) $read(
+        'STORE_DATABASE_MODE',
+        $supabaseUrl !== '' && $supabaseSecretKey !== '' ? 'postgrest' : 'pdo'
+    )));
+    if (!in_array($databaseMode, ['pdo', 'postgrest'], true)) {
+        throw new StoreConfigurationException('STORE_DATABASE_MODE is invalid.');
+    }
+
     $dsn = trim((string) $read('DB_DSN'));
-    if ($dsn === '') {
+    if ($databaseMode === 'pdo' && $dsn === '') {
         $legacyHost = trim((string) $read('DB_HOST'));
         $legacyPort = trim((string) $read('DB_PORT', '5432'));
         $legacyName = trim((string) $read('DB_NAME'));
@@ -61,14 +71,21 @@ function store_load_config(?array $source = null): array
             $dsn = sprintf('pgsql:host=%s;port=%s;dbname=%s', $legacyHost, $legacyPort, $legacyName);
         }
     }
-    if (!str_starts_with($dsn, 'pgsql:')) {
+    if ($databaseMode === 'pdo' && !str_starts_with($dsn, 'pgsql:')) {
         throw new StoreConfigurationException('A PostgreSQL DB_DSN is required.');
     }
 
     $dbUser = (string) $read('DB_USER');
     $dbPass = (string) $read('DB_PASS');
-    if ($dbUser === '' || $dbPass === '') {
+    if ($databaseMode === 'pdo' && ($dbUser === '' || $dbPass === '')) {
         throw new StoreConfigurationException('Database credentials are required.');
+    }
+    if ($databaseMode === 'postgrest') {
+        if (filter_var($supabaseUrl, FILTER_VALIDATE_URL) === false
+            || !str_starts_with($supabaseUrl, 'https://')
+            || !str_starts_with($supabaseSecretKey, 'sb_secret_')) {
+            throw new StoreConfigurationException('A valid Supabase URL and secret key are required for PostgREST.');
+        }
     }
 
     $storagePath = rtrim((string) $read('APP_STORAGE_PATH'), DIRECTORY_SEPARATOR);
@@ -147,7 +164,14 @@ function store_load_config(?array $source = null): array
         'app_env' => $appEnv,
         'app_url' => $appUrl,
         'storage_path' => $storageRealPath,
-        'database' => ['dsn' => $dsn, 'user' => $dbUser, 'pass' => $dbPass],
+        'database' => [
+            'mode' => $databaseMode,
+            'dsn' => $dsn,
+            'user' => $dbUser,
+            'pass' => $dbPass,
+            'supabase_url' => $supabaseUrl,
+            'supabase_secret_key' => $supabaseSecretKey,
+        ],
         'session' => [
             'name' => $sessionName,
             'path' => '/',

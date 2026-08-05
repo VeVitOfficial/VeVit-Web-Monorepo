@@ -7,6 +7,13 @@ header('Access-Control-Allow-Methods: GET');
 
 // Naposledy prohlížené produkty aktuálního (přihlášeného) uživatele.
 // Hostovi vrátíme prázdné — sledování zobrazení se děje jen pro přihlášené.
+if ($storeDataApi instanceof StoreDataApi) {
+    // Dokud není Store napojený na centrální server-side identitu, nesmí z
+    // legacy cookie odvozovat vlastníka historie. Bez identity fail-closed.
+    echo json_encode(['products' => []]);
+    exit;
+}
+
 $user = getCurrentUser();
 if (!$user) {
     echo json_encode(['products' => []]);

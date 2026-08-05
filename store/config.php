@@ -4,10 +4,23 @@ declare(strict_types=1);
 
 // Configuration values live outside version control in config_secret.php.
 require_once __DIR__ . '/lib/bootstrap.php';
+require_once __DIR__ . '/lib/data-api.php';
 
-$secretConfigPath = __DIR__ . '/config_secret.php';
-if (!is_file($secretConfigPath) || !is_readable($secretConfigPath)) {
-    error_log('[bootstrap] Missing or unreadable config_secret.php');
+$configuredPath = getenv('VEVIT_STORE_CONFIG');
+$secretConfigCandidates = array_filter([
+    is_string($configuredPath) && $configuredPath !== '' ? $configuredPath : null,
+    dirname(__DIR__, 2) . '/config/store.php',
+    __DIR__ . '/config_secret.php', // Legacy rollback only; remove after rollout.
+]);
+$secretConfigPath = null;
+foreach ($secretConfigCandidates as $candidate) {
+    if (is_file($candidate) && is_readable($candidate)) {
+        $secretConfigPath = $candidate;
+        break;
+    }
+}
+if ($secretConfigPath === null) {
+    error_log('[bootstrap] Missing or unreadable Store server configuration');
     http_response_code(500);
     exit('Služba je dočasně nedostupná.');
 }
@@ -16,7 +29,16 @@ require_once $secretConfigPath;
 
 try {
     $storeConfig = store_bootstrap();
-    $pdo = store_connect_database($storeConfig);
+    $pdo = null;
+    $storeDataApi = null;
+    if ($storeConfig['database']['mode'] === 'postgrest') {
+        $storeDataApi = new StoreDataApi(
+            $storeConfig['database']['supabase_url'],
+            $storeConfig['database']['supabase_secret_key'],
+        );
+    } else {
+        $pdo = store_connect_database($storeConfig);
+    }
 } catch (Throwable $exception) {
     error_log(sprintf('[bootstrap] %s', $exception->getMessage()));
     http_response_code(500);

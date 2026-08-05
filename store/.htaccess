@@ -36,7 +36,7 @@ ServerSignature Off
     Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
 </IfModule>
 
-# Keep these at or above CASE_ATTACHMENT_MAX_BYTES (default 10 MiB). Hosts that
-# disallow php_value must configure the equivalent limits in their PHP panel.
-php_value upload_max_filesize 10M
-php_value post_max_size 11M
+# Keep upload_max_filesize and post_max_size at or above
+# CASE_ATTACHMENT_MAX_BYTES (default 10 MiB) in the WEDOS PHP settings. Do not
+# use php_value here: PHP running through CGI/FPM rejects it with HTTP 500 before
+# either static files or PHP entrypoints can be served.
