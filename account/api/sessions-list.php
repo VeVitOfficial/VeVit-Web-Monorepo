@@ -6,25 +6,35 @@ $cfg  = auth_load_config();
 beginJson($cfg);
 $user = requireAuth($cfg);
 
-$currentToken = $_COOKIE[COOKIE_NAME] ?? '';
-$now = gmdate('Y-m-d\TH:i:s\Z');
+// Detekce aktuální relace přes token_hash — plaintext token se nikdy neodesílá do klienta.
+$currentHash = '';
+$newTok = $_COOKIE[VV_COOKIE] ?? null;
+$legTok = $_COOKIE[COOKIE_NAME] ?? null;
+if (is_string($newTok) && preg_match('/\A[0-9a-f]{64}\z/iD', $newTok) === 1) {
+  $currentHash = hash('sha256', $newTok);
+} elseif (is_string($legTok) && preg_match('/\A[0-9a-f]{64}\z/iD', $legTok) === 1) {
+  $currentHash = hash('sha256', $legTok);
+}
 
+$now = gmdate('Y-m-d\TH:i:s\Z');
 $res = sb_get($cfg, 'sessions',
   ['user_id' => $user['id']],
-  'id,session_token,created_at,expires_at,ip_address,user_agent,last_seen_at'
+  'id,token_hash,created_at,expires_at,ip_address,user_agent,last_seen_at,revoked_at'
 );
 if (isset($res['error'])) jsonErr('Chyba načítání relací.', 500);
 
-$rows = array_filter($res['data'] ?? [], fn($s) => $s['expires_at'] > $now);
-$rows = array_map(function ($s) use ($currentToken) {
+$rows = array_filter($res['data'] ?? [], fn($s) =>
+  $s['expires_at'] > $now && ($s['revoked_at'] ?? null) === null
+);
+$rows = array_map(function ($s) use ($currentHash) {
   return [
-    'id'         => $s['id'],
-    'created_at' => $s['created_at'],
-    'expires_at' => $s['expires_at'],
-    'last_seen_at' => $s['last_seen_at'] ?? $s['created_at'],
-    'ip_address' => session_mask_ip((string) ($s['ip_address'] ?? '')),
-    'device' => session_device_label((string) ($s['user_agent'] ?? '')),
-    'is_current' => $s['session_token'] === $currentToken,
+    'id'          => $s['id'],
+    'created_at'  => $s['created_at'],
+    'expires_at'  => $s['expires_at'],
+    'last_seen_at'=> $s['last_seen_at'] ?? $s['created_at'],
+    'ip_address'  => session_mask_ip((string) ($s['ip_address'] ?? '')),
+    'device'      => session_device_label((string) ($s['user_agent'] ?? '')),
+    'is_current'  => $currentHash !== '' && hash_equals($currentHash, (string) ($s['token_hash'] ?? '')),
   ];
 }, array_values($rows));
 

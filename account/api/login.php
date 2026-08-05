@@ -166,7 +166,8 @@ function _login_run(array $cfg, ?string $rawBody = null): never {
   }
 
   $allowedKeys = array_flip(explode(',', $safeColumns));
-  jsonOk(['user' => array_intersect_key($profile, $allowedKeys)]);
+  $returnTo = vv_safe_return_to($body['return_to'] ?? null, '/account');
+  jsonOk(['user' => array_intersect_key($profile, $allowedKeys), 'redirect' => $returnTo]);
 }
 
 if (!defined('LOGIN_ENDPOINT_NO_MAIN')) {

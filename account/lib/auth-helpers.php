@@ -2,9 +2,12 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/supabase-rest.php';
+require_once dirname(__DIR__, 2) . '/shared/auth/session.php';
 
+// COOKIE_NAME zachován pro zpětnou kompatibilitu (dual-read do S-3).
+// Nové session cookies se vydávají pod VV_COOKIE (__Host-vvsession).
 const COOKIE_NAME  = '__vvsession';
-const SESSION_DAYS = 30;
+const SESSION_DAYS = 99;
 const COOKIE_PATH  = '/';
 
 /**
@@ -174,81 +177,14 @@ function _auth_filtered_get(
 
 /**
  * Read and validate the current session, then return only non-secret user data.
+ * Delegates to the shared auth layer (shared/auth/session.php).
  */
 function getCurrentUser(array $cfg): ?array {
-  $token = $_COOKIE[COOKIE_NAME] ?? null;
-  if (
-    !is_string($token)
-    || preg_match('/\A[0-9a-f]{64}\z/iD', $token) !== 1
-  ) {
+  try {
+    return vv_session_validate($cfg);
+  } catch (VvDbException) {
     return null;
   }
-
-  $session = _auth_filtered_get(
-    $cfg,
-    'sessions',
-    [
-      ['session_token', 'eq', $token],
-      ['expires_at', 'gt', gmdate('Y-m-d\TH:i:s\Z')],
-    ],
-    'user_id,remember',
-    1
-  );
-  $rows = $session['data'] ?? null;
-  if (
-    !is_array($rows)
-    || !isset($rows[0])
-    || !is_array($rows[0])
-    || !isset($rows[0]['user_id'])
-    || !is_string($rows[0]['user_id'])
-    || $rows[0]['user_id'] === ''
-  ) {
-    return null;
-  }
-
-  $safeColumns = implode(',', [
-    'id',
-    'email',
-    'nickname',
-    'full_name',
-    'tier',
-    'tier_expires',
-    'tier_billing',
-    'tier_cancel_at',
-    'role',
-    'avatar_url',
-    'phone',
-    'location',
-    'birth_date',
-    'bio',
-    'level',
-    'xp',
-    'created_at',
-    'company_name',
-    'ico',
-    'dic',
-    'billing_address',
-    'language',
-    'two_factor_enabled',
-  ]);
-  $result = _auth_find_one(
-    $cfg,
-    'users',
-    ['id' => $rows[0]['user_id']],
-    $safeColumns
-  );
-  $user = $result['data'] ?? null;
-  if (!is_array($user)) {
-    return null;
-  }
-
-  $remember = $rows[0]['remember'] ?? false;
-  if (!is_bool($remember)) {
-    jsonErr('Unable to renew session', 500);
-  }
-
-  renewSession($cfg, $token, $remember);
-  return $user;
 }
 
 /**
@@ -359,13 +295,12 @@ function _auth_is_https(): bool {
  * }
  */
 function _auth_cookie_options(array $cfg, int $expires): array {
-  $domain = $cfg['COOKIE_DOMAIN'] ?? '';
-
+  // __Host- prefix vyžaduje: bez Domain, path=/, Secure=true
   return [
-    'expires' => $expires,
-    'path' => COOKIE_PATH,
-    'domain' => is_string($domain) ? $domain : '',
-    'secure' => true,
+    'expires'  => $expires,
+    'path'     => COOKIE_PATH,
+    'domain'   => '',
+    'secure'   => true,
     'httponly' => true,
     'samesite' => 'Lax',
   ];
@@ -381,9 +316,11 @@ function _auth_set_session_cookie(
   bool $remember,
   int $now
 ): bool {
+  // Vydáváme novou __Host-vvsession. Stará __vvsession se nevymazává zde
+  // (existující relace ji mohou ještě číst přes dual-read do S-3).
   $expires = $remember ? $now + (SESSION_DAYS * 86400) : 0;
   return !headers_sent()
-    && _auth_set_cookie(COOKIE_NAME, $token, _auth_cookie_options($cfg, $expires));
+    && _auth_set_cookie(VV_COOKIE, $token, _auth_cookie_options($cfg, $expires));
 }
 
 /**
@@ -398,13 +335,14 @@ function createSession(array $cfg, string $userId, bool $remember = false): stri
   $now = time();
   $result = _auth_insert($cfg, 'sessions', [
     'session_token' => $token,
-    'user_id' => $userId,
-    'remember' => $remember,
-    'expires_at' => _auth_session_expires_at($now),
-    'created_at' => gmdate('Y-m-d\TH:i:s\Z', $now),
-    'last_seen_at' => gmdate('Y-m-d\TH:i:s\Z', $now),
-    'ip_address' => clientIp($cfg),
-    'user_agent' => substr((string) ($_SERVER['HTTP_USER_AGENT'] ?? ''), 0, 240),
+    'token_hash'    => hash('sha256', $token),
+    'user_id'       => $userId,
+    'remember'      => $remember,
+    'expires_at'    => _auth_session_expires_at($now),
+    'created_at'    => gmdate('Y-m-d\TH:i:s\Z', $now),
+    'last_seen_at'  => gmdate('Y-m-d\TH:i:s\Z', $now),
+    'ip_address'    => clientIp($cfg),
+    'user_agent'    => substr((string) ($_SERVER['HTTP_USER_AGENT'] ?? ''), 0, 240),
   ]);
   $inserted = $result['data'] ?? null;
   if (
@@ -427,45 +365,43 @@ function createSession(array $cfg, string $userId, bool $remember = false): stri
 }
 
 /**
- * Extend a verified server session and reset its browser cookie lifetime.
+ * Update last_seen_at — nevystavuje novou cookie ani neposouvá expires_at.
+ * Expiraci řídí výhradně server (fixní od okamžiku vytvoření; viz DECISIONS.md).
+ * Sdílená vrstva volá _vv_touch_session() přímo; tato funkce zůstává
+ * pro zpětnou kompatibilitu s endpointy, které ji ještě volají explicitně.
  */
 function renewSession(array $cfg, string $token, bool $remember): void {
-  if (!_auth_is_https()) {
-    jsonErr('Secure connection required', 500);
-  }
-
   $now = time();
-  $result = _auth_update($cfg, 'sessions', ['session_token' => $token], [
-    'expires_at' => _auth_session_expires_at($now),
+  _auth_update($cfg, 'sessions', ['session_token' => $token], [
     'last_seen_at' => gmdate('Y-m-d\TH:i:s\Z', $now),
   ]);
-  if (isset($result['error']) || !_auth_set_session_cookie($cfg, $token, $remember, $now)) {
-    jsonErr('Unable to renew session', 500);
-  }
 }
 
 /**
- * Delete the current DB session and expire the matching browser cookie.
+ * Soft-revoke the current DB session and expire both browser cookies.
+ * Soft revoke (revoked_at) zachová záznam pro audit; fyzické mazání má cleanup cron.
  */
 function destroySession(array $cfg): void {
-  $token = $_COOKIE[COOKIE_NAME] ?? null;
-  $deleted = true;
-  if (
-    is_string($token)
-    && preg_match('/\A[0-9a-f]{64}\z/iD', $token) === 1
-  ) {
-    $deleted = _auth_delete($cfg, 'sessions', ['session_token' => $token]);
+  $newToken = $_COOKIE[VV_COOKIE] ?? null;
+  $legToken = $_COOKIE[COOKIE_NAME] ?? null;
+
+  $revoked = true;
+  foreach ([$newToken, $legToken] as $tok) {
+    if (!is_string($tok) || preg_match('/\A[0-9a-f]{64}\z/iD', $tok) !== 1) continue;
+    // Soft revoke podle tokenu (plaintext ještě existuje do S-3)
+    $result = _auth_update($cfg, 'sessions', ['session_token' => $tok], [
+      'revoked_at'     => gmdate('Y-m-d\TH:i:s\Z'),
+      'revoked_reason' => 'logout',
+    ]);
+    if (isset($result['error'])) $revoked = false;
   }
 
-  // Always attempt the cookie expiry, even when DB deletion failed.
-  $expired = @_auth_set_cookie(
-    COOKIE_NAME,
-    '',
-    _auth_cookie_options($cfg, time() - 3600)
-  );
-  unset($_COOKIE[COOKIE_NAME]);
+  $past = time() - 3600;
+  @_auth_set_cookie(VV_COOKIE,    '', _auth_cookie_options($cfg, $past));
+  @_auth_set_cookie(COOKIE_NAME,  '', _auth_cookie_options($cfg, $past));
+  unset($_COOKIE[VV_COOKIE], $_COOKIE[COOKIE_NAME]);
 
-  if (!$deleted || !$expired) {
+  if (!$revoked) {
     jsonErr('Unable to end session', 500);
   }
 }
@@ -740,6 +676,28 @@ function clientIp(array $cfg): string {
 
   // A chain containing only configured proxies has no unambiguous client.
   return $remote;
+}
+
+/**
+ * Vrátí sanitizovanou same-origin URL pro přesměrování po přihlášení,
+ * nebo výchozí cestu pokud vstup nesplňuje podmínky.
+ * Přijímá pouze cesty začínající /, bez //domain ani jiné schéma.
+ */
+function vv_safe_return_to(mixed $raw, string $default = '/account'): string {
+  if (!is_string($raw) || $raw === '') return $default;
+  $decoded = rawurldecode($raw);
+  if (
+    !str_starts_with($decoded, '/')
+    || str_starts_with($decoded, '//')
+    || preg_match('/\A[a-z][a-z0-9+\-.]*:/i', $decoded) === 1
+    || str_contains($decoded, "\n")
+    || str_contains($decoded, "\r")
+  ) {
+    return $default;
+  }
+  // Limituj délku a omez na ASCII tisknutelné znaky bez anglosaských null bytes
+  $clean = substr(preg_replace('/[^\x20-\x7E]/', '', $decoded) ?? $default, 0, 300);
+  return $clean !== '' ? $clean : $default;
 }
 
 /**
