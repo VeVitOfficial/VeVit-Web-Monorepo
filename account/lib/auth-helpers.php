@@ -678,41 +678,7 @@ function clientIp(array $cfg): string {
   return $remote;
 }
 
-/**
- * Vrátí sanitizovanou same-origin URL pro přesměrování po přihlášení,
- * nebo výchozí cestu pokud vstup nesplňuje podmínky.
- * Přijímá pouze cesty začínající /, bez //domain ani jiné schéma.
- */
-function vv_safe_return_to(mixed $raw, string $default = '/account'): string {
-  if (!is_string($raw) || $raw === '') return $default;
-  // parse_url() odmítne schéma, host i uživatele — zůstane jen path/query/fragment.
-  // Chrání před /\evil.com, //evil.com, javascript:, http: i percent-encoded variantami.
-  $parsed = parse_url($raw);
-  if (
-    !is_array($parsed)
-    || isset($parsed['scheme'])
-    || isset($parsed['host'])
-    || isset($parsed['user'])
-    || !isset($parsed['path'])
-    || !str_starts_with($parsed['path'], '/')
-  ) {
-    return $default;
-  }
-  // Dekóduj cestu a znovu ověř — chrání před /%2F%2Fevil.com a /\evil.com,
-  // které by prohlížeče normalizovaly na //evil.com nebo \\evil.com.
-  $decodedPath = rawurldecode($parsed['path']);
-  if (
-    str_starts_with($decodedPath, '//')
-    || str_contains($decodedPath, '\\')
-  ) {
-    return $default;
-  }
-  // Znovu sestavíme URL výhradně ze složek bez authority.
-  $url = $parsed['path'];
-  if (isset($parsed['query']))    $url .= '?' . $parsed['query'];
-  if (isset($parsed['fragment'])) $url .= '#' . $parsed['fragment'];
-  return substr($url, 0, 300);
-}
+// vv_safe_return_to() je definováno v shared/auth/session.php (načteno výše).
 
 /**
  * Decode a JSON object request body or terminate with a JSON 400 response.

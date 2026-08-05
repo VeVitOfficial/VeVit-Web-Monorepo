@@ -189,3 +189,37 @@ function vv_csrf_token(string $rawToken, array $cfg): string {
 function vv_csrf_verify(string $rawToken, string $submitted, array $cfg): bool {
     return hash_equals(vv_csrf_token($rawToken, $cfg), $submitted);
 }
+
+/**
+ * Vrátí sanitizovanou same-origin URL pro přesměrování po přihlášení,
+ * nebo výchozí cestu pokud vstup nesplňuje podmínky.
+ * Přijímá pouze cesty začínající /, bez //domain ani jiné schéma.
+ * Ochrana před: //evil.com, /\evil.com, javascript:, http:,
+ * /%2F%2Fevil.com (percent-encoded //), /%5C (percent-encoded \).
+ */
+function vv_safe_return_to(mixed $raw, string $default = '/account'): string {
+    if (!is_string($raw) || $raw === '') return $default;
+    $parsed = parse_url($raw);
+    if (
+        !is_array($parsed)
+        || isset($parsed['scheme'])
+        || isset($parsed['host'])
+        || isset($parsed['user'])
+        || !isset($parsed['path'])
+        || !str_starts_with($parsed['path'], '/')
+    ) {
+        return $default;
+    }
+    // Jeden rawurldecode odhalí /%2F%2F → // a /%5C → \ bez triple-encoding úniku.
+    $decodedPath = rawurldecode($parsed['path']);
+    if (
+        str_starts_with($decodedPath, '//')
+        || str_contains($decodedPath, '\\')
+    ) {
+        return $default;
+    }
+    $url = $parsed['path'];
+    if (isset($parsed['query']))    $url .= '?' . $parsed['query'];
+    if (isset($parsed['fragment'])) $url .= '#' . $parsed['fragment'];
+    return substr($url, 0, 300);
+}

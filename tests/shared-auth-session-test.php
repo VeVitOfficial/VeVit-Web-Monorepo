@@ -180,5 +180,30 @@ assert_test('new cookie takes priority over legacy', $u !== null && $u['id'] ===
 wire([active_session($tok, $uid)], [$uid => array_merge(active_user($uid), ['status' => 'deleted'])], $tok);
 assert_test('deleted user returns null', vv_session_validate($cfg) === null);
 
+// ── 17–24. vv_safe_return_to — open-redirect regrese ─────────────────────────
+// Pozitivní: normální cesta s query string projde beze změny.
+assert_test('safe_return_to valid path with query', vv_safe_return_to('/store/checkout?x=1') === '/store/checkout?x=1');
+
+// Protocol-relative: //evil.com musí být odmítnuto.
+assert_test('safe_return_to rejects //evil.com', vv_safe_return_to('//evil.com') === '/account');
+
+// Backslash bez lomítka: parse_url vrátí path == '\evil.com' (bez /), odmítne path check.
+assert_test('safe_return_to rejects \\evil.com', vv_safe_return_to('\evil.com') === '/account');
+
+// Backslash s lomítkem: parse_url vrátí path '/\evil.com', decodedPath obsahuje \, odmítne.
+assert_test('safe_return_to rejects /\\evil.com', vv_safe_return_to('/\\evil.com') === '/account');
+
+// Percent-encoded backslash /%5C: rawurldecode → \, odmítne.
+assert_test('safe_return_to rejects /%5Cevil.com', vv_safe_return_to('/%5Cevil.com') === '/account');
+
+// Percent-encoded // malá písmena /%2f%2f: rawurldecode → //, odmítne.
+assert_test('safe_return_to rejects /%2f%2fevil.com', vv_safe_return_to('/%2f%2fevil.com') === '/account');
+
+// Percent-encoded // velká písmena /%2F%2F: rawurldecode → //, odmítne.
+assert_test('safe_return_to rejects /%2F%2Fevil.com', vv_safe_return_to('/%2F%2Fevil.com') === '/account');
+
+// Mixed /%2F\ — buď // po decode, nebo \ v decoded path, odmítne.
+assert_test('safe_return_to rejects /%2F\\evil.com', vv_safe_return_to('/%2F\\evil.com') === '/account');
+
 printf("\nshared-auth-session-test: %s\n", $failures === 0 ? 'PASS' : "FAIL ($failures selhání)");
 exit($failures > 0 ? 1 : 0);
