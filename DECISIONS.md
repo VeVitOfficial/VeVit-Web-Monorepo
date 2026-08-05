@@ -114,6 +114,49 @@ rozhodnutí uživatele i bezpečnější výklad rozporů nalezených během rea
 - Původní moderní secret key `default` byl rovněž kompromitovaný zdrojovým
   bundlem. Po přechodu všech konzumentů na pojmenované klíče byl nevratně
   odstraněn; následné live testy Accountu, Home a tří Edge Functions prošly.
+- Store v původní inventuře chyběl, protože inventura chybně ztotožnila
+  „Supabase konzumenta“ pouze s voláním Data API a hledala legacy klíče nebo
+  `/rest/v1`. Store přitom používal přímé PostgreSQL PDO připojení k téže
+  Supabase databázi. Chybu navíc nezachytil žádný produkční smoke test. Nové
+  pravidlo proto inventarizuje jak HTTP klíče, tak DSN/databázové ovladače a
+  každých 15 minut ověřuje klíčovou cestu všech pěti aplikací.
+- Produkční Store 500 nebyl způsoben deaktivací legacy `service_role`.
+  Supabase API ani PostgreSQL log neobsahoval Store požadavek; WEDOS odmítal
+  celý adresář kvůli `php_value` v `.htaccess`. Po jeho odstranění PHP log
+  postupně doložil drift `APP_ENV=beta`, neplatné privátní úložiště, vypnutou
+  secure cookie a nakonec chybějící `pdo_pgsql`. WEDOS PHP 8.3 má ověřeně jen
+  PDO ovladače `mysql` a `sqlite` a nemá ani rozšíření `pgsql`.
+- Store má proto vlastní pojmenovaný Supabase secret key `store`. Produkční
+  konfigurace je v privátním WEDOS adresáři mimo `www` s právy `0600`; Data API
+  klient posílá klíč pouze jako `apikey`, nikdy jako Bearer. Dva přechodné
+  klíče vzniklé během bezpečného přenosu byly před použitím smazány; finální
+  klíč nebyl vypsán do terminálu ani Git historie.
+- P0 obnovovací řez převedl veřejná katalogová API Store (`products`,
+  `categories`, `brands`, `recent`) na PostgREST. Objednávkové, platební a
+  download operace s transakčními požadavky zůstávají do plného portu
+  fail-closed; bezpečnost jejich vlastnictví a atomických změn se nesmí
+  nahrazovat obecným SQL/RPC endpointem.
+- Původní Stripe snapshot destination mířila na kořen `https://store.vevit.cz`
+  a neměla před incidentním testem žádnou historii doručení. Byla opravena na
+  Edge Function `stripe-webhook` a zúžena na čtyři skutečně zpracovávané typy
+  událostí. Stripe delivery log proto neobsahoval žádný cizí ani podezřelý
+  požadavek v době expozice; první záznamy vznikly až naším testem.
+- Exponovaný `STRIPE_WEBHOOK_SECRET` byl nahrazen Stripe roll operací s
+  24hodinovým překryvem. Nový secret je pouze v Supabase Edge secrets a jeho
+  funkčnost byla ověřena reálným, Stripem podepsaným eventem s výsledkem
+  `200 Delivered / Recovered`; stará hodnota automaticky expiruje 6. 8. 2026.
+- Webhook nově atomicky claimuje `event.id`, kanonický objekt vždy znovu načte
+  ze Stripe a porovná status, uživatele, price, měnu a částku se serverovým
+  katalogem. Opakované eventy jsou idempotentní a nemapované jednorázové
+  faktury se bezpečně ignorují bez změny účtu.
+- Webhook nepoužívá projektový `STRIPE_SECRET_KEY`. Má samostatný restricted
+  `STRIPE_WEBHOOK_API_KEY` pouze se čtením Invoices, Subscriptions a Checkout
+  Sessions, takže případný únik nemůže vytvářet ani měnit Stripe objekty.
+- Během ověřování Stripe Dashboard zobrazil standardní testovací API key do
+  lokálního automatizačního artefaktu. Klíč byl preventivně ihned znovu
+  rotován s hodinovým překryvem, nová hodnota byla předána do Edge secrets bez
+  výpisu a `stripe-worker` po změně vrátil HTTP 200. Dočasné browser artefakty
+  se po dokončení provozních zásahů bezpečně odstraní.
 
 ## Evidovaný technický dluh
 
@@ -129,3 +172,8 @@ rozhodnutí uživatele i bezpečnější výklad rozporů nalezených během rea
 - Přechod Supabase Auth na asymetrické JWT signing keys je doporučený samostatný
   bezpečnostní krok. Není součástí této implementace a neovlivňuje vlastní
   opaque SSO session.
+- Dokončit port transakční Store vrstvy (checkout, objednávky, entitlementy,
+  download granty, reklamace a vratky) z přímého PDO PostgreSQL na úzce
+  definované PostgREST/RPC operace. Veřejný katalog nyní dočasně agreguje nejvýše
+  1000 produktů v PHP; před růstem katalogu se stránkování a řazení přesune na
+  databázovou RPC funkci.

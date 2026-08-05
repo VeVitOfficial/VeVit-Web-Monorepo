@@ -14,5 +14,8 @@ jobs:
           php-version: '8.2'
       - run: php scripts/secret-scan.php
       - run: php tests/supabase-key-contract-test.php
+      - run: php tests/store-postgrest-contract-test.php
+      - run: php tests/store-wedos-htaccess-test.php
+      - run: php tests/stripe-webhook-contract-test.php
       - run: php tests/security-preflight-static-test.php
       - run: php tests/csp-report-test.php
