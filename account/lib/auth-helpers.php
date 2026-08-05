@@ -685,19 +685,33 @@ function clientIp(array $cfg): string {
  */
 function vv_safe_return_to(mixed $raw, string $default = '/account'): string {
   if (!is_string($raw) || $raw === '') return $default;
-  $decoded = rawurldecode($raw);
+  // parse_url() odmítne schéma, host i uživatele — zůstane jen path/query/fragment.
+  // Chrání před /\evil.com, //evil.com, javascript:, http: i percent-encoded variantami.
+  $parsed = parse_url($raw);
   if (
-    !str_starts_with($decoded, '/')
-    || str_starts_with($decoded, '//')
-    || preg_match('/\A[a-z][a-z0-9+\-.]*:/i', $decoded) === 1
-    || str_contains($decoded, "\n")
-    || str_contains($decoded, "\r")
+    !is_array($parsed)
+    || isset($parsed['scheme'])
+    || isset($parsed['host'])
+    || isset($parsed['user'])
+    || !isset($parsed['path'])
+    || !str_starts_with($parsed['path'], '/')
   ) {
     return $default;
   }
-  // Limituj délku a omez na ASCII tisknutelné znaky bez anglosaských null bytes
-  $clean = substr(preg_replace('/[^\x20-\x7E]/', '', $decoded) ?? $default, 0, 300);
-  return $clean !== '' ? $clean : $default;
+  // Dekóduj cestu a znovu ověř — chrání před /%2F%2Fevil.com a /\evil.com,
+  // které by prohlížeče normalizovaly na //evil.com nebo \\evil.com.
+  $decodedPath = rawurldecode($parsed['path']);
+  if (
+    str_starts_with($decodedPath, '//')
+    || str_contains($decodedPath, '\\')
+  ) {
+    return $default;
+  }
+  // Znovu sestavíme URL výhradně ze složek bez authority.
+  $url = $parsed['path'];
+  if (isset($parsed['query']))    $url .= '?' . $parsed['query'];
+  if (isset($parsed['fragment'])) $url .= '#' . $parsed['fragment'];
+  return substr($url, 0, 300);
 }
 
 /**
