@@ -179,6 +179,10 @@ rozhodnutí uživatele i bezpečnější výklad rozporů nalezených během rea
 - Security Advisor hlásí u deny-all tabulek informační `RLS enabled no policy`.
   Tento INFO lint je očekávaný důsledek explicitně požadovaného modelu; žádná
   policy se nepřidává jen kvůli umlčení advisora.
+- Samotný HTTP 200 + přítomnost CSP-RO hlavičky nestačí jako důkaz produkční
+  shody s repem. Průběžný browserový monitoring proto kontroluje i konzoli a
+  skutečně načítané assety; právě tím byl nalezen starý Home Tailwind CDN,
+  unpkg Lucide a odstraněná `/api/auth/me.php` cesta.
 
 ## Evidovaný technický dluh
 

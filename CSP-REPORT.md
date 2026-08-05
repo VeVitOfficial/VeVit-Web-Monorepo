@@ -50,6 +50,21 @@ autoritativní repo. Lokální fonty a aktuální externí JS byly nasazeny; opa
 browser průchod už tyto zdroje nepřidal. Historické počty zůstávají v denním
 agregátu a při finálním vyhodnocení se označí jako opravené, nikoli smažou.
 
+### Průběžná kontrola (03:18 CEST)
+
+- Všech pět klíčových cest: HTTP 200, přesně jedna CSP-RO hlavička, žádná
+  enforce hlavička.
+- Collector: HTTP 204.
+- Browserový průchod odhalil další produkční drift pouze na Home:
+  `cdn.tailwindcss.com`, `unpkg.com/lucide@latest` a 404 z legacy
+  `/api/auth/me.php`.
+- Autoritativní repo už používá statický Tailwind, lokální Lucide a
+  `/account/api/me.php`; chybné legacy `home/api/user.php` bylo opraveno
+  test-first a `home/tests/account-sso-test.php` je zelený.
+- Produkční upload této Home opravy čeká na nové přihlášení k WEDOS/WebFTP;
+  předchozí session byla po práci bezpečně uzavřena a lokálně není uložené FTP
+  heslo. S-2 zůstává blokované, dokud po nasazení Home neproběhne nový průchod.
+
 ## Známé violations a blokery
 
 | Oblast | Zbývající violation | Blokuje S-2 |
@@ -57,6 +72,7 @@ agregátu a při finálním vyhodnocení se označí jako opravené, nikoli sma�
 | Lokální regresní sada | žádná reprodukovaná script/XSS violation | ne |
 | Produkční provoz | sedmidenní vzorek právě běží | ano, do 12. 8. 2026 |
 | `/store/` | obnoveno na HTTP 200, hlavička ověřena | ne |
+| `/home/` | starý Tailwind CDN, unpkg Lucide a legacy auth route | ano, čeká na produkční upload |
 | Inline styly | povolené dokumentovanou výjimkou `style-src 'self' 'unsafe-inline'` | ne |
 | FFmpeg/WASM | funkce je fail-closed; zapnutí by vyžadovalo nepovolenou CSP výjimku nebo izolovaný origin | ne pro SSO |
 | Stripe webhook | secret vyměněn, testovací event doručen 200 | ne |

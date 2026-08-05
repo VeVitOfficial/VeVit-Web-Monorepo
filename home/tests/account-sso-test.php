@@ -53,6 +53,7 @@ foreach (['document.cookie', 'localStorage', 'sessionStorage', '__vvsession', 'v
 $helper = is_file($root . '/lib/vevit-auth.php') ? (file_get_contents($root . '/lib/vevit-auth.php') ?: '') : '';
 $meEndpoint = is_file($root . '/api/auth/me.php') ? (file_get_contents($root . '/api/auth/me.php') ?: '') : '';
 $logoutEndpoint = is_file($root . '/api/auth/logout.php') ? (file_get_contents($root . '/api/auth/logout.php') ?: '') : '';
+$legacyUserEndpoint = is_file($root . '/api/user.php') ? (file_get_contents($root . '/api/user.php') ?: '') : '';
 sso_expect(str_contains($helper, "const VEVIT_SESSION_COOKIE = '__vvsession'"), 'Shared helper must use the central session cookie.');
 sso_expect(str_contains($helper, "getenv('VEVIT_HOME_CONFIG_PATH')"), 'Shared helper must support the server config path.');
 sso_expect(str_contains($helper, '/etc/vevit/home.php'), 'Shared helper must support config outside document root.');
@@ -63,6 +64,8 @@ sso_expect(str_contains($meEndpoint, 'requireVevitAuth($config)'), 'Local me end
 sso_expect(str_contains($logoutEndpoint, 'requireVevitAuth($config)'), 'Local logout endpoint must verify the central session server-side.');
 sso_expect(str_contains($logoutEndpoint, 'requireVevitCsrf($config)'), 'Local logout endpoint must enforce CSRF.');
 sso_expect(str_contains($logoutEndpoint, 'logoutVevitSession($config)'), 'Local logout endpoint must invalidate the central session.');
+sso_expect(str_contains($legacyUserEndpoint, "'me_url' => '/account/api/me.php'"), 'Legacy user endpoint must point to the central Account me route.');
+sso_expect(!str_contains($legacyUserEndpoint, '/api/auth/me.php'), 'Legacy user endpoint must not advertise the removed root auth route.');
 
 foreach (['vevit_auth', 'password_verify(', 'signCookieData(', 'verifyCookieData(', 'DB_PASS', 'SECRET_KEY'] as $forbidden) {
     sso_expect(!str_contains($legacySources, $forbidden), "Legacy Portal auth remains active: {$forbidden}");

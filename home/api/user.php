@@ -7,5 +7,5 @@ header('Cache-Control: no-store');
 http_response_code(410);
 echo json_encode([
     'error' => 'Profil uživatele poskytuje VeVit Account.',
-    'me_url' => '/api/auth/me.php',
+    'me_url' => '/account/api/me.php',
 ]);
