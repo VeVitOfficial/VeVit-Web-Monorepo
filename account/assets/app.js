@@ -282,11 +282,27 @@ function renderSecuritySection(data) {
   const twofa = data.twofa || {}; const twofaCard = twofa.enabled
     ? `<article class="card"><div class="card-heading card-heading--split"><div><h2>Dvoufázové ověření</h2><p><span class="status-badge">Aktivní</span> · zapnuto ${escapeHtml(formatDate(twofa.enabled_at))} · zbývá ${Number(twofa.recovery_codes_remaining)||0} recovery kódů</p></div><div class="button-row"><button class="btn btn--ghost btn--sm" type="button" data-action="regenerate-2fa" data-has-password="${hasPassword?'1':'0'}" data-oauth-provider="${escapeHtml(Object.keys(data.connections?.connections||{})[0]||'')}">Nové recovery kódy</button><button class="btn btn--warn btn--sm" type="button" data-action="disable-2fa" data-has-password="${hasPassword?'1':'0'}" data-oauth-provider="${escapeHtml(Object.keys(data.connections?.connections||{})[0]||'')}">Vypnout 2FA</button></div></div></article>`
     : `<article class="card"><div class="card-heading card-heading--split"><div><h2>Dvoufázové ověření</h2><p>Vypnuto · Chraňte účet kódem z ověřovací aplikace.</p></div><button class="btn btn--primary btn--sm" type="button" data-action="enable-2fa" data-has-password="${hasPassword?'1':'0'}" data-oauth-provider="${escapeHtml(Object.keys(data.connections?.connections||{})[0]||'')}">Zapnout 2FA</button></div></article>`;
-  const rows = sessions.length ? sessions.map((session) => `<div class="settings-row"><div><strong>${escapeHtml(session.device || 'Webové zařízení')}${session.is_current ? ' <span class="status-badge">Toto zařízení</span>' : ''}</strong><p>${escapeHtml(session.ip_address || 'Neuvedeno')} · vytvořeno ${escapeHtml(formatDate(session.created_at))} · aktivní ${escapeHtml(formatDate(session.last_seen_at))} · expirace ${escapeHtml(formatDate(session.expires_at))}</p></div>${session.is_current ? '' : `<button class="btn btn--ghost btn--sm" type="button" data-action="revoke-session" data-session-id="${escapeHtml(session.id)}">Odhlásit</button>`}</div>`).join('') : '<div class="state-card state-card--empty"><span class="state-card__icon">○</span><div><strong>Žádné další relace.</strong><p>Aktivní zařízení se zobrazí zde.</p></div></div>';
+  const rows = sessions.length ? sessions.map((session) => `<div class="settings-row"><div><strong>${escapeHtml(session.device || 'Webové zařízení')}${session.is_current ? ' <span class="status-badge status-badge--current">Toto zařízení</span>' : ''}</strong><p>${escapeHtml(session.ip_address || 'Neuvedeno')} · přihlášeno ${escapeHtml(formatDateTime(session.created_at))} · aktivní ${escapeHtml(formatDateTime(session.last_seen_at))} · platné do ${escapeHtml(formatDateTime(session.expires_at))}</p></div>${session.is_current ? '' : `<button class="btn btn--ghost btn--sm" type="button" data-action="revoke-session" data-session-id="${escapeHtml(session.id)}">Odhlásit</button>`}</div>`).join('') : '<div class="state-card state-card--empty"><span class="state-card__icon">○</span><div><strong>Žádné další relace.</strong><p>Aktivní zařízení se zobrazí zde.</p></div></div>';
   setSectionHtml('securityState', `<article class="card"><div class="card-heading card-heading--split"><div><h2>Heslo</h2><p>${hasPassword ? 'Lokální heslo je nastavené.' : 'Tento účet zatím nemá nastavené heslo.'}</p></div><button class="btn btn--primary btn--sm" type="button" data-action="change-password">${hasPassword ? 'Změnit heslo' : 'Nastavit heslo'}</button></div><p class="field-hint">${last ? 'Poslední změna: ' + escapeHtml(formatDate(last)) : 'Zatím nebyla zaznamenána změna hesla.'}</p></article>${twofaCard}<article class="card"><div class="card-heading card-heading--split"><div><h2>Aktivní relace</h2><p>${sessions.length} neexpirovaných relací</p></div>${sessions.length > 1 ? '<button class="btn btn--ghost btn--sm" type="button" data-action="revoke-others">Odhlásit ostatní</button>' : ''}</div><div class="settings-list">${rows}</div></article>`);
 }
 
 function closeTotpOverlay() { document.getElementById('totpOverlay')?.remove(); }
+
+function showConfirmDialog({ title, message, confirmLabel = 'Potvrdit', dangerous = false }) {
+  return new Promise((resolve) => {
+    document.getElementById('vvConfirmDialog')?.remove();
+    const overlay = document.createElement('div');
+    overlay.id = 'vvConfirmDialog';
+    overlay.className = 'overlay';
+    overlay.innerHTML = `<div class="modal${dangerous ? ' modal--danger' : ''}" role="dialog" aria-modal="true" aria-labelledby="vvConfirmTitle"><h2 class="modal-title" id="vvConfirmTitle">${escapeHtml(title)}</h2><p class="modal-sub">${escapeHtml(message)}</p><div class="modal-actions"><button class="btn btn--ghost" type="button" id="vvConfirmCancel">Zrušit</button><button class="btn ${dangerous ? 'btn--warn' : 'btn--primary'}" type="button" id="vvConfirmOk">${escapeHtml(confirmLabel)}</button></div></div>`;
+    document.body.append(overlay);
+    const close = (result) => { overlay.remove(); resolve(result); };
+    overlay.querySelector('#vvConfirmCancel').addEventListener('click', () => close(false));
+    overlay.querySelector('#vvConfirmOk').addEventListener('click', () => close(true));
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) close(false); });
+    overlay.querySelector('#vvConfirmOk').focus();
+  });
+}
 function showRecoveryCodes(codes) {
   closeTotpOverlay(); const overlay=document.createElement('div'); overlay.id='totpOverlay'; overlay.className='overlay';
   overlay.innerHTML=`<div class="modal modal--wide" role="dialog" aria-modal="true" aria-labelledby="recoveryTitle"><h2 class="modal-title" id="recoveryTitle">Uložte si recovery kódy</h2><p class="modal-sub">Každý kód lze použít pouze jednou. Po zavření je už nezobrazíme.</p><div class="codes">${codes.map((code)=>`<code class="code">${escapeHtml(code)}</code>`).join('')}</div><div class="modal-actions"><button class="btn btn--ghost" type="button" id="copyRecovery">Zkopírovat</button><button class="btn btn--ghost" type="button" id="downloadRecovery">Stáhnout TXT</button></div><label class="settings-toggle"><input id="recoverySaved" type="checkbox"><span>Kódy jsem si bezpečně uložil/a.</span></label><button class="btn btn--primary" id="closeRecovery" type="button" disabled>Hotovo</button></div>`;
@@ -415,6 +431,14 @@ function formatDate(value) {
   return Number.isNaN(date.getTime())
     ? 'neuvedeno'
     : new Intl.DateTimeFormat('cs-CZ', { dateStyle: 'medium' }).format(date);
+}
+
+function formatDateTime(value) {
+  if (!value) return 'neuvedeno';
+  const date = new Date(value);
+  return Number.isNaN(date.getTime())
+    ? 'neuvedeno'
+    : new Intl.DateTimeFormat('cs-CZ', { dateStyle: 'medium', timeStyle: 'short' }).format(date);
 }
 
 function renderSecurityOverview(security) {
@@ -866,7 +890,18 @@ async function handleAccountAction(action) {
     try { await api('connections-disconnect.php', { method:'POST', body:{ provider: action.dataset.provider } }); sectionCache.delete('connections'); showToast('Účet byl odpojen.'); loadConnections(true); } catch (error) { showToast(error.message, 'error'); } return;
   }
   if (type === 'revoke-session' || type === 'revoke-others') {
-    if (!confirm(type === 'revoke-others' ? 'Opravdu odhlásit všechna ostatní zařízení?' : 'Opravdu odhlásit toto zařízení?')) return;
+    let confirmed;
+    if (type === 'revoke-others') {
+      confirmed = await showConfirmDialog({
+        title: 'Odhlásit všechna ostatní zařízení',
+        message: 'Tato akce okamžitě ukončí všechny ostatní relace. Aktuální zařízení zůstane přihlášené.',
+        confirmLabel: 'Odhlásit ostatní',
+        dangerous: true,
+      });
+    } else {
+      confirmed = confirm('Opravdu odhlásit toto zařízení?');
+    }
+    if (!confirmed) return;
     try { await api('sessions-revoke.php', { method:'POST', body:type === 'revoke-others' ? { all_others:true } : { session_id: action.dataset.sessionId } }); sectionCache.delete('security'); sectionCache.delete('overview-core'); showToast('Relace byla ukončena.'); loadSecurity(true); } catch (error) { showToast(error.message, 'error'); } return;
   }
   if (type === 'change-password') {

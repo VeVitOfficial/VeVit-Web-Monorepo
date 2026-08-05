@@ -739,6 +739,7 @@ button { color: inherit; }
 .settings-row:first-child { border-top:0; }
 .settings-row strong { font-size:12px; }.settings-row p { margin:5px 0 0; color:var(--text-3); font-size:11px; line-height:1.5; }
 .status-badge { display:inline-flex; margin-left:6px; padding:2px 6px; border-radius:999px; background:#10b98118; color:var(--primary); font-size:10px; font-weight:600; }
+.status-badge--current { background:#10b98130; }
 .settings-form { display:flex; flex-direction:column; gap:14px; }
 .settings-toggle { display:flex; align-items:center; gap:10px; min-height:42px; color:var(--text-2); font-size:12px; cursor:pointer; }
 .settings-toggle input { width:17px; height:17px; accent-color:var(--primary); }

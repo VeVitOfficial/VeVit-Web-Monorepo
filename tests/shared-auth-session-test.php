@@ -205,5 +205,18 @@ assert_test('safe_return_to rejects /%2F%2Fevil.com', vv_safe_return_to('/%2F%2F
 // Mixed /%2F\ — buď // po decode, nebo \ v decoded path, odmítne.
 assert_test('safe_return_to rejects /%2F\\evil.com', vv_safe_return_to('/%2F\\evil.com') === '/account');
 
+// ── 25. Acceptance: odvolání relace B neovlivní aktuální relaci A ────────────
+// Simuluje stav po sessions-revoke.php: B je revokovaná, A zůstává aktivní.
+// Token A je v cookie → validace musí vrátit uživatele bez ohledu na stav B.
+$tokA = str_repeat('c', 64);
+$tokB = str_repeat('d', 64);
+wire(
+    [active_session($tokA, $uid), revoked_session($tokB, $uid)],
+    [$uid => active_user($uid)],
+    $tokA
+);
+$u = vv_session_validate($cfg);
+assert_test('acceptance: revoked session B does not affect current session A', $u !== null && $u['id'] === $uid);
+
 printf("\nshared-auth-session-test: %s\n", $failures === 0 ? 'PASS' : "FAIL ($failures selhání)");
 exit($failures > 0 ? 1 : 0);
