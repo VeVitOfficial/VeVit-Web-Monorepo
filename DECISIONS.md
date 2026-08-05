@@ -169,6 +169,16 @@ rozhodnutí uživatele i bezpečnější výklad rozporů nalezených během rea
   autoritativní repo. Nasazení aktuálního HTML, JS a lokálních fontů odstranilo
   Google Fonts i inline-script reporty. Produkční drift se proto považuje za
   samostatnou třídu rizika a smoke ověřuje vedle HTTP stavu také CSP hlavičku.
+- Fáze 1 backfill proběhl v jedné transakci před vytvořením unikátního indexu.
+  Všech 15 relací dostalo `sha256(session_token)`, počet aktivních relací i
+  fingerprint identity a expirace zůstaly shodné; migrace tedy nikoho
+  neodhlásila. Plaintext se odstraní výhradně až po S-3.
+- `store_product_views` používá stejný server-only deny-all model jako session
+  tabulky. Store zapisuje přes svůj service-role secret, takže klientská INSERT
+  policy není potřebná a rozšiřovala by zbytečně útokový povrch.
+- Security Advisor hlásí u deny-all tabulek informační `RLS enabled no policy`.
+  Tento INFO lint je očekávaný důsledek explicitně požadovaného modelu; žádná
+  policy se nepřidává jen kvůli umlčení advisora.
 
 ## Evidovaný technický dluh
 
