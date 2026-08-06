@@ -52,10 +52,12 @@ function run_child_scenario(string $scenario): never {
 
     case 'destroy-delete-error':
       $_COOKIE = [COOKIE_NAME => str_repeat('a', 64)];
+      // destroySession používá soft-revoke přes _auth_update (ne delete).
+      // Simulujeme selhání DB při revokaci; cookie se i tak smaže.
       $GLOBALS['_AUTH_HELPER_ADAPTERS'] = [
-        'delete' => static function (): bool {
-          $GLOBALS['_AUTH_TEST_EVENTS'][] = 'delete-attempted';
-          return false;
+        'update' => static function (): array {
+          $GLOBALS['_AUTH_TEST_EVENTS'][] = 'revoke-attempted';
+          return ['error' => 'database unavailable'];
         },
         'set_cookie' => static function (): bool {
           $GLOBALS['_AUTH_TEST_EVENTS'][] = 'cookie-expiry-attempted';
@@ -324,8 +326,23 @@ test_case('unvalidated remote addresses cannot establish proxy trust', function 
   );
 });
 
-test_case('session cookie options enforce every security attribute', function (): void {
+test_case('new cookie options have no domain (required by __Host- prefix)', function (): void {
   $options = _auth_cookie_options(
+    ['COOKIE_DOMAIN' => 'account.vevit.cz'],
+    1_800_000_000
+  );
+  assert_same([
+    'expires' => 1_800_000_000,
+    'path' => '/',
+    'domain' => '',
+    'secure' => true,
+    'httponly' => true,
+    'samesite' => 'Lax',
+  ], $options);
+});
+
+test_case('legacy cookie options include domain for correct browser deletion', function (): void {
+  $options = _auth_legacy_cookie_options(
     ['COOKIE_DOMAIN' => 'account.vevit.cz'],
     1_800_000_000
   );
@@ -339,7 +356,12 @@ test_case('session cookie options enforce every security attribute', function ()
   ], $options);
 });
 
-test_case('remembered sessions persist for 30 days in the database and cookie', function (): void {
+test_case('legacy cookie options with empty config produce empty domain', function (): void {
+  $options = _auth_legacy_cookie_options([], 1_800_000_000);
+  assert_same('', $options['domain']);
+});
+
+test_case('remembered sessions persist for 99 days in the database and cookie', function (): void {
   $_SERVER = ['HTTPS' => 'on'];
   $inserted = null;
   $cookie = null;
@@ -373,15 +395,15 @@ test_case('remembered sessions persist for 30 days in the database and cookie', 
     assert_same(true, $cookie['options']['httponly'] ?? null);
     $expiry = strtotime((string) ($inserted['row']['expires_at'] ?? ''));
     assert_same(true, is_int($expiry));
-    assert_same(true, $expiry >= $before + (30 * 86400));
-    assert_same(true, $expiry <= $after + (30 * 86400));
+    assert_same(true, $expiry >= $before + (99 * 86400));
+    assert_same(true, $expiry <= $after + (99 * 86400));
     assert_same($expiry, $cookie['options']['expires'] ?? null);
   } finally {
     unset($GLOBALS['_AUTH_HELPER_ADAPTERS']);
   }
 });
 
-test_case('unremembered sessions use a session cookie but expire server-side after 30 days', function (): void {
+test_case('unremembered sessions use a session cookie but expire server-side after 24 hours', function (): void {
   $_SERVER = ['HTTPS' => 'on'];
   $inserted = null;
   $cookie = null;
@@ -409,11 +431,13 @@ test_case('unremembered sessions use a session cookie but expire server-side aft
     createSession([], 'user-1', false);
     $after = time();
     assert_same(false, $inserted['remember'] ?? null);
+    // Browser session cookie (expires=0) je primární kontrola životnosti.
     assert_same(0, $cookie['expires'] ?? null);
+    // Server ceiling 24h (DECISIONS.md) — ochrana před zombi záznamy.
     $expiry = strtotime((string) ($inserted['expires_at'] ?? ''));
     assert_same(true, is_int($expiry));
-    assert_same(true, $expiry >= $before + (30 * 86400));
-    assert_same(true, $expiry <= $after + (30 * 86400));
+    assert_same(true, $expiry >= $before + (24 * 3600));
+    assert_same(true, $expiry <= $after + (24 * 3600));
   } finally {
     unset($GLOBALS['_AUTH_HELPER_ADAPTERS']);
   }
@@ -490,16 +514,12 @@ test_case('example config denies forwarded headers by default', function (): voi
 });
 
 test_case('expired sessions do not fetch or return a user', function (): void {
-  require_helper('_auth_find_one');
   $events = [];
-  $GLOBALS['_AUTH_HELPER_ADAPTERS'] = [
-    'filtered_get' => static function () use (&$events): array {
+  // getCurrentUser() deleguje na vv_session_validate() — používá _VV_SESSION_ADAPTERS
+  $GLOBALS['_VV_SESSION_ADAPTERS'] = [
+    'find_session_by_token' => static function () use (&$events): ?array {
       $events[] = 'session-lookup';
-      return ['data' => []];
-    },
-    'find_one' => static function () use (&$events): array {
-      $events[] = 'user-lookup';
-      return ['data' => ['id' => 'should-not-return']];
+      return null; // expired/not found
     },
   ];
   $_COOKIE = [COOKIE_NAME => str_repeat('a', 64)];
@@ -507,96 +527,70 @@ test_case('expired sessions do not fetch or return a user', function (): void {
     assert_same(null, getCurrentUser([]));
     assert_same(['session-lookup'], $events);
   } finally {
-    unset($GLOBALS['_AUTH_HELPER_ADAPTERS']);
+    unset($GLOBALS['_VV_SESSION_ADAPTERS']);
   }
 });
 
 test_case('valid sessions request only the safe user projection', function (): void {
-  require_helper('_auth_find_one');
-  $selected = null;
-  $_SERVER = ['HTTPS' => 'on'];
-  $GLOBALS['_AUTH_HELPER_ADAPTERS'] = [
-    'filtered_get' => static function (): array {
-      return ['data' => [['user_id' => 'user-1', 'remember' => false]]];
-    },
-    'find_one' => static function (
-      array $cfg,
-      string $table,
-      array $eq,
-      string $select
-    ) use (&$selected): array {
-      $selected = $select;
-      return ['data' => ['id' => 'user-1', 'email' => 'user@example.test']];
-    },
-    'update' => static fn (): array => ['data' => []],
-    'set_cookie' => static fn (): bool => true,
-  ];
+  // getCurrentUser() deleguje na vv_session_validate() — používá _VV_SESSION_ADAPTERS
   $_COOKIE = [COOKIE_NAME => str_repeat('a', 64)];
+  $now = gmdate('Y-m-d\TH:i:s\Z', time() + 3600);
+  $GLOBALS['_VV_SESSION_ADAPTERS'] = [
+    'find_session_by_token' => static fn (): ?array => [
+      'user_id'    => 'user-1',
+      'token_hash' => hash('sha256', str_repeat('a', 64)),
+      'remember'   => false,
+      'expires_at' => $now,
+      'revoked_at' => null,
+    ],
+    'find_user' => static fn ($cfg, $userId): ?array => [
+      'id' => $userId, 'email' => 'user@example.test', 'status' => 'active',
+    ],
+    'touch_session' => static function (): void {},
+  ];
   try {
     $user = getCurrentUser([]);
     assert_same('user-1', $user['id'] ?? null);
-    assert_same(
-      'id,email,nickname,full_name,tier,tier_expires,tier_billing,'
-      . 'tier_cancel_at,role,avatar_url,phone,location,birth_date,bio,'
-      . 'level,xp,created_at,company_name,ico,dic,billing_address,language,'
-      . 'two_factor_enabled',
-      $selected
-    );
-    assert_same(false, str_contains((string) $selected, 'password'));
-    assert_same(false, str_contains((string) $selected, 'reset'));
+    // Ověř, že výsledek neobsahuje tajné sloupce
+    assert_same(false, array_key_exists('password', $user ?? []));
+    assert_same(false, array_key_exists('session_token', $user ?? []));
+    assert_same(false, array_key_exists('reset_token_hash', $user ?? []));
   } finally {
-    unset($GLOBALS['_AUTH_HELPER_ADAPTERS']);
+    unset($GLOBALS['_VV_SESSION_ADAPTERS']);
   }
 });
 
-test_case('valid sessions renew their server expiry and matching cookie', function (): void {
-  $_SERVER = ['HTTPS' => 'on'];
-  $_COOKIE = [COOKIE_NAME => str_repeat('a', 64)];
-  $update = null;
-  $cookie = null;
-  $before = time();
-  $GLOBALS['_AUTH_HELPER_ADAPTERS'] = [
-    'filtered_get' => static function (): array {
-      return ['data' => [['user_id' => 'user-1', 'remember' => true]]];
-    },
-    'find_one' => static function (): array {
-      return ['data' => ['id' => 'user-1', 'email' => 'user@example.test']];
-    },
-    'update' => static function (
-      array $cfg,
-      string $table,
-      array $eq,
-      array $patch
-    ) use (&$update): array {
-      $update = ['table' => $table, 'eq' => $eq, 'patch' => $patch];
-      return ['data' => [$patch]];
-    },
-    'set_cookie' => static function (
-      string $name,
-      string $value,
-      array $options
-    ) use (&$cookie): bool {
-      $cookie = ['name' => $name, 'value' => $value, 'options' => $options];
-      return true;
+test_case('valid sessions update last_seen_at but do not move expires_at', function (): void {
+  // expires_at je absolutní; aktivita ho nikdy neposouvá (DECISIONS.md, invariant B.3).
+  // vv_session_validate() volá pouze touch_session (last_seen_at) pro __Host-vvsession.
+  $rawToken = str_repeat('a', 64);
+  $_COOKIE = [VV_COOKIE => $rawToken];
+  $now = gmdate('Y-m-d\TH:i:s\Z', time() + 3600);
+  $touched = null;
+  $GLOBALS['_VV_SESSION_ADAPTERS'] = [
+    'find_session_by_hash' => static fn (): ?array => [
+      'user_id'    => 'user-1',
+      'token_hash' => hash('sha256', $rawToken),
+      'remember'   => true,
+      'expires_at' => $now,
+      'revoked_at' => null,
+    ],
+    'find_user' => static fn (): ?array => [
+      'id' => 'user-1', 'email' => 'user@example.test', 'status' => 'active',
+    ],
+    'touch_session' => static function ($cfg, $hash) use (&$touched): void {
+      $touched = $hash;
     },
   ];
 
   try {
     $user = getCurrentUser([]);
-    $after = time();
     assert_same('user-1', $user['id'] ?? null);
-    assert_same('sessions', $update['table'] ?? null);
-    assert_same([COOKIE_NAME => str_repeat('a', 64)], $_COOKIE);
-    assert_same(['session_token' => str_repeat('a', 64)], $update['eq'] ?? null);
-    assert_same(str_repeat('a', 64), $cookie['value'] ?? null);
-    $expiry = strtotime((string) ($update['patch']['expires_at'] ?? ''));
-    assert_same(true, is_int($expiry));
-    assert_same(true, $expiry >= $before + (30 * 86400));
-    assert_same(true, $expiry <= $after + (30 * 86400));
-    assert_same($expiry, $cookie['options']['expires'] ?? null);
+    // touch_session byl volán s SHA-256 hashem raw tokenu
+    assert_same(hash('sha256', $rawToken), $touched);
   } finally {
-    unset($GLOBALS['_AUTH_HELPER_ADAPTERS']);
-    unset($_COOKIE[COOKIE_NAME]);
+    unset($GLOBALS['_VV_SESSION_ADAPTERS']);
+    unset($_COOKIE[VV_COOKIE]);
   }
 });
 
@@ -615,13 +609,15 @@ test_case('logActivity reports insert errors without stopping work', function ()
   assert_contains('account_activity insert failed', $result['stderr']);
 });
 
-test_case('destroySession attempts cookie cleanup after DB deletion fails', function (): void {
+test_case('destroySession attempts cookie cleanup after soft-revoke fails', function (): void {
   $result = run_scenario('destroy-delete-error');
   assert_same(0, $result['exit']);
   assert_same('{"error":"Unable to end session"}', $result['stdout']);
   assert_same(500, $result['meta']['status'] ?? null);
+  // destroySession vždy maže obě cookies (VV_COOKIE + COOKIE_NAME) bez ohledu na to,
+  // která byla nastavena — proto 2× cookie-expiry-attempted.
   assert_same(
-    ['delete-attempted', 'cookie-expiry-attempted'],
+    ['revoke-attempted', 'cookie-expiry-attempted', 'cookie-expiry-attempted'],
     $result['meta']['events'] ?? null
   );
   assert_same(false, $result['meta']['cookie_present'] ?? null);

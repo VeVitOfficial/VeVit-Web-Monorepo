@@ -195,7 +195,7 @@ function getCurrentUser(array $cfg): ?array {
 function _auth_clear_stale_cookies(array $cfg): void {
   $past = time() - 3600;
   @_auth_set_cookie(VV_COOKIE,   '', _auth_cookie_options($cfg, $past));
-  @_auth_set_cookie(COOKIE_NAME, '', _auth_cookie_options($cfg, $past));
+  @_auth_set_cookie(COOKIE_NAME, '', _auth_legacy_cookie_options($cfg, $past));
   unset($_COOKIE[VV_COOKIE], $_COOKIE[COOKIE_NAME]);
 }
 
@@ -340,8 +340,26 @@ function _auth_cookie_options(array $cfg, int $expires): array {
   ];
 }
 
-function _auth_session_expires_at(int $now): string {
-  return gmdate('Y-m-d\TH:i:s\Z', $now + (SESSION_DAYS * 86400));
+// Mazací Set-Cookie pro legacy __vvsession musí zopakovat Domain, se kterým
+// byla původně nastavena — jinak prohlížeč identifikuje jiný cookie
+// (name+domain+path tvoří dohromady klíč) a starou cookie nesmaže.
+function _auth_legacy_cookie_options(array $cfg, int $expires): array {
+  return [
+    'expires'  => $expires,
+    'path'     => COOKIE_PATH,
+    'domain'   => $cfg['COOKIE_DOMAIN'] ?? '',
+    'secure'   => true,
+    'httponly' => true,
+    'samesite' => 'Lax',
+  ];
+}
+
+function _auth_session_expires_at(int $now, bool $remember = true): string {
+  // Non-remembered sessions mají 24h server ceiling (DECISIONS.md).
+  // Browser session cookie (expires=0) je primární kontrola životnosti;
+  // 24h DB limit chrání před zombi záznamy při pádu prohlížeče.
+  $seconds = $remember ? (SESSION_DAYS * 86400) : (24 * 3600);
+  return gmdate('Y-m-d\TH:i:s\Z', $now + $seconds);
 }
 
 function _auth_set_session_cookie(
@@ -372,7 +390,7 @@ function createSession(array $cfg, string $userId, bool $remember = false): stri
     'token_hash'    => hash('sha256', $token),
     'user_id'       => $userId,
     'remember'      => $remember,
-    'expires_at'    => _auth_session_expires_at($now),
+    'expires_at'    => _auth_session_expires_at($now, $remember),
     'created_at'    => gmdate('Y-m-d\TH:i:s\Z', $now),
     'last_seen_at'  => gmdate('Y-m-d\TH:i:s\Z', $now),
     'ip_address'    => clientIp($cfg),
@@ -432,7 +450,7 @@ function destroySession(array $cfg): void {
 
   $past = time() - 3600;
   @_auth_set_cookie(VV_COOKIE,    '', _auth_cookie_options($cfg, $past));
-  @_auth_set_cookie(COOKIE_NAME,  '', _auth_cookie_options($cfg, $past));
+  @_auth_set_cookie(COOKIE_NAME,  '', _auth_legacy_cookie_options($cfg, $past));
   unset($_COOKIE[VV_COOKIE], $_COOKIE[COOKIE_NAME]);
 
   if (!$revoked) {

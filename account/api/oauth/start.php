@@ -13,9 +13,16 @@ $twofaAction = in_array((string) ($_GET['twofa_action'] ?? ''), ['setup','regene
   ? (string) $_GET['twofa_action'] : 'setup';
 $initiatedUserId = null;
 if ($mode === 'connect' || $mode === 'twofa_reauth') {
-  $initiatedUser = getCurrentUser($cfg);
-  if ($initiatedUser === null) oauth_redirect_to_login('oauth_invalid_state');
-  $initiatedUserId = $initiatedUser['id'];
+  $authResult = _auth_require_result($cfg);
+  if ($authResult['code'] === 503) {
+    // DB chyba — cookie se zachovává (B.7), uživatel není odhlášen
+    http_response_code(503);
+    header('Cache-Control: no-store');
+    header('Content-Type: text/html; charset=utf-8');
+    exit('Služba je dočasně nedostupná. Zkuste to prosím za chvíli.');
+  }
+  if ($authResult['code'] === 401) oauth_redirect_to_login('oauth_invalid_state');
+  $initiatedUserId = $authResult['user']['id'];
 }
 $state = oauth_base64url(random_bytes(32));
 $verifier = oauth_base64url(random_bytes(48));
