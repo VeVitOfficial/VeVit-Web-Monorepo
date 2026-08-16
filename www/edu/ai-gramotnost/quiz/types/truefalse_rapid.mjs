@@ -1,0 +1,1 @@
+import { createRenderer as renderer } from './renderer.mjs'; import { rapidControl } from './controls/rapid.mjs'; export const type='truefalse_rapid'; export const createRenderer=()=>renderer(type,rapidControl);

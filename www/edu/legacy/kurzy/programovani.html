@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programování — kurzy — edu.vevit.fun</title>
+<link rel="stylesheet" href="/assets/fonts/vevit-fonts.css">
+    <link rel="stylesheet" href="/assets/css/vevit-tailwind.css">
+    <script src="/assets/vendor/lucide/lucide.min.js@latest/dist/umd/lucide.min.js"></script>
+
+    <link rel="stylesheet" href="../css/custom.css">
+    <style>
+        body { font-family: 'Sora', sans-serif; }
+        .scrollbar-none::-webkit-scrollbar { display: none; }
+        .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+        @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+        .animate-fadeUp { animation: fadeUp 0.4s ease both; }
+        .skeleton { background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%); background-size:200% 100%; animation: shimmer 1.5s ease-in-out infinite; border-radius:8px; }
+        @keyframes shimmer { from{background-position:200% 0} to{background-position:-200% 0} }
+    </style>
+</head>
+<body class="bg-base text-text-primary min-h-screen font-sora">
+
+<!-- NAVBAR -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-[#0d0d0d]/95 backdrop-blur-sm border-b border-white/[0.06]">
+    <div class="max-w-7xl mx-auto px-3 sm:px-5 lg:px-6 h-16 flex items-center justify-between">
+        <a href="../index.html" class="flex items-center gap-3 hover:opacity-90 transition-opacity">
+            <div class="w-8 h-8 rounded-md bg-accent flex items-center justify-center">
+                <i data-lucide="book-open" class="w-4 h-4 text-[#0d0d0d]"></i>
+            </div>
+            <span class="text-lg font-semibold text-text-primary">edu<span class="text-accent">.vevit</span>.fun</span>
+        </a>
+        <div class="hidden md:flex items-center gap-6">
+            <a href="../index.html" class="text-sm text-text-secondary hover:text-text-primary transition-colors">Domů</a>
+            <span class="text-sm text-accent font-semibold">Kurzy</span>
+            <a href="../index.html#/lekcе" class="text-sm text-text-secondary hover:text-text-primary transition-colors">Lekce</a>
+            <a href="../index.html#/clanky" class="text-sm text-text-secondary hover:text-text-primary transition-colors">Články</a>
+        </div>
+        <div class="flex items-center gap-3">
+            <a href="https://account.vevit.fun" target="_blank" class="px-4 py-2 text-sm font-semibold text-base bg-accent hover:bg-accent-hover rounded-md transition-colors">
+                Přihlásit se
+            </a>
+        </div>
+    </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<div id="app" class="flex-1 pt-24 pb-16 px-3 sm:px-5 lg:px-6 max-w-7xl mx-auto w-full animate-fadeUp">
+    <div class="mb-8">
+        <a href="../index.html" class="inline-flex items-center gap-2 text-text-secondary hover:text-accent font-medium transition-colors">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Zpět na úvod
+        </a>
+    </div>
+
+    <!-- Header -->
+    <div class="text-center mb-10">
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-text-primary tracking-tight mb-3">
+            <span class="text-accent">Kurzy</span> programování
+        </h1>
+        <p class="text-lg text-[#6b7280]">Vyber si kurz a začně se učit.</p>
+    </div>
+
+    <!-- Category pills -->
+    <div id="category-bar" class="flex gap-2 overflow-x-auto scrollbar-none pb-3 mb-6" style="-ms-overflow-style:none; scrollbar-width:none;">
+    </div>
+
+    <!-- Course count + search -->
+    <div class="flex items-center justify-between mb-4">
+        <p class="text-sm text-[#6b7280]">
+            Zobrazeno <span id="count-number">0</span> kurzů
+        </p>
+        <div class="relative">
+            <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#6b7280]"></i>
+            <input id="kurz-search" type="text" placeholder="Hledat kurz..." class="bg-[#161616] border border-[rgba(255,255,255,0.08)] text-text-primary placeholder-[#6b7280] focus:border-accent focus:ring-2 focus:ring-accent/20 rounded-xl pl-9 pr-4 py-2 text-sm focus:outline-none w-48 transition-all" />
+        </div>
+    </div>
+
+    <!-- Course grid -->
+    <div id="kurzy-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-14">
+        <div class="skeleton h-48 rounded-xl"></div>
+        <div class="skeleton h-48 rounded-xl"></div>
+        <div class="skeleton h-48 rounded-xl"></div>
+        <div class="skeleton h-48 rounded-xl"></div>
+    </div>
+
+    <!-- Empty state -->
+    <div id="prazdny-stav" class="hidden text-center py-20">
+        <i data-lucide="search-x" class="w-12 h-12 text-[#6b7280] mx-auto mb-4"></i>
+        <p class="text-[#6b7280] text-lg">Žádné kurzy nenalezeny</p>
+        <button id="reset-filter-btn" class="mt-4 text-accent text-sm underline hover:no-underline">Zobrazit všechny kurzy</button>
+    </div>
+</div>
+
+<!-- Toast container -->
+<div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-3"></div>
+
+<script type="module" src="programovaniinline.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html class="dark" lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VeVit Store — Moderní e-shop s digitálními i fyzickými produkty</title>
+<meta name="description" content="VeVit Store nabízí digitální produkty ke stažení i fyzické zboží. Bezpečná platba přes Stripe, okamžité stažení.">
+<!-- Open Graph -->
+<meta property="og:title" content="VeVit Store — Moderní e-shop s digitálními i fyzickými produkty">
+<meta property="og:description" content="VeVit Store nabízí digitální produkty ke stažení i fyzické zboží. Bezpečná platba přes Stripe, okamžité stažení.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="/store/images/logo_text.png">
+<link rel="stylesheet" href="/assets/css/vevit-tailwind.css">
+<link rel="stylesheet" href="/assets/fonts/vevit-fonts.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="images/icon.ico" type="image/x-icon">
+
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col pb-16 md:pb-0" data-vevit-me-url="/account/api/me.php" data-vevit-login-url="/account/login" data-vevit-app-origin="https://vevit.cz" data-vevit-base="/store/" data-vevit-hydrate-account="1">
+
+<!-- Skip link (accessibility) -->
+<a class="skip-link" href="#main-content">Přeskočit na obsah</a>
+
+<!-- Announcement bar -->
+<div class="announcement-bar" role="status" aria-live="polite">
+  <span class="material-symbols-outlined text-[16px] icon-filled" aria-hidden="true">local_shipping</span>
+      <span>Doprava zdarma u objednávek nad 1&nbsp;000&nbsp;Kč · Digitální produkty ihned po platbě</span>
+  </div>
+
+<!-- ===== Desktop Header ===== -->
+<header class="sticky top-0 z-50 bg-background/90 backdrop-blur-md border-b border-outline-variant">
+  <nav class="hidden md:flex items-center justify-between w-full max-w-store mx-auto px-margin py-3" aria-label="Hlavní navigace">
+
+    <!-- Logo -->
+    <span class="vv-app-brand" aria-label="VeVit Store"><a href="/home">VeVit</a><a href="/store">Store</a></span>
+
+    <!-- Main nav links -->
+    <div class="flex items-center gap-1">
+            <a href="index.html"
+         class="px-3 py-2 rounded-md font-body-md font-semibold transition-colors duration-150 text-primary bg-primary/10"
+         aria-current="page">
+        Domů      </a>
+            <a href="catalog.php"
+         class="px-3 py-2 rounded-md font-body-md font-semibold transition-colors duration-150 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high"
+         >
+        Katalog      </a>
+            <a href="catalog.php?sort=newest"
+         class="px-3 py-2 rounded-md font-body-md font-semibold transition-colors duration-150 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high"
+         >
+        Novinky      </a>
+            <a href="catalog.php?deals=1"
+         class="px-3 py-2 rounded-md font-body-md font-semibold transition-colors duration-150 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high"
+         >
+        Slevy      </a>
+          </div>
+
+    <!-- Right: Search + Cart + Account -->
+    <div class="flex items-center gap-3">
+      <!-- Search -->
+      <form method="get" action="catalog.php" role="search" class="relative flex items-center group">
+        <label for="header-search-desktop" class="sr-only">Hledat produkty</label>
+        <span class="material-symbols-outlined absolute left-3 text-on-surface-variant pointer-events-none group-focus-within:text-primary transition-colors text-[20px]" aria-hidden="true">search</span>
+        <input
+          id="header-search-desktop"
+          name="search"
+          type="search"
+          placeholder="Hledat produkty…"
+          value=""
+          autocomplete="off"
+          class="bg-surface-container border border-outline-variant rounded-full pl-10 pr-4 py-2 text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary w-48 lg:w-60 transition-all duration-200 placeholder:text-on-surface-variant/50">
+      </form>
+
+      <!-- Cart -->
+      <a href="cart.php" aria-label="Košík" class="relative p-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors duration-150">
+        <span class="material-symbols-outlined text-[22px]" aria-hidden="true">shopping_bag</span>
+        <span class="nav-cart-badge absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] px-1 bg-primary-container text-on-primary-fixed text-[10px] font-bold rounded-full flex items-center justify-center" style="display:none" aria-label="položky v košíku">0</span>
+      </a>
+
+      <!-- Jediný browserový zdroj stavu je /account/api/me.php. -->
+      <div id="navAuth" class="flex items-center" aria-live="polite" aria-label="Stav přihlášení">
+        <span data-vevit-app-switcher data-vevit-app="Store"></span>
+        <span data-vevit-session></span>
+              </div>
+    </div>
+  </nav>
+
+  <!-- ===== Mobile Header ===== -->
+  <nav class="md:hidden flex items-center justify-between w-full px-4 py-3" aria-label="Mobilní navigace">
+    <!-- Hamburger -->
+    <button type="button" id="mobileMenuBtn" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobileDrawer"
+      class="p-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors duration-150">
+      <span class="material-symbols-outlined text-[22px]" aria-hidden="true">menu</span>
+    </button>
+
+    <!-- Logo (centered) -->
+    <span class="vv-app-brand absolute left-1/2 -translate-x-1/2" aria-label="VeVit Store"><a href="/home">VeVit</a><a href="/store">Store</a></span>
+
+    <!-- Cart -->
+    <a href="cart.php" aria-label="Košík" class="relative p-2 rounded-lg text-on-surface-variant hover:text-primary transition-colors duration-150">
+      <span class="material-symbols-outlined text-[22px]" aria-hidden="true">shopping_bag</span>
+      <span class="nav-cart-badge absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] px-1 bg-primary-container text-on-primary-fixed text-[10px] font-bold rounded-full flex items-center justify-center" style="display:none">0</span>
+    </a>
+  </nav>
+</header>
+
+<!-- ===== Mobile Navigation Drawer ===== -->
+<div id="mobileDrawer" class="mobile-drawer" role="dialog" aria-modal="true" aria-label="Navigační menu" inert>
+  <div class="mobile-drawer__backdrop" id="drawerBackdrop" aria-hidden="true"></div>
+  <div class="mobile-drawer__panel" tabindex="-1">
+
+    <!-- Drawer header -->
+    <div class="mobile-drawer__header">
+      <span class="vv-app-brand" aria-label="VeVit Store"><a href="/home">VeVit</a><a href="/store">Store</a></span>
+      <button type="button" id="drawerCloseBtn" aria-label="Zavřít menu"
+        class="p-2 rounded-lg text-on-surface-variant hover:text-error hover:bg-surface-container-high transition-colors">
+        <span class="material-symbols-outlined text-[22px]" aria-hidden="true">close</span>
+      </button>
+    </div>
+
+    <!-- Drawer nav -->
+    <nav class="mobile-drawer__nav" aria-label="Menu">
+      <div class="mobile-drawer__section-title">Navigace</div>
+            <a href="index.html"
+         class="mobile-drawer__link active"
+         aria-current="page">
+        <span class="flex items-center gap-3">
+          <span class="material-symbols-outlined" aria-hidden="true">home</span>
+          Domů        </span>
+      </a>
+            <a href="catalog.php"
+         class="mobile-drawer__link "
+         >
+        <span class="flex items-center gap-3">
+          <span class="material-symbols-outlined" aria-hidden="true">storefront</span>
+          Katalog        </span>
+      </a>
+            <a href="catalog.php?sort=newest"
+         class="mobile-drawer__link "
+         >
+        <span class="flex items-center gap-3">
+          <span class="material-symbols-outlined" aria-hidden="true">new_releases</span>
+          Novinky        </span>
+      </a>
+            <a href="catalog.php?deals=1"
+         class="mobile-drawer__link "
+         >
+        <span class="flex items-center gap-3">
+          <span class="material-symbols-outlined" aria-hidden="true">sell</span>
+          Slevy        </span>
+      </a>
+            <a href="cart.php"
+         class="mobile-drawer__link "
+         >
+        <span class="flex items-center gap-3">
+          <span class="material-symbols-outlined" aria-hidden="true">shopping_bag</span>
+          Košík        </span>
+      </a>
+
+      <div class="mobile-drawer__section-title mt-2">Informace</div>
+            <a href="about.php" class="mobile-drawer__link">
+        <span class="flex items-center gap-3">
+          <span class="material-symbols-outlined" aria-hidden="true">info</span>
+          O nás        </span>
+      </a>
+            <a href="shipping.php" class="mobile-drawer__link">
+        <span class="flex items-center gap-3">
+          <span class="material-symbols-outlined" aria-hidden="true">local_shipping</span>
+          Doprava a platba        </span>
+      </a>
+            <a href="returns.php" class="mobile-drawer__link">
+        <span class="flex items-center gap-3">
+          <span class="material-symbols-outlined" aria-hidden="true">assignment_return</span>
+          Vrácení zboží        </span>
+      </a>
+            <a href="contact.php" class="mobile-drawer__link">
+        <span class="flex items-center gap-3">
+          <span class="material-symbols-outlined" aria-hidden="true">mail</span>
+          Kontakt        </span>
+      </a>
+
+      <!-- Mobile search -->
+      <div class="px-5 py-4 mt-2 border-t border-outline-variant">
+        <form method="get" action="catalog.php" role="search">
+          <label for="mobile-drawer-search" class="sr-only">Hledat produkty</label>
+          <div class="relative">
+            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]" aria-hidden="true">search</span>
+            <input
+              id="mobile-drawer-search"
+              name="search"
+              type="search"
+              placeholder="Hledat produkty…"
+              class="w-full bg-surface border border-outline-variant rounded-full pl-10 pr-4 py-2.5 text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary placeholder:text-on-surface-variant/50">
+          </div>
+        </form>
+      </div>
+    </nav>
+
+    <!-- Drawer footer — auth -->
+    <div class="mobile-drawer__footer">
+              <span data-vevit-session></span>
+          </div>
+  </div>
+</div>
+
+<script src="assets/js/header.js"></script>
+
+<link rel="stylesheet" href="/assets/shared/session.css?v=20260809b">
+<link rel="stylesheet" href="/assets/shared/app-switcher.css?v=20260809c">
+<script type="module" src="/assets/shared/session.js?v=20260809c"></script>
+<script type="module" src="/assets/shared/app-switcher.js?v=20260809b"></script>
+
+<!-- Main content landmark starts here (id used by skip link) -->
+<div id="main-content">
+
+<main class="flex-1 w-full">
+
+  <!-- ===== Hero ===== -->
+  <section class="relative overflow-hidden" aria-labelledby="hero-heading"
+           style="background:linear-gradient(135deg,#052e16 0%,#064e3b 45%,#0f172a 100%)">
+    <!-- Subtle glow -->
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true"
+         style="background:radial-gradient(ellipse 70% 60% at 65% 50%,rgba(16,185,129,.13) 0%,transparent 70%)"></div>
+    <!-- Faint grid pattern -->
+    <div class="absolute inset-0 pointer-events-none opacity-[0.035]" aria-hidden="true"
+         style="background-image:linear-gradient(rgba(255,255,255,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.5) 1px,transparent 1px);background-size:48px 48px"></div>
+
+    <div class="relative max-w-store mx-auto px-margin py-16 md:py-24 grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+
+      <!-- Left: text -->
+      <div>
+        <span class="inline-flex items-center gap-1.5 font-mono-label text-mono-label text-primary uppercase tracking-widest mb-4">
+          <span class="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0"></span>
+          VeVit Store
+        </span>
+        <h1 id="hero-heading" class="font-display text-[36px] md:text-[52px] font-extrabold text-on-surface leading-[1.1] tracking-tight mb-5"
+            style="color:#f0fdf4">
+          Nakupuj chytře.<br>
+          <span style="color:#4edea3">Digitálně i fyzicky.</span>
+        </h1>
+        <p class="font-body-lg text-[17px] leading-relaxed mb-8" style="color:#a7f3d0">
+          Pečlivě vybraný sortiment — od digitálních nástrojů pro tvůrce po ověřené fyzické produkty. Bezpečná platba, okamžité stažení.
+        </p>
+
+        <div class="flex flex-wrap gap-3 mb-10">
+          <a href="catalog.php" class="btn btn-primary btn-lg">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">explore</span>
+            Prohlédnout produkty
+          </a>
+          <a href="catalog.php#categories" class="btn btn-outline btn-lg" style="border-color:rgba(78,222,163,.4);color:#4edea3">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">category</span>
+            Zobrazit kategorie
+          </a>
+        </div>
+
+        <!-- Benefits -->
+        <div class="flex flex-col gap-2.5">
+                    <div class="flex items-center gap-2.5">
+            <span class="material-symbols-outlined text-[18px] icon-filled flex-shrink-0" style="color:#4edea3" aria-hidden="true">lock</span>
+            <span class="font-body-md text-[14px]" style="color:#a7f3d0">Bezpečná platba přes Stripe</span>
+          </div>
+                    <div class="flex items-center gap-2.5">
+            <span class="material-symbols-outlined text-[18px] icon-filled flex-shrink-0" style="color:#4edea3" aria-hidden="true">bolt</span>
+            <span class="font-body-md text-[14px]" style="color:#a7f3d0">Digitální produkty ihned po platbě</span>
+          </div>
+                    <div class="flex items-center gap-2.5">
+            <span class="material-symbols-outlined text-[18px] icon-filled flex-shrink-0" style="color:#4edea3" aria-hidden="true">assignment_return</span>
+            <span class="font-body-md text-[14px]" style="color:#a7f3d0">Fyzické zboží — 14 dní na vrácení</span>
+          </div>
+                  </div>
+      </div>
+
+      <!-- Right: brand composition -->
+      <div class="hidden md:flex items-center justify-center" aria-hidden="true">
+        <div class="relative w-full max-w-[380px] aspect-square">
+          <!-- Background circle glow -->
+          <div class="absolute inset-0 rounded-full opacity-20"
+               style="background:radial-gradient(circle,#10b981 0%,transparent 70%)"></div>
+
+          <!-- Floating product cards -->
+          <div class="absolute top-[8%] left-[5%] bg-surface-container border border-outline-variant rounded-xl p-4 shadow-lg w-40"
+               style="border-color:rgba(16,185,129,.2)">
+            <div class="w-full aspect-square rounded-lg cat-bg-digital flex items-center justify-center mb-3">
+              <span class="material-symbols-outlined text-[36px] text-white/70">palette</span>
+            </div>
+            <div class="font-body-md text-[12px] font-bold text-on-surface truncate">UI Kit Pro</div>
+            <div class="font-display text-[15px] font-bold" style="color:#4edea3">490 Kč</div>
+          </div>
+
+          <div class="absolute top-[5%] right-[5%] bg-surface-container border border-outline-variant rounded-xl p-4 shadow-lg w-36"
+               style="border-color:rgba(16,185,129,.2)">
+            <div class="w-full aspect-square rounded-lg cat-bg-electronics flex items-center justify-center mb-3">
+              <span class="material-symbols-outlined text-[32px] text-white/70">devices</span>
+            </div>
+            <div class="font-body-md text-[11px] font-bold text-on-surface truncate">Sluchátka TWS</div>
+            <div class="font-display text-[14px] font-bold" style="color:#4edea3">1 290 Kč</div>
+          </div>
+
+          <div class="absolute bottom-[12%] right-[0%] bg-surface-container border border-outline-variant rounded-xl p-4 shadow-lg w-44"
+               style="border-color:rgba(16,185,129,.2)">
+            <div class="w-full aspect-square rounded-lg cat-bg-merch flex items-center justify-center mb-3">
+              <span class="material-symbols-outlined text-[36px] text-white/70">shirt</span>
+            </div>
+            <div class="font-body-md text-[12px] font-bold text-on-surface truncate">VeVit Mikina</div>
+            <div class="font-display text-[15px] font-bold" style="color:#4edea3">890 Kč</div>
+          </div>
+
+          <div class="absolute bottom-[8%] left-[5%] bg-primary-container/20 border border-primary/30 rounded-xl px-4 py-3 shadow-lg">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-[18px] icon-filled text-primary">verified</span>
+              <span class="font-mono-label text-[11px] text-on-surface uppercase tracking-wide">Ověřeno</span>
+            </div>
+          </div>
+
+          <!-- Center logo -->
+          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-2xl bg-surface-container border-2 flex items-center justify-center shadow-xl"
+               style="border-color:#10b981">
+            <img src="images/logo_notext.png" alt="VeVit" width="48" height="48" class="w-12 h-12 object-contain rounded-lg">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Categories ===== -->
+  <section id="categoriesSection" class="max-w-store mx-auto px-margin py-14" aria-labelledby="cats-heading">
+    <div class="flex items-end justify-between mb-6">
+      <div>
+        <span class="font-mono-label text-mono-label text-primary uppercase tracking-widest block mb-1">Sortiment</span>
+        <h2 id="cats-heading" class="font-display text-h1 text-on-surface">Nakupuj podle kategorií</h2>
+      </div>
+      <a href="catalog.php" class="btn btn-outline btn-sm hidden sm:inline-flex">
+        Celý katalog <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span>
+      </a>
+    </div>
+    <div id="categoriesGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+      <!-- Skeleton placeholders shown while JS loads -->
+            <div class="skeleton rounded-xl h-[160px]"></div>
+            <div class="skeleton rounded-xl h-[160px]"></div>
+            <div class="skeleton rounded-xl h-[160px]"></div>
+            <div class="skeleton rounded-xl h-[160px]"></div>
+            <div class="skeleton rounded-xl h-[160px]"></div>
+            <div class="skeleton rounded-xl h-[160px]"></div>
+            <div class="skeleton rounded-xl h-[160px]"></div>
+            <div class="skeleton rounded-xl h-[160px]"></div>
+          </div>
+    <!-- Empty state (shown by JS if no categories) -->
+    <div id="catsEmpty" class="hidden text-center py-12">
+      <span class="material-symbols-outlined text-[48px] text-on-surface-variant/40 block mb-3" aria-hidden="true">category</span>
+      <p class="font-body-md text-on-surface-variant mb-4">Kategorie se načítají nebo nejsou k dispozici.</p>
+      <a href="catalog.php" class="btn btn-primary">Otevřít katalog</a>
+    </div>
+  </section>
+
+  <!-- ===== Doporučené produkty ===== -->
+  <section id="featuredSection" class="bg-surface-container-low border-y border-outline-variant" aria-labelledby="featured-heading">
+    <div class="max-w-store mx-auto px-margin py-14">
+      <div class="flex items-end justify-between mb-6">
+        <div>
+          <span class="font-mono-label text-mono-label text-primary uppercase tracking-widest block mb-1">Doporučujeme</span>
+          <h2 id="featured-heading" class="font-display text-h1 text-on-surface">Vybrané produkty</h2>
+        </div>
+        <a href="catalog.php" class="btn btn-outline btn-sm hidden sm:inline-flex">
+          Vše <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span>
+        </a>
+      </div>
+      <div id="featuredGrid" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="skeleton rounded-xl h-[280px]"></div>
+                <div class="skeleton rounded-xl h-[280px]"></div>
+                <div class="skeleton rounded-xl h-[280px]"></div>
+                <div class="skeleton rounded-xl h-[280px]"></div>
+              </div>
+      <div id="featuredEmpty" class="hidden">
+        <div class="bg-surface-container border border-outline-variant rounded-2xl p-10 text-center">
+          <span class="material-symbols-outlined text-[40px] text-primary/50 block mb-3" aria-hidden="true">storefront</span>
+          <h3 class="font-h2 text-h2 text-on-surface mb-2">Produkty se připravují</h3>
+          <p class="font-body-md text-on-surface-variant mb-5 max-w-sm mx-auto">
+            Katalog bude brzy naplněn. Prozatím si prohlédni strukturu obchodu nebo se ozvi.
+          </p>
+          <div class="flex flex-wrap gap-3 justify-center">
+            <a href="catalog.php" class="btn btn-primary">Přejít do katalogu</a>
+            <a href="contact.php" class="btn btn-outline">Kontakt</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== V akci (deals) ===== -->
+  <section id="dealsSection" class="hidden max-w-store mx-auto px-margin py-14" aria-labelledby="deals-heading">
+    <div class="flex items-end justify-between mb-6">
+      <h2 id="deals-heading" class="font-display text-h1 text-on-surface flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary icon-filled" aria-hidden="true">sell</span> V akci
+      </h2>
+      <a href="catalog.php?deals=1" class="btn btn-outline btn-sm hidden sm:inline-flex">
+        Vše <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span>
+      </a>
+    </div>
+    <div id="dealsGrid" class="grid grid-cols-2 md:grid-cols-4 gap-4" role="list"></div>
+  </section>
+
+  <!-- ===== Digital / Physical rozcestník ===== -->
+  <section class="max-w-store mx-auto px-margin py-14" aria-labelledby="types-heading">
+    <span class="font-mono-label text-mono-label text-primary uppercase tracking-widest block mb-1">Co nabízíme</span>
+    <h2 id="types-heading" class="font-display text-h1 text-on-surface mb-8">Dva světy, jeden obchod</h2>
+    <div class="grid md:grid-cols-2 gap-6">
+
+      <!-- Digital -->
+      <a href="catalog.php?type=digital"
+         class="group relative overflow-hidden bg-surface-container border border-outline-variant rounded-2xl p-8 hover:border-primary/50 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg block">
+        <div class="absolute top-0 right-0 w-48 h-48 rounded-full opacity-5 -translate-y-1/2 translate-x-1/4"
+             style="background:radial-gradient(circle,#10b981,transparent)" aria-hidden="true"></div>
+        <div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
+          <span class="material-symbols-outlined text-[26px] text-primary icon-filled" aria-hidden="true">download</span>
+        </div>
+        <h3 class="font-display text-h2 text-on-surface mb-2">Digitální produkty</h3>
+        <p class="font-body-md text-on-surface-variant text-sm leading-relaxed mb-5">
+          UI kity, ikony, šablony a nástroje pro tvůrce. Dostupné ke stažení ihned po zaplacení. Žádná doprava, žádné čekání.
+        </p>
+        <span class="inline-flex items-center gap-1.5 font-mono-label text-mono-label text-primary uppercase text-[11px] group-hover:gap-2.5 transition-all duration-150">
+          Procházet digitální
+          <span class="material-symbols-outlined text-[14px]" aria-hidden="true">arrow_forward</span>
+        </span>
+      </a>
+
+      <!-- Physical -->
+      <a href="catalog.php?type=physical"
+         class="group relative overflow-hidden bg-surface-container border border-outline-variant rounded-2xl p-8 hover:border-primary/50 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg block">
+        <div class="absolute top-0 right-0 w-48 h-48 rounded-full opacity-5 -translate-y-1/2 translate-x-1/4"
+             style="background:radial-gradient(circle,#10b981,transparent)" aria-hidden="true"></div>
+        <div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
+          <span class="material-symbols-outlined text-[26px] text-primary icon-filled" aria-hidden="true">inventory_2</span>
+        </div>
+        <h3 class="font-display text-h2 text-on-surface mb-2">Fyzické produkty</h3>
+        <p class="font-body-md text-on-surface-variant text-sm leading-relaxed mb-5">
+          Elektronika, móda, domácnost, sport a péče o sebe. Ověřený sortiment s doručením.
+        </p>
+        <span class="inline-flex items-center gap-1.5 font-mono-label text-mono-label text-primary uppercase text-[11px] group-hover:gap-2.5 transition-all duration-150">
+          Procházet fyzické
+          <span class="material-symbols-outlined text-[14px]" aria-hidden="true">arrow_forward</span>
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== Oblíbené (bestsellers) ===== -->
+  <section id="bestSection" class="hidden bg-surface-container-low border-y border-outline-variant" aria-labelledby="best-heading">
+    <div class="max-w-store mx-auto px-margin py-14">
+      <div class="flex items-end justify-between mb-6">
+        <h2 id="best-heading" class="font-display text-h1 text-on-surface flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary icon-filled" aria-hidden="true">trending_up</span> Oblíbené
+        </h2>
+        <a href="catalog.php?sort=bestselling" class="btn btn-outline btn-sm hidden sm:inline-flex">
+          Vše <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span>
+        </a>
+      </div>
+      <div id="bestGrid" class="grid grid-cols-2 md:grid-cols-4 gap-4" role="list"></div>
+    </div>
+  </section>
+
+  <!-- ===== Value propositions ===== -->
+  <section class="max-w-store mx-auto px-margin py-14" aria-labelledby="values-heading">
+    <h2 id="values-heading" class="sr-only">Proč nakupovat ve VeVit Store</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+
+      <div class="bg-surface-container border border-outline-variant rounded-2xl p-7 flex flex-col">
+        <div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-5 flex-shrink-0">
+          <span class="material-symbols-outlined text-primary icon-filled text-[26px]" aria-hidden="true">bolt</span>
+        </div>
+        <h3 class="font-display text-[20px] font-bold text-on-surface mb-2">Okamžité stažení</h3>
+        <p class="font-body-md text-sm text-on-surface-variant leading-relaxed flex-1">
+          Digitální produkty jsou dostupné ihned po potvrzení platby. Stahuj opakovaně po dobu platnosti linku.
+        </p>
+      </div>
+
+      <div class="bg-surface-container border border-outline-variant rounded-2xl p-7 flex flex-col">
+        <div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-5 flex-shrink-0">
+          <span class="material-symbols-outlined text-primary icon-filled text-[26px]" aria-hidden="true">lock</span>
+        </div>
+        <h3 class="font-display text-[20px] font-bold text-on-surface mb-2">Bezpečná platba</h3>
+        <p class="font-body-md text-sm text-on-surface-variant leading-relaxed flex-1">
+          Platba kartou přes zabezpečenou platformu Stripe. Citlivé údaje se nikdy nedostanou na naše servery.
+        </p>
+      </div>
+
+      <div class="bg-surface-container border border-outline-variant rounded-2xl p-7 flex flex-col">
+        <div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-5 flex-shrink-0">
+          <span class="material-symbols-outlined text-primary icon-filled text-[26px]" aria-hidden="true">assignment_return</span>
+        </div>
+        <h3 class="font-display text-[20px] font-bold text-on-surface mb-2">Vrácení bez problémů</h3>
+        <p class="font-body-md text-sm text-on-surface-variant leading-relaxed flex-1">
+          Fyzické zboží vrátíš do 14 dnů bez udání důvodu. Zákaznická podpora odpoví do 24 hodin v pracovní dny.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== O VeVit ===== -->
+  <section class="bg-surface-container-low border-y border-outline-variant" aria-labelledby="about-heading">
+    <div class="max-w-store mx-auto px-margin py-14 grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <span class="font-mono-label text-mono-label text-primary uppercase tracking-widest block mb-3">O obchodě</span>
+        <h2 id="about-heading" class="font-display text-h1 text-on-surface mb-4 leading-tight">Pečlivě vybraný sortiment</h2>
+        <p class="font-body-md text-on-surface-variant leading-relaxed mb-6">
+          VeVit Store kombinuje digitální nástroje pro moderní tvůrce a ověřené fyzické produkty pro každodenní život. Každý produkt prochází ruční kontrolou před zařazením do katalogu.
+        </p>
+        <a href="about.php" class="btn btn-outline">
+          Zjistit více <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span>
+        </a>
+      </div>
+      <div class="flex flex-col gap-5">
+                <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <span class="material-symbols-outlined text-primary text-[18px] icon-filled" aria-hidden="true">check_circle</span>
+          </div>
+          <div>
+            <h3 class="font-body-md font-bold text-on-surface mb-0.5">Ověřené produkty</h3>
+            <p class="font-body-md text-sm text-on-surface-variant">Každý produkt ručně procházíme před zařazením do katalogu.</p>
+          </div>
+        </div>
+                <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <span class="material-symbols-outlined text-primary text-[18px] icon-filled" aria-hidden="true">support_agent</span>
+          </div>
+          <div>
+            <h3 class="font-body-md font-bold text-on-surface mb-0.5">Zákaznická podpora</h3>
+            <p class="font-body-md text-sm text-on-surface-variant">Odpovídáme na dotazy do 24 hodin v pracovní dny.</p>
+          </div>
+        </div>
+                <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <span class="material-symbols-outlined text-primary text-[18px] icon-filled" aria-hidden="true">assignment_return</span>
+          </div>
+          <div>
+            <h3 class="font-body-md font-bold text-on-surface mb-0.5">14 dní na vrácení</h3>
+            <p class="font-body-md text-sm text-on-surface-variant">Fyzické zboží vrátíš do 14 dnů bez udání důvodu.</p>
+          </div>
+        </div>
+              </div>
+    </div>
+  </section>
+
+  <!-- ===== Final CTA ===== -->
+  <section class="max-w-store mx-auto px-margin py-14" aria-labelledby="cta-heading">
+    <div class="relative overflow-hidden rounded-3xl p-10 md:p-14 text-center"
+         style="background:linear-gradient(135deg,#052e16 0%,#064e3b 60%,#0f172a 100%)">
+      <div class="absolute inset-0 pointer-events-none" aria-hidden="true"
+           style="background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(16,185,129,.1) 0%,transparent 70%)"></div>
+      <div class="relative">
+        <span class="font-mono-label text-mono-label uppercase tracking-widest block mb-3" style="color:#4edea3">Připraven nakoupit?</span>
+        <h2 id="cta-heading" class="font-display text-[32px] md:text-[40px] font-extrabold mb-3 leading-tight" style="color:#f0fdf4">
+          Prozkoumat celý katalog
+        </h2>
+        <p class="font-body-md leading-relaxed mb-8 max-w-lg mx-auto" style="color:#a7f3d0">
+          Stovky produktů. Nové přírůstky průběžně. Najdi, co hledáš — digitálně i fyzicky.
+        </p>
+        <div class="flex flex-wrap gap-3 justify-center">
+          <a href="catalog.php" class="btn btn-primary btn-lg">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">explore</span>
+            Otevřít katalog
+          </a>
+          <a href="contact.php" class="btn btn-lg" style="border:1px solid rgba(78,222,163,.35);color:#4edea3;background:transparent">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">mail</span>
+            Kontakt
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Naposledy prohlížené (jen přihlášení) -->
+  <section id="recentSection" class="hidden max-w-store mx-auto px-margin pb-14" aria-labelledby="recent-heading">
+    <div class="flex items-end justify-between mb-6">
+      <h2 id="recent-heading" class="font-display text-h1 text-on-surface flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary" aria-hidden="true">history</span> Naposledy prohlížené
+      </h2>
+    </div>
+    <div id="recentGrid" class="grid grid-cols-2 md:grid-cols-4 gap-4" role="list"></div>
+  </section>
+
+</main>
+
+<script defer src="assets/js/index-page.js"></script>
+
+</div><!-- /#main-content -->
+
+<!-- ===== Footer ===== -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant mt-auto" role="contentinfo">
+  <div class="max-w-store mx-auto px-margin py-16">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+
+      <!-- Brand -->
+      <div class="md:col-span-1">
+        <a href="index.html" class="flex items-center gap-2.5 mb-4 hover:opacity-90 transition-opacity">
+          <img src="images/logo_notext.png" alt="VeVit" width="36" height="36" class="w-9 h-9 rounded-lg object-contain">
+          <span class="font-display text-lg font-extrabold text-on-surface tracking-tight">VeVit<span class="text-primary">.</span></span>
+        </a>
+        <p class="font-body-md text-sm text-on-surface-variant leading-relaxed mb-4">
+          Moderní e-shop s ověřeným sortimentem. Digitální produkty ihned po platbě, fyzické zboží s doručením do 2 dnů.
+        </p>
+        <!-- Payment methods -->
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="font-caption text-caption text-on-surface-variant uppercase tracking-wide">Platba:</span>
+          <span class="badge badge-neutral">Karta</span>
+          <span class="badge badge-neutral">Stripe</span>
+        </div>
+      </div>
+
+      <!-- Obchod -->
+      <div>
+        <h3 class="font-mono-label text-mono-label text-on-surface uppercase tracking-widest mb-4">Obchod</h3>
+        <ul class="flex flex-col gap-3">
+                    <li>
+            <a href="catalog.php" class="font-body-md text-sm text-on-surface-variant hover:text-primary transition-colors duration-150">
+              Všechny produkty            </a>
+          </li>
+                    <li>
+            <a href="catalog.php?sort=newest" class="font-body-md text-sm text-on-surface-variant hover:text-primary transition-colors duration-150">
+              Novinky            </a>
+          </li>
+                    <li>
+            <a href="catalog.php?deals=1" class="font-body-md text-sm text-on-surface-variant hover:text-primary transition-colors duration-150">
+              Slevy &amp; akce            </a>
+          </li>
+                    <li>
+            <a href="catalog.php?type=digital" class="font-body-md text-sm text-on-surface-variant hover:text-primary transition-colors duration-150">
+              Digitální produkty            </a>
+          </li>
+                    <li>
+            <a href="catalog.php?type=physical" class="font-body-md text-sm text-on-surface-variant hover:text-primary transition-colors duration-150">
+              Fyzické produkty            </a>
+          </li>
+                  </ul>
+      </div>
+
+      <!-- Zákaznické informace -->
+      <div>
+        <h3 class="font-mono-label text-mono-label text-on-surface uppercase tracking-widest mb-4">Zákazníci</h3>
+        <ul class="flex flex-col gap-3">
+                    <li>
+            <a href="shipping.php" class="font-body-md text-sm text-on-surface-variant hover:text-primary transition-colors duration-150">
+              Doprava a platba            </a>
+          </li>
+                    <li>
+            <a href="returns.php" class="font-body-md text-sm text-on-surface-variant hover:text-primary transition-colors duration-150">
+              Vrácení a reklamace            </a>
+          </li>
+                    <li>
+            <a href="contact.php" class="font-body-md text-sm text-on-surface-variant hover:text-primary transition-colors duration-150">
+              Kontakt a podpora            </a>
+          </li>
+                    <li>
+            <a href="about.php" class="font-body-md text-sm text-on-surface-variant hover:text-primary transition-colors duration-150">
+              O nás            </a>
+          </li>
+                  </ul>
+      </div>
+
+      <!-- Právní -->
+      <div>
+        <h3 class="font-mono-label text-mono-label text-on-surface uppercase tracking-widest mb-4">Právní</h3>
+        <ul class="flex flex-col gap-3">
+                    <li>
+            <a href="terms.php" class="font-body-md text-sm text-on-surface-variant hover:text-primary transition-colors duration-150">
+              Obchodní podmínky            </a>
+          </li>
+                    <li>
+            <a href="privacy.php" class="font-body-md text-sm text-on-surface-variant hover:text-primary transition-colors duration-150">
+              Ochrana soukromí            </a>
+          </li>
+                    <li>
+            <a href="returns.php" class="font-body-md text-sm text-on-surface-variant hover:text-primary transition-colors duration-150">
+              Právo na odstoupení            </a>
+          </li>
+                  </ul>
+        <!-- Secure badge -->
+        <div class="mt-6 flex items-center gap-2 text-on-surface-variant">
+          <span class="material-symbols-outlined text-[18px] text-primary icon-filled" aria-hidden="true">lock</span>
+          <span class="font-caption text-caption">Zabezpečeno přes Stripe</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="border-t border-outline-variant pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="font-caption text-caption text-on-surface-variant">
+        © 2026 VeVit Store. Všechna práva vyhrazena.
+      </p>
+      <div class="flex items-center gap-1 text-on-surface-variant">
+        <span class="material-symbols-outlined text-[14px] text-primary icon-filled" aria-hidden="true">favorite</span>
+        <span class="font-caption text-caption">Vyrobeno s péčí</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== Mobile Bottom Navigation ===== -->
+<nav class="fixed bottom-0 left-0 w-full z-40 md:hidden bg-surface-container/95 backdrop-blur-md border-t border-outline-variant" aria-label="Rychlá navigace">
+  <div class="flex items-stretch h-16">
+        <a href="index.html"
+       class="flex-1 flex flex-col items-center justify-center gap-0.5 transition-colors duration-150 relative text-primary"
+       aria-current="page">
+              <span class="material-symbols-outlined text-[22px] icon-filled" aria-hidden="true">home</span>
+            <span class="font-caption text-[10px] font-semibold tracking-wide uppercase">Domů</span>
+              <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-primary rounded-full"></span>
+          </a>
+        <a href="catalog.php"
+       class="flex-1 flex flex-col items-center justify-center gap-0.5 transition-colors duration-150 relative text-on-surface-variant hover:text-on-surface"
+       >
+              <span class="material-symbols-outlined text-[22px] " aria-hidden="true">storefront</span>
+            <span class="font-caption text-[10px] font-semibold tracking-wide uppercase">Katalog</span>
+          </a>
+        <a href="cart.php"
+       class="flex-1 flex flex-col items-center justify-center gap-0.5 transition-colors duration-150 relative text-on-surface-variant hover:text-on-surface"
+       >
+              <span class="relative">
+          <span class="material-symbols-outlined text-[22px] " aria-hidden="true">shopping_bag</span>
+          <span class="nav-cart-badge absolute -top-1 -right-1.5 min-w-[16px] h-[16px] px-0.5 bg-primary-container text-on-primary-fixed text-[9px] font-bold rounded-full flex items-center justify-center" style="display:none">0</span>
+        </span>
+            <span class="font-caption text-[10px] font-semibold tracking-wide uppercase">Košík</span>
+          </a>
+
+    <!-- Account -->
+        <span data-vevit-session></span>
+      </div>
+</nav>
+
+<script src="assets/js/cart.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

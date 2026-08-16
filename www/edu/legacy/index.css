@@ -1,0 +1,291 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
+
+  --color-slate-850: #151e32;
+  --color-slate-900: #0f172a;
+
+  --color-indigo-400: #818cf8;
+  --color-indigo-500: #6366f1;
+  --color-indigo-600: #4f46e5;
+}
+
+/* Wiki content styles */
+.wiki-content { line-height: 1.8; }
+.wiki-content p { margin-bottom: 1.5rem; }
+.wiki-content h2 { font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem; }
+.wiki-content h3 { font-size: 1.25rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.75rem; }
+.wiki-content h4 { font-size: 1.125rem; font-weight: 600; margin-top: 1.25rem; margin-bottom: 0.5rem; }
+.wiki-content ul, .wiki-content ol { margin-left: 1.5rem; margin-bottom: 1.5rem; }
+.wiki-content li { margin-bottom: 0.5rem; }
+.wiki-content a { color: #10b981; text-decoration: underline; text-underline-offset: 2px; }
+.wiki-content a:hover { color: #059669; }
+.wiki-content code { font-size: 0.875rem; border-radius: 4px; padding: 2px 6px; }
+.wiki-content pre { border-radius: 10px; padding: 16px; overflow-x: auto; margin-bottom: 1.5rem; }
+.wiki-content pre code { border: none; padding: 0; }
+.wiki-content blockquote { border-left: 3px solid #10b981; padding: 16px 20px; border-radius: 0 10px 10px 0; margin-bottom: 1.5rem; }
+.wiki-content blockquote p { margin-bottom: 0; font-style: italic; }
+.wiki-content img { max-width: 100%; height: auto; border-radius: 10px; margin: 1.5rem 0; }
+
+/* Hide unwanted Wikipedia elements */
+.wiki-content .toc, .wiki-content .ambox, .wiki-content .navbox,
+.wiki-content .mw-editsection, .wiki-content .mw-empty-elt,
+.wiki-content .noprint, .wiki-content .mw-ref,
+.wiki-content .sistersitebox, .wiki-content .side-box { display: none !important; }
+
+.wiki-content .reference { font-size: 0.75rem; color: #10b981; }
+
+/* Infobox: float right next to content */
+.wiki-content .infobox,
+.wiki-content .vevent,
+.wiki-content .sidebar {
+  float: right;
+  clear: right;
+  margin: 0 0 1.5rem 1.5rem;
+  max-width: 320px;
+  width: auto;
+}
+
+@media (max-width: 768px) {
+  .wiki-content .infobox,
+  .wiki-content .vevent,
+  .wiki-content .sidebar {
+    float: none;
+    max-width: 100%;
+    margin: 0 0 1.5rem 0;
+  }
+}
+
+/* Table styling with readable text colors */
+.wiki-content table {
+  width: auto;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+}
+
+.wiki-content .infobox table {
+  width: 100%;
+}
+
+/* Ensure all table cells have readable text */
+.wiki-content th,
+.wiki-content td {
+  padding: 8px 12px;
+  text-align: left;
+}
+
+/* Light mode table styling */
+.wiki-content th {
+  color: #1e293b;
+}
+
+.wiki-content td {
+  color: #334155;
+}
+
+/* Dark mode table styling */
+:where(.dark) .wiki-content th {
+  color: #e2e8f0;
+}
+
+:where(.dark) .wiki-content td {
+  color: #cbd5e1;
+}
+
+/* Force readable text inside infoboxes and tables regardless of Wikipedia inline styles */
+.wiki-content .infobox th,
+.wiki-content .infobox td,
+.wiki-content .vevent th,
+.wiki-content .vevent td,
+.wiki-content .sidebar th,
+.wiki-content .sidebar td {
+  color: inherit !important;
+}
+
+/* Infobox header row styling */
+.wiki-content .infobox th.infobox-header,
+.wiki-content .infobox .infobox-header {
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Infobox caption */
+.wiki-content .infobox caption {
+  font-weight: 600;
+  padding: 8px;
+  text-align: center;
+}
+
+/* Override Wikipedia's light backgrounds on tables in dark mode */
+:where(.dark) .wiki-content table,
+:where(.dark) .wiki-content .infobox,
+:where(.dark) .wiki-content .vevent,
+:where(.dark) .wiki-content .sidebar {
+  background-color: rgba(30, 41, 59, 0.8) !important;
+}
+
+:where(.dark) .wiki-content th,
+:where(.dark) .wiki-content td {
+  border-color: rgba(148, 163, 184, 0.2) !important;
+}
+
+/* Light mode table borders */
+.wiki-content th,
+.wiki-content td {
+  border: 1px solid #e2e8f0;
+}
+
+/* Force all text inside Wikipedia content to be readable */
+:where(.dark) .wiki-content span,
+:where(.dark) .wiki-content div,
+:where(.dark) .wiki-content li {
+  color: revert !important;
+}
+
+/* Skeleton screen animations */
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+
+:where(.dark) .skeleton {
+  background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@theme inline {
+  --font-heading: var(--font-sans);
+  --font-sans: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}

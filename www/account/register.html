@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<link rel="icon" href="/account/images/icon.ico" type="image/x-icon">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vytvořit účet · vevit</title>
+<link rel="stylesheet" href="/assets/fonts/vevit-fonts.css">
+<link rel="stylesheet" href="./assets/styles.css">
+<style>
+  :root { color-scheme:dark; }
+  .auth-wrap { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:26px; padding:36px 16px; background:radial-gradient(circle at 50% -15%, #173a353b, transparent 42%), var(--bg); }
+  .auth-brand { display:flex; align-items:center; gap:10px; }
+  .auth-card { width:100%; max-width:570px; background:linear-gradient(145deg, color-mix(in srgb, var(--card) 97%, #ffffff), var(--card)); border:1px solid color-mix(in srgb, var(--card-border) 82%, #ffffff); border-radius:20px; padding:clamp(24px, 5vw, 38px); box-shadow:0 24px 70px #00000038, inset 0 1px #ffffff0c; }
+  .auth-heading { margin-bottom:28px; }
+  .auth-title { font-size:24px; letter-spacing:-.035em; font-weight:700; margin:0 0 7px; }
+  .auth-sub { font-size:14px; color:var(--text-3); line-height:1.55; margin:0; }
+  .auth-error { background:#f8717120; border:1px solid #f8717166; border-radius:12px; padding:11px 13px; font-size:13px; color:#fecaca; display:flex; align-items:flex-start; gap:9px; line-height:1.45; margin-bottom:20px; }
+  .auth-error[hidden], .register-success[hidden] { display:none; }
+  .auth-hint { font-size:13px; color:var(--text-3); text-align:center; margin:0; }
+  .auth-hint a { color:var(--primary); font-weight:600; }
+  .register-form { display:flex; flex-direction:column; gap:18px; }
+  .identity-grid { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:16px; }
+  .field { min-width:0; position:relative; }
+  .field-label { display:flex; align-items:center; gap:3px; margin-bottom:8px; font-size:13px; font-weight:600; color:var(--text-2); }
+  .required { color:#fb7185; }
+  .field-control { position:relative; }
+  .field .input { width:100%; min-height:46px; padding:0 42px 0 13px; border-radius:11px; border-color:color-mix(in srgb, var(--card-border) 88%, transparent); background:#080d0dcc; transition:border-color 220ms ease, box-shadow 220ms ease, background 220ms ease, transform 220ms ease; }
+  .field .input:focus { background:#0b1111; border-color:color-mix(in srgb, var(--primary) 85%, #ffffff); box-shadow:0 0 0 4px color-mix(in srgb, var(--primary) 16%, transparent); outline:none; }
+  .field.is-invalid .input { border-color:#fb7185; box-shadow:0 0 0 3px #fb71851c; }
+  .field.is-valid .input { border-color:#34d399; animation:valid-ring 280ms ease-out both; }
+  .field.is-pending .input { border-color:#eab308; }
+  @keyframes valid-ring { 0% { box-shadow:0 0 0 0 #34d39900; } 55% { box-shadow:0 0 0 4px #34d3992b; } 100% { box-shadow:0 0 0 0 #34d39900; } }
+  .field-check { display:none; position:absolute; right:13px; top:50%; width:17px; height:17px; transform:translateY(-50%) scale(.7); color:#082f27; background:#34d399; border-radius:50%; align-items:center; justify-content:center; font-size:12px; font-weight:800; opacity:0; transition:opacity 180ms ease, transform 180ms ease; pointer-events:none; }
+  .field.is-valid .field-check { display:flex; opacity:1; transform:translateY(-50%) scale(1); }
+  .password-toggle { position:absolute; z-index:2; right:8px; top:50%; transform:translateY(-50%); width:31px; height:31px; display:grid; place-items:center; color:var(--text-3); background:transparent; border:0; border-radius:7px; cursor:pointer; transition:color 180ms ease, background 180ms ease; }
+  .password-toggle:hover, .password-toggle:focus-visible { color:var(--text); background:#ffffff12; outline:none; }
+  .password-toggle svg { width:18px; height:18px; }
+  .field:has(.password-toggle) .input { padding-right:48px; }
+  .field:has(.password-toggle) .field-check { right:43px; }
+  .field-error, .field-info { display:block; min-height:17px; margin:6px 2px 0; font-size:12px; line-height:1.4; }
+  .field-error { color:#fda4af; }
+  .field-info { color:var(--text-3); }
+  .field-info.is-checking { color:#fde68a; }
+  .field-label-row { display:flex; align-items:baseline; justify-content:space-between; gap:12px; }
+  .identity-mode-toggle { appearance:none; border:0; padding:0; background:transparent; color:var(--primary); font:inherit; font-size:12px; font-weight:600; cursor:pointer; }
+  .identity-mode-toggle:hover { color:#8df2bd; text-decoration:underline; }
+  .identity-mode-toggle:focus-visible { outline:2px solid var(--primary); outline-offset:3px; border-radius:3px; }
+  .password-rules { padding:14px 15px; border:1px solid #ffffff12; border-radius:12px; background:#ffffff05; }
+  .password-rules__title { margin:0 0 9px; font-size:12px; color:var(--text-3); }
+  .password-rules ul { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:7px 14px; list-style:none; padding:0; margin:0; }
+  .password-rules li { display:flex; align-items:center; gap:7px; color:var(--text-3); font-size:12px; transition:color 200ms ease; }
+  .rule-check { width:16px; height:16px; display:grid; place-items:center; flex:0 0 auto; border:1px solid #ffffff2b; border-radius:50%; color:transparent; font-size:11px; transition:background 200ms ease, border-color 200ms ease, color 200ms ease; }
+  .password-rules li.is-met { color:#a7f3d0; }
+  .password-rules li.is-met .rule-check { border-color:#34d399; background:#34d399; color:#052e27; }
+  .btn-register { min-height:48px; justify-content:center; margin-top:2px; border-radius:11px; opacity:.58; transform:translateY(0); transition:background 220ms ease, box-shadow 220ms ease, transform 180ms ease, opacity 220ms ease; }
+  .btn-register:not(:disabled) { background:linear-gradient(135deg, #10b981, #22c55e); box-shadow:0 8px 22px #10b98135; opacity:1; }
+  .btn-register:not(:disabled):hover { transform:translateY(-1px); box-shadow:0 11px 27px #10b98145; }
+  .btn-register:focus-visible { outline:3px solid #6ee7b755; outline-offset:3px; }
+  .btn-register[aria-busy="true"] { cursor:progress; }
+  .button-spinner { width:15px; height:15px; display:none; border:2px solid #ffffff55; border-top-color:#fff; border-radius:50%; animation:spin .7s linear infinite; }
+  .btn-register[aria-busy="true"] .button-spinner { display:block; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  .register-success { text-align:center; padding:20px 6px 7px; animation:success-in 300ms ease-out both; }
+  .oauth-divider { display:flex; align-items:center; gap:12px; color:var(--text-3); font-size:12px; margin:22px 0 14px; }
+  .oauth-divider::before, .oauth-divider::after { content:""; height:1px; flex:1; background:var(--card-border); }
+  .oauth-buttons { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:9px; }
+  .oauth-button { min-height:44px; display:flex; align-items:center; justify-content:center; gap:7px; border:1px solid var(--card-border); border-radius:11px; background:#ffffff05; color:var(--text-2); font:inherit; font-size:12px; font-weight:600; cursor:pointer; transition:background .18s ease,border-color .18s ease,transform .18s ease; }
+  .oauth-button:hover { background:#ffffff0b; border-color:#ffffff40; color:var(--text); transform:translateY(-1px); }.oauth-button:active { transform:translateY(0); }.oauth-button:focus-visible { outline:2px solid var(--primary); outline-offset:2px; }.oauth-button:disabled { opacity:.65; cursor:progress; transform:none; }.oauth-button svg { width:17px; height:17px; flex:0 0 auto; }
+  .oauth-status { min-height:18px; margin:10px 0 0; color:var(--text-3); font-size:12px; text-align:center; }
+  .success-check { width:58px; height:58px; display:grid; place-items:center; margin:0 auto 16px; border-radius:50%; color:#052e27; background:#34d399; font-size:29px; font-weight:800; box-shadow:0 0 0 8px #34d3991c; animation:success-pop 380ms cubic-bezier(.16, 1, .3, 1) both; }
+  .register-success h2 { margin:0 0 7px; font-size:20px; letter-spacing:-.02em; }
+  .register-success p { margin:0; color:var(--text-3); font-size:13px; }
+  @keyframes success-in { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes success-pop { from { transform:scale(.55); } to { transform:scale(1); } }
+  @media (max-width:640px) { .auth-wrap { justify-content:flex-start; padding-top:28px; } .auth-card { padding:25px 20px; } .identity-grid, .password-rules ul, .oauth-buttons { grid-template-columns:1fr; } }
+  @media (prefers-reduced-motion:reduce) { *, *::before, *::after { animation-duration:.01ms !important; transition-duration:.01ms !important; scroll-behavior:auto !important; } }
+</style>
+</head>
+<body>
+<main class="auth-wrap">
+  <a class="auth-brand" href="./" aria-label="vevit – domů">
+    <span class="brand-mark" aria-hidden="true">v</span>
+    <span class="brand-name">vevit</span>
+  </a>
+
+  <section class="auth-card" aria-labelledby="registerTitle">
+    <div class="auth-heading">
+      <h1 class="auth-title" id="registerTitle">Vytvořte účet</h1>
+      <p class="auth-sub">Začněte na vevit zdarma. Zabere to jen chvilku.</p>
+    </div>
+
+    <div class="auth-error" id="authErr" role="alert" aria-live="assertive" hidden>
+      <span aria-hidden="true">⚠</span><span id="authErrMsg"></span>
+    </div>
+
+    <form class="register-form" id="registerForm" novalidate>
+      <div class="identity-grid">
+        <div class="field" id="fieldName">
+          <label class="field-label" for="inpName">Jméno a příjmení <span class="required" aria-hidden="true">*</span></label>
+          <div class="field-control">
+            <input id="inpName" class="input" type="text" name="name" autocomplete="name" placeholder="Jan Novák" required aria-required="true" aria-describedby="errName">
+            <span class="field-check" aria-hidden="true">✓</span>
+          </div>
+          <span class="field-error" id="errName" aria-live="polite"></span>
+        </div>
+
+        <div class="field" id="fieldNick">
+          <label class="field-label" for="inpNick">Přezdívka <span class="required" aria-hidden="true">*</span></label>
+          <div class="field-control">
+            <input id="inpNick" class="input input--mono" type="text" name="username" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="jan.novak" required aria-required="true" aria-describedby="errNick nickInfo">
+            <span class="field-check" aria-hidden="true">✓</span>
+          </div>
+          <span class="field-error" id="errNick" aria-live="polite"></span>
+          <span class="field-info" id="nickInfo" aria-live="polite">2–30 znaků. Můžete použít česká písmena, mezery, čísla, tečku, pomlčku a podtržítko.</span>
+        </div>
+      </div>
+
+      <!-- phone-register-flow-v2 -->
+      <div class="field" id="fieldEmail">
+        <div class="field-label-row">
+          <label class="field-label" for="inpEmail"><span id="identityLabel">E-mail</span> <span class="required" aria-hidden="true">*</span></label>
+          <button id="identityModeToggle" class="identity-mode-toggle" type="button">Použít telefonní číslo</button>
+        </div>
+        <div class="field-control">
+          <input id="inpEmail" class="input input--mono" type="email" name="email" autocomplete="email" inputmode="email" placeholder="jan@email.cz" required aria-required="true" aria-describedby="errEmail identityHint">
+          <span class="field-check" aria-hidden="true">✓</span>
+        </div>
+        <span class="field-error" id="errEmail" aria-live="polite"></span>
+        <span class="field-info" id="identityHint" hidden></span>
+      </div>
+
+      <div class="field" id="fieldPass">
+        <label class="field-label" for="inpPass">Heslo <span class="required" aria-hidden="true">*</span></label>
+        <div class="field-control">
+          <input id="inpPass" class="input input--mono" type="password" name="password" autocomplete="new-password" placeholder="Vytvořte silné heslo" required aria-required="true" aria-describedby="errPass passwordRules">
+          <span class="field-check" aria-hidden="true">✓</span>
+          <button class="password-toggle" type="button" data-password-toggle="inpPass" aria-label="Zobrazit heslo" aria-pressed="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2.5 12s3.4-6 9.5-6 9.5 6 9.5 6-3.4 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.6"/></svg>
+          </button>
+        </div>
+        <span class="field-error" id="errPass" aria-live="polite"></span>
+      </div>
+
+      <div class="password-rules" id="passwordRules" aria-label="Požadavky na heslo">
+        <p class="password-rules__title">Heslo musí obsahovat:</p>
+        <ul>
+          <li data-rule="length"><span class="rule-check" aria-hidden="true">✓</span>minimálně 8 znaků</li>
+          <li data-rule="upper"><span class="rule-check" aria-hidden="true">✓</span>alespoň 1 velké písmeno</li>
+          <li data-rule="lower"><span class="rule-check" aria-hidden="true">✓</span>alespoň 1 malé písmeno</li>
+          <li data-rule="number"><span class="rule-check" aria-hidden="true">✓</span>alespoň 1 číslo</li>
+          <li data-rule="special"><span class="rule-check" aria-hidden="true">✓</span>alespoň 1 speciální znak</li>
+        </ul>
+      </div>
+
+      <div class="field" id="fieldPassConfirm">
+        <label class="field-label" for="inpPassConfirm">Potvrzení hesla <span class="required" aria-hidden="true">*</span></label>
+        <div class="field-control">
+          <input id="inpPassConfirm" class="input input--mono" type="password" name="password_confirmation" autocomplete="new-password" placeholder="Zadejte heslo znovu" required aria-required="true" aria-describedby="errPassConfirm">
+          <span class="field-check" aria-hidden="true">✓</span>
+          <button class="password-toggle" type="button" data-password-toggle="inpPassConfirm" aria-label="Zobrazit potvrzení hesla" aria-pressed="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2.5 12s3.4-6 9.5-6 9.5 6 9.5 6-3.4 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.6"/></svg>
+          </button>
+        </div>
+        <span class="field-error" id="errPassConfirm" aria-live="polite"></span>
+      </div>
+
+      <button id="btnRegister" class="btn btn--primary btn-register" type="submit" disabled aria-disabled="true">
+        <span class="button-spinner" aria-hidden="true"></span><span class="button-label">Vytvořit účet</span>
+      </button>
+    </form>
+    <div class="oauth-divider" aria-hidden="true">nebo pokračujte přes</div>
+    <div class="oauth-buttons" aria-label="Registrace přes externí službu">
+      <button class="oauth-button" type="button" data-oauth-url="/account/api/oauth/start.php?provider=google" aria-label="Pokračovat přes Google"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M21.35 12.23c0-.71-.06-1.23-.19-1.77H12v3.35h5.38a4.6 4.6 0 0 1-1.99 3.02l3.22 2.5c1.88-1.74 2.74-4.3 2.74-7.1Z"/><path fill="#34A853" d="M12 21.72c2.62 0 4.82-.87 6.43-2.39l-3.22-2.5c-.9.6-2.05.96-3.21.96-2.52 0-4.66-1.7-5.42-3.99l-3.33 2.57A9.72 9.72 0 0 0 12 21.72Z"/><path fill="#FBBC05" d="M6.58 13.8A5.84 5.84 0 0 1 6.28 12c0-.62.11-1.22.3-1.8L3.25 7.63A9.72 9.72 0 0 0 2.28 12c0 1.57.38 3.05.97 4.37l3.33-2.57Z"/><path fill="#EA4335" d="M12 6.21c1.42 0 2.69.49 3.69 1.45l2.77-2.77C16.81 3.34 14.62 2.28 12 2.28a9.72 9.72 0 0 0-8.75 5.35l3.33 2.57C7.34 7.91 9.48 6.21 12 6.21Z"/></svg><span>Pokračovat přes Google</span></button>
+      <button class="oauth-button" type="button" data-oauth-url="/account/api/oauth/start.php?provider=github" aria-label="Pokračovat přes GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.3a9.7 9.7 0 0 0-3.07 18.9c.49.09.67-.21.67-.47v-1.86c-2.73.6-3.3-1.16-3.3-1.16-.45-1.13-1.09-1.43-1.09-1.43-.9-.61.07-.6.07-.6 1 .07 1.52 1.02 1.52 1.02.88 1.51 2.32 1.07 2.88.82.09-.64.35-1.07.63-1.32-2.18-.25-4.47-1.09-4.47-4.85 0-1.07.38-1.95 1.01-2.64-.1-.25-.44-1.25.1-2.61 0 0 .83-.27 2.67 1.01A9.2 9.2 0 0 1 12 6.16c.83 0 1.67.11 2.45.33 1.84-1.28 2.67-1.01 2.67-1.01.54 1.36.2 2.36.1 2.61.63.69 1.01 1.57 1.01 2.64 0 3.77-2.29 4.6-4.47 4.85.35.3.66.88.66 1.78v2.64c0 .26.18.57.67.47A9.7 9.7 0 0 0 12 2.3Z"/></svg><span>Pokračovat přes GitHub</span></button>
+      <button class="oauth-button" type="button" data-oauth-url="/account/api/oauth/start.php?provider=discord" aria-label="Pokračovat přes Discord"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.54 4.35A16.7 16.7 0 0 0 15.44 3l-.5 1a15.5 15.5 0 0 0-5.88 0l-.5-1c-1.44.25-2.82.7-4.1 1.35C1.87 8.17 1.18 11.9 1.52 15.58a16.5 16.5 0 0 0 5.03 2.54l1.22-1.67a9.7 9.7 0 0 1-1.92-.92l.46-.36c3.7 1.73 7.68 1.73 11.33 0l.46.36c-.62.36-1.26.67-1.92.92l1.22 1.67a16.4 16.4 0 0 0 5.03-2.54c.4-4.27-.69-7.96-2.89-11.23ZM8.67 13.3c-1.1 0-2-1-2-2.23s.88-2.23 2-2.23 2.02 1 2 2.23c0 1.23-.88 2.23-2 2.23Zm6.66 0c-1.1 0-2-1-2-2.23s.88-2.23 2-2.23 2.02 1 2 2.23c0 1.23-.88 2.23-2 2.23Z"/></svg><span>Pokračovat přes Discord</span></button>
+    </div>
+    <p class="oauth-status" id="oauthStatus" role="status" aria-live="polite"></p>
+
+    <div class="register-success" id="registerSuccess" role="status" aria-live="polite" hidden>
+      <div class="success-check" aria-hidden="true">✓</div>
+      <h2>Účet byl úspěšně vytvořen.</h2>
+      <p>Za okamžik vás přesměrujeme do vašeho účtu.</p>
+    </div>
+  </section>
+
+  <p class="auth-hint">Máte účet? <a href="./login">Přihlásit se</a></p>
+</main>
+<script src="/account/assets/register.js"></script>
+</body>
+</html>

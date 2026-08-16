@@ -1,0 +1,22 @@
+RewriteEngine On
+
+# Protect sensitive files
+<FilesMatch "\.(sql|env|log|bak|php~)$">
+    Require all denied
+</FilesMatch>
+
+# API routing: /api/kurzy → api/kurzy.php, /api/lekce/5 → api/lekce.php, etc.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^api/([^/]+)/?$ api/$1.php [QSA,L]
+
+# Also handle /api/lekce/5 → api/lekce.php (with sub-path)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^api/([^/]+)/(.+)/?$ api/$1.php [QSA,L]
+
+# SPA fallback: everything else → index.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/api/
+RewriteRule ^.*$ /index.html [L]

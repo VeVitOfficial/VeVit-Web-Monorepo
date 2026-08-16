@@ -1,0 +1,1 @@
+import { createRenderer as renderer } from './renderer.mjs'; import { sliderControl } from './controls/slider.mjs'; export const type='slider'; export const createRenderer=()=>renderer(type,sliderControl);

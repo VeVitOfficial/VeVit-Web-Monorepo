@@ -1,0 +1,1 @@
+import { createRenderer as renderer } from './renderer.mjs'; import { wagerControl } from './controls/wager.mjs'; export const type='wager'; export const createRenderer=()=>renderer(type,wagerControl);

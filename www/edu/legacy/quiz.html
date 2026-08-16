@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript: Základy — Kvíz — edu.vevit.fun</title>
+<link rel="stylesheet" href="/assets/fonts/vevit-fonts.css">
+    <link rel="stylesheet" href="/assets/css/vevit-tailwind.css">
+
+    <style>
+        * { font-family: 'Sora', sans-serif; }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #0d0d0d; }
+        ::-webkit-scrollbar-thumb { background: #1e1e1e; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #262626; }
+
+        .answer-option {
+            transition: all 150ms ease-out;
+        }
+        .answer-option:hover:not(.selected):not(.correct):not(.wrong) {
+            border-color: rgba(255,255,255,0.2);
+            background: #1e1e1e;
+            cursor: pointer;
+        }
+        .answer-option.selected {
+            border-color: #10b981;
+            background: rgba(16, 185, 129, 0.06);
+        }
+        .answer-option.correct {
+            border-color: #22c55e;
+            background: rgba(34, 197, 94, 0.08);
+        }
+        .answer-option.wrong {
+            border-color: #ef4444;
+            background: rgba(239, 68, 68, 0.08);
+        }
+
+        .score-ring {
+            background: conic-gradient(#10b981 var(--score), #1e1e1e var(--score));
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            animation: fadeIn 200ms ease-out;
+        }
+    </style>
+</head>
+<body class="bg-base text-text-primary min-h-screen">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-base/95 backdrop-blur-sm border-b border-surface-border z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="/edu/" class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-md bg-accent flex items-center justify-center">
+                        <i data-lucide="book-open" class="w-4 h-4 text-base"></i>
+                    </div>
+                    <span class="text-lg font-semibold text-text-primary">edu<span class="text-accent">.vevit</span>.fun</span>
+                </a>
+
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="/#kurzy" class="text-sm text-text-secondary hover:text-text-primary transition-colors">Kurzy</a>
+                    <a href="/#clanky" class="text-sm text-text-secondary hover:text-text-primary transition-colors">Články</a>
+                    <a href="/#kvizy" class="text-sm text-text-secondary hover:text-text-primary transition-colors">Kvízy</a>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <a href="/login" class="px-4 py-2 text-sm font-semibold text-base bg-accent hover:bg-accent-hover rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-base">
+                        Přihlásit se
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-[640px] mx-auto">
+            <!-- Quiz Header -->
+            <div class="mb-8">
+                <nav class="text-xs text-text-muted mb-4">
+                    <a href="/edu/">Domů</a>
+                    <span class="mx-2">/</span>
+                    <a href="/#kvizy" class="hover:text-text-secondary transition-colors">Kvízy</a>
+                    <span class="mx-2">/</span>
+                    <span class="text-text-secondary">JavaScript: Základy</span>
+                </nav>
+                <h1 class="text-2xl font-semibold text-text-primary">JavaScript: Základy</h1>
+                <p class="text-sm text-text-secondary mt-2">Otestuj své znalosti proměnných, datových typů a operátorů.</p>
+            </div>
+
+            <!-- Progress Bar -->
+            <div id="progress-section" class="mb-8">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-sm text-text-muted">Otázka <span id="current-question">1</span> z <span id="total-questions">10</span></span>
+                    <span class="text-xs text-accent font-semibold" id="progress-percent">10%</span>
+                </div>
+                <div class="w-full h-2 bg-surface-elevated rounded-full overflow-hidden">
+                    <div id="progress-bar" class="h-full bg-accent transition-all duration-300" style="width: 10%;"></div>
+                </div>
+            </div>
+
+            <!-- Question Card -->
+            <div id="question-card" class="bg-surface border border-surface-border rounded-lg p-8 mb-6">
+                <p id="question-text" class="text-xl font-semibold text-text-primary mb-6" style="line-height: 1.5;">
+                    Jaký je správný způsob deklarace konstanty v JavaScriptu?
+                </p>
+
+                <!-- Answer Options -->
+                <div id="answers-container" class="space-y-2">
+                    <button class="answer-option w-full bg-surface border border-surface-border rounded-md p-4 text-left" data-answer="a">
+                        <span class="text-base text-text-secondary">var x = 10;</span>
+                    </button>
+                    <button class="answer-option w-full bg-surface border border-surface-border rounded-md p-4 text-left" data-answer="b">
+                        <span class="text-base text-text-secondary">let x = 10;</span>
+                    </button>
+                    <button class="answer-option w-full bg-surface border border-surface-border rounded-md p-4 text-left" data-answer="c">
+                        <span class="text-base text-text-secondary">const x = 10;</span>
+                    </button>
+                    <button class="answer-option w-full bg-surface border border-surface-border rounded-md p-4 text-left" data-answer="d">
+                        <span class="text-base text-text-secondary">constant x = 10;</span>
+                    </button>
+                </div>
+
+                <!-- Next Button (hidden initially) -->
+                <button id="next-btn" class="hidden mt-6 w-full py-3 px-4 text-sm font-semibold text-base bg-accent hover:bg-accent-hover rounded-md transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-base">
+                    Další otázka
+                    <i data-lucide="arrow-right" class="w-4 h-4 inline ml-1"></i>
+                </button>
+            </div>
+
+            <!-- Results Screen (hidden initially) -->
+            <div id="results-screen" class="hidden">
+                <div class="bg-surface border border-surface-border rounded-lg p-8 text-center mb-6">
+                    <!-- Score Circle -->
+                    <div class="w-32 h-32 mx-auto mb-6 relative">
+                        <div class="score-ring w-full h-full rounded-full flex items-center justify-center" style="--score: 70%;">
+                            <div class="w-28 h-28 bg-surface rounded-full flex flex-col items-center justify-center">
+                                <span id="score-number" class="text-4xl font-bold text-text-primary">7</span>
+                                <span class="text-xl text-text-muted">/10</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="text-xl font-semibold text-accent mb-2">
+                        <i data-lucide="zap" class="w-5 h-5 inline mr-1"></i>
+                        Získal jsi <span id="xp-earned">350</span> XP!
+                    </p>
+                    <p class="text-sm text-text-secondary mb-6">Skvělá práce! Pokračuj v učení.</p>
+
+                    <div class="flex gap-4 justify-center">
+                        <button id="share-btn" class="px-6 py-2 text-sm font-semibold text-text-primary border border-surface-border-hover hover:bg-surface-elevated rounded-md transition-colors">
+                            <i data-lucide="share-2" class="w-4 h-4 inline mr-1"></i>
+                            Sdílet výsledek
+                        </button>
+                        <button id="retry-btn" class="px-6 py-2 text-sm font-semibold text-base bg-accent hover:bg-accent-hover rounded-md transition-colors">
+                            <i data-lucide="refresh-cw" class="w-4 h-4 inline mr-1"></i>
+                            Zkusit znovu
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Explanation Accordion -->
+                <div class="bg-surface border border-surface-border rounded-lg overflow-hidden">
+                    <button id="explanation-toggle" class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-surface-elevated transition-colors">
+                        <span class="text-sm font-semibold text-text-primary">Zobrazit vysvětlení odpovědí</span>
+                        <i data-lucide="chevron-down" class="w-4 h-4 text-text-muted"></i>
+                    </button>
+                    <div id="explanation-content" class="hidden px-6 pb-6">
+                        <div id="explanations-list" class="space-y-4">
+                            <!-- Explanations will be populated by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="fixed bottom-4 right-4 space-y-2 z-50"></div>
+
+    <script src="/assets/vendor/lucide/lucide.min.js@latest"></script>
+    <script src="quizinline.js"></script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+{
+  "id": "chem",
+  "slug": "chemie",
+  "title": "Chemie",
+  "description": "Obecná, organická a anorganická chemie pro střední školy.",
+  "category": "prirodni",
+  "color": "#10b981",
+  "icon": "FlaskConical",
+  "chapters": [
+    {
+      "id": "chem-ch1",
+      "slug": "organicka-chemie",
+      "title": "Úvod do organické chemie a uhlovodíky",
+      "lessons": [
+        {
+          "id": "chem-lesson-1",
+          "slug": "uhlovodiky",
+          "title": "Úvod do organické chemie a uhlovodíky",
+          "description": "Seznámíte se se základy organické chemie, catenací uhlíku a naučíte se rozeznávat alkany, alkeny, alkyny a aromatické sloučeniny.",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Úvod do organické chemie a uhlovodíky"
+            },
+            {
+              "type": "paragraph",
+              "text": "Organická chemie je věda o sloučeninách uhlíku. Ačkoliv uhlík tvoří jen malou část zemské kůry, jeho sloučeniny jsou základem všech známých forem života a zahrnují desítky milionů známých molekul."
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Proč právě uhlík?"
+            },
+            {
+              "type": "paragraph",
+              "text": "Uhlík je jedinečný svou schopností tvořit stabilní vazby sám se sebou (katenaci), čímž vznikají řetězce a kruhy různých délek. Kromě toho tvoří silné kovalentní vazby s vodíkem, kyslíkem, dusíkem a mnoha dalšími prvky."
+            },
+            {
+              "type": "callout",
+              "variant": "tip",
+              "text": "Catenace (řetězení) je schopnost atomů téhož prvku vytvářet vazby mezi sebou. Uhlík je v tomto ohledu rekordman mezi všemi prvky."
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Uhlovodíky – základní třídy"
+            },
+            {
+              "type": "paragraph",
+              "text": "Uhlovodíky jsou nejjednodušší organické sloučeniny, obsahují pouze uhlík a vodík. Dělí se na několik základních skupin:"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Alkany (nasycené) – obsahují pouze jednoduché vazby C–C (např. methan CH₄, ethan C₂H₆)",
+                "Alkeny (nenasycené) – obsahují dvojnou vazbu C=C (např. ethen C₂H₄)",
+                "Alkyny – obsahují trojnou vazbu C≡C (např. ethyn C₂H₂)",
+                "Areny (aromatické) – obsahují benzenové jádro (např. benzen C₆H₆)"
+              ]
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Názvosloví alkánů"
+            },
+            {
+              "type": "paragraph",
+              "text": "Názvosloví organických sloučenin řídí přísná pravidla IUPAC. U alkánů se počet uhlíků udává předponou a příponou -an:"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "1 C → methan",
+                "2 C → ethan",
+                "3 C → propan",
+                "4 C → butan",
+                "5 C → pentan",
+                "6 C → hexan"
+              ]
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Strukturní vzorce"
+            },
+            {
+              "type": "paragraph",
+              "text": "Pro zobrazení organických sloučenin používáme různé typy vzorců. Součtový vzorec udává pouze počty atomů (např. C₄H₁₀), strukturní vzorec zobrazuje vazby mezi atomy."
+            },
+            {
+              "type": "code",
+              "language": "text",
+              "code": "Butan (C4H10) – strukturní vzorec:\n\n    H   H   H   H\n    |   |   |   |\nH–C – C – C – C–H\n    |   |   |   |\n    H   H   H   H"
+            },
+            {
+              "type": "paragraph",
+              "text": "Izomerie je jev, kdy mají dvě různé sloučeniny stejný molekulový vzorec, ale odlišnou strukturu. U butanu existují dva izomery: n-butan a isobutan (2-methylpropan)."
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-chem-1",
+              "question": "Která vlastnost uhlíku umožňuje vytvářet dlouhé řetězce a složité molekuly?",
+              "options": [
+                "Vysoká elektronegativita",
+                "Catenace (řetězení)",
+                "Metalický lesk",
+                "Radioaktivita"
+              ],
+              "correctIndex": 1,
+              "explanation": "Catenace je schopnost atomů uhlíku vytvářet stabilní vazby mezi sebou, což umožňuje vznik dlouhých řetězců a cyklů."
+            },
+            {
+              "id": "q-chem-2",
+              "question": "Jak se nazývá sloučenina s molekulovým vzorcem C₆H₁₄?",
+              "options": [
+                "Hexan",
+                "Hexen",
+                "Benzen",
+                "Hexyn"
+              ],
+              "correctIndex": 0,
+              "explanation": "C₆H₁₄ odpovídá vzorci alkánu CₙH₂ₙ₊₂ (pro n=6 je to C₆H₁₄), tedy hexan."
+            },
+            {
+              "id": "q-chem-3",
+              "question": "Který z následujících uhlovodíků obsahuje dvojnou vazbu mezi atomy uhlíku?",
+              "options": [
+                "Methan (CH₄)",
+                "Ethan (C₂H₆)",
+                "Ethen (C₂H₄)",
+                "Ethyn (C₂H₂)"
+              ],
+              "correctIndex": 2,
+              "explanation": "Ethen (C₂H₄) je alkén obsahující dvojnou vazbu C=C. Ethyn obsahuje trojnou vazbu a methan/ethan pouze jednoduché vazby."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

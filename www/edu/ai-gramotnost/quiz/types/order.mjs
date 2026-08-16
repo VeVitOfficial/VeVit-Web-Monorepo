@@ -1,0 +1,1 @@
+import { createRenderer as renderer } from './renderer.mjs'; import { assignmentsControl } from './controls/assignments.mjs'; export const type='order'; export const createRenderer=()=>renderer(type,assignmentsControl);

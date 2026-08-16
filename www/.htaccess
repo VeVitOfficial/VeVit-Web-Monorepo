@@ -1,0 +1,37 @@
+RewriteEngine On
+
+# HTTPS redirect
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# www → non-www
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+
+# Root → /home (hlavní portál)
+RewriteRule ^$ /home [R=301,L]
+
+# Blokuj přímý přístup k interním souborům
+RewriteRule ^assets/shared/((?:session|app-switcher)\.(?:js|css))$ shared/js/$1 [L]
+RewriteCond %{THE_REQUEST} \s/+assets/shared/(?:session|app-switcher)\.(?:js|css)(?:[?\s]) [NC]
+RewriteRule ^shared/js/(?:session|app-switcher)\.(?:js|css)$ - [L]
+RewriteRule ^shared/ - [F,L]
+RewriteRule ^home/(api|lib|config|tests|docs)/ - [F,L]
+RewriteRule ^(store|account)/(lib|migrations|tests|docs|bin|vendor)/ - [F,L]
+RewriteRule ^tools/(includes|scripts|tests)/ - [F,L]
+RewriteRule ^edu/php/ - [F,L]
+
+Options -Indexes
+ServerSignature Off
+
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options SAMEORIGIN
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(self)"
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+    Header always set Reporting-Endpoints "vevit-csp=\"https://vevit.cz/account/api/csp-report.php\""
+    Header always set Content-Security-Policy-Report-Only "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https:; connect-src 'self'; frame-src 'self' blob:; worker-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'; report-uri /account/api/csp-report.php; report-to vevit-csp"
+</IfModule>
+
+DirectoryIndex index.html index.php

@@ -1,0 +1,14 @@
+{
+    "name": "vevit/account",
+    "description": "VEVIT account and authentication service",
+    "license": "proprietary",
+    "require": {
+        "spomky-labs/otphp": "^11.3",
+        "endroid/qr-code": ">=6.0 <6.1"
+    },
+    "config": {
+        "platform": {
+            "php": "8.3.32"
+        }
+    }
+}

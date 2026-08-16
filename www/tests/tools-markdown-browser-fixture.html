@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="cs">
+<head><meta charset="utf-8"><title>Tools markdown XSS</title></head>
+<body data-status="running"><div id="target"></div>
+<script src="../tools/assets/js/lib/marked.min.js"></script>
+<script src="../tools/assets/js/lib/purify.min.js"></script>
+<script src="../tools/assets/js/lib/safe-markdown.js"></script>
+<script src="../tools/assets/js/lib/html-pdf-sanitize.js"></script>
+<script>
+(function () {
+  const target = document.getElementById('target');
+  const payloads = [
+    '<img src=x onerror=alert(1)>',
+    '<svg onload=alert(1)></svg>',
+    '<iframe srcdoc="<script>alert(1)<\/script>"></iframe>',
+    '[x](javascript:alert(1))',
+    '<object data=x></object><embed src=x>',
+    '<math><mtext><table><mglyph><style><!--</style><img title="--></mglyph><img src=1 onerror=alert(1)>">',
+  ];
+  const forbidden = /<(?:script|iframe|object|embed|svg|math|form|style)\b|\son[a-z]+\s*=|(?:href|src)\s*=\s*["']?\s*(?:javascript|data):|\ssrcdoc\s*=/i;
+  for (const payload of payloads) {
+    if (!window.VeVitMarkdown.renderInto(target, payload)) throw new Error('Renderer odmítl dostupné závislosti.');
+    if (forbidden.test(target.innerHTML)) throw new Error('Aktivní payload: ' + payload);
+    const pdfHtml = window.VeVitHtmlPdfSanitizer.sanitize(payload);
+    if (forbidden.test(pdfHtml)) throw new Error('Aktivní HTML→PDF payload: ' + payload);
+  }
+  const purifier = window.DOMPurify;
+  window.DOMPurify = undefined;
+  if (window.VeVitMarkdown.renderInto(target, '**nesmí se vykreslit**')) throw new Error('Chybějící DOMPurify nebylo fail-closed.');
+  if (target.querySelector('strong') || target.dataset.renderState !== 'error') throw new Error('Po chybě zůstal HTML náhled.');
+  window.DOMPurify = purifier;
+  document.body.dataset.status = 'pass';
+})();
+</script>
+</body>
+</html>

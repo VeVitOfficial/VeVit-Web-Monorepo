@@ -1,0 +1,4 @@
+# WEDOS server-only secrets, never in the repo
+/vevit-private/*
+!/vevit-private/.env.example
+/vevit-store/

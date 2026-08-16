@@ -1,0 +1,17 @@
+{
+  "course": "ai-gramotnost",
+  "title": "AI gramotnost",
+  "openEvaluationMode": "self",
+  "chapters": [
+    {"chapter": 1, "file": "01-uvod.json"}, {"chapter": 2, "file": "02-jak-ai-funguje.json"}, {"chapter": 3, "file": "03-prompt-engineering.json"},
+    {"chapter": 4, "file": "04-prakticka-integrace.json"}, {"chapter": 5, "file": "05-pokrocila-temata.json"}, {"chapter": 6, "file": "06-zaver-a-projekty.json"}
+  ],
+  "lessons": [
+    {"slug":"1-1-co-je-ai"},{"slug":"1-2-rozdeleni-ai"},{"slug":"1-3-ml-dl-llm"},{"slug":"1-4-etika-bezpecnost"},
+    {"slug":"2-1-neuronove-site"},{"slug":"2-2-velke-jazykove-modely"},{"slug":"2-3-porovnani-modelu"},{"slug":"2-4-multimodalni-ai"},
+    {"slug":"3-1-uvod-prompt-engineering"},{"slug":"3-2-struktura-promptu"},{"slug":"3-3-typy-promptu"},{"slug":"3-4-iterace-a-ladeni"},{"slug":"3-5-systemove-prompty"},{"slug":"3-6-sumarizace"},{"slug":"3-7-tvorba-obsahu"},{"slug":"3-8-promptovani-pro-kod"},{"slug":"3-9-analyza-dat"},{"slug":"3-10-kreativni-ukoly"},{"slug":"3-11-preklady-lokalizace"},{"slug":"3-12-pokrocile-techniky"},
+    {"slug":"4-1-kancelarske-nastroje"},{"slug":"4-2-prezentace-vizualni-obsah"},{"slug":"4-3-komunikace-emaily"},{"slug":"4-4-vyzkum-studium"},{"slug":"4-5-agenti-automatizace"},{"slug":"4-6-integrace-ai"},
+    {"slug":"5-1-prace-s-api"},{"slug":"5-2-vlastni-chatbot"},{"slug":"5-3-uvod-do-rag"},{"slug":"5-4-fine-tuning"},{"slug":"5-5-budoucnost-ai"},{"slug":"5-6-lokalni-modely-soukromi"},
+    {"slug":"6-1-kriticke-mysleni"},{"slug":"6-2-projekt-prompt"},{"slug":"6-3-projekt-workflow"},{"slug":"6-4-zaverecny-test"}
+  ]
+}

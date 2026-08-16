@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certifikát — edu.vevit.fun</title>
+<link rel="stylesheet" href="/assets/fonts/vevit-fonts.css">
+    <link rel="stylesheet" href="/assets/css/vevit-tailwind.css">
+    <script src="/assets/vendor/lucide/lucide.min.js@latest/dist/umd/lucide.min.js"></script>
+
+    <link rel="stylesheet" href="../css/custom.css">
+    <style>
+        body { font-family: 'Sora', sans-serif; }
+        @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+        .animate-fadeUp { animation: fadeUp 0.4s ease both; }
+    </style>
+</head>
+<body class="bg-base text-text-primary min-h-screen font-sora">
+
+<!-- NAVBAR -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-[#0d0d0d]/95 backdrop-blur-sm border-b border-white/[0.06]">
+    <div class="max-w-7xl mx-auto px-3 sm:px-5 lg:px-6 h-16 flex items-center justify-between">
+        <a href="../index.html" class="flex items-center gap-3 hover:opacity-90 transition-opacity">
+            <div class="w-8 h-8 rounded-md bg-accent flex items-center justify-center">
+                <i data-lucide="book-open" class="w-4 h-4 text-[#0d0d0d]"></i>
+            </div>
+            <span class="text-lg font-semibold text-text-primary">edu<span class="text-accent">.vevit</span>.fun</span>
+        </a>
+        <div class="flex items-center gap-3">
+            <a href="https://account.vevit.fun" target="_blank" class="px-4 py-2 text-sm font-semibold text-base bg-accent hover:bg-accent-hover rounded-md transition-colors">Přihlásit se</a>
+        </div>
+    </div>
+</nav>
+
+<!-- MAIN -->
+<div id="app" class="flex-1 pt-24 pb-20 px-3 sm:px-5 lg:px-6 max-w-2xl mx-auto w-full animate-fadeUp">
+    <div id="content"></div>
+</div>
+
+<script type="module" src="certifikatinline.js"></script>
+</body>
+</html>

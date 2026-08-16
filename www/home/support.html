@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Podpora a FAQ | VeVit</title>
+  <meta name="description" content="Nápověda, časté otázky a kontakt na podporu VeVit.">
+  <meta name="theme-color" content="#0b0d0e">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230d0d0d'/><path d='M8 10l4 12h2L18 10h-3l-2 8-2-8H8zm14 0v12h2v-5h3v-2h-3v-3h4v-2h-6z' fill='%2310b981'/></svg>">
+<link rel="stylesheet" href="/assets/fonts/vevit-fonts.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/support.css">
+  <link rel="stylesheet" href="/assets/shared/session.css?v=20260809b">
+  <link rel="stylesheet" href="/assets/shared/app-switcher.css?v=20260809c">
+</head>
+<body class="support-page">
+  <a class="skip-link" href="#support-main">Přejít k obsahu</a>
+
+  <header class="support-header">
+    <div class="container support-nav">
+      <span class="wordmark vv-app-brand" aria-label="VeVit Technologies"><a href="/home">VeVit</a><a class="wordmark-suffix" href="/home">Technologies</a></span>
+      <nav aria-label="Hlavní navigace">
+        <a href="/home">Domů</a>
+        <a href="/home#platforms">Aplikace</a>
+        <a href="/home/support.html" aria-current="page">Podpora</a>
+      </nav>
+      <div class="support-account-actions vv-app-actions" aria-live="polite">
+        <span data-vevit-app-switcher data-vevit-app="Home"></span>
+        <span data-vevit-session><span class="account-session-status">Ověřuji účet…</span></span>
+      </div>
+    </div>
+  </header>
+
+  <main id="support-main">
+    <section class="support-hero" aria-labelledby="support-title">
+      <div class="container">
+        <span class="eyebrow">Centrum podpory</span>
+        <h1 id="support-title">Nápověda a časté otázky</h1>
+        <p>Najděte odpověď nebo nám rovnou napište.</p>
+
+        <div class="support-search">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
+          <label class="sr-only" for="support-search">Hledat v otázkách a odpovědích</label>
+          <input id="support-search" type="search" autocomplete="off" placeholder="Hledat v otázkách a nápovědě...">
+          <kbd aria-hidden="true">Ctrl K</kbd>
+        </div>
+        <p class="support-result-count" data-support-result-count role="status" aria-live="polite">8 nalezených odpovědí</p>
+      </div>
+    </section>
+
+    <section class="section support-content" id="faq" aria-labelledby="faq-title">
+      <div class="container support-layout">
+        <aside class="support-categories" aria-label="Kategorie podpory">
+          <p class="support-categories-title">Kategorie</p>
+          <button type="button" data-support-category="all" aria-pressed="true">Vše</button>
+          <button type="button" data-support-category="account" aria-pressed="false">Account</button>
+          <button type="button" data-support-category="tools" aria-pressed="false">Tools</button>
+          <button type="button" data-support-category="edu" aria-pressed="false">Edu</button>
+          <button type="button" data-support-category="services" aria-pressed="false">Services</button>
+          <button type="button" data-support-category="other" aria-pressed="false">Ostatní</button>
+        </aside>
+
+        <div class="faq-column">
+          <div class="support-section-heading">
+            <div>
+              <span class="eyebrow">FAQ</span>
+              <h2 id="faq-title">Nejčastější otázky</h2>
+            </div>
+            <a href="#contact">Přejít na formulář</a>
+          </div>
+
+          <div class="faq-list">
+            <article class="faq-item" data-faq-item data-category="account">
+              <h3><button type="button" data-faq-question aria-expanded="false" aria-controls="faq-answer-account-access">Jak se přihlásím nebo zaregistruji?<span aria-hidden="true">+</span></button></h3>
+              <div class="faq-answer" id="faq-answer-account-access" role="region">
+                <p>Pro přihlášení otevřete <a href="/account/login.html">VeVit Account</a>. Nový účet vytvoříte na stránce <a href="/account/register.html">Registrace</a>.</p>
+              </div>
+            </article>
+
+            <article class="faq-item" data-faq-item data-category="account">
+              <h3><button type="button" data-faq-question aria-expanded="false" aria-controls="faq-answer-password">Co dělat, když zapomenu heslo?<span aria-hidden="true">+</span></button></h3>
+              <div class="faq-answer" id="faq-answer-password" role="region">
+                <p>Na přihlašovací stránce zvolte obnovu hesla. Odkaz najdete také přímo na <a href="/account/forgot-password.html">vevit.cz/account/forgot-password.html</a>.</p>
+              </div>
+            </article>
+
+            <article class="faq-item" data-faq-item data-category="tools">
+              <h3><button type="button" data-faq-question aria-expanded="false" aria-controls="faq-answer-files">Kam se nahrávají moje soubory?<span aria-hidden="true">+</span></button></h3>
+              <div class="faq-answer" id="faq-answer-files" role="region">
+                <p>Většina nástrojů zpracuje soubor přímo ve vašem prohlížeči. U nástrojů využívajících externí službu je způsob zpracování uvedený přímo na jejich stránce.</p>
+              </div>
+            </article>
+
+            <article class="faq-item" data-faq-item data-category="tools">
+              <h3><button type="button" data-faq-question aria-expanded="false" aria-controls="faq-answer-tool-bug">Jak nahlásím chybu v nástroji?<span aria-hidden="true">+</span></button></h3>
+              <div class="faq-answer" id="faq-answer-tool-bug" role="region">
+                <p>Ve formuláři níže vyberte aplikaci Tools a typ Nahlášení chyby. Přidejte název nástroje a popis toho, co se stalo.</p>
+              </div>
+            </article>
+
+            <article class="faq-item" data-faq-item data-category="other">
+              <h3><button type="button" data-faq-question aria-expanded="false" aria-controls="faq-answer-report-details">Co mám uvést v hlášení chyby?<span aria-hidden="true">+</span></button></h3>
+              <div class="faq-answer" id="faq-answer-report-details" role="region">
+                <p>Napište použitou aplikaci, zařízení a prohlížeč. Přidejte kroky, po kterých chyba nastala, a přesné chybové hlášení, pokud se zobrazilo.</p>
+              </div>
+            </article>
+
+            <article class="faq-item" data-faq-item data-category="edu">
+              <h3><button type="button" data-faq-question aria-expanded="false" aria-controls="faq-answer-edu">V jakém stavu je VeVit Edu?<span aria-hidden="true">+</span></button></h3>
+              <div class="faq-answer" id="faq-answer-edu" role="region">
+                <p>VeVit Edu je v betě a jeho obsah postupně doplňujeme. Aktuální stav najdete ve <a href="/home#roadmap">veřejné roadmapě</a>.</p>
+              </div>
+            </article>
+
+            <article class="faq-item" data-faq-item data-category="services">
+              <h3><button type="button" data-faq-question aria-expanded="false" aria-controls="faq-answer-services">Kde najdu VeVit Services?<span aria-hidden="true">+</span></button></h3>
+              <div class="faq-answer" id="faq-answer-services" role="region">
+                <p>VeVit Services otevřete na <a href="https://services.vevit.cz">services.vevit.cz</a>. Můžete tam zadat poptávku nebo nabídnout vlastní službu.</p>
+              </div>
+            </article>
+
+            <article class="faq-item" data-faq-item data-category="other">
+              <h3><button type="button" data-faq-question aria-expanded="false" aria-controls="faq-answer-contact">Jak můžu VeVit kontaktovat?<span aria-hidden="true">+</span></button></h3>
+              <div class="faq-answer" id="faq-answer-contact" role="region">
+                <p>Použijte formulář níže nebo napište na <a href="mailto:info@vevit.cz" data-contact-email>info@vevit.cz</a>. Najdete nás také na Instagramu, X a Discordu.</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="support-no-results" id="support-no-results" hidden>
+            <h3>Nenašli jsme odpovídající otázku</h3>
+            <p>Zkuste jiný výraz nebo nám pošlete zprávu přes formulář.</p>
+            <a class="btn btn-ghost btn-sm" href="#contact">Napsat podpoře</a>
+          </div>
+
+          <section class="support-contact" id="contact" aria-labelledby="contact-title">
+            <div class="support-contact-copy">
+              <span class="eyebrow">Kontakt</span>
+              <h2 id="contact-title">Nenašli jste odpověď?</h2>
+              <p>Vyberte aplikaci a popište dotaz nebo chybu. Odpověď pošleme na zadaný e-mail.</p>
+            </div>
+
+            <form class="support-form" id="support-form" action="https://formsubmit.co/info@vevit.cz" method="post" novalidate>
+              <div class="support-form-grid">
+                <div class="field">
+                  <label for="support-name">Jméno</label>
+                  <input id="support-name" name="name" type="text" autocomplete="name" required>
+                </div>
+                <div class="field">
+                  <label for="support-email">E-mail</label>
+                  <input id="support-email" name="email" type="email" autocomplete="email" required>
+                </div>
+                <div class="field">
+                  <label for="support-application">Aplikace</label>
+                  <select id="support-application" name="application" required>
+                    <option value="">Vyberte aplikaci</option>
+                    <option value="Obecný dotaz">Obecný dotaz</option>
+                    <option value="Account">Account</option>
+                    <option value="Tools">Tools</option>
+                    <option value="Edu">Edu</option>
+                    <option value="Services">Services</option>
+                    <option value="Studios">Studios</option>
+                    <option value="Art">Art</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="support-request-type">Typ zprávy</label>
+                  <select id="support-request-type" name="request_type" required>
+                    <option value="">Vyberte typ zprávy</option>
+                    <option value="Dotaz">Dotaz</option>
+                    <option value="Nahlášení chyby">Nahlášení chyby</option>
+                    <option value="Zpětná vazba">Zpětná vazba</option>
+                  </select>
+                </div>
+                <div class="field support-message-field">
+                  <label for="support-message">Zpráva</label>
+                  <textarea id="support-message" name="message" rows="6" required placeholder="Popište dotaz nebo chybu co nejpřesněji."></textarea>
+                </div>
+              </div>
+              <button class="btn btn-primary" type="submit">Odeslat zprávu</button>
+              <p class="form-status" id="support-status" role="status" aria-live="polite" hidden></p>
+            </form>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="section support-quick-links" aria-labelledby="quick-links-title">
+      <div class="container">
+        <h2 id="quick-links-title" class="sr-only">Rychlé odkazy</h2>
+        <div class="support-quick-grid">
+          <a href="/account/login.html"><strong>Přihlášení k účtu</strong><span>Otevřít VeVit Account</span></a>
+          <a href="#contact"><strong>Nahlásit chybu</strong><span>Přejít na formulář</span></a>
+          <a href="mailto:info@vevit.cz" data-contact-email><strong>Přímý kontakt</strong><span>info@vevit.cz</span></a>
+        </div>
+        <p class="email-copy-status" data-email-copy-status role="status" aria-live="polite" hidden></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer support-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="wordmark" href="/home">VeVit</a>
+          <p class="footer-tagline">Nápověda a kontakt pro aplikace VeVit.</p>
+        </div>
+        <div class="footer-col">
+          <h2>Podpora</h2>
+          <ul>
+            <li><a href="#faq">Časté otázky</a></li>
+            <li><a href="#contact">Kontakt</a></li>
+            <li><a href="#contact">Nahlásit chybu</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Account</h2>
+          <ul>
+            <li><a href="/account/login.html">Přihlášení</a></li>
+            <li><a href="/account/register.html">Registrace</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Sledujte nás</h2>
+          <ul>
+            <li><a href="https://www.instagram.com/vevit.cz/" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://x.com/VeVitOfficial" target="_blank" rel="noopener">X</a></li>
+            <li><a href="https://discord.gg/dJumMfWd6r" target="_blank" rel="noopener">Discord</a></li>
+            <li><a href="https://github.com/VeVitOfficial" target="_blank" rel="noopener">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-base">
+        <p class="footer-copy">&copy; 2025 - <span data-current-year>2026</span> VeVit. Postaveno v Česku.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/assets/shared/session.js?v=20260809c"></script>
+  <script type="module" src="/assets/shared/app-switcher.js?v=20260809b"></script>
+  <script src="assets/js/support.js" defer></script>
+</body>
+</html>

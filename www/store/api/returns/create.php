@@ -1,0 +1,6 @@
+<?php
+declare(strict_types=1);
+require_once __DIR__ . '/../../config.php'; require_once __DIR__ . '/../../lib/customer-agenda.php';
+agenda_prepare_http(['POST'],$storeConfig); header('Content-Type: application/json; charset=utf-8'); header('Cache-Control: no-store'); store_require_csrf('customer_agenda');
+$input=agenda_json_input();$order=(string)($input['order']??'');try{$identity=agenda_actor_for_order($order,$storeConfig);}catch(DomainException){store_emit_json_error(404,'order_unavailable','Objednávka není k dispozici.');}
+try{agenda_rate_limit($pdo,'return_create',5);$service=agenda_return_service($pdo,$storeConfig);$result=$service->create($order,$identity['actor'],$identity['grant'],(string)($_SERVER['HTTP_IDEMPOTENCY_KEY']??''),$input);http_response_code(201);echo json_encode(['return'=>['id'=>$result['public_id'],'status'=>$result['status']]],JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);}catch(StoreRateLimitExceeded$e){header('Retry-After: '.$e->retryAfter);store_emit_json_error(429,'rate_limited','Příliš mnoho požadavků.');}catch(DomainException){store_emit_json_error(422,'return_rejected','Vrácení nelze založit.');}

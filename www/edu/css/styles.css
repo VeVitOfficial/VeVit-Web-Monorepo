@@ -1,0 +1,459 @@
+/* Portováno z src/app/globals.css – design tokeny pro dark/light + glass + scrollbar + katex */
+
+:root {
+  --font-geist-sans: "Geist", system-ui, sans-serif;
+  --font-geist-mono: "Geist Mono", ui-monospace, monospace;
+}
+
+/* ─── Dark theme (default) ─── */
+.dark {
+  --color-background: #0a0a0f;
+  --color-foreground: #e2e8f0;
+  --color-glass-bg: rgba(255, 255, 255, 0.04);
+  --color-glass-border: rgba(255, 255, 255, 0.08);
+  --color-glass-highlight: rgba(255, 255, 255, 0.12);
+  --color-glass-glow: rgba(139, 92, 246, 0.15);
+  --color-muted: #94a3b8;
+  --color-accent: #8b5cf6;
+  --color-accent-foreground: #ffffff;
+  --color-success: #10b981;
+  --color-error: #ef4444;
+  --color-warning: #f59e0b;
+  --color-card-bg: #0a0a0f;
+  --color-border-subtle: rgba(255, 255, 255, 0.08);
+  --color-text-primary: #ffffff;
+  --color-text-secondary: rgba(255, 255, 255, 0.6);
+  --color-text-muted: rgba(255, 255, 255, 0.4);
+  --color-input-bg: rgba(255, 255, 255, 0.03);
+  --color-scrollbar: rgba(255, 255, 255, 0.15);
+  --color-scrollbar-hover: rgba(255, 255, 255, 0.25);
+  --color-selection-bg: rgba(139, 92, 246, 0.3);
+  --color-katex-bg: rgba(0, 0, 0, 0.2);
+  --color-nav-text: rgba(255, 255, 255, 0.5);
+  --color-nav-hover: #ffffff;
+  --color-hero-gradient-from: #ffffff;
+  --color-hero-gradient-to: #a1a1aa;
+
+  --color-prog-primary: #00d084;
+  --color-prog-primary-hover: #00e6a0;
+  --color-prog-bg: #0d1117;
+  --color-prog-card: #161b22;
+  --color-prog-elevated: #1c2128;
+  --color-prog-text: #ffffff;
+  --color-prog-text-secondary: #8b949e;
+  --color-prog-link: #58a6ff;
+  --color-prog-border: rgba(255, 255, 255, 0.08);
+  --color-prog-difficulty-beginner: #00d084;
+  --color-prog-difficulty-advanced: #f0ad4e;
+  --color-prog-difficulty-expert: #d73a49;
+}
+
+/* ─── Light theme ─── */
+.light {
+  --color-background: #f8fafc;
+  --color-foreground: #1e293b;
+  --color-glass-bg: rgba(255, 255, 255, 0.6);
+  --color-glass-border: rgba(0, 0, 0, 0.08);
+  --color-glass-highlight: rgba(0, 0, 0, 0.06);
+  --color-glass-glow: rgba(16, 185, 129, 0.15);
+  --color-muted: #64748b;
+  --color-accent: #10b981;
+  --color-accent-foreground: #ffffff;
+  --color-success: #059669;
+  --color-error: #dc2626;
+  --color-warning: #d97706;
+  --color-card-bg: #ffffff;
+  --color-border-subtle: rgba(0, 0, 0, 0.08);
+  --color-text-primary: #0f172a;
+  --color-text-secondary: rgba(0, 0, 0, 0.6);
+  --color-text-muted: rgba(0, 0, 0, 0.4);
+  --color-input-bg: rgba(0, 0, 0, 0.03);
+  --color-scrollbar: rgba(0, 0, 0, 0.2);
+  --color-scrollbar-hover: rgba(0, 0, 0, 0.35);
+  --color-selection-bg: rgba(16, 185, 129, 0.25);
+  --color-katex-bg: rgba(0, 0, 0, 0.04);
+  --color-nav-text: rgba(0, 0, 0, 0.5);
+  --color-nav-hover: #0f172a;
+  --color-hero-gradient-from: #0f172a;
+  --color-hero-gradient-to: #475569;
+
+  --color-prog-primary: #059669;
+  --color-prog-primary-hover: #047857;
+  --color-prog-bg: #f6f8fa;
+  --color-prog-card: #ffffff;
+  --color-prog-elevated: #f1f5f9;
+  --color-prog-text: #1f2328;
+  --color-prog-text-secondary: #59636e;
+  --color-prog-link: #0969da;
+  --color-prog-border: rgba(0, 0, 0, 0.1);
+  --color-prog-difficulty-beginner: #059669;
+  --color-prog-difficulty-advanced: #b45309;
+  --color-prog-difficulty-expert: #b91c1c;
+}
+
+html {
+  color-scheme: dark;
+}
+html.light {
+  color-scheme: light;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.glass {
+  background: var(--color-glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-glass-border);
+}
+
+.glass-strong {
+  background: var(--color-glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-glass-highlight);
+}
+
+/* Horní navigace – stejný klidný transparentní princip jako VeVit Home. */
+.edu-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background 200ms ease, backdrop-filter 200ms ease, border-color 200ms ease;
+}
+.edu-navbar--scrolled {
+  background: color-mix(in srgb, var(--color-background) 82%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom-color: var(--color-glass-border);
+}
+.edu-navbar__inner {
+  width: min(100% - 32px, 1280px);
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.edu-navbar__links { display: none; align-items: center; gap: 28px; }
+.edu-navbar__link {
+  position: relative;
+  padding: 4px 0;
+  color: var(--color-nav-text);
+  font-size: 14px;
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+.edu-navbar__link:hover { color: var(--color-nav-hover); }
+.edu-navbar__link--active { color: #10b981; }
+.edu-navbar__link--active::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -20px;
+  left: 0;
+  height: 2px;
+  background: #10b981;
+}
+.edu-navbar__actions { display: flex; align-items: center; justify-content: flex-end; gap: 8px; flex: 1; min-width: 0; }
+.edu-navbar__icon-button {
+  display: inline-flex;
+  min-height: 32px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 6px 8px;
+  color: var(--color-nav-text);
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+}
+.edu-navbar__icon-button:hover { color: var(--color-nav-hover); background: var(--color-glass-highlight); }
+.edu-lang-menu {
+  background: var(--color-card-bg);
+  border-color: var(--color-glass-highlight);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.42);
+}
+@media (min-width: 900px) { .edu-navbar__links { display: flex; } }
+@media (max-width: 640px) { .edu-navbar__inner { width: calc(100% - 24px); gap: 12px; } }
+
+.glow-border {
+  box-shadow: 0 0 0 1px var(--color-glass-border), 0 0 20px -4px var(--color-glass-glow);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/*
+ * Build Tailwindu obsahuje také obecné utility .text-sm/.text-base, které
+ * v některých pořadích přepíší dynamickou barvu textu. Názvy kurzů a lekcí
+ * proto musí mít tokenovou barvu vynucenou i bez stavu :hover.
+ */
+#app .text-\[var\(--color-text-primary\)\] {
+  color: var(--color-text-primary) !important;
+}
+#app .text-\[var\(--color-text-secondary\)\] {
+  color: var(--color-text-secondary) !important;
+}
+#app .text-\[var\(--color-text-muted\)\] {
+  color: var(--color-text-muted) !important;
+}
+#app .text-\[var\(--color-foreground\)\] {
+  color: var(--color-foreground) !important;
+}
+
+/* Gradient tituly (shodně s originálem) */
+.hero-gradient,
+.gradient-text {
+  background: linear-gradient(
+    135deg,
+    var(--color-hero-gradient-from),
+    var(--color-hero-gradient-to)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* KaTeX overrides */
+.katex {
+  color: var(--color-foreground);
+  font-size: 1.05em;
+}
+.katex-display {
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  padding: 1rem;
+  background: var(--color-katex-bg);
+  border-radius: 0.5rem;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-scrollbar);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-scrollbar-hover);
+}
+
+::selection {
+  background: var(--color-selection-bg);
+  color: var(--color-text-primary);
+}
+
+/* Lucide ikony zdědí velikost z tříd w-/h- */
+[data-lucide] {
+  width: 1em;
+  height: 1em;
+  stroke-width: 2;
+}
+
+/* Code block – raw <pre><code> jako v originálním CodeBlock */
+.code-block pre {
+  margin: 0;
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+.code-block code {
+  font-family: inherit;
+  white-space: pre;
+}
+
+/* Prose mezery v lekci */
+.lesson-content > * + * {
+  margin-top: 1rem;
+}
+.lesson-content h1 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin-top: 2rem;
+}
+.lesson-content h2 {
+  font-size: 1.375rem;
+  font-weight: 600;
+  margin-top: 1.75rem;
+}
+.lesson-content h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+}
+.lesson-content p {
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+}
+
+/* Animace pro načítání / přechody */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-in {
+  animation: fade-in 0.25s ease-out;
+}
+
+/* Tipy/toasty */
+.toast {
+  background: var(--color-glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--color-glass-border);
+  color: var(--color-foreground);
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+/* ─────────────────────────────────────────────────────────
+   Chytrý vyhledávač – Wikipedia článek, TOC drawer, AI
+   ───────────────────────────────────────────────────────── */
+
+.sv-toc { box-shadow: 4px 0 24px rgba(0,0,0,0.25); }
+
+/* Loading spinner */
+.ai-spinner {
+  display: inline-block;
+  width: 20px; height: 20px;
+  border: 2.5px solid var(--color-glass-highlight);
+  border-top-color: #10b981;
+  border-radius: 50%;
+  animation: ai-spin 0.7s linear infinite;
+}
+@keyframes ai-spin { to { transform: rotate(360deg); } }
+
+/* AI zvýraznění citace – žluté pozadí, černý text pro vysoký kontrast */
+mark.ai-highlight {
+  background: #fde047;            /* yellow-300 */
+  color: #000;
+  padding: 0 2px;
+  border-radius: 3px;
+  box-shadow: 0 0 0 3px rgba(253,224,71,0.35);
+  scroll-margin-top: 9rem;
+}
+
+/* ─── Wikipedia article restyle (dark theme) ─── */
+.wp-article {
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+  line-height: 1.75;
+  padding: 2rem 1.25rem 6rem;
+  max-width: 48rem;
+  margin: 0 auto;
+}
+.wp-article p { margin: 0 0 1rem; color: var(--color-text-secondary); }
+.wp-article h2,
+.wp-article h3,
+.wp-article h4 {
+  color: var(--color-text-primary);
+  font-weight: 600;
+  scroll-margin-top: 7rem;
+}
+.wp-article h2 { font-size: 1.5rem; margin: 2.25rem 0 1rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--color-border-subtle); }
+.wp-article h3 { font-size: 1.2rem; margin: 1.75rem 0 0.75rem; }
+.wp-article h4 { font-size: 1.05rem; margin: 1.25rem 0 0.5rem; color: var(--color-foreground); }
+.wp-article a { color: var(--color-prog-link); text-decoration: none; }
+.wp-article a:hover { text-decoration: underline; }
+.wp-article ul, .wp-article ol { margin: 0 0 1rem; padding-left: 1.5rem; }
+.wp-article li { margin-bottom: 0.35rem; }
+.wp-article b, .wp-article strong { color: var(--color-foreground); font-weight: 600; }
+
+/* Hatnote / poznámky pod čarou */
+.wp-article .hatnote {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  font-style: italic;
+  padding-left: 1rem;
+  border-left: 2px solid var(--color-border-subtle);
+  margin: 0.5rem 0 1.25rem;
+}
+
+/* Obrázky / thumbové */
+.wp-article figure,
+.wp-article .thumb { margin: 1.25rem 0; }
+.wp-article img { max-width: 100%; height: auto; border-radius: 0.5rem; background: var(--color-input-bg); }
+.wp-article figure img,
+.wp-article .thumb img { border: 1px solid var(--color-border-subtle); }
+.wp-article figcaption,
+.wp-article .thumbcaption {
+  font-size: 0.8rem; color: var(--color-text-muted);
+  margin-top: 0.4rem; line-height: 1.5; padding: 0 0.25rem;
+}
+.wp-article .thumb.tright { float: right; max-width: 18rem; margin: 0 0 1rem 1.5rem; }
+.wp-article .thumb.tleft  { float: left;  max-width: 18rem; margin: 0 1.5rem 1rem 0; }
+.wp-article .thumb.tnone { margin-left: auto; margin-right: auto; max-width: 22rem; }
+@media (max-width: 640px) {
+  .wp-article .thumb.tright, .wp-article .thumb.tleft { float: none; max-width: 100%; margin: 1.25rem 0; }
+}
+
+/* Infobox – stylizovaná karta */
+.wp-article table.infobox,
+.wp-article table.sidebar {
+  float: right; width: 22rem; max-width: 100%;
+  margin: 0 0 1.25rem 1.5rem;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 0.75rem;
+  background: var(--color-card-bg);
+  border-collapse: collapse; overflow: hidden;
+  font-size: 0.82rem;
+}
+.wp-article table.infobox img { border: none; }
+.wp-article table.infobox caption,
+.wp-article table.infobox .infobox-title { font-weight: 700; color: var(--color-text-primary); font-size: 1rem; }
+.wp-article table.infobox th { color: var(--color-text-muted); text-align: left; padding: 0.4rem 0.6rem; border-bottom: 1px solid var(--color-border-subtle); vertical-align: top; }
+.wp-article table.infobox td { padding: 0.4rem 0.6rem; border-bottom: 1px solid var(--color-border-subtle); vertical-align: top; color: var(--color-text-secondary); }
+@media (max-width: 768px) {
+  .wp-article table.infobox, .wp-article table.sidebar { float: none; width: 100%; margin: 1.25rem 0; }
+}
+
+/* Běžné tabulky */
+.wp-article table:not(.infobox):not(.sidebar) {
+  width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.88rem;
+  display: block; overflow-x: auto;
+}
+.wp-article table:not(.infobox):not(.sidebar) th,
+.wp-article table:not(.infobox):not(.sidebar) td { border: 1px solid var(--color-border-subtle); padding: 0.5rem 0.75rem; text-align: left; vertical-align: top; }
+.wp-article table:not(.infobox):not(.sidebar) th { background: var(--color-input-bg); color: var(--color-text-primary); font-weight: 600; }
+
+/* Citace / blockquote */
+.wp-article blockquote {
+  border-left: 3px solid var(--color-accent);
+  padding: 0.5rem 1rem; margin: 1.25rem 0;
+  color: var(--color-text-muted); font-style: italic;
+}
+
+/* Kód / pre */
+.wp-article pre {
+  background: var(--color-katex-bg); border: 1px solid var(--color-border-subtle);
+  border-radius: 0.5rem; padding: 1rem; overflow-x: auto;
+  font-family: var(--font-geist-mono), ui-monospace, monospace; font-size: 0.85rem;
+  color: var(--color-foreground); margin: 1rem 0;
+}
+.wp-article code { font-family: var(--font-geist-mono), ui-monospace, monospace; font-size: 0.875em; background: var(--color-input-bg); padding: 0.1rem 0.3rem; border-radius: 0.25rem; }
+.wp-article pre code { background: transparent; padding: 0; }
+
+/* Galerie */
+.wp-article .gallery { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1.25rem 0; }
+.wp-article .gallerybox { display: inline-block; }

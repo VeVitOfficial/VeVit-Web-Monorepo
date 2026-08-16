@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# Admin sekce
+Disallow: /store/admin/
+Disallow: /store/api/
+Disallow: /store/lib/
+Disallow: /store/migrations/
+Disallow: /store/bin/
+Disallow: /account/api/
+Disallow: /account/lib/
+Disallow: /account/vendor/
+Disallow: /account/sql/
+Disallow: /tools/api/
+Disallow: /tools/includes/
+Disallow: /tools/scripts/
+Disallow: /edu/php/
+
+Sitemap: https://vevit.cz/sitemap.xml

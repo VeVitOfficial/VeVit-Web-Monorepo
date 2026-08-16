@@ -1,0 +1,218 @@
+# VEVIT SSO — rozhodnutí a technický dluh
+
+Tento soubor doplňuje schválený implementační plán. Zaznamenává závazná
+rozhodnutí uživatele i bezpečnější výklad rozporů nalezených během realizace.
+
+## Závazná rozhodnutí
+
+- Autoritativní pracovní kopie je tento monorepo adresář. Před změnami vznikl
+  externí archiv a baseline commit `28c724f`.
+- Mobilní aplikace a CLI budou pouze first-party klienti. Ve verzi browser SSO
+  zůstává Bearer větev vypnutá.
+- `api_refresh_tokens.user_id` je `text`, protože `public.users.id` je `text`.
+- Existující `session_token` se před hashovým čtením backfilluje do
+  `token_hash`; migrace nesmí odhlásit žádnou z 15 aktivních relací.
+- Zrušení relace je soft revoke přes `revoked_at` a `revoked_reason`. Fyzické
+  mazání provádí až cleanup po 30 dnech.
+- Browser cookie je `__Host-vvsession`, bez `Domain`, s pevnou expirací 99 dní
+  nebo serverovým limitem 24 hodin u session cookie. Aktivita expiraci neposouvá.
+- Chyba databáze nebo sítě je 503 a zachovává cookie; neplatná relace je 401.
+- Skripty musí splnit `script-src 'self'` bez `unsafe-inline` a `unsafe-eval`.
+  Styly mají dočasně `style-src 'self' 'unsafe-inline'`.
+- Google Fonts, Lucide, KaTeX a Prism se obsluhují lokálně. Tailwind Play CDN
+  nahrazuje staticky sestavené CSS.
+- Wikipedia se načítá přes same-origin proxy s pevným upstreamem, timeoutem a
+  limitem odpovědi; obsah se sanitizuje na serveru i klientovi.
+- Opaque sandbox zprávy musí současně ověřit `origin === "null"`, přesný
+  `event.source`, jednorázový nonce a schéma dat; listener se vždy odstraní.
+- Účet má stav `active`, `blocked` nebo `deleted`. Jiný než `active` revokuje
+  všechny relace a vrací 401.
+- Povinné ruční stop-body jsou po zrušení S-1 pouze: S-2 CSP enforce a S-3
+  odstranění fallbacků s migrací `003_drop_plaintext_token`.
+- S-1 byl následně zrušen. Legacy JWT `service_role` nebyl rotován; nahradily
+  jej samostatné pojmenované `sb_secret_` klíče a legacy `anon` i
+  `service_role` byly po ověření všech konzumentů deaktivovány.
+
+## Bezpečnější výklady rozporů
+
+- Aktivní tajné konfigurace se nepřidávají do Git historie. Baseline rollback
+  pro ně zajišťuje externí archiv, ne commit.
+- Soubory pojmenované `config.php`, které jsou pouze bezpečný aplikační loader
+  (`store/config.php`, `store/lib/config.php`, `tools/includes/config.php`), se
+  verzují; aktivní konfigurace s tajemstvími jsou ignorované.
+- `shared/auth/` nesmí být dostupné přes HTTP. Veřejný session JavaScript proto
+  nebude zpřístupněn pod URL, kterou Nginx blokuje pro celé `/shared/`; veřejná
+  URL bude mapována odděleně a serverová auth vrstva zůstane privátní.
+- U sandboxu bez `allow-same-origin` je `event.origin` záměrně `"null"` a samo o
+  sobě neověřuje odesílatele; autentizaci zprávy zajišťuje kombinace source a
+  nonce.
+- Izolovaný playground používá statický same-origin iframe s opaque originem a
+  uvnitř Blob Web Worker. Pouze `/edu/sandbox-frame.html` proto potřebuje
+  `worker-src blob:` a `frame-ancestors 'self'`; ostatní stránky mohou mít
+  `frame-ancestors 'none'`.
+- Původní vendored DOMPurify 3.1.6 byl nahrazen aktuálním vydáním 3.4.12 z npm
+  balíčku `dompurify`; auditovaný soubor má SHA-256
+  `c45ba939765574f96cbf35ee9b6d89f73756a17921814425e74b82f7c54603ce`.
+- Pokyn odstranit kořenové `/api/` kontrakty neznamená směrovat neautentizační
+  služby do Accountu. Auth endpointy používají `/account/api/`, zatímco Tools AI,
+  SSL a feedback používají `/tools/api/` a legacy kurzová API
+  `/edu/legacy/api/`. Tím nevzniká kolize ani paralelní autentizační vrstva.
+- Runtime CDN byly nahrazeny lokálními verzemi: Lucide 1.28.0, KaTeX 0.18.1,
+  Prism 1.30.0, mark.js 8.11.1 a statický Tailwind CSS sestavený Tailwindem
+  3.4.17. Fonty a Material Symbols jsou lokální WOFF2 assety.
+- Přísné `script-src 'self'` v Chromium blokuje nejen JavaScriptový `eval`, ale
+  také `WebAssembly.compile`; ffmpeg.wasm by vyžadoval další zdroj
+  `'wasm-unsafe-eval'`. Protože uživatel schválil politiku bez výjimek, devět
+  FFmpeg nástrojů je dočasně označeno jako omezených a wrapper failuje zavřeně
+  ještě před načtením WASM. Starý UMD bundle 0.11.6 s `new Function` byl přesto
+  nahrazen ESM verzemi `@ffmpeg/ffmpeg` 0.12.15 a `@ffmpeg/core` 0.12.10. Budoucí
+  zapnutí vyžaduje samostatně schválený izolovaný mediální origin nebo CSP.
+- Hub testy po přesunu do `/tools` stále skládaly fyzickou cestu jako
+  `tools/tools/assets`. Testovací filesystem kontrakty byly opraveny na lokální
+  `tools/assets`, zatímco veřejné URL zůstávají `/tools/assets/...`.
+- Aktivní konfigurace Accountu a Home byly přesunuty do sourozeneckého
+  `vevit-private/` s právy `0600`; produkční preferovaná cesta je
+  `/etc/vevit/`. Loadery podporují explicitní absolutní cestu přes
+  `VEVIT_ACCOUNT_CONFIG_PATH` a `VEVIT_HOME_CONFIG_PATH` a nemají fallback do
+  document rootu.
+- CI secret scan prochází celý verzovaný webroot a selhává na skutečně
+  použitelném JWT, Supabase `sb_secret_` klíči nebo natvrdo přiřazeném
+  `service_role`. Samotné názvy proměnných `SUPABASE_*` jsou povolené, protože
+  jsou nezbytnou součástí serverového kontraktu; explicitní ukázkové hodnoty v
+  dokumentaci jsou rozpoznány pouze úzkým seznamem placeholderů.
+- Každý serverový konzument má vlastní secret key, aby šel při incidentu
+  revokovat nezávisle. Audit doložil PHP konzumenty `account` a `home` a Edge
+  Function konzumenty `auth`, `api` a `stripe-webhook`; Stripe setup/worker
+  používají přímé databázové připojení a vlastní worker secret, nikoli Supabase
+  API key.
+- Moderní `sb_secret_` se posílá jen v hlavičce `apikey`, nikdy jako Bearer.
+  Během bezvýpadkové výměny krátce existovala typově rozlišená legacy větev;
+  po live ověření všech moderních klíčů a deaktivaci legacy klíčů byla z kódu
+  odstraněna.
+- Frontendový audit nenašel žádné přímé volání Supabase, takže projekt pro SSO
+  nevytváří ani nedistribuuje nový publishable key.
+- Databáze má `pg_net`, jeden aktivní cron `stripe-sync-worker` a žádný Database
+  Webhook. Cron čte vlastní `stripe_sync_worker_secret` z Vaultu a posílá jej
+  jako aplikační Bearer do `stripe-worker`; nejde o Supabase API key a kontrakt
+  se nemění.
+- Zdroj nasazené `stripe-webhook` Edge Function obsahoval tajné hodnoty přímo v
+  argumentech `Deno.env.get(...)`. Funkce musí být znovu nasazena pouze s názvy
+  environment proměnných a exponovaná Stripe tajemství samostatně vyměněna.
+- Edge Functions `auth`, `api` a `stripe-webhook` byly znovu nasazeny s
+  pojmenovanými položkami `edge_auth`, `edge_api` a `stripe_webhook` z
+  `SUPABASE_SECRET_KEYS`. `stripe-webhook` má `verify_jwt=false`, protože
+  příchozí Stripe webhook nemá Supabase JWT; autentizaci zajišťuje povinné
+  ověření `Stripe-Signature`.
+- Existující Edge secret `STRIPE_SECRET_KEY` se neshodoval s hodnotou dříve
+  vloženou do zdrojového bundlu, proto nebyl přepsán. `STRIPE_WEBHOOK_SECRET`
+  byl přesunut ze zdroje do Edge secrets, ale protože byl již exponován, musí
+  se jeho hodnota samostatně vyměnit ve Stripe a Supabase.
+- Před deaktivací legacy klíčů byly zkontrolovány Supabase OAuth Apps: nejsou
+  publikované žádné integrační aplikace; autorizované položky jsou vývojové
+  agentní konektory používající Management API. Legacy `anon` i `service_role`
+  byly následně deaktivovány a live testy všech pěti konzumentů zůstaly zelené.
+- Původní moderní secret key `default` byl rovněž kompromitovaný zdrojovým
+  bundlem. Po přechodu všech konzumentů na pojmenované klíče byl nevratně
+  odstraněn; následné live testy Accountu, Home a tří Edge Functions prošly.
+- Store v původní inventuře chyběl, protože inventura chybně ztotožnila
+  „Supabase konzumenta“ pouze s voláním Data API a hledala legacy klíče nebo
+  `/rest/v1`. Store přitom používal přímé PostgreSQL PDO připojení k téže
+  Supabase databázi. Chybu navíc nezachytil žádný produkční smoke test. Nové
+  pravidlo proto inventarizuje jak HTTP klíče, tak DSN/databázové ovladače a
+  každých 15 minut ověřuje klíčovou cestu všech pěti aplikací.
+- Produkční Store 500 nebyl způsoben deaktivací legacy `service_role`.
+  Supabase API ani PostgreSQL log neobsahoval Store požadavek; WEDOS odmítal
+  celý adresář kvůli `php_value` v `.htaccess`. Po jeho odstranění PHP log
+  postupně doložil drift `APP_ENV=beta`, neplatné privátní úložiště, vypnutou
+  secure cookie a nakonec chybějící `pdo_pgsql`. WEDOS PHP 8.3 má ověřeně jen
+  PDO ovladače `mysql` a `sqlite` a nemá ani rozšíření `pgsql`.
+- Store má proto vlastní pojmenovaný Supabase secret key `store`. Produkční
+  konfigurace je v privátním WEDOS adresáři mimo `www` s právy `0600`; Data API
+  klient posílá klíč pouze jako `apikey`, nikdy jako Bearer. Dva přechodné
+  klíče vzniklé během bezpečného přenosu byly před použitím smazány; finální
+  klíč nebyl vypsán do terminálu ani Git historie.
+- P0 obnovovací řez převedl veřejná katalogová API Store (`products`,
+  `categories`, `brands`, `recent`) na PostgREST. Objednávkové, platební a
+  download operace s transakčními požadavky zůstávají do plného portu
+  fail-closed; bezpečnost jejich vlastnictví a atomických změn se nesmí
+  nahrazovat obecným SQL/RPC endpointem.
+- Původní Stripe snapshot destination mířila na kořen `https://store.vevit.cz`
+  a neměla před incidentním testem žádnou historii doručení. Byla opravena na
+  Edge Function `stripe-webhook` a zúžena na čtyři skutečně zpracovávané typy
+  událostí. Stripe delivery log proto neobsahoval žádný cizí ani podezřelý
+  požadavek v době expozice; první záznamy vznikly až naším testem.
+- Exponovaný `STRIPE_WEBHOOK_SECRET` byl nahrazen Stripe roll operací s
+  24hodinovým překryvem. Nový secret je pouze v Supabase Edge secrets a jeho
+  funkčnost byla ověřena reálným, Stripem podepsaným eventem s výsledkem
+  `200 Delivered / Recovered`; stará hodnota automaticky expiruje 6. 8. 2026.
+- Webhook nově atomicky claimuje `event.id`, kanonický objekt vždy znovu načte
+  ze Stripe a porovná status, uživatele, price, měnu a částku se serverovým
+  katalogem. Opakované eventy jsou idempotentní a nemapované jednorázové
+  faktury se bezpečně ignorují bez změny účtu.
+- Webhook nepoužívá projektový `STRIPE_SECRET_KEY`. Má samostatný restricted
+  `STRIPE_WEBHOOK_API_KEY` pouze se čtením Invoices, Subscriptions a Checkout
+  Sessions, takže případný únik nemůže vytvářet ani měnit Stripe objekty.
+- Během ověřování Stripe Dashboard zobrazil standardní testovací API key do
+  lokálního automatizačního artefaktu. Klíč byl preventivně ihned znovu
+  rotován s hodinovým překryvem, nová hodnota byla předána do Edge secrets bez
+  výpisu a `stripe-worker` po změně vrátil HTTP 200. Dočasné browser artefakty
+  se po dokončení provozních zásahů bezpečně odstraní.
+- Produkční stack je WEDOS Apache/PHP, přestože repo obsahuje cílovou Nginx
+  konfiguraci. Report-only CSP proto byla nasazena ekvivalentním kořenovým
+  `.htaccess`; Nginx include zůstává verzovaným kontraktem pro budoucí přesun.
+  S-2 se tím nemění a enforce nebyl zapnut.
+- CSP collector nepoužívá veřejný log. Denně agreguje normalizované reporty v
+  adresáři mimo webroot s právy `0700`, soubory mají `0600`, klíčem deduplikace
+  je document + blocked URI + directive, klient má limit 120 reportů/minutu a
+  retence je 14 dní. Produkční smoke kontroluje endpoint každých 15 minut.
+- První CSP vzorek odhalil, že produkční Account a Store byly starší než
+  autoritativní repo. Nasazení aktuálního HTML, JS a lokálních fontů odstranilo
+  Google Fonts i inline-script reporty. Produkční drift se proto považuje za
+  samostatnou třídu rizika a smoke ověřuje vedle HTTP stavu také CSP hlavičku.
+- Fáze 1 backfill proběhl v jedné transakci před vytvořením unikátního indexu.
+  Všech 15 relací dostalo `sha256(session_token)`, počet aktivních relací i
+  fingerprint identity a expirace zůstaly shodné; migrace tedy nikoho
+  neodhlásila. Plaintext se odstraní výhradně až po S-3.
+- `store_product_views` používá stejný server-only deny-all model jako session
+  tabulky. Store zapisuje přes svůj service-role secret, takže klientská INSERT
+  policy není potřebná a rozšiřovala by zbytečně útokový povrch.
+- Security Advisor hlásí u deny-all tabulek informační `RLS enabled no policy`.
+  Tento INFO lint je očekávaný důsledek explicitně požadovaného modelu; žádná
+  policy se nepřidává jen kvůli umlčení advisora.
+- Samotný HTTP 200 + přítomnost CSP-RO hlavičky nestačí jako důkaz produkční
+  shody s repem. Průběžný browserový monitoring proto kontroluje i konzoli a
+  skutečně načítané assety; právě tím byl nalezen starý Home Tailwind CDN,
+  unpkg Lucide a odstraněná `/api/auth/me.php` cesta.
+
+- `'wasm-unsafe-eval'` je povoleno výhradně scoped v `tools/.htaccess` pomocí
+  `SetEnvIf` podmínky na REQUEST_URI pro 9 mediálních stránek využívajících
+  ffmpeg.wasm. Zbytek webu má strikní `script-src 'self'` bez výjimky.
+  Vědomé riziko: WASM sandbox nad rámec stávajícího JS sandboxu neposkytuje
+  útočníkovi s JS injection nic navíc. Izolovaná mediální subdoména (oddělený
+  origin s vlastní laxnější CSP) zůstává jako budoucí hardening item mimo
+  současný rozsah SSO implementace.
+
+## Evidovaný technický dluh
+
+- Odstranit stovky inline `style=` atributů a následně odebrat
+  `'unsafe-inline'` ze `style-src`. Tento dluh neblokuje SSO.
+- Převést `edu/ai-gramotnost.lessons.content` z `MEDIUMTEXT` HTML na
+  strukturované bloky. Do té doby se používá úzký DOMPurify allowlist.
+- Provozní CSP report-only sběr musí běžet nejméně týden před S-2.
+- K 5. 8. 2026 produkční cesty `vevit.cz`, `/account`, `/store`, `/tools`,
+  `/edu` a `/home` neposílají report-only CSP hlavičku. Sběr tedy nezačal a S-2
+  je blokované nasazením Nginx konfigurace a následným sedmidenním měřením.
+- Non-browser access/refresh tokeny jsou samostatný release po stabilizaci SSO.
+- Přechod Supabase Auth na asymetrické JWT signing keys je doporučený samostatný
+  bezpečnostní krok. Není součástí této implementace a neovlivňuje vlastní
+  opaque SSO session.
+- Dokončit port transakční Store vrstvy (checkout, objednávky, entitlementy,
+  download granty, reklamace a vratky) z přímého PDO PostgreSQL na úzce
+  definované PostgREST/RPC operace. Veřejný katalog nyní dočasně agreguje nejvýše
+  1000 produktů v PHP; před růstem katalogu se stránkování a řazení přesune na
+  databázovou RPC funkci.
+- **Rate limiting na sessions-revoke.php** — backlog pro Task 12.
+  Endpoint vyžaduje platnou session + Origin check (beginJson), takže
+  zneužití bez platného cookie je nemožné. Burst ochrana (např. 10 req/min
+  per user_id) se přidá v jednom uceleném průchodu přes všechny autentizační
+  endpointy v Task 12, nikoli ad-hoc po jednom.

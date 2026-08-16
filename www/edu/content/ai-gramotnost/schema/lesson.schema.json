@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["slug", "chapter", "order", "title", "estimatedMinutes", "baseXp", "warmup", "theory", "questions", "microtask", "remember", "questionBank"],
+  "properties": {
+    "slug": {"type": "string"},
+    "chapter": {"type": "integer", "minimum": 1, "maximum": 6},
+    "order": {"type": "integer", "minimum": 1},
+    "questionBank": {"type": "array", "minItems": 3},
+    "questions": {"type": "array", "minItems": 3}
+  },
+  "additionalProperties": true
+}
