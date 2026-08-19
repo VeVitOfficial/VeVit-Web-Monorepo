@@ -69,6 +69,12 @@ index_page_test('desktop navigation exposes all canonical destinations', functio
   ] as $path) {
     index_page_assert_contains('href="' . $path . '"', $html);
   }
+  if (substr_count($html, 'class="nav-icon"') !== 8) {
+    throw new RuntimeException('every desktop navigation item should have an icon');
+  }
+  if (substr_count($html, 'class="nav-icon" aria-hidden="true"><svg') !== 8) {
+    throw new RuntimeException('navigation icons should be consistent inline SVGs');
+  }
   index_page_assert_not_contains('class="tabs"', $html);
 });
 

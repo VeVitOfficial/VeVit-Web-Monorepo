@@ -75,6 +75,17 @@ function wire(array $sessions, array $users, string $cookie = '', string $legacy
         'touch_session' => function (array $cfg, string $hash): void {
             // no-op in tests
         },
+        'set_cookie' => function (): bool {
+            return true;
+        },
+        'migrate_legacy_session' => function (array $cfg, string $legacyToken, string $newHash) use ($sessions): ?array {
+            foreach ($sessions as $session) {
+                if (isset($session['session_token']) && hash_equals($session['session_token'], $legacyToken)) {
+                    return array_merge($session, ['token_hash' => $newHash]);
+                }
+            }
+            return null;
+        },
     ];
 }
 

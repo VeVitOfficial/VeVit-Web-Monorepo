@@ -73,7 +73,7 @@ export async function renderHome() {
     <main class="max-w-6xl mx-auto px-6 py-10">
       <section class="text-center pt-8 pb-16 md:pt-12 md:pb-20">
         <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[var(--color-text-primary)] mb-2">${escapeHtml(titleParts[0] || "")}. ${escapeHtml(titleParts[1] || "")}. <span class="text-emerald-500">${escapeHtml(titleParts[2] || "")}.</span></h1>
-        <div class="mt-8 max-w-2xl mx-auto relative"><div class="relative">${icon("search", "absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-[var(--color-text-muted)] pointer-events-none")}<label class="sr-only" for="hero-search">Vyhledat kurz, téma nebo článek</label><input id="hero-search" type="search" aria-describedby="hero-search-help" placeholder="${escapeHtml(t("landing.searchPlaceholder"))}" class="w-full h-14 pl-12 pr-4 rounded-xl bg-[var(--color-input-bg)] border border-[var(--color-border-subtle)] text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500/50 backdrop-blur-md transition-all"/>
+        <div class="mt-8 max-w-2xl mx-auto relative"><div class="relative">${icon("search", "absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-[var(--color-text-muted)] pointer-events-none")}<label class="sr-only" for="hero-search">Vyhledat kurz, téma nebo článek</label><input id="hero-search" type="search" role="combobox" aria-expanded="false" aria-controls="hero-search-listbox" aria-autocomplete="list" aria-activedescendant="" aria-describedby="hero-search-help" autocomplete="off" placeholder="${escapeHtml(t("landing.searchPlaceholder"))}" class="w-full h-14 pl-12 pr-4 rounded-xl bg-[var(--color-input-bg)] border border-[var(--color-border-subtle)] text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500/50 backdrop-blur-md transition-all"/>
           </div>
           <p id="hero-search-help" class="mt-3 text-xs text-[var(--color-text-muted)]">Hledej kurzy, témata i články z Wikipedie. Dotaz ukončený <span class="text-emerald-500 font-medium">?</span> zapne odpověď AI nad článkem. Potvrď Enterem.</p></div>
       </section>
@@ -88,7 +88,7 @@ export async function renderHome() {
   renderIcons(app);
 
   const hs = app.querySelector("#hero-search");
-  if (hs) hs.addEventListener("keydown", (e) => { if (e.key === "Enter") { const v = hs.value.trim(); if (v) navigate("/hledat?q=" + encodeURIComponent(v)); } });
+  if (hs) attachAutocomplete(hs, buildSuggestions(index, recentlyAdded, customLessons));
   return null;
 
   function continueCard(item) {
@@ -129,4 +129,170 @@ export async function renderHome() {
     wrap.querySelectorAll("[data-del]").forEach((b) => b.addEventListener("click", () => { deleteCustomLesson(list.find((l) => l.id === b.dataset.del)?.slug); const next = list.filter((l) => l.id !== b.dataset.del); renderCustomLessons(next); renderIcons(wrap); }));
     renderIcons(wrap);
   }
+}
+
+// ─── Hero search autocomplete (našeptávač) ─────────────────────────────
+// Zdroje: index (kurzy + lekce), recentlyAdded (bez přímé routy → fallback na /hledat),
+// customLessons (uživatelský vstup — proto se escapuje každá část labelu).
+
+function buildSuggestions(index, recentlyAdded, customLessons) {
+  const out = [];
+  for (const c of index || []) {
+    out.push({ type: "course", label: c.title, sub: c.category, href: `/kurzy/${encodeURIComponent(c.slug)}/` });
+    for (const l of (c.lessons || [])) {
+      out.push({ type: "lesson", label: l.title, sub: c.title, href: `/lekce/${encodeURIComponent(l.slug)}/` });
+    }
+  }
+  for (const r of recentlyAdded || []) {
+    out.push({ type: "recent", label: r.title, sub: r.category, href: `/hledat?q=${encodeURIComponent(r.title)}` });
+  }
+  for (const cl of customLessons || []) {
+    out.push({ type: "custom", label: cl.title, sub: cl.category || "Vlastní lekce", href: `/lekce/moje/detail?slug=${encodeURIComponent(cl.slug)}` });
+  }
+  return out;
+}
+
+// Zvýraznění shody: slice na 3 části, escapeHtml na KAŽDÉ zvlášť, <mark> vložen jako literál.
+// Query se do HTML nikdy neinterpoluje — jen určuje, který řez labelu se obalí.
+function highlightMatch(label, query) {
+  const q = String(query || "");
+  if (!q) return escapeHtml(label);
+  const text = String(label ?? "");
+  const idx = text.toLowerCase().indexOf(q.toLowerCase());
+  if (idx === -1) return escapeHtml(text);
+  const before = text.slice(0, idx);
+  const match = text.slice(idx, idx + q.length);
+  const after = text.slice(idx + q.length);
+  return escapeHtml(before) + '<mark class="search-match">' + escapeHtml(match) + "</mark>" + escapeHtml(after);
+}
+
+function attachAutocomplete(input, suggestions) {
+  const wrap = input.parentElement; // vnitřní .relative kontejner
+  const listbox = document.createElement("ul");
+  listbox.id = "hero-search-listbox";
+  listbox.className = "hero-search-listbox";
+  listbox.setAttribute("role", "listbox");
+  listbox.setAttribute("hidden", "");
+  wrap.appendChild(listbox);
+
+  let matches = [];
+  let activeIndex = -1;
+  let debounceId = null;
+
+  const isOpen = () => !listbox.hasAttribute("hidden");
+  const close = () => {
+    listbox.setAttribute("hidden", "");
+    input.setAttribute("aria-expanded", "false");
+    input.removeAttribute("aria-activedescendant");
+    activeIndex = -1;
+  };
+
+  const setActive = (idx) => {
+    const items = listbox.querySelectorAll('li[role="option"]');
+    items.forEach((li, i) => li.setAttribute("aria-selected", i === idx ? "true" : "false"));
+    activeIndex = idx;
+    if (idx >= 0 && items[idx]) {
+      input.setAttribute("aria-activedescendant", items[idx].id);
+      items[idx].scrollIntoView({ block: "nearest" });
+    } else {
+      input.removeAttribute("aria-activedescendant");
+    }
+  };
+
+  const selectItem = (item) => {
+    if (!item) return;
+    input.value = item.label;
+    close();
+    navigate(item.href);
+  };
+
+  const render = (q) => {
+    const ql = q.toLowerCase();
+    const scored = suggestions
+      .map((s, i) => {
+        const hay = (s.label + " " + (s.sub || "")).toLowerCase();
+        const idx = hay.indexOf(ql);
+        if (idx === -1) return null;
+        // prefixová shoda (label začíná query) má přednost před containsovou; původní pořadí je tiebreaker
+        const prefix = s.label.toLowerCase().indexOf(ql) === 0 ? 0 : 1;
+        return { s, prefix, order: i };
+      })
+      .filter(Boolean)
+      .sort((a, b) => a.prefix - b.prefix || a.order - b.order)
+      .slice(0, 8)
+      .map((x) => x.s);
+
+    matches = scored;
+    activeIndex = -1;
+
+    if (!q) { close(); return; }
+
+    if (matches.length === 0) {
+      listbox.innerHTML = '<li class="hsl-empty" role="presentation">Nic nenalezeno</li>';
+      listbox.removeAttribute("hidden");
+      input.setAttribute("aria-expanded", "true");
+      input.removeAttribute("aria-activedescendant");
+      return;
+    }
+
+    listbox.innerHTML = matches.map((m, i) => {
+      const labelHtml = highlightMatch(m.label, q);
+      const subHtml = m.sub ? `<span class="hsl-sub">${escapeHtml(m.sub)}</span>` : "";
+      return `<li role="option" id="hero-search-opt-${i}" aria-selected="false" data-index="${i}"><span class="hsl-label">${labelHtml}</span>${subHtml}</li>`;
+    }).join("");
+    listbox.removeAttribute("hidden");
+    input.setAttribute("aria-expanded", "true");
+  };
+
+  input.addEventListener("input", () => {
+    clearTimeout(debounceId);
+    const v = input.value.trim();
+    if (!v) { close(); return; }
+    debounceId = setTimeout(() => render(v), 150);
+  });
+
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowDown") {
+      if (!isOpen()) { const v = input.value.trim(); if (v) render(v); return; }
+      if (matches.length === 0) return;
+      e.preventDefault();
+      setActive((activeIndex + 1) % matches.length);
+    } else if (e.key === "ArrowUp") {
+      if (!isOpen() || matches.length === 0) return;
+      e.preventDefault();
+      setActive((activeIndex - 1 + matches.length) % matches.length);
+    } else if (e.key === "Enter") {
+      // Vybraná položka → potvrď výběr; jinak původní chování (Wikipedia/AI hledání).
+      if (isOpen() && activeIndex >= 0 && matches[activeIndex]) {
+        e.preventDefault();
+        selectItem(matches[activeIndex]);
+      } else {
+        const v = input.value.trim();
+        if (v) navigate("/hledat?q=" + encodeURIComponent(v));
+      }
+    } else if (e.key === "Escape") {
+      if (isOpen()) { e.preventDefault(); close(); }
+    }
+  });
+
+  // mouseover synchronizuje aktivní index, takže šipky pokračují od najeté položky
+  listbox.addEventListener("mouseover", (e) => {
+    const li = e.target.closest('li[role="option"]');
+    if (!li) return;
+    const idx = Number(li.dataset.index);
+    if (Number.isNaN(idx)) return;
+    setActive(idx);
+  });
+
+  listbox.addEventListener("click", (e) => {
+    const li = e.target.closest('li[role="option"]');
+    if (!li) return;
+    const item = matches[Number(li.dataset.index)];
+    if (item) selectItem(item);
+  });
+
+  // klik mimo dropdown zavře
+  document.addEventListener("click", (e) => {
+    if (!wrap.contains(e.target)) close();
+  });
 }

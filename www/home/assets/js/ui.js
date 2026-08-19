@@ -301,3 +301,4 @@ const UI = {
 window.UI = UI;
 
 document.addEventListener('DOMContentLoaded', () => UI.apply());
+window.addEventListener('vevit:localechange', (event) => UI.apply(document, event.detail?.locale || 'cs'));

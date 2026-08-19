@@ -44,6 +44,7 @@ require_once __DIR__ . '/icons.php';
       </div>
     </div>
     <div class="header-right vv-app-actions">
+      <span data-vevit-language></span>
       <span data-vevit-app-switcher data-vevit-app="Tools"></span>
       <a class="login-btn" href="/account/login"
          title="Přihlášení k účtu VeVit je volitelné — všechny nástroje fungují i bez něj.">
@@ -53,3 +54,4 @@ require_once __DIR__ . '/icons.php';
   </div>
 </header>
 <script type="module" src="/assets/shared/app-switcher.js?v=20260809b"></script>
+<script type="module" src="/assets/shared/localization.js?v=20260817a"></script>

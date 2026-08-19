@@ -64,6 +64,7 @@ function _vv_sb_post(string $url, array $headers, array $body): array {
     $ch = curl_init($url);
     curl_setopt_array($ch, [CURLOPT_RETURNTRANSFER => true, CURLOPT_HTTPHEADER => $headers,
         CURLOPT_POST => true, CURLOPT_POSTFIELDS => json_encode($body), CURLOPT_TIMEOUT => 6,
+        CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4,
         CURLOPT_SSL_VERIFYPEER => true, CURLOPT_SSL_VERIFYHOST => 2]);
     $raw = curl_exec($ch); $code = (int)curl_getinfo($ch, CURLINFO_HTTP_CODE); $err = curl_error($ch); curl_close($ch);
     if ($raw === false || $err !== '' || $code >= 500) throw new VvDbException('DB migration unavailable');
@@ -96,7 +97,8 @@ function _vv_migrate_legacy_session(array $cfg, string $legacyToken, array $lega
 function _vv_sb_get(string $url, array $headers): array {
     $ch = curl_init($url);
     curl_setopt_array($ch, [CURLOPT_RETURNTRANSFER => true, CURLOPT_HTTPHEADER => $headers,
-        CURLOPT_TIMEOUT => 6, CURLOPT_SSL_VERIFYPEER => true, CURLOPT_SSL_VERIFYHOST => 2]);
+        CURLOPT_TIMEOUT => 6, CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4,
+        CURLOPT_SSL_VERIFYPEER => true, CURLOPT_SSL_VERIFYHOST => 2]);
     $raw = curl_exec($ch);
     $code = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
     $err = curl_error($ch);
@@ -138,7 +140,8 @@ function _vv_sb_touch(array $cfg, string $hash): void {
     $ch = curl_init($base . '?' . $qs);
     curl_setopt_array($ch, [CURLOPT_CUSTOMREQUEST => 'PATCH', CURLOPT_POSTFIELDS => $body,
         CURLOPT_RETURNTRANSFER => true, CURLOPT_HTTPHEADER => $headers,
-        CURLOPT_TIMEOUT => 4, CURLOPT_SSL_VERIFYPEER => true, CURLOPT_SSL_VERIFYHOST => 2]);
+        CURLOPT_TIMEOUT => 4, CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4,
+        CURLOPT_SSL_VERIFYPEER => true, CURLOPT_SSL_VERIFYHOST => 2]);
     curl_exec($ch);
     curl_close($ch);
     // touch je best-effort; chyba se nesignalizuje

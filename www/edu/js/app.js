@@ -11,6 +11,10 @@ function boot() {
 
   // Re-render při změně jazyka
   window.addEventListener("vevit:langchange", rerender);
+  window.addEventListener("vevit:localechange", (event) => {
+    const locale = event.detail?.locale;
+    if (locale && locale !== currentLang()) changeLang(locale);
+  });
 
   initRouter();
 }

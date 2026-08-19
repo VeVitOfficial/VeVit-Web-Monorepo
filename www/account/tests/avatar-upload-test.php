@@ -80,8 +80,8 @@ avatar_test('profile photograph itself is the accessible upload trigger', functi
 avatar_test('account assets use the current cache version', function (): void {
   $page = file_get_contents(__DIR__ . '/../index.html');
   if (!is_string($page)) throw new RuntimeException('account page is missing');
-  avatar_assert_true(str_contains($page, 'app.js?v=20260728-totp-2fa'), 'new account handlers may be hidden behind cached JavaScript');
-  avatar_assert_true(str_contains($page, 'styles.css?v=20260728-totp-2fa'), 'new account styles may be hidden behind cached CSS');
+  avatar_assert_true(str_contains($page, 'app.js?v=20260817-locale'), 'new account handlers may be hidden behind cached JavaScript');
+  avatar_assert_true(str_contains($page, 'styles.css?v=20260817-nav-icons'), 'new account styles may be hidden behind cached CSS');
 });
 
 avatar_test('avatar endpoints fail safely when a deployment misses their library', function (): void {

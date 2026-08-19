@@ -51,6 +51,10 @@ function profile_update_prepare_patch(array $body, array $currentUser): array {
     $errors[] = ['field' => 'full_name', 'message' => 'Jméno musí mít alespoň 2 znaky.'];
   }
 
+  if (array_key_exists('language', $patch) && !in_array($patch['language'], ['cs', 'en', 'de', 'es', 'uk', 'fr', 'sk'], true)) {
+    $errors[] = ['field' => 'language', 'message' => 'Vybraný jazyk není podporovaný.'];
+  }
+
   if (
     array_key_exists('nickname', $patch)
     && !registerNicknameIsValid($patch['nickname'])

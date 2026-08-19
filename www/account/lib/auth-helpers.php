@@ -282,7 +282,8 @@ function _auth_clear_stale_cookies(array $cfg): void {
 function _auth_require_result(array $cfg): array {
   try {
     $user = vv_session_validate($cfg);
-  } catch (VvDbException) {
+  } catch (VvDbException $error) {
+    error_log('VeVit Account session validation unavailable: ' . $error->getMessage());
     return ['code' => 503];
   }
   if ($user === null) {

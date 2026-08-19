@@ -35,6 +35,15 @@ foreach ($expectations as $relative => $needle) {
     }
 }
 
+$htaccess = file_get_contents($root . '/.htaccess');
+if (!is_string($htaccess) || !str_contains($htaccess, 'session|app-switcher|localization')) {
+    $failures[] = '.htaccess: chybí veřejná cesta pro sdílenou lokalizaci';
+}
+$nginx = file_get_contents($root . '/nginx-vevit.conf');
+if (!is_string($nginx) || !str_contains($nginx, '(session|app-switcher|localization)')) {
+    $failures[] = 'nginx-vevit.conf: chybí veřejná cesta pro sdílenou lokalizaci';
+}
+
 if ($failures !== []) {
     fwrite(STDERR, "path-routing-test: FAIL\n" . implode("\n", $failures) . "\n");
     exit(1);

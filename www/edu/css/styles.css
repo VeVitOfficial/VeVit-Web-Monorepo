@@ -354,6 +354,61 @@ mark.ai-highlight {
   scroll-margin-top: 9rem;
 }
 
+/* ─── Hero search autocomplete (našeptávač) ──────────────────────────── */
+/* Vlastní třída .search-match — NE zasahuje do mark.ai-highlight výše.   */
+.hero-search-listbox {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  margin-top: 6px;
+  z-index: 50;
+  list-style: none;
+  padding: 4px;
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 12px;
+  box-shadow: 0 12px 40px -8px rgba(0, 0, 0, 0.6);
+  max-height: 22rem;
+  overflow-y: auto;
+}
+.hero-search-listbox[hidden] { display: none; }
+.hero-search-listbox li {
+  list-style: none;
+  margin: 0;
+  padding: 9px 12px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-radius: 8px;
+}
+.hero-search-listbox li + li { margin-top: 2px; }
+.hero-search-listbox li:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+/* aria-selected je za klávesnicí/myší zvolená položka — vizuálně odlišená od hoveru. */
+/* Uvedena AŽ po :hover, takže při selected+hover vyhrává selected (stejná specificita). */
+.hero-search-listbox li[aria-selected="true"] {
+  background: rgba(16, 185, 129, 0.14);
+  box-shadow: inset 3px 0 0 0 #10b981;
+}
+.hero-search-listbox li.hsl-empty {
+  cursor: default;
+  color: var(--color-text-muted);
+  font-size: 0.8125rem;
+  text-align: center;
+}
+.hero-search-listbox li.hsl-empty:hover { background: transparent; }
+.hero-search-listbox .hsl-label { color: var(--color-text-primary); font-size: 0.9rem; }
+.hero-search-listbox .hsl-sub { color: var(--color-text-muted); font-size: 0.75rem; }
+.hero-search-listbox mark.search-match {
+  background: rgba(16, 185, 129, 0.25);
+  color: inherit;
+  padding: 0 1px;
+  border-radius: 2px;
+}
+
 /* ─── Wikipedia article restyle (dark theme) ─── */
 .wp-article {
   color: var(--color-text-secondary);

@@ -74,6 +74,14 @@ profile_update_test('only supported bounded profile fields enter the patch', fun
   profile_update_assert_same(['bio', 'birth_date'], array_column($result['errors'], 'field'));
 });
 
+profile_update_test('profile language accepts only supported application locales', function (): void {
+  $valid = profile_update_prepare_patch(['language' => 'uk'], []);
+  profile_update_assert_same('uk', $valid['patch']['language']);
+  profile_update_assert_same([], $valid['errors']);
+  $invalid = profile_update_prepare_patch(['language' => 'ru'], []);
+  profile_update_assert_same('language', $invalid['errors'][0]['field'] ?? null);
+});
+
 profile_update_test('endpoint uses authenticated ownership and never returns update rows', function (): void {
   $source = file_get_contents(__DIR__ . '/../api/profile-update.php');
   if (!is_string($source)) throw new RuntimeException('unable to load endpoint');

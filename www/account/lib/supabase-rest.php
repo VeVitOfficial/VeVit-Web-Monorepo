@@ -24,6 +24,7 @@ function _sb_curl(string $method, string $url, array $headers, ?string $body = n
   $opts = [
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_TIMEOUT        => 15,
+    CURLOPT_IPRESOLVE      => CURL_IPRESOLVE_V4,
     CURLOPT_HTTPHEADER     => $headers,
     CURLOPT_CUSTOMREQUEST  => $method,
   ];
@@ -151,6 +152,7 @@ function sb_count(array $cfg, string $table, array $eq): int {
     CURLOPT_NOBODY         => true,  // HEAD
     CURLOPT_HTTPHEADER     => $hdrs,
     CURLOPT_TIMEOUT        => 10,
+    CURLOPT_IPRESOLVE      => CURL_IPRESOLVE_V4,
   ]);
   curl_exec($ch);
   $range = curl_getinfo($ch, CURLINFO_CONTENT_RANGE) ?: '';

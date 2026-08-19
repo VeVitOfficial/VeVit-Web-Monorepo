@@ -12,9 +12,9 @@ RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
 RewriteRule ^$ /home [R=301,L]
 
 # Blokuj přímý přístup k interním souborům
-RewriteRule ^assets/shared/((?:session|app-switcher)\.(?:js|css))$ shared/js/$1 [L]
-RewriteCond %{THE_REQUEST} \s/+assets/shared/(?:session|app-switcher)\.(?:js|css)(?:[?\s]) [NC]
-RewriteRule ^shared/js/(?:session|app-switcher)\.(?:js|css)$ - [L]
+RewriteRule ^assets/shared/((?:session|app-switcher|localization)\.(?:js|css))$ shared/js/$1 [L]
+RewriteCond %{THE_REQUEST} \s/+assets/shared/(?:session|app-switcher|localization)\.(?:js|css)(?:[?\s]) [NC]
+RewriteRule ^shared/js/(?:session|app-switcher|localization)\.(?:js|css)$ - [L]
 RewriteRule ^shared/ - [F,L]
 RewriteRule ^home/(api|lib|config|tests|docs)/ - [F,L]
 RewriteRule ^(store|account)/(lib|migrations|tests|docs|bin|vendor)/ - [F,L]

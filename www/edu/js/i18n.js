@@ -6,6 +6,8 @@ export const languages = [
   { code: "es", label: "Español", flag: "🇪🇸" },
   { code: "de", label: "Deutsch", flag: "🇩🇪" },
   { code: "uk", label: "Українська", flag: "🇺🇦" },
+  { code: "fr", label: "Français", flag: "🇫🇷" },
+  { code: "sk", label: "Slovenčina", flag: "🇸🇰" },
 ];
 
 const dictionaries = {

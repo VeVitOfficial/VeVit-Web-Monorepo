@@ -112,6 +112,7 @@ $announcementLink = '';
 
       <!-- Jediný browserový zdroj stavu je /account/api/me.php. -->
       <div id="navAuth" class="flex items-center" aria-live="polite" aria-label="Stav přihlášení">
+        <span data-vevit-language></span>
         <span data-vevit-app-switcher data-vevit-app="Store"></span>
         <span data-vevit-session></span>
       </div>
@@ -221,6 +222,7 @@ $announcementLink = '';
 <link rel="stylesheet" href="/assets/shared/app-switcher.css?v=20260809c">
 <script type="module" src="/assets/shared/session.js?v=20260809c"></script>
 <script type="module" src="/assets/shared/app-switcher.js?v=20260809b"></script>
+<script type="module" src="/assets/shared/localization.js?v=20260817a"></script>
 
 <!-- Main content landmark starts here (id used by skip link) -->
 <div id="main-content">

@@ -34,7 +34,8 @@ if (!empty($body['all_others'])) {
   $ch = curl_init($base . '?' . $qs);
   curl_setopt_array($ch, [CURLOPT_CUSTOMREQUEST => 'PATCH', CURLOPT_POSTFIELDS => $patch,
     CURLOPT_RETURNTRANSFER => true, CURLOPT_HTTPHEADER => $headers,
-    CURLOPT_TIMEOUT => 10, CURLOPT_SSL_VERIFYPEER => true, CURLOPT_SSL_VERIFYHOST => 2]);
+    CURLOPT_TIMEOUT => 10, CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4,
+    CURLOPT_SSL_VERIFYPEER => true, CURLOPT_SSL_VERIFYHOST => 2]);
   $raw = curl_exec($ch); $status = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE); curl_close($ch);
   if ($raw === false || $status < 200 || $status >= 300) jsonErr('Relace se nepodařilo ukončit.', 500);
   logActivity($cfg, $user['id'], 'session_revoke', 'All other sessions');
