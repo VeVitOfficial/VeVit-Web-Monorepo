@@ -17,6 +17,26 @@ function withVercelInsights(html: string) {
   return html.includes("</body>") ? html.replace("</body>", `${scripts}</body>`) : `${html}${scripts}`;
 }
 
+function withAbsoluteAssetPaths(html: string, section: string | undefined) {
+  if (section === "home") {
+    return html
+      .replace(/\b(href|src)=(["'])assets\//g, "$1=$2/home/assets/")
+      .replace(/\b(href|src)=(["'])images\//g, "$1=$2/home/images/");
+  }
+
+  if (section === "account") {
+    return html
+      .replace(/\b(href|src)=(["'])\.\/assets\//g, "$1=$2/account/assets/")
+      .replace(/\b(href|src)=(["'])\.\/images\//g, "$1=$2/account/images/");
+  }
+
+  return html;
+}
+
+function prepareLegacyHtml(html: string, path: string[]) {
+  return withVercelInsights(withAbsoluteAssetPaths(html, path[0]));
+}
+
 export async function GET(_request: Request, context: { params: Promise<{ path: string[] }> }) {
   const { path } = await context.params;
   const file = resolve(root, ...path);
@@ -26,7 +46,7 @@ export async function GET(_request: Request, context: { params: Promise<{ path: 
   try {
     const body = await readFile(file);
     const extension = extname(file).toLowerCase();
-    const content = extension === ".html" ? withVercelInsights(body.toString("utf8")) : body;
+    const content = extension === ".html" ? prepareLegacyHtml(body.toString("utf8"), path) : body;
     return new Response(content, {
       headers: {
         "Content-Type": mimeTypes[extension] ?? "application/octet-stream",
