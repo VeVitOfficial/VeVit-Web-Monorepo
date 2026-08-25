@@ -25,7 +25,7 @@ V Project Settings → Environment Variables nastavte pro Production i Preview h
 | `SUPABASE_STRIPE_WEBHOOK_URL` | server | Plná URL Edge Function `stripe-webhook` |
 | `VEVIT_EDGE_PROXY_SECRET` | server | Volitelný sdílený BFF secret kontrolovaný Edge Functions |
 
-Vercel build při chybějící povinné proměnné skončí chybou. Lokální build bez tajných hodnot funguje, katalog je prázdný a `/api/health` vrací `503 degraded`.
+Vercel build při chybějící proměnné vypíše výrazné varování, ale nasazení dokončí. Katalog pak zůstane prázdný a odpovídající backendové funkce vrací bezpečné `503`, dokud proměnné nedoplníte. Stav ověříte na `/api/health`.
 
 ## Nastavení projektu ve Vercelu
 

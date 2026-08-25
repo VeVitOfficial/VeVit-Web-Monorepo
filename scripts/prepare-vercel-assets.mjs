@@ -25,7 +25,9 @@ if (process.env.VERCEL === "1") {
   ];
   const missing = required.filter((name) => !process.env[name]);
   if (missing.length) {
-    throw new Error(`Vercel deployment is missing required environment variables: ${missing.join(", ")}`);
+    console.warn("\n[VeVit deploy warning] Missing Vercel environment variables:");
+    for (const name of missing) console.warn(`  - ${name}`);
+    console.warn("The public site will build, but related backend features will return 503 until these variables are configured.\n");
   }
 }
 
