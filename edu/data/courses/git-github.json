@@ -1,0 +1,1639 @@
+{
+  "id": "prog-git",
+  "slug": "git-github",
+  "title": "Git & GitHub",
+  "description": "Verzovací systém Git od základů — commity, větve, merge, rebase a GitHub workflow.",
+  "longDescription": "Git je nepostradatelný nástroj pro každého vývojáře.",
+  "category": "programovani",
+  "color": "#f05032",
+  "icon": "GitBranch",
+  "difficulty": "beginner",
+  "totalXP": 455,
+  "totalLessons": 16,
+  "language": "Git",
+  "chapters": [
+    {
+      "id": "git-ch1",
+      "slug": "git-kurz",
+      "title": "Kompletní kurz Git & GitHub",
+      "lessons": [
+        {
+          "id": "git-lesson-01",
+          "slug": "git-01-proč-verzování",
+          "title": "Proč verzování",
+          "description": "Git vs jiné VCS, instalace, konfigurace",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Proč verzování"
+            },
+            {
+              "type": "paragraph",
+              "text": "Git vs jiné VCS, instalace, konfigurace"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Proč verzování'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 15 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "git",
+              "code": "# Ukázka z lekce: Proč verzování\n# Zde bude váš kód...\nprint('Začínáme s Proč verzování!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "git-lesson-01-ex-01",
+              "title": "Cvičení: Proč verzování",
+              "type": "code",
+              "task": "Nastav Git s tvým jménem a emailem.",
+              "description": "Verzování je nepostradatelné pro každého vývojáře.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Proč verzování\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 15,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-git-01-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Proč verzování'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti proč verzování.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Proč verzování' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 15,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "git-lesson-02",
+          "slug": "git-02-první-repozitář",
+          "title": "První repozitář",
+          "description": "init, status, add, commit, log",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "První repozitář"
+            },
+            {
+              "type": "paragraph",
+              "text": "init, status, add, commit, log"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'První repozitář'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 20 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "git",
+              "code": "# Ukázka z lekce: První repozitář\n# Zde bude váš kód...\nprint('Začínáme s První repozitář!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "git-lesson-02-ex-01",
+              "title": "Cvičení: První repozitář",
+              "type": "code",
+              "task": "Vytvoř repozitář a 3 commity.",
+              "description": "Základní workflow Gitu.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: První repozitář\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 20,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-git-02-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'První repozitář'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti první repozitář.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'První repozitář' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 20,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "git-lesson-03",
+          "slug": "git-03-prohlížení-historie",
+          "title": "Prohlížení historie",
+          "description": "log, show, diff, blame",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Prohlížení historie"
+            },
+            {
+              "type": "paragraph",
+              "text": "log, show, diff, blame"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Prohlížení historie'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 20 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "git",
+              "code": "# Ukázka z lekce: Prohlížení historie\n# Zde bude váš kód...\nprint('Začínáme s Prohlížení historie!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "git-lesson-03-ex-01",
+              "title": "Cvičení: Prohlížení historie",
+              "type": "code",
+              "task": "Vyšetřuj: kdo a kdy změnil konkrétní řádek.",
+              "description": "Historie umožňuje pochopit změny.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Prohlížení historie\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 20,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-git-03-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Prohlížení historie'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti prohlížení historie.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Prohlížení historie' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 20,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "git-lesson-04",
+          "slug": "git-04-větvení-základy",
+          "title": "Větvení základy",
+          "description": "branch, checkout, vytvoření, přepínání",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Větvení základy"
+            },
+            {
+              "type": "paragraph",
+              "text": "branch, checkout, vytvoření, přepínání"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Větvení základy'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 25 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "git",
+              "code": "# Ukázka z lekce: Větvení základy\n# Zde bude váš kód...\nprint('Začínáme s Větvení základy!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "git-lesson-04-ex-01",
+              "title": "Cvičení: Větvení základy",
+              "type": "code",
+              "task": "Feature branch workflow simulace.",
+              "description": "Větve umožňují paralelní vývoj.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Větvení základy\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 25,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-git-04-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Větvení základy'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti větvení základy.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Větvení základy' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 25,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "git-lesson-05",
+          "slug": "git-05-slučování",
+          "title": "Slučování",
+          "description": "merge, fast-forward, merge commit",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Slučování"
+            },
+            {
+              "type": "paragraph",
+              "text": "merge, fast-forward, merge commit"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Slučování'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 25 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "git",
+              "code": "# Ukázka z lekce: Slučování\n# Zde bude váš kód...\nprint('Začínáme s Slučování!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "git-lesson-05-ex-01",
+              "title": "Cvičení: Slučování",
+              "type": "code",
+              "task": "Merge dvou feature branchů.",
+              "description": "Merge kombinuje práci z více větví.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Slučování\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 25,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-git-05-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Slučování'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti slučování.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Slučování' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 25,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "git-lesson-06",
+          "slug": "git-06-řešení-konfliktů",
+          "title": "Řešení konfliktů",
+          "description": "Co je konflikt, jak ho řešit, nástroje",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Řešení konfliktů"
+            },
+            {
+              "type": "paragraph",
+              "text": "Co je konflikt, jak ho řešit, nástroje"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Řešení konfliktů'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 30 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "git",
+              "code": "# Ukázka z lekce: Řešení konfliktů\n# Zde bude váš kód...\nprint('Začínáme s Řešení konfliktů!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "git-lesson-06-ex-01",
+              "title": "Cvičení: Řešení konfliktů",
+              "type": "code",
+              "task": "Vyřeš 3 různé typy konfliktů.",
+              "description": "Konflikty jsou běžné při týmové práci.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Řešení konfliktů\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 30,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-git-06-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Řešení konfliktů'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti řešení konfliktů.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Řešení konfliktů' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 30,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "git-lesson-07",
+          "slug": "git-07-stash",
+          "title": "Stash",
+          "description": "stash, pop, list, apply, drop",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Stash"
+            },
+            {
+              "type": "paragraph",
+              "text": "stash, pop, list, apply, drop"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Stash'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 20 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "git",
+              "code": "# Ukázka z lekce: Stash\n# Zde bude váš kód...\nprint('Začínáme s Stash!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "git-lesson-07-ex-01",
+              "title": "Cvičení: Stash",
+              "type": "code",
+              "task": "Ulož rozpracovanou práci a pokračuj později.",
+              "description": "Stash dočasně ukládá změny.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Stash\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 20,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-git-07-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Stash'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti stash.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Stash' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 20,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "git-lesson-08",
+          "slug": "git-08-zpětné-operace",
+          "title": "Zpětné operace",
+          "description": "reset, revert, checkout --, reflog",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Zpětné operace"
+            },
+            {
+              "type": "paragraph",
+              "text": "reset, revert, checkout --, reflog"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Zpětné operace'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 30 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "git",
+              "code": "# Ukázka z lekce: Zpětné operace\n# Zde bude váš kód...\nprint('Začínáme s Zpětné operace!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "git-lesson-08-ex-01",
+              "title": "Cvičení: Zpětné operace",
+              "type": "code",
+              "task": "'Ups' scénáře — oprava chyb.",
+              "description": "Git umožňuje opravit chyby v historii.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Zpětné operace\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 30,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-git-08-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Zpětné operace'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti zpětné operace.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Zpětné operace' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 30,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "git-lesson-09",
+          "slug": "git-09-rebase",
+          "title": "Rebase",
+          "description": "Interaktivní rebase, squash, reword",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Rebase"
+            },
+            {
+              "type": "paragraph",
+              "text": "Interaktivní rebase, squash, reword"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Rebase'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 35 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "git",
+              "code": "# Ukázka z lekce: Rebase\n# Zde bude váš kód...\nprint('Začínáme s Rebase!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "git-lesson-09-ex-01",
+              "title": "Cvičení: Rebase",
+              "type": "code",
+              "task": "Uprav historii — squash 5 commitů do 1.",
+              "description": "Rebase čistí historii commitů.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Rebase\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 35,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-git-09-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Rebase'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti rebase.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Rebase' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 35,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "git-lesson-10",
+          "slug": "git-10-github-základy",
+          "title": "GitHub — základy",
+          "description": "Repo, clone, push, pull, remote",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "GitHub — základy"
+            },
+            {
+              "type": "paragraph",
+              "text": "Repo, clone, push, pull, remote"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'GitHub — základy'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 25 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "git",
+              "code": "# Ukázka z lekce: GitHub — základy\n# Zde bude váš kód...\nprint('Začínáme s GitHub — základy!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "git-lesson-10-ex-01",
+              "title": "Cvičení: GitHub — základy",
+              "type": "code",
+              "task": "Publikuj svůj první projekt.",
+              "description": "GitHub je největší platforma pro spolupráci.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: GitHub — základy\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 25,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-git-10-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'GitHub — základy'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti github — základy.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'GitHub — základy' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 25,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "git-lesson-11",
+          "slug": "git-11-github-spolupráce",
+          "title": "GitHub — spolupráce",
+          "description": "Fork, PR, code review, issues",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "GitHub — spolupráce"
+            },
+            {
+              "type": "paragraph",
+              "text": "Fork, PR, code review, issues"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'GitHub — spolupráce'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 30 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "git",
+              "code": "# Ukázka z lekce: GitHub — spolupráce\n# Zde bude váš kód...\nprint('Začínáme s GitHub — spolupráce!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "git-lesson-11-ex-01",
+              "title": "Cvičení: GitHub — spolupráce",
+              "type": "code",
+              "task": "Simulace týmového PR workflow.",
+              "description": "Pull requests jsou základem týmové práce.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: GitHub — spolupráce\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 30,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-git-11-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'GitHub — spolupráce'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti github — spolupráce.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'GitHub — spolupráce' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 30,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "git-lesson-12",
+          "slug": "git-12-github-pokročilé",
+          "title": "GitHub — pokročilé",
+          "description": "Actions, Pages, Releases, Gist",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "GitHub — pokročilé"
+            },
+            {
+              "type": "paragraph",
+              "text": "Actions, Pages, Releases, Gist"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'GitHub — pokročilé'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 35 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "git",
+              "code": "# Ukázka z lekce: GitHub — pokročilé\n# Zde bude váš kód...\nprint('Začínáme s GitHub — pokročilé!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "git-lesson-12-ex-01",
+              "title": "Cvičení: GitHub — pokročilé",
+              "type": "code",
+              "task": "Nastav CI/CD pipeline.",
+              "description": "GitHub Actions automatizují workflow.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: GitHub — pokročilé\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 35,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-git-12-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'GitHub — pokročilé'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti github — pokročilé.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'GitHub — pokročilé' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 35,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "git-lesson-13",
+          "slug": "git-13-tagy-a-verze",
+          "title": "Tagy a verze",
+          "description": "tag, annotated, lightweight, semver",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Tagy a verze"
+            },
+            {
+              "type": "paragraph",
+              "text": "tag, annotated, lightweight, semver"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Tagy a verze'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 20 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "git",
+              "code": "# Ukázka z lekce: Tagy a verze\n# Zde bude váš kód...\nprint('Začínáme s Tagy a verze!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "git-lesson-13-ex-01",
+              "title": "Cvičení: Tagy a verze",
+              "type": "code",
+              "task": "Vydání verze v1.0.0.",
+              "description": "Tagy označují významné verze.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Tagy a verze\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 20,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-git-13-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Tagy a verze'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti tagy a verze.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Tagy a verze' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 20,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "git-lesson-14",
+          "slug": "git-14-gitignore",
+          "title": "Gitignore",
+          "description": "Patterny, šablony, best practices",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Gitignore"
+            },
+            {
+              "type": "paragraph",
+              "text": "Patterny, šablony, best practices"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Gitignore'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 15 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "git",
+              "code": "# Ukázka z lekce: Gitignore\n# Zde bude váš kód...\nprint('Začínáme s Gitignore!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "git-lesson-14-ex-01",
+              "title": "Cvičení: Gitignore",
+              "type": "code",
+              "task": "Vytvoř .gitignore pro různé projekty.",
+              "description": "Gitignore určuje, co Git nesleduje.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Gitignore\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 15,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-git-14-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Gitignore'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti gitignore.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Gitignore' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 15,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "git-lesson-15",
+          "slug": "git-15-submoduly-a-worktree",
+          "title": "Submoduly a worktree",
+          "description": "Submodules, worktree, bisect",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Submoduly a worktree"
+            },
+            {
+              "type": "paragraph",
+              "text": "Submodules, worktree, bisect"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Submoduly a worktree'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 30 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "git",
+              "code": "# Ukázka z lekce: Submoduly a worktree\n# Zde bude váš kód...\nprint('Začínáme s Submoduly a worktree!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "git-lesson-15-ex-01",
+              "title": "Cvičení: Submoduly a worktree",
+              "type": "code",
+              "task": "Bisekce — najdi commit s bugem.",
+              "description": "Pokročilé nástroje pro komplexní projekty.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Submoduly a worktree\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 30,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-git-15-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Submoduly a worktree'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti submoduly a worktree.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Submoduly a worktree' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 30,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "git-lesson-16",
+          "slug": "git-16-malý-projekt",
+          "title": "Malý projekt",
+          "description": "Týmový workflow simulace",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Malý projekt"
+            },
+            {
+              "type": "paragraph",
+              "text": "Týmový workflow simulace"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Malý projekt'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 80 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "git",
+              "code": "# Ukázka z lekce: Malý projekt\n# Zde bude váš kód...\nprint('Začínáme s Malý projekt!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "git-lesson-16-ex-01",
+              "title": "Cvičení: Malý projekt",
+              "type": "code",
+              "task": "Kompletní simulace vývoje feature.",
+              "description": "Projekt procvičuje celý Git workflow.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Malý projekt\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 80,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-git-16-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Malý projekt'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti malý projekt.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Malý projekt' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 80,
+          "estimatedMinutes": 15
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1235 @@
+{
+  "id": "prog-kotlin",
+  "slug": "kotlin",
+  "title": "Kotlin",
+  "description": "Moderní JVM jazyk pro Android, backend (Ktor) a multiplatformní aplikace.",
+  "longDescription": "Kotlin nabízí concise syntaxi, null-safety, extension funkce a coroutines.",
+  "category": "programovani",
+  "color": "#a97bff",
+  "icon": "Smartphone",
+  "difficulty": "advanced",
+  "totalXP": 420,
+  "totalLessons": 12,
+  "language": "Kotlin",
+  "chapters": [
+    {
+      "id": "kotlin-ch1",
+      "slug": "kotlin-kurz",
+      "title": "Kompletní kurz Kotlin",
+      "lessons": [
+        {
+          "id": "kotlin-lesson-01",
+          "slug": "kotlin-01-úvod-do-kotlinu",
+          "title": "Úvod do Kotlinu",
+          "description": "Proč Kotlin, první program, playground",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Úvod do Kotlinu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Proč Kotlin, první program, playground"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Úvod do Kotlinu'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 20 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "# Ukázka z lekce: Úvod do Kotlinu\n# Zde bude váš kód...\nprint('Začínáme s Úvod do Kotlinu!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "kotlin-lesson-01-ex-01",
+              "title": "Cvičení: Úvod do Kotlinu",
+              "type": "code",
+              "task": "Script s println a readln.",
+              "description": "Kotlin je moderní jazyk pro JVM a Android.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Úvod do Kotlinu\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 20,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-kotlin-01-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Úvod do Kotlinu'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti úvod do kotlinu.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Úvod do Kotlinu' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 20,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "kotlin-lesson-02",
+          "slug": "kotlin-02-proměnné-a-typy",
+          "title": "Proměnné a typy",
+          "description": "val/var, nullable, type inference, smart cast",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Proměnné a typy"
+            },
+            {
+              "type": "paragraph",
+              "text": "val/var, nullable, type inference, smart cast"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Proměnné a typy'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 20 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "# Ukázka z lekce: Proměnné a typy\n# Zde bude váš kód...\nprint('Začínáme s Proměnné a typy!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "kotlin-lesson-02-ex-01",
+              "title": "Cvičení: Proměnné a typy",
+              "type": "code",
+              "task": "Evidence osob s null safety.",
+              "description": "Null safety je klíčová vlastnost Kotlinu.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Proměnné a typy\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 20,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-kotlin-02-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Proměnné a typy'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti proměnné a typy.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Proměnné a typy' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 20,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "kotlin-lesson-03",
+          "slug": "kotlin-03-funkce",
+          "title": "Funkce",
+          "description": "Named params, default values, vararg, Unit",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Funkce"
+            },
+            {
+              "type": "paragraph",
+              "text": "Named params, default values, vararg, Unit"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Funkce'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 25 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "# Ukázka z lekce: Funkce\n# Zde bude váš kód...\nprint('Začínáme s Funkce!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "kotlin-lesson-03-ex-01",
+              "title": "Cvičení: Funkce",
+              "type": "code",
+              "task": "Builder funkce s defaults.",
+              "description": "Funkce v Kotlinu jsou flexibilní.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Funkce\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 25,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-kotlin-03-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Funkce'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti funkce.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Funkce' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 25,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "kotlin-lesson-04",
+          "slug": "kotlin-04-collections",
+          "title": "Collections",
+          "description": "List, Map, Set, mutable vs immutable",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Collections"
+            },
+            {
+              "type": "paragraph",
+              "text": "List, Map, Set, mutable vs immutable"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Collections'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 25 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "# Ukázka z lekce: Collections\n# Zde bude váš kód...\nprint('Začínáme s Collections!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "kotlin-lesson-04-ex-01",
+              "title": "Cvičení: Collections",
+              "type": "code",
+              "task": "Inventory systém.",
+              "description": "Kotlin rozlišuje mutable a immutable kolekce.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Collections\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 25,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-kotlin-04-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Collections'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti collections.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Collections' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 25,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "kotlin-lesson-05",
+          "slug": "kotlin-05-oop-třídy",
+          "title": "OOP — třídy",
+          "description": "Data class, sealed class, object, companion",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "OOP — třídy"
+            },
+            {
+              "type": "paragraph",
+              "text": "Data class, sealed class, object, companion"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'OOP — třídy'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 30 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "# Ukázka z lekce: OOP — třídy\n# Zde bude váš kód...\nprint('Začínáme s OOP — třídy!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "kotlin-lesson-05-ex-01",
+              "title": "Cvičení: OOP — třídy",
+              "type": "code",
+              "task": "Model rodinného stromu.",
+              "description": "Třídy v Kotlinu jsou stručné a výkonné.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: OOP — třídy\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 30,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-kotlin-05-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'OOP — třídy'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti oop — třídy.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'OOP — třídy' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 30,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "kotlin-lesson-06",
+          "slug": "kotlin-06-oop-pokročilé",
+          "title": "OOP — pokročilé",
+          "description": "Inheritance, interfaces, abstract",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "OOP — pokročilé"
+            },
+            {
+              "type": "paragraph",
+              "text": "Inheritance, interfaces, abstract"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'OOP — pokročilé'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 30 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "# Ukázka z lekce: OOP — pokročilé\n# Zde bude váš kód...\nprint('Začínáme s OOP — pokročilé!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "kotlin-lesson-06-ex-01",
+              "title": "Cvičení: OOP — pokročilé",
+              "type": "code",
+              "task": "Pluginový systém pro app.",
+              "description": "OOP v Kotlinu je elegantní.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: OOP — pokročilé\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 30,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-kotlin-06-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'OOP — pokročilé'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti oop — pokročilé.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'OOP — pokročilé' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 30,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "kotlin-lesson-07",
+          "slug": "kotlin-07-funkcionální-prvky",
+          "title": "Funkcionální prvky",
+          "description": "Higher-order, lambda, inline, extension",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Funkcionální prvky"
+            },
+            {
+              "type": "paragraph",
+              "text": "Higher-order, lambda, inline, extension"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Funkcionální prvky'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 35 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "# Ukázka z lekce: Funkcionální prvky\n# Zde bude váš kód...\nprint('Začínáme s Funkcionální prvky!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "kotlin-lesson-07-ex-01",
+              "title": "Cvičení: Funkcionální prvky",
+              "type": "code",
+              "task": "DSL pro HTML generování.",
+              "description": "Kotlin podporuje funkcionální styl.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Funkcionální prvky\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 35,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-kotlin-07-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Funkcionální prvky'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti funkcionální prvky.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Funkcionální prvky' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 35,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "kotlin-lesson-08",
+          "slug": "kotlin-08-scope-funkce",
+          "title": "Scope funkce",
+          "description": "let, run, with, apply, also",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Scope funkce"
+            },
+            {
+              "type": "paragraph",
+              "text": "let, run, with, apply, also"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Scope funkce'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 25 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "# Ukázka z lekce: Scope funkce\n# Zde bude váš kód...\nprint('Začínáme s Scope funkce!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "kotlin-lesson-08-ex-01",
+              "title": "Cvičení: Scope funkce",
+              "type": "code",
+              "task": "Refaktoring s scope funkcemi.",
+              "description": "Scope funkce zjednodušují práci s objekty.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Scope funkce\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 25,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-kotlin-08-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Scope funkce'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti scope funkce.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Scope funkce' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 25,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "kotlin-lesson-09",
+          "slug": "kotlin-09-coroutines-základy",
+          "title": "Coroutines základy",
+          "description": "suspend, launch, async/await, delay",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Coroutines základy"
+            },
+            {
+              "type": "paragraph",
+              "text": "suspend, launch, async/await, delay"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Coroutines základy'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 40 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "# Ukázka z lekce: Coroutines základy\n# Zde bude váš kód...\nprint('Začínáme s Coroutines základy!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "kotlin-lesson-09-ex-01",
+              "title": "Cvičení: Coroutines základy",
+              "type": "code",
+              "task": "Paralelní stahování dat.",
+              "description": "Coroutines jsou lehká asynchronní řešení.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Coroutines základy\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 40,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-kotlin-09-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Coroutines základy'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti coroutines základy.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Coroutines základy' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 40,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "kotlin-lesson-10",
+          "slug": "kotlin-10-flow",
+          "title": "Flow",
+          "description": "StateFlow, SharedFlow, operators",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Flow"
+            },
+            {
+              "type": "paragraph",
+              "text": "StateFlow, SharedFlow, operators"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Flow'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 35 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "# Ukázka z lekce: Flow\n# Zde bude váš kód...\nprint('Začínáme s Flow!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "kotlin-lesson-10-ex-01",
+              "title": "Cvičení: Flow",
+              "type": "code",
+              "task": "Reactive UI s Flow.",
+              "description": "Flow řeší streamy dat asynchronně.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Flow\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 35,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-kotlin-10-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Flow'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti flow.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Flow' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 35,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "kotlin-lesson-11",
+          "slug": "kotlin-11-ktor-základy",
+          "title": "Ktor základy",
+          "description": "Routing, serialization, DI",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Ktor základy"
+            },
+            {
+              "type": "paragraph",
+              "text": "Routing, serialization, DI"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Ktor základy'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 35 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "# Ukázka z lekce: Ktor základy\n# Zde bude váš kód...\nprint('Začínáme s Ktor základy!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "kotlin-lesson-11-ex-01",
+              "title": "Cvičení: Ktor základy",
+              "type": "code",
+              "task": "Jednoduchý REST endpoint.",
+              "description": "Ktor je moderní framework pro Kotlin backend.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Ktor základy\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 35,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-kotlin-11-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Ktor základy'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti ktor základy.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Ktor základy' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 35,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "kotlin-lesson-12",
+          "slug": "kotlin-12-malý-projekt",
+          "title": "Malý projekt",
+          "description": "Note-taking API",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Malý projekt"
+            },
+            {
+              "type": "paragraph",
+              "text": "Note-taking API"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Malý projekt'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 100 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "kotlin",
+              "code": "# Ukázka z lekce: Malý projekt\n# Zde bude váš kód...\nprint('Začínáme s Malý projekt!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "kotlin-lesson-12-ex-01",
+              "title": "Cvičení: Malý projekt",
+              "type": "code",
+              "task": "CRUD API s Ktor a databází.",
+              "description": "Projekt integruje všechny Kotlin dovednosti.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Malý projekt\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 100,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-kotlin-12-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Malý projekt'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti malý projekt.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Malý projekt' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 100,
+          "estimatedMinutes": 15
+        }
+      ]
+    }
+  ]
+}

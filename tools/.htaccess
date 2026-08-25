@@ -1,0 +1,48 @@
+# Hezké URL pro VeVit Tools (Apache). Pro `php -S` používejte router.php.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Obecná ochrana citlivé lokální konfigurace a dočasných souborů.
+  RewriteRule ^(?:\.env(?:\..*)?|.*\.(?:log|sql|bak|backup))$ - [F,L,NC]
+
+  # Pretty URL nástrojů: /<slug> → tools.php?slug=<slug>
+  # V monorepu tento .htaccess leží pod /tools/, takže URL /tools/<slug>
+  # Apache předá tomuto .htaccess bez prefixu "tools/".
+  RewriteRule ^([a-z0-9-]+)/?$ tools.php?slug=$1 [L,QSA]
+
+  # AI proxy: /api/ai/ollama → api/ai/ollama.php
+  RewriteRule ^api/ai/ollama/?$ api/ai/ollama.php [L,QSA]
+
+</IfModule>
+
+Options -Indexes
+
+# Bezpečnost: zakaž přístup k konfiguraci a includům.
+<IfModule mod_authz_core.c>
+  <FilesMatch "\.(php)$">
+    Require all granted
+  </FilesMatch>
+</IfModule>
+<FilesMatch "^(config|registry|icons|header|footer)\.php$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+# Výchozí stránka — PHP render z registru (i18n), fallback na statický index.html.
+DirectoryIndex index.php index.html
+
+# Scoped wasm-unsafe-eval pro 9 mediálních nástrojů využívajících ffmpeg.wasm.
+# Rozšiřuje POUZE script-src — ostatní direktivy jsou shodné s root .htaccess.
+# Při změně základní CSP politiky v root .htaccess aktualizovat i tuto hodnotu.
+<IfModule mod_setenvif.c>
+  SetEnvIf Request_URI "^/tools/(audio-convert|audio-trim-normalize|video-convert|video-compress|video-trim|video-extract-audio|video-to-gif|video-merge|video-target-size)(/?|/\?.*)?$" FFMPEG_TOOL
+</IfModule>
+<IfModule mod_headers.c>
+  Header always unset Content-Security-Policy-Report-Only env=FFMPEG_TOOL
+  Header always set Content-Security-Policy-Report-Only "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https:; connect-src 'self'; frame-src 'self' blob:; worker-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'; report-uri /account/api/csp-report.php; report-to vevit-csp" env=FFMPEG_TOOL
+</IfModule>

@@ -1,0 +1,31 @@
+// AI kontrola pravopisu/gramatiky — jeden dotaz na /api/ai/ollama.
+(function () {
+  'use strict';
+  var input = ToolUI.el('gc-input');
+  var run = ToolUI.el('gc-run'), label = run.querySelector('.gc-label'), stop = run.querySelector('.gc-stop');
+  var err = ToolUI.el('gc-error'), errText = ToolUI.el('gc-error-text');
+  var out = ToolUI.el('gc-out'), md = ToolUI.el('gc-md'), copy = ToolUI.el('gc-copy');
+  var handle = null;
+
+  function fail(m) { errText.textContent = m; err.classList.remove('hidden'); }
+  function clearErr() { err.classList.add('hidden'); }
+  function setRunning(b) { run.disabled = b; label.classList.toggle('hidden', b); stop.classList.toggle('hidden', !b); }
+
+  function go() {
+    if (handle) { handle.abort(); handle = null; setRunning(false); return; }
+    var text = input.value.trim();
+    if (!text) return fail('Vložte text k opravě.');
+    clearErr();
+    out.classList.remove('hidden'); md.textContent = 'Opravuji…';
+    setRunning(true);
+    handle = AITool.run({
+      tool: 'grammar-check', prompt: text,
+      onToken: function (piece, full) { AITool.renderMarkdown(md, full); },
+      onDone: function (full) { setRunning(false); handle = null; if (!full) md.textContent = ''; },
+      onError: function (m) { setRunning(false); handle = null; out.classList.add('hidden'); fail(m); }
+    });
+  }
+
+  run.addEventListener('click', go);
+  copy.addEventListener('click', function () { ToolUI.copyText(md.innerText || md.textContent); });
+})();

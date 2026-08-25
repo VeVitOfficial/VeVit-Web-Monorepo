@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="cs">
+<head><meta charset="utf-8"><title>XSS regression</title></head>
+<body data-status="running">
+<script src="../edu/assets/js/vendor/dompurify.min.js"></script>
+<script src="../edu/assets/js/content-sanitizer.js"></script>
+<script>
+(function () {
+  const payloads = [
+    '<img src=x onerror=alert(1)>',
+    '<svg onload=alert(1)><circle></circle></svg>',
+    '<iframe srcdoc="<script>alert(1)<\/script>"></iframe>',
+    '<object data="javascript:alert(1)"></object>',
+    '<embed src="data:text/html,x">',
+    '<a href="javascript:alert(1)">x</a>',
+    '<math><mtext><table><mglyph><style><!--</style><img title="--></mglyph><img src=1 onerror=alert(1)>">',
+    '<noscript><p title="</noscript><img src=x onerror=alert(1)>">x</p>',
+  ];
+  const forbidden = /<(?:script|iframe|object|embed|svg|math|form|style)\b|\son[a-z]+\s*=|(?:href|src)\s*=\s*["']?\s*(?:javascript|data):|\ssrcdoc\s*=/i;
+  for (const payload of payloads) {
+    const lesson = window.VeVitContentSanitizer.sanitizeLesson(payload);
+    const wiki = window.VeVitContentSanitizer.sanitizeWikipedia(payload).innerHTML;
+    if (forbidden.test(lesson) || forbidden.test(wiki)) throw new Error('Payload zůstal aktivní: ' + payload);
+  }
+  const original = window.DOMPurify;
+  window.DOMPurify = undefined;
+  let failedClosed = false;
+  try { window.VeVitContentSanitizer.sanitizeLesson('<b>x</b>'); } catch (error) { failedClosed = true; }
+  window.DOMPurify = original;
+  if (!failedClosed) throw new Error('Renderer bez DOMPurify neselhal uzavřeně.');
+  document.body.dataset.status = 'pass';
+})();
+</script>
+</body>
+</html>

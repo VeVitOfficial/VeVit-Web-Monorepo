@@ -1,0 +1,2 @@
+# Tento adresář je blokován Apache (RewriteRule ^shared/ - [F,L] v root .htaccess).
+# Funkční kód sem přijde ve Vlně 2.

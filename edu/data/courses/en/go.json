@@ -1,0 +1,1437 @@
+{
+  "id": "prog-go",
+  "slug": "go",
+  "title": "Go",
+  "description": "A simple and powerful language for backends, CLI tools and cloud systems.",
+  "longDescription": "Go excels at building backend services, CLI tools and cloud infrastructure.",
+  "category": "programovani",
+  "color": "#00add8",
+  "icon": "Workflow",
+  "difficulty": "advanced",
+  "totalXP": 480,
+  "totalLessons": 14,
+  "language": "Go",
+  "chapters": [
+    {
+      "id": "go-ch1",
+      "slug": "go-kurz",
+      "title": "Complete Go course",
+      "lessons": [
+        {
+          "id": "go-lesson-01",
+          "slug": "go-01-úvod-do-go",
+          "title": "Introduction to Go",
+          "description": "Why Go, go modules, first program",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Introduction to Go"
+            },
+            {
+              "type": "paragraph",
+              "text": "Why Go, go modules, first program"
+            },
+            {
+              "type": "paragraph",
+              "text": "In this lesson we'll take a closer look at the practical use of 'Introduction to Go'. We'll go through key concepts, show typical examples, and you'll try everything in the exercise."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Before starting the exercise, review the theory and try writing code alongside the explanation. You'll earn 20 XP for completing this lesson!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Code example"
+            },
+            {
+              "type": "paragraph",
+              "text": "Here's sample code illustrating the key concepts of this lesson:"
+            },
+            {
+              "type": "code",
+              "language": "go",
+              "code": "# Sample from lesson: Introduction to Go\n# Your code goes here...\nprint('Starting with Introduction to Go!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Key concepts"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Main concept of this lesson",
+                "Practical use in real projects",
+                "Common mistakes and how to avoid them",
+                "Best practices and conventions"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "go-lesson-01-ex-01",
+              "title": "Exercise: Introduction to Go",
+              "type": "code",
+              "task": "A module with multiple packages.",
+              "description": "Go is a language built by Google for simplicity and performance.",
+              "hint": "Try breaking the problem into smaller parts. Using a hint earns you half the XP.",
+              "expectedOutcome": "Correct solution to the task.",
+              "modelSolution": "// Model solution for: Introduction to Go\n// This is one possible approach...\n",
+              "keywords": [
+                "code",
+                "function",
+                "variable"
+              ],
+              "xp": 20,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Basic test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-go-01-1",
+              "question": "Which statement best describes the topic 'Introduction to Go'?",
+              "options": [
+                "It's unrelated to programming.",
+                "It's a fundamental concept in the area of introduction to go.",
+                "Only an advanced technique.",
+                "A historical overview."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Introduction to Go' is an important topic every developer should know."
+            }
+          ],
+          "xp": 20,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "go-lesson-02",
+          "slug": "go-02-proměnné-a-typy",
+          "title": "Variables and types",
+          "description": "var, const, :=, primitives, zero values",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Variables and types"
+            },
+            {
+              "type": "paragraph",
+              "text": "var, const, :=, primitives, zero values"
+            },
+            {
+              "type": "paragraph",
+              "text": "In this lesson we'll take a closer look at the practical use of 'Variables and types'. We'll go through key concepts, show typical examples, and you'll try everything in the exercise."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Before starting the exercise, review the theory and try writing code alongside the explanation. You'll earn 20 XP for completing this lesson!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Code example"
+            },
+            {
+              "type": "paragraph",
+              "text": "Here's sample code illustrating the key concepts of this lesson:"
+            },
+            {
+              "type": "code",
+              "language": "go",
+              "code": "# Sample from lesson: Variables and types\n# Your code goes here...\nprint('Starting with Variables and types!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Key concepts"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Main concept of this lesson",
+                "Practical use in real projects",
+                "Common mistakes and how to avoid them",
+                "Best practices and conventions"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "go-lesson-02-ex-01",
+              "title": "Exercise: Variables and types",
+              "type": "code",
+              "task": "A config struct with defaults.",
+              "description": "Go has minimal syntax and strong typing.",
+              "hint": "Try breaking the problem into smaller parts. Using a hint earns you half the XP.",
+              "expectedOutcome": "Correct solution to the task.",
+              "modelSolution": "// Model solution for: Variables and types\n// This is one possible approach...\n",
+              "keywords": [
+                "code",
+                "function",
+                "variable"
+              ],
+              "xp": 20,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Basic test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-go-02-1",
+              "question": "Which statement best describes the topic 'Variables and types'?",
+              "options": [
+                "It's unrelated to programming.",
+                "It's a fundamental concept in the area of variables and types.",
+                "Only an advanced technique.",
+                "A historical overview."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Variables and types' is an important topic every developer should know."
+            }
+          ],
+          "xp": 20,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "go-lesson-03",
+          "slug": "go-03-funkce",
+          "title": "Functions",
+          "description": "Multiple return values, named returns, defer",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Functions"
+            },
+            {
+              "type": "paragraph",
+              "text": "Multiple return values, named returns, defer"
+            },
+            {
+              "type": "paragraph",
+              "text": "In this lesson we'll take a closer look at the practical use of 'Functions'. We'll go through key concepts, show typical examples, and you'll try everything in the exercise."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Before starting the exercise, review the theory and try writing code alongside the explanation. You'll earn 25 XP for completing this lesson!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Code example"
+            },
+            {
+              "type": "paragraph",
+              "text": "Here's sample code illustrating the key concepts of this lesson:"
+            },
+            {
+              "type": "code",
+              "language": "go",
+              "code": "# Sample from lesson: Functions\n# Your code goes here...\nprint('Starting with Functions!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Key concepts"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Main concept of this lesson",
+                "Practical use in real projects",
+                "Common mistakes and how to avoid them",
+                "Best practices and conventions"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "go-lesson-03-ex-01",
+              "title": "Exercise: Functions",
+              "type": "code",
+              "task": "A retry function with defer logging.",
+              "description": "Functions in Go support multiple return values.",
+              "hint": "Try breaking the problem into smaller parts. Using a hint earns you half the XP.",
+              "expectedOutcome": "Correct solution to the task.",
+              "modelSolution": "// Model solution for: Functions\n// This is one possible approach...\n",
+              "keywords": [
+                "code",
+                "function",
+                "variable"
+              ],
+              "xp": 25,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Basic test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-go-03-1",
+              "question": "Which statement best describes the topic 'Functions'?",
+              "options": [
+                "It's unrelated to programming.",
+                "It's a fundamental concept in the area of functions.",
+                "Only an advanced technique.",
+                "A historical overview."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Functions' is an important topic every developer should know."
+            }
+          ],
+          "xp": 25,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "go-lesson-04",
+          "slug": "go-04-struktury",
+          "title": "Structs",
+          "description": "struct, methods, embedding",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Structs"
+            },
+            {
+              "type": "paragraph",
+              "text": "struct, methods, embedding"
+            },
+            {
+              "type": "paragraph",
+              "text": "In this lesson we'll take a closer look at the practical use of 'Structs'. We'll go through key concepts, show typical examples, and you'll try everything in the exercise."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Before starting the exercise, review the theory and try writing code alongside the explanation. You'll earn 25 XP for completing this lesson!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Code example"
+            },
+            {
+              "type": "paragraph",
+              "text": "Here's sample code illustrating the key concepts of this lesson:"
+            },
+            {
+              "type": "code",
+              "language": "go",
+              "code": "# Sample from lesson: Structs\n# Your code goes here...\nprint('Starting with Structs!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Key concepts"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Main concept of this lesson",
+                "Practical use in real projects",
+                "Common mistakes and how to avoid them",
+                "Best practices and conventions"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "go-lesson-04-ex-01",
+              "title": "Exercise: Structs",
+              "type": "code",
+              "task": "An e-shop model with embedded types.",
+              "description": "Structs are the basic building block.",
+              "hint": "Try breaking the problem into smaller parts. Using a hint earns you half the XP.",
+              "expectedOutcome": "Correct solution to the task.",
+              "modelSolution": "// Model solution for: Structs\n// This is one possible approach...\n",
+              "keywords": [
+                "code",
+                "function",
+                "variable"
+              ],
+              "xp": 25,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Basic test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-go-04-1",
+              "question": "Which statement best describes the topic 'Structs'?",
+              "options": [
+                "It's unrelated to programming.",
+                "It's a fundamental concept in the area of structs.",
+                "Only an advanced technique.",
+                "A historical overview."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Structs' is an important topic every developer should know."
+            }
+          ],
+          "xp": 25,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "go-lesson-05",
+          "slug": "go-05-interface",
+          "title": "Interfaces",
+          "description": "Implicit interfaces, composition",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Interfaces"
+            },
+            {
+              "type": "paragraph",
+              "text": "Implicit interfaces, composition"
+            },
+            {
+              "type": "paragraph",
+              "text": "In this lesson we'll take a closer look at the practical use of 'Interfaces'. We'll go through key concepts, show typical examples, and you'll try everything in the exercise."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Before starting the exercise, review the theory and try writing code alongside the explanation. You'll earn 30 XP for completing this lesson!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Code example"
+            },
+            {
+              "type": "paragraph",
+              "text": "Here's sample code illustrating the key concepts of this lesson:"
+            },
+            {
+              "type": "code",
+              "language": "go",
+              "code": "# Sample from lesson: Interfaces\n# Your code goes here...\nprint('Starting with Interfaces!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Key concepts"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Main concept of this lesson",
+                "Practical use in real projects",
+                "Common mistakes and how to avoid them",
+                "Best practices and conventions"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "go-lesson-05-ex-01",
+              "title": "Exercise: Interfaces",
+              "type": "code",
+              "task": "A payment processor with multiple methods.",
+              "description": "Interfaces in Go are implicit.",
+              "hint": "Try breaking the problem into smaller parts. Using a hint earns you half the XP.",
+              "expectedOutcome": "Correct solution to the task.",
+              "modelSolution": "// Model solution for: Interfaces\n// This is one possible approach...\n",
+              "keywords": [
+                "code",
+                "function",
+                "variable"
+              ],
+              "xp": 30,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Basic test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-go-05-1",
+              "question": "Which statement best describes the topic 'Interfaces'?",
+              "options": [
+                "It's unrelated to programming.",
+                "It's a fundamental concept in the area of interfaces.",
+                "Only an advanced technique.",
+                "A historical overview."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Interfaces' is an important topic every developer should know."
+            }
+          ],
+          "xp": 30,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "go-lesson-06",
+          "slug": "go-06-smyčky-a-podmínky",
+          "title": "Loops and conditionals",
+          "description": "for, if, switch, range",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Loops and conditionals"
+            },
+            {
+              "type": "paragraph",
+              "text": "for, if, switch, range"
+            },
+            {
+              "type": "paragraph",
+              "text": "In this lesson we'll take a closer look at the practical use of 'Loops and conditionals'. We'll go through key concepts, show typical examples, and you'll try everything in the exercise."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Before starting the exercise, review the theory and try writing code alongside the explanation. You'll earn 25 XP for completing this lesson!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Code example"
+            },
+            {
+              "type": "paragraph",
+              "text": "Here's sample code illustrating the key concepts of this lesson:"
+            },
+            {
+              "type": "code",
+              "language": "go",
+              "code": "# Sample from lesson: Loops and conditionals\n# Your code goes here...\nprint('Starting with Loops and conditionals!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Key concepts"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Main concept of this lesson",
+                "Practical use in real projects",
+                "Common mistakes and how to avoid them",
+                "Best practices and conventions"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "go-lesson-06-ex-01",
+              "title": "Exercise: Loops and conditionals",
+              "type": "code",
+              "task": "A pattern matcher using switch.",
+              "description": "Go has only the for loop for all purposes.",
+              "hint": "Try breaking the problem into smaller parts. Using a hint earns you half the XP.",
+              "expectedOutcome": "Correct solution to the task.",
+              "modelSolution": "// Model solution for: Loops and conditionals\n// This is one possible approach...\n",
+              "keywords": [
+                "code",
+                "function",
+                "variable"
+              ],
+              "xp": 25,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Basic test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-go-06-1",
+              "question": "Which statement best describes the topic 'Loops and conditionals'?",
+              "options": [
+                "It's unrelated to programming.",
+                "It's a fundamental concept in the area of loops and conditionals.",
+                "Only an advanced technique.",
+                "A historical overview."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Loops and conditionals' is an important topic every developer should know."
+            }
+          ],
+          "xp": 25,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "go-lesson-07",
+          "slug": "go-07-slice-a-map",
+          "title": "Slice and map",
+          "description": "append, make, len, cap, map operations",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Slice and map"
+            },
+            {
+              "type": "paragraph",
+              "text": "append, make, len, cap, map operations"
+            },
+            {
+              "type": "paragraph",
+              "text": "In this lesson we'll take a closer look at the practical use of 'Slice and map'. We'll go through key concepts, show typical examples, and you'll try everything in the exercise."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Before starting the exercise, review the theory and try writing code alongside the explanation. You'll earn 25 XP for completing this lesson!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Code example"
+            },
+            {
+              "type": "paragraph",
+              "text": "Here's sample code illustrating the key concepts of this lesson:"
+            },
+            {
+              "type": "code",
+              "language": "go",
+              "code": "# Sample from lesson: Slice and map\n# Your code goes here...\nprint('Starting with Slice and map!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Key concepts"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Main concept of this lesson",
+                "Practical use in real projects",
+                "Common mistakes and how to avoid them",
+                "Best practices and conventions"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "go-lesson-07-ex-01",
+              "title": "Exercise: Slice and map",
+              "type": "code",
+              "task": "A resizable buffer implementation.",
+              "description": "Slice and map are the core collections.",
+              "hint": "Try breaking the problem into smaller parts. Using a hint earns you half the XP.",
+              "expectedOutcome": "Correct solution to the task.",
+              "modelSolution": "// Model solution for: Slice and map\n// This is one possible approach...\n",
+              "keywords": [
+                "code",
+                "function",
+                "variable"
+              ],
+              "xp": 25,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Basic test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-go-07-1",
+              "question": "Which statement best describes the topic 'Slice and map'?",
+              "options": [
+                "It's unrelated to programming.",
+                "It's a fundamental concept in the area of slice and map.",
+                "Only an advanced technique.",
+                "A historical overview."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Slice and map' is an important topic every developer should know."
+            }
+          ],
+          "xp": 25,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "go-lesson-08",
+          "slug": "go-08-goroutines",
+          "title": "Goroutines",
+          "description": "go keyword, sync.WaitGroup",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Goroutines"
+            },
+            {
+              "type": "paragraph",
+              "text": "go keyword, sync.WaitGroup"
+            },
+            {
+              "type": "paragraph",
+              "text": "In this lesson we'll take a closer look at the practical use of 'Goroutines'. We'll go through key concepts, show typical examples, and you'll try everything in the exercise."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Before starting the exercise, review the theory and try writing code alongside the explanation. You'll earn 35 XP for completing this lesson!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Code example"
+            },
+            {
+              "type": "paragraph",
+              "text": "Here's sample code illustrating the key concepts of this lesson:"
+            },
+            {
+              "type": "code",
+              "language": "go",
+              "code": "# Sample from lesson: Goroutines\n# Your code goes here...\nprint('Starting with Goroutines!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Key concepts"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Main concept of this lesson",
+                "Practical use in real projects",
+                "Common mistakes and how to avoid them",
+                "Best practices and conventions"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "go-lesson-08-ex-01",
+              "title": "Exercise: Goroutines",
+              "type": "code",
+              "task": "A parallel HTTP checker.",
+              "description": "Goroutines are lightweight threads.",
+              "hint": "Try breaking the problem into smaller parts. Using a hint earns you half the XP.",
+              "expectedOutcome": "Correct solution to the task.",
+              "modelSolution": "// Model solution for: Goroutines\n// This is one possible approach...\n",
+              "keywords": [
+                "code",
+                "function",
+                "variable"
+              ],
+              "xp": 35,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Basic test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-go-08-1",
+              "question": "Which statement best describes the topic 'Goroutines'?",
+              "options": [
+                "It's unrelated to programming.",
+                "It's a fundamental concept in the area of goroutines.",
+                "Only an advanced technique.",
+                "A historical overview."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Goroutines' is an important topic every developer should know."
+            }
+          ],
+          "xp": 35,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "go-lesson-09",
+          "slug": "go-09-channels",
+          "title": "Channels",
+          "description": "make chan, send, receive, buffered",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Channels"
+            },
+            {
+              "type": "paragraph",
+              "text": "make chan, send, receive, buffered"
+            },
+            {
+              "type": "paragraph",
+              "text": "In this lesson we'll take a closer look at the practical use of 'Channels'. We'll go through key concepts, show typical examples, and you'll try everything in the exercise."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Before starting the exercise, review the theory and try writing code alongside the explanation. You'll earn 40 XP for completing this lesson!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Code example"
+            },
+            {
+              "type": "paragraph",
+              "text": "Here's sample code illustrating the key concepts of this lesson:"
+            },
+            {
+              "type": "code",
+              "language": "go",
+              "code": "# Sample from lesson: Channels\n# Your code goes here...\nprint('Starting with Channels!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Key concepts"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Main concept of this lesson",
+                "Practical use in real projects",
+                "Common mistakes and how to avoid them",
+                "Best practices and conventions"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "go-lesson-09-ex-01",
+              "title": "Exercise: Channels",
+              "type": "code",
+              "task": "A worker pool for processing jobs.",
+              "description": "Channels communicate between goroutines.",
+              "hint": "Try breaking the problem into smaller parts. Using a hint earns you half the XP.",
+              "expectedOutcome": "Correct solution to the task.",
+              "modelSolution": "// Model solution for: Channels\n// This is one possible approach...\n",
+              "keywords": [
+                "code",
+                "function",
+                "variable"
+              ],
+              "xp": 40,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Basic test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-go-09-1",
+              "question": "Which statement best describes the topic 'Channels'?",
+              "options": [
+                "It's unrelated to programming.",
+                "It's a fundamental concept in the area of channels.",
+                "Only an advanced technique.",
+                "A historical overview."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Channels' is an important topic every developer should know."
+            }
+          ],
+          "xp": 40,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "go-lesson-10",
+          "slug": "go-10-select",
+          "title": "Select",
+          "description": "select, timeout, non-blocking",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Select"
+            },
+            {
+              "type": "paragraph",
+              "text": "select, timeout, non-blocking"
+            },
+            {
+              "type": "paragraph",
+              "text": "In this lesson we'll take a closer look at the practical use of 'Select'. We'll go through key concepts, show typical examples, and you'll try everything in the exercise."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Before starting the exercise, review the theory and try writing code alongside the explanation. You'll earn 35 XP for completing this lesson!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Code example"
+            },
+            {
+              "type": "paragraph",
+              "text": "Here's sample code illustrating the key concepts of this lesson:"
+            },
+            {
+              "type": "code",
+              "language": "go",
+              "code": "# Sample from lesson: Select\n# Your code goes here...\nprint('Starting with Select!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Key concepts"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Main concept of this lesson",
+                "Practical use in real projects",
+                "Common mistakes and how to avoid them",
+                "Best practices and conventions"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "go-lesson-10-ex-01",
+              "title": "Exercise: Select",
+              "type": "code",
+              "task": "A rate limiter using select.",
+              "description": "Select multiplexes channels.",
+              "hint": "Try breaking the problem into smaller parts. Using a hint earns you half the XP.",
+              "expectedOutcome": "Correct solution to the task.",
+              "modelSolution": "// Model solution for: Select\n// This is one possible approach...\n",
+              "keywords": [
+                "code",
+                "function",
+                "variable"
+              ],
+              "xp": 35,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Basic test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-go-10-1",
+              "question": "Which statement best describes the topic 'Select'?",
+              "options": [
+                "It's unrelated to programming.",
+                "It's a fundamental concept in the area of select.",
+                "Only an advanced technique.",
+                "A historical overview."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Select' is an important topic every developer should know."
+            }
+          ],
+          "xp": 35,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "go-lesson-11",
+          "slug": "go-11-error-handling",
+          "title": "Error handling",
+          "description": "error interface, wrapping, custom",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Error handling"
+            },
+            {
+              "type": "paragraph",
+              "text": "error interface, wrapping, custom"
+            },
+            {
+              "type": "paragraph",
+              "text": "In this lesson we'll take a closer look at the practical use of 'Error handling'. We'll go through key concepts, show typical examples, and you'll try everything in the exercise."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Before starting the exercise, review the theory and try writing code alongside the explanation. You'll earn 25 XP for completing this lesson!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Code example"
+            },
+            {
+              "type": "paragraph",
+              "text": "Here's sample code illustrating the key concepts of this lesson:"
+            },
+            {
+              "type": "code",
+              "language": "go",
+              "code": "# Sample from lesson: Error handling\n# Your code goes here...\nprint('Starting with Error handling!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Key concepts"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Main concept of this lesson",
+                "Practical use in real projects",
+                "Common mistakes and how to avoid them",
+                "Best practices and conventions"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "go-lesson-11-ex-01",
+              "title": "Exercise: Error handling",
+              "type": "code",
+              "task": "An error chain with context.",
+              "description": "Go handles errors explicitly.",
+              "hint": "Try breaking the problem into smaller parts. Using a hint earns you half the XP.",
+              "expectedOutcome": "Correct solution to the task.",
+              "modelSolution": "// Model solution for: Error handling\n// This is one possible approach...\n",
+              "keywords": [
+                "code",
+                "function",
+                "variable"
+              ],
+              "xp": 25,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Basic test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-go-11-1",
+              "question": "Which statement best describes the topic 'Error handling'?",
+              "options": [
+                "It's unrelated to programming.",
+                "It's a fundamental concept in the area of error handling.",
+                "Only an advanced technique.",
+                "A historical overview."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Error handling' is an important topic every developer should know."
+            }
+          ],
+          "xp": 25,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "go-lesson-12",
+          "slug": "go-12-http-server",
+          "title": "HTTP server",
+          "description": "net/http, handlers, middleware",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "HTTP server"
+            },
+            {
+              "type": "paragraph",
+              "text": "net/http, handlers, middleware"
+            },
+            {
+              "type": "paragraph",
+              "text": "In this lesson we'll take a closer look at the practical use of 'HTTP server'. We'll go through key concepts, show typical examples, and you'll try everything in the exercise."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Before starting the exercise, review the theory and try writing code alongside the explanation. You'll earn 40 XP for completing this lesson!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Code example"
+            },
+            {
+              "type": "paragraph",
+              "text": "Here's sample code illustrating the key concepts of this lesson:"
+            },
+            {
+              "type": "code",
+              "language": "go",
+              "code": "# Sample from lesson: HTTP server\n# Your code goes here...\nprint('Starting with HTTP server!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Key concepts"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Main concept of this lesson",
+                "Practical use in real projects",
+                "Common mistakes and how to avoid them",
+                "Best practices and conventions"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "go-lesson-12-ex-01",
+              "title": "Exercise: HTTP server",
+              "type": "code",
+              "task": "A REST API with a middleware chain.",
+              "description": "Go has a built-in HTTP server.",
+              "hint": "Try breaking the problem into smaller parts. Using a hint earns you half the XP.",
+              "expectedOutcome": "Correct solution to the task.",
+              "modelSolution": "// Model solution for: HTTP server\n// This is one possible approach...\n",
+              "keywords": [
+                "code",
+                "function",
+                "variable"
+              ],
+              "xp": 40,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Basic test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-go-12-1",
+              "question": "Which statement best describes the topic 'HTTP server'?",
+              "options": [
+                "It's unrelated to programming.",
+                "It's a fundamental concept in the area of http server.",
+                "Only an advanced technique.",
+                "A historical overview."
+              ],
+              "correctIndex": 1,
+              "explanation": "'HTTP server' is an important topic every developer should know."
+            }
+          ],
+          "xp": 40,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "go-lesson-13",
+          "slug": "go-13-testing",
+          "title": "Testing",
+          "description": "testing package, table-driven, benchmarks",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Testing"
+            },
+            {
+              "type": "paragraph",
+              "text": "testing package, table-driven, benchmarks"
+            },
+            {
+              "type": "paragraph",
+              "text": "In this lesson we'll take a closer look at the practical use of 'Testing'. We'll go through key concepts, show typical examples, and you'll try everything in the exercise."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Before starting the exercise, review the theory and try writing code alongside the explanation. You'll earn 35 XP for completing this lesson!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Code example"
+            },
+            {
+              "type": "paragraph",
+              "text": "Here's sample code illustrating the key concepts of this lesson:"
+            },
+            {
+              "type": "code",
+              "language": "go",
+              "code": "# Sample from lesson: Testing\n# Your code goes here...\nprint('Starting with Testing!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Key concepts"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Main concept of this lesson",
+                "Practical use in real projects",
+                "Common mistakes and how to avoid them",
+                "Best practices and conventions"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "go-lesson-13-ex-01",
+              "title": "Exercise: Testing",
+              "type": "code",
+              "task": "100% coverage for a CRUD API.",
+              "description": "Testing is part of the standard library.",
+              "hint": "Try breaking the problem into smaller parts. Using a hint earns you half the XP.",
+              "expectedOutcome": "Correct solution to the task.",
+              "modelSolution": "// Model solution for: Testing\n// This is one possible approach...\n",
+              "keywords": [
+                "code",
+                "function",
+                "variable"
+              ],
+              "xp": 35,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Basic test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-go-13-1",
+              "question": "Which statement best describes the topic 'Testing'?",
+              "options": [
+                "It's unrelated to programming.",
+                "It's a fundamental concept in the area of testing.",
+                "Only an advanced technique.",
+                "A historical overview."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Testing' is an important topic every developer should know."
+            }
+          ],
+          "xp": 35,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "go-lesson-14",
+          "slug": "go-14-malý-projekt",
+          "title": "Small project",
+          "description": "URL shortener",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Small project"
+            },
+            {
+              "type": "paragraph",
+              "text": "URL shortener"
+            },
+            {
+              "type": "paragraph",
+              "text": "In this lesson we'll take a closer look at the practical use of 'Small project'. We'll go through key concepts, show typical examples, and you'll try everything in the exercise."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Before starting the exercise, review the theory and try writing code alongside the explanation. You'll earn 100 XP for completing this lesson!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Code example"
+            },
+            {
+              "type": "paragraph",
+              "text": "Here's sample code illustrating the key concepts of this lesson:"
+            },
+            {
+              "type": "code",
+              "language": "go",
+              "code": "# Sample from lesson: Small project\n# Your code goes here...\nprint('Starting with Small project!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Key concepts"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Main concept of this lesson",
+                "Practical use in real projects",
+                "Common mistakes and how to avoid them",
+                "Best practices and conventions"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "go-lesson-14-ex-01",
+              "title": "Exercise: Small project",
+              "type": "code",
+              "task": "A complete service with Redis and tests.",
+              "description": "The project integrates all Go skills.",
+              "hint": "Try breaking the problem into smaller parts. Using a hint earns you half the XP.",
+              "expectedOutcome": "Correct solution to the task.",
+              "modelSolution": "// Model solution for: Small project\n// This is one possible approach...\n",
+              "keywords": [
+                "code",
+                "function",
+                "variable"
+              ],
+              "xp": 100,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Basic test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-go-14-1",
+              "question": "Which statement best describes the topic 'Small project'?",
+              "options": [
+                "It's unrelated to programming.",
+                "It's a fundamental concept in the area of small project.",
+                "Only an advanced technique.",
+                "A historical overview."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Small project' is an important topic every developer should know."
+            }
+          ],
+          "xp": 100,
+          "estimatedMinutes": 15
+        }
+      ]
+    }
+  ]
+}

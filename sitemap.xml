@@ -1,0 +1,1667 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Portal (root → /<lang>/home) -->
+  <url>
+    <loc>https://vevit.cz/cs/home</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/home"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/home"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/home"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/home"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/home"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/home"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/home"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/home"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/en/home</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/home"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/home"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/home"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/home"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/home"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/home"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/home"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/home"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/de/home</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/home"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/home"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/home"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/home"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/home"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/home"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/home"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/home"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/es/home</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/home"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/home"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/home"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/home"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/home"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/home"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/home"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/home"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/uk/home</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/home"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/home"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/home"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/home"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/home"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/home"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/home"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/home"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/fr/home</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/home"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/home"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/home"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/home"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/home"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/home"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/home"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/home"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/sk/home</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/home"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/home"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/home"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/home"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/home"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/home"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/home"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/home"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Portal (home/) -->
+  <url>
+    <loc>https://vevit.cz/cs/home/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/home/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/home/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/home/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/home/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/home/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/home/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/home/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/home/"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/en/home/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/home/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/home/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/home/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/home/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/home/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/home/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/home/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/home/"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/de/home/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/home/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/home/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/home/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/home/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/home/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/home/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/home/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/home/"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/es/home/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/home/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/home/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/home/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/home/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/home/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/home/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/home/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/home/"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/uk/home/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/home/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/home/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/home/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/home/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/home/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/home/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/home/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/home/"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/fr/home/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/home/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/home/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/home/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/home/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/home/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/home/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/home/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/home/"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/sk/home/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/home/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/home/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/home/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/home/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/home/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/home/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/home/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/home/"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Portal (home/support.html) -->
+  <url>
+    <loc>https://vevit.cz/cs/home/support.html</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/home/support.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/en/home/support.html</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/home/support.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/de/home/support.html</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/home/support.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/es/home/support.html</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/home/support.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/uk/home/support.html</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/home/support.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/fr/home/support.html</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/home/support.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/sk/home/support.html</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/home/support.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/home/support.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Account -->
+  <url>
+    <loc>https://vevit.cz/cs/account/login</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/account/login"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/account/login"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/account/login"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/account/login"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/account/login"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/account/login"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/account/login"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/account/login"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/en/account/login</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/account/login"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/account/login"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/account/login"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/account/login"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/account/login"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/account/login"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/account/login"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/account/login"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/de/account/login</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/account/login"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/account/login"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/account/login"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/account/login"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/account/login"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/account/login"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/account/login"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/account/login"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/es/account/login</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/account/login"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/account/login"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/account/login"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/account/login"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/account/login"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/account/login"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/account/login"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/account/login"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/uk/account/login</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/account/login"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/account/login"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/account/login"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/account/login"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/account/login"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/account/login"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/account/login"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/account/login"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/fr/account/login</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/account/login"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/account/login"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/account/login"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/account/login"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/account/login"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/account/login"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/account/login"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/account/login"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/sk/account/login</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/account/login"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/account/login"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/account/login"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/account/login"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/account/login"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/account/login"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/account/login"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/account/login"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://vevit.cz/cs/account/register</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/account/register"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/account/register"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/account/register"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/account/register"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/account/register"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/account/register"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/account/register"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/account/register"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/en/account/register</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/account/register"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/account/register"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/account/register"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/account/register"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/account/register"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/account/register"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/account/register"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/account/register"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/de/account/register</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/account/register"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/account/register"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/account/register"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/account/register"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/account/register"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/account/register"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/account/register"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/account/register"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/es/account/register</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/account/register"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/account/register"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/account/register"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/account/register"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/account/register"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/account/register"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/account/register"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/account/register"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/uk/account/register</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/account/register"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/account/register"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/account/register"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/account/register"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/account/register"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/account/register"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/account/register"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/account/register"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/fr/account/register</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/account/register"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/account/register"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/account/register"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/account/register"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/account/register"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/account/register"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/account/register"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/account/register"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/sk/account/register</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/account/register"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/account/register"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/account/register"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/account/register"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/account/register"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/account/register"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/account/register"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/account/register"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://vevit.cz/cs/account/forgot-password</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/account/forgot-password"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/en/account/forgot-password</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/account/forgot-password"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/de/account/forgot-password</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/account/forgot-password"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/es/account/forgot-password</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/account/forgot-password"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/uk/account/forgot-password</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/account/forgot-password"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/fr/account/forgot-password</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/account/forgot-password"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/sk/account/forgot-password</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/account/forgot-password"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/account/forgot-password"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Edu -->
+  <url>
+    <loc>https://vevit.cz/cs/edu/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/edu/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/edu/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/edu/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/edu/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/edu/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/edu/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/edu/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/edu/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/en/edu/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/edu/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/edu/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/edu/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/edu/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/edu/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/edu/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/edu/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/edu/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/de/edu/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/edu/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/edu/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/edu/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/edu/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/edu/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/edu/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/edu/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/edu/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/es/edu/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/edu/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/edu/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/edu/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/edu/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/edu/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/edu/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/edu/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/edu/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/uk/edu/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/edu/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/edu/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/edu/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/edu/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/edu/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/edu/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/edu/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/edu/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/fr/edu/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/edu/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/edu/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/edu/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/edu/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/edu/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/edu/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/edu/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/edu/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/sk/edu/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/edu/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/edu/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/edu/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/edu/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/edu/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/edu/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/edu/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/edu/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://vevit.cz/cs/edu/dashboard/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/edu/dashboard/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/en/edu/dashboard/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/edu/dashboard/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/de/edu/dashboard/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/edu/dashboard/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/es/edu/dashboard/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/edu/dashboard/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/uk/edu/dashboard/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/edu/dashboard/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/fr/edu/dashboard/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/edu/dashboard/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/sk/edu/dashboard/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/edu/dashboard/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/edu/dashboard/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://vevit.cz/cs/edu/programovani/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/edu/programovani/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/en/edu/programovani/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/edu/programovani/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/de/edu/programovani/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/edu/programovani/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/es/edu/programovani/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/edu/programovani/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/uk/edu/programovani/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/edu/programovani/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/fr/edu/programovani/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/edu/programovani/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/sk/edu/programovani/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/edu/programovani/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/edu/programovani/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://vevit.cz/cs/edu/hledat/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/edu/hledat/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/en/edu/hledat/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/edu/hledat/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/de/edu/hledat/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/edu/hledat/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/es/edu/hledat/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/edu/hledat/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/uk/edu/hledat/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/edu/hledat/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/fr/edu/hledat/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/edu/hledat/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/sk/edu/hledat/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/edu/hledat/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/edu/hledat/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Store -->
+  <url>
+    <loc>https://vevit.cz/cs/store/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/"/>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/en/store/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/"/>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/de/store/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/"/>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/es/store/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/"/>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/uk/store/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/"/>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/fr/store/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/"/>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/sk/store/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/"/>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://vevit.cz/cs/store/catalog.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/catalog.php"/>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/en/store/catalog.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/catalog.php"/>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/de/store/catalog.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/catalog.php"/>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/es/store/catalog.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/catalog.php"/>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/uk/store/catalog.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/catalog.php"/>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/fr/store/catalog.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/catalog.php"/>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/sk/store/catalog.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/catalog.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/catalog.php"/>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://vevit.cz/cs/store/about.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/about.php"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/en/store/about.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/about.php"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/de/store/about.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/about.php"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/es/store/about.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/about.php"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/uk/store/about.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/about.php"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/fr/store/about.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/about.php"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/sk/store/about.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/about.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/about.php"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <url>
+    <loc>https://vevit.cz/cs/store/contact.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/contact.php"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/en/store/contact.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/contact.php"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/de/store/contact.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/contact.php"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/es/store/contact.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/contact.php"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/uk/store/contact.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/contact.php"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/fr/store/contact.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/contact.php"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/sk/store/contact.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/contact.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/contact.php"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <url>
+    <loc>https://vevit.cz/cs/store/terms.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/terms.php"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/en/store/terms.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/terms.php"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/de/store/terms.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/terms.php"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/es/store/terms.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/terms.php"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/uk/store/terms.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/terms.php"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/fr/store/terms.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/terms.php"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/sk/store/terms.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/terms.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/terms.php"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://vevit.cz/cs/store/privacy.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/privacy.php"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/en/store/privacy.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/privacy.php"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/de/store/privacy.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/privacy.php"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/es/store/privacy.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/privacy.php"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/uk/store/privacy.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/privacy.php"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/fr/store/privacy.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/privacy.php"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/sk/store/privacy.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/privacy.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/privacy.php"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://vevit.cz/cs/store/shipping.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/shipping.php"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/en/store/shipping.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/shipping.php"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/de/store/shipping.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/shipping.php"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/es/store/shipping.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/shipping.php"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/uk/store/shipping.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/shipping.php"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/fr/store/shipping.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/shipping.php"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/sk/store/shipping.php</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/store/shipping.php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/store/shipping.php"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Tools -->
+  <url>
+    <loc>https://vevit.cz/cs/tools/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/tools/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/tools/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/tools/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/tools/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/tools/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/tools/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/tools/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/tools/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/en/tools/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/tools/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/tools/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/tools/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/tools/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/tools/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/tools/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/tools/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/tools/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/de/tools/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/tools/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/tools/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/tools/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/tools/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/tools/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/tools/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/tools/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/tools/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/es/tools/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/tools/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/tools/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/tools/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/tools/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/tools/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/tools/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/tools/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/tools/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/uk/tools/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/tools/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/tools/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/tools/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/tools/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/tools/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/tools/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/tools/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/tools/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/fr/tools/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/tools/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/tools/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/tools/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/tools/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/tools/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/tools/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/tools/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/tools/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://vevit.cz/sk/tools/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/tools/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vevit.cz/en/tools/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vevit.cz/de/tools/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vevit.cz/es/tools/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/tools/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/tools/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/tools/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/tools/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+</urlset>

@@ -1,0 +1,26 @@
+# VeVit Store — Apache config. Per-locale routing je v root .htaccess
+# (/<lang>/store/... → /store/... s env VEVIT_LANG). Zde jen ochrana a index.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Ochrana citlivé konfigurace a dočasných souborů.
+  RewriteRule ^(?:\.env(?:\..*)?|.*\.(?:log|sql|bak|backup))$ - [F,L,NC]
+</IfModule>
+
+Options -Indexes
+
+# Zakaž přímý přístup k includům a konfiguraci (lib/ a migrations/ blokováno
+# též v root .htaccess, zde pro jistotu i na úrovni sekce).
+<FilesMatch "^(config|registry|icons|header|footer)\.php$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+# Výchozí stránka obchodu — index.php (i18n render). index.html fallback
+# pro případ, že by PHP nebylo dostupné.
+DirectoryIndex index.php index.html

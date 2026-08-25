@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="title desc">
+  <title id="title">Váhy času generování a kontroly</title><desc id="desc">Váhy porovnávají čas ušetřený generováním s časem stráveným kontrolou.</desc>
+  <rect width="800" height="450" rx="32" fill="#111827"/><g fill="none" stroke="#c4b5fd" stroke-width="10" stroke-linecap="round"><path d="M400 95v245M280 340h240M205 150h390"/><path d="M230 150l-70 150m70-150 70 150M570 150l-70 120m70-120 70 120"/></g>
+  <g><path d="M105 300h110q40 0 55-30q15 75-55 75H105q-70 0-55-75q15 30 55 30" fill="#22c55e"/><path d="M500 270h110q40 0 55-30q15 75-55 75H500q-70 0-55-75q15 30 55 30" fill="#f59e0b"/></g>
+  <g fill="#f8fafc" font-family="system-ui,sans-serif" font-size="21" font-weight="700" text-anchor="middle"><text x="160" y="385">ušetřený čas</text><text x="585" y="355">čas kontroly</text><text x="400" y="410" font-size="25">AI je užitečná, když úspora převáží kontrolu</text></g>
+</svg>

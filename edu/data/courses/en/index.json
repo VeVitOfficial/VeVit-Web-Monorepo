@@ -1,0 +1,1914 @@
+[
+  {
+    "id": "prog-python",
+    "slug": "python",
+    "title": "Python",
+    "description": "Nejoblíbenější jazyk pro začátečníky. Nauč se základy i pokročilé konstrukce Pythonu a piš své první programy.",
+    "longDescription": "Python je univerzální programovací jazyk, který se díky své čitelné syntaxi stal nejlepší volbou pro každého, kdo chce začít s programováním.",
+    "category": "programovani",
+    "color": "#facc15",
+    "icon": "Code2",
+    "difficulty": "beginner",
+    "totalXP": 1920,
+    "totalLessons": 47,
+    "language": "Python",
+    "chapterCount": 1,
+    "chapters": [
+      {
+        "id": "python-ch1",
+        "slug": "python-kurz",
+        "title": "Kompletní kurz Pythonu"
+      }
+    ],
+    "lessons": [
+      {
+        "slug": "python-01-ahoj-světe",
+        "title": "Ahoj, světe!"
+      },
+      {
+        "slug": "python-02-proměnné-a-datové-typy",
+        "title": "Proměnné a datové typy"
+      },
+      {
+        "slug": "python-03-základní-operace",
+        "title": "Základní operace"
+      },
+      {
+        "slug": "python-04-podmínky-ifelse",
+        "title": "Podmínky if/else"
+      },
+      {
+        "slug": "python-05-smyčka-for",
+        "title": "Smyčka for"
+      },
+      {
+        "slug": "python-06-smyčka-while",
+        "title": "Smyčka while"
+      },
+      {
+        "slug": "python-07-seznamy-list",
+        "title": "Seznamy (list)"
+      },
+      {
+        "slug": "python-08-řetězce-podrobně",
+        "title": "Řetězce podrobně"
+      },
+      {
+        "slug": "python-09-slovníky-dict",
+        "title": "Slovníky (dict)"
+      },
+      {
+        "slug": "python-10-n-tice-a-množiny",
+        "title": "N-tice a množiny"
+      },
+      {
+        "slug": "python-11-funkce-základy",
+        "title": "Funkce základy"
+      },
+      {
+        "slug": "python-12-rozsah-proměnných",
+        "title": "Rozsah proměnných"
+      },
+      {
+        "slug": "python-13-funkce-pokročilé",
+        "title": "Funkce — pokročilé"
+      },
+      {
+        "slug": "python-14-moduly-a-balíčky",
+        "title": "Moduly a balíčky"
+      },
+      {
+        "slug": "python-15-práce-se-soubory",
+        "title": "Práce se soubory"
+      },
+      {
+        "slug": "python-16-práce-s-json",
+        "title": "Práce s JSON"
+      },
+      {
+        "slug": "python-17-výjimky",
+        "title": "Výjimky"
+      },
+      {
+        "slug": "python-18-oop-třídy-a-objekty",
+        "title": "OOP — třídy a objekty"
+      },
+      {
+        "slug": "python-19-oop-dědičnost",
+        "title": "OOP — dědičnost"
+      },
+      {
+        "slug": "python-20-oop-zapouzdření",
+        "title": "OOP — zapouzdření"
+      },
+      {
+        "slug": "python-21-oop-polymorfismus",
+        "title": "OOP — polymorfismus"
+      },
+      {
+        "slug": "python-22-magic-methods",
+        "title": "Magic methods"
+      },
+      {
+        "slug": "python-23-generátory",
+        "title": "Generátory"
+      },
+      {
+        "slug": "python-24-iterátory",
+        "title": "Iterátory"
+      },
+      {
+        "slug": "python-25-dekorátory",
+        "title": "Dekorátory"
+      },
+      {
+        "slug": "python-26-kontextové-managery",
+        "title": "Kontextové managery"
+      },
+      {
+        "slug": "python-27-rekurze",
+        "title": "Rekurze"
+      },
+      {
+        "slug": "python-28-algoritmy-řazení",
+        "title": "Algoritmy — řazení"
+      },
+      {
+        "slug": "python-29-algoritmy-vyhledávání",
+        "title": "Algoritmy — vyhledávání"
+      },
+      {
+        "slug": "python-30-datové-struktury",
+        "title": "Datové struktury"
+      },
+      {
+        "slug": "python-31-list-comprehensions",
+        "title": "List comprehensions"
+      },
+      {
+        "slug": "python-32-dictset-comprehensions",
+        "title": "Dict/set comprehensions"
+      },
+      {
+        "slug": "python-33-map-filter-reduce",
+        "title": "Map, filter, reduce"
+      },
+      {
+        "slug": "python-34-práce-s-datem-a-časem",
+        "title": "Práce s datem a časem"
+      },
+      {
+        "slug": "python-35-náhodná-čísla",
+        "title": "Náhodná čísla"
+      },
+      {
+        "slug": "python-36-regulární-výrazy",
+        "title": "Regulární výrazy"
+      },
+      {
+        "slug": "python-37-práce-s-http",
+        "title": "Práce s HTTP"
+      },
+      {
+        "slug": "python-38-web-scraping-základy",
+        "title": "Web scraping základy"
+      },
+      {
+        "slug": "python-39-virtuální-prostředí",
+        "title": "Virtuální prostředí"
+      },
+      {
+        "slug": "python-40-testování-unittest",
+        "title": "Testování — unittest"
+      },
+      {
+        "slug": "python-41-testování-pytest",
+        "title": "Testování — pytest"
+      },
+      {
+        "slug": "python-42-debugging",
+        "title": "Debugging"
+      },
+      {
+        "slug": "python-43-práce-s-databází",
+        "title": "Práce s databází"
+      },
+      {
+        "slug": "python-44-multi-threading",
+        "title": "Multi-threading"
+      },
+      {
+        "slug": "python-45-asyncawait",
+        "title": "Async/await"
+      },
+      {
+        "slug": "python-46-malý-projekt-1",
+        "title": "Malý projekt 1"
+      },
+      {
+        "slug": "python-47-malý-projekt-2",
+        "title": "Malý projekt 2"
+      }
+    ]
+  },
+  {
+    "id": "prog-javascript",
+    "slug": "javascript",
+    "title": "JavaScript",
+    "description": "Moderní JavaScript od základů po pokročilé vzory, DOM, async a projekty.",
+    "longDescription": "JavaScript je jazyk moderního webu — běží v každém prohlížeči, na serveru i v mobilních aplikacích.",
+    "category": "programovani",
+    "color": "#facc15",
+    "icon": "Braces",
+    "difficulty": "beginner",
+    "totalXP": 1920,
+    "totalLessons": 51,
+    "language": "JavaScript",
+    "chapterCount": 1,
+    "chapters": [
+      {
+        "id": "js-ch1",
+        "slug": "javascript-kurz",
+        "title": "Kompletní kurz JavaScriptu"
+      }
+    ],
+    "lessons": [
+      {
+        "slug": "javascript-01-úvod-do-js",
+        "title": "Úvod do JS"
+      },
+      {
+        "slug": "javascript-02-proměnné",
+        "title": "Proměnné"
+      },
+      {
+        "slug": "javascript-03-datové-typy",
+        "title": "Datové typy"
+      },
+      {
+        "slug": "javascript-04-operátory",
+        "title": "Operátory"
+      },
+      {
+        "slug": "javascript-05-podmínky",
+        "title": "Podmínky"
+      },
+      {
+        "slug": "javascript-06-smyčky-for",
+        "title": "Smyčky — for"
+      },
+      {
+        "slug": "javascript-07-smyčky-while",
+        "title": "Smyčky — while"
+      },
+      {
+        "slug": "javascript-08-funkce-základy",
+        "title": "Funkce základy"
+      },
+      {
+        "slug": "javascript-09-scope-a-closures",
+        "title": "Scope a closures"
+      },
+      {
+        "slug": "javascript-10-pole-arrays",
+        "title": "Pole (Arrays)"
+      },
+      {
+        "slug": "javascript-11-objekty-základy",
+        "title": "Objekty základy"
+      },
+      {
+        "slug": "javascript-12-objekty-pokročilé",
+        "title": "Objekty — pokročilé"
+      },
+      {
+        "slug": "javascript-13-string-metody",
+        "title": "String metody"
+      },
+      {
+        "slug": "javascript-14-čísla-a-math",
+        "title": "Čísla a Math"
+      },
+      {
+        "slug": "javascript-15-date-objekt",
+        "title": "Date objekt"
+      },
+      {
+        "slug": "javascript-16-destructuring",
+        "title": "Destructuring"
+      },
+      {
+        "slug": "javascript-17-spread-a-rest",
+        "title": "Spread a Rest"
+      },
+      {
+        "slug": "javascript-18-dom-základy",
+        "title": "DOM základy"
+      },
+      {
+        "slug": "javascript-19-dom-manipulace",
+        "title": "DOM manipulace"
+      },
+      {
+        "slug": "javascript-20-dom-události",
+        "title": "DOM události"
+      },
+      {
+        "slug": "javascript-21-formuláře",
+        "title": "Formuláře"
+      },
+      {
+        "slug": "javascript-22-css-v-js",
+        "title": "CSS v JS"
+      },
+      {
+        "slug": "javascript-23-localstorage",
+        "title": "localStorage"
+      },
+      {
+        "slug": "javascript-24-es6-moduly",
+        "title": "ES6 moduly"
+      },
+      {
+        "slug": "javascript-25-prototypy",
+        "title": "Prototypy"
+      },
+      {
+        "slug": "javascript-26-třídy-class",
+        "title": "Třídy (class)"
+      },
+      {
+        "slug": "javascript-27-error-handling",
+        "title": "Error handling"
+      },
+      {
+        "slug": "javascript-28-promises-základy",
+        "title": "Promises základy"
+      },
+      {
+        "slug": "javascript-29-promiseallrace",
+        "title": "Promise.all/race"
+      },
+      {
+        "slug": "javascript-30-asyncawait",
+        "title": "Async/await"
+      },
+      {
+        "slug": "javascript-31-fetch-api",
+        "title": "Fetch API"
+      },
+      {
+        "slug": "javascript-32-event-loop",
+        "title": "Event Loop"
+      },
+      {
+        "slug": "javascript-33-settimeoutinterval",
+        "title": "setTimeout/Interval"
+      },
+      {
+        "slug": "javascript-34-callbacks",
+        "title": "Callbacks"
+      },
+      {
+        "slug": "javascript-35-generátory",
+        "title": "Generátory"
+      },
+      {
+        "slug": "javascript-36-map-a-set",
+        "title": "Map a Set"
+      },
+      {
+        "slug": "javascript-37-weakmapweakset",
+        "title": "WeakMap/WeakSet"
+      },
+      {
+        "slug": "javascript-38-proxy-objekt",
+        "title": "Proxy objekt"
+      },
+      {
+        "slug": "javascript-39-reflect-api",
+        "title": "Reflect API"
+      },
+      {
+        "slug": "javascript-40-regular-expressions",
+        "title": "Regular Expressions"
+      },
+      {
+        "slug": "javascript-41-functional-js",
+        "title": "Functional JS"
+      },
+      {
+        "slug": "javascript-42-memoizace",
+        "title": "Memoizace"
+      },
+      {
+        "slug": "javascript-43-debounce-a-throttle",
+        "title": "Debounce a Throttle"
+      },
+      {
+        "slug": "javascript-44-design-patterns",
+        "title": "Design Patterns"
+      },
+      {
+        "slug": "javascript-45-web-components",
+        "title": "Web Components"
+      },
+      {
+        "slug": "javascript-46-json-hluboce",
+        "title": "JSON hluboce"
+      },
+      {
+        "slug": "javascript-47-performance",
+        "title": "Performance"
+      },
+      {
+        "slug": "javascript-48-testing-základy",
+        "title": "Testing základy"
+      },
+      {
+        "slug": "javascript-49-malý-projekt-1",
+        "title": "Malý projekt 1"
+      },
+      {
+        "slug": "javascript-50-malý-projekt-2",
+        "title": "Malý projekt 2"
+      },
+      {
+        "slug": "javascript-51-malý-projekt-3",
+        "title": "Malý projekt 3"
+      }
+    ]
+  },
+  {
+    "id": "prog-html-css",
+    "slug": "html-css",
+    "title": "HTML & CSS",
+    "description": "Tvorba webových stránek od HTML struktur po pokročilé CSS techniky a responzivní design.",
+    "longDescription": "HTML a CSS jsou základní stavební kameny každé webové stránky.",
+    "category": "programovani",
+    "color": "#f97316",
+    "icon": "FileCode2",
+    "difficulty": "beginner",
+    "totalXP": 630,
+    "totalLessons": 20,
+    "language": "HTML/CSS",
+    "chapterCount": 1,
+    "chapters": [
+      {
+        "id": "html-ch1",
+        "slug": "html-css-kurz",
+        "title": "Kompletní kurz HTML a CSS"
+      }
+    ],
+    "lessons": [
+      {
+        "slug": "html-01-úvod-do-html",
+        "title": "Úvod do HTML"
+      },
+      {
+        "slug": "html-02-základní-tagy",
+        "title": "Základní tagy"
+      },
+      {
+        "slug": "html-03-seznamy-a-tabulky",
+        "title": "Seznamy a tabulky"
+      },
+      {
+        "slug": "html-04-formuláře",
+        "title": "Formuláře"
+      },
+      {
+        "slug": "html-05-sémantické-tagy",
+        "title": "Sémantické tagy"
+      },
+      {
+        "slug": "html-06-multimédia",
+        "title": "Multimédia"
+      },
+      {
+        "slug": "html-07-úvod-do-css",
+        "title": "Úvod do CSS"
+      },
+      {
+        "slug": "html-08-box-model",
+        "title": "Box model"
+      },
+      {
+        "slug": "html-09-pozicování",
+        "title": "Pozicování"
+      },
+      {
+        "slug": "html-10-flexbox-základy",
+        "title": "Flexbox základy"
+      },
+      {
+        "slug": "html-11-flexbox-pokročilé",
+        "title": "Flexbox pokročilé"
+      },
+      {
+        "slug": "html-12-css-grid-základy",
+        "title": "CSS Grid základy"
+      },
+      {
+        "slug": "html-13-grid-pokročilé",
+        "title": "Grid pokročilé"
+      },
+      {
+        "slug": "html-14-responzivní-design",
+        "title": "Responzivní design"
+      },
+      {
+        "slug": "html-15-css-animace",
+        "title": "CSS Animace"
+      },
+      {
+        "slug": "html-16-css-transformace",
+        "title": "CSS Transformace"
+      },
+      {
+        "slug": "html-17-css-variables",
+        "title": "CSS Variables"
+      },
+      {
+        "slug": "html-18-moderní-css",
+        "title": "Moderní CSS"
+      },
+      {
+        "slug": "html-19-přístupnost",
+        "title": "Přístupnost"
+      },
+      {
+        "slug": "html-20-malý-projekt",
+        "title": "Malý projekt"
+      }
+    ]
+  },
+  {
+    "id": "prog-sql",
+    "slug": "sql",
+    "title": "SQL & Databáze",
+    "description": "Relační databáze, SQL dotazy, JOINy, indexy a optimalizace na MariaDB.",
+    "longDescription": "Data jsou srdcem každé moderní aplikace a SQL je jazyk, kterým s nimi komunikuješ.",
+    "category": "programovani",
+    "color": "#0ea5e9",
+    "icon": "Database",
+    "difficulty": "beginner",
+    "totalXP": 620,
+    "totalLessons": 19,
+    "language": "SQL",
+    "chapterCount": 1,
+    "chapters": [
+      {
+        "id": "sql-ch1",
+        "slug": "sql-kurz",
+        "title": "Kompletní kurz SQL"
+      }
+    ],
+    "lessons": [
+      {
+        "slug": "sql-01-úvod-do-databází",
+        "title": "Úvod do databází"
+      },
+      {
+        "slug": "sql-02-select-základy",
+        "title": "SELECT základy"
+      },
+      {
+        "slug": "sql-03-where-a-filtrování",
+        "title": "WHERE a filtrování"
+      },
+      {
+        "slug": "sql-04-řazení-a-limit",
+        "title": "Řazení a limit"
+      },
+      {
+        "slug": "sql-05-agregační-funkce",
+        "title": "Agregační funkce"
+      },
+      {
+        "slug": "sql-06-group-by",
+        "title": "GROUP BY"
+      },
+      {
+        "slug": "sql-07-having",
+        "title": "HAVING"
+      },
+      {
+        "slug": "sql-08-join-inner",
+        "title": "JOIN — INNER"
+      },
+      {
+        "slug": "sql-09-join-leftright",
+        "title": "JOIN — LEFT/RIGHT"
+      },
+      {
+        "slug": "sql-10-join-full-a-cross",
+        "title": "JOIN — FULL a CROSS"
+      },
+      {
+        "slug": "sql-11-subqueries",
+        "title": "Subqueries"
+      },
+      {
+        "slug": "sql-12-union-a-case",
+        "title": "UNION a CASE"
+      },
+      {
+        "slug": "sql-13-modifikace-dat",
+        "title": "Modifikace dat"
+      },
+      {
+        "slug": "sql-14-transakce",
+        "title": "Transakce"
+      },
+      {
+        "slug": "sql-15-vytváření-tabulek",
+        "title": "Vytváření tabulek"
+      },
+      {
+        "slug": "sql-16-normalizace",
+        "title": "Normalizace"
+      },
+      {
+        "slug": "sql-17-indexy",
+        "title": "Indexy"
+      },
+      {
+        "slug": "sql-18-pohledy-views",
+        "title": "Pohledy (Views)"
+      },
+      {
+        "slug": "sql-19-malý-projekt",
+        "title": "Malý projekt"
+      }
+    ]
+  },
+  {
+    "id": "prog-zaklady",
+    "slug": "zaklady-programovani",
+    "title": "Základy programování",
+    "description": "Algoritmy, datové struktury, OOP a základní koncepty programování bez ohledu na jazyk.",
+    "longDescription": "Než se pustíš do konkrétního jazyka, je důležité pochopit univerzální principy programování.",
+    "category": "programovani",
+    "color": "#8b5cf6",
+    "icon": "BookOpen",
+    "difficulty": "beginner",
+    "totalXP": 510,
+    "totalLessons": 19,
+    "language": "Pseudokód",
+    "chapterCount": 1,
+    "chapters": [
+      {
+        "id": "zaklady-ch1",
+        "slug": "zaklady-kurz",
+        "title": "Základy programování"
+      }
+    ],
+    "lessons": [
+      {
+        "slug": "zaklady-01-co-je-programování",
+        "title": "Co je programování"
+      },
+      {
+        "slug": "zaklady-02-proměnné-a-paměť",
+        "title": "Proměnné a paměť"
+      },
+      {
+        "slug": "zaklady-03-datové-typy",
+        "title": "Datové typy"
+      },
+      {
+        "slug": "zaklady-04-podmínky",
+        "title": "Podmínky"
+      },
+      {
+        "slug": "zaklady-05-smyčky",
+        "title": "Smyčky"
+      },
+      {
+        "slug": "zaklady-06-funkce",
+        "title": "Funkce"
+      },
+      {
+        "slug": "zaklady-07-pole-a-seznamy",
+        "title": "Pole a seznamy"
+      },
+      {
+        "slug": "zaklady-08-vyhledávání",
+        "title": "Vyhledávání"
+      },
+      {
+        "slug": "zaklady-09-řazení",
+        "title": "Řazení"
+      },
+      {
+        "slug": "zaklady-10-složitost-algoritmů",
+        "title": "Složitost algoritmů"
+      },
+      {
+        "slug": "zaklady-11-zásobník-stack",
+        "title": "Zásobník (Stack)"
+      },
+      {
+        "slug": "zaklady-12-fronta-queue",
+        "title": "Fronta (Queue)"
+      },
+      {
+        "slug": "zaklady-13-spojový-seznam",
+        "title": "Spojový seznam"
+      },
+      {
+        "slug": "zaklady-14-stromová-struktura",
+        "title": "Stromová struktura"
+      },
+      {
+        "slug": "zaklady-15-hash-tabulka",
+        "title": "Hash tabulka"
+      },
+      {
+        "slug": "zaklady-16-oop-principy",
+        "title": "OOP principy"
+      },
+      {
+        "slug": "zaklady-17-polymorfismus",
+        "title": "Polymorfismus"
+      },
+      {
+        "slug": "zaklady-18-clean-code",
+        "title": "Clean code"
+      },
+      {
+        "slug": "zaklady-19-debugging",
+        "title": "Debugging"
+      }
+    ]
+  },
+  {
+    "id": "prog-bash",
+    "slug": "terminal-bash",
+    "title": "Terminál & Bash",
+    "description": "Ovládání terminálu, Bash skripty, SSH, Git workflow a automatizace na Linuxu.",
+    "longDescription": "Terminál je superpower každého vývojáře — umožňuje ti ovládat počítač rychleji než jakékoli GUI.",
+    "category": "programovani",
+    "color": "#22c55e",
+    "icon": "Terminal",
+    "difficulty": "beginner",
+    "totalXP": 515,
+    "totalLessons": 18,
+    "language": "Bash",
+    "chapterCount": 1,
+    "chapters": [
+      {
+        "id": "bash-ch1",
+        "slug": "bash-kurz",
+        "title": "Kompletní kurz Terminál & Bash"
+      }
+    ],
+    "lessons": [
+      {
+        "slug": "bash-01-úvod-do-terminálu",
+        "title": "Úvod do terminálu"
+      },
+      {
+        "slug": "bash-02-navigace-souborů",
+        "title": "Navigace souborů"
+      },
+      {
+        "slug": "bash-03-manipulace-souborů",
+        "title": "Manipulace souborů"
+      },
+      {
+        "slug": "bash-04-prohlížení-obsahu",
+        "title": "Prohlížení obsahu"
+      },
+      {
+        "slug": "bash-05-hledání",
+        "title": "Hledání"
+      },
+      {
+        "slug": "bash-06-redirekce-a-pipy",
+        "title": "Redirekce a pipy"
+      },
+      {
+        "slug": "bash-07-práva-a-vlastnictví",
+        "title": "Práva a vlastnictví"
+      },
+      {
+        "slug": "bash-08-procesy",
+        "title": "Procesy"
+      },
+      {
+        "slug": "bash-09-proměnné-prostředí",
+        "title": "Proměnné prostředí"
+      },
+      {
+        "slug": "bash-10-bash-skripty-základy",
+        "title": "Bash skripty základy"
+      },
+      {
+        "slug": "bash-11-skripty-smyčky",
+        "title": "Skripty — smyčky"
+      },
+      {
+        "slug": "bash-12-skripty-funkce",
+        "title": "Skripty — funkce"
+      },
+      {
+        "slug": "bash-13-textové-nástroje",
+        "title": "Textové nástroje"
+      },
+      {
+        "slug": "bash-14-archivace",
+        "title": "Archivace"
+      },
+      {
+        "slug": "bash-15-ssh-základy",
+        "title": "SSH základy"
+      },
+      {
+        "slug": "bash-16-git-v-terminálu",
+        "title": "Git v terminálu"
+      },
+      {
+        "slug": "bash-17-cron-a-automatizace",
+        "title": "Cron a automatizace"
+      },
+      {
+        "slug": "bash-18-malý-projekt",
+        "title": "Malý projekt"
+      }
+    ]
+  },
+  {
+    "id": "prog-typescript",
+    "slug": "typescript",
+    "title": "TypeScript",
+    "description": "Statické typování pro JavaScript — typy, generika, utility types a produkční vzory.",
+    "longDescription": "TypeScript přidává do JavaScriptu statické typování.",
+    "category": "programovani",
+    "color": "#3178c6",
+    "icon": "FileType",
+    "difficulty": "advanced",
+    "totalXP": 520,
+    "totalLessons": 14,
+    "language": "TypeScript",
+    "chapterCount": 1,
+    "chapters": [
+      {
+        "id": "typescript-ch1",
+        "slug": "typescript-kurz",
+        "title": "Kompletní kurz TypeScript"
+      }
+    ],
+    "lessons": [
+      {
+        "slug": "typescript-01-proč-typescript",
+        "title": "Proč TypeScript"
+      },
+      {
+        "slug": "typescript-02-základní-typy",
+        "title": "Základní typy"
+      },
+      {
+        "slug": "typescript-03-funkce-a-typy",
+        "title": "Funkce a typy"
+      },
+      {
+        "slug": "typescript-04-objekty-a-interface",
+        "title": "Objekty a interface"
+      },
+      {
+        "slug": "typescript-05-unie-a-průniky",
+        "title": "Unie a průniky"
+      },
+      {
+        "slug": "typescript-06-třídy-a-oop",
+        "title": "Třídy a OOP"
+      },
+      {
+        "slug": "typescript-07-generika",
+        "title": "Generika"
+      },
+      {
+        "slug": "typescript-08-utility-types",
+        "title": "Utility types"
+      },
+      {
+        "slug": "typescript-09-pokročilé-typy",
+        "title": "Pokročilé typy"
+      },
+      {
+        "slug": "typescript-10-type-guards",
+        "title": "Type guards"
+      },
+      {
+        "slug": "typescript-11-decorátory",
+        "title": "Decorátory"
+      },
+      {
+        "slug": "typescript-12-namespaces-a-moduly",
+        "title": "Namespaces a moduly"
+      },
+      {
+        "slug": "typescript-13-configurace",
+        "title": "Configurace"
+      },
+      {
+        "slug": "typescript-14-malý-projekt",
+        "title": "Malý projekt"
+      }
+    ]
+  },
+  {
+    "id": "prog-php",
+    "slug": "php",
+    "title": "PHP",
+    "description": "PHP 8.x pro backend — PDO, OOP, REST API, bezpečnost a moderní architektura.",
+    "longDescription": "PHP je stále jedním z nejpoužívanějších jazyků pro webový backend.",
+    "category": "programovani",
+    "color": "#777bb4",
+    "icon": "Server",
+    "difficulty": "advanced",
+    "totalXP": 580,
+    "totalLessons": 16,
+    "language": "PHP",
+    "chapterCount": 1,
+    "chapters": [
+      {
+        "id": "php-ch1",
+        "slug": "php-kurz",
+        "title": "Kompletní kurz PHP"
+      }
+    ],
+    "lessons": [
+      {
+        "slug": "php-01-úvod-do-php",
+        "title": "Úvod do PHP"
+      },
+      {
+        "slug": "php-02-datové-typy-a-operátory",
+        "title": "Datové typy a operátory"
+      },
+      {
+        "slug": "php-03-podmínky-a-smyčky",
+        "title": "Podmínky a smyčky"
+      },
+      {
+        "slug": "php-04-pole-a-funkce",
+        "title": "Pole a funkce"
+      },
+      {
+        "slug": "php-05-superglobální-proměnné",
+        "title": "Superglobální proměnné"
+      },
+      {
+        "slug": "php-06-oop-základy",
+        "title": "OOP základy"
+      },
+      {
+        "slug": "php-07-oop-pokročilé",
+        "title": "OOP pokročilé"
+      },
+      {
+        "slug": "php-08-práce-s-databází-pdo",
+        "title": "Práce s databází — PDO"
+      },
+      {
+        "slug": "php-09-relace-a-dotazy",
+        "title": "Relace a dotazy"
+      },
+      {
+        "slug": "php-10-sessions-a-cookies",
+        "title": "Sessions a cookies"
+      },
+      {
+        "slug": "php-11-rest-api-základy",
+        "title": "REST API základy"
+      },
+      {
+        "slug": "php-12-router-a-mvc",
+        "title": "Router a MVC"
+      },
+      {
+        "slug": "php-13-autentizace",
+        "title": "Autentizace"
+      },
+      {
+        "slug": "php-14-bezpečnost",
+        "title": "Bezpečnost"
+      },
+      {
+        "slug": "php-15-error-handling",
+        "title": "Error handling"
+      },
+      {
+        "slug": "php-16-malý-projekt",
+        "title": "Malý projekt"
+      }
+    ]
+  },
+  {
+    "id": "prog-git",
+    "slug": "git-github",
+    "title": "Git & GitHub",
+    "description": "Verzovací systém Git od základů — commity, větve, merge, rebase a GitHub workflow.",
+    "longDescription": "Git je nepostradatelný nástroj pro každého vývojáře.",
+    "category": "programovani",
+    "color": "#f05032",
+    "icon": "GitBranch",
+    "difficulty": "beginner",
+    "totalXP": 455,
+    "totalLessons": 16,
+    "language": "Git",
+    "chapterCount": 1,
+    "chapters": [
+      {
+        "id": "git-ch1",
+        "slug": "git-kurz",
+        "title": "Kompletní kurz Git & GitHub"
+      }
+    ],
+    "lessons": [
+      {
+        "slug": "git-01-proč-verzování",
+        "title": "Proč verzování"
+      },
+      {
+        "slug": "git-02-první-repozitář",
+        "title": "První repozitář"
+      },
+      {
+        "slug": "git-03-prohlížení-historie",
+        "title": "Prohlížení historie"
+      },
+      {
+        "slug": "git-04-větvení-základy",
+        "title": "Větvení základy"
+      },
+      {
+        "slug": "git-05-slučování",
+        "title": "Slučování"
+      },
+      {
+        "slug": "git-06-řešení-konfliktů",
+        "title": "Řešení konfliktů"
+      },
+      {
+        "slug": "git-07-stash",
+        "title": "Stash"
+      },
+      {
+        "slug": "git-08-zpětné-operace",
+        "title": "Zpětné operace"
+      },
+      {
+        "slug": "git-09-rebase",
+        "title": "Rebase"
+      },
+      {
+        "slug": "git-10-github-základy",
+        "title": "GitHub — základy"
+      },
+      {
+        "slug": "git-11-github-spolupráce",
+        "title": "GitHub — spolupráce"
+      },
+      {
+        "slug": "git-12-github-pokročilé",
+        "title": "GitHub — pokročilé"
+      },
+      {
+        "slug": "git-13-tagy-a-verze",
+        "title": "Tagy a verze"
+      },
+      {
+        "slug": "git-14-gitignore",
+        "title": "Gitignore"
+      },
+      {
+        "slug": "git-15-submoduly-a-worktree",
+        "title": "Submoduly a worktree"
+      },
+      {
+        "slug": "git-16-malý-projekt",
+        "title": "Malý projekt"
+      }
+    ]
+  },
+  {
+    "id": "prog-docker",
+    "slug": "docker",
+    "title": "Docker",
+    "description": "Kontejnerizace aplikací — Dockerfile, volumes, networking, Compose a orchestrace.",
+    "longDescription": "Docker revolučně změnil způsob, jakým nasazujeme aplikace.",
+    "category": "programovani",
+    "color": "#2496ed",
+    "icon": "Container",
+    "difficulty": "advanced",
+    "totalXP": 460,
+    "totalLessons": 15,
+    "language": "Dockerfile",
+    "chapterCount": 1,
+    "chapters": [
+      {
+        "id": "docker-ch1",
+        "slug": "docker-kurz",
+        "title": "Kompletní kurz Docker"
+      }
+    ],
+    "lessons": [
+      {
+        "slug": "docker-01-úvod-do-dockeru",
+        "title": "Úvod do Dockeru"
+      },
+      {
+        "slug": "docker-02-základní-příkazy",
+        "title": "Základní příkazy"
+      },
+      {
+        "slug": "docker-03-dockerfile-základy",
+        "title": "Dockerfile základy"
+      },
+      {
+        "slug": "docker-04-vrstvy-a-cache",
+        "title": "Vrstvy a cache"
+      },
+      {
+        "slug": "docker-05-volumes",
+        "title": "Volumes"
+      },
+      {
+        "slug": "docker-06-networking",
+        "title": "Networking"
+      },
+      {
+        "slug": "docker-07-docker-compose-základy",
+        "title": "Docker Compose základy"
+      },
+      {
+        "slug": "docker-08-compose-pokročilé",
+        "title": "Compose pokročilé"
+      },
+      {
+        "slug": "docker-09-multi-stage-builds",
+        "title": "Multi-stage builds"
+      },
+      {
+        "slug": "docker-10-environmenty",
+        "title": "Environmenty"
+      },
+      {
+        "slug": "docker-11-health-checks",
+        "title": "Health checks"
+      },
+      {
+        "slug": "docker-12-registry",
+        "title": "Registry"
+      },
+      {
+        "slug": "docker-13-bezpečnost",
+        "title": "Bezpečnost"
+      },
+      {
+        "slug": "docker-14-debugging",
+        "title": "Debugging"
+      },
+      {
+        "slug": "docker-15-malý-projekt",
+        "title": "Malý projekt"
+      }
+    ]
+  },
+  {
+    "id": "prog-java",
+    "slug": "java",
+    "title": "Java",
+    "description": "Objektově orientovaný jazyk pro backend, Android a enterprise aplikace.",
+    "longDescription": "Java je jeden z nejrozšířenějších programovacích jazyků.",
+    "category": "programovani",
+    "color": "#b07219",
+    "icon": "Coffee",
+    "difficulty": "advanced",
+    "totalXP": 560,
+    "totalLessons": 16,
+    "language": "Java",
+    "chapterCount": 1,
+    "chapters": [
+      {
+        "id": "java-ch1",
+        "slug": "java-kurz",
+        "title": "Kompletní kurz Java"
+      }
+    ],
+    "lessons": [
+      {
+        "slug": "java-01-úvod-do-javy",
+        "title": "Úvod do Javy"
+      },
+      {
+        "slug": "java-02-proměnné-a-typy",
+        "title": "Proměnné a typy"
+      },
+      {
+        "slug": "java-03-operátory-a-vstup",
+        "title": "Operátory a vstup"
+      },
+      {
+        "slug": "java-04-podmínky",
+        "title": "Podmínky"
+      },
+      {
+        "slug": "java-05-smyčky",
+        "title": "Smyčky"
+      },
+      {
+        "slug": "java-06-pole-a-stringy",
+        "title": "Pole a Stringy"
+      },
+      {
+        "slug": "java-07-oop-třídy",
+        "title": "OOP — třídy"
+      },
+      {
+        "slug": "java-08-oop-dědičnost",
+        "title": "OOP — dědičnost"
+      },
+      {
+        "slug": "java-09-oop-polymorfismus",
+        "title": "OOP — polymorfismus"
+      },
+      {
+        "slug": "java-10-kolekce",
+        "title": "Kolekce"
+      },
+      {
+        "slug": "java-11-výjimky",
+        "title": "Výjimky"
+      },
+      {
+        "slug": "java-12-stream-api",
+        "title": "Stream API"
+      },
+      {
+        "slug": "java-13-lambda-a-metody",
+        "title": "Lambda a metody"
+      },
+      {
+        "slug": "java-14-vlákna",
+        "title": "Vlákna"
+      },
+      {
+        "slug": "java-15-jdbc-a-databáze",
+        "title": "JDBC a databáze"
+      },
+      {
+        "slug": "java-16-malý-projekt",
+        "title": "Malý projekt"
+      }
+    ]
+  },
+  {
+    "id": "prog-csharp",
+    "slug": "csharp",
+    "title": "C#",
+    "description": "Moderní .NET jazyk pro webové API, hry v Unity a desktopové aplikace.",
+    "longDescription": "C# je moderní, všestranný jazyk v ekosystému .NET.",
+    "category": "programovani",
+    "color": "#512bd4",
+    "icon": "Gamepad2",
+    "difficulty": "advanced",
+    "totalXP": 505,
+    "totalLessons": 14,
+    "language": "C#",
+    "chapterCount": 1,
+    "chapters": [
+      {
+        "id": "csharp-ch1",
+        "slug": "csharp-kurz",
+        "title": "Kompletní kurz C#"
+      }
+    ],
+    "lessons": [
+      {
+        "slug": "csharp-01-úvod-do-c",
+        "title": "Úvod do C#"
+      },
+      {
+        "slug": "csharp-02-proměnné-a-typy",
+        "title": "Proměnné a typy"
+      },
+      {
+        "slug": "csharp-03-operátory-a-podmínky",
+        "title": "Operátory a podmínky"
+      },
+      {
+        "slug": "csharp-04-smyčky",
+        "title": "Smyčky"
+      },
+      {
+        "slug": "csharp-05-pole-a-kolekce",
+        "title": "Pole a kolekce"
+      },
+      {
+        "slug": "csharp-06-metody-a-scope",
+        "title": "Metody a scope"
+      },
+      {
+        "slug": "csharp-07-třídy-a-objekty",
+        "title": "Třídy a objekty"
+      },
+      {
+        "slug": "csharp-08-oop-dědičnost",
+        "title": "OOP — dědičnost"
+      },
+      {
+        "slug": "csharp-09-oop-interface",
+        "title": "OOP — interface"
+      },
+      {
+        "slug": "csharp-10-linq",
+        "title": "LINQ"
+      },
+      {
+        "slug": "csharp-11-výjimky",
+        "title": "Výjimky"
+      },
+      {
+        "slug": "csharp-12-asyncawait",
+        "title": "Async/await"
+      },
+      {
+        "slug": "csharp-13-aspnet-core-základy",
+        "title": "ASP.NET Core základy"
+      },
+      {
+        "slug": "csharp-14-malý-projekt",
+        "title": "Malý projekt"
+      }
+    ]
+  },
+  {
+    "id": "prog-cpp",
+    "slug": "cpp",
+    "title": "C++",
+    "description": "Výkonný systémový jazyk — smart pointers, templates, STL a herní engine základy.",
+    "longDescription": "C++ je jazyk, kde máš plnou kontrolu nad hardwarem.",
+    "category": "programovani",
+    "color": "#00599c",
+    "icon": "Cpu",
+    "difficulty": "expert",
+    "totalXP": 500,
+    "totalLessons": 13,
+    "language": "C++",
+    "chapterCount": 1,
+    "chapters": [
+      {
+        "id": "cpp-ch1",
+        "slug": "cpp-kurz",
+        "title": "Kompletní kurz C++"
+      }
+    ],
+    "lessons": [
+      {
+        "slug": "cpp-01-úvod-do-c",
+        "title": "Úvod do C++"
+      },
+      {
+        "slug": "cpp-02-proměnné-a-typy",
+        "title": "Proměnné a typy"
+      },
+      {
+        "slug": "cpp-03-pointery-základy",
+        "title": "Pointery základy"
+      },
+      {
+        "slug": "cpp-04-pole-a-řetězce",
+        "title": "Pole a řetězce"
+      },
+      {
+        "slug": "cpp-05-oop-třídy",
+        "title": "OOP — třídy"
+      },
+      {
+        "slug": "cpp-06-oop-pokročilé",
+        "title": "OOP — pokročilé"
+      },
+      {
+        "slug": "cpp-07-dědičnost-a-polymorfismus",
+        "title": "Dědičnost a polymorfismus"
+      },
+      {
+        "slug": "cpp-08-šablony-templates",
+        "title": "Šablony (templates)"
+      },
+      {
+        "slug": "cpp-09-stl-kontejnery",
+        "title": "STL kontejnery"
+      },
+      {
+        "slug": "cpp-10-stl-algoritmy",
+        "title": "STL algoritmy"
+      },
+      {
+        "slug": "cpp-11-smart-pointers",
+        "title": "Smart pointers"
+      },
+      {
+        "slug": "cpp-12-move-sémantika",
+        "title": "Move sémantika"
+      },
+      {
+        "slug": "cpp-13-malý-projekt",
+        "title": "Malý projekt"
+      }
+    ]
+  },
+  {
+    "id": "prog-rust",
+    "slug": "rust",
+    "title": "Rust",
+    "description": "Systémový jazyk s paměť bezpečností — ownership, traits, async a Tauri.",
+    "longDescription": "Rust nabízí výkon C++ bez bezpečnostních děr.",
+    "category": "programovani",
+    "color": "#dea584",
+    "icon": "Cog",
+    "difficulty": "expert",
+    "totalXP": 540,
+    "totalLessons": 14,
+    "language": "Rust",
+    "chapterCount": 1,
+    "chapters": [
+      {
+        "id": "rust-ch1",
+        "slug": "rust-kurz",
+        "title": "Kompletní kurz Rust"
+      }
+    ],
+    "lessons": [
+      {
+        "slug": "rust-01-úvod-do-rustu",
+        "title": "Úvod do Rustu"
+      },
+      {
+        "slug": "rust-02-ownership",
+        "title": "Ownership"
+      },
+      {
+        "slug": "rust-03-borrowing",
+        "title": "Borrowing"
+      },
+      {
+        "slug": "rust-04-slices",
+        "title": "Slices"
+      },
+      {
+        "slug": "rust-05-structs-a-metody",
+        "title": "Structs a metody"
+      },
+      {
+        "slug": "rust-06-enums-a-pattern-matching",
+        "title": "Enums a pattern matching"
+      },
+      {
+        "slug": "rust-07-collections",
+        "title": "Collections"
+      },
+      {
+        "slug": "rust-08-error-handling",
+        "title": "Error handling"
+      },
+      {
+        "slug": "rust-09-generics-a-traits",
+        "title": "Generics a traits"
+      },
+      {
+        "slug": "rust-10-lifetimes",
+        "title": "Lifetimes"
+      },
+      {
+        "slug": "rust-11-closures-a-iterátory",
+        "title": "Closures a iterátory"
+      },
+      {
+        "slug": "rust-12-smart-pointers",
+        "title": "Smart pointers"
+      },
+      {
+        "slug": "rust-13-asyncawait",
+        "title": "Async/await"
+      },
+      {
+        "slug": "rust-14-malý-projekt",
+        "title": "Malý projekt"
+      }
+    ]
+  },
+  {
+    "id": "prog-go",
+    "slug": "go",
+    "title": "Go",
+    "description": "A simple and powerful language for backends, CLI tools and cloud systems.",
+    "longDescription": "Go excels at building backend services, CLI tools and cloud infrastructure.",
+    "category": "programovani",
+    "color": "#00add8",
+    "icon": "Workflow",
+    "difficulty": "advanced",
+    "totalXP": 480,
+    "totalLessons": 14,
+    "language": "Go",
+    "chapterCount": 1,
+    "chapters": [
+      {
+        "id": "go-ch1",
+        "slug": "go-kurz",
+        "title": "Complete Go course"
+      }
+    ],
+    "lessons": [
+      {
+        "slug": "go-01-úvod-do-go",
+        "title": "Introduction to Go"
+      },
+      {
+        "slug": "go-02-proměnné-a-typy",
+        "title": "Variables and types"
+      },
+      {
+        "slug": "go-03-funkce",
+        "title": "Functions"
+      },
+      {
+        "slug": "go-04-struktury",
+        "title": "Structs"
+      },
+      {
+        "slug": "go-05-interface",
+        "title": "Interfaces"
+      },
+      {
+        "slug": "go-06-smyčky-a-podmínky",
+        "title": "Loops and conditionals"
+      },
+      {
+        "slug": "go-07-slice-a-map",
+        "title": "Slice and map"
+      },
+      {
+        "slug": "go-08-goroutines",
+        "title": "Goroutines"
+      },
+      {
+        "slug": "go-09-channels",
+        "title": "Channels"
+      },
+      {
+        "slug": "go-10-select",
+        "title": "Select"
+      },
+      {
+        "slug": "go-11-error-handling",
+        "title": "Error handling"
+      },
+      {
+        "slug": "go-12-http-server",
+        "title": "HTTP server"
+      },
+      {
+        "slug": "go-13-testing",
+        "title": "Testing"
+      },
+      {
+        "slug": "go-14-malý-projekt",
+        "title": "Small project"
+      }
+    ]
+  },
+  {
+    "id": "prog-kotlin",
+    "slug": "kotlin",
+    "title": "Kotlin",
+    "description": "Moderní JVM jazyk pro Android, backend (Ktor) a multiplatformní aplikace.",
+    "longDescription": "Kotlin nabízí concise syntaxi, null-safety, extension funkce a coroutines.",
+    "category": "programovani",
+    "color": "#a97bff",
+    "icon": "Smartphone",
+    "difficulty": "advanced",
+    "totalXP": 420,
+    "totalLessons": 12,
+    "language": "Kotlin",
+    "chapterCount": 1,
+    "chapters": [
+      {
+        "id": "kotlin-ch1",
+        "slug": "kotlin-kurz",
+        "title": "Kompletní kurz Kotlin"
+      }
+    ],
+    "lessons": [
+      {
+        "slug": "kotlin-01-úvod-do-kotlinu",
+        "title": "Úvod do Kotlinu"
+      },
+      {
+        "slug": "kotlin-02-proměnné-a-typy",
+        "title": "Proměnné a typy"
+      },
+      {
+        "slug": "kotlin-03-funkce",
+        "title": "Funkce"
+      },
+      {
+        "slug": "kotlin-04-collections",
+        "title": "Collections"
+      },
+      {
+        "slug": "kotlin-05-oop-třídy",
+        "title": "OOP — třídy"
+      },
+      {
+        "slug": "kotlin-06-oop-pokročilé",
+        "title": "OOP — pokročilé"
+      },
+      {
+        "slug": "kotlin-07-funkcionální-prvky",
+        "title": "Funkcionální prvky"
+      },
+      {
+        "slug": "kotlin-08-scope-funkce",
+        "title": "Scope funkce"
+      },
+      {
+        "slug": "kotlin-09-coroutines-základy",
+        "title": "Coroutines základy"
+      },
+      {
+        "slug": "kotlin-10-flow",
+        "title": "Flow"
+      },
+      {
+        "slug": "kotlin-11-ktor-základy",
+        "title": "Ktor základy"
+      },
+      {
+        "slug": "kotlin-12-malý-projekt",
+        "title": "Malý projekt"
+      }
+    ]
+  },
+  {
+    "id": "prog-swift",
+    "slug": "swift",
+    "title": "Swift",
+    "description": "Apple jazyk pro iOS, macOS a server-side vývoj s SwiftUI a async/await.",
+    "longDescription": "Swift má čistou syntaxi, je type-safe a nabízí moderní koncepty.",
+    "category": "programovani",
+    "color": "#f05138",
+    "icon": "Apple",
+    "difficulty": "advanced",
+    "totalXP": 405,
+    "totalLessons": 12,
+    "language": "Swift",
+    "chapterCount": 1,
+    "chapters": [
+      {
+        "id": "swift-ch1",
+        "slug": "swift-kurz",
+        "title": "Kompletní kurz Swift"
+      }
+    ],
+    "lessons": [
+      {
+        "slug": "swift-01-úvod-do-swiftu",
+        "title": "Úvod do Swiftu"
+      },
+      {
+        "slug": "swift-02-konstanty-a-proměnné",
+        "title": "Konstanty a proměnné"
+      },
+      {
+        "slug": "swift-03-optionals",
+        "title": "Optionals"
+      },
+      {
+        "slug": "swift-04-kolekce",
+        "title": "Kolekce"
+      },
+      {
+        "slug": "swift-05-řízení-toku",
+        "title": "Řízení toku"
+      },
+      {
+        "slug": "swift-06-funkce-a-closures",
+        "title": "Funkce a closures"
+      },
+      {
+        "slug": "swift-07-struct-vs-class",
+        "title": "Struct vs Class"
+      },
+      {
+        "slug": "swift-08-protocols",
+        "title": "Protocols"
+      },
+      {
+        "slug": "swift-09-oop-v-swiftu",
+        "title": "OOP v Swiftu"
+      },
+      {
+        "slug": "swift-10-error-handling",
+        "title": "Error handling"
+      },
+      {
+        "slug": "swift-11-swiftui-základy",
+        "title": "SwiftUI základy"
+      },
+      {
+        "slug": "swift-12-malý-projekt",
+        "title": "Malý projekt"
+      }
+    ]
+  },
+  {
+    "id": "prog-ruby",
+    "slug": "ruby",
+    "title": "Ruby",
+    "description": "Elegantní dynamický jazyk — metaprogramování, Rails a konvence na předpis.",
+    "longDescription": "Ruby je elegantní, dynamický jazyk známý svou čitelností.",
+    "category": "programovani",
+    "color": "#cc342d",
+    "icon": "Gem",
+    "difficulty": "advanced",
+    "totalXP": 410,
+    "totalLessons": 12,
+    "language": "Ruby",
+    "chapterCount": 1,
+    "chapters": [
+      {
+        "id": "ruby-ch1",
+        "slug": "ruby-kurz",
+        "title": "Kompletní kurz Ruby"
+      }
+    ],
+    "lessons": [
+      {
+        "slug": "ruby-01-úvod-do-ruby",
+        "title": "Úvod do Ruby"
+      },
+      {
+        "slug": "ruby-02-proměnné-a-typy",
+        "title": "Proměnné a typy"
+      },
+      {
+        "slug": "ruby-03-metody-a-bloky",
+        "title": "Metody a bloky"
+      },
+      {
+        "slug": "ruby-04-řetězce-a-regex",
+        "title": "Řetězce a regex"
+      },
+      {
+        "slug": "ruby-05-pole-a-hashe",
+        "title": "Pole a hashe"
+      },
+      {
+        "slug": "ruby-06-oop-třídy",
+        "title": "OOP — třídy"
+      },
+      {
+        "slug": "ruby-07-oop-pokročilé",
+        "title": "OOP — pokročilé"
+      },
+      {
+        "slug": "ruby-08-metaprogramování",
+        "title": "Metaprogramování"
+      },
+      {
+        "slug": "ruby-09-error-handling",
+        "title": "Error handling"
+      },
+      {
+        "slug": "ruby-10-file-io",
+        "title": "File I/O"
+      },
+      {
+        "slug": "ruby-11-rails-základy",
+        "title": "Rails základy"
+      },
+      {
+        "slug": "ruby-12-malý-projekt",
+        "title": "Malý projekt"
+      }
+    ]
+  },
+  {
+    "id": "mat",
+    "slug": "matematika",
+    "title": "Matematika",
+    "description": "Základy diferenciálního počtu, geometrie a algebry.",
+    "longDescription": null,
+    "category": "prirodni",
+    "color": "#8b5cf6",
+    "icon": "Calculator",
+    "difficulty": null,
+    "totalXP": null,
+    "totalLessons": 1,
+    "language": null,
+    "chapterCount": 1,
+    "chapters": [
+      {
+        "id": "mat-ch1",
+        "slug": "derivace",
+        "title": "Derivace a jejich geometrický význam"
+      }
+    ],
+    "lessons": [
+      {
+        "slug": "derivace-geometricky-vyznam",
+        "title": "Derivace a jejich geometrický význam"
+      }
+    ]
+  },
+  {
+    "id": "fyz",
+    "slug": "fyzika",
+    "title": "Fyzika",
+    "description": "Mechanika, elektromagnetismus a moderní fyzika.",
+    "longDescription": null,
+    "category": "prirodni",
+    "color": "#06b6d4",
+    "icon": "Atom",
+    "difficulty": null,
+    "totalXP": null,
+    "totalLessons": 1,
+    "language": null,
+    "chapterCount": 1,
+    "chapters": [
+      {
+        "id": "fyz-ch1",
+        "slug": "elektrostatika",
+        "title": "Elektrostatika a elektrické pole"
+      }
+    ],
+    "lessons": [
+      {
+        "slug": "elektricke-pole",
+        "title": "Elektrostatika a elektrické pole"
+      }
+    ]
+  },
+  {
+    "id": "his",
+    "slug": "historie",
+    "title": "Historie",
+    "description": "Dějiny českých zemí, evropské události a světové konflikty.",
+    "longDescription": null,
+    "category": "humanitni",
+    "color": "#f59e0b",
+    "icon": "ScrollText",
+    "difficulty": null,
+    "totalXP": null,
+    "totalLessons": 1,
+    "language": null,
+    "chapterCount": 1,
+    "chapters": [
+      {
+        "id": "his-ch1",
+        "slug": "lucemburkove",
+        "title": "České země za vlády Lucemburků"
+      }
+    ],
+    "lessons": [
+      {
+        "slug": "lucemburkove-a-zikmund",
+        "title": "České země za vlády Lucemburků a Zikmund Lucemburský"
+      }
+    ]
+  },
+  {
+    "id": "chem",
+    "slug": "chemie",
+    "title": "Chemie",
+    "description": "Obecná, organická a anorganická chemie pro střední školy.",
+    "longDescription": null,
+    "category": "prirodni",
+    "color": "#10b981",
+    "icon": "FlaskConical",
+    "difficulty": null,
+    "totalXP": null,
+    "totalLessons": 1,
+    "language": null,
+    "chapterCount": 1,
+    "chapters": [
+      {
+        "id": "chem-ch1",
+        "slug": "organicka-chemie",
+        "title": "Úvod do organické chemie a uhlovodíky"
+      }
+    ],
+    "lessons": [
+      {
+        "slug": "uhlovodiky",
+        "title": "Úvod do organické chemie a uhlovodíky"
+      }
+    ]
+  }
+]

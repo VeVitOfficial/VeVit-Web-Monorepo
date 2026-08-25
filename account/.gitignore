@@ -1,0 +1,27 @@
+# Secrets — created on the WEDOS server, never committed
+/config.php
+/config.local.php
+/config.production.php
+/vevit-config.php
+/api/config.php
+/private/
+/.env
+/.env.*
+!/.env.example
+/auth.json
+
+# PHP / Composer runtime files
+/vendor/
+/composer.phar
+/.phpunit.cache/
+/.phpunit.result.cache
+/*.log
+
+# Local Git worktrees
+/.worktrees/
+
+# graphify artifacts
+graphify-out/
+
+# OS
+.DS_Store

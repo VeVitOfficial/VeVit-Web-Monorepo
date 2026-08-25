@@ -1,0 +1,32 @@
+{
+  "scripts": {
+    "dev": "npm run prepare:vercel && next dev",
+    "build": "npm run build:tailwind && npm run prepare:vercel && next build",
+    "start": "next start",
+    "lint": "eslint src next.config.ts",
+    "typecheck": "tsc --noEmit",
+    "prepare:vercel": "node scripts/prepare-vercel-assets.mjs",
+    "export:legacy-tools": "php scripts/export-vercel-tools.php",
+    "build:tailwind": "tailwindcss -c tailwind.config.js -i build/tailwind.input.css -o assets/css/vevit-tailwind.css --minify"
+  },
+  "devDependencies": {
+    "@tailwindcss/container-queries": "^0.1.1",
+    "@tailwindcss/forms": "^0.5.10",
+    "@types/node": "^26.3.0",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.5",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.3.2",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^6.0.3"
+  },
+  "dependencies": {
+    "@supabase/ssr": "^0.12.5",
+    "@supabase/supabase-js": "^2.112.4",
+    "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^2.0.0",
+    "next": "^16.3.2",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  }
+}

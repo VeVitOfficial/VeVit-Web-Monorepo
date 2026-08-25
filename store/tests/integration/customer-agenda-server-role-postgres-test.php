@@ -1,0 +1,21 @@
+<?php
+declare(strict_types=1);
+require_once __DIR__ . '/../testlib.php';
+$dsn=getenv('VEVIT_STORE_TEST_DSN');$user=getenv('VEVIT_STORE_TEST_DB_USER');$pass=getenv('VEVIT_STORE_TEST_DB_PASS');
+if($dsn===false||$user===false||$pass===false)exit(77);if(!preg_match('/test/i',$dsn))exit(1);
+$admin=new PDO($dsn,$user,$pass,[PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION]);
+$admin->exec('DROP TABLE IF EXISTS store_schema_migrations,store_case_attachments,store_delivery_events,store_delivery_items,store_deliveries,store_return_events,store_return_items,store_returns,store_claim_events,store_claim_items,store_claims,store_product_favorites,store_audit_events CASCADE');
+$admin->exec((string)file_get_contents(__DIR__.'/task-0-4-base-schema.sql'));foreach(['202607290001_checkout_snapshot_up.sql','202607290002_order_access_and_download_grants_up.sql','202607290003_payments_and_inventory_up.sql','202607300002_customer_agenda_up.sql']as$m)$admin->exec((string)file_get_contents(__DIR__.'/../../migrations/'.$m));
+$admin->exec("INSERT INTO store_products(id,name,slug,price,type,stock)VALUES(1,'A','a',10,'physical',1)");
+$rolePass=bin2hex(random_bytes(16));
+$admin->exec("DO $$ BEGIN IF EXISTS(SELECT 1 FROM pg_roles WHERE rolname='vevit_php_test') THEN EXECUTE 'DROP OWNED BY vevit_php_test'; EXECUTE 'DROP ROLE vevit_php_test'; END IF; END $$");
+$admin->exec('CREATE ROLE vevit_php_test LOGIN PASSWORD '.$admin->quote($rolePass).' BYPASSRLS');
+$admin->exec("GRANT USAGE ON SCHEMA public TO vevit_php_test;GRANT SELECT,INSERT,UPDATE,DELETE ON ALL TABLES IN SCHEMA public TO vevit_php_test;GRANT USAGE,SELECT ON ALL SEQUENCES IN SCHEMA public TO vevit_php_test");
+$server=new PDO($dsn,'vevit_php_test',$rolePass,[PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION]);
+$server->exec("INSERT INTO store_product_favorites(user_id,product_id)VALUES('verified-test-user',1)");
+test_assert_same(1,(int)$server->query("SELECT count(*) FROM store_product_favorites WHERE user_id='verified-test-user'")->fetchColumn(),'dedicated direct-PDO role can use RLS-protected agenda tables');
+test_assert_same('vevit_php_test',(string)$server->query('SELECT current_user')->fetchColumn(),'test uses a real dedicated PDO login role');
+test_assert_same('1',(string)$server->query("SELECT rolbypassrls::int FROM pg_roles WHERE rolname=current_user")->fetchColumn(),'server role uses explicit BYPASSRLS model');
+$policyCount=(int)$server->query("SELECT count(*) FROM pg_policies WHERE tablename LIKE 'store_%' AND (qual='true' OR with_check='true')")->fetchColumn();
+test_assert_same(0,$policyCount,'no public USING true policy exists');
+test_complete('customer-agenda-server-role-postgres-test');

@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["chapter", "title", "hook", "guess", "bigThree", "figure", "mission", "boss"],
+  "properties": {
+    "chapter": {"type": "integer", "minimum": 1, "maximum": 6},
+    "bigThree": {"type": "array", "minItems": 3, "maxItems": 3}
+  },
+  "additionalProperties": true
+}

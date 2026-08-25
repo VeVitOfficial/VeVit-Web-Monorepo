@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="title desc">
+  <title id="title">Papoušek v knihovně</title><desc id="desc">Papoušek obklopený knihami opakuje věty, ale za oknem nezná skutečný svět.</desc>
+  <rect width="800" height="450" rx="32" fill="#15122b"/><rect x="45" y="54" width="710" height="330" rx="22" fill="#211b3d" stroke="#8b5cf6" stroke-width="4"/>
+  <g fill="#f59e0b"><rect x="82" y="95" width="170" height="38" rx="5"/><rect x="74" y="141" width="190" height="38" rx="5"/><rect x="88" y="187" width="166" height="38" rx="5"/></g>
+  <g transform="translate(330 86)"><ellipse cx="100" cy="135" rx="88" ry="112" fill="#22c55e"/><circle cx="132" cy="77" r="58" fill="#34d399"/><circle cx="150" cy="64" r="8" fill="#111827"/><path d="M178 82l66 20-66 22z" fill="#fbbf24"/><path d="M40 132q-72 50-26 135q32-49 96-72" fill="#06b6d4"/><path d="M110 238l-18 62m58-62l20 62" stroke="#fbbf24" stroke-width="12" stroke-linecap="round"/></g>
+  <rect x="568" y="90" width="132" height="116" rx="10" fill="#60a5fa"/><path d="M568 178l40-42 28 28 25-34 39 48" fill="#bbf7d0"/><text x="400" y="410" text-anchor="middle" fill="#f8fafc" font-family="system-ui,sans-serif" font-size="25" font-weight="700">Plynulost není porozumění světu</text>
+</svg>

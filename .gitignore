@@ -1,0 +1,47 @@
+# Server-only configuration and environment
+**/config.php
+**/config_secret.php
+**/config.production.php
+**/.env
+**/.env.*
+!**/.env.example
+!**/config.example.php
+
+# Safe application loaders named config.php
+!/store/config.php
+!/store/lib/config.php
+!/tools/includes/config.php
+
+# Dependencies and generated caches
+**/node_modules/
+**/vendor/
+!**/assets/js/vendor/
+!**/assets/js/vendor/**
+!/assets/vendor/
+!/assets/vendor/**
+**/.cache/
+**/.parcel-cache/
+**/.playwright-cli/
+**/.playwright/
+.next/
+public/
+legacy-public/
+next-env.d.ts
+*.tsbuildinfo
+
+# Runtime data
+**/uploads/
+**/logs/
+**/*.log
+**/*.pid
+**/*.tmp
+**/*.bak
+
+# Vercel CLI state
+.vercel/
+
+# Local OS/editor state
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

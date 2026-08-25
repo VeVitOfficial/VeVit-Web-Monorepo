@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Úvod do JavaScriptu: Proměnné a datové typy — edu.vevit.fun</title>
+<link rel="stylesheet" href="/assets/fonts/vevit-fonts.css">
+    <link rel="stylesheet" href="/assets/css/vevit-tailwind.css">
+
+    <style>
+        * { font-family: 'Sora', sans-serif; }
+
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #0d0d0d; }
+        ::-webkit-scrollbar-thumb { background: #1e1e1e; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #262626; }
+
+        html { scroll-behavior: smooth; }
+
+        /* Article content styles */
+        .article-content p {
+            color: #d1d5db;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #f0f0f0;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-content h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #e5e7eb;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .article-content code {
+            font-family: 'Sora', sans-serif;
+            font-size: 0.875rem;
+            background: #1e1e1e;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 4px;
+            padding: 2px 6px;
+            color: #10b981;
+        }
+
+        .article-content pre {
+            background: #161616;
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 10px;
+            padding: 20px;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content pre code {
+            background: transparent;
+            border: none;
+            padding: 0;
+        }
+
+        .article-content blockquote {
+            border-left: 3px solid #10b981;
+            background: #161616;
+            padding: 16px 20px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content blockquote p {
+            font-style: italic;
+            color: #d1d5db;
+            margin-bottom: 0;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: #d1d5db;
+        }
+
+        .article-content ul li, .article-content ol li {
+            margin-bottom: 0.5rem;
+        }
+
+        .article-content img {
+            width: 100%;
+            border-radius: 16px;
+            margin: 2rem 0;
+        }
+
+        .article-content a {
+            color: #10b981;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .article-content a:hover {
+            color: #059669;
+        }
+
+        /* Syntax highlighting */
+        .keyword { color: #10b981; }
+        .string { color: #f59e0b; }
+        .comment { color: #4b5563; }
+        .function { color: #3b82f6; }
+
+        /* TOC active state */
+        .toc-link.active {
+            color: #10b981;
+        }
+
+        /* Card hover */
+        .card-hover {
+            transition: transform 150ms ease-out, border-color 150ms ease-out, box-shadow 150ms ease-out;
+        }
+        .card-hover:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255,255,255,0.12);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body class="bg-base text-text-primary min-h-screen">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-base/95 backdrop-blur-sm border-b border-surface-border z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="/edu/" class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-md bg-accent flex items-center justify-center">
+                        <i data-lucide="book-open" class="w-4 h-4 text-base"></i>
+                    </div>
+                    <span class="text-lg font-semibold text-text-primary">edu<span class="text-accent">.vevit</span>.fun</span>
+                </a>
+
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="/#kurzy" class="text-sm text-text-secondary hover:text-text-primary transition-colors">Kurzy</a>
+                    <a href="/#clanky" class="text-sm text-text-secondary hover:text-text-primary transition-colors">Články</a>
+                    <a href="/#kvizy" class="text-sm text-text-secondary hover:text-text-primary transition-colors">Kvízy</a>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <button class="hidden sm:flex items-center gap-2 px-4 py-2 text-sm text-text-secondary hover:text-text-primary transition-colors">
+                        <i data-lucide="search" class="w-4 h-4"></i>
+                        <span>Vyhledat</span>
+                    </button>
+                    <a href="/login" class="px-4 py-2 text-sm font-semibold text-base bg-accent hover:bg-accent-hover rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-base">
+                        Přihlásit se
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex gap-8">
+                <!-- Sticky TOC Sidebar (Desktop) -->
+                <aside class="hidden lg:block w-[200px] flex-shrink-0">
+                    <div class="sticky top-24">
+                        <p class="text-xs font-semibold uppercase tracking-wider text-text-muted mb-4">Obsah</p>
+                        <nav class="space-y-2">
+                            <a href="#co-je-javascript" class="block text-xs text-text-secondary hover:text-text-primary transition-colors toc-link">
+                                Co je JavaScript?
+                            </a>
+                            <a href="#promenne" class="block text-xs text-text-secondary hover:text-text-primary transition-colors toc-link">
+                                Proměnné
+                            </a>
+                            <a href="#datove-typy" class="block text-xs text-text-secondary hover:text-text-primary transition-colors toc-link pl-2">
+                                Primitivní typy
+                            </a>
+                            <a href="#operatory" class="block text-xs text-text-secondary hover:text-text-primary transition-colors toc-link">
+                                Operátory
+                            </a>
+                            <a href="#shrnuti" class="block text-xs text-text-secondary hover:text-text-primary transition-colors toc-link">
+                                Shrnutí
+                            </a>
+                        </nav>
+                    </div>
+                </aside>
+
+                <!-- Article Content -->
+                <article class="flex-1 max-w-[680px] mx-auto lg:mx-0">
+                    <!-- Breadcrumb -->
+                    <nav class="text-xs text-text-muted mb-4">
+                        <a href="/edu/">Domů</a>
+                        <span class="mx-2">/</span>
+                        <a href="/category/programovani" class="hover:text-text-secondary transition-colors">Programování</a>
+                        <span class="mx-2">/</span>
+                        <span class="text-text-secondary">Úvod do JavaScriptu</span>
+                    </nav>
+
+                    <!-- Category Badge -->
+                    <span class="inline-block px-2 py-1 text-xs font-semibold uppercase tracking-wider bg-surface-elevated text-accent rounded-sm mb-4">
+                        Programování
+                    </span>
+
+                    <!-- Title -->
+                    <h1 class="text-4xl font-bold text-text-primary mb-4" style="letter-spacing: -0.02em; line-height: 1.2;">
+                        Úvod do JavaScriptu: Proměnné a datové typy
+                    </h1>
+
+                    <!-- Author Row -->
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-7 h-7 rounded-full bg-surface-elevated flex items-center justify-center">
+                            <span class="text-xs font-semibold text-text-secondary">JN</span>
+                        </div>
+                        <span class="text-sm font-semibold text-text-primary">Jan Novák</span>
+                        <span class="text-text-muted">·</span>
+                        <span class="text-xs text-text-muted">8. dubna 2026</span>
+                        <span class="text-text-muted">·</span>
+                        <span class="text-xs text-text-muted flex items-center gap-1">
+                            <i data-lucide="clock" class="w-3 h-3"></i>
+                            12 min čtení
+                        </span>
+                    </div>
+
+                    <!-- Tags -->
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-2 py-1 text-xs bg-surface-elevated border border-surface-border rounded-sm text-text-secondary">
+                            JavaScript
+                        </span>
+                        <span class="px-2 py-1 text-xs bg-surface-elevated border border-surface-border rounded-sm text-text-secondary">
+                            Začátečníci
+                        </span>
+                        <span class="px-2 py-1 text-xs bg-surface-elevated border border-surface-border rounded-sm text-text-secondary">
+                            Základy
+                        </span>
+                    </div>
+
+                    <!-- Separator -->
+                    <hr class="border-surface-border mb-8">
+
+                    <!-- Article Body -->
+                    <div class="article-content">
+                        <p>
+                            JavaScript je jedním z nejoblíbenějších programovacích jazyků na světě. V tomto článku se podíváme na základy — jak deklarovat proměnné a jaké datové typy v JavaScriptu existují.
+                        </p>
+
+                        <h2 id="co-je-javascript">Co je JavaScript?</h2>
+                        <p>
+                            JavaScript je dynamický programovací jazyk, který byl původně vytvořen pro interaktivitu webových stránek. Dnes se používá nejen na frontendu, ale i na backendu (Node.js), pro mobilní aplikace (React Native) nebo desktopové aplikace (Electron).
+                        </p>
+                        <blockquote>
+                            <p>JavaScript není Java — ačkoliv názvy jsou podobné, jde o zcela odlišné jazyky s odlišnou historií a filosofií.</p>
+                        </blockquote>
+
+                        <h2 id="promenne">Proměnné</h2>
+                        <p>
+                            V JavaScriptu máme tři způsoby, jak deklarovat proměnné. Každý má své specifické použití a je důležité rozumět rozdílům mezi nimi.
+                        </p>
+
+                        <h3 id="let-a-const">let a const</h3>
+                        <p>
+                            Moderní JavaScript preferuje používání <code>let</code> a <code>const</code> před starším <code>var</code>. Rozdíl je v tom, že:
+                        </p>
+                        <ul>
+                            <li><code>let</code> — proměnná, jejíž hodnota se může změnit</li>
+                            <li><code>const</code> — konstanta, jejíž hodnota se nemůže změnit</li>
+                        </ul>
+                        <pre><code><span class="comment">// Proměnná, kterou můžeme měnit</span>
+<span class="keyword">let</span> pocitadlo = <span class="string">0</span>;
+pocitadlo = pocitadlo + <span class="string">1</span>; <span class="comment">// OK</span>
+
+<span class="comment">// Konstanta - hodnota se nemění</span>
+<span class="keyword">const</span> PI = <span class="string">3.14159</span>;
+PI = <span class="string">3.14</span>; <span class="comment">// Chyba! Nelze přiřadit novou hodnotu</span></code></pre>
+
+                        <h2 id="datove-typy">Datové typy</h2>
+                        <p>
+                            JavaScript má sedm primitivních datových typů a jeden komplexní typ (Object). Podívejme se na primitivní typy.
+                        </p>
+
+                        <h3 id="primitivni-typy">Primitivní typy</h3>
+                        <ol>
+                            <li><strong>string</strong> — textové řetězce</li>
+                            <li><strong>number</strong> — čísla (celá i desetinná)</li>
+                            <li><strong>boolean</strong> — logické hodnoty true/false</li>
+                            <li><strong>undefined</strong> — nedefinovaná hodnota</li>
+                            <li><strong>null</strong> — prázdná hodnota</li>
+                            <li><strong>symbol</strong> — unikátní identifikátor</li>
+                            <li><strong>bigint</strong> — velká celá čísla</li>
+                        </ol>
+
+                        <pre><code><span class="comment">// Příklady primitivních typů</span>
+<span class="keyword">const</span> jmeno = <span class="string">"Jan"</span>;        <span class="comment">// string</span>
+<span class="keyword">const</span> vek = <span class="string">25</span>;             <span class="comment">// number</span>
+<span class="keyword">const</span> aktivni = <span class="keyword">true</span>;       <span class="comment">// boolean</span>
+<span class="keyword">const</span> neznano = <span class="keyword">undefined</span>;   <span class="comment">// undefined</span>
+<span class="keyword">const</span> prazdne = <span class="keyword">null</span>;        <span class="comment">// null</span></code></pre>
+
+                        <h2 id="operatory">Operátory</h2>
+                        <p>
+                            Pro práci s proměnnými a hodnotami používáme operátory. Zde jsou nejčastěji používané:
+                        </p>
+                        <ul>
+                            <li>Aritmetické: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code></li>
+                            <li>Porovnávací: <code>===</code>, <code>!==</code>, <code>&gt;</code>, <code>&lt;</code></li>
+                            <li>Logické: <code>&&amp;</code>, <code>||</code>, <code>!</code></li>
+                            <li>Přiřazovací: <code>=</code>, <code>+=</code>, <code>-=</code></li>
+                        </ul>
+
+                        <h2 id="shrnuti">Shrnutí</h2>
+                        <p>
+                            V tomto článku jsme probrali základy JavaScriptu — deklaraci proměnných pomocí <code>let</code> a <code>const</code> a primitivní datové typy. V příštím článku se podíváme na funkce a rozsah platnosti proměnných.
+                        </p>
+                        <p>
+                            Pokud chcete procvičit získané znalosti, vyzkoušejte náš kvíz <a href="/quiz/javascript-zaklady">JavaScript: Základy</a>.
+                        </p>
+                    </div>
+
+                    <!-- Separator -->
+                    <hr class="border-surface-border my-8">
+
+                    <!-- Author Card -->
+                    <div class="bg-surface border border-surface-border rounded-lg p-6 mb-8">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-full bg-surface-elevated flex items-center justify-center flex-shrink-0">
+                                <span class="text-sm font-semibold text-text-secondary">JN</span>
+                            </div>
+                            <div>
+                                <p class="text-sm font-semibold text-text-primary mb-1">Jan Novák</p>
+                                <p class="text-sm text-text-secondary mb-3">
+                                    Softwarový vývojář s více než 10 lety zkušeností. Specializuje se na JavaScript a TypeScript. Přispívá do open-source projektů.
+                                </p>
+                                <div class="flex gap-4">
+                                    <a href="#" class="text-xs text-text-muted hover:text-text-primary transition-colors flex items-center gap-1">
+                                        <i data-lucide="twitter" class="w-3 h-3"></i>
+                                        Twitter
+                                    </a>
+                                    <a href="#" class="text-xs text-text-muted hover:text-text-primary transition-colors flex items-center gap-1">
+                                        <i data-lucide="github" class="w-3 h-3"></i>
+                                        GitHub
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Related Articles -->
+                    <section class="mb-8">
+                        <h2 class="text-xl font-semibold text-text-primary mb-6">Související články</h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <a href="/article/javascript-funkce" class="card-hover bg-surface border border-surface-border rounded-lg p-4 block">
+                                <span class="text-xs font-semibold uppercase tracking-wider text-accent mb-2 block">Programování</span>
+                                <h3 class="text-sm font-semibold text-text-primary mb-2">JavaScript: Funkce a rozsah platnosti</h3>
+                                <p class="text-xs text-text-muted flex items-center gap-1">
+                                    <i data-lucide="clock" class="w-3 h-3"></i>
+                                    15 min
+                                </p>
+                            </a>
+                            <a href="/article/javascript-pole" class="card-hover bg-surface border border-surface-border rounded-lg p-4 block">
+                                <span class="text-xs font-semibold uppercase tracking-wider text-accent mb-2 block">Programování</span>
+                                <h3 class="text-sm font-semibold text-text-primary mb-2">Práce s poli v JavaScriptu</h3>
+                                <p class="text-xs text-text-muted flex items-center gap-1">
+                                    <i data-lucide="clock" class="w-3 h-3"></i>
+                                    18 min
+                                </p>
+                            </a>
+                        </div>
+                    </section>
+
+                    <!-- Navigation -->
+                    <div class="flex justify-between items-center pt-6 border-t border-surface-border">
+                        <a href="/category/programovani" class="text-sm text-text-secondary hover:text-text-primary transition-colors flex items-center gap-2">
+                            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                            Zpět na Programování
+                        </a>
+                        <a href="/article/javascript-funkce" class="text-sm text-accent hover:text-accent-hover transition-colors flex items-center gap-2">
+                            Další článek
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-surface-border py-8 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p class="text-sm text-text-muted">© 2026 VeVit. Všechna práva vyhrazena.</p>
+            <div class="flex gap-6">
+                <a href="/about" class="text-sm text-text-secondary hover:text-text-primary transition-colors">O projektu</a>
+                <a href="/privacy" class="text-sm text-text-secondary hover:text-text-primary transition-colors">Ochrana soukromí</a>
+                <a href="/contact" class="text-sm text-text-secondary hover:text-text-primary transition-colors">Kontakt</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/vendor/lucide/lucide.min.js@latest"></script>
+    <script src="articleinline.js"></script>
+</body>
+</html>

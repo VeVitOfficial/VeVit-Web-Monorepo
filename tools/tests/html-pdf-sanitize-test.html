@@ -1,0 +1,54 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>HTML PDF sanitizer regression tests</title>
+<script src="../assets/js/lib/html-pdf-sanitize.js"></script>
+<pre id="result"></pre>
+<script>
+(function () {
+  'use strict';
+  var out = document.getElementById('result');
+  var failures = [];
+  function assert(condition, message) { if (!condition) failures.push(message); }
+  function containsActiveMarkup(value) {
+    return /<(?:script|iframe|object|embed|base|meta|link|form|svg)\b|\son[a-z]+\s*=|javascript:|https?:\/\//i.test(value);
+  }
+  var samples = [
+    ['script', '<scr' + 'ipt>window.__vevit_xss = 1</scr' + 'ipt><p>safe</p>'],
+    ['event attributes', '<img src=x onerror="window.__vevit_xss = 1"><p onclick="window.__vevit_xss = 1">safe</p>'],
+    ['javascript URL', '<a href="javascript:window.__vevit_xss = 1">safe</a>'],
+    ['meta refresh', '<meta http-equiv="refresh" content="0;url=https://evil.example"><p>safe</p>'],
+    ['iframe object', '<iframe src="https://evil.example"></iframe><object data="x"></object><p>safe</p>'],
+    ['external image', '<img src="https://evil.example/image.png"><p>safe</p>'],
+    ['external stylesheet', '<link rel="stylesheet" href="https://evil.example/a.css"><p>safe</p>'],
+    ['active svg', '<svg onload="window.__vevit_xss = 1"><a href="javascript:1">x</a></svg><p>safe</p>'],
+    ['broken markup', '<p><strong>unclosed']
+  ];
+  assert(window.VeVitHtmlPdfSanitizer, 'sanitizer API is missing');
+  if (window.VeVitHtmlPdfSanitizer) {
+    samples.forEach(function (pair) {
+      var safe = window.VeVitHtmlPdfSanitizer.sanitize(pair[1]);
+      assert(!containsActiveMarkup(safe), pair[0] + ' left active markup behind');
+      assert(safe.indexOf('safe') !== -1 || pair[0] === 'broken markup', pair[0] + ' removed safe content');
+    });
+    var source = window.VeVitHtmlPdfSanitizer.srcdoc('<p>safe</p>');
+    assert(/Content-Security-Policy/.test(source), 'srcdoc has no CSP');
+    assert(!/allow-scripts/.test(window.VeVitHtmlPdfSanitizer.sandbox), 'sandbox enables scripts');
+    assert(window.VeVitHtmlPdfSanitizer.sandbox === 'allow-same-origin', 'renderer needs documented same-origin access only');
+  }
+  assert(!window.__vevit_xss, 'a payload executed in the parent document');
+  function finish() { out.textContent = failures.length ? 'FAIL\n' + failures.join('\n') : 'PASS'; }
+  if (!window.VeVitHtmlPdfSanitizer) { finish(); return; }
+  var frame = document.createElement('iframe');
+  frame.setAttribute('sandbox', window.VeVitHtmlPdfSanitizer.sandbox);
+  frame.addEventListener('load', function () {
+    var child = frame.contentDocument;
+    assert(child && child.body, 'renderer cannot read the sanitized iframe document');
+    assert(!child.body.querySelector('script, iframe, object, embed, meta, link, svg'), 'sandboxed document contains active element');
+    assert(!child.body.querySelector('[onerror], [onclick], [src^="http"]'), 'sandboxed document retained active attribute or network source');
+    frame.remove();
+    finish();
+  }, { once: true });
+  frame.srcdoc = window.VeVitHtmlPdfSanitizer.srcdoc(window.VeVitHtmlPdfSanitizer.sanitize('<p>safe</p>'));
+  document.body.appendChild(frame);
+}());
+</script>

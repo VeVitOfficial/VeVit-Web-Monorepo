@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="cs" class="dark h-full antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/edu/" /><!-- monorepo: SPA běží pod /edu/ -->
+    <title>VeVit Edu – Moderní výuková platforma</title>
+    <meta name="description" content="Interaktivní studijní materiály, kvízy a AI tutor pro střední školy." />
+    <link rel="icon" href="/edu/favicon.ico" sizes="256x256" type="image/x-icon" />
+
+    <!-- Geist font (Vercel) s fallbackem na system-ui -->
+<link rel="stylesheet" href="/assets/fonts/vevit-fonts.css">
+
+    <!-- KaTeX pro matematické vzorce -->
+    <link rel="stylesheet" href="/assets/vendor/katex/katex.min.css" />
+    <script defer src="/assets/vendor/katex/katex.min.js"></script>
+
+    <!-- Lucide ikony -->
+    <script src="/assets/vendor/lucide/lucide.min.js" defer></script>
+
+    <!-- Tailwind Play CDN + design tokeny (reprodukce globals.css) -->
+    <link rel="stylesheet" href="/assets/css/vevit-tailwind.css">
+
+
+    <link rel="stylesheet" href="css/styles.css?v=20260816a" />
+    <link rel="stylesheet" href="/assets/shared/session.css?v=20260809b" />
+    <link rel="stylesheet" href="/assets/shared/app-switcher.css?v=20260809c" />
+  </head>
+  <body class="min-h-full flex flex-col bg-background text-foreground font-sans">
+    <div id="navbar"></div>
+    <div id="app" class="flex-1"></div>
+    <div id="toast-container" class="fixed bottom-6 right-6 z-[60] flex flex-col gap-3"></div>
+
+    <script src="assets/js/vendor/dompurify.min.js"></script>
+    <script src="assets/js/content-sanitizer.js"></script>
+    <script src="assets/js/sandbox-runner.js"></script>
+    <script type="module" src="js/app.js?v=20260824a"></script>
+    <script type="module" src="/assets/shared/app-switcher.js?v=20260825b"></script>
+    <script type="module" src="/assets/shared/localization.js?v=20260825a"></script>
+  </body>
+</html>

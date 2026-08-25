@@ -1,0 +1,134 @@
+{
+  "id": "mat",
+  "slug": "matematika",
+  "title": "Matematika",
+  "description": "Základy diferenciálního počtu, geometrie a algebry.",
+  "category": "prirodni",
+  "color": "#8b5cf6",
+  "icon": "Calculator",
+  "chapters": [
+    {
+      "id": "mat-ch1",
+      "slug": "derivace",
+      "title": "Derivace a jejich geometrický význam",
+      "lessons": [
+        {
+          "id": "mat-lesson-1",
+          "slug": "derivace-geometricky-vyznam",
+          "title": "Derivace a jejich geometrický význam",
+          "description": "Naučíte se, co je derivace funkce, jak ji geometricky interpretovat jako směrnici tečny a zvládnete základní pravidla derivování včetně řetězového pravidla.",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Derivace a jejich geometrický význam"
+            },
+            {
+              "type": "paragraph",
+              "text": "Derivace funkce v bodě je jedním z nejdůležitějších pojmů matematické analýzy. Intuitivně představuje rychlost změny funkční hodnoty vzhledem ke změně argumentu."
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Definice derivace"
+            },
+            {
+              "type": "paragraph",
+              "text": "Nechť f je funkce definovaná v okolí bodu x₀. Derivací funkce f v bodě x₀ rozumíme limitu (pokud existuje):"
+            },
+            {
+              "type": "math",
+              "latex": "f'(x_0) = \\lim_{h \\to 0} \\frac{f(x_0 + h) - f(x_0)}{h}",
+              "display": true
+            },
+            {
+              "type": "paragraph",
+              "text": "Pokud tato limita existuje a je konečná, říkáme, že funkce f má v bodě x₀ derivaci."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "Geometrický význam derivace: f'(x₀) je směrnice tečny ke grafu funkce f v bodě [x₀, f(x₀)]."
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad výpočtu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Uvažme funkci f(x) = x². Spočítejme derivaci v bodě x₀ = 3 pomocí definice:"
+            },
+            {
+              "type": "math",
+              "latex": "f'(3) = \\lim_{h \\to 0} \\frac{(3+h)^2 - 3^2}{h} = \\lim_{h \\to 0} \\frac{9 + 6h + h^2 - 9}{h} = \\lim_{h \\to 0} (6 + h) = 6",
+              "display": true
+            },
+            {
+              "type": "paragraph",
+              "text": "Výsledek odpovídá naší intuici: parabola y = x² má v bodě x = 3 tečnu se směrnicí 6, tedy velmi strmou rostoucí přímku."
+            },
+            {
+              "type": "code",
+              "language": "python",
+              "code": "import sympy as sp\n\nx = sp.Symbol('x')\nf = x**2\ndf = sp.diff(f, x)\nprint(f'Derivace: {df}')  # Výstup: 2*x\nprint(f'V bodě 3: {df.subs(x, 3)}')  # Výstup: 6"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Základní pravidla derivování"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Součet: (f + g)' = f' + g'",
+                "Součin: (f · g)' = f' · g + f · g'",
+                "Podíl: (f / g)' = (f' · g - f · g') / g²",
+                "Složená funkce: (f(g(x)))' = f'(g(x)) · g'(x)"
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-mat-1",
+              "question": "Jaký je geometrický význam derivace funkce v bodě?",
+              "options": [
+                "Plocha pod grafem funkce",
+                "Směrnice tečny ke grafu v daném bodě",
+                "Průměrná hodnota funkce v okolí bodu",
+                "Délka grafu funkce"
+              ],
+              "correctIndex": 1,
+              "explanation": "Derivace f'(x₀) udává směrnici tečny ke grafu funkce právě v bodě x₀. To je klíčový geometrický význam derivace."
+            },
+            {
+              "id": "q-mat-2",
+              "question": "Jaká je derivace funkce f(x) = x³ v bodě x = 2?",
+              "options": [
+                "6",
+                "8",
+                "12",
+                "4"
+              ],
+              "correctIndex": 2,
+              "explanation": "f'(x) = 3x², tedy f'(2) = 3 · 4 = 12. Používáme pravidlo pro derivaci mocninné funkce."
+            },
+            {
+              "id": "q-mat-3",
+              "question": "Které pravidlo se používá pro derivaci složené funkce f(g(x))?",
+              "options": [
+                "Pravidlo součtu",
+                "Pravidlo součinu",
+                "Řetězové pravidlo (chain rule)",
+                "L'Hospitalovo pravidlo"
+              ],
+              "correctIndex": 2,
+              "explanation": "Pro složené funkce používáme řetězové pravidlo: (f(g(x)))' = f'(g(x)) · g'(x)."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

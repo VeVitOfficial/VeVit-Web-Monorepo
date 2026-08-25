@@ -1,0 +1,78 @@
+RewriteEngine On
+
+# HTTPS redirect
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# www → non-www
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+
+# Subdomény → /subdom/<jméno>/ (WEDOS layout)
+# Např. studio.vevit.cz/foo → /subdom/studio/foo. Neaplikuje se na hlavní
+# doménu vevit.cz / www.vevit.cz ani když už cesta začíná /subdom/ (záběh proti smyčce).
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteCond %{HTTP_HOST} ^([a-z0-9-]+)\.vevit\.cz(:\d+)?$ [NC]
+RewriteCond %{REQUEST_URI} !^/subdom/
+RewriteCond %{DOCUMENT_ROOT}/subdom/%1 -d
+RewriteRule ^(.*)$ /subdom/%1/$1 [L]
+
+# ── Per-locale URL routing (/cs/, /de/, /sk/ …) ───────────────────────────
+# /<lang>/<sekce> (bez koncového lomítka) → 301 na /<lang>/<sekce>/ .
+# Důvod: bez toho by interní rewrite níže naservíroval /<sekce> a Apache mod_dir
+# (DirectorySlash) by externě 301-přesměroval na /<sekce>/ — tím by ztratil
+# /<lang>/ prefix i env VEVIT_LANG. Přesměrování na místě zachová locale v URL.
+RewriteRule ^(cs|en|de|es|uk|fr|sk)/(home|account|edu|store|tools)$ /$1/$2/ [R=301,L]
+# /<lang>/<sekce>/... → interně naservíruj /<sekce>/... s env VEVIT_LANG.
+# PHP bootstrap sekce přečte env přes vv_locale_from_url() (shared/i18n/locale.php).
+RewriteRule ^(cs|en|de|es|uk|fr|sk)/(home|account|edu|store|tools)(/.*)?$ /$2$3 [E=VEVIT_LANG:$1,L]
+# Samotný locale prefix nebo /<lang>/ → /<lang>/home
+RewriteRule ^(cs|en|de|es|uk|fr|sk)/?$ /$1/home [R=301,L]
+
+# Bare sekce bez prefixu → 301 na /<lang>/<sekce> (cookie vevit-lang, jinak cs).
+# Přeskoč API/PHP/statické/admin cesty (POST endpointy a assety se nepřesměrovávají).
+# Přeskoč též, pokud už proběhlo locale routing (env z interního rewrite).
+RewriteCond %{ENV:REDIRECT_VEVIT_LANG} ^$
+RewriteCond %{REQUEST_URI} !\.(php|js|css|png|jpe?g|webp|ico|woff2?|ttf|svg|json|map)$ [NC]
+RewriteCond %{REQUEST_URI} !/(?:api|lib|config|tests|docs|bin|vendor|includes|scripts|migrations|php)/
+RewriteCond %{REQUEST_URI} !/admin
+RewriteCond %{HTTP_COOKIE} (?:^|;\s*)vevit-lang=(cs|en|de|es|uk|fr|sk)(?:;|$)
+RewriteRule ^(home|account|edu|store|tools)(/.*)?$ /%1/$1$2 [R=301,L]
+RewriteCond %{ENV:REDIRECT_VEVIT_LANG} ^$
+RewriteCond %{REQUEST_URI} !\.(php|js|css|png|jpe?g|webp|ico|woff2?|ttf|svg|json|map)$ [NC]
+RewriteCond %{REQUEST_URI} !/(?:api|lib|config|tests|docs|bin|vendor|includes|scripts|migrations|php)/
+RewriteCond %{REQUEST_URI} !/admin
+RewriteRule ^(home|account|edu|store|tools)(/.*)?$ /cs/$1$2 [R=301,L]
+
+# Root → /<lang>/home (hlavní portál) — pouze pro hlavní doménu, ne pro subdomény
+# (studio.vevit.cz apod. nesmí kořen přesměrovávat na /home)
+RewriteCond %{HTTP_HOST} ^(www\.)?vevit\.cz(:\d+)?$ [NC]
+RewriteCond %{HTTP_COOKIE} (?:^|;\s*)vevit-lang=(cs|en|de|es|uk|fr|sk)(?:;|$)
+RewriteRule ^$ /%1/home [R=301,L]
+RewriteCond %{HTTP_HOST} ^(www\.)?vevit\.cz(:\d+)?$ [NC]
+RewriteRule ^$ /cs/home [R=301,L]
+
+# Blokuj přímý přístup k interním souborům
+RewriteRule ^assets/shared/((?:session|app-switcher|localization)\.(?:js|css))$ shared/js/$1 [L]
+RewriteCond %{THE_REQUEST} \s/+assets/shared/(?:session|app-switcher|localization)\.(?:js|css)(?:[?\s]) [NC]
+RewriteRule ^shared/js/(?:session|app-switcher|localization)\.(?:js|css)$ - [L]
+RewriteRule ^shared/ - [F,L]
+RewriteRule ^home/(api|lib|config|tests|docs)/ - [F,L]
+RewriteRule ^(store|account)/(lib|migrations|tests|docs|bin|vendor)/ - [F,L]
+RewriteRule ^tools/(includes|scripts|tests)/ - [F,L]
+RewriteRule ^edu/php/ - [F,L]
+
+Options -Indexes
+ServerSignature Off
+
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options SAMEORIGIN
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(self)"
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+    Header always set Reporting-Endpoints "vevit-csp=\"https://vevit.cz/account/api/csp-report.php\""
+    Header always set Content-Security-Policy-Report-Only "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https:; connect-src 'self'; frame-src 'self' blob:; worker-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'; report-uri /account/api/csp-report.php; report-to vevit-csp"
+</IfModule>
+
+DirectoryIndex index.html index.php

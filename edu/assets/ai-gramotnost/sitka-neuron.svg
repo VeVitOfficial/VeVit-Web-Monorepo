@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="title desc">
+  <title id="title">Řada nastavitelných sítek</title><desc id="desc">Data procházejí několika síťkami. Jejich otvory se při tréninku upravují.</desc>
+  <rect width="800" height="450" rx="32" fill="#101827"/><defs><pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0v28" fill="none" stroke="#a78bfa" stroke-width="3"/></pattern></defs>
+  <g fill="url(#grid)" stroke="#8b5cf6" stroke-width="4"><rect x="170" y="75" width="115" height="265" rx="12"/><rect x="345" y="75" width="115" height="265" rx="12"/><rect x="520" y="75" width="115" height="265" rx="12"/></g>
+  <g fill="#f59e0b"><circle cx="85" cy="120" r="14"/><circle cx="90" cy="210" r="20"/><circle cx="76" cy="295" r="11"/></g><g fill="none" stroke="#22c55e" stroke-width="7" stroke-linecap="round"><path d="M110 120h520l72 55"/><path d="M115 210h520l67 0"/><path d="M102 295h528l72-58"/></g>
+  <text x="400" y="403" text-anchor="middle" fill="#f8fafc" font-family="system-ui,sans-serif" font-size="25" font-weight="700">Trénink přenastavuje „dírky“ mezi vrstvami</text>
+</svg>

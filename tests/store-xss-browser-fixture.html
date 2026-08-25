@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="cs">
+<head><meta charset="utf-8"><title>Store XSS</title></head>
+<body data-status="running">
+  <div id="productGrid"></div><div id="pagination"></div><div id="indexProductGrid"></div>
+  <section id="featuredSection"><div id="featuredGrid"></div><div id="featuredEmpty"></div></section>
+  <section id="categoriesSection"><div id="categoriesGrid"></div><div id="catsEmpty"></div></section>
+  <script>
+    window.__cartProduct = null;
+    window.Cart = { add(product) { window.__cartProduct = product; } };
+  </script>
+  <script src="../store/assets/js/store.js"></script>
+  <script src="../store/assets/js/index-page.js"></script>
+  <script>
+  (function () {
+    const maliciousName = "Produkt ');alert(1);// <img src=x onerror=alert(1)>";
+    Store.state.products = [{
+      id: 'p-1', name: maliciousName, short_desc: '<svg onload=alert(1)>popis',
+      category_name: '<img src=x onerror=alert(1)>', category_slug: 'merch',
+      price: '100', sale_price: '0', type: 'digital', slug: 'x\" onclick=alert(1)', featured: false
+    }];
+    Store.state.totalPages = 2; Store.state.page = 1;
+    Store.render(); Store.renderPagination();
+    const grid = document.getElementById('productGrid');
+    if (grid.querySelector('[onclick],[onerror],[onload],script,svg')) throw new Error('Store obsahuje aktivní handler/tag.');
+    if (grid.querySelector('.product-name').textContent !== maliciousName) throw new Error('Jméno nebylo vykresleno jako text.');
+    const button = grid.querySelector('[data-action="add-to-cart"]');
+    if (!button || button.dataset.productId !== 'p-1') throw new Error('Chybí bezpečná event data.');
+    button.click();
+    if (!window.__cartProduct || window.__cartProduct.name !== maliciousName) throw new Error('Košík nedostal původní produkt.');
+    if (document.getElementById('pagination').querySelector('[onclick]')) throw new Error('Stránkování má inline handler.');
+    const indexCard = renderProductCard(Store.state.products[0]);
+    document.getElementById('indexProductGrid').appendChild(indexCard);
+    if (indexCard.querySelector('[onclick],[onerror],[onload],script,svg')) throw new Error('Homepage karta obsahuje aktivní handler/tag.');
+    if (indexCard.querySelector('.product-name').textContent !== maliciousName) throw new Error('Homepage nevykreslila jméno jako text.');
+    indexCard.querySelector('[data-add-product]').click();
+    if (!window.__cartProduct || window.__cartProduct.name !== maliciousName) throw new Error('Homepage košík nedostal původní produkt.');
+    document.body.dataset.status = 'pass';
+  })();
+  </script>
+</body>
+</html>

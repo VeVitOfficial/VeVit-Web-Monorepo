@@ -1,0 +1,1942 @@
+{
+  "id": "prog-sql",
+  "slug": "sql",
+  "title": "SQL & Databáze",
+  "description": "Relační databáze, SQL dotazy, JOINy, indexy a optimalizace na MariaDB.",
+  "longDescription": "Data jsou srdcem každé moderní aplikace a SQL je jazyk, kterým s nimi komunikuješ.",
+  "category": "programovani",
+  "color": "#0ea5e9",
+  "icon": "Database",
+  "difficulty": "beginner",
+  "totalXP": 620,
+  "totalLessons": 19,
+  "language": "SQL",
+  "chapters": [
+    {
+      "id": "sql-ch1",
+      "slug": "sql-kurz",
+      "title": "Kompletní kurz SQL",
+      "lessons": [
+        {
+          "id": "sql-lesson-01",
+          "slug": "sql-01-úvod-do-databází",
+          "title": "Úvod do databází",
+          "description": "Relační DB, tabulky, řádky, sloupce",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Úvod do databází"
+            },
+            {
+              "type": "paragraph",
+              "text": "Relační DB, tabulky, řádky, sloupce"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Úvod do databází'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 20 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "sql",
+              "code": "# Ukázka z lekce: Úvod do databází\n# Zde bude váš kód...\nprint('Začínáme s Úvod do databází!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "sql-lesson-01-ex-01",
+              "title": "Cvičení: Úvod do databází",
+              "type": "code",
+              "task": "Navrhni schéma databáze pro knihovnu na papír.",
+              "description": "Databáze jsou základem moderních aplikací.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Úvod do databází\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 20,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-sql-01-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Úvod do databází'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti úvod do databází.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Úvod do databází' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 20,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "sql-lesson-02",
+          "slug": "sql-02-select-základy",
+          "title": "SELECT základy",
+          "description": "Výběr sloupců, DISTINCT, aliasy",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "SELECT základy"
+            },
+            {
+              "type": "paragraph",
+              "text": "Výběr sloupců, DISTINCT, aliasy"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'SELECT základy'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 20 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "sql",
+              "code": "# Ukázka z lekce: SELECT základy\n# Zde bude váš kód...\nprint('Začínáme s SELECT základy!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "sql-lesson-02-ex-01",
+              "title": "Cvičení: SELECT základy",
+              "type": "code",
+              "task": "Analýza dat z tabulky zaměstnanců.",
+              "description": "SELECT je základní SQL příkaz.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: SELECT základy\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 20,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-sql-02-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'SELECT základy'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti select základy.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'SELECT základy' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 20,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "sql-lesson-03",
+          "slug": "sql-03-where-a-filtrování",
+          "title": "WHERE a filtrování",
+          "description": "Operátory, BETWEEN, IN, LIKE, NULL",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "WHERE a filtrování"
+            },
+            {
+              "type": "paragraph",
+              "text": "Operátory, BETWEEN, IN, LIKE, NULL"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'WHERE a filtrování'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 25 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "sql",
+              "code": "# Ukázka z lekce: WHERE a filtrování\n# Zde bude váš kód...\nprint('Začínáme s WHERE a filtrování!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "sql-lesson-03-ex-01",
+              "title": "Cvičení: WHERE a filtrování",
+              "type": "code",
+              "task": "Detektivní hledání: najdi uživatele podle kritérií.",
+              "description": "Filtrování získává relevantní data.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: WHERE a filtrování\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 25,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-sql-03-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'WHERE a filtrování'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti where a filtrování.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'WHERE a filtrování' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 25,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "sql-lesson-04",
+          "slug": "sql-04-řazení-a-limit",
+          "title": "Řazení a limit",
+          "description": "ORDER BY, LIMIT, OFFSET",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Řazení a limit"
+            },
+            {
+              "type": "paragraph",
+              "text": "ORDER BY, LIMIT, OFFSET"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Řazení a limit'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 20 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "sql",
+              "code": "# Ukázka z lekce: Řazení a limit\n# Zde bude váš kód...\nprint('Začínáme s Řazení a limit!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "sql-lesson-04-ex-01",
+              "title": "Cvičení: Řazení a limit",
+              "type": "code",
+              "task": "Top 10 nejprodávanějších produktů.",
+              "description": "Řazení a stránkování zlepšují čitelnost.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Řazení a limit\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 20,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-sql-04-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Řazení a limit'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti řazení a limit.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Řazení a limit' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 20,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "sql-lesson-05",
+          "slug": "sql-05-agregační-funkce",
+          "title": "Agregační funkce",
+          "description": "COUNT, SUM, AVG, MIN, MAX",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Agregační funkce"
+            },
+            {
+              "type": "paragraph",
+              "text": "COUNT, SUM, AVG, MIN, MAX"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Agregační funkce'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 25 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "sql",
+              "code": "# Ukázka z lekce: Agregační funkce\n# Zde bude váš kód...\nprint('Začínáme s Agregační funkce!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "sql-lesson-05-ex-01",
+              "title": "Cvičení: Agregační funkce",
+              "type": "code",
+              "task": "Finanční report: příjmy, průměry, maximum.",
+              "description": "Agregace shrnuje data.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Agregační funkce\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 25,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-sql-05-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Agregační funkce'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti agregační funkce.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Agregační funkce' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 25,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "sql-lesson-06",
+          "slug": "sql-06-group-by",
+          "title": "GROUP BY",
+          "description": "Seskupování, agregace na skupiny",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "GROUP BY"
+            },
+            {
+              "type": "paragraph",
+              "text": "Seskupování, agregace na skupiny"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'GROUP BY'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 30 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "sql",
+              "code": "# Ukázka z lekce: GROUP BY\n# Zde bude váš kód...\nprint('Začínáme s GROUP BY!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "sql-lesson-06-ex-01",
+              "title": "Cvičení: GROUP BY",
+              "type": "code",
+              "task": "Prodeje po měsících a kategoriích.",
+              "description": "GROUP BY seskupuje řádky.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: GROUP BY\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 30,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-sql-06-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'GROUP BY'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti group by.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'GROUP BY' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 30,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "sql-lesson-07",
+          "slug": "sql-07-having",
+          "title": "HAVING",
+          "description": "Filtrování agregovaných výsledků",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "HAVING"
+            },
+            {
+              "type": "paragraph",
+              "text": "Filtrování agregovaných výsledků"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'HAVING'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 30 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "sql",
+              "code": "# Ukázka z lekce: HAVING\n# Zde bude váš kód...\nprint('Začínáme s HAVING!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "sql-lesson-07-ex-01",
+              "title": "Cvičení: HAVING",
+              "type": "code",
+              "task": "Najdi kategorie s průměrnou cenou nad 1000.",
+              "description": "HAVING filtruje skupiny.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: HAVING\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 30,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-sql-07-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'HAVING'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti having.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'HAVING' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 30,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "sql-lesson-08",
+          "slug": "sql-08-join-inner",
+          "title": "JOIN — INNER",
+          "description": "Spojování tabulek, vztahy",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "JOIN — INNER"
+            },
+            {
+              "type": "paragraph",
+              "text": "Spojování tabulek, vztahy"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'JOIN — INNER'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 35 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "sql",
+              "code": "# Ukázka z lekce: JOIN — INNER\n# Zde bude váš kód...\nprint('Začínáme s JOIN — INNER!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "sql-lesson-08-ex-01",
+              "title": "Cvičení: JOIN — INNER",
+              "type": "code",
+              "task": "Spojení objednávek se zákazníky.",
+              "description": "JOIN propojuje data z více tabulek.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: JOIN — INNER\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 35,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-sql-08-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'JOIN — INNER'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti join — inner.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'JOIN — INNER' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 35,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "sql-lesson-09",
+          "slug": "sql-09-join-leftright",
+          "title": "JOIN — LEFT/RIGHT",
+          "description": "Outer joins, NULL ve výsledku",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "JOIN — LEFT/RIGHT"
+            },
+            {
+              "type": "paragraph",
+              "text": "Outer joins, NULL ve výsledku"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'JOIN — LEFT/RIGHT'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 35 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "sql",
+              "code": "# Ukázka z lekce: JOIN — LEFT/RIGHT\n# Zde bude váš kód...\nprint('Začínáme s JOIN — LEFT/RIGHT!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "sql-lesson-09-ex-01",
+              "title": "Cvičení: JOIN — LEFT/RIGHT",
+              "type": "code",
+              "task": "Report: všichni zákazníci včetně těch bez objednávek.",
+              "description": "Outer joins zachovávají všechny řádky.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: JOIN — LEFT/RIGHT\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 35,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-sql-09-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'JOIN — LEFT/RIGHT'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti join — left/right.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'JOIN — LEFT/RIGHT' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 35,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "sql-lesson-10",
+          "slug": "sql-10-join-full-a-cross",
+          "title": "JOIN — FULL a CROSS",
+          "description": "Úplná spojení, kartézský součin",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "JOIN — FULL a CROSS"
+            },
+            {
+              "type": "paragraph",
+              "text": "Úplná spojení, kartézský součin"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'JOIN — FULL a CROSS'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 30 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "sql",
+              "code": "# Ukázka z lekce: JOIN — FULL a CROSS\n# Zde bude váš kód...\nprint('Začínáme s JOIN — FULL a CROSS!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "sql-lesson-10-ex-01",
+              "title": "Cvičení: JOIN — FULL a CROSS",
+              "type": "code",
+              "task": "Generátor kombinací produkt × barva.",
+              "description": "Full a cross joins mají specifické použití.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: JOIN — FULL a CROSS\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 30,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-sql-10-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'JOIN — FULL a CROSS'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti join — full a cross.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'JOIN — FULL a CROSS' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 30,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "sql-lesson-11",
+          "slug": "sql-11-subqueries",
+          "title": "Subqueries",
+          "description": "Vnořené dotazy, EXISTS, IN",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Subqueries"
+            },
+            {
+              "type": "paragraph",
+              "text": "Vnořené dotazy, EXISTS, IN"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Subqueries'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 35 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "sql",
+              "code": "# Ukázka z lekce: Subqueries\n# Zde bude váš kód...\nprint('Začínáme s Subqueries!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "sql-lesson-11-ex-01",
+              "title": "Cvičení: Subqueries",
+              "type": "code",
+              "task": "Najdi zaměstnance s platy nad průměrem.",
+              "description": "Subdotazy vnořují jeden SELECT do druhého.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Subqueries\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 35,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-sql-11-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Subqueries'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti subqueries.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Subqueries' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 35,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "sql-lesson-12",
+          "slug": "sql-12-union-a-case",
+          "title": "UNION a CASE",
+          "description": "Kombinace výsledků, podmínky v SQL",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "UNION a CASE"
+            },
+            {
+              "type": "paragraph",
+              "text": "Kombinace výsledků, podmínky v SQL"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'UNION a CASE'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 30 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "sql",
+              "code": "# Ukázka z lekce: UNION a CASE\n# Zde bude váš kód...\nprint('Začínáme s UNION a CASE!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "sql-lesson-12-ex-01",
+              "title": "Cvičení: UNION a CASE",
+              "type": "code",
+              "task": "Report s kategoriemi a výpočtem slev.",
+              "description": "UNION spojuje výsledky, CASE dělá podmínky.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: UNION a CASE\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 30,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-sql-12-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'UNION a CASE'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti union a case.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'UNION a CASE' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 30,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "sql-lesson-13",
+          "slug": "sql-13-modifikace-dat",
+          "title": "Modifikace dat",
+          "description": "INSERT, UPDATE, DELETE, TRUNCATE",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Modifikace dat"
+            },
+            {
+              "type": "paragraph",
+              "text": "INSERT, UPDATE, DELETE, TRUNCATE"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Modifikace dat'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 30 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "sql",
+              "code": "# Ukázka z lekce: Modifikace dat\n# Zde bude váš kód...\nprint('Začínáme s Modifikace dat!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "sql-lesson-13-ex-01",
+              "title": "Cvičení: Modifikace dat",
+              "type": "code",
+              "task": "Migrace dat mezi tabulkami.",
+              "description": "Modifikace mění obsah databáze.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Modifikace dat\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 30,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-sql-13-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Modifikace dat'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti modifikace dat.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Modifikace dat' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 30,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "sql-lesson-14",
+          "slug": "sql-14-transakce",
+          "title": "Transakce",
+          "description": "BEGIN, COMMIT, ROLLBACK, ACID",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Transakce"
+            },
+            {
+              "type": "paragraph",
+              "text": "BEGIN, COMMIT, ROLLBACK, ACID"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Transakce'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 35 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "sql",
+              "code": "# Ukázka z lekce: Transakce\n# Zde bude váš kód...\nprint('Začínáme s Transakce!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "sql-lesson-14-ex-01",
+              "title": "Cvičení: Transakce",
+              "type": "code",
+              "task": "Bezpečný převod mezi účty.",
+              "description": "Transakce zajišťují integritu dat.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Transakce\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 35,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-sql-14-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Transakce'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti transakce.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Transakce' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 35,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "sql-lesson-15",
+          "slug": "sql-15-vytváření-tabulek",
+          "title": "Vytváření tabulek",
+          "description": "CREATE TABLE, datové typy, constraints",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Vytváření tabulek"
+            },
+            {
+              "type": "paragraph",
+              "text": "CREATE TABLE, datové typy, constraints"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Vytváření tabulek'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 35 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "sql",
+              "code": "# Ukázka z lekce: Vytváření tabulek\n# Zde bude váš kód...\nprint('Začínáme s Vytváření tabulek!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "sql-lesson-15-ex-01",
+              "title": "Cvičení: Vytváření tabulek",
+              "type": "code",
+              "task": "Vytvoř kompletní schéma e-shopu.",
+              "description": "DDL definuje strukturu databáze.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Vytváření tabulek\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 35,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-sql-15-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Vytváření tabulek'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti vytváření tabulek.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Vytváření tabulek' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 35,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "sql-lesson-16",
+          "slug": "sql-16-normalizace",
+          "title": "Normalizace",
+          "description": "1NF, 2NF, 3NF, BCNF",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Normalizace"
+            },
+            {
+              "type": "paragraph",
+              "text": "1NF, 2NF, 3NF, BCNF"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Normalizace'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 30 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "sql",
+              "code": "# Ukázka z lekce: Normalizace\n# Zde bude váš kód...\nprint('Začínáme s Normalizace!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "sql-lesson-16-ex-01",
+              "title": "Cvičení: Normalizace",
+              "type": "code",
+              "task": "Převeď plochou tabulku do 3. normální formy.",
+              "description": "Normalizace eliminuje redundanci.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Normalizace\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 30,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-sql-16-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Normalizace'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti normalizace.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Normalizace' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 30,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "sql-lesson-17",
+          "slug": "sql-17-indexy",
+          "title": "Indexy",
+          "description": "B-tree, CREATE INDEX, EXPLAIN",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Indexy"
+            },
+            {
+              "type": "paragraph",
+              "text": "B-tree, CREATE INDEX, EXPLAIN"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Indexy'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 30 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "sql",
+              "code": "# Ukázka z lekce: Indexy\n# Zde bude váš kód...\nprint('Začínáme s Indexy!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "sql-lesson-17-ex-01",
+              "title": "Cvičení: Indexy",
+              "type": "code",
+              "task": "Optimalizace pomalého dotazu.",
+              "description": "Indexy urychlují vyhledávání.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Indexy\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 30,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-sql-17-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Indexy'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti indexy.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Indexy' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 30,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "sql-lesson-18",
+          "slug": "sql-18-pohledy-views",
+          "title": "Pohledy (Views)",
+          "description": "CREATE VIEW, virtuální tabulky",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Pohledy (Views)"
+            },
+            {
+              "type": "paragraph",
+              "text": "CREATE VIEW, virtuální tabulky"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Pohledy (Views)'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 25 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "sql",
+              "code": "# Ukázka z lekce: Pohledy (Views)\n# Zde bude váš kód...\nprint('Začínáme s Pohledy (Views)!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "sql-lesson-18-ex-01",
+              "title": "Cvičení: Pohledy (Views)",
+              "type": "code",
+              "task": "Vytvoř pohled 'Aktivní zákazníci'.",
+              "description": "Pohledy zjednodušují složité dotazy.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Pohledy (Views)\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 25,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-sql-18-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Pohledy (Views)'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti pohledy (views).",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Pohledy (Views)' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 25,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "sql-lesson-19",
+          "slug": "sql-19-malý-projekt",
+          "title": "Malý projekt",
+          "description": "E-shop databáze",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Malý projekt"
+            },
+            {
+              "type": "paragraph",
+              "text": "E-shop databáze"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Malý projekt'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 100 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "sql",
+              "code": "# Ukázka z lekce: Malý projekt\n# Zde bude váš kód...\nprint('Začínáme s Malý projekt!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "sql-lesson-19-ex-01",
+              "title": "Cvičení: Malý projekt",
+              "type": "code",
+              "task": "Kompletní návrh s 10+ tabulkami, data, reporty.",
+              "description": "Finální projekt integruje všechny SQL dovednosti.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Malý projekt\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 100,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-sql-19-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Malý projekt'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti malý projekt.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Malý projekt' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 100,
+          "estimatedMinutes": 15
+        }
+      ]
+    }
+  ]
+}

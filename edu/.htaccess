@@ -1,0 +1,17 @@
+RewriteEngine On
+
+# Ochrana senzitivních souborů
+<FilesMatch "\.(sql|env|log|bak|php~|ts)$">
+    Require all denied
+</FilesMatch>
+
+# Zotavení ze staré chyby Edu routeru: odkaz na Tools nesmí zůstat pod /edu.
+RewriteRule ^tools(?:\.php)?$ /tools/ [R=302,L,NE]
+
+# Skutečné soubory a adresáře obsloužíme přímo (JSON, CSS, JS, obrázky)
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# SPA fallback: vše ostatní → /edu/index.html (client-side router, monorepo path)
+RewriteRule ^.*$ /edu/index.html [L]

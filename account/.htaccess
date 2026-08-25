@@ -1,0 +1,44 @@
+# VeVit Account — monorepo (Apache, subdirectory /account/)
+
+RewriteEngine On
+# HTTPS redirect handled at Nginx/vhost level in monorepo
+
+DirectoryIndex index.php
+
+# Keep public login URLs clean and run account entry requests through PHP.
+RewriteRule ^login/?$ login.html [L]
+RewriteRule ^onboarding/?$ onboarding.php [L]
+# Reporting endpoint musí obejít Account front controller.
+RewriteRule ^api/csp-report\.php$ - [L]
+# Protect library/source files from direct HTTP requests (must run before the
+# SPA fallback so lib/ and vendor/ are blocked regardless of file existence).
+RewriteRule ^lib/ - [F,L]
+RewriteRule ^vendor/ - [F,L]
+# V monorepu tento .htaccess leží pod /account/ — mod_rewrite v per-directory
+# kontextu strippne prefix /account/ i počáteční lomítko, takže vzorec matchuje
+# proti "connections", "profile" atd. (bez lomítka). Původní ^(/.*)?$ matchlo jen
+# prázdnou cestu, takže SPA sub-routy (/account/connections, /account/security,
+# …) nikdy nedorazily na index.php a vracely 404 — OAuth connect flow končil na 404.
+# Proto SPA fallback: každá cesta, co není reálný soubor ani adresář, běží přes PHP.
+RewriteRule ^index\.html$ index.php [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [L,QSA]
+
+# Protect secrets and source
+<FilesMatch "^config\.php$|^config\.example\.php$">
+  Require all denied
+</FilesMatch>
+<FilesMatch "\.(sql|md)$">
+  Require all denied
+</FilesMatch>
+<FilesMatch "^_.*\.php$">
+  Require all denied
+</FilesMatch>
+
+# Static caching
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 7 days"
+  ExpiresByType application/javascript "access plus 7 days"
+</IfModule>

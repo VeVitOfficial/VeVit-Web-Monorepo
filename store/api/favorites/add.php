@@ -1,0 +1,3 @@
+<?php
+declare(strict_types=1);
+require_once __DIR__.'/../../config.php';require_once __DIR__.'/../../lib/customer-agenda.php';agenda_prepare_http(['POST'],$storeConfig);header('Content-Type: application/json; charset=utf-8');header('Cache-Control: no-store');store_require_csrf('favorites');$input=agenda_json_input();try{agenda_rate_limit($pdo,'favorite_mutation',20);(new FavoriteService($pdo))->add(agenda_auth_context($storeConfig),(int)($input['product_id']??0));echo json_encode(['favorite'=>true]);}catch(Throwable){store_emit_json_error(401,'verified_account_required','Oblíbené produkty vyžadují ověřené přihlášení.');}

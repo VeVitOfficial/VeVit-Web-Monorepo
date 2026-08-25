@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["id", "type", "difficulty", "prompt", "xp", "trap", "payload"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^[1-6]-[0-9]+-q[0-9]+$"},
+    "type": {"type": "string"},
+    "difficulty": {"enum": ["junior", "pro", "both"]},
+    "prompt": {"type": "string"},
+    "why": {"type": "string"},
+    "xp": {"type": "integer", "minimum": 0},
+    "trap": {"type": "boolean"},
+    "payload": {"type": "object"}
+  },
+  "additionalProperties": true
+}

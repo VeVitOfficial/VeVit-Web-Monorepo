@@ -1,0 +1,129 @@
+{
+  "id": "his",
+  "slug": "historie",
+  "title": "Historie",
+  "description": "Dějiny českých zemí, evropské události a světové konflikty.",
+  "category": "humanitni",
+  "color": "#f59e0b",
+  "icon": "ScrollText",
+  "chapters": [
+    {
+      "id": "his-ch1",
+      "slug": "lucemburkove",
+      "title": "České země za vlády Lucemburků",
+      "lessons": [
+        {
+          "id": "his-lesson-1",
+          "slug": "lucemburkove-a-zikmund",
+          "title": "České země za vlády Lucemburků a Zikmund Lucemburský",
+          "description": "Projděte si kulturní a politické období Lucemburské dynastie od Jana Lucemburského přes Karla IV. až po Zikmunda a husitské války.",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "České země za vlády Lucemburků a Zikmund Lucemburský"
+            },
+            {
+              "type": "paragraph",
+              "text": "Lucemburská dynastie vládla českým zemím v letech 1310–1437 a přinesla jedno z nejvýznamnějších období českých dějin. Za její vlády došlo k kulturnímu, politickému i ekonomickému rozkvětu, ale i k náboženským konfliktům, které vyvrcholily husitskými válkami."
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Jan Lucemburský (1310–1346)"
+            },
+            {
+              "type": "paragraph",
+              "text": "Jan Lucemburský, zvaný též Král cizinec, získal českou korunu sňatkem s Eliškou Přemyslovnou. Přestože často pobýval mimo Čechy a věnoval se evropské politice, položil základy centralizované monarchie. Zavedl černou orlici do znaku Českého království a rozšířil české území o Chebsko a horní Luzici."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "Jan Lucemburský padl v bitvě u Kreščaku (1346) při boji za francouzského krále, což mu vyneslo přezdívku ‚Nejstatečnější z rytířů‘."
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Karel IV. (1346–1378)"
+            },
+            {
+              "type": "paragraph",
+              "text": "Karel IV. je považován za jednoho z nejvýznamnějších českých panovníků. V roce 1348 založil Univerzitu Karlovu – první univerzitu ve střední Evropě – a zahájil výstavbu Nového Města pražského. Roku 1355 byl korunován římským císařem."
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "1348 – Založení Univerzity Karlovy",
+                "1348 – Založení Nového Města pražského",
+                "1355 – Korunovace římským císařem",
+                "1356 – Zlatá bula Karla IV.",
+                "1378 – Smrt Karla IV. v Praze"
+              ]
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Zikmund Lucemburský (1368–1437)"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zikmund Lucemburský byl synem Karla IV. a posledním mužským příslušníkem lucemburské dynastie na českém trůnu. Byl to jeden z nejmocnějších evropských panovníků své doby – kromě české koruny byl římským králem, uherským králem a nakonec i císařem Svaté říše římské."
+            },
+            {
+              "type": "paragraph",
+              "text": "Jeho vláda však byla poznamenána náboženskými spory. Po smrti Jana Husa v Kostnici (1415) vypukly husitské války, které Zikmund nedokázal úspěšně potlačit. Nakonec byl uznán českým králem až v roce 1436 po dohodě s basilejskými kompaktáty."
+            },
+            {
+              "type": "callout",
+              "variant": "warning",
+              "text": "Zikmundův příslib bezpečného průchodu Janu Husovi do Kostnice a následné jeho odsouzení a upálení patří k nejtemnějším kapitolám jeho panování."
+            },
+            {
+              "type": "paragraph",
+              "text": "Lucemburská éra uzavřela středověké období českých dějin a připravila půdu pro pozdní středověk a raný novověk. Její dědictví – od gotické architektury přes univerzitní tradici až po kulturní rozkvět – ovlivňuje českou společnost dodnes."
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-his-1",
+              "question": "Který z Luceburků založil Univerzitu Karlovu a Nové Město pražské?",
+              "options": [
+                "Jan Lucemburský",
+                "Karel IV.",
+                "Václav IV.",
+                "Zikmund Lucemburský"
+              ],
+              "correctIndex": 1,
+              "explanation": "Karel IV. založil Univerzitu Karlovu i Nové Město pražské v roce 1348."
+            },
+            {
+              "id": "q-his-2",
+              "question": "V jakém roce byl Zikmund Lucemburský konečně uznán českým králem?",
+              "options": [
+                "1415",
+                "1420",
+                "1436",
+                "1378"
+              ],
+              "correctIndex": 2,
+              "explanation": "Zikmund byl uznán českým králem až v roce 1436 po dohodě s basilejskými kompaktáty, tedy po husitských válkách."
+            },
+            {
+              "id": "q-his-3",
+              "question": "Jaká přezdívka se vztahuje na Jana Lucemburského kvůli jeho smrti u Kreščaku?",
+              "options": [
+                "Otec vlasti",
+                "Nejstatečnější z rytířů",
+                "Zakladatel univerzit",
+                "Dobrý král"
+              ],
+              "correctIndex": 1,
+              "explanation": "Jan Lucemburský padl v bitvě u Kreščaku, což mu vyneslo přezdívku ‚Nejstatečnější z rytířů‘."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

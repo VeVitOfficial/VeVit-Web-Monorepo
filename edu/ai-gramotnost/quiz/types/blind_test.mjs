@@ -1,0 +1,1 @@
+import { createRenderer as renderer } from './renderer.mjs'; import { blindControl } from './controls/blind.mjs'; export const type='blind_test'; export const createRenderer=()=>renderer(type,blindControl);

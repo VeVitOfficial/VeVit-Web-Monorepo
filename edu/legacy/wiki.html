@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>— edu.vevit.fun</title>
+<link rel="stylesheet" href="/assets/fonts/vevit-fonts.css">
+    <link rel="stylesheet" href="/assets/css/vevit-tailwind.css">
+    <script src="/assets/vendor/markjs/mark.min.js"></script>
+
+    <style>
+        * { font-family: 'Sora', sans-serif; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0d0d0d; }
+        ::-webkit-scrollbar-thumb { background: #1e1e1e; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #262626; }
+
+        /* Wiki content styles */
+        .wiki-content { line-height: 1.8; }
+        .wiki-content p { margin-bottom: 1.5rem; color: #d1d5db; }
+        .wiki-content h2 { font-size: 1.5rem; font-weight: 600; color: #f0f0f0; margin-top: 2rem; margin-bottom: 1rem; }
+        .wiki-content h3 { font-size: 1.25rem; font-weight: 600; color: #e5e7eb; margin-top: 1.5rem; margin-bottom: 0.75rem; }
+        .wiki-content h4 { font-size: 1.125rem; font-weight: 600; color: #e5e7eb; margin-top: 1.25rem; margin-bottom: 0.5rem; }
+        .wiki-content ul, .wiki-content ol { margin-left: 1.5rem; margin-bottom: 1.5rem; }
+        .wiki-content li { margin-bottom: 0.5rem; color: #d1d5db; }
+        .wiki-content a { color: #10b981; text-decoration: underline; text-underline-offset: 2px; }
+        .wiki-content a:hover { color: #059669; }
+        .wiki-content code { font-family: 'Sora', sans-serif; font-size: 0.875rem; background: #1e1e1e; border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; padding: 2px 6px; color: #10b981; }
+        .wiki-content pre { background: #161616; border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 16px; overflow-x: auto; margin-bottom: 1.5rem; }
+        .wiki-content pre code { background: transparent; border: none; padding: 0; }
+        .wiki-content blockquote { border-left: 3px solid #10b981; background: #161616; padding: 16px 20px; border-radius: 0 10px 10px 0; margin-bottom: 1.5rem; }
+        .wiki-content blockquote p { margin-bottom: 0; font-style: italic; color: #d1d5db; }
+        .wiki-content table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; }
+        .wiki-content th, .wiki-content td { border: 1px solid rgba(255,255,255,0.08); padding: 12px; text-align: left; }
+        .wiki-content th { background: #1e1e1e; font-weight: 600; color: #f0f0f0; }
+        .wiki-content td { color: #d1d5db; }
+        .wiki-content img { max-width: 100%; height: auto; border-radius: 10px; margin: 1.5rem 0; }
+        .wiki-content .toc, .wiki-content .ambox, .wiki-content .navbox { display: none; }
+        .wiki-content .mw-editsection { display: none; }
+        .wiki-content .reference { font-size: 0.75rem; color: #10b981; }
+
+        /* Highlight mark styles */
+        mark { background: rgba(245, 158, 11, 0.4); color: inherit; padding: 2px 4px; border-radius: 2px; }
+        mark.ai-highlight { background: rgba(245, 158, 11, 0.6); box-shadow: 0 0 12px rgba(245, 158, 11, 0.4); }
+
+        @keyframes pulse-highlight {
+            0%, 100% { box-shadow: 0 0 12px rgba(245, 158, 11, 0.4); }
+            50% { box-shadow: 0 0 24px rgba(245, 158, 11, 0.6); }
+        }
+        .pulse-highlight { animation: pulse-highlight 1s ease-in-out 3; }
+
+        .skeleton {
+            background: linear-gradient(90deg, #1e1e1e 25%, #262626 50%, #1e1e1e 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+        @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    </style>
+</head>
+<body class="bg-base text-text-primary min-h-screen">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-base/95 backdrop-blur-sm border-b border-surface-border z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="/edu/" class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-md bg-accent flex items-center justify-center">
+                        <i data-lucide="book-open" class="w-4 h-4 text-base"></i>
+                    </div>
+                    <span class="text-lg font-semibold text-text-primary">edu<span class="text-accent">.vevit</span>.fun</span>
+                </a>
+
+                <div class="flex items-center gap-3">
+                    <a href="/edu/" class="px-4 py-2 text-sm font-semibold text-text-primary border border-surface-border-hover hover:bg-surface-elevated rounded-md transition-colors">
+                        <i data-lucide="arrow-left" class="w-4 h-4 inline mr-1"></i>
+                        Zpět
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Loading State -->
+    <div id="loading-state" class="flex flex-col items-center justify-center min-h-screen pt-20">
+        <div class="w-12 h-12 border-4 border-surface-elevated border-t-accent rounded-full animate-spin mb-4"></div>
+        <p class="text-text-secondary">Načítám článek...</p>
+    </div>
+
+    <!-- Error State -->
+    <div id="error-state" class="hidden flex flex-col items-center justify-center min-h-screen pt-20 px-4">
+        <div class="bg-surface border border-surface-border rounded-lg p-8 max-w-md w-full text-center">
+            <div class="w-12 h-12 rounded-full bg-error/20 flex items-center justify-center mx-auto mb-4">
+                <i data-lucide="alert-circle" class="w-6 h-6 text-error"></i>
+            </div>
+            <h2 class="text-xl font-semibold text-text-primary mb-2">Článek nenalezen</h2>
+            <p class="text-text-secondary mb-6">Omlouváme se, ale tento článek se nepodařilo najít. Zkuste jiné vyhledávání.</p>
+            <a href="/edu/" class="inline-flex items-center gap-2 px-6 py-3 bg-accent hover:bg-accent-hover text-base font-semibold rounded-md transition-colors">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                Zpět na úvod
+            </a>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div id="content-wrapper" class="hidden">
+        <div class="flex w-full pt-20">
+            <!-- Left Sidebar / TOC (Desktop) -->
+            <aside id="toc-sidebar" class="hidden lg:block w-64 flex-shrink-0 sticky top-20 h-[calc(100vh-80px)] overflow-y-auto px-4">
+                <div class="py-6">
+                    <button id="scroll-to-top" class="w-full text-left text-sm font-semibold text-text-primary hover:text-accent transition-colors mb-4">
+                        <span id="article-title-nav"></span>
+                    </button>
+                    <h3 class="text-xs font-semibold uppercase tracking-wider text-text-muted mb-4">Obsah</h3>
+                    <nav id="toc-nav" class="space-y-2"></nav>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="flex-1 min-w-0 px-4 sm:px-6 lg:px-8 py-8">
+                <!-- Mobile Back Button -->
+                <div class="lg:hidden mb-6">
+                    <a href="/edu/" class="inline-flex items-center gap-2 px-4 py-2 bg-surface border border-surface-border rounded-md text-sm text-text-secondary">
+                        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                        Zpět
+                    </a>
+                </div>
+
+                <article class="max-w-4xl">
+                    <header class="mb-12 pb-8 border-b border-surface-border">
+                        <div class="w-16 h-1 bg-accent rounded-full mb-6"></div>
+                        <h1 id="article-title" class="text-4xl sm:text-5xl font-bold text-text-primary mb-4" style="letter-spacing: -0.02em; line-height: 1.1;"></h1>
+                        <div class="flex items-center gap-4 text-sm text-text-muted">
+                            <span class="flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-accent"></span>
+                                Wikipedie
+                            </span>
+                            <span class="w-1 h-1 rounded-full bg-text-muted"></span>
+                            <span class="uppercase tracking-wider">Česky</span>
+                        </div>
+                    </header>
+
+                    <div id="article-content" class="wiki-content"></div>
+
+                    <footer class="mt-16 pt-8 border-t border-surface-border flex justify-between items-center">
+                        <span class="text-sm text-text-muted">Zdroj: Wikipedie</span>
+                        <a id="wiki-link" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 bg-surface-elevated hover:bg-surface border border-surface-border-hover text-text-primary rounded-md font-semibold transition-colors">
+                            Otevřít na Wikipedii
+                            <i data-lucide="external-link" class="w-4 h-4"></i>
+                        </a>
+                    </footer>
+                </article>
+            </main>
+        </div>
+    </div>
+
+    <script src="/assets/vendor/lucide/lucide.min.js"></script>
+    <script src="/edu/assets/js/vendor/dompurify.min.js"></script>
+    <script src="/edu/assets/js/content-sanitizer.js"></script>
+    <script src="wikiinline.js"></script>
+</body>
+</html>

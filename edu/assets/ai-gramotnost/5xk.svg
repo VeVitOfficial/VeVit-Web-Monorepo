@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="title desc">
+  <title id="title">Pomůcka 5× K</title><desc id="desc">Pět karet připomíná části dobrého promptu: Kdo, Co, K čemu, Kam a Kolik.</desc>
+  <rect width="800" height="450" rx="32" fill="#17112d"/><g font-family="system-ui,sans-serif" text-anchor="middle">
+    <g transform="translate(55 115)"><rect width="130" height="185" rx="20" fill="#7c3aed"/><text x="65" y="74" fill="#fff" font-size="46" font-weight="800">K</text><text x="65" y="125" fill="#fff" font-size="23">Kdo</text></g>
+    <g transform="translate(195 92)"><rect width="130" height="208" rx="20" fill="#2563eb"/><text x="65" y="86" fill="#fff" font-size="46" font-weight="800">K</text><text x="65" y="141" fill="#fff" font-size="23">Co</text></g>
+    <g transform="translate(335 70)"><rect width="130" height="230" rx="20" fill="#0891b2"/><text x="65" y="96" fill="#fff" font-size="46" font-weight="800">K</text><text x="65" y="154" fill="#fff" font-size="21">K čemu</text></g>
+    <g transform="translate(475 92)"><rect width="130" height="208" rx="20" fill="#059669"/><text x="65" y="86" fill="#fff" font-size="46" font-weight="800">K</text><text x="65" y="141" fill="#fff" font-size="23">Kam</text></g>
+    <g transform="translate(615 115)"><rect width="130" height="185" rx="20" fill="#d97706"/><text x="65" y="74" fill="#fff" font-size="46" font-weight="800">K</text><text x="65" y="125" fill="#fff" font-size="22">Kolik</text></g>
+    <text x="400" y="375" fill="#f8fafc" font-size="27" font-weight="700">Pět otázek dává promptu pevnou kostru</text>
+  </g>
+</svg>

@@ -1,0 +1,1 @@
+import { createRenderer as renderer } from './renderer.mjs'; import { textControl } from './controls/text.mjs'; export const type='open_rubric'; export const createRenderer=()=>renderer(type,textControl);

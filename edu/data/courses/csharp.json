@@ -1,0 +1,1437 @@
+{
+  "id": "prog-csharp",
+  "slug": "csharp",
+  "title": "C#",
+  "description": "Moderní .NET jazyk pro webové API, hry v Unity a desktopové aplikace.",
+  "longDescription": "C# je moderní, všestranný jazyk v ekosystému .NET.",
+  "category": "programovani",
+  "color": "#512bd4",
+  "icon": "Gamepad2",
+  "difficulty": "advanced",
+  "totalXP": 505,
+  "totalLessons": 14,
+  "language": "C#",
+  "chapters": [
+    {
+      "id": "csharp-ch1",
+      "slug": "csharp-kurz",
+      "title": "Kompletní kurz C#",
+      "lessons": [
+        {
+          "id": "csharp-lesson-01",
+          "slug": "csharp-01-úvod-do-c",
+          "title": "Úvod do C#",
+          "description": ".NET, první program, struktura",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Úvod do C#"
+            },
+            {
+              "type": "paragraph",
+              "text": ".NET, první program, struktura"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Úvod do C#'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 20 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "csharp",
+              "code": "# Ukázka z lekce: Úvod do C#\n# Zde bude váš kód...\nprint('Začínáme s Úvod do C#!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "csharp-lesson-01-ex-01",
+              "title": "Cvičení: Úvod do C#",
+              "type": "code",
+              "task": "Hello World s komentáři.",
+              "description": "C# je moderní jazyk v ekosystému .NET.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Úvod do C#\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 20,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-csharp-01-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Úvod do C#'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti úvod do c#.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Úvod do C#' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 20,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "csharp-lesson-02",
+          "slug": "csharp-02-proměnné-a-typy",
+          "title": "Proměnné a typy",
+          "description": "int, string, bool, var, nullable",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Proměnné a typy"
+            },
+            {
+              "type": "paragraph",
+              "text": "int, string, bool, var, nullable"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Proměnné a typy'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 20 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "csharp",
+              "code": "# Ukázka z lekce: Proměnné a typy\n# Zde bude váš kód...\nprint('Začínáme s Proměnné a typy!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "csharp-lesson-02-ex-01",
+              "title": "Cvičení: Proměnné a typy",
+              "type": "code",
+              "task": "Evidence kontaktů s různými typy.",
+              "description": "C# má silné typování s moderními vlastnostmi.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Proměnné a typy\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 20,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-csharp-02-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Proměnné a typy'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti proměnné a typy.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Proměnné a typy' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 20,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "csharp-lesson-03",
+          "slug": "csharp-03-operátory-a-podmínky",
+          "title": "Operátory a podmínky",
+          "description": "Aritmetika, if/switch, logika",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Operátory a podmínky"
+            },
+            {
+              "type": "paragraph",
+              "text": "Aritmetika, if/switch, logika"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Operátory a podmínky'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 25 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "csharp",
+              "code": "# Ukázka z lekce: Operátory a podmínky\n# Zde bude váš kód...\nprint('Začínáme s Operátory a podmínky!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "csharp-lesson-03-ex-01",
+              "title": "Cvičení: Operátory a podmínky",
+              "type": "code",
+              "task": "Hra: kámen/nůžky/papír.",
+              "description": "Základní stavební kameny programování.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Operátory a podmínky\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 25,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-csharp-03-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Operátory a podmínky'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti operátory a podmínky.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Operátory a podmínky' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 25,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "csharp-lesson-04",
+          "slug": "csharp-04-smyčky",
+          "title": "Smyčky",
+          "description": "for, while, foreach, break, continue",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Smyčky"
+            },
+            {
+              "type": "paragraph",
+              "text": "for, while, foreach, break, continue"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Smyčky'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 25 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "csharp",
+              "code": "# Ukázka z lekce: Smyčky\n# Zde bude váš kód...\nprint('Začínáme s Smyčky!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "csharp-lesson-04-ex-01",
+              "title": "Cvičení: Smyčky",
+              "type": "code",
+              "task": "Generátor náhodných hesel.",
+              "description": "Smyčky opakují operace.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Smyčky\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 25,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-csharp-04-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Smyčky'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti smyčky.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Smyčky' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 25,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "csharp-lesson-05",
+          "slug": "csharp-05-pole-a-kolekce",
+          "title": "Pole a kolekce",
+          "description": "Array, List, Dictionary, LINQ základy",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Pole a kolekce"
+            },
+            {
+              "type": "paragraph",
+              "text": "Array, List, Dictionary, LINQ základy"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Pole a kolekce'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 30 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "csharp",
+              "code": "# Ukázka z lekce: Pole a kolekce\n# Zde bude váš kód...\nprint('Začínáme s Pole a kolekce!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "csharp-lesson-05-ex-01",
+              "title": "Cvičení: Pole a kolekce",
+              "type": "code",
+              "task": "Analýza prodejních dat.",
+              "description": "Kolekce jsou flexibilnější než pole.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Pole a kolekce\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 30,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-csharp-05-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Pole a kolekce'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti pole a kolekce.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Pole a kolekce' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 30,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "csharp-lesson-06",
+          "slug": "csharp-06-metody-a-scope",
+          "title": "Metody a scope",
+          "description": "Parameters, return, overloading, ref/out",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Metody a scope"
+            },
+            {
+              "type": "paragraph",
+              "text": "Parameters, return, overloading, ref/out"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Metody a scope'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 30 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "csharp",
+              "code": "# Ukázka z lekce: Metody a scope\n# Zde bude váš kód...\nprint('Začínáme s Metody a scope!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "csharp-lesson-06-ex-01",
+              "title": "Cvičení: Metody a scope",
+              "type": "code",
+              "task": "Kalkulačka s přetíženými metodami.",
+              "description": "Metody organizují logiku.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Metody a scope\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 30,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-csharp-06-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Metody a scope'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti metody a scope.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Metody a scope' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 30,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "csharp-lesson-07",
+          "slug": "csharp-07-třídy-a-objekty",
+          "title": "Třídy a objekty",
+          "description": "Properties, fields, constructors",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Třídy a objekty"
+            },
+            {
+              "type": "paragraph",
+              "text": "Properties, fields, constructors"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Třídy a objekty'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 35 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "csharp",
+              "code": "# Ukázka z lekce: Třídy a objekty\n# Zde bude váš kód...\nprint('Začínáme s Třídy a objekty!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "csharp-lesson-07-ex-01",
+              "title": "Cvičení: Třídy a objekty",
+              "type": "code",
+              "task": "Správa inventáře RPG.",
+              "description": "OOP je centrální pro C#.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Třídy a objekty\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 35,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-csharp-07-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Třídy a objekty'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti třídy a objekty.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Třídy a objekty' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 35,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "csharp-lesson-08",
+          "slug": "csharp-08-oop-dědičnost",
+          "title": "OOP — dědičnost",
+          "description": "base, virtual, override, sealed",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "OOP — dědičnost"
+            },
+            {
+              "type": "paragraph",
+              "text": "base, virtual, override, sealed"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'OOP — dědičnost'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 35 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "csharp",
+              "code": "# Ukázka z lekce: OOP — dědičnost\n# Zde bude váš kód...\nprint('Začínáme s OOP — dědičnost!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "csharp-lesson-08-ex-01",
+              "title": "Cvičení: OOP — dědičnost",
+              "type": "code",
+              "task": "Zoologická zahrada hierarchie.",
+              "description": "Dědičnost sdílí chování.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: OOP — dědičnost\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 35,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-csharp-08-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'OOP — dědičnost'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti oop — dědičnost.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'OOP — dědičnost' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 35,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "csharp-lesson-09",
+          "slug": "csharp-09-oop-interface",
+          "title": "OOP — interface",
+          "description": "Interface, IEnumerable, IDisposable",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "OOP — interface"
+            },
+            {
+              "type": "paragraph",
+              "text": "Interface, IEnumerable, IDisposable"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'OOP — interface'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 35 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "csharp",
+              "code": "# Ukázka z lekce: OOP — interface\n# Zde bude váš kód...\nprint('Začínáme s OOP — interface!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "csharp-lesson-09-ex-01",
+              "title": "Cvičení: OOP — interface",
+              "type": "code",
+              "task": "Pluginový systém s IDisposable.",
+              "description": "Interface definuje kontrakty.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: OOP — interface\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 35,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-csharp-09-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'OOP — interface'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti oop — interface.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'OOP — interface' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 35,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "csharp-lesson-10",
+          "slug": "csharp-10-linq",
+          "title": "LINQ",
+          "description": "Where, Select, OrderBy, GroupBy, Any/All",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "LINQ"
+            },
+            {
+              "type": "paragraph",
+              "text": "Where, Select, OrderBy, GroupBy, Any/All"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'LINQ'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 35 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "csharp",
+              "code": "# Ukázka z lekce: LINQ\n# Zde bude váš kód...\nprint('Začínáme s LINQ!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "csharp-lesson-10-ex-01",
+              "title": "Cvičení: LINQ",
+              "type": "code",
+              "task": "Komplexní dotazování dat.",
+              "description": "LINQ je mocný nástroj pro data.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: LINQ\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 35,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-csharp-10-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'LINQ'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti linq.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'LINQ' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 35,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "csharp-lesson-11",
+          "slug": "csharp-11-výjimky",
+          "title": "Výjimky",
+          "description": "try/catch/finally, throw, custom",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Výjimky"
+            },
+            {
+              "type": "paragraph",
+              "text": "try/catch/finally, throw, custom"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Výjimky'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 30 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "csharp",
+              "code": "# Ukázka z lekce: Výjimky\n# Zde bude váš kód...\nprint('Začínáme s Výjimky!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "csharp-lesson-11-ex-01",
+              "title": "Cvičení: Výjimky",
+              "type": "code",
+              "task": "Global exception handler.",
+              "description": "Výjimky řídí chyby elegantně.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Výjimky\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 30,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-csharp-11-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Výjimky'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti výjimky.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Výjimky' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 30,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "csharp-lesson-12",
+          "slug": "csharp-12-asyncawait",
+          "title": "Async/await",
+          "description": "Task, async, await, cancellation",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Async/await"
+            },
+            {
+              "type": "paragraph",
+              "text": "Task, async, await, cancellation"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Async/await'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 40 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "csharp",
+              "code": "# Ukázka z lekce: Async/await\n# Zde bude váš kód...\nprint('Začínáme s Async/await!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "csharp-lesson-12-ex-01",
+              "title": "Cvičení: Async/await",
+              "type": "code",
+              "task": "Async downloader souborů.",
+              "description": "Asynchronní C# zvyšuje responsivitu.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Async/await\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 40,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-csharp-12-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Async/await'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti async/await.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Async/await' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 40,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "csharp-lesson-13",
+          "slug": "csharp-13-aspnet-core-základy",
+          "title": "ASP.NET Core základy",
+          "description": "Controller, routing, dependency injection",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "ASP.NET Core základy"
+            },
+            {
+              "type": "paragraph",
+              "text": "Controller, routing, dependency injection"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'ASP.NET Core základy'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 45 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "csharp",
+              "code": "# Ukázka z lekce: ASP.NET Core základy\n# Zde bude váš kód...\nprint('Začínáme s ASP.NET Core základy!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "csharp-lesson-13-ex-01",
+              "title": "Cvičení: ASP.NET Core základy",
+              "type": "code",
+              "task": "Jednoduché REST API.",
+              "description": "ASP.NET Core je moderní webový framework.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: ASP.NET Core základy\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 45,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-csharp-13-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'ASP.NET Core základy'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti asp.net core základy.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'ASP.NET Core základy' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 45,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "csharp-lesson-14",
+          "slug": "csharp-14-malý-projekt",
+          "title": "Malý projekt",
+          "description": "Task management API",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Malý projekt"
+            },
+            {
+              "type": "paragraph",
+              "text": "Task management API"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Malý projekt'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 100 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "csharp",
+              "code": "# Ukázka z lekce: Malý projekt\n# Zde bude váš kód...\nprint('Začínáme s Malý projekt!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "csharp-lesson-14-ex-01",
+              "title": "Cvičení: Malý projekt",
+              "type": "code",
+              "task": "Kompletní API s CRUD a filtrováním.",
+              "description": "Projekt integruje všechny C# dovednosti.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Malý projekt\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 100,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-csharp-14-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Malý projekt'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti malý projekt.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Malý projekt' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 100,
+          "estimatedMinutes": 15
+        }
+      ]
+    }
+  ]
+}

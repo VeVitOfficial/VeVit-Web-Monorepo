@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VeVit Software Studios | Vývoj software na míru</title>
+<meta name="description" content="VeVit Software Studios vyvíjí pro firmy software a aplikace na míru a zajišťuje analýzu, nasazení, správu, údržbu, škálování a technickou podporu.">
+<link rel="canonical" href="https://studios.vevit.cz/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="cs_CZ">
+<meta property="og:title" content="VeVit Software Studios | Vývoj software na míru">
+<meta property="og:description" content="Vývoj software a aplikací na míru pro firmy, od analýzy přes nasazení po dlouhodobou správu.">
+<meta property="og:url" content="https://studios.vevit.cz/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://studios.vevit.cz/#website",
+      "url": "https://studios.vevit.cz/",
+      "name": "VeVit Software Studios",
+      "description": "Web softwarového studia zaměřeného na vývoj digitálních řešení na míru pro firmy.",
+      "inLanguage": "cs-CZ",
+      "publisher": { "@id": "https://studios.vevit.cz/#organization" }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://studios.vevit.cz/#webpage",
+      "url": "https://studios.vevit.cz/",
+      "name": "VeVit Software Studios | Vývoj software na míru",
+      "description": "Přehled služeb, procesu spolupráce, speciální nabídky, odpovědí na časté dotazy a kontaktních údajů VeVit Software Studios.",
+      "inLanguage": "cs-CZ",
+      "isPartOf": { "@id": "https://studios.vevit.cz/#website" },
+      "about": [
+        { "@id": "https://studios.vevit.cz/#custom-software" },
+        { "@id": "https://studios.vevit.cz/#maintenance" },
+        { "@id": "https://studios.vevit.cz/#consulting" },
+        { "@id": "https://studios.vevit.cz/#scalability" }
+      ],
+      "mainEntity": { "@id": "https://studios.vevit.cz/#organization" },
+      "mentions": { "@id": "https://studios.vevit.cz/#vit-vedral" },
+      "audience": {
+        "@type": "BusinessAudience",
+        "audienceType": "Firmy a organizace hledající software na míru, digitalizaci procesů nebo dlouhodobou správu aplikací"
+      },
+      "significantLink": [
+        "https://studios.vevit.cz/#sluzby",
+        "https://studios.vevit.cz/#proces",
+        "https://studios.vevit.cz/#nabidka",
+        "https://studios.vevit.cz/#faq",
+        "https://studios.vevit.cz/#kontakt"
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://studios.vevit.cz/#organization",
+      "name": "VeVit Software Studios",
+      "description": "Divize VeVit Technologies zaměřená na analýzu, vývoj, nasazení a dlouhodobou správu softwarových řešení na míru.",
+      "url": "https://studios.vevit.cz/",
+      "email": "mailto:studio@vevit.cz",
+      "telephone": "+420725589559",
+      "founder": { "@id": "https://studios.vevit.cz/#vit-vedral" },
+      "parentOrganization": {
+        "@type": "Organization",
+        "name": "VeVit Technologies",
+        "url": "https://vevit.cz/"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Slepá 64",
+        "postalCode": "250 63",
+        "addressLocality": "Čakovičky",
+        "addressCountry": "CZ"
+      },
+      "areaServed": { "@type": "Country", "name": "Česko" },
+      "knowsAbout": [
+        "Vývoj software na míru",
+        "Webové aplikace",
+        "Mobilní aplikace",
+        "Digitalizace firemních procesů",
+        "Správa a údržba software",
+        "Škálovatelnost a výkon"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "sales",
+        "telephone": "+420725589559",
+        "email": "studio@vevit.cz",
+        "availableLanguage": ["cs", "en"]
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://studios.vevit.cz/#vit-vedral",
+      "name": "Vít Vedral",
+      "jobTitle": "Founder / Jednatel",
+      "worksFor": { "@id": "https://studios.vevit.cz/#organization" }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://studios.vevit.cz/#custom-software",
+      "name": "Vývoj software na míru",
+      "description": "Vývoj webových a mobilních aplikací, interních systémů a integrací podle firemních procesů klienta.",
+      "url": "https://studios.vevit.cz/#sluzby",
+      "provider": { "@id": "https://studios.vevit.cz/#organization" },
+      "audience": { "@type": "BusinessAudience", "audienceType": "Firmy a organizace" },
+      "areaServed": { "@type": "Country", "name": "Česko" }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://studios.vevit.cz/#maintenance",
+      "name": "Správa a údržba software",
+      "description": "Monitoring, pravidelné aktualizace, technická podpora a další rozvoj digitálních produktů.",
+      "url": "https://studios.vevit.cz/#sluzby",
+      "provider": { "@id": "https://studios.vevit.cz/#organization" },
+      "audience": { "@type": "BusinessAudience", "audienceType": "Firmy a organizace" },
+      "areaServed": { "@type": "Country", "name": "Česko" }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://studios.vevit.cz/#consulting",
+      "name": "Konzultace a analýza",
+      "description": "Analýza požadavků a návrh softwarové architektury s rozpočtem a harmonogramem.",
+      "url": "https://studios.vevit.cz/#sluzby",
+      "provider": { "@id": "https://studios.vevit.cz/#organization" },
+      "audience": { "@type": "BusinessAudience", "audienceType": "Firmy a organizace" },
+      "areaServed": { "@type": "Country", "name": "Česko" }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://studios.vevit.cz/#scalability",
+      "name": "Škálovatelnost a výkon",
+      "description": "Návrh a optimalizace architektury připravené na růst uživatelů a transakcí.",
+      "url": "https://studios.vevit.cz/#sluzby",
+      "provider": { "@id": "https://studios.vevit.cz/#organization" },
+      "audience": { "@type": "BusinessAudience", "audienceType": "Firmy a organizace" },
+      "areaServed": { "@type": "Country", "name": "Česko" }
+    }
+  ]
+}
+</script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="true">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  html { scroll-behavior: smooth; }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+  @keyframes floatSlow { 0%, 100% { transform: translate(0,0); } 50% { transform: translate(-3%, 3%); } }
+  @keyframes floatSlow2 { 0%, 100% { transform: translate(0,0); } 50% { transform: translate(3%, -3%); } }
+  @keyframes bounceSlow { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-24px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes popIn { from { opacity: 0; transform: translateY(16px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+  a { color: #4edea3; text-decoration: none; }
+  a:hover { color: #80f9c8; }
+  ::selection { background: rgba(78,222,163,0.3); color: #d7e3fc; }
+</style>
+</helmet>
+
+<div style="background:#071325;color:#d7e3fc;font-family:'Inter',sans-serif;min-height:100vh;position:relative;overflow-x:hidden;background-image:radial-gradient(rgba(215,227,252,0.06) 1px, transparent 1px);background-size:26px 26px;">
+
+  <div style="position:fixed;top:-15%;left:-10%;width:50%;height:50%;background:rgba(16,185,129,0.06);border-radius:50%;filter:blur(120px);pointer-events:none;animation:floatSlow 16s ease-in-out infinite;"></div>
+  <div style="position:fixed;bottom:-15%;right:-10%;width:50%;height:50%;background:rgba(78,222,163,0.05);border-radius:50%;filter:blur(120px);pointer-events:none;animation:floatSlow2 18s ease-in-out infinite;"></div>
+
+  <!-- Header -->
+  <header>
+  <nav aria-label="Hlavní navigace" style="{{ navStyle }}">
+    <div style="max-width:1280px;margin:0 auto;padding:0 20px;height:84px;display:flex;align-items:center;justify-content:space-between;">
+      <a href="#" style="display:flex;align-items:center;gap:10px;font-family:'Be Vietnam Pro',sans-serif;font-weight:700;font-size:20px;color:#4edea3;">
+        <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;font-size:24px;">terminal</span>
+        VeVit Software Studios
+      </a>
+      <ul style="display:flex;gap:36px;list-style:none;margin:0;padding:0;" data-desktop-nav="true">
+        <li><a href="#sluzby" style="color:#bbcabf;font-size:15px;font-weight:500;">Služby</a></li>
+        <li><a href="#proces" style="color:#bbcabf;font-size:15px;font-weight:500;">Proces</a></li>
+        <li style="display: none"><a href="#reference" style="color:#bbcabf;font-size:15px;font-weight:500;">Reference</a></li>
+        <li><a href="#faq" style="color:#bbcabf;font-size:15px;font-weight:500;">FAQ</a></li>
+        <li><a href="#kontakt" style="color:#bbcabf;font-size:15px;font-weight:500;">Kontakt</a></li>
+      </ul>
+      <a href="#kontakt" data-desktop-cta="true" style="display:inline-flex;align-items:center;justify-content:center;padding:11px 26px;border-radius:999px;background:#10b981;color:#00291c;font-family:'JetBrains Mono',monospace;font-weight:600;font-size:14px;box-shadow:0 0 20px rgba(16,185,129,0.25);">Mám zájem</a>
+      <button onClick="{{ toggleMenu }}" aria-label="Menu" data-mobile-toggle="true" style="display:none;background:none;border:none;color:#4edea3;cursor:pointer;">
+        <span class="material-symbols-outlined" style="font-size:30px;">{{ menuIcon }}</span>
+      </button>
+    </div>
+    <sc-if value="{{ menuOpen }}">
+      <div data-mobile-menu="true" style="padding:8px 20px 24px;display:flex;flex-direction:column;gap:18px;border-top:1px solid rgba(78,222,163,0.1);">
+        <a href="#sluzby" onClick="{{ closeMenu }}" style="color:#bbcabf;font-size:16px;font-weight:500;">Služby</a>
+        <a href="#proces" onClick="{{ closeMenu }}" style="color:#bbcabf;font-size:16px;font-weight:500;">Proces</a>
+        <a href="#reference" onClick="{{ closeMenu }}" style="color:#bbcabf;font-size:16px;font-weight:500;">Reference</a>
+        <a href="#faq" onClick="{{ closeMenu }}" style="color:#bbcabf;font-size:16px;font-weight:500;">FAQ</a>
+        <a href="#kontakt" onClick="{{ closeMenu }}" style="color:#4edea3;font-size:16px;font-weight:600;">Kontakt</a>
+      </div>
+    </sc-if>
+  </nav>
+  </header>
+
+  <style>
+    @media (max-width: 860px) {
+      [data-desktop-nav], [data-desktop-cta] { display: none !important; }
+      [data-mobile-toggle] { display: inline-flex !important; }
+    }
+  </style>
+
+  <main style="padding-top: 132px; padding-bottom: 0; display: flex; flex-direction: column; gap: 160px; position: relative">
+
+    <!-- Hero -->
+    <section style="padding:0 20px;max-width:1280px;margin:0 auto;width:100%;position:relative;">
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 64px; position: relative">
+        <div style="{{ herotextstyle }}flex: 1 1 480px; min-width: 300px; position: relative">
+          <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;background:rgba(78,222,163,0.08);border:1px solid rgba(78,222,163,0.25);color:#4edea3;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.05em;margin-bottom:24px;">
+            <span class="material-symbols-outlined" style="font-size:14px;">bolt</span>
+            SOFTWAROVÉ STUDIO
+          </div>
+          <h1 style="font-family:'Be Vietnam Pro',sans-serif;font-weight:700;font-size:clamp(34px,5vw,54px);line-height:1.12;letter-spacing:-0.02em;margin:0 0 24px;">
+            Vyvíjíme softwarová řešení <span style="color:#4edea3;text-shadow:0 0 24px rgba(16,185,129,0.35);">na míru</span>, na která se můžete spolehnout.
+          </h1>
+          <p style="font-size:18px;line-height:1.6;color:#bbcabf;max-width:520px;margin:0 0 36px;">
+            Od analýzy přes vývoj až po dlouhodobou správu. Pomáháme firmám digitalizovat procesy pomocí moderních, škálovatelných technologií a férové spolupráce.
+          </p>
+          <div style="display:flex;flex-wrap:wrap;gap:16px;">
+            <a href="#kontakt" style="display:inline-flex;align-items:center;justify-content:center;padding:16px 32px;border-radius:999px;background:#10b981;color:#00291c;font-family:'JetBrains Mono',monospace;font-weight:600;font-size:14px;box-shadow:0 0 22px rgba(16,185,129,0.28);">Naplánovat konzultaci</a>
+            <a href="#sluzby" style="display:inline-flex;align-items:center;justify-content:center;padding:16px 32px;border-radius:999px;border:1px solid #4edea3;color:#4edea3;font-family:'JetBrains Mono',monospace;font-size:14px;">Naše služby</a>
+          </div>
+        </div>
+        <figure aria-label="Ukázka vývoje softwarového řešení na míru" style="{{ heroCodeStyle }}flex:1 1 460px;min-width:300px;margin:0;">
+          <div style="background:#1f2a3d;border-radius:14px;border:1px solid rgba(78,222,163,0.12);box-shadow:0 0 26px rgba(16,185,129,0.12);overflow:hidden;">
+            <div style="background:#2a3548;padding:12px 18px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(215,227,252,0.06);">
+              <div style="width:11px;height:11px;border-radius:50%;background:#ffb4ab;"></div>
+              <div style="width:11px;height:11px;border-radius:50%;background:#45dfa4;"></div>
+              <div style="width:11px;height:11px;border-radius:50%;background:#10b981;"></div>
+              <div style="margin-left:10px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#bbcabf;">vevit_studio.ts</div>
+            </div><div style="padding:26px;font-family:'JetBrains Mono',monospace;font-size:14px;line-height:1.9;color:rgba(78,222,163,0.9);overflow-x:auto;">
+              <span style="color:#00bd85;">const</span> studio <span style="color:#d7e3fc;">=</span> <span style="color:#62dcad;">VeVit.init</span>();<br><br>
+              <span style="color:#00bd85;">const</span> reseni <span style="color:#d7e3fc;">=</span> studio.<span style="color:#62dcad;">createBespokeSolution</span>({<br>
+              &nbsp;&nbsp;client: <span style="color:#10b981;">'Vaše firma'</span>,<br>
+              &nbsp;&nbsp;quality: <span style="color:#10b981;">'Premium'</span>,<br>
+              &nbsp;&nbsp;scalable: <span style="color:#00bd85;">true</span><br>
+              });<br><br>
+              studio.<span style="color:#62dcad;">deploy</span>(reseni);<span style="display:inline-block;width:8px;height:16px;background:#4edea3;margin-left:4px;animation:blink 1.1s infinite;"></span>
+            </div>
+            
+          </div>
+        </figure>
+      </div>
+      <a href="#sluzby" data-scroll-indicator="true" style="position:absolute;left:50%;transform:translateX(-50%);bottom:-64px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#bbcabf;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;">
+        Scroll
+        <span class="material-symbols-outlined" style="animation:bounceSlow 2s ease-in-out infinite;">keyboard_arrow_down</span>
+      </a>
+    </section>
+
+    <style>@media (max-width: 1024px) { [data-scroll-indicator] { display: none !important; } }</style>
+  <style>@media (max-width: 900px) { [data-cards-grid] { grid-template-columns: repeat(2, 1fr) !important; } }
+  @media (max-width: 560px) { [data-cards-grid] { grid-template-columns: 1fr !important; } }</style>
+
+    <!-- Services -->
+    
+
+    <!-- Process -->
+    <section id="sluzby" style="padding: 0 20px; max-width: 1280px; margin: 0 auto; width: 100%; position: relative">
+      <div ref="{{ servicesHeadRef }}" style="{{ servicesHeadStyle }}text-align:center;max-width:640px;margin:0 auto 56px;">
+        <div style="font-family:'JetBrains Mono',monospace;color:#4edea3;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;">Služby</div>
+        <h2 style="font-family:'Be Vietnam Pro',sans-serif;font-weight:600;font-size:clamp(26px,3vw,34px);margin:0 0 14px;">S čím vám pomůžeme</h2>
+        <p style="color:#bbcabf;font-size:16px;margin:0;">Komplexní péče o vaše digitální produkty od prvního nápadu po dlouhodobý provoz.</p>
+      </div>
+      <div data-cards-grid="true" ref="{{ servicesGridRef }}" style="{{ servicesGridStyle }}">
+        <article data-service-card="custom-software" style="background:#142032;border-radius:14px;padding:22px;border:1px solid rgba(78,222,163,0.1);">
+          <div style="width:40px;height:40px;border-radius:10px;background:rgba(78,222,163,0.1);display:flex;align-items:center;justify-content:center;color:#4edea3;margin-bottom:16px;"><span class="material-symbols-outlined" style="font-size:20px;">code</span></div>
+          <h3 style="font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:600;margin:0 0 8px;">Vývoj software na míru</h3>
+          <p style="color:#bbcabf;font-size:13px;line-height:1.55;margin:0;">Webové a mobilní aplikace, interní systémy a integrace navržené přesně podle vašich procesů.</p>
+        </article>
+        <article data-service-card="maintenance" style="background:#142032;border-radius:14px;padding:22px;border:1px solid rgba(78,222,163,0.1);">
+          <div style="width:40px;height:40px;border-radius:10px;background:rgba(78,222,163,0.1);display:flex;align-items:center;justify-content:center;color:#4edea3;margin-bottom:16px;"><span class="material-symbols-outlined" style="font-size:20px;">settings_suggest</span></div>
+          <h3 style="font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:600;margin:0 0 8px;">Správa a údržba</h3>
+          <p style="color:#bbcabf;font-size:13px;line-height:1.55;margin:0;">Proaktivní monitoring, pravidelné aktualizace a technická podpora, díky které systém spolehlivě běží.</p>
+        </article>
+        <article data-service-card="consulting" style="background:#142032;border-radius:14px;padding:22px;border:1px solid rgba(78,222,163,0.1);">
+          <div style="width:40px;height:40px;border-radius:10px;background:rgba(78,222,163,0.1);display:flex;align-items:center;justify-content:center;color:#4edea3;margin-bottom:16px;"><span class="material-symbols-outlined" style="font-size:20px;">analytics</span></div>
+          <h3 style="font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:600;margin:0 0 8px;">Konzultace a analýza</h3>
+          <p style="color:#bbcabf;font-size:13px;line-height:1.55;margin:0;">Důkladná analýza požadavků a návrh architektury s jasným rozpočtem i harmonogramem.</p>
+        </article>
+        <article data-service-card="scalability" style="background:#142032;border-radius:14px;padding:22px;border:1px solid rgba(78,222,163,0.1);">
+          <div style="width:40px;height:40px;border-radius:10px;background:rgba(78,222,163,0.1);display:flex;align-items:center;justify-content:center;color:#4edea3;margin-bottom:16px;"><span class="material-symbols-outlined" style="font-size:20px;">trending_up</span></div>
+          <h3 style="font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:600;margin:0 0 8px;">Škálovatelnost a výkon</h3>
+          <p style="color:#bbcabf;font-size:13px;line-height:1.55;margin:0;">Architektura připravená na růst od prvních uživatelů až po tisíce transakcí denně.</p>
+        </article>
+      </div>
+    </section><section id="proces" style="padding:0 20px;max-width:1280px;margin:0 auto;width:100%;">
+      <div ref="{{ processHeadRef }}" style="{{ processHeadStyle }}text-align:center;max-width:640px;margin:0 auto 56px;">
+        <div style="font-family:'JetBrains Mono',monospace;color:#4edea3;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;">Proces</div>
+        <h2 style="font-family:'Be Vietnam Pro',sans-serif;font-weight:600;font-size:clamp(26px,3vw,34px);margin:0 0 14px;">Jak spolupráce probíhá</h2>
+        <p style="color:#bbcabf;font-size:16px;margin:0;">Pět kroků od prvního rozhovoru po dlouhodobou podporu.</p>
+      </div>
+      <div data-cards-grid="true" ref="{{ processGridRef }}" style="{{ processGridStyle }}">
+        <article data-process-step="consultation" style="position:relative;padding:20px 16px;background:#142032;border-radius:14px;border:1px solid rgba(78,222,163,0.08);">
+          <div style="font-family:'JetBrains Mono',monospace;color:rgba(78,222,163,0.35);font-size:26px;font-weight:600;margin-bottom:10px;">01</div>
+          <h3 style="font-size:14px;font-weight:600;margin:0 0 6px;color:#d7e3fc;">Konzultace</h3>
+          <p style="color:#bbcabf;font-size:12px;line-height:1.5;margin:0;">Probereme váš záměr, cíle a přibližný rozpočet.</p>
+        </article>
+        <article data-process-step="solution-design" style="position:relative;padding:20px 16px;background:#142032;border-radius:14px;border:1px solid rgba(78,222,163,0.08);">
+          <div style="font-family:'JetBrains Mono',monospace;color:rgba(78,222,163,0.35);font-size:26px;font-weight:600;margin-bottom:10px;">02</div>
+          <h3 style="font-size:14px;font-weight:600;margin:0 0 6px;color:#d7e3fc;">Návrh řešení</h3>
+          <p style="color:#bbcabf;font-size:12px;line-height:1.5;margin:0;">Navrhneme architekturu, rozsah prací a harmonogram.</p>
+        </article>
+        <article data-process-step="development" style="position:relative;padding:20px 16px;background:#142032;border-radius:14px;border:1px solid rgba(78,222,163,0.08);">
+          <div style="font-family:'JetBrains Mono',monospace;color:rgba(78,222,163,0.35);font-size:26px;font-weight:600;margin-bottom:10px;">03</div>
+          <h3 style="font-size:14px;font-weight:600;margin:0 0 6px;color:#d7e3fc;">Vývoj</h3>
+          <p style="color:#bbcabf;font-size:12px;line-height:1.5;margin:0;">Iterativní vývoj s pravidelnými ukázkami postupu.</p>
+        </article>
+        <article data-process-step="deployment" style="position:relative;padding:20px 16px;background:#142032;border-radius:14px;border:1px solid rgba(78,222,163,0.08);">
+          <div style="font-family:'JetBrains Mono',monospace;color:rgba(78,222,163,0.35);font-size:26px;font-weight:600;margin-bottom:10px;">04</div>
+          <h3 style="font-size:14px;font-weight:600;margin:0 0 6px;color:#d7e3fc;">Nasazení</h3>
+          <p style="color:#bbcabf;font-size:12px;line-height:1.5;margin:0;">Testování, ladění a spuštění do ostrého provozu.</p>
+        </article>
+        <article data-process-step="support" style="position:relative;padding:20px 16px;background:#142032;border-radius:14px;border:1px solid rgba(78,222,163,0.08);">
+          <div style="font-family:'JetBrains Mono',monospace;color:rgba(78,222,163,0.35);font-size:26px;font-weight:600;margin-bottom:10px;">05</div>
+          <h3 style="font-size:14px;font-weight:600;margin:0 0 6px;color:#d7e3fc;">Podpora</h3>
+          <p style="color:#bbcabf;font-size:12px;line-height:1.5;margin:0;">Dlouhodobá správa, aktualizace a další rozvoj.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- References -->
+    <section id="reference" style="padding: 0 20px; max-width: 1280px; margin: 0 auto; width: 100%; display: none">
+      <div ref="{{ referencesHeadRef }}" style="{{ referencesHeadStyle }}text-align:center;max-width:640px;margin:0 auto 48px;">
+        <div style="font-family:'JetBrains Mono',monospace;color:#4edea3;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;">Reference</div>
+        <h2 style="font-family:'Be Vietnam Pro',sans-serif;font-weight:600;font-size:clamp(26px,3vw,34px);margin:0 0 14px;">Vybrané projekty</h2>
+        <p style="color:#bbcabf;font-size:16px;margin:0;">Případové studie zveřejníme zde, jakmile budou k dispozici — prostor je připraven k doplnění.</p>
+      </div>
+      <div data-cards-grid="true" ref="{{ referencesGridRef }}" style="{{ referencesGridStyle }}">
+        <div style="border-radius:14px;overflow:hidden;border:1px dashed rgba(78,222,163,0.3);background:#101c2e;">
+          <div style="height:100px;background:repeating-linear-gradient(135deg, rgba(78,222,163,0.07) 0px, rgba(78,222,163,0.07) 10px, transparent 10px, transparent 20px);display:flex;align-items:center;justify-content:center;color:#bbcabf;font-family:'JetBrains Mono',monospace;font-size:11px;">screenshot projektu</div>
+          <div style="padding:16px;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#4edea3;margin-bottom:6px;">Případová studie</div>
+            <h3 style="font-size:14px;font-weight:600;margin:0 0 6px;">Název projektu</h3>
+            <p style="color:#bbcabf;font-size:12px;line-height:1.5;margin:0;">Stručný popis zadání a dosaženého výsledku doplníme po dokončení projektu.</p>
+          </div>
+        </div>
+        <div style="border-radius:14px;overflow:hidden;border:1px dashed rgba(78,222,163,0.3);background:#101c2e;">
+          <div style="height:100px;background:repeating-linear-gradient(135deg, rgba(78,222,163,0.07) 0px, rgba(78,222,163,0.07) 10px, transparent 10px, transparent 20px);display:flex;align-items:center;justify-content:center;color:#bbcabf;font-family:'JetBrains Mono',monospace;font-size:11px;">screenshot projektu</div>
+          <div style="padding:16px;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#4edea3;margin-bottom:6px;">Případová studie</div>
+            <h3 style="font-size:14px;font-weight:600;margin:0 0 6px;">Název projektu</h3>
+            <p style="color:#bbcabf;font-size:12px;line-height:1.5;margin:0;">Stručný popis zadání a dosaženého výsledku doplníme po dokončení projektu.</p>
+          </div>
+        </div>
+        <div style="border-radius:14px;overflow:hidden;border:1px dashed rgba(78,222,163,0.3);background:#101c2e;">
+          <div style="height:100px;background:repeating-linear-gradient(135deg, rgba(78,222,163,0.07) 0px, rgba(78,222,163,0.07) 10px, transparent 10px, transparent 20px);display:flex;align-items:center;justify-content:center;color:#bbcabf;font-family:'JetBrains Mono',monospace;font-size:11px;">screenshot projektu</div>
+          <div style="padding:16px;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#4edea3;margin-bottom:6px;">Případová studie</div>
+            <h3 style="font-size:14px;font-weight:600;margin:0 0 6px;">Název projektu</h3>
+            <p style="color:#bbcabf;font-size:12px;line-height:1.5;margin:0;">Stručný popis zadání a dosaženého výsledku doplníme po dokončení projektu.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Promo -->
+    <section id="nabidka" style="padding:0 20px;max-width:1280px;margin:0 auto;width:100%;">
+      <aside aria-labelledby="specialni-nabidka-title" ref="{{ promoRef }}" style="{{ promoStyle }}background:#2e394d;border-radius:20px;padding:48px;border:1px solid rgba(78,222,163,0.2);position:relative;overflow:hidden;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:32px;box-shadow:0 0 26px rgba(16,185,129,0.14);">
+        <div style="position:absolute;right:0;top:0;width:260px;height:260px;background:rgba(78,222,163,0.1);border-radius:50%;filter:blur(80px);pointer-events:none;"></div>
+        <div style="position:relative;z-index:1;max-width:480px;">
+          <div style="display:inline-block;padding:5px 14px;border-radius:999px;background:rgba(78,222,163,0.1);color:#4edea3;font-family:'JetBrains Mono',monospace;font-size:12px;border:1px solid rgba(78,222,163,0.2);margin-bottom:16px;">Speciální nabídka</div>
+          <h2 id="specialni-nabidka-title" style="font-family:'Be Vietnam Pro',sans-serif;font-weight:700;font-size:clamp(24px,3vw,32px);margin:0 0 14px;line-height:1.25;">6 měsíců správy zdarma pro nové klienty</h2>
+          <p style="color:#bbcabf;font-size:15px;line-height:1.6;margin:0;">Nastartujte spolupráci s výhodou. Při podpisu smlouvy na vývoj nového systému získáte půl roku následné péče zdarma.</p>
+        </div>
+        <div style="position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:22px;background:rgba(20,32,50,0.5);padding:26px;border-radius:14px;border:1px solid rgba(215,227,252,0.08);">
+          <div style="text-align:center;">
+            <span style="display:block;font-family:'Inter',sans-serif;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#bbcabf;margin-bottom:10px;">Zadejte kód při kontaktu</span>
+            <button onClick="{{ copyPromo }}" title="Kliknutím zkopírujete kód" style="cursor:pointer;border:2px dashed #4edea3;color:#4edea3;font-family:'JetBrains Mono',monospace;font-size:19px;font-weight:600;letter-spacing:0.1em;padding:12px 24px;border-radius:10px;background:rgba(78,222,163,0.05);">SOFTWARE</button>
+            <span style="{{ promoHintStyle }}display:block;font-family:'Inter',sans-serif;font-size:12px;color:#62dcad;margin-top:8px;">Kód zkopírován!</span>
+          </div>
+          <a href="#kontakt" style="width:100%;text-align:center;display:inline-flex;align-items:center;justify-content:center;padding:13px 22px;border-radius:999px;background:#10b981;color:#00291c;font-family:'JetBrains Mono',monospace;font-weight:600;font-size:14px;">Získat nabídku</a>
+        </div>
+      </aside>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" style="padding:0 20px;max-width:900px;margin:0 auto;width:100%;">
+      <div ref="{{ faqHeadRef }}" style="{{ faqHeadStyle }}text-align:center;max-width:640px;margin:0 auto 40px;">
+        <div style="font-family:'JetBrains Mono',monospace;color:#4edea3;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;">FAQ</div>
+        <h2 style="font-family:'Be Vietnam Pro',sans-serif;font-weight:600;font-size:clamp(26px,3vw,34px);margin:0 0 14px;">Časté dotazy</h2>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <article data-faq-item="development-time" style="background:#142032;border-radius:12px;border:1px solid rgba(78,222,163,0.08);overflow:hidden;">
+          <h3 style="margin:0;">
+            <button aria-controls="faq-answer-0" onClick="{{ faqToggle0 }}" style="width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;color:#d7e3fc;font-size:16px;font-weight:600;font-family:'Inter',sans-serif;">
+              Jak dlouho trvá vývoj aplikace na míru?
+              <span class="material-symbols-outlined" style="{{ faqIconStyle0 }}">expand_more</span>
+            </button>
+          </h3>
+          <div id="faq-answer-0" style="{{ faqBodyStyle0 }}">
+            <p style="margin:0 24px 20px;color:#bbcabf;font-size:15px;line-height:1.6;">Záleží na rozsahu jednoduchý nástroj dodáme v řádu týdnů, komplexní systém v řádu měsíců. Přesný harmonogram dostanete po úvodní analýze.</p>
+          </div>
+        </article>
+        <article data-faq-item="pricing" style="background:#142032;border-radius:12px;border:1px solid rgba(78,222,163,0.08);overflow:hidden;">
+          <h3 style="margin:0;">
+            <button aria-controls="faq-answer-1" onClick="{{ faqToggle1 }}" style="width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;color:#d7e3fc;font-size:16px;font-weight:600;font-family:'Inter',sans-serif;">
+              Jak probíhá cenová nabídka?
+              <span class="material-symbols-outlined" style="{{ faqIconStyle1 }}">expand_more</span>
+            </button>
+          </h3>
+          <div id="faq-answer-1" style="{{ faqBodyStyle1 }}">
+            <p style="margin:0 24px 20px;color:#bbcabf;font-size:15px;line-height:1.6;">Po nezávazné konzultaci připravíme nabídku s rozpočtem a harmonogramem, obvykle do tří pracovních dnů.</p>
+          </div>
+        </article>
+        <article data-faq-item="maintenance" style="background:#142032;border-radius:12px;border:1px solid rgba(78,222,163,0.08);overflow:hidden;">
+          <h3 style="margin:0;">
+            <button aria-controls="faq-answer-2" onClick="{{ faqToggle2 }}" style="width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;color:#d7e3fc;font-size:16px;font-weight:600;font-family:'Inter',sans-serif;">
+              Zajišťujete i provoz a údržbu po spuštění?
+              <span class="material-symbols-outlined" style="{{ faqIconStyle2 }}">expand_more</span>
+            </button>
+          </h3>
+          <div id="faq-answer-2" style="{{ faqBodyStyle2 }}">
+            <p style="margin:0 24px 20px;color:#bbcabf;font-size:15px;line-height:1.6;">Ano, nabízíme dlouhodobou správu, monitoring a další rozvoj i po dokončení projektu.</p>
+          </div>
+        </article>
+        <article data-faq-item="technologies" style="background:#142032;border-radius:12px;border:1px solid rgba(78,222,163,0.08);overflow:hidden;">
+          <h3 style="margin:0;">
+            <button aria-controls="faq-answer-3" onClick="{{ faqToggle3 }}" style="width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;color:#d7e3fc;font-size:16px;font-weight:600;font-family:'Inter',sans-serif;">
+              S jakými technologiemi pracujete?
+              <span class="material-symbols-outlined" style="{{ faqIconStyle3 }}">expand_more</span>
+            </button>
+          </h3>
+          <div id="faq-answer-3" style="{{ faqBodyStyle3 }}">
+            <p style="margin:0 24px 20px;color:#bbcabf;font-size:15px;line-height:1.6;">Volíme technologie podle potřeb projektu typicky moderní webové frameworky, cloudovou infrastrukturu a osvědčené databázové systémy.</p>
+          </div>
+        </article>
+        <article data-faq-item="nda" style="background:#142032;border-radius:12px;border:1px solid rgba(78,222,163,0.08);overflow:hidden;">
+          <h3 style="margin:0;">
+            <button aria-controls="faq-answer-4" onClick="{{ faqToggle4 }}" style="width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;color:#d7e3fc;font-size:16px;font-weight:600;font-family:'Inter',sans-serif;">
+              Podepisujete NDA?
+              <span class="material-symbols-outlined" style="{{ faqIconStyle4 }}">expand_more</span>
+            </button>
+          </h3>
+          <div id="faq-answer-4" style="{{ faqBodyStyle4 }}">
+            <p style="margin:0 24px 20px;color:#bbcabf;font-size:15px;line-height:1.6;">Samozřejmě, důvěrnost vašich dat a nápadů je pro nás standardem.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="kontakt" style="padding:0 20px;max-width:1280px;margin:0 auto;width:100%;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(340px, 1fr));gap:56px;">
+        <address ref="{{ contactLeftRef }}" style="{{ contactLeftStyle }}font-style:normal;">
+          <div>
+            <h2 style="font-family:'Be Vietnam Pro',sans-serif;font-weight:600;font-size:clamp(26px,3vw,34px);margin:0 0 10px;">Kontakt</h2>
+            <p style="color:#bbcabf;font-size:16px;margin:0;">Máte projekt na mysli? Napište nám a probereme technické detaily.</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:22px;">
+            <div style="display:flex;align-items:flex-start;gap:16px;">
+              <div style="width:40px;height:40px;border-radius:50%;background:#142032;display:flex;align-items:center;justify-content:center;color:#4edea3;flex-shrink:0;border:1px solid rgba(78,222,163,0.1);"><span class="material-symbols-outlined">business</span></div>
+              <div>
+                <h3 style="font-family:'JetBrains Mono',monospace;font-size:14px;margin:0 0 4px;color:#d7e3fc;">Studio</h3>
+                <p style="color:#bbcabf;margin:0;font-size:15px;">VeVit Software Studios</p>
+                <p style="color:#bbcabf;margin:0;font-size:15px;">Vít Vedral — Founder / Jednatel</p>
+              </div>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:16px;">
+              <div style="width:40px;height:40px;border-radius:50%;background:#142032;display:flex;align-items:center;justify-content:center;color:#4edea3;flex-shrink:0;border:1px solid rgba(78,222,163,0.1);"><span class="material-symbols-outlined">call</span></div>
+              <div>
+                <h3 style="font-family:'JetBrains Mono',monospace;font-size:14px;margin:0 0 4px;color:#d7e3fc;">Telefon</h3>
+                <a href="tel:+420725589559" style="color:#bbcabf;font-size:15px;">+420 725 589 559</a>
+              </div>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:16px;">
+              <div style="width:40px;height:40px;border-radius:50%;background:#142032;display:flex;align-items:center;justify-content:center;color:#4edea3;flex-shrink:0;border:1px solid rgba(78,222,163,0.1);"><span class="material-symbols-outlined">mail</span></div>
+              <div>
+                <h3 style="font-family:'JetBrains Mono',monospace;font-size:14px;margin:0 0 4px;color:#d7e3fc;">Email</h3>
+                <a href="mailto:studio@vevit.cz" onClick="{{ copyEmail }}" style="color:#bbcabf;font-size:15px;">studio@vevit.cz</a>
+              </div>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:16px;">
+              <div style="width:40px;height:40px;border-radius:50%;background:#142032;display:flex;align-items:center;justify-content:center;color:#4edea3;flex-shrink:0;border:1px solid rgba(78,222,163,0.1);"><span class="material-symbols-outlined">location_on</span></div>
+              <div>
+                <h3 style="font-family:'JetBrains Mono',monospace;font-size:14px;margin:0 0 4px;color:#d7e3fc;">Lokace</h3>
+                <a href="https://www.google.com/maps/search/?api=1&amp;query=Slep%C3%A1+64%2C+250+63+%C4%8Cakovi%C4%8Dky" target="_blank" rel="noopener" style="color:#bbcabf;font-size:15px;">Slepá 64, 250 63 Čakovičky</a>
+              </div>
+            </div>
+          </div>
+        </address>
+        <div ref="{{ contactRightRef }}" style="{{ contactRightStyle }}">
+          <sc-if value="{{ hasAlert }}">
+            <div style="{{ alertStyle }}">{{ alertMessage }}</div>
+          </sc-if>
+          <form onSubmit="{{ submitForm }}" style="display:flex;flex-direction:column;gap:22px;">
+            <div>
+              <label for="name" style="display:block;font-family:'JetBrains Mono',monospace;font-size:13px;color:#bbcabf;margin-bottom:8px;">Jméno</label>
+              <input id="name" name="name" placeholder="Vaše jméno" type="text" required="true" style="width:100%;background:#071325;border:1px solid rgba(215,227,252,0.12);border-radius:10px;padding:13px 16px;color:#d7e3fc;font-family:'Inter',sans-serif;font-size:15px;">
+            </div>
+            <div>
+              <label for="email" style="display:block;font-family:'JetBrains Mono',monospace;font-size:13px;color:#bbcabf;margin-bottom:8px;">Email</label>
+              <input id="email" name="email" placeholder="vas@email.cz" type="email" required="true" style="width:100%;background:#071325;border:1px solid rgba(215,227,252,0.12);border-radius:10px;padding:13px 16px;color:#d7e3fc;font-family:'Inter',sans-serif;font-size:15px;">
+            </div>
+            <div>
+              <label for="message" style="display:block;font-family:'JetBrains Mono',monospace;font-size:13px;color:#bbcabf;margin-bottom:8px;">Zpráva</label>
+              <textarea id="message" name="message" placeholder="Povězte nám o svém projektu…" rows="4" required="true" style="width:100%;background:#071325;border:1px solid rgba(215,227,252,0.12);border-radius:10px;padding:13px 16px;color:#d7e3fc;font-family:'Inter',sans-serif;font-size:15px;resize:none;"></textarea>
+            </div>
+            <button type="submit" disabled="{{ submitting }}" style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:16px;border:none;border-radius:999px;background:#10b981;color:#00291c;font-family:'JetBrains Mono',monospace;font-weight:600;font-size:15px;cursor:pointer;">
+              {{ submitLabel }}
+              <span class="material-symbols-outlined" style="font-size:18px;">send</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  
+
+  <!-- Toast -->
+  <div style="{{ toastStyle }}">{{ toastMsg }}</div>
+
+  <!-- Back to top -->
+  <button onClick="{{ scrollTop }}" aria-label="Nahoru" style="{{ backToTopStyle }}">
+    <span class="material-symbols-outlined">arrow_upward</span>
+  </button>
+
+  <!-- Privacy modal -->
+  <sc-if value="{{ privacyOpen }}">
+    <div style="position:fixed;inset:0;z-index:80;display:flex;align-items:center;justify-content:center;padding:16px;">
+      <div onClick="{{ closePrivacy }}" style="position:absolute;inset:0;background:rgba(7,19,37,0.8);backdrop-filter:blur(4px);animation:fadeModal 0.2s ease both;"></div>
+      <div role="dialog" aria-modal="true" aria-labelledby="privacy-title" style="position:relative;background:#142032;border-radius:16px;border:1px solid rgba(78,222,163,0.2);box-shadow:0 0 30px rgba(16,185,129,0.15);width:100%;max-width:680px;max-height:85vh;display:flex;flex-direction:column;animation:popIn 0.25s cubic-bezier(0.22,1,0.36,1) both;">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid rgba(215,227,252,0.06);flex-shrink:0;">
+          <h3 id="privacy-title" style="font-family:'Be Vietnam Pro',sans-serif;font-size:20px;margin:0;">Ochrana osobních údajů</h3>
+          <button onClick="{{ closePrivacy }}" aria-label="Zavřít" style="background:none;border:none;color:#bbcabf;cursor:pointer;"><span class="material-symbols-outlined">close</span></button>
+        </div>
+        <div style="padding:22px 24px;overflow-y:auto;font-size:15px;line-height:1.65;color:#bbcabf;">
+          <p style="font-style:italic;color:#86948a;font-size:13px;margin:0 0 18px;">Poslední aktualizace: 18. 7. 2026</p>
+          <h4 style="color:#d7e3fc;font-size:16px;margin:18px 0 8px;">1. Správce osobních údajů</h4>
+          <p>Správcem osobních údajů je <strong style="color:#d7e3fc;">VeVit Technologies</strong> (divize VeVit Software Studios), Vít Vedral — Founder / Jednatel, Slepá 64, 250 63 Čakovičky. Email: studio@vevit.cz, telefon: +420 725 589 559.</p>
+          <h4 style="color:#d7e3fc;font-size:16px;margin:18px 0 8px;">2. Jaké údaje zpracováváme</h4>
+          <p>Zpracováváme údaje z kontaktního formuláře (jméno, e-mail, telefon, obsah zprávy), z e-mailové či telefonické komunikace a fakturační údaje potřebné k plnění smlouvy. Web nepoužívá sledovací cookies ani analytické nástroje.</p>
+          <h4 style="color:#d7e3fc;font-size:16px;margin:18px 0 8px;">3. Účel a právní základ</h4>
+          <p>Vyřízení poptávky a plnění smlouvy (čl. 6 odst. 1 písm. b) a f) GDPR), vedení účetnictví (písm. c)) a případné zasílání obchodních sdělení na základě souhlasu (písm. a)).</p>
+          <h4 style="color:#d7e3fc;font-size:16px;margin:18px 0 8px;">4. Doba uchovávání</h4>
+          <p>Údaje z poptávek uchováváme max. 12 měsíců od poslední komunikace, pokud nedojde ke spolupráci; smluvní údaje po dobu vztahu a zákonem vyžadovanou dobu poté.</p>
+          <h4 style="color:#d7e3fc;font-size:16px;margin:18px 0 8px;">5. Předávání údajů</h4>
+          <p>Údaje nepředáváme třetím stranám k marketingu. Ke zpracování dat z formuláře využíváme službu FormSubmit; údaje tak mohou být technicky přeneseny mimo EU/EHP.</p>
+          <h4 style="color:#d7e3fc;font-size:16px;margin:18px 0 8px;">6. Vaše práva</h4>
+          <p>Máte právo na přístup, opravu, výmaz, omezení zpracování, přenositelnost a vznesení námitky. Uplatníte je na studio@vevit.cz. Stížnost lze podat u Úřadu pro ochranu osobních údajů (www.uoou.cz).</p>
+          <h4 style="color:#d7e3fc;font-size:16px;margin:18px 0 8px;">7. Zabezpečení a změny</h4>
+          <p>Přijali jsme přiměřená technická a organizační opatření k ochraně údajů. Tyto zásady můžeme čas od času aktualizovat; aktuální verze je vždy dostupná na této stránce.</p>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <style>@keyframes fadeModal { from { opacity: 0; } to { opacity: 1; } }</style><footer style="margin-top: 100px; padding: 48px 20px; background: #030e20; border-top: 1px solid rgba(215,227,252,0.06); max-width: 1280px; margin-left: auto; margin-right: auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px">
+    <p style="display:flex;align-items:center;gap:10px;font-family:'Be Vietnam Pro',sans-serif;font-weight:700;font-size:18px;color:#4edea3;margin:0;">
+      <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">terminal</span>
+      VeVit Software Studios
+    </p>
+    <nav aria-label="Navigace v zápatí">
+    <ul style="display:flex;flex-wrap:wrap;gap:24px;list-style:none;margin:0;padding:0;">
+      <li><a href="#sluzby" style="color:#bbcabf;font-size:13px;">Služby</a></li>
+      <li><a href="#proces" style="color:#bbcabf;font-size:13px;">Proces</a></li>
+      <li><a href="#reference" style="color:#bbcabf;font-size:13px;">Reference</a></li>
+      <li><a href="#faq" style="color:#bbcabf;font-size:13px;">FAQ</a></li>
+      <li><a href="#" onClick="{{ openPrivacy }}" style="color:#bbcabf;font-size:13px;">Ochrana údajů</a></li>
+    </ul>
+    </nav>
+    <small style="color:#bbcabf;font-size:13px;">© {{ year }} VeVit Software Studios, divize VeVit Technologies.</small>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;cardColumns&quot;: {&quot;editor&quot;: &quot;range&quot;, &quot;default&quot;: 3, &quot;min&quot;: 2, &quot;max&quot;: 4, &quot;step&quot;: 1, &quot;tsType&quot;: &quot;number&quot;, &quot;section&quot;: &quot;Rozložení karet (Služby, Proces, Reference)&quot;}
+}">
+
+class Component extends DCLogic {
+  state = {
+    menuOpen: false,
+    scrolled: false,
+    showBackToTop: false,
+    promoHint: false,
+    toastVisible: false,
+    toastMsg: '',
+    faqOpen: [false, false, false, false, false],
+    submitting: false,
+    alertType: null,
+    alertMsg: '',
+    privacyOpen: false,
+    revealed: {}
+  };
+
+  revealKeys = ['servicesHead','servicesGrid','processHead','processGrid','referencesHead','referencesGrid','promo','faqHead','contactLeft','contactRight'];
+  revealRefs = {};
+  setRevealRef = (key) => (el) => { if (el) this.revealRefs[key] = el; };
+
+  componentDidMount() {
+    this.io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const key = Object.keys(this.revealRefs).find(k => this.revealRefs[k] === entry.target);
+          if (key) {
+            this.setState(s => ({ revealed: { ...s.revealed, [key]: true } }));
+            this.io.unobserve(entry.target);
+          }
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    this.revealKeys.forEach(k => { if (this.revealRefs[k]) this.io.observe(this.revealRefs[k]); });
+
+    this.onScroll = () => this.setState({ showBackToTop: window.scrollY > 600 });
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+  }
+
+  componentWillUnmount() {
+    if (this.io) this.io.disconnect();
+    if (this.onScroll) window.removeEventListener('scroll', this.onScroll);
+    clearTimeout(this._toastTimer);
+    clearTimeout(this._promoTimer);
+  }
+
+  toggleMenu = () => this.setState(s => ({ menuOpen: !s.menuOpen }));
+  closeMenu = () => this.setState({ menuOpen: false });
+  scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  isTouch = () => (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(pointer: coarse)').matches);
+
+  copyToClipboard = async (text) => {
+    try {
+      if (navigator.clipboard && window.isSecureContext) { await navigator.clipboard.writeText(text); return true; }
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+      return true;
+    } catch (e) { return false; }
+  };
+
+  showToast = (msg) => {
+    this.setState({ toastVisible: true, toastMsg: msg });
+    clearTimeout(this._toastTimer);
+    this._toastTimer = setTimeout(() => this.setState({ toastVisible: false }), 1800);
+  };
+
+  copyPromo = async () => {
+    const ok = await this.copyToClipboard('SOFTWARE');
+    this.setState({ promoHint: true });
+    clearTimeout(this._promoTimer);
+    this._promoTimer = setTimeout(() => this.setState({ promoHint: false }), 2200);
+    if (!ok) this.showToast('Kopírování selhalo');
+  };
+
+  copyContact = (e, value) => {
+    if (this.isTouch()) return;
+    e.preventDefault();
+    this.copyToClipboard(value).then(ok => this.showToast(ok ? `Zkopírováno: ${value}` : 'Kopírování selhalo'));
+  };
+  copyEmail = (e) => this.copyContact(e, 'studio@vevit.cz');
+
+  makeFaqToggle = (i) => () => this.setState(s => {
+    const faqOpen = s.faqOpen.slice();
+    faqOpen[i] = !faqOpen[i];
+    return { faqOpen };
+  });
+
+  submitForm = async (e) => {
+    e.preventDefault();
+    this.setState({ submitting: true, alertType: null });
+    const form = e.target;
+    const formData = new FormData(form);
+    formData.append('_subject', 'Nová poptávka z webu VeVit Software Studios');
+    formData.append('_captcha', 'false');
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/studio@vevit.cz', {
+        method: 'POST', headers: { Accept: 'application/json' }, body: formData
+      });
+      const result = await response.json().catch(() => ({}));
+      const ok = result && (result.success === true || result.success === 'true');
+      if (ok) {
+        this.setState({ alertType: 'success', alertMsg: result.message || 'Děkujeme! Vaše zpráva byla odeslána.' });
+        form.reset();
+      } else {
+        this.setState({ alertType: 'error', alertMsg: result.message || 'Odeslání se nezdařilo. Zkuste to prosím později.' });
+      }
+    } catch (err) {
+      this.setState({ alertType: 'error', alertMsg: 'Nastala chyba při komunikaci se serverem. Zkuste to prosím později.' });
+    } finally {
+      this.setState({ submitting: false });
+    }
+  };
+
+  openPrivacy = (e) => { e.preventDefault(); this.setState({ privacyOpen: true }); document.body.style.overflow = 'hidden'; };
+  closePrivacy = () => { this.setState({ privacyOpen: false }); document.body.style.overflow = ''; };
+
+  reveal = (revealed, opts) => {
+    const { dir = 'up', delay = 0 } = opts || {};
+    const hidden = !revealed;
+    let transform = 'none';
+    if (hidden) {
+      transform = dir === 'up' ? 'translateY(28px)' : dir === 'left' ? 'translateX(-32px)' : 'translateX(32px)';
+    }
+    return {
+      opacity: hidden ? 0 : 1,
+      transform,
+      transition: `opacity 0.7s cubic-bezier(0.22,1,0.36,1) ${delay}ms, transform 0.7s cubic-bezier(0.22,1,0.36,1) ${delay}ms`
+    };
+  };
+
+  renderVals() {
+    const r = this.state.revealed;
+    const faqBodyStyle = (i) => ({
+      maxHeight: this.state.faqOpen[i] ? '240px' : '0px',
+      overflow: 'hidden',
+      transition: 'max-height 0.3s ease'
+    });
+    const faqIconStyle = (i) => ({
+      transition: 'transform 0.25s ease',
+      transform: this.state.faqOpen[i] ? 'rotate(180deg)' : 'rotate(0deg)',
+      color: '#4edea3'
+    });
+
+    return {
+      menuOpen: this.state.menuOpen,
+      menuIcon: this.state.menuOpen ? 'close' : 'menu',
+      toggleMenu: this.toggleMenu,
+      closeMenu: this.closeMenu,
+      navStyle: {
+        position: 'fixed', top: 0, left: 0, width: '100%', zIndex: 50,
+        background: 'rgba(7,19,37,0.82)', backdropFilter: 'blur(20px)',
+        borderBottom: '1px solid rgba(78,222,163,0.1)',
+        boxShadow: '0 0 20px rgba(16,185,129,0.08)',
+        animation: 'fadeDown 0.5s cubic-bezier(0.22,1,0.36,1) both'
+      },
+      heroTextStyle: this.reveal(r.heroText ?? true, { dir: 'up' }),
+      heroCodeStyle: this.reveal(r.heroText ?? true, { dir: 'up', delay: 120 }),
+      servicesHeadStyle: this.reveal(r.servicesHead, { dir: 'up' }),
+      servicesGridStyle: { display: 'grid', gap: '18px', ...this.reveal(r.servicesGrid, { dir: 'up', delay: 100 }), gridTemplateColumns: `repeat(${this.props.cardColumns ?? 3}, 1fr)` },
+      processHeadStyle: this.reveal(r.processHead, { dir: 'up' }),
+      processGridStyle: { display: 'grid', gap: '16px', ...this.reveal(r.processGrid, { dir: 'up', delay: 100 }), gridTemplateColumns: `repeat(${this.props.cardColumns ?? 3}, 1fr)` },
+      referencesHeadStyle: this.reveal(r.referencesHead, { dir: 'up' }),
+      referencesGridStyle: { display: 'grid', gap: '16px', ...this.reveal(r.referencesGrid, { dir: 'up', delay: 100 }), gridTemplateColumns: `repeat(${this.props.cardColumns ?? 3}, 1fr)` },
+      promoStyle: this.reveal(r.promo, { dir: 'up' }),
+      faqHeadStyle: this.reveal(r.faqHead, { dir: 'up' }),
+      contactLeftStyle: { display: 'flex', flexDirection: 'column', gap: '32px', ...this.reveal(r.contactLeft, { dir: 'left' }) },
+      contactRightStyle: { background: '#142032', borderRadius: '16px', padding: '32px', border: '1px solid rgba(78,222,163,0.1)', ...this.reveal(r.contactRight, { dir: 'right' }) },
+      servicesHeadRef: this.setRevealRef('servicesHead'),
+      servicesGridRef: this.setRevealRef('servicesGrid'),
+      processHeadRef: this.setRevealRef('processHead'),
+      processGridRef: this.setRevealRef('processGrid'),
+      referencesHeadRef: this.setRevealRef('referencesHead'),
+      referencesGridRef: this.setRevealRef('referencesGrid'),
+      promoRef: this.setRevealRef('promo'),
+      faqHeadRef: this.setRevealRef('faqHead'),
+      contactLeftRef: this.setRevealRef('contactLeft'),
+      contactRightRef: this.setRevealRef('contactRight'),
+
+      copyPromo: this.copyPromo,
+      promoHintStyle: { opacity: this.state.promoHint ? 1 : 0, transition: 'opacity 0.25s ease' },
+
+      copyEmail: this.copyEmail,
+
+      faqToggle0: this.makeFaqToggle(0), faqToggle1: this.makeFaqToggle(1), faqToggle2: this.makeFaqToggle(2),
+      faqToggle3: this.makeFaqToggle(3), faqToggle4: this.makeFaqToggle(4),
+      faqBodyStyle0: faqBodyStyle(0), faqBodyStyle1: faqBodyStyle(1), faqBodyStyle2: faqBodyStyle(2),
+      faqBodyStyle3: faqBodyStyle(3), faqBodyStyle4: faqBodyStyle(4),
+      faqIconStyle0: faqIconStyle(0), faqIconStyle1: faqIconStyle(1), faqIconStyle2: faqIconStyle(2),
+      faqIconStyle3: faqIconStyle(3), faqIconStyle4: faqIconStyle(4),
+
+      submitForm: this.submitForm,
+      submitting: this.state.submitting,
+      submitLabel: this.state.submitting ? 'Odesílám…' : 'Odeslat poptávku',
+      hasAlert: !!this.state.alertType,
+      alertMessage: this.state.alertMsg,
+      alertStyle: {
+        padding: '12px 16px', borderRadius: '10px', fontFamily: "'JetBrains Mono', monospace",
+        fontSize: '13px', lineHeight: 1.5, marginBottom: '20px',
+        background: this.state.alertType === 'success' ? 'rgba(16,185,129,0.15)' : 'rgba(255,99,99,0.15)',
+        border: `1px solid ${this.state.alertType === 'success' ? '#4edea3' : '#ff6363'}`,
+        color: this.state.alertType === 'success' ? '#80f9c8' : '#ff9999'
+      },
+
+      openPrivacy: this.openPrivacy, closePrivacy: this.closePrivacy, privacyOpen: this.state.privacyOpen,
+      scrollTop: this.scrollTop,
+
+      year: new Date().getFullYear(),
+
+      toastMsg: this.state.toastMsg,
+      toastStyle: {
+        position: 'fixed', bottom: '24px', left: '50%', transform: `translateX(-50%) translateY(${this.state.toastVisible ? '0' : '16px'})`,
+        zIndex: 70, background: '#1f2a3d', color: '#4edea3', border: '1px solid rgba(78,222,163,0.3)',
+        borderRadius: '999px', padding: '10px 20px', fontFamily: "'JetBrains Mono', monospace", fontSize: '12px',
+        opacity: this.state.toastVisible ? 1 : 0, pointerEvents: 'none', transition: 'all 0.3s ease', boxShadow: '0 0 20px rgba(16,185,129,0.15)'
+      },
+      backToTopStyle: {
+        position: 'fixed', bottom: '24px', right: '24px', zIndex: 50, width: '48px', height: '48px', borderRadius: '50%',
+        background: '#10b981', color: '#00291c', display: 'flex', alignItems: 'center', justifyContent: 'center', border: 'none', cursor: 'pointer',
+        boxShadow: '0 0 20px rgba(16,185,129,0.25)', opacity: this.state.showBackToTop ? 1 : 0,
+        transform: `translateY(${this.state.showBackToTop ? '0' : '16px'})`, pointerEvents: this.state.showBackToTop ? 'auto' : 'none',
+        transition: 'all 0.3s ease'
+      }
+    };
+  }
+}
+
+</script>
+</body>
+</html>

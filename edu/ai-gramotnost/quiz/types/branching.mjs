@@ -1,0 +1,1 @@
+import { createRenderer as renderer } from './renderer.mjs'; import { branchingControl } from './controls/branching.mjs'; export const type='branching'; export const createRenderer=()=>renderer(type,branchingControl);

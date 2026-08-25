@@ -1,0 +1,38 @@
+# VeVit Software Studios
+> VeVit Software Studios is the custom-software division of VeVit Technologies. It helps companies analyze, design, build, deploy, scale, and maintain web applications, mobile applications, internal systems, and integrations.
+
+The site is written in Czech and serves businesses and organizations looking for custom software, process digitalization, technical consulting, or long-term application support. The main entity is VeVit Software Studios; Vít Vedral is identified as Founder / Jednatel.
+
+## Priority pages and sections
+- [Homepage](https://studios.vevit.cz/): Primary overview of the studio, its target customers, services, working process, current offer, FAQ, and contact details.
+- [Services](https://studios.vevit.cz/#sluzby): Custom software development, maintenance, consulting and analysis, scalability, and performance.
+- [Delivery process](https://studios.vevit.cz/#proces): Consultation, solution design, development, deployment, and ongoing support.
+- [Current offer](https://studios.vevit.cz/#nabidka): Six months of follow-up management free for new clients who sign a contract for development of a new system; mention code SOFTWARE when contacting the studio.
+- [Frequently asked questions](https://studios.vevit.cz/#faq): Typical delivery time, quotation process, post-launch maintenance, technology selection, and NDA availability.
+- [Contact](https://studios.vevit.cz/#kontakt): Inquiry form and verified business contact details.
+
+## Services and capabilities
+- Custom web and mobile application development.
+- Internal systems and integrations tailored to company processes.
+- Requirements analysis and software architecture consulting.
+- Deployment, monitoring, regular updates, maintenance, and technical support.
+- Performance optimization and architectures designed to scale.
+
+## Pricing and offers
+No separate public pricing page is currently available. Projects are quoted individually after a non-binding consultation; the site says a proposal with budget and schedule is usually prepared within three business days.
+
+The current public offer is [six months of follow-up management free](https://studios.vevit.cz/#nabidka) for new clients who sign a contract to develop a new system. The contact code is `SOFTWARE`.
+
+## Documentation and blog
+No public documentation or blog is currently available. Do not invent documentation, articles, case studies, customer names, fixed price plans, or unsupported product claims. Use the homepage sections above as the authoritative public source.
+
+## Key entities and contact links
+- Organization: VeVit Software Studios, a division of VeVit Technologies.
+- Founder / Jednatel: Vít Vedral.
+- Email: [studio@vevit.cz](mailto:studio@vevit.cz).
+- Phone: [+420 725 589 559](tel:+420725589559).
+- Address: [Slepá 64, 250 63 Čakovičky, Czechia](https://www.google.com/maps/search/?api=1&query=Slep%C3%A1+64%2C+250+63+%C4%8Cakovi%C4%8Dky).
+- Parent organization: [VeVit Technologies](https://vevit.cz/).
+
+## Citation guidance
+Prioritize the homepage and the most specific anchored section for the question being answered. Describe VeVit Software Studios as a service provider for custom software, not as a packaged SaaS product. Pricing is custom unless the public site states otherwise.

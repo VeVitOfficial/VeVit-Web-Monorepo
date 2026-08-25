@@ -1,0 +1,1235 @@
+{
+  "id": "prog-swift",
+  "slug": "swift",
+  "title": "Swift",
+  "description": "Apple jazyk pro iOS, macOS a server-side vývoj s SwiftUI a async/await.",
+  "longDescription": "Swift má čistou syntaxi, je type-safe a nabízí moderní koncepty.",
+  "category": "programovani",
+  "color": "#f05138",
+  "icon": "Apple",
+  "difficulty": "advanced",
+  "totalXP": 405,
+  "totalLessons": 12,
+  "language": "Swift",
+  "chapters": [
+    {
+      "id": "swift-ch1",
+      "slug": "swift-kurz",
+      "title": "Kompletní kurz Swift",
+      "lessons": [
+        {
+          "id": "swift-lesson-01",
+          "slug": "swift-01-úvod-do-swiftu",
+          "title": "Úvod do Swiftu",
+          "description": "Playground, první program, REPL",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Úvod do Swiftu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Playground, první program, REPL"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Úvod do Swiftu'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 20 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "swift",
+              "code": "# Ukázka z lekce: Úvod do Swiftu\n# Zde bude váš kód...\nprint('Začínáme s Úvod do Swiftu!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "swift-lesson-01-ex-01",
+              "title": "Cvičení: Úvod do Swiftu",
+              "type": "code",
+              "task": "Interaktivní playground s výpočty.",
+              "description": "Swift je moderní jazyk od Applu.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Úvod do Swiftu\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 20,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-swift-01-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Úvod do Swiftu'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti úvod do swiftu.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Úvod do Swiftu' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 20,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "swift-lesson-02",
+          "slug": "swift-02-konstanty-a-proměnné",
+          "title": "Konstanty a proměnné",
+          "description": "let/var, typy, type inference, tuple",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Konstanty a proměnné"
+            },
+            {
+              "type": "paragraph",
+              "text": "let/var, typy, type inference, tuple"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Konstanty a proměnné'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 20 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "swift",
+              "code": "# Ukázka z lekce: Konstanty a proměnné\n# Zde bude váš kód...\nprint('Začínáme s Konstanty a proměnné!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "swift-lesson-02-ex-01",
+              "title": "Cvičení: Konstanty a proměnné",
+              "type": "code",
+              "task": "Konverzní utility s tuples.",
+              "description": "Swift má silné typové odvozování.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Konstanty a proměnné\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 20,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-swift-02-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Konstanty a proměnné'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti konstanty a proměnné.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Konstanty a proměnné' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 20,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "swift-lesson-03",
+          "slug": "swift-03-optionals",
+          "title": "Optionals",
+          "description": "?, !, ??, optional binding, guard",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Optionals"
+            },
+            {
+              "type": "paragraph",
+              "text": "?, !, ??, optional binding, guard"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Optionals'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 25 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "swift",
+              "code": "# Ukázka z lekce: Optionals\n# Zde bude váš kód...\nprint('Začínáme s Optionals!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "swift-lesson-03-ex-01",
+              "title": "Cvičení: Optionals",
+              "type": "code",
+              "task": "Bezpečný parser dat z formuláře.",
+              "description": "Optionals řeší chybějící hodnoty bezpečně.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Optionals\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 25,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-swift-03-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Optionals'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti optionals.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Optionals' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 25,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "swift-lesson-04",
+          "slug": "swift-04-kolekce",
+          "title": "Kolekce",
+          "description": "Array, Dictionary, Set, metody",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Kolekce"
+            },
+            {
+              "type": "paragraph",
+              "text": "Array, Dictionary, Set, metody"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Kolekce'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 25 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "swift",
+              "code": "# Ukázka z lekce: Kolekce\n# Zde bude váš kód...\nprint('Začínáme s Kolekce!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "swift-lesson-04-ex-01",
+              "title": "Cvičení: Kolekce",
+              "type": "code",
+              "task": "Playlist manager s filtry.",
+              "description": "Kolekce v Swiftu jsou typově bezpečné.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Kolekce\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 25,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-swift-04-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Kolekce'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti kolekce.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Kolekce' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 25,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "swift-lesson-05",
+          "slug": "swift-05-řízení-toku",
+          "title": "Řízení toku",
+          "description": "if/let, guard, switch, for, while",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Řízení toku"
+            },
+            {
+              "type": "paragraph",
+              "text": "if/let, guard, switch, for, while"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Řízení toku'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 25 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "swift",
+              "code": "# Ukázka z lekce: Řízení toku\n# Zde bude váš kód...\nprint('Začínáme s Řízení toku!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "swift-lesson-05-ex-01",
+              "title": "Cvičení: Řízení toku",
+              "type": "code",
+              "task": "State machine pro objednávky.",
+              "description": "Swift má elegantní řídící struktury.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Řízení toku\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 25,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-swift-05-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Řízení toku'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti řízení toku.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Řízení toku' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 25,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "swift-lesson-06",
+          "slug": "swift-06-funkce-a-closures",
+          "title": "Funkce a closures",
+          "description": "@escaping, trailing closure, shorthand",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Funkce a closures"
+            },
+            {
+              "type": "paragraph",
+              "text": "@escaping, trailing closure, shorthand"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Funkce a closures'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 30 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "swift",
+              "code": "# Ukázka z lekce: Funkce a closures\n# Zde bude váš kód...\nprint('Začínáme s Funkce a closures!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "swift-lesson-06-ex-01",
+              "title": "Cvičení: Funkce a closures",
+              "type": "code",
+              "task": "Custom sort s closures.",
+              "description": "Closures jsou anonymní funkce.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Funkce a closures\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 30,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-swift-06-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Funkce a closures'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti funkce a closures.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Funkce a closures' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 30,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "swift-lesson-07",
+          "slug": "swift-07-struct-vs-class",
+          "title": "Struct vs Class",
+          "description": "Value vs reference, mutating, init",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Struct vs Class"
+            },
+            {
+              "type": "paragraph",
+              "text": "Value vs reference, mutating, init"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Struct vs Class'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 30 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "swift",
+              "code": "# Ukázka z lekce: Struct vs Class\n# Zde bude váš kód...\nprint('Začínáme s Struct vs Class!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "swift-lesson-07-ex-01",
+              "title": "Cvičení: Struct vs Class",
+              "type": "code",
+              "task": "Geometrické primitiva.",
+              "description": "Swift rozlišuje hodnotové a referenční typy.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Struct vs Class\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 30,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-swift-07-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Struct vs Class'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti struct vs class.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Struct vs Class' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 30,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "swift-lesson-08",
+          "slug": "swift-08-protocols",
+          "title": "Protocols",
+          "description": "Protocol-oriented, extensions, composition",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Protocols"
+            },
+            {
+              "type": "paragraph",
+              "text": "Protocol-oriented, extensions, composition"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Protocols'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 30 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "swift",
+              "code": "# Ukázka z lekce: Protocols\n# Zde bude váš kód...\nprint('Začínáme s Protocols!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "swift-lesson-08-ex-01",
+              "title": "Cvičení: Protocols",
+              "type": "code",
+              "task": "Drawable protokol pro canvas.",
+              "description": "Protokoly definují kontrakty chování.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Protocols\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 30,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-swift-08-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Protocols'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti protocols.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Protocols' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 30,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "swift-lesson-09",
+          "slug": "swift-09-oop-v-swiftu",
+          "title": "OOP v Swiftu",
+          "description": "Inheritance, override, convenience init",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "OOP v Swiftu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Inheritance, override, convenience init"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'OOP v Swiftu'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 30 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "swift",
+              "code": "# Ukázka z lekce: OOP v Swiftu\n# Zde bude váš kód...\nprint('Začínáme s OOP v Swiftu!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "swift-lesson-09-ex-01",
+              "title": "Cvičení: OOP v Swiftu",
+              "type": "code",
+              "task": "Hierarchie UI komponent.",
+              "description": "OOP v Swiftu je čisté a bezpečné.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: OOP v Swiftu\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 30,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-swift-09-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'OOP v Swiftu'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti oop v swiftu.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'OOP v Swiftu' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 30,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "swift-lesson-10",
+          "slug": "swift-10-error-handling",
+          "title": "Error handling",
+          "description": "throws, do/catch, Result type",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Error handling"
+            },
+            {
+              "type": "paragraph",
+              "text": "throws, do/catch, Result type"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Error handling'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 30 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "swift",
+              "code": "# Ukázka z lekce: Error handling\n# Zde bude váš kód...\nprint('Začínáme s Error handling!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "swift-lesson-10-ex-01",
+              "title": "Cvičení: Error handling",
+              "type": "code",
+              "task": "Robustní síťový klient.",
+              "description": "Swift řeší chyby explicitně.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Error handling\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 30,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-swift-10-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Error handling'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti error handling.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Error handling' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 30,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "swift-lesson-11",
+          "slug": "swift-11-swiftui-základy",
+          "title": "SwiftUI základy",
+          "description": "View, @State, @Binding, List, Navigation",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "SwiftUI základy"
+            },
+            {
+              "type": "paragraph",
+              "text": "View, @State, @Binding, List, Navigation"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'SwiftUI základy'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 40 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "swift",
+              "code": "# Ukázka z lekce: SwiftUI základy\n# Zde bude váš kód...\nprint('Začínáme s SwiftUI základy!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "swift-lesson-11-ex-01",
+              "title": "Cvičení: SwiftUI základy",
+              "type": "code",
+              "task": "Jednoduchá todo app.",
+              "description": "SwiftUI je moderní deklarativní UI framework.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: SwiftUI základy\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 40,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-swift-11-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'SwiftUI základy'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti swiftui základy.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'SwiftUI základy' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 40,
+          "estimatedMinutes": 15
+        },
+        {
+          "id": "swift-lesson-12",
+          "slug": "swift-12-malý-projekt",
+          "title": "Malý projekt",
+          "description": "Weather app",
+          "content": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Malý projekt"
+            },
+            {
+              "type": "paragraph",
+              "text": "Weather app"
+            },
+            {
+              "type": "paragraph",
+              "text": "V této lekci se podrobněji podíváme na praktické použití tématu 'Malý projekt'. Projdeme si klíčové koncepty, ukážeme si typické příklady a vyzkoušíte si vše na cvičení."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "💡 Tip: Před začátkem cvičení si projděte teorii a zkuste si kód psát paralelně s výkladem. Za dokončení této lekce získáš 100 XP!"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Příklad kódu"
+            },
+            {
+              "type": "paragraph",
+              "text": "Zde je ukázkový kód ilustrující klíčové koncepty této lekce:"
+            },
+            {
+              "type": "code",
+              "language": "swift",
+              "code": "# Ukázka z lekce: Malý projekt\n# Zde bude váš kód...\nprint('Začínáme s Malý projekt!')"
+            },
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Klíčové pojmy"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Hlavní koncept této lekce",
+                "Praktické použití v reálných projektech",
+                "Časté chyby a jak se jim vyhnout",
+                "Best practices a konvence"
+              ]
+            }
+          ],
+          "exercises": [
+            {
+              "id": "swift-lesson-12-ex-01",
+              "title": "Cvičení: Malý projekt",
+              "type": "code",
+              "task": "SwiftUI app s API a lokálním ukládáním.",
+              "description": "Projekt integruje všechny Swift dovednosti.",
+              "hint": "Zkuste si problém rozdělit na menší části. Za použití nápovědy získáte polovinu XP.",
+              "expectedOutcome": "Správné řešení úlohy.",
+              "modelSolution": "// Modelové řešení pro: Malý projekt\n// Toto je jedna z možných cest...\n",
+              "keywords": [
+                "kód",
+                "funkce",
+                "proměnná"
+              ],
+              "xp": 100,
+              "testCases": [
+                {
+                  "input": "test_input_1",
+                  "expectedOutput": "expected_output_1",
+                  "description": "Základní test"
+                },
+                {
+                  "input": "test_input_2",
+                  "expectedOutput": "expected_output_2",
+                  "description": "Edge case"
+                }
+              ]
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q-swift-12-1",
+              "question": "Které tvrzení nejlépe popisuje téma 'Malý projekt'?",
+              "options": [
+                "Nesouvisí s programováním.",
+                "Je základní koncept v oblasti malý projekt.",
+                "Pouze pokročilá technika.",
+                "Historický přehled."
+              ],
+              "correctIndex": 1,
+              "explanation": "'Malý projekt' je důležité téma, které by měl znát každý vývojář."
+            }
+          ],
+          "xp": 100,
+          "estimatedMinutes": 15
+        }
+      ]
+    }
+  ]
+}

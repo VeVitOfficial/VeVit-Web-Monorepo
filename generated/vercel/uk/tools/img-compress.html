@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VeVit Tools — Інструменти для вашої роботи</title>
+  <meta name="description" content="Набір інструментів для PDF, зображень, медіа, тексту, ШІ, розробки, безпеки та калькуляторів. Більшість файлів обробляються локально у вашому браузері, без завантаження на сервер.">
+  <link rel="icon" href="/tools/assets/favicon.ico">
+  <link rel="stylesheet" href="/assets/fonts/vevit-fonts.css">
+  <link rel="stylesheet" href="/tools/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/shared/app-switcher.css?v=20260809c">
+  <link rel="alternate" hreflang="cs" href="https://vevit.cz/cs/tools">
+    <link rel="alternate" hreflang="en" href="https://vevit.cz/en/tools">
+    <link rel="alternate" hreflang="de" href="https://vevit.cz/de/tools">
+    <link rel="alternate" hreflang="es" href="https://vevit.cz/es/tools">
+    <link rel="alternate" hreflang="uk" href="https://vevit.cz/uk/tools">
+    <link rel="alternate" hreflang="fr" href="https://vevit.cz/fr/tools">
+    <link rel="alternate" hreflang="sk" href="https://vevit.cz/sk/tools">
+    <link rel="alternate" hreflang="x-default" href="https://vevit.cz/cs/tools">
+    <link rel="canonical" href="https://vevit.cz/uk/tools">  </head>
+<body>
+<header class="site-header glass">
+  <div class="container bar">
+    <div class="header-left">
+      <a class="brand" href="/uk/tools/">
+        <span class="brand-logo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></span>
+        <span class="brand-mark">
+          <span class="brand-name">VeVit</span>
+          <span class="brand-suffix">Tools</span>
+        </span>
+      </a>
+      <div class="cat-wrap" style="position:relative">
+        <button class="cat-toggle" id="cat-toggle" aria-expanded="false" aria-haspopup="menu">
+          Категорії <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>        </button>
+        <div class="cat-dropdown glass-strong hidden" id="cat-menu" role="menu">
+          <a href="/tools/#nove" role="menuitem"><span class="dot" style="background:var(--color-emerald)"></span> Найновіші</a>
+          <div class="sep"></div>
+                      <a href="/tools/#pdf" role="menuitem">
+              <span class="dot" style="background:#f59e0b"></span>
+              PDF            </a>
+                      <a href="/tools/#image" role="menuitem">
+              <span class="dot" style="background:#8b5cf6"></span>
+              Зображення            </a>
+                      <a href="/tools/#media" role="menuitem">
+              <span class="dot" style="background:#ec4899"></span>
+              Медіа            </a>
+                      <a href="/tools/#text" role="menuitem">
+              <span class="dot" style="background:#6b7280"></span>
+              Текст            </a>
+                      <a href="/tools/#ai" role="menuitem">
+              <span class="dot" style="background:#0ea5e9"></span>
+              ШІ            </a>
+                      <a href="/tools/#dev" role="menuitem">
+              <span class="dot" style="background:#06b6d4"></span>
+              Dev            </a>
+                      <a href="/tools/#security" role="menuitem">
+              <span class="dot" style="background:#10b981"></span>
+              Безпека            </a>
+                      <a href="/tools/#calc" role="menuitem">
+              <span class="dot" style="background:#ef4444"></span>
+              Калькулятори            </a>
+                  </div>
+      </div>
+    </div>
+    <div class="header-right vv-app-actions">
+      <span data-vevit-language></span>
+      <span data-vevit-app-switcher data-vevit-app="Tools"></span>
+      <a class="login-btn" href="/uk/account/login"
+         title="Вхід у обліковий запис VeVit необовʼязковий — усі інструменти працюють і без нього.">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m10 17 5-5-5-5"/><path d="M15 12H3"/><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/></svg> Увійти      </a>
+    </div>
+  </div>
+</header>
+<script type="module" src="/assets/shared/app-switcher.js?v=20260825b"></script>
+<script type="module" src="/assets/shared/localization.js?v=20260825a"></script><main class="main">
+  <div class="tool-page">
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+      <a href="/uk/tools/"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg> Інструменти</a>
+      <span class="sep">/</span>
+      <span style="color:#8b5cf6">Зображення</span>
+      <span class="sep">/</span>
+      <span>Стиснення зображення</span>
+    </nav>
+
+    <!-- Tool header -->
+    <div class="tool-header">
+      <span class="bar" style="background:#8b5cf6"></span>
+      <h1>Стиснення зображення</h1>
+      <span class="loc-tag" style="border-color:#8b5cf630;color:#8b5cf6;background:#8b5cf610" title="Файл обробляється у вашому браузері і не залишає цей комп&#039;ютер.">Локально</span>
+      <span class="loc-tag tool-status-working">Доступний</span>
+    </div>
+    <p class="tool-desc">Зменште зображення через canvas (якість, JPEG/WebP).</p>
+
+    <!-- Tool body -->
+    <div class="tool-shell glass">
+              <div class="tool-tool" id="tool-root">
+          <div class="stack" style="max-width:48rem;margin:0 auto">
+  <div class="dropzone" id="co-drop">
+    <span class="dz-ico"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></span>
+    <span class="dz-title">Перетягніть зображення</span>
+    <span class="dz-hint">PNG, JPG, WebP</span>
+  </div>
+  <div class="hidden" id="co-work">
+    <div class="row" style="flex-wrap:wrap;gap:0.75rem;align-items:end">
+      <div class="stack-sm"><label class="field-label" for="co-format">Формат</label>
+        <select class="select" id="co-format"><option value="image/jpeg">JPEG</option><option value="image/webp">WebP</option><option value="image/png">PNG (без втрат)</option></select></div>
+      <div class="stack-sm"><label class="field-label" for="co-q">Якість: <span id="co-q-v">75</span> %</label>
+        <input type="range" id="co-q" min="10" max="100" value="75" style="width:12rem"></div>
+      <div class="stack-sm"><label class="field-label" for="co-max">Макс. розмір (px, 0 = без змін)</label>
+        <input class="input" id="co-max" type="number" value="0" min="0"></div>
+    </div>
+    <button class="btn btn-primary" id="co-run" type="button" style="margin-top:1rem"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg> Стиснути</button>
+    <div class="two-col" style="gap:1rem;margin-top:1rem;align-items:start">
+      <div class="stack-sm"><span class="field-label">Оригінал</span><img id="co-src" style="max-width:100%;border-radius:0.5rem" alt=""></div>
+      <div class="stack-sm"><span class="field-label">Результат</span><img id="co-dst" style="max-width:100%;border-radius:0.5rem" alt=""></div>
+    </div>
+    <p id="co-info" class="muted" style="font-size:0.85rem;margin-top:0.5rem"></p>
+    <button class="btn btn-secondary" id="co-dl" type="button" disabled style="margin-top:0.5rem"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg> Завантажити</button>
+  </div>
+  <p class="error-text hidden" id="co-error" role="alert"></p>
+  <p class="muted" style="font-size:0.8rem">Стиснення через canvas, працює локально. JPEG втрачає прозорість.</p>
+</div>        </div>
+        <script src="/tools/assets/js/tools/img-compress.js" defer></script>
+          </div>
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="bar">
+    <a href="/uk/home" class="hover-fg">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg> Назад до VeVit.cz    </a>
+    <span class="privacy">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg> Усе обробляється локально у браузері    </span>
+    <p>© 2026 VeVit Tools.</p>
+  </div>
+</footer>
+<script src="/tools/assets/js/lib/toast.js"></script>
+<script src="/tools/assets/js/lib/icons.js"></script>
+<script src="/tools/assets/js/lib/tool-ui.js"></script>
+<script src="/tools/assets/js/site.js"></script>
+</body>
+</html>

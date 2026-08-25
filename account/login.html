@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-i18n="auth.login.docTitle">Přihlášení · vevit</title>
+<link rel="icon" href="/account/images/icon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/assets/fonts/vevit-fonts.css">
+<link rel="stylesheet" href="./assets/styles.css">
+<style>
+  html, body { overflow-x:hidden; }
+  .auth-wrap { position:relative; z-index:1; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:28px; padding:32px 16px; background:transparent; }
+  .auth-brand { display:flex; align-items:center; gap:10px; }
+  .auth-card { width:100%; max-width:480px; background:var(--card); border:1px solid var(--card-border); border-radius:var(--r-card); padding:32px; display:flex; flex-direction:column; gap:20px; }
+  .auth-title { font-size:20px; font-weight:700; margin:0 0 4px; }
+  .auth-sub { font-size:13px; color:var(--text-3); margin:0; }
+  .step { display:flex; flex-direction:column; gap:14px; }
+  .auth-error { background:#f9731620; border:1px solid #f9731660; border-radius:var(--r-control); padding:10px 14px; font-size:13px; color:#f97316; display:flex; align-items:center; gap:8px; }
+  .auth-error[hidden] { display:none; }
+  .auth-hint { font-size:13px; color:var(--text-3); text-align:center; }
+  .auth-hint a { color:var(--primary); font-weight:500; }
+  .remember-control { display:flex; align-items:center; gap:9px; color:var(--text-2); font-size:13px; cursor:pointer; }
+  .remember-control input { width:16px; height:16px; accent-color:var(--primary); }
+  .password-field { position:relative; }
+  .password-field .input { padding-right:48px; }
+  .password-toggle {
+    position:absolute; top:50%; right:8px; width:36px; height:36px;
+    display:grid; place-items:center; transform:translateY(-50%);
+    border:0; border-radius:8px; background:transparent; color:var(--text-3);
+    cursor:pointer; transition:color 180ms ease, background-color 180ms ease;
+  }
+  .password-toggle:hover { color:var(--text); background:#ffffff0a; }
+  .password-toggle:focus-visible { outline:2px solid var(--primary); outline-offset:1px; }
+  .password-toggle svg { width:19px; height:19px; }
+  .login-girl {
+    position:fixed; right:0; bottom:0; z-index:0;
+    width:clamp(260px, 28vw, 430px); aspect-ratio:2 / 3;
+    pointer-events:none; user-select:none; overflow:hidden;
+  }
+  .login-girl img {
+    display:block; width:100%; height:100%;
+    object-fit:contain; object-position:bottom center;
+  }
+  .oauth-divider { display:flex; align-items:center; gap:12px; color:var(--text-3); font-size:12px; margin:2px 0; }
+  .oauth-divider::before, .oauth-divider::after { content:""; height:1px; flex:1; background:var(--card-border); }
+  .oauth-buttons { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:9px; }
+  .oauth-button { min-height:44px; display:flex; align-items:center; justify-content:center; gap:8px; border:1px solid var(--card-border); border-radius:var(--r-control); background:#ffffff05; color:var(--text-2); font:inherit; font-size:12px; font-weight:600; cursor:pointer; transition:background .18s ease,border-color .18s ease,transform .18s ease; }
+  .oauth-button:hover { background:#ffffff0b; border-color:#ffffff40; transform:translateY(-1px); color:var(--text); }
+  .oauth-button:active { transform:translateY(0); }
+  .oauth-button:focus-visible { outline:2px solid var(--primary); outline-offset:2px; }
+  .oauth-button:disabled { cursor:progress; opacity:.65; transform:none; }
+  .oauth-button svg { width:17px; height:17px; flex:0 0 auto; }
+  .oauth-status { min-height:18px; margin:0; font-size:12px; color:var(--text-3); text-align:center; }
+  @media (max-width: 1120px) {
+    .login-girl { display:none; }
+  }
+  @media (max-width: 560px) { .oauth-buttons { grid-template-columns:1fr; } }
+  @media (prefers-reduced-motion: reduce) {
+    .password-toggle { transition:none; }
+  }
+</style>
+</head>
+<body>
+<div class="auth-wrap">
+  <div class="auth-brand">
+    <div class="brand-mark">v</div>
+    <span class="brand-name">vevit</span>
+  </div>
+
+  <div class="auth-card">
+    <div>
+      <h1 class="auth-title" data-i18n="auth.login.title">Přihlaste se</h1>
+      <p class="auth-sub" data-i18n="auth.login.sub">do svého vevit účtu</p>
+    </div>
+
+    <div class="auth-error" id="authErr" hidden>
+      <span>⚠</span><span id="authErrMsg"></span>
+    </div>
+
+    <form class="step" id="loginForm">
+      <div class="hp-field" aria-hidden="true">
+        <label for="hpConfirm">Company</label>
+        <input type="text" id="hpConfirm" name="hp_confirm" tabindex="-1" autocomplete="off">
+      </div>
+      <input type="hidden" id="hpTs" name="hp_ts">
+      <div>
+        <label class="label" for="inputEmail" data-i18n="auth.login.identifier">E-mail, telefon nebo přezdívka</label>
+        <input id="inputEmail" class="input input--mono" type="text" autocomplete="username" inputmode="email" data-i18n-attr="placeholder:auth.login.identifierPlaceholder" placeholder="vas@email.cz · +420725589559 · prezdivka" required>
+      </div>
+      <div>
+        <label class="label" for="inputPass" data-i18n="auth.login.password">Heslo</label>
+        <div class="password-field">
+          <input id="inputPass" class="input input--mono" type="password" autocomplete="current-password" placeholder="••••••••" required>
+          <button
+            id="toggleLoginPassword"
+            class="password-toggle"
+            type="button"
+            aria-controls="inputPass"
+            aria-pressed="false"
+            data-i18n-attr="aria-label:auth.common.showPassword,title:auth.common.showPassword"
+            aria-label="Zobrazit heslo"
+            title="Zobrazit heslo"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <g data-eye-open>
+                <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/>
+                <circle cx="12" cy="12" r="2.6"/>
+              </g>
+              <g data-eye-closed hidden>
+                <path d="m3 3 18 18"/>
+                <path d="M10.6 6.1A9.4 9.4 0 0 1 12 6c6 0 9.5 6 9.5 6a17 17 0 0 1-2.1 2.8M6.1 6.1C3.7 7.8 2.5 12 2.5 12s3.5 6 9.5 6a9.4 9.4 0 0 0 3.1-.5"/>
+              </g>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <label class="remember-control" for="inputRemember">
+        <input id="inputRemember" name="remember" type="checkbox">
+        <span data-i18n="auth.login.remember">Zapamatovat si mě na tomto zařízení</span>
+      </label>
+      <div style="text-align:right;">
+        <a href="./forgot-password.html" style="font-size:13px;" data-i18n="auth.login.forgot">Zapomněli jste heslo?</a>
+      </div>
+      <button id="btnLogin" type="submit" class="btn btn--primary" style="justify-content:center;" data-i18n="auth.login.submit">Přihlásit se</button>
+    </form>
+    <div class="oauth-divider" aria-hidden="true" data-i18n="auth.common.oauthDivider">nebo pokračujte přes</div>
+    <div class="oauth-buttons" data-i18n-attr="aria-label:auth.common.oauthAriaLogin" aria-label="Přihlášení přes externí službu">
+      <button class="oauth-button" type="button" data-oauth="google" data-url="/account/api/oauth/start.php?provider=google" data-i18n-attr="aria-label:auth.common.oauthGoogle" aria-label="Pokračovat přes Google"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M21.35 12.23c0-.71-.06-1.23-.19-1.77H12v3.35h5.38a4.6 4.6 0 0 1-1.99 3.02l3.22 2.5c1.88-1.74 2.74-4.3 2.74-7.1Z"/><path fill="#34A853" d="M12 21.72c2.62 0 4.82-.87 6.43-2.39l-3.22-2.5c-.9.6-2.05.96-3.21.96-2.52 0-4.66-1.7-5.42-3.99l-3.33 2.57A9.72 9.72 0 0 0 12 21.72Z"/><path fill="#FBBC05" d="M6.58 13.8A5.84 5.84 0 0 1 6.28 12c0-.62.11-1.22.3-1.8L3.25 7.63A9.72 9.72 0 0 0 2.28 12c0 1.57.38 3.05.97 4.37l3.33-2.57Z"/><path fill="#EA4335" d="M12 6.21c1.42 0 2.69.49 3.69 1.45l2.77-2.77C16.81 3.34 14.62 2.28 12 2.28a9.72 9.72 0 0 0-8.75 5.35l3.33 2.57C7.34 7.91 9.48 6.21 12 6.21Z"/></svg><span data-i18n="auth.common.oauthGoogle">Pokračovat přes Google</span></button>
+      <button class="oauth-button" type="button" data-oauth="github" data-url="/account/api/oauth/start.php?provider=github" data-i18n-attr="aria-label:auth.common.oauthGithub" aria-label="Pokračovat přes GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.3a9.7 9.7 0 0 0-3.07 18.9c.49.09.67-.21.67-.47v-1.86c-2.73.6-3.3-1.16-3.3-1.16-.45-1.13-1.09-1.43-1.09-1.43-.9-.61.07-.6.07-.6 1 .07 1.52 1.02 1.52 1.02.88 1.51 2.32 1.07 2.88.82.09-.64.35-1.07.63-1.32-2.18-.25-4.47-1.09-4.47-4.85 0-1.07.38-1.95 1.01-2.64-.1-.25-.44-1.25.1-2.61 0 0 .83-.27 2.67 1.01A9.2 9.2 0 0 1 12 6.16c.83 0 1.67.11 2.45.33 1.84-1.28 2.67-1.01 2.67-1.01.54 1.36.2 2.36.1 2.61.63.69 1.01 1.57 1.01 2.64 0 3.77-2.29 4.6-4.47 4.85.35.3.66.88.66 1.78v2.64c0 .26.18.57.67.47A9.7 9.7 0 0 0 12 2.3Z"/></svg><span data-i18n="auth.common.oauthGithub">Pokračovat přes GitHub</span></button>
+      <button class="oauth-button" type="button" data-oauth="discord" data-url="/account/api/oauth/start.php?provider=discord" data-i18n-attr="aria-label:auth.common.oauthDiscord" aria-label="Pokračovat přes Discord"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.54 4.35A16.7 16.7 0 0 0 15.44 3l-.5 1a15.5 15.5 0 0 0-5.88 0l-.5-1c-1.44.25-2.82.7-4.1 1.35C1.87 8.17 1.18 11.9 1.52 15.58a16.5 16.5 0 0 0 5.03 2.54l1.22-1.67a9.7 9.7 0 0 1-1.92-.92l.46-.36c3.7 1.73 7.68 1.73 11.33 0l.46.36c-.62.36-1.26.67-1.92.92l1.22 1.67a16.4 16.4 0 0 0 5.03-2.54c.4-4.27-.69-7.96-2.89-11.23ZM8.67 13.3c-1.1 0-2-1-2-2.23s.88-2.23 2-2.23 2.02 1 2 2.23c0 1.23-.88 2.23-2 2.23Zm6.66 0c-1.1 0-2-1-2-2.23s.88-2.23 2-2.23 2.02 1 2 2.23c0 1.23-.88 2.23-2 2.23Z"/></svg><span data-i18n="auth.common.oauthDiscord">Pokračovat přes Discord</span></button>
+    </div>
+    <p class="oauth-status" id="oauthStatus" role="status" aria-live="polite"></p>
+  </div>
+
+  <p class="auth-hint"><span data-i18n="auth.login.noAccount">Nemáte účet?</span> <a href="./register.html" data-i18n="auth.login.register">Zaregistrovat se</a></p>
+</div>
+
+<div class="login-girl" aria-hidden="true">
+  <img
+    id="loginGirlFrame"
+    data-src="./images/holka odkryté oči.webp"
+    alt=""
+    aria-hidden="true"
+    width="860"
+    height="1290"
+    draggable="false"
+  >
+</div>
+<script src="/account/assets/i18n.js?v=20260825a"></script>
+<script src="/account/assets/auth-i18n.js?v=20260825a"></script>
+<script src="/account/assets/login.js?v=20260824c"></script>
+</body>
+</html>
