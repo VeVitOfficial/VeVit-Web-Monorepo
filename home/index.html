@@ -22,7 +22,7 @@
 
   <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="/assets/shared/session.css?v=20260809b">
-  <link rel="stylesheet" href="/assets/shared/app-switcher.css?v=20260809c">
+  <link rel="stylesheet" href="/assets/shared/app-switcher.css?v=20260826a">
   <link rel="stylesheet" href="assets/css/premium.css">
 </head>
 <body>
@@ -32,29 +32,29 @@
     <div class="container nav-inner">
       <span class="wordmark vv-app-brand" aria-label="VeVit Technologies"><a href="/home">VeVit</a><a class="wordmark-suffix" href="/home">Technologies</a></span>
 
-      <nav class="nav-links" aria-label="Hlavní navigace">
+      <nav class="nav-links" aria-label="Hlavní navigace" data-ui-attr="aria-label:page.nav.ariaMain">
         <!-- Web apps -->
         <div class="dropdown-wrap">
           <button class="nav-link" type="button" data-dropdown-trigger aria-expanded="false" aria-haspopup="true" aria-controls="dd-webapps">
-            Web apps
+            <span data-ui-text="page.nav.webApps">Web apps</span>
             <i data-lucide="chevron-down" class="chev" style="width:14px;height:14px;"></i>
           </button>
           <div class="dropdown" id="dd-webapps" data-dropdown-menu role="menu">
             <a class="dd-item" href="/tools" role="menuitem">
               <span class="dd-icon"><i data-lucide="wrench" style="width:18px;height:18px;"></i></span>
-              <span><span class="dd-name">Tools <span class="dd-soon-tag" style="background:rgba(16,185,129,0.12);color:#10b981;border-color:rgba(16,185,129,0.25);">Beta</span></span><span class="dd-desc">Kalkulačky a nástroje</span></span>
+              <span><span class="dd-name">Tools <span class="dd-soon-tag" style="background:rgba(16,185,129,0.12);color:#10b981;border-color:rgba(16,185,129,0.25);" data-ui-text="page.nav.badgeBeta">Beta</span></span><span class="dd-desc" data-ui-text="page.navItem.tools">Kalkulačky a nástroje</span></span>
             </a>
             <div class="dd-item dd-soon" role="menuitem" aria-disabled="true">
               <span class="dd-icon"><i data-lucide="gamepad-2" style="width:18px;height:18px;"></i></span>
-              <span><span class="dd-name">Games <span class="dd-soon-tag">Připravuje se</span></span><span class="dd-desc">Hry s XP odměnami</span></span>
+              <span><span class="dd-name">Games <span class="dd-soon-tag" data-ui-text="hub.preparing">Připravuje se</span></span><span class="dd-desc" data-ui-text="page.navItem.games">Hry s XP odměnami</span></span>
             </div>
             <a class="dd-item" href="/edu" role="menuitem">
               <span class="dd-icon"><i data-lucide="graduation-cap" style="width:18px;height:18px;"></i></span>
-              <span><span class="dd-name">Edu <span class="dd-soon-tag" style="background:rgba(139,92,246,0.12);color:#8b5cf6;border-color:rgba(139,92,246,0.25);">Beta</span></span><span class="dd-desc">Lekce a kvízy</span></span>
+              <span><span class="dd-name">Edu <span class="dd-soon-tag" style="background:rgba(139,92,246,0.12);color:#8b5cf6;border-color:rgba(139,92,246,0.25);" data-ui-text="page.nav.badgeBeta">Beta</span></span><span class="dd-desc" data-ui-text="page.navItem.edu">Lekce a kvízy</span></span>
             </a>
             <div class="dd-item dd-soon" role="menuitem" aria-disabled="true">
               <span class="dd-icon"><i data-lucide="layers" style="width:18px;height:18px;"></i></span>
-              <span><span class="dd-name">Services <span class="dd-soon-tag">Připravuje se</span></span><span class="dd-desc" data-ui-text="landing.services.navigation"></span></span>
+              <span><span class="dd-name">Services <span class="dd-soon-tag" data-ui-text="hub.preparing">Připravuje se</span></span><span class="dd-desc" data-ui-text="landing.services.navigation"></span></span>
             </div>
             <a class="dd-item" href="/account" role="menuitem">
               <span class="dd-icon"><i data-lucide="user-round" style="width:18px;height:18px;"></i></span>
@@ -62,11 +62,11 @@
             </a>
             <div class="dd-item dd-soon" role="menuitem" aria-disabled="true">
               <span class="dd-icon"><i data-lucide="search" style="width:18px;height:18px;"></i></span>
-              <span><span class="dd-name">Search <span class="dd-soon-tag">Připravuje se</span></span><span class="dd-desc">Univerzální vyhledávač</span></span>
+              <span><span class="dd-name">Search <span class="dd-soon-tag" data-ui-text="hub.preparing">Připravuje se</span></span><span class="dd-desc" data-ui-text="page.navItem.search">Univerzální vyhledávač</span></span>
             </div>
             <div class="dd-item dd-soon" role="menuitem" aria-disabled="true">
               <span class="dd-icon"><i data-lucide="shopping-bag" style="width:18px;height:18px;"></i></span>
-              <span><span class="dd-name">Store <span class="dd-soon-tag">Připravuje se</span></span><span class="dd-desc">Merch a digitální produkty</span></span>
+              <span><span class="dd-name">Store <span class="dd-soon-tag" data-ui-text="hub.preparing">Připravuje se</span></span><span class="dd-desc" data-ui-text="page.navItem.store">Merch a digitální produkty</span></span>
             </div>
           </div>
         </div>
@@ -74,17 +74,17 @@
         <!-- Desktop apps -->
         <div class="dropdown-wrap">
           <button class="nav-link" type="button" data-dropdown-trigger aria-expanded="false" aria-haspopup="true" aria-controls="dd-desktop">
-            Desktop apps
+            <span data-ui-text="page.nav.desktopApps">Desktop apps</span>
             <i data-lucide="chevron-down" class="chev" style="width:14px;height:14px;"></i>
           </button>
           <div class="dropdown dd-narrow" id="dd-desktop" data-dropdown-menu role="menu">
             <div class="dd-item dd-soon" role="menuitem" aria-disabled="true">
               <span class="dd-icon"><i data-lucide="app-window" style="width:18px;height:18px;"></i></span>
-              <span><span class="dd-name">VeVit Browser <span class="dd-soon-tag">Připravuje se</span></span><span class="dd-desc">Náš webový prohlížeč</span></span>
+              <span><span class="dd-name">VeVit Browser <span class="dd-soon-tag" data-ui-text="hub.preparing">Připravuje se</span></span><span class="dd-desc" data-ui-text="page.navItem.browser">Náš webový prohlížeč</span></span>
             </div>
             <div class="dd-item dd-soon" role="menuitem" aria-disabled="true">
               <span class="dd-icon"><i data-lucide="file-text" style="width:18px;height:18px;"></i></span>
-              <span><span class="dd-name">VeVit Office <span class="dd-soon-tag">Připravuje se</span></span><span class="dd-desc">Kancelářský balík</span></span>
+              <span><span class="dd-name">VeVit Office <span class="dd-soon-tag" data-ui-text="hub.preparing">Připravuje se</span></span><span class="dd-desc" data-ui-text="page.navItem.office">Kancelářský balík</span></span>
             </div>
           </div>
         </div>
@@ -92,23 +92,23 @@
         <!-- Služby VeVit -->
         <div class="dropdown-wrap">
           <button class="nav-link" type="button" data-dropdown-trigger aria-expanded="false" aria-haspopup="true" aria-controls="dd-services">
-            Služby VeVit
+            <span data-ui-text="page.nav.services">Služby VeVit</span>
             <i data-lucide="chevron-down" class="chev" style="width:14px;height:14px;"></i>
           </button>
           <div class="dropdown dd-narrow" id="dd-services" data-dropdown-menu role="menu">
             <a class="dd-item" href="https://studios.vevit.cz" role="menuitem">
               <span class="dd-icon"><i data-lucide="code-2" style="width:18px;height:18px;"></i></span>
-              <span><span class="dd-name">VeVit Software Studios</span><span class="dd-desc">Software na míru</span></span>
+              <span><span class="dd-name">VeVit Software Studios</span><span class="dd-desc" data-ui-text="page.navItem.studios">Software na míru</span></span>
             </a>
             <a class="dd-item" href="https://vevit.art" role="menuitem">
               <span class="dd-icon"><i data-lucide="palette" style="width:18px;height:18px;"></i></span>
-              <span><span class="dd-name">VeVit Art</span><span class="dd-desc">Platforma pro umělce</span></span>
+              <span><span class="dd-name">VeVit Art</span><span class="dd-desc" data-ui-text="page.navItem.art">Platforma pro umělce</span></span>
             </a>
           </div>
         </div>
 
-        <a class="nav-link" href="#about">O nás</a>
-        <a class="nav-link" href="#kontakt">Kontakt</a>
+        <a class="nav-link" href="#about" data-ui-text="page.nav.aboutUs">O nás</a>
+        <a class="nav-link" href="#kontakt" data-ui-text="nav.contact">Kontakt</a>
       </nav>
 
       <div class="nav-cta vv-app-actions" aria-live="polite">
@@ -123,7 +123,8 @@
         data-mobile-open
         aria-expanded="false"
         aria-controls="mobile-panel"
-        aria-label="Otevřít menu">
+        aria-label="Otevřít menu"
+        data-ui-attr="aria-label:page.nav.ariaOpen">
         <i data-lucide="menu" style="width:20px;height:20px;"></i>
       </button>
     </div>
@@ -131,26 +132,26 @@
 
   <!-- ============ MOBILE PANEL ============ -->
   <div class="mobile-overlay" data-mobile-overlay aria-hidden="true"></div>
-  <aside class="mobile-panel" id="mobile-panel" data-mobile-panel aria-label="Mobilní navigace">
+  <aside class="mobile-panel" id="mobile-panel" data-mobile-panel aria-label="Mobilní navigace" data-ui-attr="aria-label:page.nav.ariaMobile">
     <div class="mobile-head">
       <span class="wordmark">VeVit</span>
-      <button class="mobile-close" type="button" data-mobile-close aria-label="Zavřít menu">
+      <button class="mobile-close" type="button" data-mobile-close aria-label="Zavřít menu" data-ui-attr="aria-label:page.nav.ariaClose">
         <i data-lucide="x" style="width:20px;height:20px;"></i>
       </button>
     </div>
     <ul class="mobile-links">
-      <li class="mobile-group">Webové aplikace</li>
+      <li class="mobile-group" data-ui-text="page.mobile.groupWebApps">Webové aplikace</li>
       <li><a href="/tools">Tools</a></li>
       <li><a href="/home#roadmap">Games</a></li>
       <li><a href="/edu">Edu</a></li>
       <li><a href="https://services.vevit.cz">Services</a></li>
       <li><a href="/account">Account</a></li>
-      <li class="mobile-group">Služby VeVit</li>
+      <li class="mobile-group" data-ui-text="page.mobile.groupServices">Služby VeVit</li>
       <li><a href="https://studios.vevit.cz">VeVit Software Studios</a></li>
       <li><a href="https://vevit.art">VeVit Art</a></li>
-      <li class="mobile-group">Další</li>
-      <li><a href="#about">O nás</a></li>
-      <li><a href="#kontakt">Kontakt</a></li>
+      <li class="mobile-group" data-ui-text="page.mobile.groupMore">Další</li>
+      <li><a href="#about" data-ui-text="page.nav.aboutUs">O nás</a></li>
+      <li><a href="#kontakt" data-ui-text="nav.contact">Kontakt</a></li>
     </ul>
     <div class="mobile-cta" data-vevit-session aria-live="polite">
       <span class="account-session-status">Ověřuji účet…</span>
@@ -165,44 +166,43 @@
           <div class="rise">
             <span class="eyebrow">
               <i data-lucide="sparkles" style="width:12px;height:12px;"></i>
-              Český digitální ekosystém
+              <span data-ui-text="page.hero.eyebrow">Český digitální ekosystém</span>
             </span>
             <h1 id="hero-h1" class="hero-h1-epic">
-              Nástroje, hry<br>
-              a lekce.<br>
-              <span class="strike-word">Bez reklam.</span>
+              <span data-ui-text="page.hero.h1a">Nástroje, hry</span><br>
+              <span data-ui-text="page.hero.h1b">a lekce.</span><br>
+              <span class="strike-word" data-ui-text="page.hero.h1c">Bez reklam.</span>
             </h1>
             <p class="hero-sub-epic">
-              <strong style="color:var(--text);font-weight:600;" data-ui-text="landing.counts.toolsLabel"></strong>,
-              21+ her a 500+ lekcí. Nástroje můžeš používat přímo v prohlížeči.
+              <strong style="color:var(--text);font-weight:600;" data-ui-text="landing.counts.toolsLabel"></strong>, <span data-ui-text="page.hero.sub">21+ her a 500+ lekcí. Nástroje můžeš používat přímo v prohlížeči.</span>
             </p>
             <div class="hero-cta-row">
               <a class="btn btn-primary" href="/tools" data-track="hero:tools">
-                Otevřít Tools
+                <span data-ui-text="page.hero.ctaTools">Otevřít Tools</span>
                 <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
               </a>
-              <a class="btn btn-ghost" href="#platforms" data-track="hero:explore">Prozkoumat ekosystém</a>
+              <a class="btn btn-ghost" href="#platforms" data-track="hero:explore" data-ui-text="page.hero.ctaExplore">Prozkoumat ekosystém</a>
             </div>
 
             <div class="hero-meta">
               <div class="hero-meta-item">
                 <span class="hero-meta-num acc" data-ui-text="landing.counts.tools"></span>
-                <span>nástrojů</span>
+                <span data-ui-text="page.hero.metaTools">nástrojů</span>
               </div>
               <span class="hero-meta-sep" aria-hidden="true"></span>
               <div class="hero-meta-item">
                 <span class="hero-meta-num">21+</span>
-                <span>her</span>
+                <span data-ui-text="page.hero.metaGames">her</span>
               </div>
               <span class="hero-meta-sep" aria-hidden="true"></span>
               <div class="hero-meta-item">
                 <span class="hero-meta-num">500+</span>
-                <span>lekcí</span>
+                <span data-ui-text="page.hero.metaLessons">lekcí</span>
               </div>
               <span class="hero-meta-sep" aria-hidden="true"></span>
               <div class="hero-meta-item">
                 <span class="hero-meta-num">1 200+</span>
-                <span>uživatelů</span>
+                <span data-ui-text="page.hero.metaUsers">uživatelů</span>
               </div>
             </div>
           </div>
@@ -256,20 +256,20 @@
     <div class="marquee" aria-hidden="true">
       <div class="marquee-track">
         <span><span class="dot"></span><span data-ui-text="landing.counts.toolsMarquee"></span></span>
-        <span><span class="dot"></span>21+ HER</span>
-        <span><span class="dot"></span>500+ LEKCÍ</span>
-        <span><span class="dot"></span>1 200+ UŽIVATELŮ</span>
-        <span><span class="dot"></span>BEZ REKLAM</span>
-        <span><span class="dot"></span>VŠE LOKÁLNĚ V PROHLÍŽEČI</span>
-        <span><span class="dot"></span>POSTAVENO V ČR</span>
+        <span><span class="dot"></span><span data-ui-text="page.marquee.games">21+ HER</span></span>
+        <span><span class="dot"></span><span data-ui-text="page.marquee.lessons">500+ LEKCÍ</span></span>
+        <span><span class="dot"></span><span data-ui-text="page.marquee.users">1 200+ UŽIVATELŮ</span></span>
+        <span><span class="dot"></span><span data-ui-text="page.marquee.noAds">BEZ REKLAM</span></span>
+        <span><span class="dot"></span><span data-ui-text="page.marquee.local">VŠE LOKÁLNĚ V PROHLÍŽEČI</span></span>
+        <span><span class="dot"></span><span data-ui-text="page.marquee.cz">POSTAVENO V ČR</span></span>
         <!-- duplicate for loop -->
         <span><span class="dot"></span><span data-ui-text="landing.counts.toolsMarquee"></span></span>
-        <span><span class="dot"></span>21+ HER</span>
-        <span><span class="dot"></span>500+ LEKCÍ</span>
-        <span><span class="dot"></span>1 200+ UŽIVATELŮ</span>
-        <span><span class="dot"></span>BEZ REKLAM</span>
-        <span><span class="dot"></span>VŠE LOKÁLNĚ V PROHLÍŽEČI</span>
-        <span><span class="dot"></span>POSTAVENO V ČR</span>
+        <span><span class="dot"></span><span data-ui-text="page.marquee.games">21+ HER</span></span>
+        <span><span class="dot"></span><span data-ui-text="page.marquee.lessons">500+ LEKCÍ</span></span>
+        <span><span class="dot"></span><span data-ui-text="page.marquee.users">1 200+ UŽIVATELŮ</span></span>
+        <span><span class="dot"></span><span data-ui-text="page.marquee.noAds">BEZ REKLAM</span></span>
+        <span><span class="dot"></span><span data-ui-text="page.marquee.local">VŠE LOKÁLNĚ V PROHLÍŽEČI</span></span>
+        <span><span class="dot"></span><span data-ui-text="page.marquee.cz">POSTAVENO V ČR</span></span>
       </div>
     </div>
 
@@ -277,25 +277,25 @@
     <section class="section explore-section" id="explore" aria-labelledby="explore-h2">
       <div class="container">
         <header class="section-head-c">
-          <span class="eyebrow"><i data-lucide="compass" style="width:12px;height:12px;"></i> Více než web</span>
-          <h2 id="explore-h2" class="t-2xl" style="margin:12px 0 12px;">Další projekty VeVit</h2>
-          <p>Vedle webových aplikací vyvíjíme software na míru a připravujeme platformu pro umělce.</p>
+          <span class="eyebrow"><i data-lucide="compass" style="width:12px;height:12px;"></i> <span data-ui-text="page.explore.eyebrow">Více než web</span></span>
+          <h2 id="explore-h2" class="t-2xl" style="margin:12px 0 12px;" data-ui-text="page.explore.title">Další projekty VeVit</h2>
+          <p data-ui-text="page.explore.subtitle">Vedle webových aplikací vyvíjíme software na míru a připravujeme platformu pro umělce.</p>
         </header>
 
         <div class="explore-grid">
           <a class="explore-card" href="https://studios.vevit.cz" data-track="explore:studios">
             <div class="explore-icon"><i data-lucide="code-2" style="width:28px;height:28px;"></i></div>
             <h3>VeVit Software Studios</h3>
-            <p>Vyvíjíme webové aplikace, interní systémy a integrace na míru firmám i jednotlivcům.</p>
-            <span class="explore-tag">Software na míru</span>
+            <p data-ui-text="page.explore.studiosDesc">Vyvíjíme webové aplikace, interní systémy a integrace na míru firmám i jednotlivcům.</p>
+            <span class="explore-tag" data-ui-text="page.explore.studiosTag">Software na míru</span>
             <span class="explore-cta">studios.vevit.cz <i data-lucide="arrow-up-right" style="width:16px;height:16px;"></i></span>
           </a>
 
           <a class="explore-card" href="https://vevit.art" data-track="explore:art">
             <div class="explore-icon"><i data-lucide="palette" style="width:28px;height:28px;"></i></div>
             <h3>VeVit Art</h3>
-            <p>VeVit Art připravujeme pro začínající umělce, kteří chtějí sdílet svou tvorbu.</p>
-            <span class="explore-tag">Platforma pro umělce</span>
+            <p data-ui-text="page.explore.artDesc">VeVit Art připravujeme pro začínající umělce, kteří chtějí sdílet svou tvorbu.</p>
+            <span class="explore-tag" data-ui-text="page.explore.artTag">Platforma pro umělce</span>
             <span class="explore-cta">vevit.art <i data-lucide="arrow-up-right" style="width:16px;height:16px;"></i></span>
           </a>
         </div>
@@ -306,16 +306,16 @@
     <section class="section" id="platforms" aria-labelledby="platforms-h2">
       <div class="container">
         <header class="section-head">
-          <span class="eyebrow"><i data-lucide="grid-3x3" style="width:12px;height:12px;"></i> Ekosystém</span>
-          <h2 id="platforms-h2" class="t-3xl" style="margin:8px 0 8px;">Webové aplikace</h2>
-          <p>Každá aplikace má vlastní zaměření. VeVit účet je postupně propojuje.</p>
+          <span class="eyebrow"><i data-lucide="grid-3x3" style="width:12px;height:12px;"></i> <span data-ui-text="page.platforms.eyebrow">Ekosystém</span></span>
+          <h2 id="platforms-h2" class="t-3xl" style="margin:8px 0 8px;" data-ui-text="page.platforms.title">Webové aplikace</h2>
+          <p data-ui-text="page.platforms.subtitle">Každá aplikace má vlastní zaměření. VeVit účet je postupně propojuje.</p>
         </header>
 
         <div class="bento-epic">
           <!-- TOOLS HERO CARD -->
           <a class="ec ec-tools" href="/tools" data-track="bento:tools">
             <span class="ec-glow"></span>
-            <span class="ec-badge">Beta testing</span>
+            <span class="ec-badge" data-ui-text="page.platforms.badgeBeta">Beta testing</span>
 
             <div style="display:flex;align-items:center;gap:12px;">
               <span class="ec-icon-wrap"><i data-lucide="wrench" style="width:22px;height:22px;"></i></span>
@@ -324,7 +324,7 @@
 
             <div class="ec-tools-num" data-ui-text="landing.counts.tools"></div>
             <h3 class="ec-title">Tools</h3>
-            <p class="ec-desc" style="max-width:420px;">
+            <p class="ec-desc" style="max-width:420px;" data-ui-text="page.platforms.toolsDesc">
               Kalkulačky, konvertory, generátory, PDF nástroje, AI pomocníci a dev utility.
               Nástroje běží lokálně v prohlížeči. Soubory nemusíš nahrávat na server.
             </p>
@@ -354,13 +354,13 @@
           <!-- GAMES -->
           <div class="ec ec-games" aria-disabled="true">
             <span class="ec-glow"></span>
-            <span class="ec-badge muted"><i data-lucide="lock" style="width:10px;height:10px;"></i> Připravuje se</span>
+            <span class="ec-badge muted"><i data-lucide="lock" style="width:10px;height:10px;"></i> <span data-ui-text="hub.preparing">Připravuje se</span></span>
             <span class="ec-icon-wrap"><i data-lucide="gamepad-2" style="width:22px;height:22px;"></i></span>
             <h3 class="ec-title">Games</h3>
-            <p class="ec-desc">Připravujeme 21+ her, včetně Snake, Tetrisu, Pac-Mana a 2048.</p>
+            <p class="ec-desc" data-ui-text="page.platforms.gamesDesc">Připravujeme 21+ her, včetně Snake, Tetrisu, Pac-Mana a 2048.</p>
             <div class="ec-meta">
               <span class="ec-count" style="font-size:24px;">21<sup style="font-size:0.5em;">+</sup></span>
-              <span>her na výběr</span>
+              <span data-ui-text="page.platforms.gamesMeta">her na výběr</span>
             </div>
             <div class="pixel-row" aria-hidden="true">
               <span class="pixel-cell on"></span><span class="pixel-cell on"></span>
@@ -375,13 +375,13 @@
           <!-- EDU -->
           <a class="ec ec-edu" href="/edu" data-track="bento:edu">
             <span class="ec-glow"></span>
-            <span class="ec-badge">Beta testing</span>
+            <span class="ec-badge" data-ui-text="page.platforms.badgeBeta">Beta testing</span>
             <span class="ec-icon-wrap"><i data-lucide="graduation-cap" style="width:22px;height:22px;"></i></span>
             <h3 class="ec-title">Edu</h3>
-            <p class="ec-desc">500+ lekcí, kvízů a článků. Programování, matematika, jazyky.</p>
+            <p class="ec-desc" data-ui-text="page.platforms.eduDesc">500+ lekcí, kvízů a článků. Programování, matematika, jazyky.</p>
             <div class="ec-meta">
               <span class="ec-count" style="font-size:24px;">500<sup style="font-size:0.5em;">+</sup></span>
-              <span>lekcí zdarma</span>
+              <span data-ui-text="page.platforms.eduMeta">lekcí zdarma</span>
             </div>
             <div class="lesson-bars" aria-hidden="true">
               <span style="height:40%"></span><span style="height:65%"></span>
@@ -397,7 +397,7 @@
           <!-- SERVICES -->
           <div class="ec ec-services" aria-disabled="true">
             <span class="ec-glow"></span>
-            <span class="ec-badge muted"><i data-lucide="lock" style="width:10px;height:10px;"></i> Připravuje se</span>
+            <span class="ec-badge muted"><i data-lucide="lock" style="width:10px;height:10px;"></i> <span data-ui-text="hub.preparing">Připravuje se</span></span>
             <span class="ec-icon-wrap"><i data-lucide="layers" style="width:22px;height:22px;"></i></span>
             <h3 class="ec-title">Services</h3>
             <p class="ec-desc" data-ui-text="landing.services.card"></p>
@@ -426,19 +426,19 @@
 
           <!-- SEARCH (Soon) -->
           <div class="ec ec-search" aria-disabled="true">
-            <span class="ec-badge muted"><i data-lucide="lock" style="width:10px;height:10px;"></i> Připravuje se</span>
+            <span class="ec-badge muted"><i data-lucide="lock" style="width:10px;height:10px;"></i> <span data-ui-text="hub.preparing">Připravuje se</span></span>
             <span class="ec-icon-wrap"><i data-lucide="search" style="width:22px;height:22px;"></i></span>
             <h3 class="ec-title">Search</h3>
-            <p class="ec-desc">Univerzální vyhledávač přes celý VeVit ekosystém.</p>
+            <p class="ec-desc" data-ui-text="page.platforms.searchDesc">Univerzální vyhledávač přes celý VeVit ekosystém.</p>
             <div class="ec-meta"><span>search.vevit.cz</span></div>
           </div>
 
           <!-- STORE (Soon) -->
           <div class="ec ec-store" aria-disabled="true">
-            <span class="ec-badge muted"><i data-lucide="lock" style="width:10px;height:10px;"></i> Připravuje se</span>
+            <span class="ec-badge muted"><i data-lucide="lock" style="width:10px;height:10px;"></i> <span data-ui-text="hub.preparing">Připravuje se</span></span>
             <span class="ec-icon-wrap"><i data-lucide="shopping-bag" style="width:22px;height:22px;"></i></span>
             <h3 class="ec-title">Store</h3>
-            <p class="ec-desc">Oficiální merch, digitální produkty a Premium plány.</p>
+            <p class="ec-desc" data-ui-text="page.platforms.storeDesc">Oficiální merch, digitální produkty a Premium plány.</p>
             <div class="ec-meta"><span>vevit.cz/store</span></div>
           </div>
 
@@ -450,20 +450,20 @@
     <section class="section" id="tools" aria-labelledby="tools-h2">
       <div class="container">
         <header class="section-head-c">
-          <span class="eyebrow">Výběr nástrojů</span>
-          <h2 id="tools-h2" class="t-2xl">Nejnovější nástroje</h2>
+          <span class="eyebrow" data-ui-text="page.toolsShowcase.eyebrow">Výběr nástrojů</span>
+          <h2 id="tools-h2" class="t-2xl" data-ui-text="page.toolsShowcase.title">Nejnovější nástroje</h2>
           <p data-ui-text="landing.counts.toolsAvailable"></p>
         </header>
 
         <div class="tools-showcase">
-          <a class="tool-mini" href="/tools/bg-remover" data-tool-slug="bg-remover"><span class="tool-badge">Doporučeno</span><span class="tool-ico"><i data-lucide="eraser" style="width:18px;height:18px;"></i></span><span class="tool-name">Odstranit pozadí</span><span class="tool-category">Obrázky</span><span class="tool-desc">Odstraní pozadí z fotografie pomocí AI.</span><span class="tool-use">Použít</span></a>
-          <a class="tool-mini" href="/tools/img-compress" data-tool-slug="img-compress"><span class="tool-ico"><i data-lucide="image" style="width:18px;height:18px;"></i></span><span class="tool-name">Komprese obrázku</span><span class="tool-category">Obrázky</span><span class="tool-desc">Zmenší obrázek a uloží ho jako JPEG nebo WebP.</span><span class="tool-use">Použít</span></a>
-          <a class="tool-mini" href="/tools/pdf-compress" data-tool-slug="pdf-compress"><span class="tool-ico"><i data-lucide="shrink" style="width:18px;height:18px;"></i></span><span class="tool-name">Komprese PDF</span><span class="tool-category">PDF</span><span class="tool-desc">Zmenší velikost PDF souboru.</span><span class="tool-use">Použít</span></a>
-          <a class="tool-mini" href="/tools/pdf-merge" data-tool-slug="pdf-merge"><span class="tool-ico"><i data-lucide="files" style="width:18px;height:18px;"></i></span><span class="tool-name">Sloučení PDF</span><span class="tool-category">PDF</span><span class="tool-desc">Sloučí více PDF souborů do jednoho.</span><span class="tool-use">Použít</span></a>
-          <a class="tool-mini" href="/tools/qr-generator" data-tool-slug="qr-generator"><span class="tool-ico"><i data-lucide="qr-code" style="width:18px;height:18px;"></i></span><span class="tool-name">QR generátor</span><span class="tool-category">Dev</span><span class="tool-desc">Vytvoří QR kód pro text, odkaz, Wi-Fi nebo kontakt.</span><span class="tool-use">Použít</span></a>
-          <a class="tool-mini" href="/tools/json-formatter" data-tool-slug="json-formatter"><span class="tool-ico"><i data-lucide="braces" style="width:18px;height:18px;"></i></span><span class="tool-name">JSON formátovač</span><span class="tool-category">Dev</span><span class="tool-desc">Formátuje a zkontroluje JSON strukturu.</span><span class="tool-use">Použít</span></a>
-          <a class="tool-mini" href="/tools/password-gen" data-tool-slug="password-gen"><span class="tool-ico"><i data-lucide="lock" style="width:18px;height:18px;"></i></span><span class="tool-name">Generátor hesel</span><span class="tool-category">Bezpečnost</span><span class="tool-desc">Vytvoří bezpečné heslo podle zvolených pravidel.</span><span class="tool-use">Použít</span></a>
-          <a class="tool-mini" href="/tools/translate" data-tool-slug="translate"><span class="tool-badge">Doporučeno</span><span class="tool-ico"><i data-lucide="languages" style="width:18px;height:18px;"></i></span><span class="tool-name">Překlad textu</span><span class="tool-category">Text</span><span class="tool-desc">Přeloží text mezi vybranými jazyky pomocí AI.</span><span class="tool-use">Použít</span></a>
+          <a class="tool-mini" href="/tools/bg-remover" data-tool-slug="bg-remover"><span class="tool-badge" data-ui-text="page.toolsShowcase.recommended">Doporučeno</span><span class="tool-ico"><i data-lucide="eraser" style="width:18px;height:18px;"></i></span><span class="tool-name" data-ui-text="page.toolsShowcase.tools.0.name">Odstranit pozadí</span><span class="tool-category" data-ui-text="page.toolsShowcase.cat.images">Obrázky</span><span class="tool-desc" data-ui-text="page.toolsShowcase.tools.0.desc">Odstraní pozadí z fotografie pomocí AI.</span><span class="tool-use" data-ui-text="page.toolsShowcase.use">Použít</span></a>
+          <a class="tool-mini" href="/tools/img-compress" data-tool-slug="img-compress"><span class="tool-ico"><i data-lucide="image" style="width:18px;height:18px;"></i></span><span class="tool-name" data-ui-text="page.toolsShowcase.tools.1.name">Komprese obrázku</span><span class="tool-category" data-ui-text="page.toolsShowcase.cat.images">Obrázky</span><span class="tool-desc" data-ui-text="page.toolsShowcase.tools.1.desc">Zmenší obrázek a uloží ho jako JPEG nebo WebP.</span><span class="tool-use" data-ui-text="page.toolsShowcase.use">Použít</span></a>
+          <a class="tool-mini" href="/tools/pdf-compress" data-tool-slug="pdf-compress"><span class="tool-ico"><i data-lucide="shrink" style="width:18px;height:18px;"></i></span><span class="tool-name" data-ui-text="page.toolsShowcase.tools.2.name">Komprese PDF</span><span class="tool-category" data-ui-text="page.toolsShowcase.cat.pdf">PDF</span><span class="tool-desc" data-ui-text="page.toolsShowcase.tools.2.desc">Zmenší velikost PDF souboru.</span><span class="tool-use" data-ui-text="page.toolsShowcase.use">Použít</span></a>
+          <a class="tool-mini" href="/tools/pdf-merge" data-tool-slug="pdf-merge"><span class="tool-ico"><i data-lucide="files" style="width:18px;height:18px;"></i></span><span class="tool-name" data-ui-text="page.toolsShowcase.tools.3.name">Sloučení PDF</span><span class="tool-category" data-ui-text="page.toolsShowcase.cat.pdf">PDF</span><span class="tool-desc" data-ui-text="page.toolsShowcase.tools.3.desc">Sloučí více PDF souborů do jednoho.</span><span class="tool-use" data-ui-text="page.toolsShowcase.use">Použít</span></a>
+          <a class="tool-mini" href="/tools/qr-generator" data-tool-slug="qr-generator"><span class="tool-ico"><i data-lucide="qr-code" style="width:18px;height:18px;"></i></span><span class="tool-name" data-ui-text="page.toolsShowcase.tools.4.name">QR generátor</span><span class="tool-category" data-ui-text="page.toolsShowcase.cat.dev">Dev</span><span class="tool-desc" data-ui-text="page.toolsShowcase.tools.4.desc">Vytvoří QR kód pro text, odkaz, Wi-Fi nebo kontakt.</span><span class="tool-use" data-ui-text="page.toolsShowcase.use">Použít</span></a>
+          <a class="tool-mini" href="/tools/json-formatter" data-tool-slug="json-formatter"><span class="tool-ico"><i data-lucide="braces" style="width:18px;height:18px;"></i></span><span class="tool-name" data-ui-text="page.toolsShowcase.tools.5.name">JSON formátovač</span><span class="tool-category" data-ui-text="page.toolsShowcase.cat.dev">Dev</span><span class="tool-desc" data-ui-text="page.toolsShowcase.tools.5.desc">Formátuje a zkontroluje JSON strukturu.</span><span class="tool-use" data-ui-text="page.toolsShowcase.use">Použít</span></a>
+          <a class="tool-mini" href="/tools/password-gen" data-tool-slug="password-gen"><span class="tool-ico"><i data-lucide="lock" style="width:18px;height:18px;"></i></span><span class="tool-name" data-ui-text="page.toolsShowcase.tools.6.name">Generátor hesel</span><span class="tool-category" data-ui-text="page.toolsShowcase.cat.security">Bezpečnost</span><span class="tool-desc" data-ui-text="page.toolsShowcase.tools.6.desc">Vytvoří bezpečné heslo podle zvolených pravidel.</span><span class="tool-use" data-ui-text="page.toolsShowcase.use">Použít</span></a>
+          <a class="tool-mini" href="/tools/translate" data-tool-slug="translate"><span class="tool-badge" data-ui-text="page.toolsShowcase.recommended">Doporučeno</span><span class="tool-ico"><i data-lucide="languages" style="width:18px;height:18px;"></i></span><span class="tool-name" data-ui-text="page.toolsShowcase.tools.7.name">Překlad textu</span><span class="tool-category" data-ui-text="page.toolsShowcase.cat.text">Text</span><span class="tool-desc" data-ui-text="page.toolsShowcase.tools.7.desc">Přeloží text mezi vybranými jazyky pomocí AI.</span><span class="tool-use" data-ui-text="page.toolsShowcase.use">Použít</span></a>
         </div>
       </div>
     </section>
@@ -471,31 +471,31 @@
     <!-- ============ STATS BAND ============ -->
     <section class="section" id="stats" aria-labelledby="stats-h2">
       <div class="container">
-        <h2 id="stats-h2" class="sr-only">Statistiky komunity</h2>
+        <h2 id="stats-h2" class="sr-only" data-ui-text="page.stats.aria">Statistiky komunity</h2>
         <div class="stats-band">
           <div class="stat-block">
-            <div class="label">XP rozdáno</div>
+            <div class="label" data-ui-text="page.stats.items.0.label">XP rozdáno</div>
             <div class="num" data-stat-target="2847291">2 847 291</div>
-            <div class="delta"><i data-lucide="trending-up" style="width:12px;height:12px;"></i> +12.4 % týden</div>
-            <div class="desc">Napříč všemi aplikacemi</div>
+            <div class="delta"><i data-lucide="trending-up" style="width:12px;height:12px;"></i> <span data-ui-text="page.stats.items.0.delta">+12.4 % týden</span></div>
+            <div class="desc" data-ui-text="page.stats.items.0.desc">Napříč všemi aplikacemi</div>
           </div>
           <div class="stat-block">
-            <div class="label">Lekce dokončeny</div>
+            <div class="label" data-ui-text="page.stats.items.1.label">Lekce dokončeny</div>
             <div class="num" data-stat-target="48312">48 312</div>
-            <div class="delta"><i data-lucide="trending-up" style="width:12px;height:12px;"></i> +8.1 % týden</div>
-            <div class="desc">V Edu sekci, 142 kurzů</div>
+            <div class="delta"><i data-lucide="trending-up" style="width:12px;height:12px;"></i> <span data-ui-text="page.stats.items.1.delta">+8.1 % týden</span></div>
+            <div class="desc" data-ui-text="page.stats.items.1.desc">V Edu sekci, 142 kurzů</div>
           </div>
           <div class="stat-block">
-            <div class="label">Aktivní uživatelé</div>
+            <div class="label" data-ui-text="page.stats.items.2.label">Aktivní uživatelé</div>
             <div class="num" data-stat-target="14802">14 802</div>
-            <div class="delta"><i data-lucide="trending-up" style="width:12px;height:12px;"></i> +2.7 % týden</div>
-            <div class="desc">Měsíčně, MAU</div>
+            <div class="delta"><i data-lucide="trending-up" style="width:12px;height:12px;"></i> <span data-ui-text="page.stats.items.2.delta">+2.7 % týden</span></div>
+            <div class="desc" data-ui-text="page.stats.items.2.desc">Měsíčně, MAU</div>
           </div>
           <div class="stat-block">
-            <div class="label">Vyřešeno úloh</div>
+            <div class="label" data-ui-text="page.stats.items.3.label">Vyřešeno úloh</div>
             <div class="num" data-stat-target="912557">912 557</div>
-            <div class="delta"><i data-lucide="trending-up" style="width:12px;height:12px;"></i> +14.9 % týden</div>
-            <div class="desc">Tools, AI, kalkulačky</div>
+            <div class="delta"><i data-lucide="trending-up" style="width:12px;height:12px;"></i> <span data-ui-text="page.stats.items.3.delta">+14.9 % týden</span></div>
+            <div class="desc" data-ui-text="page.stats.items.3.desc">Tools, AI, kalkulačky</div>
           </div>
         </div>
       </div>
@@ -505,60 +505,60 @@
     <section class="section" id="about" aria-labelledby="why-h2">
       <div class="container">
         <header class="section-head-c">
-          <span class="eyebrow">O VeVitu</span>
-          <h2 id="why-h2" class="t-2xl">Proč VeVit existuje</h2>
-          <p>VeVit stavíme podle šesti jednoduchých zásad.</p>
+          <span class="eyebrow" data-ui-text="page.why.eyebrow">O VeVitu</span>
+          <h2 id="why-h2" class="t-2xl" data-ui-text="page.why.title">Proč VeVit existuje</h2>
+          <p data-ui-text="page.why.subtitle">VeVit stavíme podle šesti jednoduchých zásad.</p>
         </header>
 
         <div class="why6">
           <article class="why-cell">
             <span class="why-num">01</span>
             <span class="why-icon-wrap"><i data-lucide="shield-off" style="width:22px;height:22px;"></i></span>
-            <h3>Bez reklam</h3>
-            <p>Nepoužíváme personalizované reklamy ani sledovací pixely. Projekt financujeme přes Premium a Store.</p>
+            <h3 data-ui-text="page.why.cells.0.title">Bez reklam</h3>
+            <p data-ui-text="page.why.cells.0.desc">Nepoužíváme personalizované reklamy ani sledovací pixely. Projekt financujeme přes Premium a Store.</p>
           </article>
 
           <article class="why-cell why-cell-stat">
             <span class="why-num">02</span>
             <div class="stat-big" data-ui-text="landing.counts.tools"></div>
-            <h3>Nástroje na jednom místě</h3>
-            <p>Najdeš tu PDF nástroje, kalkulačky, konvertory, AI pomocníky i nástroje pro vývojáře.</p>
+            <h3 data-ui-text="page.why.cells.1.title">Nástroje na jednom místě</h3>
+            <p data-ui-text="page.why.cells.1.desc">Najdeš tu PDF nástroje, kalkulačky, konvertory, AI pomocníky i nástroje pro vývojáře.</p>
           </article>
 
           <article class="why-cell">
             <span class="why-num">03</span>
             <span class="why-icon-wrap"><i data-lucide="zap" style="width:22px;height:22px;"></i></span>
-            <h3>Postup, který je vidět</h3>
-            <p>Za používání aplikací můžeš získávat XP, levely a profilové odměny.</p>
+            <h3 data-ui-text="page.why.cells.2.title">Postup, který je vidět</h3>
+            <p data-ui-text="page.why.cells.2.desc">Za používání aplikací můžeš získávat XP, levely a profilové odměny.</p>
           </article>
 
           <article class="why-cell why-cell-quote">
             <span class="why-num">04</span>
-            <h3>Projekt jednoho vývojáře</h3>
-            <p>VeVit ve volném čase vyvíjí Vít. Jednotlivé aplikace vznikají postupně podle toho, co je připravené k použití.</p>
+            <h3 data-ui-text="page.why.cells.3.title">Projekt jednoho vývojáře</h3>
+            <p data-ui-text="page.why.cells.3.desc">VeVit ve volném čase vyvíjí Vít. Jednotlivé aplikace vznikají postupně podle toho, co je připravené k použití.</p>
           </article>
 
           <article class="why-cell">
             <span class="why-num">05</span>
             <span class="why-icon-wrap"><i data-lucide="globe-2" style="width:22px;height:22px;"></i></span>
-            <h3>Čeština od začátku</h3>
-            <p>Rozhraní i podpora vznikají nejdřív v češtině. Další jazyky přidáváme postupně.</p>
+            <h3 data-ui-text="page.why.cells.4.title">Čeština od začátku</h3>
+            <p data-ui-text="page.why.cells.4.desc">Rozhraní i podpora vznikají nejdřív v češtině. Další jazyky přidáváme postupně.</p>
             <div class="why-timeline">
-              <span class="done">2023 start</span>
-              <span class="done">2024 Tools</span>
-              <span class="now">2025 Premium</span>
+              <span class="done" data-ui-text="page.why.timeline4.0">2023 start</span>
+              <span class="done" data-ui-text="page.why.timeline4.1">2024 Tools</span>
+              <span class="now" data-ui-text="page.why.timeline4.2">2025 Premium</span>
             </div>
           </article>
 
           <article class="why-cell">
             <span class="why-num">06</span>
             <span class="why-icon-wrap"><i data-lucide="git-branch" style="width:22px;height:22px;"></i></span>
-            <h3>Veřejná roadmapa</h3>
-            <p>Na této stránce najdeš aktuální stav aplikací a přehled toho, na čem pracujeme.</p>
+            <h3 data-ui-text="page.why.cells.5.title">Veřejná roadmapa</h3>
+            <p data-ui-text="page.why.cells.5.desc">Na této stránce najdeš aktuální stav aplikací a přehled toho, na čem pracujeme.</p>
             <div class="why-timeline">
-              <span class="done">v0.9</span>
-              <span class="now">v1.0 (teď)</span>
-              <span>v1.1</span>
+              <span class="done" data-ui-text="page.why.timeline5.0">v0.9</span>
+              <span class="now" data-ui-text="page.why.timeline5.1">v1.0 (teď)</span>
+              <span data-ui-text="page.why.timeline5.2">v1.1</span>
             </div>
           </article>
         </div>
@@ -569,9 +569,9 @@
     <section class="section" id="roadmap" aria-labelledby="roadmap-h2">
       <div class="container">
         <header class="section-head-c">
-          <span class="eyebrow">Roadmap</span>
-          <h2 id="roadmap-h2" class="t-2xl">Co chystáme</h2>
-          <p>Account, Tools a Edu jsou v betě. Ostatní aplikace dál připravujeme.</p>
+          <span class="eyebrow" data-ui-text="page.roadmap.eyebrow">Roadmap</span>
+          <h2 id="roadmap-h2" class="t-2xl" data-ui-text="page.roadmap.title">Co chystáme</h2>
+          <p data-ui-text="page.roadmap.subtitle">Account, Tools a Edu jsou v betě. Ostatní aplikace dál připravujeme.</p>
         </header>
 
         <div class="roadmap-track">
@@ -592,7 +592,7 @@
               <span class="roadmap-icon"><i data-lucide="wrench" style="width:20px;height:20px;"></i></span>
               <h3>Tools</h3>
             </div>
-            <p>Kalkulačky, konvertory, generátory, PDF nástroje a dev utility. Běží lokálně v prohlížeči na <strong>vevit.cz/tools</strong>.</p>
+            <p><span data-ui-text="page.roadmap.toolsDescA">Kalkulačky, konvertory, generátory, PDF nástroje a dev utility. Běží lokálně v prohlížeči na</span> <strong>vevit.cz/tools</strong>.</p>
             <div class="roadmap-prog" data-ui-progress="ROADMAP_TOOLS_PROGRESS"></div>
             <div class="roadmap-meta"><span data-ui-text="landing.roadmap.tools.progress"></span></div>
           </article>
@@ -603,7 +603,7 @@
               <span class="roadmap-icon"><i data-lucide="graduation-cap" style="width:20px;height:20px;"></i></span>
               <h3>Edu</h3>
             </div>
-            <p>Lekce, kvízy a články o programování, matematice a jazycích. Otevřená beta běží na <strong>vevit.cz/edu</strong>.</p>
+            <p><span data-ui-text="page.roadmap.eduDescA">Lekce, kvízy a články o programování, matematice a jazycích. Otevřená beta běží na</span> <strong>vevit.cz/edu</strong>.</p>
             <div class="roadmap-prog" data-ui-progress="ROADMAP_EDU_PROGRESS"></div>
             <div class="roadmap-meta"><span data-ui-text="landing.roadmap.edu.progress"></span></div>
           </article>
@@ -614,7 +614,7 @@
               <span class="roadmap-icon"><i data-lucide="gamepad-2" style="width:20px;height:20px;"></i></span>
               <h3>Games</h3>
             </div>
-            <p>Připravujeme 21+ her s XP odměnami, včetně Snake, Tetrisu, Pac-Mana a 2048.</p>
+            <p data-ui-text="page.roadmap.gamesDesc">Připravujeme 21+ her s XP odměnami, včetně Snake, Tetrisu, Pac-Mana a 2048.</p>
             <div class="roadmap-prog" data-ui-progress="ROADMAP_GAMES_PROGRESS"></div>
             <div class="roadmap-meta"><span data-ui-text="landing.roadmap.games.progress"></span><span>games.vevit.cz</span></div>
           </article>
@@ -634,9 +634,9 @@
             <div class="roadmap-q" data-ui-text="landing.roadmap.search.status"></div>
             <div style="display:flex;align-items:center;gap:14px;">
               <span class="roadmap-icon"><i data-lucide="search" style="width:20px;height:20px;"></i></span>
-              <h3>Univerzální Search</h3>
+              <h3 data-ui-text="page.roadmap.searchTitle">Univerzální Search</h3>
             </div>
-            <p><span data-ui-text="landing.counts.toolsSearch"></span> Klávesová zkratka <kbd>⌘K</kbd> kdekoliv v ekosystému.</p>
+            <p><span data-ui-text="landing.counts.toolsSearch"></span> <span data-ui-text="page.roadmap.searchShortcut">Klávesová zkratka</span> <kbd>⌘K</kbd> <span data-ui-text="page.roadmap.searchShortcutTail">kdekoliv v ekosystému.</span></p>
             <div class="roadmap-prog" data-ui-progress="ROADMAP_SEARCH_PROGRESS"></div>
             <div class="roadmap-meta"><span data-ui-text="landing.roadmap.search.progress"></span></div>
           </article>
@@ -647,7 +647,7 @@
               <span class="roadmap-icon"><i data-lucide="shopping-bag" style="width:20px;height:20px;"></i></span>
               <h3>VeVit Store</h3>
             </div>
-            <p>Merch, digitální produkty, e-knihy a kurzy. Premium uživatelé mají 20 % slevu, faktury s DPH automaticky.</p>
+            <p data-ui-text="page.roadmap.storeDesc">Merch, digitální produkty, e-knihy a kurzy. Premium uživatelé mají 20 % slevu, faktury s DPH automaticky.</p>
             <div class="roadmap-prog" data-ui-progress="ROADMAP_STORE_PROGRESS"></div>
             <div class="roadmap-meta"><span data-ui-text="landing.roadmap.store.progress"></span></div>
           </article>
@@ -814,9 +814,9 @@
   <section class="section kontakt-section" id="kontakt" aria-labelledby="kontakt-h2">
     <div class="container">
       <header class="section-head-c">
-        <span class="eyebrow"><i data-lucide="mail" style="width:12px;height:12px;"></i> Kontakt</span>
-        <h2 id="kontakt-h2" class="t-2xl" style="margin:12px 0 12px;">Napište nám</h2>
-        <p>Ozvěte se s dotazem, nápadem nebo nabídkou spolupráce.</p>
+        <span class="eyebrow"><i data-lucide="mail" style="width:12px;height:12px;"></i> <span data-ui-text="nav.contact">Kontakt</span></span>
+        <h2 id="kontakt-h2" class="t-2xl" style="margin:12px 0 12px;" data-ui-text="contact.title">Napište nám</h2>
+        <p data-ui-text="contact.subtitle">Ozvěte se s dotazem, nápadem nebo nabídkou spolupráce.</p>
       </header>
 
       <div class="kontakt-grid">
@@ -824,23 +824,23 @@
           <input type="hidden" name="_subject" value="Zpráva z VeVit portálu">
           <input type="hidden" name="_template" value="table">
           <div class="field">
-            <label for="kf-name">Jméno</label>
-            <input id="kf-name" name="name" type="text" required placeholder="Vaše jméno">
+            <label for="kf-name" data-ui-text="contact.form.name">Jméno</label>
+            <input id="kf-name" name="name" type="text" required placeholder="Vaše jméno" data-ui-attr="placeholder:page.kontakt.namePh">
           </div>
           <div class="field">
-            <label for="kf-email">E-mail</label>
-            <input id="kf-email" name="email" type="email" required placeholder="vas@email.cz">
+            <label for="kf-email" data-ui-text="contact.form.email">E-mail</label>
+            <input id="kf-email" name="email" type="email" required placeholder="vas@email.cz" data-ui-attr="placeholder:page.kontakt.emailPh">
           </div>
           <div class="field">
-            <label for="kf-msg">Zpráva</label>
-            <textarea id="kf-msg" name="message" rows="5" required placeholder="S čím vám můžeme pomoct?"></textarea>
+            <label for="kf-msg" data-ui-text="contact.form.message">Zpráva</label>
+            <textarea id="kf-msg" name="message" rows="5" required placeholder="S čím vám můžeme pomoct?" data-ui-attr="placeholder:page.kontakt.msgPh"></textarea>
           </div>
-          <button class="btn btn-primary" type="submit">Odeslat zprávu</button>
+          <button class="btn btn-primary" type="submit" data-ui-text="contact.form.send">Odeslat zprávu</button>
           <p class="form-status" id="kontaktStatus" role="status" aria-live="polite" hidden></p>
         </form>
 
         <aside class="kontakt-social">
-          <h3>Sledujte nás</h3>
+          <h3 data-ui-text="page.kontakt.socialsTitle">Sledujte nás</h3>
           <a class="social-link" href="https://www.instagram.com/vevit.cz/" target="_blank" rel="noopener">
             <svg data-social-icon="instagram" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <rect x="3" y="3" width="18" height="18" rx="5"></rect>
@@ -878,46 +878,46 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <span class="wordmark">VeVit</span>
-          <p class="footer-tagline">Nástroje, hry a vzdělávání od českého projektu.</p>
+          <p class="footer-tagline" data-ui-text="footer.desc">Nástroje, hry a vzdělávání od českého projektu.</p>
         </div>
 
         <div class="footer-col">
-          <h4>Platformy</h4>
+          <h4 data-ui-text="page.footer.colPlatforms">Platformy</h4>
           <ul>
-            <li><a href="/home#roadmap">Hry</a></li>
-            <li><a href="/tools">Nástroje</a></li>
-            <li><a href="/edu">Vzdělávání</a></li>
-            <li><a href="https://services.vevit.cz">Služby</a></li>
+            <li><a href="/home#roadmap" data-ui-text="page.footer.linkGames">Hry</a></li>
+            <li><a href="/tools" data-ui-text="page.footer.linkTools">Nástroje</a></li>
+            <li><a href="/edu" data-ui-text="page.footer.linkEdu">Vzdělávání</a></li>
+            <li><a href="https://services.vevit.cz" data-ui-text="page.footer.linkServices">Služby</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4>Účet</h4>
+          <h4 data-ui-text="page.footer.colAccount">Účet</h4>
           <ul>
-            <li><a href="/account/login.html">Přihlášení</a></li>
-            <li><a href="/account/register.html">Registrace</a></li>
+            <li><a href="/account/login.html" data-ui-text="page.footer.linkLogin">Přihlášení</a></li>
+            <li><a href="/account/register.html" data-ui-text="page.footer.linkRegister">Registrace</a></li>
             <li><a href="#premium">Premium</a></li>
-            <li><a href="/account">Dashboard</a></li>
+            <li><a href="/account" data-ui-text="page.footer.linkDashboard">Dashboard</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4>Podpora</h4>
+          <h4 data-ui-text="page.footer.colSupport">Podpora</h4>
           <ul>
-            <li><a href="/home/support.html#contact">Kontakt</a></li>
-            <li><a href="/home/support.html#faq">FAQ</a></li>
-                        <li><a href="/home/support.html">Support</a></li>
+            <li><a href="/home/support.html#contact" data-ui-text="page.footer.linkContact">Kontakt</a></li>
+            <li><a href="/home/support.html#faq" data-ui-text="page.footer.linkFaq">FAQ</a></li>
+                        <li><a href="/home/support.html" data-ui-text="page.footer.linkSupport">Support</a></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-base">
         <p class="footer-copy">
-          &copy; 2025 - <span data-current-year>2026</span> VeVit. Postaveno s
+          &copy; 2025 - <span data-current-year>2026</span> VeVit. <span data-ui-text="page.footer.copy">Postaveno s</span>
           <i data-lucide="heart" class="heart" style="width:12px;height:12px;"></i>
-          v Česku.
+          <span data-ui-text="page.footer.madeIn">v Česku.</span>
         </p>
-        <div class="social-row" aria-label="Sociální sítě">
+        <div class="social-row" data-ui-attr="aria-label:page.footer.socialsAria" aria-label="Sociální sítě">
           <a href="https://github.com/VeVitOfficial" aria-label="GitHub">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.74.5 12.04c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.41-5.25 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56 4.56-1.53 7.85-5.83 7.85-10.91C23.5 5.74 18.27.5 12 .5z"/></svg>
           </a>
@@ -929,7 +929,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/ui.js?v=20260826a"></script>
+  <script src="assets/js/ui.js?v=20260826b"></script>
   <script type="module" src="/assets/shared/session.js?v=20260809c"></script>
   <script type="module" src="/assets/shared/app-switcher.js?v=20260825b"></script>
   <script type="module" src="/assets/shared/localization.js?v=20260826f"></script>

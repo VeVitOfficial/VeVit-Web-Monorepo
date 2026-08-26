@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { Analytics } from "@vercel/analytics/next"
 
 const securityHeaders = [
   { key: "X-Content-Type-Options", value: "nosniff" },

@@ -814,9 +814,9 @@ button { color: inherit; }
   box-shadow: 0 24px 70px #00000070;
 }
 
-.user-menu__identity { display: flex; flex-direction: column; gap: 4px; padding: 10px 10px 12px; }
-.user-menu__identity strong { font-size: 12px; }
-.user-menu__identity span { overflow: hidden; color: var(--text-3); font-family: var(--font-mono); font-size: 9px; text-overflow: ellipsis; }
+.user-menu__identity { display: flex; flex-direction: column; gap: 4px; min-width: 0; padding: 10px 10px 12px; }
+.user-menu__identity strong { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; }
+.user-menu__identity span { min-width: 0; overflow: hidden; white-space: nowrap; color: var(--text-3); font-family: var(--font-mono); font-size: 9px; text-overflow: ellipsis; }
 .user-menu a,
 .user-menu button {
   width: 100%;

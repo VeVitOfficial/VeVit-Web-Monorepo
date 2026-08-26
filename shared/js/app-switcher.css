@@ -4,8 +4,8 @@
 .vv-app-brand a + a { margin-left:6px; color:var(--text,#f8fafc); opacity:.85; font-weight:400; }
 .vv-app-switcher { position:relative; display:inline-flex; align-items:center; }
 .vv-app-actions { display:flex; align-items:center; gap:.75rem; }
-.vv-app-switcher__trigger { display:grid; place-items:center; width:2.5rem; height:2.5rem; padding:0; border:1px solid color-mix(in srgb,currentColor 22%,transparent); border-radius:.55rem; background:transparent; color:inherit; cursor:pointer; }
-.vv-app-switcher__trigger:hover,.vv-app-switcher__trigger[aria-expanded="true"] { background:color-mix(in srgb,currentColor 10%,transparent); }
+.vv-app-switcher__trigger { display:grid; place-items:center; width:2.5rem; height:2.5rem; padding:0; border:1px solid color-mix(in srgb,currentColor 22%,transparent); border-radius:.55rem; background:var(--surface-elev,#1e1e1e); color:inherit; cursor:pointer; }
+.vv-app-switcher__trigger:hover,.vv-app-switcher__trigger[aria-expanded="true"] { background:color-mix(in srgb,#fff 12%,var(--surface-elev,#1e1e1e)); }
 .vv-app-switcher__trigger:focus-visible,.vv-app-switcher__link:focus-visible { outline:2px solid var(--accent,#10b981); outline-offset:2px; }
 .vv-app-switcher__grid { display:grid; grid-template-columns:repeat(3,4px); gap:3px; }
 .vv-app-switcher__grid i { width:4px; height:4px; border-radius:1px; background:currentColor; }

@@ -20,7 +20,7 @@ $hreflang = vv_hreflang_tags('/tools', $lang);
   <link rel="icon" href="/tools/assets/favicon.ico">
   <link rel="stylesheet" href="/assets/fonts/vevit-fonts.css">
   <link rel="stylesheet" href="/tools/assets/css/style.css">
-  <link rel="stylesheet" href="/assets/shared/app-switcher.css?v=20260809c">
+  <link rel="stylesheet" href="/assets/shared/app-switcher.css?v=20260826a">
   <?= $hreflang ?>
   <?php if (!empty($page_head)) echo $page_head; ?>
 </head>
