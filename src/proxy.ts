@@ -1,5 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
 
+/**
+ * Host-based redirects for marketing subdomains.
+ *
+ * Subdomains that don't have their own app are 301-redirected to the
+ * relevant section on the canonical main site (www.vevit.cz).
+ *
+ * studios.vevit.cz → the "explore" section on the home page, where the
+ * VeVit Software Studios card lives.
+ */
+const HOST_REDIRECTS: Record<string, string> = {
+  "studios.vevit.cz": "https://www.vevit.cz/home#explore",
+  "www.studios.vevit.cz": "https://www.vevit.cz/home#explore",
+};
+
 const locales = new Set(["cs", "en", "de", "es", "uk", "fr", "sk"]);
 const sections = new Set(["home", "account", "edu", "store", "tools"]);
 const publicFile = /\.(?:css|js|mjs|json|map|png|jpe?g|webp|gif|svg|ico|woff2?|ttf|wasm|pdf|bin|data|mp3|wav|mp4|webm)$/i;
@@ -29,6 +43,14 @@ function redirect(request: NextRequest, pathname: string) {
 
 export function proxy(request: NextRequest) {
   const { pathname, searchParams } = request.nextUrl;
+
+  // Host-based subdomain redirects (marketing subdomains → main site).
+  const host = request.headers.get("host") ?? "";
+  const target = HOST_REDIRECTS[host];
+  if (target) {
+    return NextResponse.redirect(new URL(target), { status: 301 });
+  }
+
   if (pathname.startsWith("/legacy-render/") || pathname.startsWith("/_next/") || pathname.startsWith("/assets/")) return NextResponse.next();
   if (pathname === "/robots.txt" || pathname === "/sitemap.xml" || publicFile.test(pathname)) return NextResponse.next();
 
