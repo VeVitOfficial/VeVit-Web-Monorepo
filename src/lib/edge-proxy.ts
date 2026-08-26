@@ -8,6 +8,27 @@ const targetVariables: Record<ProxyKind, string> = {
   stripe: "SUPABASE_STRIPE_WEBHOOK_URL"
 };
 
+const defaultFunctionNames: Record<ProxyKind, string> = {
+  auth: "auth",
+  api: "api",
+  stripe: "stripe-webhook"
+};
+
+export function resolveEdgeFunctionUrl(kind: ProxyKind) {
+  const configured = process.env[targetVariables[kind]]?.trim().replace(/\/+$/, "");
+  if (configured) return configured;
+
+  const supabaseUrl = process.env.SUPABASE_URL?.trim().replace(/\/+$/, "");
+  if (!supabaseUrl) return "";
+  try {
+    const parsed = new URL(supabaseUrl);
+    if (parsed.protocol !== "https:" || !parsed.hostname.endsWith(".supabase.co")) return "";
+    return `${parsed.origin}/functions/v1/${defaultFunctionNames[kind]}`;
+  } catch {
+    return "";
+  }
+}
+
 const forwardedRequestHeaders = new Set([
   "accept", "accept-language", "authorization", "content-type", "cookie",
   "idempotency-key", "stripe-signature", "user-agent", "x-csrf-token",
@@ -16,7 +37,7 @@ const forwardedRequestHeaders = new Set([
 const removedResponseHeaders = new Set(["connection", "content-encoding", "content-length", "transfer-encoding"]);
 
 export async function proxyEdgeFunction(request: Request, path: string[], kind: ProxyKind) {
-  const base = process.env[targetVariables[kind]]?.replace(/\/+$/, "");
+  const base = resolveEdgeFunctionUrl(kind);
   if (!base) {
     return Response.json(
       { error: "Server integration is not configured", code: "EDGE_FUNCTION_NOT_CONFIGURED" },

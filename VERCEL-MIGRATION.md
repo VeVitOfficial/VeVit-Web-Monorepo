@@ -20,9 +20,9 @@ V Project Settings → Environment Variables nastavte pro Production i Preview h
 | `NEXT_PUBLIC_SITE_URL` | veřejná | Kanonická URL, v produkci `https://vevit.cz` |
 | `SUPABASE_URL` | server | URL projektu |
 | `SUPABASE_SECRET_KEY` | server | Komponentní secret key pro katalog; nikdy `NEXT_PUBLIC_` |
-| `SUPABASE_AUTH_FUNCTION_URL` | server | Plná URL Edge Function `auth` |
-| `SUPABASE_API_FUNCTION_URL` | server | Plná URL Edge Function `api` |
-| `SUPABASE_STRIPE_WEBHOOK_URL` | server | Plná URL Edge Function `stripe-webhook` |
+| `SUPABASE_AUTH_FUNCTION_URL` | server, volitelná | Override URL Edge Function `auth`; jinak se odvodí ze `SUPABASE_URL` |
+| `SUPABASE_API_FUNCTION_URL` | server, volitelná | Override URL Edge Function `api`; jinak se odvodí ze `SUPABASE_URL` |
+| `SUPABASE_STRIPE_WEBHOOK_URL` | server, volitelná | Override URL Edge Function `stripe-webhook`; jinak se odvodí ze `SUPABASE_URL` |
 | `VEVIT_EDGE_PROXY_SECRET` | server | Volitelný sdílený BFF secret kontrolovaný Edge Functions |
 
 Vercel build při chybějící proměnné vypíše výrazné varování, ale nasazení dokončí. Katalog pak zůstane prázdný a odpovídající backendové funkce vrací bezpečné `503`, dokud proměnné nedoplníte. Stav ověříte na `/api/health`.

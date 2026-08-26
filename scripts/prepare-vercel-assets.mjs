@@ -19,9 +19,7 @@ const excludedSegments = new Set([
 
 if (process.env.VERCEL === "1") {
   const required = [
-    "NEXT_PUBLIC_SITE_URL", "SUPABASE_URL", "SUPABASE_SECRET_KEY",
-    "SUPABASE_AUTH_FUNCTION_URL", "SUPABASE_API_FUNCTION_URL",
-    "SUPABASE_STRIPE_WEBHOOK_URL"
+    "NEXT_PUBLIC_SITE_URL", "SUPABASE_URL", "SUPABASE_SECRET_KEY"
   ];
   const missing = required.filter((name) => !process.env[name]);
   if (missing.length) {
