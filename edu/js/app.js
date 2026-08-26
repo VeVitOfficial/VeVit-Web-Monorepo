@@ -3,7 +3,7 @@
 import "./lib/globals.js";
 import { initTheme } from "./store/theme.js";
 import { initLang, currentLang, changeLang } from "./store/lang.js?v=20260824a";
-import { initRouter, rerender } from "./router.js?v=20260824a";
+import { initRouter, rerender } from "./router.js?v=20260826d";
 
 function boot() {
   initTheme();

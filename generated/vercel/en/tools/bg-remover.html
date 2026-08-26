@@ -72,7 +72,8 @@
   </div>
 </header>
 <script type="module" src="/assets/shared/app-switcher.js?v=20260825b"></script>
-<script type="module" src="/assets/shared/localization.js?v=20260825a"></script><main class="main">
+<script type="module" src="/assets/shared/localization.js?v=20260826f"></script>
+<main class="main">
   <div class="tool-page">
     <!-- Breadcrumb -->
     <nav class="breadcrumb">
@@ -87,14 +88,21 @@
     <div class="tool-header">
       <span class="bar" style="background:#8b5cf6"></span>
       <h1>Background remover</h1>
-      <span class="loc-tag" style="border-color:#8b5cf630;color:#8b5cf6;background:#8b5cf610" title="Processing runs through an AI model.">Via AI</span>
+      <span class="loc-tag" style="border-color:#8b5cf630;color:#8b5cf6;background:#8b5cf610" title="After you deliberately start the tool, the entered content is sent through the VeVit server to an external AI model.">Via AI</span>
       <span class="loc-tag tool-status-limited">Limited</span>
     </div>
     <p class="tool-desc">AI background removal from photos (ONNX MODNet).</p>
 
+      <ol class="tool-steps" aria-label="Tool progress">
+        <li class="is-current" data-tool-step="input"><span>1</span>Input</li>
+        <li data-tool-step="settings"><span>2</span>Settings</li>
+        <li data-tool-step="result"><span>3</span>Result</li>
+      </ol>
+
     <!-- Tool body -->
-    <div class="tool-shell glass">
-              <div class="tool-tool" id="tool-root">
+    <div class="tool-shell glass" data-tool-slug="bg-remover" data-tool-category="image" data-processing-location="external_ai">
+              <div class="tool-tool" id="tool-root" data-tool-state="idle" aria-busy="false">
+          <p class="sr-only" id="tool-live-status" role="status" aria-live="polite" aria-atomic="true">The tool is ready.</p>
           <div class="stack" style="max-width:44rem;margin:0 auto">
   <div class="dropzone" id="bg-drop">
     <span class="dz-ico"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 21H8a2 2 0 0 1-1.42-.587l-3.994-3.999a2 2 0 0 1 0-2.828l10-10a2 2 0 0 1 2.829 0l5.999 6a2 2 0 0 1 0 2.828L12.834 21"/><path d="m5.082 11.09 8.828 8.828"/></svg></span>
@@ -118,8 +126,18 @@
   </div>
   <p class="muted" style="font-size:0.8rem">The MODNet model is optimized for <strong>portraits of people</strong> — for other subjects (animals, objects, landscapes) the result may be inaccurate. The model (~26 MB) loads only when the tool is opened. Everything runs in the browser, the image is never uploaded.</p>
 </div>        </div>
+        <script type="application/json" id="tool-ui-i18n">{"copied":"Copied to clipboard","copy_failed":"Copy failed","copy":"Copy","invalid_type":"Some files were skipped because their type is not supported.","file_too_large":"{name} is larger than the {limit} limit.","remove_file":"Remove {name}","move_up":"Move {name} up","move_down":"Move {name} down","load_failed":"A required part of the tool failed to load. Check your connection and try again.","state_idle":"Waiting for input","state_ready":"Ready to process","state_processing":"Processing","state_success":"Result is ready","state_error":"Processing failed","cancel":"Cancel","retry":"Try again","reset":"Start over","download":"Download result","result_ready":"Done — your result is ready","enter_json":"Enter JSON to process.","invalid_json":"Invalid JSON: {message}","invalid_range":"Check the entered range.","invalid_time":"Use HH:MM:SS and make sure the end is later than the start.","loading":"Loading…","saving":"Preparing result…","thinking":"Thinking…","interrupted":"The response was stopped.","unknown_error":"An unknown error occurred. Try again.","page":"Page {number}","undo":"Undo change","text_meta":"{characters} characters · {lines} lines","file_format":"{type} · {size}","strength_very_weak":"Very weak","strength_weak":"Weak","strength_medium":"Medium","strength_strong":"Strong","strength_very_strong":"Very strong","choose_charset":"Select at least one character group.","password_copied":"Password copied."}</script>
         <script src="/tools/assets/js/tools/bg-remover.js" defer></script>
           </div>
+
+    <aside class="tool-trust" aria-label="Where and how processing happens">
+      <div class="tool-trust-main">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></svg>        <div>
+          <strong>Where and how processing happens</strong>
+          <p>After you deliberately start the tool, the entered content is sent through the VeVit server to an external AI model.</p>
+        </div>
+      </div>
+          </aside>
   </div>
 </main>
 <footer class="site-footer">

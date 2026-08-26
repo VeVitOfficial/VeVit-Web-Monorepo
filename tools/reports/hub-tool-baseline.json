@@ -1,9 +1,9 @@
 {
     "schema_version": 1,
-    "started_at_utc": "2026-07-29T01:58:42+00:00",
-    "generated_at_utc": "2026-07-29T01:58:43+00:00",
-    "project_path": "/home/vitekeee/Projects/VeVit_tools",
-    "registry_digest": "4e973b5330f973013b75da1c413dbdf0688a556b95a8bf40e00834f57ada8bd8",
+    "started_at_utc": "2026-08-26T16:43:42+00:00",
+    "generated_at_utc": "2026-08-26T16:43:43+00:00",
+    "project_path": "/home/vitekeee/Projects/vevit-web-app/www/tools",
+    "registry_digest": "4f8c207559de3ab25f2b2586d1394fd21845801f04e8b20702797f9d4c0dcbf6",
     "tool_count": 107,
     "verified_test_levels": {
         "pdf-merge": "structural",
@@ -119,7 +119,7 @@
             "name": "registry",
             "command": "'/usr/bin/php' 'tests/hub/registry-test.php'",
             "exit_code": 0,
-            "output": "{\"ok\":true,\"tool_count\":107,\"status_counts\":{\"working+available\":91,\"unavailable_on_wedos+unavailable_on_wedos\":2,\"limited+requires_external_service\":13,\"coming_soon+not_implemented\":1}}",
+            "output": "{\"ok\":true,\"tool_count\":107,\"status_counts\":{\"working+available\":82,\"unavailable_on_wedos+unavailable_on_wedos\":2,\"limited+requires_external_service\":13,\"limited+requires_browser_support\":9,\"coming_soon+not_implemented\":1}}",
             "verification": "automatic"
         },
         {
@@ -169,6 +169,13 @@
             "command": "'/usr/bin/php' 'tests/request-rate-limit-test.php'",
             "exit_code": 0,
             "output": "request rate limit tests: PASS",
+            "verification": "automatic"
+        },
+        {
+            "name": "ux_redesign",
+            "command": "'/usr/bin/php' 'tests/ux-redesign-test.php'",
+            "exit_code": 0,
+            "output": "PASS UX redesign: shared foundation, locale parity, 107 inventory and pilot hooks verified.",
             "verification": "automatic"
         }
     ],

@@ -241,30 +241,6 @@ page = """<!DOCTYPE html>
     </div>
   </section>
 
-  <section class="section beta-section" id="beta">
-    <div class="beta-card glass">
-      <div class="beta-head">
-        __BUG__ <span class="beta-tag">BETA TESTING</span>
-      </div>
-      <h2 class="beta-title">Beta testing</h2>
-      <p class="beta-sub">Narazili jste na chybu, něco nefunguje nebo chybí? Napište nám to sem — stačí jeden text. Nic víc po vás nechceme.</p>
-
-      <form class="beta-form" id="beta-form" novalidate>
-        <textarea class="textarea" id="beta-message" name="message" rows="4"
-          placeholder="Popište, co se nepovedlo (nástroj, kroky, co jste čekali vs. co se stalo)…"></textarea>
-        <button class="btn btn-primary btn-touch" id="beta-send" type="submit">
-          __SEND__ <span class="beta-label">Odeslat hlášení</span>
-        </button>
-      </form>
-
-      <p class="beta-note hidden" id="beta-note">
-        <strong>Díky!</strong> Hlášení jsme poslali na <span>info@vevit.cz</span>.
-      </p>
-
-      <p class="beta-small">Pro toho, kdo najde chybu, nahlásí ji a do zprávy připojí svůj e-mail, máme připravený <strong>rank beta-tester s výhodami</strong> — dřívější přístup k novým nástrojům, priorita hlášení a malé bonusy. E-mail do zprávy je čistě dobrovolný; bez něj hlášení normálně pošleme, jen se ozveme jen tehdy, když k tomu bude důvod.</p>
-    </div>
-  </section>
-
   <section class="sections hidden" id="search-results" aria-labelledby="results-title">
     <h2 class="muted" id="results-title" aria-live="polite" style="font-size:0.875rem;font-weight:500;margin:0 0 1.5rem"></h2>
     <p class="hub-state" id="results-loading" aria-live="polite">Načítám vyhledávání…</p>
@@ -290,6 +266,30 @@ page = """<!DOCTYPE html>
       __SECTIONS__
     </div>
   </div>
+
+  <section class="section beta-section" id="beta">
+    <div class="beta-card glass">
+      <div class="beta-head">
+        __BUG__ <span class="beta-tag">BETA TESTING</span>
+      </div>
+      <h2 class="beta-title">Beta testing</h2>
+      <p class="beta-sub">Narazili jste na chybu, něco nefunguje nebo chybí? Napište nám to sem — stačí jeden text. Nic víc po vás nechceme.</p>
+
+      <form class="beta-form" id="beta-form" novalidate>
+        <textarea class="textarea" id="beta-message" name="message" rows="4"
+          placeholder="Popište, co se nepovedlo (nástroj, kroky, co jste čekali vs. co se stalo)…"></textarea>
+        <button class="btn btn-primary btn-touch" id="beta-send" type="submit">
+          __SEND__ <span class="beta-label">Odeslat hlášení</span>
+        </button>
+      </form>
+
+      <p class="beta-note hidden" id="beta-note">
+        <strong>Díky!</strong> Hlášení jsme poslali na <span>info@vevit.cz</span>.
+      </p>
+
+      <p class="beta-small">Pro toho, kdo najde chybu, nahlásí ji a do zprávy připojí svůj e-mail, máme připravený <strong>rank beta-tester s výhodami</strong> — dřívější přístup k novým nástrojům, priorita hlášení a malé bonusy. E-mail do zprávy je čistě dobrovolný; bez něj hlášení normálně pošleme, jen se ozveme jen tehdy, když k tomu bude důvod.</p>
+    </div>
+  </section>
 </main>
 
 <footer class="site-footer">

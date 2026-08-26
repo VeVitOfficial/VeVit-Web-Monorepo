@@ -58,7 +58,7 @@
     var abs = Math.abs(n);
     if (abs === 0) return '0';
     var s = abs >= 1e6 || abs < 1e-4 ? n.toExponential(4) : (Math.round(n * 1e6) / 1e6).toString();
-    return parseFloat(s).toLocaleString('cs-CZ', { maximumFractionDigits: 6 });
+    return parseFloat(s).toLocaleString(document.documentElement.lang || 'cs', { maximumFractionDigits: 6 });
   }
 
   function compute() {

@@ -12,7 +12,7 @@
   function zone() { return tz.value === 'local' ? undefined : tz.value; }
 
   function fmtInTZ(d, zone) {
-    if (!zone) return d.toLocaleString('cs-CZ');
+    if (!zone) return d.toLocaleString(document.documentElement.lang || 'cs');
     return new Intl.DateTimeFormat('cs-CZ', { timeZone: zone, dateStyle: 'full', timeStyle: 'long' }).format(d);
   }
 

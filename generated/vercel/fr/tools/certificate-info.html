@@ -72,7 +72,8 @@
   </div>
 </header>
 <script type="module" src="/assets/shared/app-switcher.js?v=20260825b"></script>
-<script type="module" src="/assets/shared/localization.js?v=20260825a"></script><main class="main">
+<script type="module" src="/assets/shared/localization.js?v=20260826f"></script>
+<main class="main">
   <div class="tool-page">
     <!-- Breadcrumb -->
     <nav class="breadcrumb">
@@ -92,9 +93,11 @@
     </div>
     <p class="tool-desc">Vérifie la validité et les détails d&#039;un certificat SSL.</p>
 
+
     <!-- Tool body -->
-    <div class="tool-shell glass">
-              <div class="tool-tool" id="tool-root">
+    <div class="tool-shell glass" data-tool-slug="certificate-info" data-tool-category="security" data-processing-location="vevit_server">
+              <div class="tool-tool" id="tool-root" data-tool-state="idle" aria-busy="false">
+          <p class="sr-only" id="tool-live-status" role="status" aria-live="polite" aria-atomic="true">L’outil est prêt.</p>
           <div class="stack" style="max-width:40rem;margin:0 auto">
   <div class="stack-sm">
     <label class="field-label" for="ci-domain">Domaine</label>
@@ -122,8 +125,25 @@
   <p class="muted" id="ci-help" style="font-size:0.8rem">Le traitement s&#039;effectue sur le serveur via une connexion TLS vérifiée directement avec l&#039;IP publique. Le domaine sert uniquement à une vérification unique et rien n&#039;est stocké.</p>
 </div>
         </div>
+        <script type="application/json" id="tool-ui-i18n">{"copied":"Copié dans le presse-papiers","copy_failed":"Échec de la copie","copy":"Copier","invalid_type":"Certains fichiers ont été ignorés car leur type n’est pas pris en charge.","file_too_large":"Le fichier {name} dépasse la limite de {limit}.","remove_file":"Retirer {name}","move_up":"Déplacer {name} vers le haut","move_down":"Déplacer {name} vers le bas","load_failed":"Une partie requise n’a pas pu être chargée. Vérifiez la connexion et réessayez.","state_idle":"En attente d’une entrée","state_ready":"Prêt à traiter","state_processing":"Traitement en cours","state_success":"Le résultat est prêt","state_error":"Échec du traitement","cancel":"Annuler","retry":"Réessayer","reset":"Recommencer","download":"Télécharger le résultat","result_ready":"Terminé — votre résultat est prêt","enter_json":"Saisissez le JSON à traiter.","invalid_json":"JSON invalide : {message}","invalid_range":"Vérifiez la plage saisie.","invalid_time":"Utilisez HH:MM:SS et placez la fin après le début.","loading":"Chargement…","saving":"Préparation du résultat…","thinking":"Réflexion…","interrupted":"La réponse a été arrêtée.","unknown_error":"Une erreur inconnue s’est produite. Réessayez.","page":"Page {number}","undo":"Annuler la modification","text_meta":"{characters} caractères · {lines} lignes","file_format":"{type} · {size}","strength_very_weak":"Très faible","strength_weak":"Faible","strength_medium":"Moyen","strength_strong":"Fort","strength_very_strong":"Très fort","choose_charset":"Sélectionnez au moins un groupe de caractères.","password_copied":"Mot de passe copié."}</script>
         <script src="/tools/assets/js/tools/certificate-info.js" defer></script>
           </div>
+
+    <aside class="tool-trust" aria-label="Où et comment se fait le traitement">
+      <div class="tool-trust-main">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></svg>        <div>
+          <strong>Où et comment se fait le traitement</strong>
+          <p>Le fichier est traité sur le serveur et supprimé après achèvement.</p>
+        </div>
+      </div>
+              <details class="tool-requirements">
+          <summary>Prérequis et limites <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <ul>
+                          <li>public DNS and TLS endpoint</li>
+                          <li>outbound TCP/443 required</li>
+                      </ul>
+        </details>
+          </aside>
   </div>
 </main>
 <footer class="site-footer">

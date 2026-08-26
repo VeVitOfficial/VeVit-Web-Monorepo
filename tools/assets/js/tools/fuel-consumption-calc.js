@@ -16,7 +16,7 @@
     var n = parseFloat(v);
     return isNaN(n) ? null : n;
   }
-  function fmt(n) { return n.toLocaleString('cs-CZ', { maximumFractionDigits: 2 }); }
+  function fmt(n) { return n.toLocaleString(document.documentElement.lang || 'cs', { maximumFractionDigits: 2 }); }
 
   function compute() {
     var x = num('fc-in');

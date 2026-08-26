@@ -1,4 +1,4 @@
-<div class="stack" style="max-width:46rem;margin:0 auto">
+<div class="stack" id="tc-root" data-minute-unit="<?= e(vv_t('text_counter.min_unit', $lang)) ?>" style="max-width:46rem;margin:0 auto">
   <div class="stack-sm">
     <label class="field-label" for="tc-in"><?= e(vv_t('text_counter.text', $lang)) ?></label>
     <textarea class="textarea" id="tc-in" rows="10" placeholder="<?= e(vv_t('text_counter.placeholder', $lang)) ?>"></textarea>

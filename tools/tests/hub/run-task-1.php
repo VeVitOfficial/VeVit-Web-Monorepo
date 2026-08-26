@@ -13,6 +13,7 @@ $commands = [
     'route_smoke' => [PHP_BINARY, 'tests/hub/route-smoke-test.php'],
     'ssl_regression' => [PHP_BINARY, 'tests/ssl-checker-test.php'],
     'rate_limit_regression' => [PHP_BINARY, 'tests/request-rate-limit-test.php'],
+    'ux_redesign' => [PHP_BINARY, 'tests/ux-redesign-test.php'],
 ];
 $results = [];
 foreach ($commands as $name => $command) {

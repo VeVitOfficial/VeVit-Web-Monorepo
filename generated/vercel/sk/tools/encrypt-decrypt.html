@@ -72,7 +72,8 @@
   </div>
 </header>
 <script type="module" src="/assets/shared/app-switcher.js?v=20260825b"></script>
-<script type="module" src="/assets/shared/localization.js?v=20260825a"></script><main class="main">
+<script type="module" src="/assets/shared/localization.js?v=20260826f"></script>
+<main class="main">
   <div class="tool-page">
     <!-- Breadcrumb -->
     <nav class="breadcrumb">
@@ -92,9 +93,11 @@
     </div>
     <p class="tool-desc">Zašifrujte a dešifrujte text pomocou AES-256-GCM.</p>
 
+
     <!-- Tool body -->
-    <div class="tool-shell glass">
-              <div class="tool-tool" id="tool-root">
+    <div class="tool-shell glass" data-tool-slug="encrypt-decrypt" data-tool-category="security" data-processing-location="client">
+              <div class="tool-tool" id="tool-root" data-tool-state="idle" aria-busy="false">
+          <p class="sr-only" id="tool-live-status" role="status" aria-live="polite" aria-atomic="true">Nástroj je pripravený.</p>
           <div class="stack" style="max-width:44rem;margin:0 auto">
   <div class="seg" id="ed-mode" role="tablist" aria-label="Režim">
     <button type="button" class="active" data-mode="enc" role="tab" aria-selected="true">Šifrovať</button>
@@ -135,8 +138,18 @@
 
   <div class="privacy-note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg> Šifrovanie prebieha lokálne cez Web Crypto (AES-256-GCM + PBKDF2). Heslo ani text neopustia váš prehliadač.</div>
 </div>        </div>
+        <script type="application/json" id="tool-ui-i18n">{"copied":"Skopírované do schránky","copy_failed":"Kopírovanie zlyhalo","copy":"Kopírovať","invalid_type":"Niektoré súbory boli preskočené, pretože ich typ nie je podporovaný.","file_too_large":"Súbor {name} prekračuje limit {limit}.","remove_file":"Odobrať {name}","move_up":"Presunúť {name} vyššie","move_down":"Presunúť {name} nižšie","load_failed":"Potrebnú časť nástroja sa nepodarilo načítať. Skontrolujte pripojenie a skúste to znova.","state_idle":"Čaká na vstup","state_ready":"Pripravené na spracovanie","state_processing":"Prebieha spracovanie","state_success":"Výsledok je pripravený","state_error":"Spracovanie zlyhalo","cancel":"Zrušiť","retry":"Skúsiť znova","reset":"Začať znova","download":"Stiahnuť výsledok","result_ready":"Hotovo — výsledok je pripravený","enter_json":"Vložte JSON na spracovanie.","invalid_json":"Neplatný JSON: {message}","invalid_range":"Skontrolujte zadaný rozsah.","invalid_time":"Použite HH:MM:SS a koniec musí byť neskôr ako začiatok.","loading":"Načítava sa…","saving":"Pripravuje sa výsledok…","thinking":"Premýšľam…","interrupted":"Odpoveď bola zastavená.","unknown_error":"Nastala neznáma chyba. Skúste to znova.","page":"Strana {number}","undo":"Vrátiť zmenu","text_meta":"{characters} znakov · {lines} riadkov","file_format":"{type} · {size}","strength_very_weak":"Veľmi slabé","strength_weak":"Slabé","strength_medium":"Stredné","strength_strong":"Silné","strength_very_strong":"Veľmi silné","choose_charset":"Vyberte aspoň jednu skupinu znakov.","password_copied":"Heslo bolo skopírované."}</script>
         <script src="/tools/assets/js/tools/encrypt-decrypt.js" defer></script>
           </div>
+
+    <aside class="tool-trust" aria-label="Kde a ako prebieha spracovanie">
+      <div class="tool-trust-main">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>        <div>
+          <strong>Kde a ako prebieha spracovanie</strong>
+          <p>Súbor sa spracováva vo vašom prehliadači a neopustí tento počítač.</p>
+        </div>
+      </div>
+          </aside>
   </div>
 </main>
 <footer class="site-footer">

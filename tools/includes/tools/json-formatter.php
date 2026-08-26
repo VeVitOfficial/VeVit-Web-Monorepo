@@ -5,21 +5,26 @@
         <span class="muted" style="font-size:0.875rem;font-weight:500"><?= e(vv_t('json_formatter.input', $lang)) ?></span>
         <button class="btn btn-ghost btn-sm" id="jf-clear"><?= icon_svg('Trash', 16) ?> <?= e(vv_t('tool_common.clear', $lang)) ?></button>
       </div>
-      <textarea class="textarea input-mono" id="jf-input" placeholder='{"hello": "world"}' style="min-height:320px;background:rgba(19,19,22,0.5)"></textarea>
+      <textarea class="textarea input-mono" id="jf-input" placeholder='{"hello": "world"}' spellcheck="false" aria-describedby="jf-input-meta jf-error" style="min-height:320px;background:rgba(19,19,22,0.5)"></textarea>
+      <span class="editor-meta" id="jf-input-meta">0 B · 1:1</span>
     </div>
     <div class="stack-sm">
       <div class="row-between">
         <span class="muted" style="font-size:0.875rem;font-weight:500"><?= e(vv_t('json_formatter.output', $lang)) ?></span>
-        <button class="btn btn-ghost btn-sm" id="jf-copy" disabled>
+        <div class="row">
+        <button class="btn btn-ghost btn-sm" id="jf-download" type="button" disabled><?= icon_svg('Download', 16) ?> <?= e(vv_t('tool_common.download', $lang)) ?></button>
+        <button class="btn btn-ghost btn-sm" id="jf-copy" type="button" disabled>
           <span class="ico ico-copy"><?= icon_svg('Copy', 16) ?></span>
           <span class="ico ico-check hidden"><?= icon_svg('Check', 16) ?></span>
           <span class="label"><?= e(vv_t('tool_common.copy', $lang)) ?></span>
         </button>
+        </div>
       </div>
-      <textarea class="textarea input-mono" id="jf-output" readonly style="min-height:320px;background:rgba(19,19,22,0.3)"></textarea>
+      <textarea class="textarea input-mono" id="jf-output" readonly aria-describedby="jf-output-meta" style="min-height:320px;background:rgba(19,19,22,0.3)"></textarea>
+      <span class="editor-meta" id="jf-output-meta">0 B · 1:1</span>
     </div>
   </div>
-  <p class="error-text hidden" id="jf-error"></p>
+  <p class="error-text hidden" id="jf-error" role="alert"></p>
   <div class="row">
     <button class="btn btn-primary" id="jf-format"><?= icon_svg('AlignLeft', 16) ?> <?= e(vv_t('json_formatter.format', $lang)) ?></button>
     <button class="btn btn-secondary" id="jf-minify"><?= e(vv_t('json_formatter.minify', $lang)) ?></button>

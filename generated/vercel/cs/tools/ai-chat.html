@@ -72,7 +72,8 @@
   </div>
 </header>
 <script type="module" src="/assets/shared/app-switcher.js?v=20260825b"></script>
-<script type="module" src="/assets/shared/localization.js?v=20260825a"></script><main class="main">
+<script type="module" src="/assets/shared/localization.js?v=20260826f"></script>
+<main class="main">
   <div class="tool-page">
     <!-- Breadcrumb -->
     <nav class="breadcrumb">
@@ -87,18 +88,27 @@
     <div class="tool-header">
       <span class="bar" style="background:#0ea5e9"></span>
       <h1>AI asistent</h1>
-      <span class="loc-tag" style="border-color:#0ea5e930;color:#0ea5e9;background:#0ea5e910" title="Zpracování probíhá přes AI model.">Přes AI</span>
+      <span class="loc-tag" style="border-color:#0ea5e930;color:#0ea5e9;background:#0ea5e910" title="Zadaný obsah se po vědomém spuštění odešle přes server VeVit do externího AI modelu.">Přes AI</span>
       <span class="loc-tag tool-status-limited">Omezeně dostupný</span>
     </div>
     <p class="tool-desc">Chatujte s AI asistentem pro různé úkoly.</p>
 
+      <ol class="tool-steps" aria-label="Průběh nástroje">
+        <li class="is-current" data-tool-step="input"><span>1</span>Vstup</li>
+        <li data-tool-step="settings"><span>2</span>Nastavení</li>
+        <li data-tool-step="result"><span>3</span>Výsledek</li>
+      </ol>
+
     <!-- Tool body -->
-    <div class="tool-shell glass">
-              <div class="tool-tool" id="tool-root">
-          <div class="ai-chat">
+    <div class="tool-shell glass" data-tool-slug="ai-chat" data-tool-category="ai" data-processing-location="external_ai">
+              <div class="tool-tool" id="tool-root" data-tool-state="idle" aria-busy="false">
+          <p class="sr-only" id="tool-live-status" role="status" aria-live="polite" aria-atomic="true">Nástroj je připraven.</p>
+          <div class="ai-chat" data-copy-label="Kopírovat odpověď" data-retry-label="Zopakovat dotaz">
   <div class="ai-head">
     <span class="badge badge-ai">AI</span>
     <span class="muted" style="font-size:0.875rem">Model: llama3.2</span>
+    <span class="ai-connection" id="ai-connection"><span></span>Připraveno ke zpracování</span>
+    <button class="btn btn-ghost btn-sm" id="ai-new" type="button" style="margin-left:auto">Nový chat</button>
   </div>
 
   <div class="ai-messages" id="ai-messages">
@@ -106,6 +116,8 @@
       <div class="ai-empty-icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg></div>
       <p class="ai-empty-title">AI asistent</p>
       <p class="muted" style="font-size:0.875rem">Zeptejte se na cokoliv. Odpovědi se generují lokálně přes Ollama.</p>
+      <div class="ai-starters">
+        <button class="ai-starter" type="button">Vysvětli mi složité téma jednoduše</button><button class="ai-starter" type="button">Pomoz mi vytvořit praktický plán</button><button class="ai-starter" type="button">Vylepši srozumitelnost mého textu</button>      </div>
     </div>
   </div>
 
@@ -121,13 +133,24 @@
       <span class="ico ico-stop hidden">Zastavit</span>
     </button>
   </div>
+  <p class="ai-disclaimer">AI může chybovat. Nezadávejte citlivé údaje a důležité informace si ověřte.</p>
 </div>
 <script src="/tools/assets/js/lib/marked.min.js"></script>
 <script src="/tools/assets/js/lib/purify.min.js"></script>
 <script src="/tools/assets/js/lib/safe-markdown.js"></script>
         </div>
+        <script type="application/json" id="tool-ui-i18n">{"copied":"Zkopírováno do schránky","copy_failed":"Kopírování selhalo","copy":"Kopírovat","invalid_type":"Některé soubory byly přeskočeny: tento typ není podporovaný.","file_too_large":"Soubor {name} je větší než povolený limit {limit}.","remove_file":"Odebrat {name}","move_up":"Přesunout {name} výše","move_down":"Přesunout {name} níže","load_failed":"Potřebnou část nástroje se nepodařilo načíst. Zkontrolujte připojení a zkuste to znovu.","state_idle":"Čeká na vstup","state_ready":"Připraveno ke zpracování","state_processing":"Probíhá zpracování","state_success":"Výsledek je připraven","state_error":"Zpracování se nezdařilo","cancel":"Zrušit","retry":"Zkusit znovu","reset":"Začít znovu","download":"Stáhnout výsledek","result_ready":"Hotovo — výsledek je připraven","enter_json":"Vložte JSON ke zpracování.","invalid_json":"Neplatný JSON: {message}","invalid_range":"Zkontrolujte zadaný rozsah.","invalid_time":"Čas zadávejte jako HH:MM:SS a konec musí být později než začátek.","loading":"Načítání…","saving":"Příprava výsledku…","thinking":"Přemýšlím…","interrupted":"Odpověď byla zastavena.","unknown_error":"Nastala neznámá chyba. Zkuste to znovu.","page":"Strana {number}","undo":"Vrátit změnu","text_meta":"{characters} znaků · {lines} řádků","file_format":"{type} · {size}","strength_very_weak":"Velmi slabé","strength_weak":"Slabé","strength_medium":"Střední","strength_strong":"Silné","strength_very_strong":"Velmi silné","choose_charset":"Vyberte alespoň jednu skupinu znaků.","password_copied":"Heslo bylo zkopírováno."}</script>
         <script src="/tools/assets/js/tools/ai-chat.js" defer></script>
           </div>
+
+    <aside class="tool-trust" aria-label="Kde a jak probíhá zpracování">
+      <div class="tool-trust-main">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></svg>        <div>
+          <strong>Kde a jak probíhá zpracování</strong>
+          <p>Zadaný obsah se po vědomém spuštění odešle přes server VeVit do externího AI modelu.</p>
+        </div>
+      </div>
+          </aside>
   </div>
 </main>
 <footer class="site-footer">

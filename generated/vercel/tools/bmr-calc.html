@@ -72,7 +72,8 @@
   </div>
 </header>
 <script type="module" src="/assets/shared/app-switcher.js?v=20260825b"></script>
-<script type="module" src="/assets/shared/localization.js?v=20260825a"></script><main class="main">
+<script type="module" src="/assets/shared/localization.js?v=20260826f"></script>
+<main class="main">
   <div class="tool-page">
     <!-- Breadcrumb -->
     <nav class="breadcrumb">
@@ -92,9 +93,11 @@
     </div>
     <p class="tool-desc">Bazální metabolismus a denní příjem kalorií.</p>
 
+
     <!-- Tool body -->
-    <div class="tool-shell glass">
-              <div class="tool-tool" id="tool-root">
+    <div class="tool-shell glass" data-tool-slug="bmr-calc" data-tool-category="calc" data-processing-location="client">
+              <div class="tool-tool" id="tool-root" data-tool-state="idle" aria-busy="false">
+          <p class="sr-only" id="tool-live-status" role="status" aria-live="polite" aria-atomic="true">Nástroj je připraven.</p>
           <div class="stack" style="max-width:44rem;margin:0 auto">
   <div class="two-col">
     <div class="stack-sm">
@@ -137,8 +140,18 @@
 
   <p class="muted" style="font-size:0.8rem">Vzorec Mifflin-St Jeor. Orientační odhad — skutečná spotřeba se liší podle tělesné konstituce. Výpočet běží živě v prohlížeči.</p>
 </div>        </div>
+        <script type="application/json" id="tool-ui-i18n">{"copied":"Zkopírováno do schránky","copy_failed":"Kopírování selhalo","copy":"Kopírovat","invalid_type":"Některé soubory byly přeskočeny: tento typ není podporovaný.","file_too_large":"Soubor {name} je větší než povolený limit {limit}.","remove_file":"Odebrat {name}","move_up":"Přesunout {name} výše","move_down":"Přesunout {name} níže","load_failed":"Potřebnou část nástroje se nepodařilo načíst. Zkontrolujte připojení a zkuste to znovu.","state_idle":"Čeká na vstup","state_ready":"Připraveno ke zpracování","state_processing":"Probíhá zpracování","state_success":"Výsledek je připraven","state_error":"Zpracování se nezdařilo","cancel":"Zrušit","retry":"Zkusit znovu","reset":"Začít znovu","download":"Stáhnout výsledek","result_ready":"Hotovo — výsledek je připraven","enter_json":"Vložte JSON ke zpracování.","invalid_json":"Neplatný JSON: {message}","invalid_range":"Zkontrolujte zadaný rozsah.","invalid_time":"Čas zadávejte jako HH:MM:SS a konec musí být později než začátek.","loading":"Načítání…","saving":"Příprava výsledku…","thinking":"Přemýšlím…","interrupted":"Odpověď byla zastavena.","unknown_error":"Nastala neznámá chyba. Zkuste to znovu.","page":"Strana {number}","undo":"Vrátit změnu","text_meta":"{characters} znaků · {lines} řádků","file_format":"{type} · {size}","strength_very_weak":"Velmi slabé","strength_weak":"Slabé","strength_medium":"Střední","strength_strong":"Silné","strength_very_strong":"Velmi silné","choose_charset":"Vyberte alespoň jednu skupinu znaků.","password_copied":"Heslo bylo zkopírováno."}</script>
         <script src="/tools/assets/js/tools/bmr-calc.js" defer></script>
           </div>
+
+    <aside class="tool-trust" aria-label="Kde a jak probíhá zpracování">
+      <div class="tool-trust-main">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>        <div>
+          <strong>Kde a jak probíhá zpracování</strong>
+          <p>Soubor se zpracovává ve vašem prohlížeči a neopustí tento počítač.</p>
+        </div>
+      </div>
+          </aside>
   </div>
 </main>
 <footer class="site-footer">

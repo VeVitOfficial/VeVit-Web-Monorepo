@@ -121,10 +121,16 @@ body {
 }
 
 /* Horní navigace – stejný klidný transparentní princip jako VeVit Home. */
-.edu-navbar {
+#navbar {
   position: sticky;
   top: 0;
   z-index: 50;
+  flex: 0 0 64px;
+  height: 64px;
+}
+.edu-navbar {
+  position: relative;
+  z-index: inherit;
   height: 64px;
   display: flex;
   align-items: center;
@@ -143,15 +149,19 @@ body {
   height: 100%;
   margin: 0 auto;
   display: flex;
+  flex-wrap: nowrap;
   align-items: center;
   gap: 24px;
 }
-.edu-navbar__links { display: none; align-items: center; gap: 28px; }
+.edu-navbar__links { display: none; flex-wrap: nowrap; align-items: center; gap: 28px; }
 .edu-navbar__link {
   position: relative;
+  flex: 0 0 auto;
   padding: 4px 0;
   color: var(--color-nav-text);
   font-size: 14px;
+  line-height: 1;
+  white-space: nowrap;
   text-decoration: none;
   transition: color 150ms ease;
 }
@@ -166,13 +176,15 @@ body {
   height: 2px;
   background: #10b981;
 }
-.edu-navbar__actions { display: flex; align-items: center; justify-content: flex-end; gap: 8px; flex: 1; min-width: 0; }
+.edu-navbar__actions { display: flex; flex-wrap: nowrap; align-items: center; justify-content: flex-end; gap: 8px; flex: 1; min-width: 0; white-space: nowrap; }
+.edu-navbar__actions > * { flex: 0 0 auto; }
 .edu-navbar__icon-button {
   display: inline-flex;
   min-height: 32px;
   align-items: center;
   justify-content: center;
   gap: 4px;
+  white-space: nowrap;
   padding: 6px 8px;
   color: var(--color-nav-text);
   background: transparent;
@@ -185,8 +197,12 @@ body {
   border-color: var(--color-glass-highlight);
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.42);
 }
-@media (min-width: 900px) { .edu-navbar__links { display: flex; } }
-@media (max-width: 640px) { .edu-navbar__inner { width: calc(100% - 24px); gap: 12px; } }
+@media (min-width: 1200px) { .edu-navbar__links { display: flex; } }
+@media (max-width: 1199px) { .edu-navbar__inner nav[aria-label]:not(.edu-navbar__links) { display: none; } }
+@media (max-width: 640px) {
+  .edu-navbar__inner { width: calc(100% - 16px); gap: 6px; }
+  .edu-navbar__actions { gap: 4px; }
+}
 
 .glow-border {
   box-shadow: 0 0 0 1px var(--color-glass-border), 0 0 20px -4px var(--color-glass-glow);

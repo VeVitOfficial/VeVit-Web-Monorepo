@@ -21,7 +21,7 @@
     var abs = Math.abs(n);
     var s = abs >= 1000 || (abs > 0 && abs < 0.01) ? n.toPrecision(6) : (Math.round(n * 100000) / 100000).toString();
     // odstraň přebytečné nuly u exponentu
-    return parseFloat(s).toLocaleString('cs-CZ', { maximumFractionDigits: 6 });
+    return parseFloat(s).toLocaleString(document.documentElement.lang || 'cs', { maximumFractionDigits: 6 });
   }
 
   function compute() {

@@ -1,54 +1,59 @@
 // JSON formátovač
 (function () {
+  'use strict';
   var input = document.getElementById('jf-input');
   var output = document.getElementById('jf-output');
   var error = document.getElementById('jf-error');
   var copyBtn = document.getElementById('jf-copy');
-  var icoCopy = copyBtn.querySelector('.ico-copy');
-  var icoCheck = copyBtn.querySelector('.ico-check');
-  var label = copyBtn.querySelector('.label');
+  var downloadBtn = document.getElementById('jf-download');
+  var inputMeta = document.getElementById('jf-input-meta');
+  var outputMeta = document.getElementById('jf-output-meta');
+  var lifecycle = document.getElementById('tool-root')._toolLifecycle;
 
-  function showCopied() {
-    icoCopy.classList.add('hidden');
-    icoCheck.classList.remove('hidden');
-    label.textContent = 'Zkopírováno';
-    setTimeout(function () {
-      icoCopy.classList.remove('hidden');
-      icoCheck.classList.add('hidden');
-      label.textContent = 'Kopírovat';
-    }, 2000);
+  function bytes(value) { return new Blob([value]).size; }
+  function cursorMeta(field) {
+    var before = field.value.slice(0, field.selectionStart || 0).split('\n');
+    return ToolUI.fmtSize(bytes(field.value)) + ' · ' + before.length + ':' + (before[before.length - 1].length + 1);
+  }
+  function updateMeta() {
+    inputMeta.textContent = cursorMeta(input);
+    outputMeta.textContent = ToolUI.fmtSize(bytes(output.value)) + ' · ' + (output.value ? output.value.split('\n').length : 1) + ':1';
   }
 
   function format(minify) {
     var raw = input.value.trim();
-    error.classList.add('hidden');
+    ToolUI.clearError(error);
     if (!raw) {
-      if (!minify) { error.textContent = 'Vložte JSON k formátování.'; error.classList.remove('hidden'); }
+      if (!minify) ToolUI.showError(error, ToolUI.t('enter_json'));
       output.value = '';
+      copyBtn.disabled = downloadBtn.disabled = true;
+      updateMeta();
       return;
     }
     try {
       var parsed = JSON.parse(raw);
       output.value = minify ? JSON.stringify(parsed) : JSON.stringify(parsed, null, 2);
-      copyBtn.disabled = false;
+      copyBtn.disabled = downloadBtn.disabled = false;
+      lifecycle.setState('success');
     } catch (err) {
       output.value = '';
-      error.textContent = 'Neplatný JSON: ' + err.message;
-      error.classList.remove('hidden');
+      copyBtn.disabled = downloadBtn.disabled = true;
+      ToolUI.showError(error, ToolUI.t('invalid_json', { message: err.message }));
     }
+    updateMeta();
   }
 
   document.getElementById('jf-format').addEventListener('click', function () { format(false); });
   document.getElementById('jf-minify').addEventListener('click', function () { format(true); });
   document.getElementById('jf-clear').addEventListener('click', function () {
-    input.value = ''; output.value = ''; error.classList.add('hidden'); copyBtn.disabled = true;
+    input.value = ''; output.value = ''; ToolUI.clearError(error); copyBtn.disabled = downloadBtn.disabled = true;
+    lifecycle.setState('idle'); updateMeta(); input.focus();
   });
-
-  copyBtn.addEventListener('click', function () {
-    if (!output.value) return;
-    navigator.clipboard.writeText(output.value).then(function () {
-      toast.success('Zkopírováno do schránky');
-      showCopied();
-    });
+  ToolUI.wireCopy(copyBtn, function () { return output.value; });
+  downloadBtn.addEventListener('click', function () {
+    if (output.value) ToolUI.download(new Blob([output.value], { type: 'application/json' }), 'formatted.json');
   });
+  ['input', 'keyup', 'click'].forEach(function (eventName) { input.addEventListener(eventName, updateMeta); });
+  input.addEventListener('input', function () { lifecycle.setState(input.value.trim() ? 'ready' : 'idle'); });
+  updateMeta();
 })();

@@ -182,7 +182,7 @@ function tool_policy_overrides(string $slug): array {
     $ffmpegTools = ['audio-convert', 'audio-trim-normalize', 'video-convert', 'video-compress', 'video-trim', 'video-extract-audio', 'video-to-gif', 'video-merge', 'video-target-size'];
     if (in_array($slug, $ffmpegTools, true)) {
         return [
-            'status' => 'working', 'availability' => 'requires_browser_support',
+            'status' => 'limited', 'availability' => 'requires_browser_support',
             'requirements' => ['browser_features' => ['WebAssembly'], 'local_assets' => ['/tools/assets/js/lib/ffmpeg/index.js', '/tools/assets/js/lib/ffmpeg/ffmpeg-core.js', '/tools/assets/js/lib/ffmpeg/ffmpeg-core.wasm'], 'php_extensions' => [], 'external_services' => [], 'hosting_constraints' => ["scoped 'wasm-unsafe-eval' v CSP jen pro těchto 9 stránek (tools/.htaccess)"], 'verified' => true],
             'privacy_note' => 'Zpracování probíhá lokálně v prohlížeči; soubor se nikam neodesílá.',
         ];

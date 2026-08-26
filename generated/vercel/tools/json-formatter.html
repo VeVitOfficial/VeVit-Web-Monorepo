@@ -72,7 +72,8 @@
   </div>
 </header>
 <script type="module" src="/assets/shared/app-switcher.js?v=20260825b"></script>
-<script type="module" src="/assets/shared/localization.js?v=20260825a"></script><main class="main">
+<script type="module" src="/assets/shared/localization.js?v=20260826f"></script>
+<main class="main">
   <div class="tool-page">
     <!-- Breadcrumb -->
     <nav class="breadcrumb">
@@ -92,9 +93,16 @@
     </div>
     <p class="tool-desc">Formátujte a validujte JSON strukturu.</p>
 
+      <ol class="tool-steps" aria-label="Průběh nástroje">
+        <li class="is-current" data-tool-step="input"><span>1</span>Vstup</li>
+        <li data-tool-step="settings"><span>2</span>Nastavení</li>
+        <li data-tool-step="result"><span>3</span>Výsledek</li>
+      </ol>
+
     <!-- Tool body -->
-    <div class="tool-shell glass">
-              <div class="tool-tool" id="tool-root">
+    <div class="tool-shell glass" data-tool-slug="json-formatter" data-tool-category="dev" data-processing-location="client">
+              <div class="tool-tool" id="tool-root" data-tool-state="idle" aria-busy="false">
+          <p class="sr-only" id="tool-live-status" role="status" aria-live="polite" aria-atomic="true">Nástroj je připraven.</p>
           <div class="stack" style="max-width:56rem;margin:0 auto">
   <div class="two-col">
     <div class="stack-sm">
@@ -102,28 +110,44 @@
         <span class="muted" style="font-size:0.875rem;font-weight:500">Vstup (JSON)</span>
         <button class="btn btn-ghost btn-sm" id="jf-clear"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg> Vyčistit</button>
       </div>
-      <textarea class="textarea input-mono" id="jf-input" placeholder='{"hello": "world"}' style="min-height:320px;background:rgba(19,19,22,0.5)"></textarea>
+      <textarea class="textarea input-mono" id="jf-input" placeholder='{"hello": "world"}' spellcheck="false" aria-describedby="jf-input-meta jf-error" style="min-height:320px;background:rgba(19,19,22,0.5)"></textarea>
+      <span class="editor-meta" id="jf-input-meta">0 B · 1:1</span>
     </div>
     <div class="stack-sm">
       <div class="row-between">
         <span class="muted" style="font-size:0.875rem;font-weight:500">Výstup</span>
-        <button class="btn btn-ghost btn-sm" id="jf-copy" disabled>
+        <div class="row">
+        <button class="btn btn-ghost btn-sm" id="jf-download" type="button" disabled><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg> Stáhnout</button>
+        <button class="btn btn-ghost btn-sm" id="jf-copy" type="button" disabled>
           <span class="ico ico-copy"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></span>
           <span class="ico ico-check hidden"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
           <span class="label">Kopírovat</span>
         </button>
+        </div>
       </div>
-      <textarea class="textarea input-mono" id="jf-output" readonly style="min-height:320px;background:rgba(19,19,22,0.3)"></textarea>
+      <textarea class="textarea input-mono" id="jf-output" readonly aria-describedby="jf-output-meta" style="min-height:320px;background:rgba(19,19,22,0.3)"></textarea>
+      <span class="editor-meta" id="jf-output-meta">0 B · 1:1</span>
     </div>
   </div>
-  <p class="error-text hidden" id="jf-error"></p>
+  <p class="error-text hidden" id="jf-error" role="alert"></p>
   <div class="row">
     <button class="btn btn-primary" id="jf-format"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 5H3"/><path d="M15 12H3"/><path d="M17 19H3"/></svg> Formátovat</button>
     <button class="btn btn-secondary" id="jf-minify">Minifikovat</button>
   </div>
-</div>        </div>
+</div>
+        </div>
+        <script type="application/json" id="tool-ui-i18n">{"copied":"Zkopírováno do schránky","copy_failed":"Kopírování selhalo","copy":"Kopírovat","invalid_type":"Některé soubory byly přeskočeny: tento typ není podporovaný.","file_too_large":"Soubor {name} je větší než povolený limit {limit}.","remove_file":"Odebrat {name}","move_up":"Přesunout {name} výše","move_down":"Přesunout {name} níže","load_failed":"Potřebnou část nástroje se nepodařilo načíst. Zkontrolujte připojení a zkuste to znovu.","state_idle":"Čeká na vstup","state_ready":"Připraveno ke zpracování","state_processing":"Probíhá zpracování","state_success":"Výsledek je připraven","state_error":"Zpracování se nezdařilo","cancel":"Zrušit","retry":"Zkusit znovu","reset":"Začít znovu","download":"Stáhnout výsledek","result_ready":"Hotovo — výsledek je připraven","enter_json":"Vložte JSON ke zpracování.","invalid_json":"Neplatný JSON: {message}","invalid_range":"Zkontrolujte zadaný rozsah.","invalid_time":"Čas zadávejte jako HH:MM:SS a konec musí být později než začátek.","loading":"Načítání…","saving":"Příprava výsledku…","thinking":"Přemýšlím…","interrupted":"Odpověď byla zastavena.","unknown_error":"Nastala neznámá chyba. Zkuste to znovu.","page":"Strana {number}","undo":"Vrátit změnu","text_meta":"{characters} znaků · {lines} řádků","file_format":"{type} · {size}","strength_very_weak":"Velmi slabé","strength_weak":"Slabé","strength_medium":"Střední","strength_strong":"Silné","strength_very_strong":"Velmi silné","choose_charset":"Vyberte alespoň jednu skupinu znaků.","password_copied":"Heslo bylo zkopírováno."}</script>
         <script src="/tools/assets/js/tools/json-formatter.js" defer></script>
           </div>
+
+    <aside class="tool-trust" aria-label="Kde a jak probíhá zpracování">
+      <div class="tool-trust-main">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>        <div>
+          <strong>Kde a jak probíhá zpracování</strong>
+          <p>Soubor se zpracovává ve vašem prohlížeči a neopustí tento počítač.</p>
+        </div>
+      </div>
+          </aside>
   </div>
 </main>
 <footer class="site-footer">

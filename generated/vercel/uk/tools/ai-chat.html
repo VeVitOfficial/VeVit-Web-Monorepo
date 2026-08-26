@@ -72,7 +72,8 @@
   </div>
 </header>
 <script type="module" src="/assets/shared/app-switcher.js?v=20260825b"></script>
-<script type="module" src="/assets/shared/localization.js?v=20260825a"></script><main class="main">
+<script type="module" src="/assets/shared/localization.js?v=20260826f"></script>
+<main class="main">
   <div class="tool-page">
     <!-- Breadcrumb -->
     <nav class="breadcrumb">
@@ -87,18 +88,27 @@
     <div class="tool-header">
       <span class="bar" style="background:#0ea5e9"></span>
       <h1>AI асистент</h1>
-      <span class="loc-tag" style="border-color:#0ea5e930;color:#0ea5e9;background:#0ea5e910" title="Обробка відбувається через модель ШІ.">Через ШІ</span>
+      <span class="loc-tag" style="border-color:#0ea5e930;color:#0ea5e9;background:#0ea5e910" title="Після свідомого запуску введений вміст надсилається через сервер VeVit до зовнішньої моделі ШІ.">Через ШІ</span>
       <span class="loc-tag tool-status-limited">Обмежено доступний</span>
     </div>
     <p class="tool-desc">Спілкуйтеся з AI-асистентом для різних завдань.</p>
 
+      <ol class="tool-steps" aria-label="Хід роботи інструмента">
+        <li class="is-current" data-tool-step="input"><span>1</span>Вхід</li>
+        <li data-tool-step="settings"><span>2</span>Налаштування</li>
+        <li data-tool-step="result"><span>3</span>Результат</li>
+      </ol>
+
     <!-- Tool body -->
-    <div class="tool-shell glass">
-              <div class="tool-tool" id="tool-root">
-          <div class="ai-chat">
+    <div class="tool-shell glass" data-tool-slug="ai-chat" data-tool-category="ai" data-processing-location="external_ai">
+              <div class="tool-tool" id="tool-root" data-tool-state="idle" aria-busy="false">
+          <p class="sr-only" id="tool-live-status" role="status" aria-live="polite" aria-atomic="true">Інструмент готовий.</p>
+          <div class="ai-chat" data-copy-label="Копіювати відповідь" data-retry-label="Повторити запит">
   <div class="ai-head">
     <span class="badge badge-ai">AI</span>
     <span class="muted" style="font-size:0.875rem">Модель: llama3.2</span>
+    <span class="ai-connection" id="ai-connection"><span></span>Готово до обробки</span>
+    <button class="btn btn-ghost btn-sm" id="ai-new" type="button" style="margin-left:auto">Новий чат</button>
   </div>
 
   <div class="ai-messages" id="ai-messages">
@@ -106,6 +116,8 @@
       <div class="ai-empty-icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg></div>
       <p class="ai-empty-title">AI-асистент</p>
       <p class="muted" style="font-size:0.875rem">Запитайте будь-що. Відповіді генеруються локально через Ollama.</p>
+      <div class="ai-starters">
+        <button class="ai-starter" type="button">Поясни складну тему просто</button><button class="ai-starter" type="button">Допоможи скласти практичний план</button><button class="ai-starter" type="button">Покращ зрозумілість мого тексту</button>      </div>
     </div>
   </div>
 
@@ -121,13 +133,24 @@
       <span class="ico ico-stop hidden">Зупинити</span>
     </button>
   </div>
+  <p class="ai-disclaimer">ШІ може помилятися. Не вводьте конфіденційні дані та перевіряйте важливу інформацію.</p>
 </div>
 <script src="/tools/assets/js/lib/marked.min.js"></script>
 <script src="/tools/assets/js/lib/purify.min.js"></script>
 <script src="/tools/assets/js/lib/safe-markdown.js"></script>
         </div>
+        <script type="application/json" id="tool-ui-i18n">{"copied":"Скопійовано в буфер обміну","copy_failed":"Не вдалося скопіювати","copy":"Копіювати","invalid_type":"Деякі файли пропущено через непідтримуваний тип.","file_too_large":"Файл {name} перевищує ліміт {limit}.","remove_file":"Видалити {name}","move_up":"Перемістити {name} вище","move_down":"Перемістити {name} нижче","load_failed":"Не вдалося завантажити потрібну частину. Перевірте з’єднання та спробуйте ще раз.","state_idle":"Очікує на введення","state_ready":"Готово до обробки","state_processing":"Триває обробка","state_success":"Результат готовий","state_error":"Помилка обробки","cancel":"Скасувати","retry":"Спробувати ще раз","reset":"Почати знову","download":"Завантажити результат","result_ready":"Готово — результат підготовлено","enter_json":"Введіть JSON для обробки.","invalid_json":"Некоректний JSON: {message}","invalid_range":"Перевірте введений діапазон.","invalid_time":"Використовуйте HH:MM:SS; кінець має бути пізніше за початок.","loading":"Завантаження…","saving":"Підготовка результату…","thinking":"Обмірковую…","interrupted":"Відповідь зупинено.","unknown_error":"Сталася невідома помилка. Спробуйте ще раз.","page":"Сторінка {number}","undo":"Скасувати зміну","text_meta":"{characters} символів · {lines} рядків","file_format":"{type} · {size}","strength_very_weak":"Дуже слабкий","strength_weak":"Слабкий","strength_medium":"Середній","strength_strong":"Сильний","strength_very_strong":"Дуже сильний","choose_charset":"Виберіть принаймні одну групу символів.","password_copied":"Пароль скопійовано."}</script>
         <script src="/tools/assets/js/tools/ai-chat.js" defer></script>
           </div>
+
+    <aside class="tool-trust" aria-label="Де і як відбувається обробка">
+      <div class="tool-trust-main">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></svg>        <div>
+          <strong>Де і як відбувається обробка</strong>
+          <p>Після свідомого запуску введений вміст надсилається через сервер VeVit до зовнішньої моделі ШІ.</p>
+        </div>
+      </div>
+          </aside>
   </div>
 </main>
 <footer class="site-footer">

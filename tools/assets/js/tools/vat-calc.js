@@ -12,7 +12,7 @@
     var n = parseFloat(v);
     return isNaN(n) ? null : n;
   }
-  function kc(n) { return n.toLocaleString('cs-CZ', { maximumFractionDigits: 2 }) + ' Kč'; }
+  function kc(n) { return n.toLocaleString(document.documentElement.lang || 'cs', { maximumFractionDigits: 2 }) + ' Kč'; }
 
   function rate() {
     if (rateSel.value === 'custom') return num('vat-custom') == null ? 0 : Math.max(0, Math.min(100, num('vat-custom')));

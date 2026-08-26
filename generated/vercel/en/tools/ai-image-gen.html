@@ -72,7 +72,8 @@
   </div>
 </header>
 <script type="module" src="/assets/shared/app-switcher.js?v=20260825b"></script>
-<script type="module" src="/assets/shared/localization.js?v=20260825a"></script><main class="main">
+<script type="module" src="/assets/shared/localization.js?v=20260826f"></script>
+<main class="main">
   <div class="tool-page">
     <!-- Breadcrumb -->
     <nav class="breadcrumb">
@@ -87,19 +88,38 @@
     <div class="tool-header">
       <span class="bar" style="background:#0ea5e9"></span>
       <h1>AI image generator</h1>
-      <span class="loc-tag" style="border-color:#0ea5e930;color:#0ea5e9;background:#0ea5e910" title="Processing runs through an AI model.">Via AI</span>
+      <span class="loc-tag" style="border-color:#0ea5e930;color:#0ea5e9;background:#0ea5e910" title="After you deliberately start the tool, the entered content is sent through the VeVit server to an external AI model.">Via AI</span>
       <span class="loc-tag tool-status-coming_soon">Coming soon</span>
     </div>
     <p class="tool-desc">Create unique images from a text description.</p>
 
+
     <!-- Tool body -->
-    <div class="tool-shell glass">
-              <div class="tool-placeholder">
-          <p class="t">AI image generator</p>
-          <p style="font-size:0.875rem">Coming soon. Nástroj zatím nevykonává žádné zpracování ani neodesílá zadání.</p>
-                      <p class="error-text" style="margin-top:0.75rem;display:block">Generování obrázků vyžaduje další infrastrukturu (Stable Diffusion / ComfyUI), kterou Ollama neposkytuje. Nástroj je v přípravě.</p>
+    <div class="tool-shell glass" data-tool-slug="ai-image-gen" data-tool-category="ai" data-processing-location="external_ai">
+                      <div class="tool-placeholder tool-info-only">
+          <div class="tool-info-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></svg></div>
+          <div><p class="t">What you need to know</p>
+          <p>Coming soon. This page currently processes and sends nothing.</p></div>
+          <div class="tool-alternative"><strong>Safe alternatives</strong><p>Use an image service you trust and review its data policy first.</p></div>
+                      <p class="sr-only">Generování obrázků vyžaduje další infrastrukturu (Stable Diffusion / ComfyUI), kterou Ollama neposkytuje. Nástroj je v přípravě.</p>
                   </div>
           </div>
+
+    <aside class="tool-trust" aria-label="Where and how processing happens">
+      <div class="tool-trust-main">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></svg>        <div>
+          <strong>Where and how processing happens</strong>
+          <p>After you deliberately start the tool, the entered content is sent through the VeVit server to an external AI model.</p>
+        </div>
+      </div>
+              <details class="tool-requirements">
+          <summary>Requirements and limits <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <ul>
+                          <li>image-generation provider (not configured)</li>
+                          <li>requires external provider or separate infrastructure</li>
+                      </ul>
+        </details>
+          </aside>
   </div>
 </main>
 <footer class="site-footer">

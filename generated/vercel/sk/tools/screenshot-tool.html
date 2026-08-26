@@ -72,7 +72,8 @@
   </div>
 </header>
 <script type="module" src="/assets/shared/app-switcher.js?v=20260825b"></script>
-<script type="module" src="/assets/shared/localization.js?v=20260825a"></script><main class="main">
+<script type="module" src="/assets/shared/localization.js?v=20260826f"></script>
+<main class="main">
   <div class="tool-page">
     <!-- Breadcrumb -->
     <nav class="breadcrumb">
@@ -92,14 +93,32 @@
     </div>
     <p class="tool-desc">Urobte screenshot ľubovoľnej webovej stránky.</p>
 
+
     <!-- Tool body -->
-    <div class="tool-shell glass">
-              <div class="tool-placeholder">
-          <p class="t">Screenshot URL</p>
-          <p style="font-size:0.875rem">Vyžaduje serverovou integraci. Nástroj je na sdíleném WEDOS deaktivovaný; URL se nekontroluje.</p>
-                      <p class="error-text" style="margin-top:0.75rem;display:block">Tento nástroj vyžaduje VPS / shell_exec (headless Chromium). Na sdíleném hostingu jej provozovat nelze.</p>
+    <div class="tool-shell glass" data-tool-slug="screenshot-tool" data-tool-category="image" data-processing-location="vevit_server">
+                      <div class="tool-placeholder tool-info-only">
+          <div class="tool-info-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg></div>
+          <div><p class="t">Čo potrebujete vedieť</p>
+          <p>Vyžaduje serverovou integraci. Táto stránka momentálne nič nespracúva ani neodosiela.</p></div>
+          <div class="tool-alternative"><strong>Bezpečné alternatívy</strong><p>Použite snímku obrazovky v prehliadači alebo systéme, aby citlivá URL zostala v zariadení.</p></div>
+                      <p class="sr-only">Tento nástroj vyžaduje VPS / shell_exec (headless Chromium). Na sdíleném hostingu jej provozovat nelze.</p>
                   </div>
           </div>
+
+    <aside class="tool-trust" aria-label="Kde a ako prebieha spracovanie">
+      <div class="tool-trust-main">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></svg>        <div>
+          <strong>Kde a ako prebieha spracovanie</strong>
+          <p>Súbor sa spracuje na serveri a po dokončení sa vymaže.</p>
+        </div>
+      </div>
+              <details class="tool-requirements">
+          <summary>Požiadavky a obmedzenia <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <ul>
+                          <li>headless Chromium and controlled network isolation; unavailable on shared WEDOS</li>
+                      </ul>
+        </details>
+          </aside>
   </div>
 </main>
 <footer class="site-footer">

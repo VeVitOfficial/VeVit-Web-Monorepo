@@ -72,7 +72,8 @@
   </div>
 </header>
 <script type="module" src="/assets/shared/app-switcher.js?v=20260825b"></script>
-<script type="module" src="/assets/shared/localization.js?v=20260825a"></script><main class="main">
+<script type="module" src="/assets/shared/localization.js?v=20260826f"></script>
+<main class="main">
   <div class="tool-page">
     <!-- Breadcrumb -->
     <nav class="breadcrumb">
@@ -92,9 +93,16 @@
     </div>
     <p class="tool-desc">Verstecke Text in einem Bild per LSB-Encoding.</p>
 
+      <ol class="tool-steps" aria-label="Werkzeugfortschritt">
+        <li class="is-current" data-tool-step="input"><span>1</span>Eingabe</li>
+        <li data-tool-step="settings"><span>2</span>Einstellungen</li>
+        <li data-tool-step="result"><span>3</span>Ergebnis</li>
+      </ol>
+
     <!-- Tool body -->
-    <div class="tool-shell glass">
-              <div class="tool-tool" id="tool-root">
+    <div class="tool-shell glass" data-tool-slug="steganography" data-tool-category="security" data-processing-location="client">
+              <div class="tool-tool" id="tool-root" data-tool-state="idle" aria-busy="false">
+          <p class="sr-only" id="tool-live-status" role="status" aria-live="polite" aria-atomic="true">Das Werkzeug ist bereit.</p>
           <div class="stack" style="max-width:44rem;margin:0 auto">
   <div class="seg" id="sg-mode" role="tablist">
     <button type="button" class="active" data-mode="enc" role="tab" aria-selected="true">Text verstecken</button>
@@ -125,8 +133,18 @@
   <p class="error-text hidden" id="sg-error" role="alert"></p>
   <p class="muted" style="font-size:0.8rem">LSB (Least Significant Bit) in RGB-Kanäle. Läuft lokal. PNG wird über Canvas neu codiert — originale Metadaten werden nicht gelöscht, aber die versteckten Daten bleiben. JPEG kann nicht verwendet werden (verlustbehaftete Komprimierung zerstört die Nachricht).</p>
 </div>        </div>
+        <script type="application/json" id="tool-ui-i18n">{"copied":"In die Zwischenablage kopiert","copy_failed":"Kopieren fehlgeschlagen","copy":"Kopieren","invalid_type":"Einige Dateien wurden wegen eines nicht unterstützten Typs übersprungen.","file_too_large":"{name} überschreitet das Limit von {limit}.","remove_file":"{name} entfernen","move_up":"{name} nach oben verschieben","move_down":"{name} nach unten verschieben","load_failed":"Ein benötigter Teil konnte nicht geladen werden. Prüfen Sie die Verbindung und versuchen Sie es erneut.","state_idle":"Wartet auf Eingabe","state_ready":"Bereit zur Verarbeitung","state_processing":"Verarbeitung läuft","state_success":"Ergebnis ist bereit","state_error":"Verarbeitung fehlgeschlagen","cancel":"Abbrechen","retry":"Erneut versuchen","reset":"Neu beginnen","download":"Ergebnis herunterladen","result_ready":"Fertig — Ihr Ergebnis ist bereit","enter_json":"Geben Sie JSON zur Verarbeitung ein.","invalid_json":"Ungültiges JSON: {message}","invalid_range":"Prüfen Sie den eingegebenen Bereich.","invalid_time":"Verwenden Sie HH:MM:SS; das Ende muss nach dem Start liegen.","loading":"Wird geladen…","saving":"Ergebnis wird vorbereitet…","thinking":"Denke nach…","interrupted":"Die Antwort wurde gestoppt.","unknown_error":"Ein unbekannter Fehler ist aufgetreten. Versuchen Sie es erneut.","page":"Seite {number}","undo":"Änderung rückgängig","text_meta":"{characters} Zeichen · {lines} Zeilen","file_format":"{type} · {size}","strength_very_weak":"Sehr schwach","strength_weak":"Schwach","strength_medium":"Mittel","strength_strong":"Stark","strength_very_strong":"Sehr stark","choose_charset":"Wählen Sie mindestens eine Zeichengruppe.","password_copied":"Passwort kopiert."}</script>
         <script src="/tools/assets/js/tools/steganography.js" defer></script>
           </div>
+
+    <aside class="tool-trust" aria-label="Wo und wie die Verarbeitung erfolgt">
+      <div class="tool-trust-main">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>        <div>
+          <strong>Wo und wie die Verarbeitung erfolgt</strong>
+          <p>Die Datei wird in Ihrem Browser verarbeitet und verläßt diesen Computer nicht.</p>
+        </div>
+      </div>
+          </aside>
   </div>
 </main>
 <footer class="site-footer">

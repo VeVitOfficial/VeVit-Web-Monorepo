@@ -10,7 +10,7 @@
     var n = parseFloat(v);
     return isNaN(n) ? null : n;
   }
-  function kc(n) { return n.toLocaleString('cs-CZ', { maximumFractionDigits: 0 }) + ' Kč'; }
+  function kc(n) { return n.toLocaleString(document.documentElement.lang || 'cs', { maximumFractionDigits: 0 }) + ' Kč'; }
 
   // Daňové zvýhodnění na dítě (měsíční), 2024.
   var CHILD = [0, 1467, 2170, 2520];
@@ -39,7 +39,7 @@
     levy.textContent = kc(odvody);
     tax.textContent = kc(zaloha);
     net.textContent = kc(n);
-    eff.textContent = g > 0 ? ((1 - n / g) * 100).toLocaleString('cs-CZ', { maximumFractionDigits: 1 }) + ' %' : '—';
+    eff.textContent = g > 0 ? ((1 - n / g) * 100).toLocaleString(document.documentElement.lang || 'cs', { maximumFractionDigits: 1 }) + ' %' : '—';
   }
 
   ['ns-gross', 'ns-children'].forEach(function (id) { ToolUI.el(id).addEventListener('input', compute); });

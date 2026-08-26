@@ -72,7 +72,8 @@
   </div>
 </header>
 <script type="module" src="/assets/shared/app-switcher.js?v=20260825b"></script>
-<script type="module" src="/assets/shared/localization.js?v=20260825a"></script><main class="main">
+<script type="module" src="/assets/shared/localization.js?v=20260826f"></script>
+<main class="main">
   <div class="tool-page">
     <!-- Breadcrumb -->
     <nav class="breadcrumb">
@@ -88,13 +89,20 @@
       <span class="bar" style="background:#ec4899"></span>
       <h1>Conversión de vídeo</h1>
       <span class="loc-tag" style="border-color:#ec489930;color:#ec4899;background:#ec489910" title="El archivo se procesa en tu navegador y no sale de esta computadora.">Localmente</span>
-      <span class="loc-tag tool-status-working">Disponible</span>
+      <span class="loc-tag tool-status-limited">Disponible limitadamente</span>
     </div>
     <p class="tool-desc">Convierte el vídeo entre formatos MP4, WebM (ffmpeg.wasm).</p>
 
+      <ol class="tool-steps" aria-label="Progreso de la herramienta">
+        <li class="is-current" data-tool-step="input"><span>1</span>Entrada</li>
+        <li data-tool-step="settings"><span>2</span>Ajustes</li>
+        <li data-tool-step="result"><span>3</span>Resultado</li>
+      </ol>
+
     <!-- Tool body -->
-    <div class="tool-shell glass">
-              <div class="tool-tool" id="tool-root">
+    <div class="tool-shell glass" data-tool-slug="video-convert" data-tool-category="media" data-processing-location="client">
+              <div class="tool-tool" id="tool-root" data-tool-state="idle" aria-busy="false">
+          <p class="sr-only" id="tool-live-status" role="status" aria-live="polite" aria-atomic="true">La herramienta está lista.</p>
           <div class="stack" style="max-width:44rem;margin:0 auto">
   <div class="dropzone" id="vc-drop">
     <span class="dz-ico"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg></span>
@@ -112,8 +120,25 @@
   <p class="error-text hidden" id="vc-error" role="alert"></p>
   <p class="muted" style="font-size:0.8rem">Conversión vía ffmpeg.wasm (se ejecuta en el navegador). WASM es más lento que ffmpeg nativo; para archivos grandes límite ~100 MB. El vídeo no sale del navegador.</p>
 </div>        </div>
+        <script type="application/json" id="tool-ui-i18n">{"copied":"Copiado al portapapeles","copy_failed":"No se pudo copiar","copy":"Copiar","invalid_type":"Se omitieron algunos archivos porque su tipo no es compatible.","file_too_large":"{name} supera el límite de {limit}.","remove_file":"Quitar {name}","move_up":"Subir {name}","move_down":"Bajar {name}","load_failed":"No se pudo cargar una parte necesaria. Comprueba la conexión e inténtalo de nuevo.","state_idle":"Esperando entrada","state_ready":"Listo para procesar","state_processing":"Procesando","state_success":"El resultado está listo","state_error":"El procesamiento falló","cancel":"Cancelar","retry":"Intentar de nuevo","reset":"Empezar de nuevo","download":"Descargar resultado","result_ready":"Listo — el resultado está preparado","enter_json":"Introduce el JSON que quieres procesar.","invalid_json":"JSON no válido: {message}","invalid_range":"Comprueba el intervalo introducido.","invalid_time":"Usa HH:MM:SS y asegúrate de que el final sea posterior al inicio.","loading":"Cargando…","saving":"Preparando el resultado…","thinking":"Pensando…","interrupted":"La respuesta se detuvo.","unknown_error":"Se produjo un error desconocido. Inténtalo de nuevo.","page":"Página {number}","undo":"Deshacer cambio","text_meta":"{characters} caracteres · {lines} líneas","file_format":"{type} · {size}","strength_very_weak":"Muy débil","strength_weak":"Débil","strength_medium":"Medio","strength_strong":"Fuerte","strength_very_strong":"Muy fuerte","choose_charset":"Selecciona al menos un grupo de caracteres.","password_copied":"Contraseña copiada."}</script>
         <script src="/tools/assets/js/tools/video-convert.js" defer></script>
           </div>
+
+    <aside class="tool-trust" aria-label="Dónde y cómo se procesa">
+      <div class="tool-trust-main">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>        <div>
+          <strong>Dónde y cómo se procesa</strong>
+          <p>El archivo se procesa en tu navegador y no sale de esta computadora.</p>
+        </div>
+      </div>
+              <details class="tool-requirements">
+          <summary>Requisitos y límites <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <ul>
+                          <li>WebAssembly</li>
+                          <li>scoped &#039;wasm-unsafe-eval&#039; v CSP jen pro těchto 9 stránek (tools/.htaccess)</li>
+                      </ul>
+        </details>
+          </aside>
   </div>
 </main>
 <footer class="site-footer">

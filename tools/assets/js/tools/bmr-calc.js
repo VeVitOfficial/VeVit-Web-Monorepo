@@ -9,7 +9,7 @@
     var n = parseFloat(v);
     return isNaN(n) ? null : n;
   }
-  function kc(n) { return Math.round(n).toLocaleString('cs-CZ') + ' kcal'; }
+  function kc(n) { return Math.round(n).toLocaleString(document.documentElement.lang || 'cs') + ' kcal'; }
 
   function compute() {
     var sex = ToolUI.el('bmr-sex').value;

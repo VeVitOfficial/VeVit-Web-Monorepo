@@ -72,7 +72,8 @@
   </div>
 </header>
 <script type="module" src="/assets/shared/app-switcher.js?v=20260825b"></script>
-<script type="module" src="/assets/shared/localization.js?v=20260825a"></script><main class="main">
+<script type="module" src="/assets/shared/localization.js?v=20260826f"></script>
+<main class="main">
   <div class="tool-page">
     <!-- Breadcrumb -->
     <nav class="breadcrumb">
@@ -88,13 +89,20 @@
       <span class="bar" style="background:#ec4899"></span>
       <h1>Ořez videa</h1>
       <span class="loc-tag" style="border-color:#ec489930;color:#ec4899;background:#ec489910" title="Soubor se zpracovává ve vašem prohlížeči a neopustí tento počítač.">Lokálně</span>
-      <span class="loc-tag tool-status-working">Dostupný</span>
+      <span class="loc-tag tool-status-limited">Omezeně dostupný</span>
     </div>
     <p class="tool-desc">Vyberte část videa a odstraňte zbytek (ffmpeg.wasm).</p>
 
+      <ol class="tool-steps" aria-label="Průběh nástroje">
+        <li class="is-current" data-tool-step="input"><span>1</span>Vstup</li>
+        <li data-tool-step="settings"><span>2</span>Nastavení</li>
+        <li data-tool-step="result"><span>3</span>Výsledek</li>
+      </ol>
+
     <!-- Tool body -->
-    <div class="tool-shell glass">
-              <div class="tool-tool" id="tool-root">
+    <div class="tool-shell glass" data-tool-slug="video-trim" data-tool-category="media" data-processing-location="client">
+              <div class="tool-tool" id="tool-root" data-tool-state="idle" aria-busy="false">
+          <p class="sr-only" id="tool-live-status" role="status" aria-live="polite" aria-atomic="true">Nástroj je připraven.</p>
           <div class="stack" style="max-width:44rem;margin:0 auto">
   <div class="dropzone" id="vt2-drop">
     <span class="dz-ico"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><path d="M8.12 8.12 12 12"/><path d="M20 4 8.12 15.88"/><circle cx="6" cy="18" r="3"/><path d="M14.8 14.8 20 20"/></svg></span>
@@ -103,20 +111,41 @@
   </div>
   <div class="file-list hidden" id="vt2-list"></div>
   <div class="hidden" id="vt2-work">
+    <video class="media-preview" id="vt2-preview" controls preload="metadata"></video>
     <div class="row" style="flex-wrap:wrap;gap:0.75rem;align-items:end">
       <div class="stack-sm"><label class="field-label" for="vt2-start">Začátek (HH:MM:SS)</label><input class="input" id="vt2-start" type="text" value="00:00:00" placeholder="00:00:05"></div>
       <div class="stack-sm"><label class="field-label" for="vt2-end">Konec (HH:MM:SS)</label><input class="input" id="vt2-end" type="text" placeholder="00:00:30"></div>
       <div class="stack-sm"><label class="field-label" for="vt2-reenc">Překódovat (přesnější)</label><select class="select" id="vt2-reenc"><option value="0" selected>Kopírovat (rychlé)</option><option value="1">Překódovat</option></select></div>
     </div>
-    <button class="btn btn-primary btn-touch" id="vt2-run" type="button" disabled><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><path d="M8.12 8.12 12 12"/><path d="M20 4 8.12 15.88"/><circle cx="6" cy="18" r="3"/><path d="M14.8 14.8 20 20"/></svg> Oříznout</button>
+    <div class="media-range"><input id="vt2-start-range" type="range" min="0" value="0" step="0.1"><input id="vt2-end-range" type="range" min="0" value="0" step="0.1"><output id="vt2-summary">00:00:00 → 00:00:00</output></div>
+    <div class="tool-action-bar"><button class="btn btn-secondary btn-touch hidden" id="vt2-cancel" type="button">Zrušit</button><button class="btn btn-primary btn-touch" id="vt2-run" type="button" disabled><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><path d="M8.12 8.12 12 12"/><path d="M20 4 8.12 15.88"/><circle cx="6" cy="18" r="3"/><path d="M14.8 14.8 20 20"/></svg> Oříznout</button></div>
   </div>
   <div class="progress-track hidden" id="vt2-prog"><div class="progress-fill"></div></div>
   <p class="progress-label hidden" id="vt2-prog-label"></p>
   <p class="error-text hidden" id="vt2-error" role="alert"></p>
+  <video class="media-preview hidden" id="vt2-result-preview" controls></video>
   <p class="muted" style="font-size:0.8rem">Ořez přes ffmpeg.wasm. „Kopírovat“ je rychlé ale ořezá na klíčových snímcích; „Překódovat“ je přesné. Běží lokálně.</p>
-</div>        </div>
+</div>
+        </div>
+        <script type="application/json" id="tool-ui-i18n">{"copied":"Zkopírováno do schránky","copy_failed":"Kopírování selhalo","copy":"Kopírovat","invalid_type":"Některé soubory byly přeskočeny: tento typ není podporovaný.","file_too_large":"Soubor {name} je větší než povolený limit {limit}.","remove_file":"Odebrat {name}","move_up":"Přesunout {name} výše","move_down":"Přesunout {name} níže","load_failed":"Potřebnou část nástroje se nepodařilo načíst. Zkontrolujte připojení a zkuste to znovu.","state_idle":"Čeká na vstup","state_ready":"Připraveno ke zpracování","state_processing":"Probíhá zpracování","state_success":"Výsledek je připraven","state_error":"Zpracování se nezdařilo","cancel":"Zrušit","retry":"Zkusit znovu","reset":"Začít znovu","download":"Stáhnout výsledek","result_ready":"Hotovo — výsledek je připraven","enter_json":"Vložte JSON ke zpracování.","invalid_json":"Neplatný JSON: {message}","invalid_range":"Zkontrolujte zadaný rozsah.","invalid_time":"Čas zadávejte jako HH:MM:SS a konec musí být později než začátek.","loading":"Načítání…","saving":"Příprava výsledku…","thinking":"Přemýšlím…","interrupted":"Odpověď byla zastavena.","unknown_error":"Nastala neznámá chyba. Zkuste to znovu.","page":"Strana {number}","undo":"Vrátit změnu","text_meta":"{characters} znaků · {lines} řádků","file_format":"{type} · {size}","strength_very_weak":"Velmi slabé","strength_weak":"Slabé","strength_medium":"Střední","strength_strong":"Silné","strength_very_strong":"Velmi silné","choose_charset":"Vyberte alespoň jednu skupinu znaků.","password_copied":"Heslo bylo zkopírováno."}</script>
         <script src="/tools/assets/js/tools/video-trim.js" defer></script>
           </div>
+
+    <aside class="tool-trust" aria-label="Kde a jak probíhá zpracování">
+      <div class="tool-trust-main">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>        <div>
+          <strong>Kde a jak probíhá zpracování</strong>
+          <p>Soubor se zpracovává ve vašem prohlížeči a neopustí tento počítač.</p>
+        </div>
+      </div>
+              <details class="tool-requirements">
+          <summary>Požadavky a omezení <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <ul>
+                          <li>WebAssembly</li>
+                          <li>scoped &#039;wasm-unsafe-eval&#039; v CSP jen pro těchto 9 stránek (tools/.htaccess)</li>
+                      </ul>
+        </details>
+          </aside>
   </div>
 </main>
 <footer class="site-footer">

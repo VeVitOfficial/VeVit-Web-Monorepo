@@ -72,7 +72,8 @@
   </div>
 </header>
 <script type="module" src="/assets/shared/app-switcher.js?v=20260825b"></script>
-<script type="module" src="/assets/shared/localization.js?v=20260825a"></script><main class="main">
+<script type="module" src="/assets/shared/localization.js?v=20260826f"></script>
+<main class="main">
   <div class="tool-page">
     <!-- Breadcrumb -->
     <nav class="breadcrumb">
@@ -92,9 +93,11 @@
     </div>
     <p class="tool-desc">Convierte entre HEX, RGB, HSL y CMYK.</p>
 
+
     <!-- Tool body -->
-    <div class="tool-shell glass">
-              <div class="tool-tool" id="tool-root">
+    <div class="tool-shell glass" data-tool-slug="color-converter" data-tool-category="calc" data-processing-location="client">
+              <div class="tool-tool" id="tool-root" data-tool-state="idle" aria-busy="false">
+          <p class="sr-only" id="tool-live-status" role="status" aria-live="polite" aria-atomic="true">La herramienta está lista.</p>
           <div class="stack" style="max-width:36rem;margin:0 auto">
   <div class="row" style="gap:0.5rem;margin-bottom:0.25rem">
     <span class="badge badge-loc-local">Local</span>
@@ -138,8 +141,18 @@
     </div>
   </div>
 </div>        </div>
+        <script type="application/json" id="tool-ui-i18n">{"copied":"Copiado al portapapeles","copy_failed":"No se pudo copiar","copy":"Copiar","invalid_type":"Se omitieron algunos archivos porque su tipo no es compatible.","file_too_large":"{name} supera el límite de {limit}.","remove_file":"Quitar {name}","move_up":"Subir {name}","move_down":"Bajar {name}","load_failed":"No se pudo cargar una parte necesaria. Comprueba la conexión e inténtalo de nuevo.","state_idle":"Esperando entrada","state_ready":"Listo para procesar","state_processing":"Procesando","state_success":"El resultado está listo","state_error":"El procesamiento falló","cancel":"Cancelar","retry":"Intentar de nuevo","reset":"Empezar de nuevo","download":"Descargar resultado","result_ready":"Listo — el resultado está preparado","enter_json":"Introduce el JSON que quieres procesar.","invalid_json":"JSON no válido: {message}","invalid_range":"Comprueba el intervalo introducido.","invalid_time":"Usa HH:MM:SS y asegúrate de que el final sea posterior al inicio.","loading":"Cargando…","saving":"Preparando el resultado…","thinking":"Pensando…","interrupted":"La respuesta se detuvo.","unknown_error":"Se produjo un error desconocido. Inténtalo de nuevo.","page":"Página {number}","undo":"Deshacer cambio","text_meta":"{characters} caracteres · {lines} líneas","file_format":"{type} · {size}","strength_very_weak":"Muy débil","strength_weak":"Débil","strength_medium":"Medio","strength_strong":"Fuerte","strength_very_strong":"Muy fuerte","choose_charset":"Selecciona al menos un grupo de caracteres.","password_copied":"Contraseña copiada."}</script>
         <script src="/tools/assets/js/tools/color-converter.js" defer></script>
           </div>
+
+    <aside class="tool-trust" aria-label="Dónde y cómo se procesa">
+      <div class="tool-trust-main">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>        <div>
+          <strong>Dónde y cómo se procesa</strong>
+          <p>El archivo se procesa en tu navegador y no sale de esta computadora.</p>
+        </div>
+      </div>
+          </aside>
   </div>
 </main>
 <footer class="site-footer">

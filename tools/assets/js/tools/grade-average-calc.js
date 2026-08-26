@@ -44,7 +44,7 @@
       sum += g * w; wsum += w; n++;
     });
     count.textContent = String(n);
-    avg.textContent = (n === 0 || wsum === 0) ? '—' : (sum / wsum).toLocaleString('cs-CZ', { maximumFractionDigits: 3 });
+    avg.textContent = (n === 0 || wsum === 0) ? '—' : (sum / wsum).toLocaleString(document.documentElement.lang || 'cs', { maximumFractionDigits: 3 });
   }
 
   addBtn.addEventListener('click', function () { buildRow(); compute(); });

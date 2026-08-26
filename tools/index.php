@@ -106,26 +106,6 @@ endif;
     </div>
   </section>
 
-  <section class="section beta-section" id="beta">
-    <div class="beta-card glass">
-      <div class="beta-head">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><?= icon_svg('Bug', 18) ?></svg> <span class="beta-tag"><?= e(vv_t('hub.beta_tag', $lang)) ?></span>
-      </div>
-      <h2 class="beta-title"><?= e(vv_t('hub.beta_title', $lang)) ?></h2>
-      <p class="beta-sub"><?= e(vv_t('hub.beta_sub', $lang)) ?></p>
-
-      <form class="beta-form" id="beta-form" novalidate>
-        <textarea class="textarea" id="beta-message" name="message" rows="4" placeholder="<?= e(vv_t('hub.beta_placeholder', $lang)) ?>"></textarea>
-        <button class="btn btn-primary btn-touch" id="beta-send" type="submit">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><?= icon_svg('Send', 18) ?></svg> <span class="beta-label"><?= e(vv_t('hub.beta_send', $lang)) ?></span>
-        </button>
-      </form>
-
-      <p class="beta-note hidden" id="beta-note"><?= vv_t('hub.beta_note', $lang) ?></p>
-      <p class="beta-small"><?= vv_t('hub.beta_small', $lang) ?></p>
-    </div>
-  </section>
-
   <section class="sections hidden" id="search-results" aria-labelledby="results-title">
     <h2 class="muted" id="results-title" aria-live="polite" style="font-size:0.875rem;font-weight:500;margin:0 0 1.5rem"></h2>
     <p class="hub-state" id="results-loading" aria-live="polite"><?= e(vv_t('hub.results_loading', $lang)) ?></p>
@@ -156,6 +136,34 @@ endif;
       endforeach; ?>
     </div>
   </div>
+
+  <nav class="category-rail" id="category-rail" aria-label="<?= e(vv_t('hub.filter_category', $lang)) ?>">
+    <span class="category-rail__track" aria-hidden="true"></span>
+    <a class="category-rail__dot is-active" href="#nove" data-section="nove" data-label="<?= e(vv_t('hub.section_newest', $lang)) ?>" aria-label="<?= e(vv_t('hub.section_newest', $lang)) ?>" aria-current="location" style="--rail-color:var(--color-emerald)"><span aria-hidden="true"></span></a>
+    <?php foreach (CATEGORY_ORDER as $c): ?>
+      <a class="category-rail__dot" href="#<?= e($c) ?>" data-section="<?= e($c) ?>" data-label="<?= e(category_label($c, $lang)) ?>" aria-label="<?= e(category_label($c, $lang)) ?>" style="--rail-color:<?= CATEGORY_COLORS[$c] ?>"><span aria-hidden="true"></span></a>
+    <?php endforeach; ?>
+  </nav>
+
+  <section class="section beta-section" id="beta">
+    <div class="beta-card glass">
+      <div class="beta-head">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><?= icon_svg('Bug', 18) ?></svg> <span class="beta-tag"><?= e(vv_t('hub.beta_tag', $lang)) ?></span>
+      </div>
+      <h2 class="beta-title"><?= e(vv_t('hub.beta_title', $lang)) ?></h2>
+      <p class="beta-sub"><?= e(vv_t('hub.beta_sub', $lang)) ?></p>
+
+      <form class="beta-form" id="beta-form" novalidate>
+        <textarea class="textarea" id="beta-message" name="message" rows="4" placeholder="<?= e(vv_t('hub.beta_placeholder', $lang)) ?>"></textarea>
+        <button class="btn btn-primary btn-touch" id="beta-send" type="submit">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><?= icon_svg('Send', 18) ?></svg> <span class="beta-label"><?= e(vv_t('hub.beta_send', $lang)) ?></span>
+        </button>
+      </form>
+
+      <p class="beta-note hidden" id="beta-note"><?= vv_t('hub.beta_note', $lang) ?></p>
+      <p class="beta-small"><?= vv_t('hub.beta_small', $lang) ?></p>
+    </div>
+  </section>
 </main>
 
 <?php
@@ -199,5 +207,6 @@ $jsonFlags = JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG;
 <script type="module" src="/assets/shared/session.js?v=20260809c"></script>
 <script src="/tools/assets/js/search-core.js"></script>
 <script src="/tools/assets/js/hub.js?v=20260824d"></script>
+<script src="/tools/assets/js/category-rail.js?v=20260826a"></script>
 <script src="/tools/assets/js/beta.js"></script>
 <?php require_once __DIR__ . '/includes/footer.php';

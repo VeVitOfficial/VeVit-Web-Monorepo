@@ -34,7 +34,7 @@
     return wrap;
   }
   function rowTotal(q, p) { return (parseFloat(q.value) || 0) * (parseFloat(p.value) || 0); }
-  function fmtC(n) { return n.toLocaleString('cs-CZ', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' Kč'; }
+  function fmtC(n) { return n.toLocaleString(document.documentElement.lang || 'cs', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' Kč'; }
 
   makeRow('Produkt / služba A', 2, 500);
   makeRow('Produkt / služba B', 1, 1200);
@@ -194,6 +194,6 @@
     });
   });
 
-  function fmtN(n) { return n.toLocaleString('cs-CZ', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+  function fmtN(n) { return n.toLocaleString(document.documentElement.lang || 'cs', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
   function csDate(s) { if (!s) return '—'; var p = s.split('-'); return p[2] + '. ' + p[1] + '. ' + p[0]; }
 })();

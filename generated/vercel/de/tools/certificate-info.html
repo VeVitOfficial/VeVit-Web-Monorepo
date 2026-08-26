@@ -72,7 +72,8 @@
   </div>
 </header>
 <script type="module" src="/assets/shared/app-switcher.js?v=20260825b"></script>
-<script type="module" src="/assets/shared/localization.js?v=20260825a"></script><main class="main">
+<script type="module" src="/assets/shared/localization.js?v=20260826f"></script>
+<main class="main">
   <div class="tool-page">
     <!-- Breadcrumb -->
     <nav class="breadcrumb">
@@ -92,9 +93,11 @@
     </div>
     <p class="tool-desc">Prüfe Gültigkeit und Details des SSL-Zertifikats.</p>
 
+
     <!-- Tool body -->
-    <div class="tool-shell glass">
-              <div class="tool-tool" id="tool-root">
+    <div class="tool-shell glass" data-tool-slug="certificate-info" data-tool-category="security" data-processing-location="vevit_server">
+              <div class="tool-tool" id="tool-root" data-tool-state="idle" aria-busy="false">
+          <p class="sr-only" id="tool-live-status" role="status" aria-live="polite" aria-atomic="true">Das Werkzeug ist bereit.</p>
           <div class="stack" style="max-width:40rem;margin:0 auto">
   <div class="stack-sm">
     <label class="field-label" for="ci-domain">Domain</label>
@@ -122,8 +125,25 @@
   <p class="muted" id="ci-help" style="font-size:0.8rem">Verarbeitung erfolgt auf dem Server über eine verifizierte TLS-Verbindung direkt zur öffentlichen IP-Adresse. Die Domain wird nur für eine einmalige Prüfung verwendet und nichts gespeichert.</p>
 </div>
         </div>
+        <script type="application/json" id="tool-ui-i18n">{"copied":"In die Zwischenablage kopiert","copy_failed":"Kopieren fehlgeschlagen","copy":"Kopieren","invalid_type":"Einige Dateien wurden wegen eines nicht unterstützten Typs übersprungen.","file_too_large":"{name} überschreitet das Limit von {limit}.","remove_file":"{name} entfernen","move_up":"{name} nach oben verschieben","move_down":"{name} nach unten verschieben","load_failed":"Ein benötigter Teil konnte nicht geladen werden. Prüfen Sie die Verbindung und versuchen Sie es erneut.","state_idle":"Wartet auf Eingabe","state_ready":"Bereit zur Verarbeitung","state_processing":"Verarbeitung läuft","state_success":"Ergebnis ist bereit","state_error":"Verarbeitung fehlgeschlagen","cancel":"Abbrechen","retry":"Erneut versuchen","reset":"Neu beginnen","download":"Ergebnis herunterladen","result_ready":"Fertig — Ihr Ergebnis ist bereit","enter_json":"Geben Sie JSON zur Verarbeitung ein.","invalid_json":"Ungültiges JSON: {message}","invalid_range":"Prüfen Sie den eingegebenen Bereich.","invalid_time":"Verwenden Sie HH:MM:SS; das Ende muss nach dem Start liegen.","loading":"Wird geladen…","saving":"Ergebnis wird vorbereitet…","thinking":"Denke nach…","interrupted":"Die Antwort wurde gestoppt.","unknown_error":"Ein unbekannter Fehler ist aufgetreten. Versuchen Sie es erneut.","page":"Seite {number}","undo":"Änderung rückgängig","text_meta":"{characters} Zeichen · {lines} Zeilen","file_format":"{type} · {size}","strength_very_weak":"Sehr schwach","strength_weak":"Schwach","strength_medium":"Mittel","strength_strong":"Stark","strength_very_strong":"Sehr stark","choose_charset":"Wählen Sie mindestens eine Zeichengruppe.","password_copied":"Passwort kopiert."}</script>
         <script src="/tools/assets/js/tools/certificate-info.js" defer></script>
           </div>
+
+    <aside class="tool-trust" aria-label="Wo und wie die Verarbeitung erfolgt">
+      <div class="tool-trust-main">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></svg>        <div>
+          <strong>Wo und wie die Verarbeitung erfolgt</strong>
+          <p>Die Datei wird auf dem Server verarbeitet und nach Abschluss gelöscht.</p>
+        </div>
+      </div>
+              <details class="tool-requirements">
+          <summary>Anforderungen und Grenzen <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <ul>
+                          <li>public DNS and TLS endpoint</li>
+                          <li>outbound TCP/443 required</li>
+                      </ul>
+        </details>
+          </aside>
   </div>
 </main>
 <footer class="site-footer">

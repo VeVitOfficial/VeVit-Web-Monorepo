@@ -14,6 +14,9 @@
     var onProgress = job.onProgress || function () {};
     var onError = job.onError || function (m) { console.error(m); };
     if (job.file.size > (job.maxBytes || MAX)) return onError('Soubor je příliš velký (max ' + ToolUI.fmtSize(job.maxBytes || MAX) + ' — limit ffmpeg.wasm).');
+    if (job.signal && job.signal.aborted) return;
+    var cancel = function () { if (window.FFmpegWrapper) FFmpegWrapper.cancel(); };
+    if (job.signal) job.signal.addEventListener('abort', cancel, { once: true });
     onProgress(2, FFmpegWrapper.LOADING_NOTE);
     var inName = job.inName || ('in.' + ext(job.file.name));
     FFmpegWrapper.ready(function (p) { onProgress(Math.max(5, Math.round((p || 0) * 85)), 'Zpracovávám…'); }).then(function (ff) {
@@ -28,10 +31,12 @@
           });
         });
       }).then(function (blob) {
+        if (job.signal && job.signal.aborted) return;
         onProgress(100, 'Hotovo');
         job.onBlob && job.onBlob(blob);
       });
-    }).catch(function (e) { onError(e && e.message ? e.message : 'Zpracování selhalo (možná nepodporovaný kodek ve ffmpeg.wasm).'); });
+    }).catch(function (e) { if (!job.signal || !job.signal.aborted) onError(e && e.message ? e.message : 'Zpracování selhalo (možná nepodporovaný kodek ve ffmpeg.wasm).'); })
+      .finally(function () { if (job.signal) job.signal.removeEventListener('abort', cancel); });
   }
 
   // merge: více stejných souborů přes concat demuxer

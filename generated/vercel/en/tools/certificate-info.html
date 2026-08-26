@@ -72,7 +72,8 @@
   </div>
 </header>
 <script type="module" src="/assets/shared/app-switcher.js?v=20260825b"></script>
-<script type="module" src="/assets/shared/localization.js?v=20260825a"></script><main class="main">
+<script type="module" src="/assets/shared/localization.js?v=20260826f"></script>
+<main class="main">
   <div class="tool-page">
     <!-- Breadcrumb -->
     <nav class="breadcrumb">
@@ -92,9 +93,11 @@
     </div>
     <p class="tool-desc">Check validity and details of an SSL certificate.</p>
 
+
     <!-- Tool body -->
-    <div class="tool-shell glass">
-              <div class="tool-tool" id="tool-root">
+    <div class="tool-shell glass" data-tool-slug="certificate-info" data-tool-category="security" data-processing-location="vevit_server">
+              <div class="tool-tool" id="tool-root" data-tool-state="idle" aria-busy="false">
+          <p class="sr-only" id="tool-live-status" role="status" aria-live="polite" aria-atomic="true">The tool is ready.</p>
           <div class="stack" style="max-width:40rem;margin:0 auto">
   <div class="stack-sm">
     <label class="field-label" for="ci-domain">Domain</label>
@@ -122,8 +125,25 @@
   <p class="muted" id="ci-help" style="font-size:0.8rem">Processing happens on the server via a verified TLS connection directly to the public IP address. The domain is used only for a one-time check and nothing is stored.</p>
 </div>
         </div>
+        <script type="application/json" id="tool-ui-i18n">{"copied":"Copied to clipboard","copy_failed":"Copy failed","copy":"Copy","invalid_type":"Some files were skipped because their type is not supported.","file_too_large":"{name} is larger than the {limit} limit.","remove_file":"Remove {name}","move_up":"Move {name} up","move_down":"Move {name} down","load_failed":"A required part of the tool failed to load. Check your connection and try again.","state_idle":"Waiting for input","state_ready":"Ready to process","state_processing":"Processing","state_success":"Result is ready","state_error":"Processing failed","cancel":"Cancel","retry":"Try again","reset":"Start over","download":"Download result","result_ready":"Done — your result is ready","enter_json":"Enter JSON to process.","invalid_json":"Invalid JSON: {message}","invalid_range":"Check the entered range.","invalid_time":"Use HH:MM:SS and make sure the end is later than the start.","loading":"Loading…","saving":"Preparing result…","thinking":"Thinking…","interrupted":"The response was stopped.","unknown_error":"An unknown error occurred. Try again.","page":"Page {number}","undo":"Undo change","text_meta":"{characters} characters · {lines} lines","file_format":"{type} · {size}","strength_very_weak":"Very weak","strength_weak":"Weak","strength_medium":"Medium","strength_strong":"Strong","strength_very_strong":"Very strong","choose_charset":"Select at least one character group.","password_copied":"Password copied."}</script>
         <script src="/tools/assets/js/tools/certificate-info.js" defer></script>
           </div>
+
+    <aside class="tool-trust" aria-label="Where and how processing happens">
+      <div class="tool-trust-main">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></svg>        <div>
+          <strong>Where and how processing happens</strong>
+          <p>The file is processed on the server and deleted after completion.</p>
+        </div>
+      </div>
+              <details class="tool-requirements">
+          <summary>Requirements and limits <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <ul>
+                          <li>public DNS and TLS endpoint</li>
+                          <li>outbound TCP/443 required</li>
+                      </ul>
+        </details>
+          </aside>
   </div>
 </main>
 <footer class="site-footer">

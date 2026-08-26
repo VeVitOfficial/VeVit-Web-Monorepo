@@ -72,7 +72,8 @@
   </div>
 </header>
 <script type="module" src="/assets/shared/app-switcher.js?v=20260825b"></script>
-<script type="module" src="/assets/shared/localization.js?v=20260825a"></script><main class="main">
+<script type="module" src="/assets/shared/localization.js?v=20260826f"></script>
+<main class="main">
   <div class="tool-page">
     <!-- Breadcrumb -->
     <nav class="breadcrumb">
@@ -87,14 +88,16 @@
     <div class="tool-header">
       <span class="bar" style="background:#6b7280"></span>
       <h1>AI spell check</h1>
-      <span class="loc-tag" style="border-color:#6b728030;color:#6b7280;background:#6b728010" title="Processing runs through an AI model.">Via AI</span>
+      <span class="loc-tag" style="border-color:#6b728030;color:#6b7280;background:#6b728010" title="After you deliberately start the tool, the entered content is sent through the VeVit server to an external AI model.">Via AI</span>
       <span class="loc-tag tool-status-limited">Limited</span>
     </div>
     <p class="tool-desc">Fix spelling and grammar of Czech text.</p>
 
+
     <!-- Tool body -->
-    <div class="tool-shell glass">
-              <div class="tool-tool" id="tool-root">
+    <div class="tool-shell glass" data-tool-slug="grammar-check" data-tool-category="text" data-processing-location="external_ai">
+              <div class="tool-tool" id="tool-root" data-tool-state="idle" aria-busy="false">
+          <p class="sr-only" id="tool-live-status" role="status" aria-live="polite" aria-atomic="true">The tool is ready.</p>
           <div class="stack" style="max-width:46rem;margin:0 auto">
   <div class="ai-head"><span class="badge badge-ai">AI</span><span class="muted" style="font-size:0.875rem">Model: llama3.2</span></div>
   <textarea class="textarea" id="gc-input" rows="10" placeholder="Paste Czech text to correct spelling and grammar…"></textarea>
@@ -110,8 +113,18 @@
 <script src="/tools/assets/js/lib/purify.min.js"></script>
 <script src="/tools/assets/js/lib/safe-markdown.js"></script>
 <script src="/tools/assets/js/lib/ai-tool.js"></script>        </div>
+        <script type="application/json" id="tool-ui-i18n">{"copied":"Copied to clipboard","copy_failed":"Copy failed","copy":"Copy","invalid_type":"Some files were skipped because their type is not supported.","file_too_large":"{name} is larger than the {limit} limit.","remove_file":"Remove {name}","move_up":"Move {name} up","move_down":"Move {name} down","load_failed":"A required part of the tool failed to load. Check your connection and try again.","state_idle":"Waiting for input","state_ready":"Ready to process","state_processing":"Processing","state_success":"Result is ready","state_error":"Processing failed","cancel":"Cancel","retry":"Try again","reset":"Start over","download":"Download result","result_ready":"Done — your result is ready","enter_json":"Enter JSON to process.","invalid_json":"Invalid JSON: {message}","invalid_range":"Check the entered range.","invalid_time":"Use HH:MM:SS and make sure the end is later than the start.","loading":"Loading…","saving":"Preparing result…","thinking":"Thinking…","interrupted":"The response was stopped.","unknown_error":"An unknown error occurred. Try again.","page":"Page {number}","undo":"Undo change","text_meta":"{characters} characters · {lines} lines","file_format":"{type} · {size}","strength_very_weak":"Very weak","strength_weak":"Weak","strength_medium":"Medium","strength_strong":"Strong","strength_very_strong":"Very strong","choose_charset":"Select at least one character group.","password_copied":"Password copied."}</script>
         <script src="/tools/assets/js/tools/grammar-check.js" defer></script>
           </div>
+
+    <aside class="tool-trust" aria-label="Where and how processing happens">
+      <div class="tool-trust-main">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></svg>        <div>
+          <strong>Where and how processing happens</strong>
+          <p>After you deliberately start the tool, the entered content is sent through the VeVit server to an external AI model.</p>
+        </div>
+      </div>
+          </aside>
   </div>
 </main>
 <footer class="site-footer">

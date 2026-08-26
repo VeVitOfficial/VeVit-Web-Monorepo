@@ -4,7 +4,9 @@
     <span class="dz-title"><?= e(vv_t('pdf_rotate.drop_title', $lang)) ?></span>
     <span class="dz-hint"><?= e(vv_t('tool_common.click_choose', $lang)) ?></span>
   </div>
+  <div class="file-list hidden" id="pr-list"></div>
   <div class="hidden" id="pr-work">
+    <div class="pdf-page-grid" id="pr-preview" aria-live="polite"></div>
     <div class="stack-sm">
       <label class="field-label" for="pr-angle"><?= e(vv_t('pdf_rotate.angle', $lang)) ?></label>
       <select class="select" id="pr-angle">
@@ -16,8 +18,9 @@
     <div class="stack-sm">
       <label class="field-label" for="pr-pages"><?= e(vv_t('pdf_rotate.pages', $lang)) ?></label>
       <input class="input" id="pr-pages" type="text" placeholder="<?= e(vv_t('pdf_rotate.pages_ph', $lang)) ?>">
+      <p class="field-help" id="pr-selection"></p>
     </div>
-    <button class="btn btn-primary btn-touch" id="pr-run" type="button" disabled><?= icon_svg('RotateCw', 18) ?> <?= e(vv_t('pdf_rotate.run', $lang)) ?></button>
+    <div class="tool-action-bar"><button class="btn btn-primary btn-touch" id="pr-run" type="button" disabled><?= icon_svg('RotateCw', 18) ?> <?= e(vv_t('pdf_rotate.run', $lang)) ?></button></div>
   </div>
   <div class="progress-track hidden" id="pr-prog"><div class="progress-fill"></div></div>
   <p class="progress-label hidden" id="pr-prog-label"></p>

@@ -9,11 +9,16 @@
   var stopIco = sendBtn.querySelector('.ico-stop');
   var errorEl = document.getElementById('ai-error');
   var errorText = document.getElementById('ai-error-text');
+  var chat = document.querySelector('.ai-chat');
+  var lifecycle = document.getElementById('tool-root')._toolLifecycle;
+  var newBtn = document.getElementById('ai-new');
+  var connection = document.getElementById('ai-connection');
 
   var isLoading = false;
   var controller = null;
   var assistantContentEl = null; // aktuální bublina asistenta (.markdown-body)
   var assistantRaw = '';
+  var lastPrompt = '';
 
   function svgIcon(name, size) {
     // Ikony Bot/User — pokud je k dispozici Icon.build, jinak fallback prázdný svg.
@@ -30,6 +35,10 @@
     sendIco.classList.toggle('hidden', b);
     stopIco.classList.toggle('hidden', !b);
     input.disabled = b;
+    connection.lastChild.textContent = b ? ToolUI.t('state_processing') : ToolUI.t('state_ready');
+    connection.classList.toggle('is-active', b);
+    if (b) lifecycle.setState('processing');
+    else if (document.getElementById('tool-root').dataset.toolState !== 'error') lifecycle.setState(assistantRaw ? 'success' : 'ready');
   }
 
   function showError(msg) { errorText.textContent = msg; errorEl.classList.remove('hidden'); }
@@ -37,8 +46,15 @@
 
   function renderMarkdown(text) {
     if (!window.VeVitMarkdown || !window.VeVitMarkdown.renderInto(assistantContentEl, text)) {
-      showError('Odpověď nelze bezpečně vykreslit.');
+      showError(ToolUI.t('unknown_error'));
+      return;
     }
+    assistantContentEl.querySelectorAll('pre').forEach(function (block) {
+      if (block.querySelector('.code-copy')) return;
+      var code = block.querySelector('code'); if (!code) return;
+      var button = document.createElement('button'); button.type = 'button'; button.className = 'btn btn-ghost btn-sm code-copy'; button.textContent = ToolUI.t('copy');
+      button.addEventListener('click', function () { ToolUI.copyText(code.textContent); }); block.appendChild(button);
+    });
   }
 
   function addUserMsg(text) {
@@ -61,6 +77,12 @@
     var bubble = document.createElement('div'); bubble.className = 'bubble';
     var content = document.createElement('div'); content.className = 'markdown-body';
     bubble.appendChild(content);
+    var actions = document.createElement('div'); actions.className = 'msg-actions';
+    var copy = document.createElement('button'); copy.type = 'button'; copy.className = 'btn btn-ghost btn-sm'; copy.textContent = chat.dataset.copyLabel;
+    copy.addEventListener('click', function () { ToolUI.copyText(content.innerText); });
+    var retry = document.createElement('button'); retry.type = 'button'; retry.className = 'btn btn-ghost btn-sm'; retry.textContent = chat.dataset.retryLabel;
+    retry.addEventListener('click', function () { if (!isLoading && lastPrompt) send(lastPrompt); });
+    actions.appendChild(copy); actions.appendChild(retry); bubble.appendChild(actions);
     row.appendChild(avatar); row.appendChild(bubble);
     messagesEl.appendChild(row);
     assistantContentEl = content;
@@ -74,7 +96,7 @@
     var bubble = document.createElement('div'); bubble.className = 'ai-typing';
     var spinner = document.createElement('div'); spinner.className = 'spinner';
     bubble.appendChild(spinner);
-    bubble.appendChild(document.createTextNode('Přemýšlím...'));
+    bubble.appendChild(document.createTextNode(ToolUI.t('thinking')));
     row.appendChild(avatar); row.appendChild(bubble);
     messagesEl.appendChild(row);
     scrollBottom();
@@ -84,6 +106,7 @@
   async function send(prompt) {
     if (!prompt.trim() || isLoading) return;
     hideError();
+    lastPrompt = prompt.trim();
     addUserMsg(prompt.trim());
     addAssistantMsg();
     addThinking();
@@ -125,12 +148,12 @@
           } catch (e) { /* ignoruj nevalidní řádek */ }
         }
       }
-      if (!assistantRaw) renderMarkdown('_Přerušeno uživatelem._');
+      if (!assistantRaw) renderMarkdown(ToolUI.t('interrupted'));
     } catch (err) {
       if (err.name === 'AbortError') {
-        if (!assistantRaw) renderMarkdown('_Přerušeno uživatelem._');
+        if (!assistantRaw) renderMarkdown(ToolUI.t('interrupted'));
       } else {
-        showError(err.message || 'Neznámá chyba');
+        showError(err.message || ToolUI.t('unknown_error'));
         if (!assistantRaw && assistantContentEl) assistantContentEl.parentElement.parentElement.remove();
       }
     } finally {
@@ -149,7 +172,14 @@
   }
 
   sendBtn.addEventListener('click', submit);
-  input.addEventListener('keydown', function (e) {
-    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); submit(); }
+  document.querySelectorAll('.ai-starter').forEach(function (button) { button.addEventListener('click', function () { input.value = button.textContent; input.focus(); lifecycle.setState('ready'); }); });
+  newBtn.addEventListener('click', function () {
+    if (controller) controller.abort();
+    Array.prototype.forEach.call(messagesEl.querySelectorAll('.msg'), function (node) { node.remove(); });
+    emptyEl.style.display = ''; input.value = ''; assistantRaw = ''; lastPrompt = ''; hideError(); lifecycle.setState('idle'); input.focus();
   });
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); submit(); }
+  });
+  input.addEventListener('input', function () { input.style.height = 'auto'; input.style.height = Math.min(input.scrollHeight, 160) + 'px'; });
 })();

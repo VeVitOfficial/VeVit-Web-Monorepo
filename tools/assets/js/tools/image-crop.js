@@ -4,12 +4,28 @@
   var drop = ToolUI.el('cr-drop'), work = ToolUI.el('cr-work'), cv = ToolUI.el('cr-canvas');
   var ratio = ToolUI.el('cr-ratio'), clearBtn = ToolUI.el('cr-clear'), applyBtn = ToolUI.el('cr-apply');
   var format = ToolUI.el('cr-format'), coords = ToolUI.el('cr-coords'), err = ToolUI.el('cr-error');
+  var fields = ['x', 'y', 'w', 'h'].map(function (name) { return ToolUI.el('cr-' + name); });
+  var resultPreview = ToolUI.el('cr-result-preview'), resultImage = ToolUI.el('cr-result-image');
+  var lifecycle = ToolUI.el('tool-root')._toolLifecycle;
   var ctx = cv.getContext('2d');
   var img = new Image(), scale = 1;
   var sel = null, drag = null; // sel = {x,y,w,h} v display coords
 
-  function fail(m) { err.textContent = m; err.classList.remove('hidden'); }
-  function clearErr() { err.classList.add('hidden'); err.textContent = ''; }
+  function fail(m) { ToolUI.showError(err, m); }
+  function clearErr() { ToolUI.clearError(err); }
+
+  function syncFields() {
+    var values = sel ? [sel.x, sel.y, sel.w, sel.h].map(function (v) { return Math.round(v * scale); }) : ['', '', '', ''];
+    fields.forEach(function (field, index) { field.value = values[index]; });
+  }
+
+  function syncFromFields() {
+    var values = fields.map(function (field) { return Math.max(0, parseFloat(field.value) || 0) / scale; });
+    if (!values[2] || !values[3]) return;
+    sel = { x: Math.min(values[0], cv.width), y: Math.min(values[1], cv.height), w: Math.min(values[2], cv.width - values[0]), h: Math.min(values[3], cv.height - values[1]) };
+    applyBtn.disabled = !sel.w || !sel.h; draw(); lifecycle.setState('ready');
+  }
+  fields.forEach(function (field) { field.addEventListener('input', syncFromFields); });
 
   function draw() {
     ctx.clearRect(0, 0, cv.width, cv.height);
@@ -55,18 +71,19 @@
     drag = null;
     if (sel && sel.w > 4 && sel.h > 4) {
       applyBtn.disabled = false;
-      coords.textContent = 'Výběr: ' + Math.round(sel.w) + '×' + Math.round(sel.h) + ' px (zobrazeno) → ' +
-        Math.round(sel.w * scale) + '×' + Math.round(sel.h * scale) + ' px (originál)';
-    } else { sel = null; applyBtn.disabled = true; draw(); coords.textContent = 'Tažením nakreslete obdélník.'; }
+      coords.textContent = Math.round(sel.w) + '×' + Math.round(sel.h) + ' px → ' + Math.round(sel.w * scale) + '×' + Math.round(sel.h * scale) + ' px';
+      syncFields(); lifecycle.setState('ready');
+    } else { sel = null; applyBtn.disabled = true; draw(); syncFields(); coords.textContent = ToolUI.t('state_ready'); }
   }
   cv.addEventListener('pointerup', endDrag);
   cv.addEventListener('pointercancel', endDrag);
 
-  clearBtn.addEventListener('click', function () { sel = null; applyBtn.disabled = true; draw(); coords.textContent = 'Tažením nakreslete obdélník.'; });
+  clearBtn.addEventListener('click', function () { sel = null; applyBtn.disabled = true; draw(); syncFields(); resultPreview.classList.add('hidden'); coords.textContent = ToolUI.t('state_ready'); });
   ratio.addEventListener('change', function () { if (sel && sel.w) { sel = clampRect({ x: sel.x, y: sel.y }, { x: sel.x + sel.w, y: sel.y + sel.h }); draw(); } });
 
   applyBtn.addEventListener('click', function () {
     if (!sel || !img.naturalWidth) return;
+    lifecycle.setState('processing'); applyBtn.disabled = true;
     var sx = sel.x * scale, sy = sel.y * scale, sw = sel.w * scale, sh = sel.h * scale;
     var out = document.createElement('canvas'); out.width = Math.round(sw); out.height = Math.round(sh);
     var ox = out.getContext('2d');
@@ -74,16 +91,20 @@
     if (fmt === 'image/jpeg') { ox.fillStyle = '#fff'; ox.fillRect(0, 0, out.width, out.height); }
     ox.drawImage(img, sx, sy, sw, sh, 0, 0, out.width, out.height);
     var ext = { 'image/png': 'png', 'image/jpeg': 'jpg', 'image/webp': 'webp' }[fmt];
-    out.toBlob(function (b) { ToolUI.download(b, 'obrazek-orez.' + ext); }, fmt, 0.92);
+    out.toBlob(function (b) {
+      if (!b) { applyBtn.disabled = false; return fail(ToolUI.t('unknown_error')); }
+      var previewUrl = lifecycle.objectUrl(b); resultImage.src = previewUrl; resultPreview.classList.remove('hidden');
+      ToolUI.download(b, 'image-crop.' + ext); applyBtn.disabled = false;
+    }, fmt, 0.92);
   });
 
   ToolUI.dropzone(drop, {
-    accept: ['image/png', 'image/jpeg', 'image/webp', 'image/gif', 'image/bmp'], multiple: false,
+    accept: ['image/png', 'image/jpeg', 'image/webp', 'image/gif', 'image/bmp'], multiple: false, maxSize: 25 * 1024 * 1024,
     onFiles: function (arr) {
       clearErr();
       var f = arr[0];
-      if (f.size > 25 * 1024 * 1024) return fail('Obrázek je příliš velký (max 25 MB).');
-      var url = URL.createObjectURL(f);
+      lifecycle.cleanup(); lifecycle = ToolUI.lifecycle(ToolUI.el('tool-root')); ToolUI.el('tool-root')._toolLifecycle = lifecycle;
+      var url = lifecycle.objectUrl(f); lifecycle.setState('processing', ToolUI.t('loading'));
       img.onload = function () {
         var maxW = 700, maxH = 480;
         var w = img.naturalWidth, h = img.naturalHeight;
@@ -92,9 +113,9 @@
         scale = w / cv.width;
         sel = null; applyBtn.disabled = true;
         work.classList.remove('hidden'); draw();
-        coords.textContent = 'Tažením nakreslete obdélník pro oříznutí.';
+        syncFields(); resultPreview.classList.add('hidden'); coords.textContent = ToolUI.t('state_ready'); lifecycle.setState('ready');
       };
-      img.onerror = function () { fail('Obrázek se nepodařilo načíst.'); };
+      img.onerror = function () { fail(ToolUI.t('load_failed')); };
       img.src = url;
     },
     onError: fail

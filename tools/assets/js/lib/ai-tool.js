@@ -17,6 +17,9 @@
     var body = { prompt: opts.prompt, tool: opts.tool, stream: opts.stream !== false };
     if (opts.model) body.model = opts.model;
     if (opts.images && opts.images.length) body.images = opts.images;
+    var root = document.getElementById('tool-root');
+    var lifecycle = root && root._toolLifecycle;
+    if (lifecycle) lifecycle.setState('processing');
 
     fetch('/tools/api/ai/ollama', {
       method: 'POST',
@@ -34,7 +37,7 @@
       var buf = '';
       function pump() {
         return reader.read().then(function (ch) {
-          if (ch.done) { if (!done) { done = true; opts.onDone && opts.onDone(full); } return; }
+          if (ch.done) { if (!done) { done = true; if (lifecycle) lifecycle.setState('success'); opts.onDone && opts.onDone(full); } return; }
           buf += dec.decode(ch.value, { stream: true });
           var lines = buf.split('\n'); buf = lines.pop() || '';
           for (var i = 0; i < lines.length; i++) {
@@ -45,7 +48,7 @@
                 var piece = p.response || p.text;
                 full += piece; opts.onToken && opts.onToken(piece, full);
               }
-              if (p.done) { done = true; opts.onDone && opts.onDone(full); return; }
+              if (p.done) { done = true; if (lifecycle) lifecycle.setState('success'); opts.onDone && opts.onDone(full); return; }
             } catch (e) { /* ignoruj nevalidní řádek */ }
           }
           return pump();
@@ -53,8 +56,9 @@
       }
       return pump();
     }).catch(function (e) {
-      if (e && e.name === 'AbortError') { if (!done) opts.onDone && opts.onDone(full); return; }
-      opts.onError && opts.onError((e && e.message) ? e.message : 'AI není dostupná. Spusťte Ollamu.');
+      if (e && e.name === 'AbortError') { if (!done) opts.onDone && opts.onDone(full); if (lifecycle) lifecycle.setState('ready'); return; }
+      if (lifecycle) lifecycle.setState('error', (e && e.message) ? e.message : ToolUI.t('unknown_error'));
+      opts.onError && opts.onError((e && e.message) ? e.message : ToolUI.t('unknown_error'));
     });
     return { abort: function () { controller.abort(); } };
   }
@@ -62,7 +66,7 @@
   // Bezpečné vykreslení markdownu do elementu (DOMPurify sanitize).
   function renderMarkdown(el, text) {
     if (!window.VeVitMarkdown) {
-      el.replaceChildren(document.createTextNode('Odpověď nelze bezpečně vykreslit.'));
+      el.replaceChildren(document.createTextNode(ToolUI.t('unknown_error')));
       el.dataset.renderState = 'error';
       return false;
     }

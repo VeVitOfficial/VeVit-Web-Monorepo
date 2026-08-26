@@ -72,7 +72,8 @@
   </div>
 </header>
 <script type="module" src="/assets/shared/app-switcher.js?v=20260825b"></script>
-<script type="module" src="/assets/shared/localization.js?v=20260825a"></script><main class="main">
+<script type="module" src="/assets/shared/localization.js?v=20260826f"></script>
+<main class="main">
   <div class="tool-page">
     <!-- Breadcrumb -->
     <nav class="breadcrumb">
@@ -92,9 +93,16 @@
     </div>
     <p class="tool-desc">Chiffre/déchiffre un fichier AES-256-GCM (Web Crypto).</p>
 
+      <ol class="tool-steps" aria-label="Progression de l’outil">
+        <li class="is-current" data-tool-step="input"><span>1</span>Entrée</li>
+        <li data-tool-step="settings"><span>2</span>Réglages</li>
+        <li data-tool-step="result"><span>3</span>Résultat</li>
+      </ol>
+
     <!-- Tool body -->
-    <div class="tool-shell glass">
-              <div class="tool-tool" id="tool-root">
+    <div class="tool-shell glass" data-tool-slug="file-encryption" data-tool-category="security" data-processing-location="client">
+              <div class="tool-tool" id="tool-root" data-tool-state="idle" aria-busy="false">
+          <p class="sr-only" id="tool-live-status" role="status" aria-live="polite" aria-atomic="true">L’outil est prêt.</p>
           <div class="stack" style="max-width:44rem;margin:0 auto">
   <div class="seg" id="fe-mode" role="tablist">
     <button type="button" class="active" data-mode="enc" role="tab" aria-selected="true">Chiffrer</button>
@@ -116,8 +124,18 @@
   <p class="error-text hidden" id="fe-error" role="alert"></p>
   <p class="muted" style="font-size:0.8rem">Sortie : .vevitenc (magic + salt[16B] + IV[12B] + ciphertext+tag). Sans le mot de passe le fichier est irrécupérable — conservez-le en sécurité. S&#039;exécute localement via Web Crypto.</p>
 </div>        </div>
+        <script type="application/json" id="tool-ui-i18n">{"copied":"Copié dans le presse-papiers","copy_failed":"Échec de la copie","copy":"Copier","invalid_type":"Certains fichiers ont été ignorés car leur type n’est pas pris en charge.","file_too_large":"Le fichier {name} dépasse la limite de {limit}.","remove_file":"Retirer {name}","move_up":"Déplacer {name} vers le haut","move_down":"Déplacer {name} vers le bas","load_failed":"Une partie requise n’a pas pu être chargée. Vérifiez la connexion et réessayez.","state_idle":"En attente d’une entrée","state_ready":"Prêt à traiter","state_processing":"Traitement en cours","state_success":"Le résultat est prêt","state_error":"Échec du traitement","cancel":"Annuler","retry":"Réessayer","reset":"Recommencer","download":"Télécharger le résultat","result_ready":"Terminé — votre résultat est prêt","enter_json":"Saisissez le JSON à traiter.","invalid_json":"JSON invalide : {message}","invalid_range":"Vérifiez la plage saisie.","invalid_time":"Utilisez HH:MM:SS et placez la fin après le début.","loading":"Chargement…","saving":"Préparation du résultat…","thinking":"Réflexion…","interrupted":"La réponse a été arrêtée.","unknown_error":"Une erreur inconnue s’est produite. Réessayez.","page":"Page {number}","undo":"Annuler la modification","text_meta":"{characters} caractères · {lines} lignes","file_format":"{type} · {size}","strength_very_weak":"Très faible","strength_weak":"Faible","strength_medium":"Moyen","strength_strong":"Fort","strength_very_strong":"Très fort","choose_charset":"Sélectionnez au moins un groupe de caractères.","password_copied":"Mot de passe copié."}</script>
         <script src="/tools/assets/js/tools/file-encryption.js" defer></script>
           </div>
+
+    <aside class="tool-trust" aria-label="Où et comment se fait le traitement">
+      <div class="tool-trust-main">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>        <div>
+          <strong>Où et comment se fait le traitement</strong>
+          <p>Le fichier est traité dans votre navigateur et ne quitte pas cet ordinateur.</p>
+        </div>
+      </div>
+          </aside>
   </div>
 </main>
 <footer class="site-footer">

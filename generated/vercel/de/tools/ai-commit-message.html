@@ -72,7 +72,8 @@
   </div>
 </header>
 <script type="module" src="/assets/shared/app-switcher.js?v=20260825b"></script>
-<script type="module" src="/assets/shared/localization.js?v=20260825a"></script><main class="main">
+<script type="module" src="/assets/shared/localization.js?v=20260826f"></script>
+<main class="main">
   <div class="tool-page">
     <!-- Breadcrumb -->
     <nav class="breadcrumb">
@@ -87,14 +88,16 @@
     <div class="tool-header">
       <span class="bar" style="background:#06b6d4"></span>
       <h1>KI-Commit-Nachricht</h1>
-      <span class="loc-tag" style="border-color:#06b6d430;color:#06b6d4;background:#06b6d410" title="Die Verarbeitung läuft über ein KI-Modell.">Über KI</span>
+      <span class="loc-tag" style="border-color:#06b6d430;color:#06b6d4;background:#06b6d410" title="Nach dem bewussten Start wird der eingegebene Inhalt über den VeVit-Server an ein externes KI-Modell gesendet.">Über KI</span>
       <span class="loc-tag tool-status-limited">Eingeschränkt verfügbar</span>
     </div>
     <p class="tool-desc">Erzeugt eine Commit-Nachricht aus dem Diff (Conventional Commits).</p>
 
+
     <!-- Tool body -->
-    <div class="tool-shell glass">
-              <div class="tool-tool" id="tool-root">
+    <div class="tool-shell glass" data-tool-slug="ai-commit-message" data-tool-category="dev" data-processing-location="external_ai">
+              <div class="tool-tool" id="tool-root" data-tool-state="idle" aria-busy="false">
+          <p class="sr-only" id="tool-live-status" role="status" aria-live="polite" aria-atomic="true">Das Werkzeug ist bereit.</p>
           <div class="stack" style="max-width:46rem;margin:0 auto">
   <div class="ai-head"><span class="badge badge-ai">AI</span><span class="muted" style="font-size:0.875rem">Modell: llama3.2</span></div>
   <textarea class="textarea" id="cm-input" rows="10" placeholder="git diff oder Änderungsliste einfügen (git diff --staged)…" style="font-family:var(--mono,monospace);font-size:0.85rem"></textarea>
@@ -111,8 +114,18 @@
 <script src="/tools/assets/js/lib/safe-markdown.js"></script>
 <script src="/tools/assets/js/lib/ai-tool.js"></script>
         </div>
+        <script type="application/json" id="tool-ui-i18n">{"copied":"In die Zwischenablage kopiert","copy_failed":"Kopieren fehlgeschlagen","copy":"Kopieren","invalid_type":"Einige Dateien wurden wegen eines nicht unterstützten Typs übersprungen.","file_too_large":"{name} überschreitet das Limit von {limit}.","remove_file":"{name} entfernen","move_up":"{name} nach oben verschieben","move_down":"{name} nach unten verschieben","load_failed":"Ein benötigter Teil konnte nicht geladen werden. Prüfen Sie die Verbindung und versuchen Sie es erneut.","state_idle":"Wartet auf Eingabe","state_ready":"Bereit zur Verarbeitung","state_processing":"Verarbeitung läuft","state_success":"Ergebnis ist bereit","state_error":"Verarbeitung fehlgeschlagen","cancel":"Abbrechen","retry":"Erneut versuchen","reset":"Neu beginnen","download":"Ergebnis herunterladen","result_ready":"Fertig — Ihr Ergebnis ist bereit","enter_json":"Geben Sie JSON zur Verarbeitung ein.","invalid_json":"Ungültiges JSON: {message}","invalid_range":"Prüfen Sie den eingegebenen Bereich.","invalid_time":"Verwenden Sie HH:MM:SS; das Ende muss nach dem Start liegen.","loading":"Wird geladen…","saving":"Ergebnis wird vorbereitet…","thinking":"Denke nach…","interrupted":"Die Antwort wurde gestoppt.","unknown_error":"Ein unbekannter Fehler ist aufgetreten. Versuchen Sie es erneut.","page":"Seite {number}","undo":"Änderung rückgängig","text_meta":"{characters} Zeichen · {lines} Zeilen","file_format":"{type} · {size}","strength_very_weak":"Sehr schwach","strength_weak":"Schwach","strength_medium":"Mittel","strength_strong":"Stark","strength_very_strong":"Sehr stark","choose_charset":"Wählen Sie mindestens eine Zeichengruppe.","password_copied":"Passwort kopiert."}</script>
         <script src="/tools/assets/js/tools/ai-commit-message.js" defer></script>
           </div>
+
+    <aside class="tool-trust" aria-label="Wo und wie die Verarbeitung erfolgt">
+      <div class="tool-trust-main">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></svg>        <div>
+          <strong>Wo und wie die Verarbeitung erfolgt</strong>
+          <p>Nach dem bewussten Start wird der eingegebene Inhalt über den VeVit-Server an ein externes KI-Modell gesendet.</p>
+        </div>
+      </div>
+          </aside>
   </div>
 </main>
 <footer class="site-footer">

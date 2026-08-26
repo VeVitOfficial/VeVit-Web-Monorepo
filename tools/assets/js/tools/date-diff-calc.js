@@ -11,7 +11,7 @@
     var d = new Date(v + 'T00:00:00');
     return isNaN(d.getTime()) ? null : d;
   }
-  function fmt(n, u) { return n.toLocaleString('cs-CZ', { maximumFractionDigits: 2 }) + (u ? ' ' + u : ''); }
+  function fmt(n, u) { return n.toLocaleString(document.documentElement.lang || 'cs', { maximumFractionDigits: 2 }) + (u ? ' ' + u : ''); }
   function monthsBetween(a, b) {
     return (b.getFullYear() - a.getFullYear()) * 12 + (b.getMonth() - a.getMonth()) + (b.getDate() - a.getDate()) / 32;
   }

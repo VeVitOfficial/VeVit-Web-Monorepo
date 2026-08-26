@@ -53,7 +53,7 @@
   });
 
   dpi.addEventListener('input', function () { dpiVal.textContent = dpi.value; });
-  q.addEventListener('input', function () { qVal.textContent = parseFloat(q.value).toLocaleString('cs-CZ'); });
+  q.addEventListener('input', function () { qVal.textContent = parseFloat(q.value).toLocaleString(document.documentElement.lang || 'cs'); });
 
   function ensurePdfjs() {
     if (window.pdfjsLib) return Promise.resolve();

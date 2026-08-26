@@ -9,7 +9,7 @@
     var n = parseFloat(v);
     return isNaN(n) ? null : n;
   }
-  function kc(n) { return n.toLocaleString('cs-CZ', { maximumFractionDigits: 0 }) + ' Kč'; }
+  function kc(n) { return n.toLocaleString(document.documentElement.lang || 'cs', { maximumFractionDigits: 0 }) + ' Kč'; }
 
   function compute() {
     var P = num('ci-principal') || 0;

@@ -72,7 +72,8 @@
   </div>
 </header>
 <script type="module" src="/assets/shared/app-switcher.js?v=20260825b"></script>
-<script type="module" src="/assets/shared/localization.js?v=20260825a"></script><main class="main">
+<script type="module" src="/assets/shared/localization.js?v=20260826f"></script>
+<main class="main">
   <div class="tool-page">
     <!-- Breadcrumb -->
     <nav class="breadcrumb">
@@ -87,14 +88,16 @@
     <div class="tool-header">
       <span class="bar" style="background:#6b7280"></span>
       <h1>Стислий переказ тексту</h1>
-      <span class="loc-tag" style="border-color:#6b728030;color:#6b7280;background:#6b728010" title="Обробка відбувається через модель ШІ.">Через ШІ</span>
+      <span class="loc-tag" style="border-color:#6b728030;color:#6b7280;background:#6b728010" title="Після свідомого запуску введений вміст надсилається через сервер VeVit до зовнішньої моделі ШІ.">Через ШІ</span>
       <span class="loc-tag tool-status-limited">Обмежено доступний</span>
     </div>
     <p class="tool-desc">Створіть короткий переказ довгого тексту.</p>
 
+
     <!-- Tool body -->
-    <div class="tool-shell glass">
-              <div class="tool-tool" id="tool-root">
+    <div class="tool-shell glass" data-tool-slug="summarize-text" data-tool-category="text" data-processing-location="external_ai">
+              <div class="tool-tool" id="tool-root" data-tool-state="idle" aria-busy="false">
+          <p class="sr-only" id="tool-live-status" role="status" aria-live="polite" aria-atomic="true">Інструмент готовий.</p>
           <div class="stack" style="max-width:46rem;margin:0 auto">
   <div class="ai-head"><span class="badge badge-ai">AI</span><span class="muted" style="font-size:0.875rem">Модель: llama3.2</span></div>
   <div class="stack-sm"><label class="field-label" for="ts-style">Стиль стислого викладу</label>
@@ -112,8 +115,18 @@
 <script src="/tools/assets/js/lib/purify.min.js"></script>
 <script src="/tools/assets/js/lib/safe-markdown.js"></script>
 <script src="/tools/assets/js/lib/ai-tool.js"></script>        </div>
+        <script type="application/json" id="tool-ui-i18n">{"copied":"Скопійовано в буфер обміну","copy_failed":"Не вдалося скопіювати","copy":"Копіювати","invalid_type":"Деякі файли пропущено через непідтримуваний тип.","file_too_large":"Файл {name} перевищує ліміт {limit}.","remove_file":"Видалити {name}","move_up":"Перемістити {name} вище","move_down":"Перемістити {name} нижче","load_failed":"Не вдалося завантажити потрібну частину. Перевірте з’єднання та спробуйте ще раз.","state_idle":"Очікує на введення","state_ready":"Готово до обробки","state_processing":"Триває обробка","state_success":"Результат готовий","state_error":"Помилка обробки","cancel":"Скасувати","retry":"Спробувати ще раз","reset":"Почати знову","download":"Завантажити результат","result_ready":"Готово — результат підготовлено","enter_json":"Введіть JSON для обробки.","invalid_json":"Некоректний JSON: {message}","invalid_range":"Перевірте введений діапазон.","invalid_time":"Використовуйте HH:MM:SS; кінець має бути пізніше за початок.","loading":"Завантаження…","saving":"Підготовка результату…","thinking":"Обмірковую…","interrupted":"Відповідь зупинено.","unknown_error":"Сталася невідома помилка. Спробуйте ще раз.","page":"Сторінка {number}","undo":"Скасувати зміну","text_meta":"{characters} символів · {lines} рядків","file_format":"{type} · {size}","strength_very_weak":"Дуже слабкий","strength_weak":"Слабкий","strength_medium":"Середній","strength_strong":"Сильний","strength_very_strong":"Дуже сильний","choose_charset":"Виберіть принаймні одну групу символів.","password_copied":"Пароль скопійовано."}</script>
         <script src="/tools/assets/js/tools/summarize-text.js" defer></script>
           </div>
+
+    <aside class="tool-trust" aria-label="Де і як відбувається обробка">
+      <div class="tool-trust-main">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></svg>        <div>
+          <strong>Де і як відбувається обробка</strong>
+          <p>Після свідомого запуску введений вміст надсилається через сервер VeVit до зовнішньої моделі ШІ.</p>
+        </div>
+      </div>
+          </aside>
   </div>
 </main>
 <footer class="site-footer">

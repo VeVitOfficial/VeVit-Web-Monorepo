@@ -17,6 +17,7 @@ import { applyUrlLocale } from "./store/lang.js?v=20260824a";
 const SUPPORTED_LOCALES = ["cs", "en", "de", "es", "uk", "fr", "sk"];
 const LOCALE_RE = /^\/(cs|en|de|es|uk|fr|sk)(?=\/|$)/;
 const SECTION = "/edu";
+const LOCALE_SCROLL_KEY = "vevit:locale-scroll";
 
 // Aktuální locale z URL. Dynamický BASE_PATH = "/<lang>/edu".
 let currentLocale = "cs";
@@ -55,6 +56,48 @@ function stripBase(pathname) {
 }
 
 let currentCleanup = null;
+let renderGeneration = 0;
+
+function normalizedEduPath(path) {
+  const withoutLocale = path.replace(LOCALE_RE, "") || SECTION;
+  if (withoutLocale === SECTION || withoutLocale === `${SECTION}/`) return `${SECTION}/dashboard/`;
+  return withoutLocale.endsWith("/") ? withoutLocale : `${withoutLocale}/`;
+}
+
+function takeLocaleScrollPosition() {
+  try {
+    const raw = sessionStorage.getItem(LOCALE_SCROLL_KEY);
+    if (!raw) return null;
+    const saved = JSON.parse(raw);
+    const fresh = Date.now() - Number(saved.createdAt) < 15_000;
+    const sameLocale = saved.locale === currentLocale;
+    const samePage = normalizedEduPath(saved.path) === normalizedEduPath(location.pathname);
+    if (!fresh || !sameLocale || !samePage) return null;
+    sessionStorage.removeItem(LOCALE_SCROLL_KEY);
+    return { x: Number(saved.x) || 0, y: Number(saved.y) || 0 };
+  } catch {
+    return null;
+  }
+}
+
+function restoreScrollPosition(position) {
+  const deadline = performance.now() + 2500;
+  const root = document.documentElement;
+  const previousScrollBehavior = root.style.scrollBehavior;
+  root.style.scrollBehavior = "auto";
+  const apply = () => {
+    window.scrollTo(position.x, position.y);
+    if (Math.abs(window.scrollY - position.y) > 1 && performance.now() < deadline) {
+      window.setTimeout(apply, 60);
+    } else {
+      root.style.scrollBehavior = previousScrollBehavior;
+    }
+  };
+  requestAnimationFrame(() => {
+    apply();
+    requestAnimationFrame(apply);
+  });
+}
 
 function isExternalVevitPath(href) {
   let h = href;
@@ -81,7 +124,9 @@ export async function navigate(path, { replace = false } = {}) {
   await renderRoute();
 }
 
-async function renderRoute() {
+async function renderRoute({ preserveScroll = false } = {}) {
+  const generation = ++renderGeneration;
+  const previousScroll = { x: window.scrollX, y: window.scrollY };
   const { pathname, search } = location;
   const relative = stripBase(pathname);
   // Synchronizace edu jazykového store s locale z URL (bez re-render eventu).
@@ -89,7 +134,7 @@ async function renderRoute() {
   // /<lang>/edu nebo /<lang>/edu/ → redirect na /<lang>/edu/dashboard/
   if (relative === "/" || relative === "") {
     history.replaceState({}, "", basePath() + "/dashboard/");
-    return renderRoute();
+    return renderRoute({ preserveScroll });
   }
   // Cleanup předchozí stránky (např. intervaly)
   if (currentCleanup) {
@@ -118,8 +163,9 @@ async function renderRoute() {
     renderNavbar(relative);
     notFound();
   }
-  // Scroll nahoru + ikony
-  window.scrollTo(0, 0);
+  if (generation !== renderGeneration) return;
+  const localeScroll = takeLocaleScrollPosition();
+  restoreScrollPosition(localeScroll || (preserveScroll ? previousScroll : { x: 0, y: 0 }));
   renderIcons();
 }
 
@@ -147,11 +193,12 @@ function onClick(e) {
 }
 
 export function initRouter() {
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
   window.addEventListener("popstate", renderRoute);
   document.addEventListener("click", onClick);
   renderRoute();
 }
 
 export function rerender() {
-  return renderRoute();
+  return renderRoute({ preserveScroll: true });
 }

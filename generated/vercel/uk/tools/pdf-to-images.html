@@ -72,7 +72,8 @@
   </div>
 </header>
 <script type="module" src="/assets/shared/app-switcher.js?v=20260825b"></script>
-<script type="module" src="/assets/shared/localization.js?v=20260825a"></script><main class="main">
+<script type="module" src="/assets/shared/localization.js?v=20260826f"></script>
+<main class="main">
   <div class="tool-page">
     <!-- Breadcrumb -->
     <nav class="breadcrumb">
@@ -92,9 +93,16 @@
     </div>
     <p class="tool-desc">Перетворює сторінки PDF на зображення (PNG/JPEG ZIP).</p>
 
+      <ol class="tool-steps" aria-label="Хід роботи інструмента">
+        <li class="is-current" data-tool-step="input"><span>1</span>Вхід</li>
+        <li data-tool-step="settings"><span>2</span>Налаштування</li>
+        <li data-tool-step="result"><span>3</span>Результат</li>
+      </ol>
+
     <!-- Tool body -->
-    <div class="tool-shell glass">
-              <div class="tool-tool" id="tool-root">
+    <div class="tool-shell glass" data-tool-slug="pdf-to-images" data-tool-category="pdf" data-processing-location="client">
+              <div class="tool-tool" id="tool-root" data-tool-state="idle" aria-busy="false">
+          <p class="sr-only" id="tool-live-status" role="status" aria-live="polite" aria-atomic="true">Інструмент готовий.</p>
           <div class="stack" style="max-width:44rem;margin:0 auto">
   <div class="dropzone" id="pi-drop">
     <span class="dz-ico"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 5h6"/><path d="M19 2v6"/><path d="M21 11.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7.5"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/><circle cx="9" cy="9" r="2"/></svg></span>
@@ -116,8 +124,18 @@
   <p class="error-text hidden" id="pi-error" role="alert"></p>
   <p class="muted" style="font-size:0.8rem">Рендер через pdf.js, пакування через JSZip. Працює локально.</p>
 </div>        </div>
+        <script type="application/json" id="tool-ui-i18n">{"copied":"Скопійовано в буфер обміну","copy_failed":"Не вдалося скопіювати","copy":"Копіювати","invalid_type":"Деякі файли пропущено через непідтримуваний тип.","file_too_large":"Файл {name} перевищує ліміт {limit}.","remove_file":"Видалити {name}","move_up":"Перемістити {name} вище","move_down":"Перемістити {name} нижче","load_failed":"Не вдалося завантажити потрібну частину. Перевірте з’єднання та спробуйте ще раз.","state_idle":"Очікує на введення","state_ready":"Готово до обробки","state_processing":"Триває обробка","state_success":"Результат готовий","state_error":"Помилка обробки","cancel":"Скасувати","retry":"Спробувати ще раз","reset":"Почати знову","download":"Завантажити результат","result_ready":"Готово — результат підготовлено","enter_json":"Введіть JSON для обробки.","invalid_json":"Некоректний JSON: {message}","invalid_range":"Перевірте введений діапазон.","invalid_time":"Використовуйте HH:MM:SS; кінець має бути пізніше за початок.","loading":"Завантаження…","saving":"Підготовка результату…","thinking":"Обмірковую…","interrupted":"Відповідь зупинено.","unknown_error":"Сталася невідома помилка. Спробуйте ще раз.","page":"Сторінка {number}","undo":"Скасувати зміну","text_meta":"{characters} символів · {lines} рядків","file_format":"{type} · {size}","strength_very_weak":"Дуже слабкий","strength_weak":"Слабкий","strength_medium":"Середній","strength_strong":"Сильний","strength_very_strong":"Дуже сильний","choose_charset":"Виберіть принаймні одну групу символів.","password_copied":"Пароль скопійовано."}</script>
         <script src="/tools/assets/js/tools/pdf-to-images.js" defer></script>
           </div>
+
+    <aside class="tool-trust" aria-label="Де і як відбувається обробка">
+      <div class="tool-trust-main">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>        <div>
+          <strong>Де і як відбувається обробка</strong>
+          <p>Файл обробляється у вашому браузері і не залишає цей комп&#039;ютер.</p>
+        </div>
+      </div>
+          </aside>
   </div>
 </main>
 <footer class="site-footer">

@@ -55,6 +55,11 @@
       return response.arrayBuffer();
     }).then(function (buffer) { return new Uint8Array(buffer); });
   }
+  function cancel() {
+    if (instance && typeof instance.terminate === 'function') instance.terminate();
+    instance = null;
+    loadPromise = null;
+  }
 
   window.FFmpegWrapper = {
     ready: ready,
@@ -64,6 +69,7 @@
     run: run,
     fetchFile: fetchFile,
     ENABLED: true,
-    LOADING_NOTE: 'Poprvé se načítá ffmpeg.wasm (~32 MB) — může trvat několik sekund. Další nástroje už balíček sdílejí. WASM je pomalejší než nativní ffmpeg; u velkých souborů počítejte s prodlevou.'
+    LOADING_NOTE: 'Poprvé se načítá ffmpeg.wasm (~32 MB) — může trvat několik sekund. Další nástroje už balíček sdílejí. WASM je pomalejší než nativní ffmpeg; u velkých souborů počítejte s prodlevou.',
+    cancel: cancel
   };
 })();

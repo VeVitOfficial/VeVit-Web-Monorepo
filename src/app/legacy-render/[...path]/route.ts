@@ -17,7 +17,9 @@ function withVercelInsights(html: string) {
   return html.includes("</body>") ? html.replace("</body>", `${scripts}</body>`) : `${html}${scripts}`;
 }
 
-function withAbsoluteAssetPaths(html: string, section: string | undefined) {
+function withAbsoluteAssetPaths(html: string, path: string[]) {
+  const [section, subsection] = path;
+
   if (section === "home") {
     return html
       .replace(/\b(href|src)=(["'])assets\//g, "$1=$2/home/assets/")
@@ -30,11 +32,18 @@ function withAbsoluteAssetPaths(html: string, section: string | undefined) {
       .replace(/\b(href|src)=(["'])\.\/images\//g, "$1=$2/account/images/");
   }
 
+  if (section === "edu" && subsection === "ai-gramotnost") {
+    return html.replace(
+      /\b(href|src)=(["'])(?!\/|[a-z][a-z\d+.-]*:|#)([^"']+)/gi,
+      "$1=$2/edu/ai-gramotnost/$3"
+    );
+  }
+
   return html;
 }
 
 function prepareLegacyHtml(html: string, path: string[]) {
-  return withVercelInsights(withAbsoluteAssetPaths(html, path[0]));
+  return withVercelInsights(withAbsoluteAssetPaths(html, path));
 }
 
 export async function GET(_request: Request, context: { params: Promise<{ path: string[] }> }) {

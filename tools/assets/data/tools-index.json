@@ -1,6 +1,6 @@
 {
     "schema_version": 1,
-    "source_digest": "f03714f38a5050aa27dfc5533511e832208f2b0381dd0e78ff5d89c830caca6e",
+    "source_digest": "4f8c207559de3ab25f2b2586d1394fd21845801f04e8b20702797f9d4c0dcbf6",
     "categories": [
         {
             "id": "pdf",
@@ -78,7 +78,7 @@
             },
             "privacy_note": "Před použitím ověřte podmínky zpracování uvedené u nástroje.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "ai-code-explainer",
@@ -107,7 +107,7 @@
             },
             "privacy_note": "Před použitím ověřte podmínky zpracování uvedené u nástroje.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "ai-commit-message",
@@ -136,7 +136,7 @@
             },
             "privacy_note": "Před použitím ověřte podmínky zpracování uvedené u nástroje.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "ai-email-writer",
@@ -165,7 +165,7 @@
             },
             "privacy_note": "Před použitím ověřte podmínky zpracování uvedené u nástroje.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "ai-image-gen",
@@ -198,7 +198,7 @@
             },
             "privacy_note": "Nástroj zatím nevykonává žádné zpracování ani neodesílá zadání.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "ai-regex-generator",
@@ -227,7 +227,7 @@
             },
             "privacy_note": "Před použitím ověřte podmínky zpracování uvedené u nástroje.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "ai-seo",
@@ -255,7 +255,7 @@
             },
             "privacy_note": "Před použitím ověřte podmínky zpracování uvedené u nástroje.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "ai-sql-gen",
@@ -284,7 +284,7 @@
             },
             "privacy_note": "Před použitím ověřte podmínky zpracování uvedené u nástroje.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "ai-text-qa",
@@ -313,7 +313,7 @@
             },
             "privacy_note": "Před použitím ověřte podmínky zpracování uvedené u nástroje.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "ai-vision",
@@ -341,7 +341,7 @@
             },
             "privacy_note": "Před použitím ověřte podmínky zpracování uvedené u nástroje.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "audio-convert",
@@ -361,7 +361,7 @@
             "availability": "requires_browser_support",
             "requirements": {
                 "browser_features": [
-                    "WebAssembly and an approved isolated wasm CSP"
+                    "WebAssembly"
                 ],
                 "local_assets": [
                     "/tools/assets/js/lib/ffmpeg/index.js",
@@ -371,13 +371,13 @@
                 "php_extensions": [],
                 "external_services": [],
                 "hosting_constraints": [
-                    "disabled under the strict site-wide CSP"
+                    "scoped 'wasm-unsafe-eval' v CSP jen pro těchto 9 stránek (tools/.htaccess)"
                 ],
                 "verified": true
             },
-            "privacy_note": "Nástroj je dočasně vypnutý; soubor se nikam neodesílá.",
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči; soubor se nikam neodesílá.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "audio-trim-normalize",
@@ -398,7 +398,7 @@
             "availability": "requires_browser_support",
             "requirements": {
                 "browser_features": [
-                    "WebAssembly and an approved isolated wasm CSP"
+                    "WebAssembly"
                 ],
                 "local_assets": [
                     "/tools/assets/js/lib/ffmpeg/index.js",
@@ -408,13 +408,13 @@
                 "php_extensions": [],
                 "external_services": [],
                 "hosting_constraints": [
-                    "disabled under the strict site-wide CSP"
+                    "scoped 'wasm-unsafe-eval' v CSP jen pro těchto 9 stránek (tools/.htaccess)"
                 ],
                 "verified": true
             },
-            "privacy_note": "Nástroj je dočasně vypnutý; soubor se nikam neodesílá.",
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči; soubor se nikam neodesílá.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "audio-waveform",
@@ -442,7 +442,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "base64-tool",
@@ -470,7 +470,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "bg-remover",
@@ -498,7 +498,7 @@
             },
             "privacy_note": "Před použitím ověřte podmínky zpracování uvedené u nástroje.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "birth-number-validator",
@@ -527,7 +527,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "bmi-calc",
@@ -555,7 +555,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "bmr-calc",
@@ -583,7 +583,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "certificate-info",
@@ -617,7 +617,7 @@
             },
             "privacy_note": "Na server se posílá pouze doménové jméno pro jednorázové TLS ověření.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "code-diff",
@@ -645,7 +645,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "color-converter",
@@ -673,7 +673,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "color-palette-generator",
@@ -702,7 +702,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "compound-interest-calc",
@@ -731,7 +731,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "contrast-checker",
@@ -759,7 +759,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "cron-builder",
@@ -787,7 +787,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "css-js-html-formatter",
@@ -817,7 +817,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "csv-json-converter",
@@ -846,7 +846,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "date-diff-calc",
@@ -875,7 +875,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "discount-calc",
@@ -903,7 +903,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "encrypt-decrypt",
@@ -931,7 +931,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "fake-data-generator",
@@ -960,7 +960,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "favicon-generator",
@@ -988,7 +988,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "file-encryption",
@@ -1016,7 +1016,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "fuel-consumption-calc",
@@ -1045,7 +1045,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "gif-maker",
@@ -1073,7 +1073,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "gitignore-generator",
@@ -1101,7 +1101,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "grade-average-calc",
@@ -1130,7 +1130,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "gradient-gen",
@@ -1158,7 +1158,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "grammar-check",
@@ -1186,7 +1186,7 @@
             },
             "privacy_note": "Před použitím ověřte podmínky zpracování uvedené u nástroje.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "hash-gen",
@@ -1214,7 +1214,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "html-to-pdf",
@@ -1243,7 +1243,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "iban-converter",
@@ -1271,7 +1271,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "image-collage",
@@ -1299,7 +1299,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "image-convert",
@@ -1327,7 +1327,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "image-crop",
@@ -1355,7 +1355,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "image-exif",
@@ -1383,7 +1383,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "image-filters",
@@ -1411,7 +1411,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "image-rotate-flip",
@@ -1440,7 +1440,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "image-watermark",
@@ -1468,7 +1468,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "images-to-pdf",
@@ -1497,7 +1497,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "img-compress",
@@ -1525,7 +1525,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "img-upscaler",
@@ -1553,7 +1553,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "invoice-gen",
@@ -1581,7 +1581,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "json-formatter",
@@ -1609,7 +1609,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "jwt-decoder",
@@ -1637,7 +1637,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "jwt-generator",
@@ -1665,7 +1665,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "loan-calc",
@@ -1693,7 +1693,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "lorem-ipsum",
@@ -1721,7 +1721,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "markdown-editor",
@@ -1749,7 +1749,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "meme-generator",
@@ -1777,7 +1777,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "mind-map",
@@ -1805,7 +1805,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "net-salary-calc",
@@ -1834,7 +1834,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "number-base-converter",
@@ -1863,7 +1863,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "og-meta-generator",
@@ -1892,7 +1892,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "password-breach-check",
@@ -1921,7 +1921,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "password-gen",
@@ -1949,7 +1949,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "password-strength",
@@ -1977,7 +1977,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "pdf-compress",
@@ -2005,7 +2005,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "pdf-extract-text",
@@ -2034,7 +2034,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "pdf-merge",
@@ -2062,7 +2062,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "pdf-organize",
@@ -2090,7 +2090,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "pdf-page-numbers",
@@ -2119,7 +2119,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "pdf-password",
@@ -2149,7 +2149,7 @@
             },
             "privacy_note": "Nástroj je na sdíleném WEDOS deaktivovaný; soubor se nikam neodesílá.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "pdf-rotate",
@@ -2177,7 +2177,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "pdf-split",
@@ -2205,7 +2205,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "pdf-to-images",
@@ -2234,7 +2234,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "pdf-to-word",
@@ -2263,7 +2263,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "pdf-watermark",
@@ -2291,7 +2291,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "percentage-calc",
@@ -2319,7 +2319,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "qr-generator",
@@ -2347,7 +2347,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "regex-tester",
@@ -2375,7 +2375,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "remove-diacritics",
@@ -2403,7 +2403,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "screenshot-tool",
@@ -2433,7 +2433,7 @@
             },
             "privacy_note": "Nástroj je na sdíleném WEDOS deaktivovaný; URL se nekontroluje.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "steganography",
@@ -2459,7 +2459,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "summarize-text",
@@ -2487,7 +2487,7 @@
             },
             "privacy_note": "Před použitím ověřte podmínky zpracování uvedené u nástroje.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "text-case-converter",
@@ -2516,7 +2516,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "text-counter",
@@ -2544,7 +2544,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "text-lines-tool",
@@ -2573,7 +2573,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "text-to-speech",
@@ -2602,7 +2602,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "time-calc",
@@ -2630,7 +2630,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "timestamp-converter",
@@ -2658,7 +2658,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "token-generator",
@@ -2686,7 +2686,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "totp-generator",
@@ -2714,7 +2714,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "translate",
@@ -2740,7 +2740,7 @@
             },
             "privacy_note": "Před použitím ověřte podmínky zpracování uvedené u nástroje.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "unit-converter",
@@ -2768,7 +2768,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "url-encoder",
@@ -2796,7 +2796,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "uuid-gen",
@@ -2824,7 +2824,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "vat-calc",
@@ -2852,7 +2852,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "video-compress",
@@ -2872,7 +2872,7 @@
             "availability": "requires_browser_support",
             "requirements": {
                 "browser_features": [
-                    "WebAssembly and an approved isolated wasm CSP"
+                    "WebAssembly"
                 ],
                 "local_assets": [
                     "/tools/assets/js/lib/ffmpeg/index.js",
@@ -2882,13 +2882,13 @@
                 "php_extensions": [],
                 "external_services": [],
                 "hosting_constraints": [
-                    "disabled under the strict site-wide CSP"
+                    "scoped 'wasm-unsafe-eval' v CSP jen pro těchto 9 stránek (tools/.htaccess)"
                 ],
                 "verified": true
             },
-            "privacy_note": "Nástroj je dočasně vypnutý; soubor se nikam neodesílá.",
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči; soubor se nikam neodesílá.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "video-convert",
@@ -2908,7 +2908,7 @@
             "availability": "requires_browser_support",
             "requirements": {
                 "browser_features": [
-                    "WebAssembly and an approved isolated wasm CSP"
+                    "WebAssembly"
                 ],
                 "local_assets": [
                     "/tools/assets/js/lib/ffmpeg/index.js",
@@ -2918,13 +2918,13 @@
                 "php_extensions": [],
                 "external_services": [],
                 "hosting_constraints": [
-                    "disabled under the strict site-wide CSP"
+                    "scoped 'wasm-unsafe-eval' v CSP jen pro těchto 9 stránek (tools/.htaccess)"
                 ],
                 "verified": true
             },
-            "privacy_note": "Nástroj je dočasně vypnutý; soubor se nikam neodesílá.",
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči; soubor se nikam neodesílá.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "video-extract-audio",
@@ -2945,7 +2945,7 @@
             "availability": "requires_browser_support",
             "requirements": {
                 "browser_features": [
-                    "WebAssembly and an approved isolated wasm CSP"
+                    "WebAssembly"
                 ],
                 "local_assets": [
                     "/tools/assets/js/lib/ffmpeg/index.js",
@@ -2955,13 +2955,13 @@
                 "php_extensions": [],
                 "external_services": [],
                 "hosting_constraints": [
-                    "disabled under the strict site-wide CSP"
+                    "scoped 'wasm-unsafe-eval' v CSP jen pro těchto 9 stránek (tools/.htaccess)"
                 ],
                 "verified": true
             },
-            "privacy_note": "Nástroj je dočasně vypnutý; soubor se nikam neodesílá.",
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči; soubor se nikam neodesílá.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "video-merge",
@@ -2981,7 +2981,7 @@
             "availability": "requires_browser_support",
             "requirements": {
                 "browser_features": [
-                    "WebAssembly and an approved isolated wasm CSP"
+                    "WebAssembly"
                 ],
                 "local_assets": [
                     "/tools/assets/js/lib/ffmpeg/index.js",
@@ -2991,13 +2991,13 @@
                 "php_extensions": [],
                 "external_services": [],
                 "hosting_constraints": [
-                    "disabled under the strict site-wide CSP"
+                    "scoped 'wasm-unsafe-eval' v CSP jen pro těchto 9 stránek (tools/.htaccess)"
                 ],
                 "verified": true
             },
-            "privacy_note": "Nástroj je dočasně vypnutý; soubor se nikam neodesílá.",
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči; soubor se nikam neodesílá.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "video-target-size",
@@ -3018,7 +3018,7 @@
             "availability": "requires_browser_support",
             "requirements": {
                 "browser_features": [
-                    "WebAssembly and an approved isolated wasm CSP"
+                    "WebAssembly"
                 ],
                 "local_assets": [
                     "/tools/assets/js/lib/ffmpeg/index.js",
@@ -3028,13 +3028,13 @@
                 "php_extensions": [],
                 "external_services": [],
                 "hosting_constraints": [
-                    "disabled under the strict site-wide CSP"
+                    "scoped 'wasm-unsafe-eval' v CSP jen pro těchto 9 stránek (tools/.htaccess)"
                 ],
                 "verified": true
             },
-            "privacy_note": "Nástroj je dočasně vypnutý; soubor se nikam neodesílá.",
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči; soubor se nikam neodesílá.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "video-thumbnail",
@@ -3062,7 +3062,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "video-to-gif",
@@ -3083,7 +3083,7 @@
             "availability": "requires_browser_support",
             "requirements": {
                 "browser_features": [
-                    "WebAssembly and an approved isolated wasm CSP"
+                    "WebAssembly"
                 ],
                 "local_assets": [
                     "/tools/assets/js/lib/ffmpeg/index.js",
@@ -3093,13 +3093,13 @@
                 "php_extensions": [],
                 "external_services": [],
                 "hosting_constraints": [
-                    "disabled under the strict site-wide CSP"
+                    "scoped 'wasm-unsafe-eval' v CSP jen pro těchto 9 stránek (tools/.htaccess)"
                 ],
                 "verified": true
             },
-            "privacy_note": "Nástroj je dočasně vypnutý; soubor se nikam neodesílá.",
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči; soubor se nikam neodesílá.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "video-trim",
@@ -3119,7 +3119,7 @@
             "availability": "requires_browser_support",
             "requirements": {
                 "browser_features": [
-                    "WebAssembly and an approved isolated wasm CSP"
+                    "WebAssembly"
                 ],
                 "local_assets": [
                     "/tools/assets/js/lib/ffmpeg/index.js",
@@ -3129,13 +3129,13 @@
                 "php_extensions": [],
                 "external_services": [],
                 "hosting_constraints": [
-                    "disabled under the strict site-wide CSP"
+                    "scoped 'wasm-unsafe-eval' v CSP jen pro těchto 9 stránek (tools/.htaccess)"
                 ],
                 "verified": true
             },
-            "privacy_note": "Nástroj je dočasně vypnutý; soubor se nikam neodesílá.",
+            "privacy_note": "Zpracování probíhá lokálně v prohlížeči; soubor se nikam neodesílá.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         },
         {
             "slug": "yaml-json-converter",
@@ -3164,7 +3164,7 @@
             },
             "privacy_note": "Zpracování probíhá lokálně v prohlížeči.",
             "declared_test_target": "structural",
-            "verified_test_level": "none"
+            "verified_test_level": "structural"
         }
     ],
     "icons": {

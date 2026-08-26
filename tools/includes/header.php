@@ -62,4 +62,4 @@ $hreflang = vv_hreflang_tags('/tools', $lang);
   </div>
 </header>
 <script type="module" src="/assets/shared/app-switcher.js?v=20260825b"></script>
-<script type="module" src="/assets/shared/localization.js?v=20260825a"></script>
+<script type="module" src="/assets/shared/localization.js?v=20260826f"></script>

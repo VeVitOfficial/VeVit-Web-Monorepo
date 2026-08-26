@@ -72,7 +72,8 @@
   </div>
 </header>
 <script type="module" src="/assets/shared/app-switcher.js?v=20260825b"></script>
-<script type="module" src="/assets/shared/localization.js?v=20260825a"></script><main class="main">
+<script type="module" src="/assets/shared/localization.js?v=20260826f"></script>
+<main class="main">
   <div class="tool-page">
     <!-- Breadcrumb -->
     <nav class="breadcrumb">
@@ -92,9 +93,16 @@
     </div>
     <p class="tool-desc">Schneide ein Bild interaktiv im Canvas zu.</p>
 
+      <ol class="tool-steps" aria-label="Werkzeugfortschritt">
+        <li class="is-current" data-tool-step="input"><span>1</span>Eingabe</li>
+        <li data-tool-step="settings"><span>2</span>Einstellungen</li>
+        <li data-tool-step="result"><span>3</span>Ergebnis</li>
+      </ol>
+
     <!-- Tool body -->
-    <div class="tool-shell glass">
-              <div class="tool-tool" id="tool-root">
+    <div class="tool-shell glass" data-tool-slug="image-crop" data-tool-category="image" data-processing-location="client">
+              <div class="tool-tool" id="tool-root" data-tool-state="idle" aria-busy="false">
+          <p class="sr-only" id="tool-live-status" role="status" aria-live="polite" aria-atomic="true">Das Werkzeug ist bereit.</p>
           <div class="stack" style="max-width:50rem;margin:0 auto">
   <div class="dropzone" id="cr-drop">
     <span class="dz-ico"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/></svg></span>
@@ -109,16 +117,30 @@
     </div>
     <canvas id="cr-canvas" style="max-width:100%;touch-action:none;border-radius:0.5rem;cursor:crosshair;background:#0001"></canvas>
     <p class="muted" id="cr-coords" style="font-size:0.8rem;margin-top:0.5rem">Mit der Maus ziehen Sie ein Rechteck zum Zuschneiden.</p>
+    <fieldset class="crop-fields"><legend class="sr-only">Mit der Maus ziehen Sie ein Rechteck zum Zuschneiden.</legend>
+      <label><span>X</span><input class="input" id="cr-x" type="number" min="0" step="1" inputmode="numeric"></label><label><span>Y</span><input class="input" id="cr-y" type="number" min="0" step="1" inputmode="numeric"></label><label><span>W</span><input class="input" id="cr-w" type="number" min="0" step="1" inputmode="numeric"></label><label><span>H</span><input class="input" id="cr-h" type="number" min="0" step="1" inputmode="numeric"></label>    </fieldset>
     <div class="row" style="flex-wrap:wrap;gap:0.5rem;margin-top:0.75rem;align-items:end">
       <label style="display:flex;gap:0.5rem;align-items:center;font-size:0.85rem">Format:        <select class="select" id="cr-format"><option value="image/png">PNG</option><option value="image/jpeg">JPEG</option><option value="image/webp">WebP</option></select></label>
-      <button class="btn btn-primary" id="cr-apply" type="button" disabled><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2v14a2 2 0 0 0 2 2h14" /> <path d="M18 22V8a2 2 0 0 0-2-2H2" /></svg> Zuschneiden und herunterladen</button>
+      <button class="btn btn-primary btn-touch" id="cr-apply" type="button" disabled><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2v14a2 2 0 0 0 2 2h14" /> <path d="M18 22V8a2 2 0 0 0-2-2H2" /></svg> Zuschneiden und herunterladen</button>
     </div>
   </div>
+  <div class="before-after hidden" id="cr-result-preview"><div class="ba-pane"><span class="ba-label">Ergebnis</span><div class="ba-frame"><img id="cr-result-image" alt=""></div></div></div>
   <p class="error-text hidden" id="cr-error" role="alert"></p>
   <p class="muted" style="font-size:0.8rem">Zuschneiden im Browser via Canvas. Nichts wird hochgeladen.</p>
-</div>        </div>
+</div>
+        </div>
+        <script type="application/json" id="tool-ui-i18n">{"copied":"In die Zwischenablage kopiert","copy_failed":"Kopieren fehlgeschlagen","copy":"Kopieren","invalid_type":"Einige Dateien wurden wegen eines nicht unterstützten Typs übersprungen.","file_too_large":"{name} überschreitet das Limit von {limit}.","remove_file":"{name} entfernen","move_up":"{name} nach oben verschieben","move_down":"{name} nach unten verschieben","load_failed":"Ein benötigter Teil konnte nicht geladen werden. Prüfen Sie die Verbindung und versuchen Sie es erneut.","state_idle":"Wartet auf Eingabe","state_ready":"Bereit zur Verarbeitung","state_processing":"Verarbeitung läuft","state_success":"Ergebnis ist bereit","state_error":"Verarbeitung fehlgeschlagen","cancel":"Abbrechen","retry":"Erneut versuchen","reset":"Neu beginnen","download":"Ergebnis herunterladen","result_ready":"Fertig — Ihr Ergebnis ist bereit","enter_json":"Geben Sie JSON zur Verarbeitung ein.","invalid_json":"Ungültiges JSON: {message}","invalid_range":"Prüfen Sie den eingegebenen Bereich.","invalid_time":"Verwenden Sie HH:MM:SS; das Ende muss nach dem Start liegen.","loading":"Wird geladen…","saving":"Ergebnis wird vorbereitet…","thinking":"Denke nach…","interrupted":"Die Antwort wurde gestoppt.","unknown_error":"Ein unbekannter Fehler ist aufgetreten. Versuchen Sie es erneut.","page":"Seite {number}","undo":"Änderung rückgängig","text_meta":"{characters} Zeichen · {lines} Zeilen","file_format":"{type} · {size}","strength_very_weak":"Sehr schwach","strength_weak":"Schwach","strength_medium":"Mittel","strength_strong":"Stark","strength_very_strong":"Sehr stark","choose_charset":"Wählen Sie mindestens eine Zeichengruppe.","password_copied":"Passwort kopiert."}</script>
         <script src="/tools/assets/js/tools/image-crop.js" defer></script>
           </div>
+
+    <aside class="tool-trust" aria-label="Wo und wie die Verarbeitung erfolgt">
+      <div class="tool-trust-main">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>        <div>
+          <strong>Wo und wie die Verarbeitung erfolgt</strong>
+          <p>Die Datei wird in Ihrem Browser verarbeitet und verläßt diesen Computer nicht.</p>
+        </div>
+      </div>
+          </aside>
   </div>
 </main>
 <footer class="site-footer">

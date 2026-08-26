@@ -72,7 +72,8 @@
   </div>
 </header>
 <script type="module" src="/assets/shared/app-switcher.js?v=20260825b"></script>
-<script type="module" src="/assets/shared/localization.js?v=20260825a"></script><main class="main">
+<script type="module" src="/assets/shared/localization.js?v=20260826f"></script>
+<main class="main">
   <div class="tool-page">
     <!-- Breadcrumb -->
     <nav class="breadcrumb">
@@ -87,14 +88,16 @@
     <div class="tool-header">
       <span class="bar" style="background:#0ea5e9"></span>
       <h1>AI generador SQL</h1>
-      <span class="loc-tag" style="border-color:#0ea5e930;color:#0ea5e9;background:#0ea5e910" title="El procesamiento se realiza mediante un modelo de IA.">Vía IA</span>
+      <span class="loc-tag" style="border-color:#0ea5e930;color:#0ea5e9;background:#0ea5e910" title="Cuando inicias la herramienta, el contenido introducido se envía mediante el servidor VeVit a un modelo de IA externo.">Vía IA</span>
       <span class="loc-tag tool-status-limited">Disponible limitadamente</span>
     </div>
     <p class="tool-desc">Convierte lenguaje natural en consultas SQL.</p>
 
+
     <!-- Tool body -->
-    <div class="tool-shell glass">
-              <div class="tool-tool" id="tool-root">
+    <div class="tool-shell glass" data-tool-slug="ai-sql-gen" data-tool-category="ai" data-processing-location="external_ai">
+              <div class="tool-tool" id="tool-root" data-tool-state="idle" aria-busy="false">
+          <p class="sr-only" id="tool-live-status" role="status" aria-live="polite" aria-atomic="true">La herramienta está lista.</p>
           <div class="stack" style="max-width:46rem;margin:0 auto">
   <div class="ai-head"><span class="badge badge-ai">AI</span><span class="muted" style="font-size:0.875rem">Modelo: llama3.2</span></div>
   <div class="stack-sm"><label class="field-label" for="sql-dialect">Dialecto</label>
@@ -113,8 +116,18 @@
 <script src="/tools/assets/js/lib/safe-markdown.js"></script>
 <script src="/tools/assets/js/lib/ai-tool.js"></script>
         </div>
+        <script type="application/json" id="tool-ui-i18n">{"copied":"Copiado al portapapeles","copy_failed":"No se pudo copiar","copy":"Copiar","invalid_type":"Se omitieron algunos archivos porque su tipo no es compatible.","file_too_large":"{name} supera el límite de {limit}.","remove_file":"Quitar {name}","move_up":"Subir {name}","move_down":"Bajar {name}","load_failed":"No se pudo cargar una parte necesaria. Comprueba la conexión e inténtalo de nuevo.","state_idle":"Esperando entrada","state_ready":"Listo para procesar","state_processing":"Procesando","state_success":"El resultado está listo","state_error":"El procesamiento falló","cancel":"Cancelar","retry":"Intentar de nuevo","reset":"Empezar de nuevo","download":"Descargar resultado","result_ready":"Listo — el resultado está preparado","enter_json":"Introduce el JSON que quieres procesar.","invalid_json":"JSON no válido: {message}","invalid_range":"Comprueba el intervalo introducido.","invalid_time":"Usa HH:MM:SS y asegúrate de que el final sea posterior al inicio.","loading":"Cargando…","saving":"Preparando el resultado…","thinking":"Pensando…","interrupted":"La respuesta se detuvo.","unknown_error":"Se produjo un error desconocido. Inténtalo de nuevo.","page":"Página {number}","undo":"Deshacer cambio","text_meta":"{characters} caracteres · {lines} líneas","file_format":"{type} · {size}","strength_very_weak":"Muy débil","strength_weak":"Débil","strength_medium":"Medio","strength_strong":"Fuerte","strength_very_strong":"Muy fuerte","choose_charset":"Selecciona al menos un grupo de caracteres.","password_copied":"Contraseña copiada."}</script>
         <script src="/tools/assets/js/tools/ai-sql-gen.js" defer></script>
           </div>
+
+    <aside class="tool-trust" aria-label="Dónde y cómo se procesa">
+      <div class="tool-trust-main">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></svg>        <div>
+          <strong>Dónde y cómo se procesa</strong>
+          <p>Cuando inicias la herramienta, el contenido introducido se envía mediante el servidor VeVit a un modelo de IA externo.</p>
+        </div>
+      </div>
+          </aside>
   </div>
 </main>
 <footer class="site-footer">

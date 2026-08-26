@@ -9,7 +9,7 @@
     var n = parseFloat(v);
     return isNaN(n) ? null : n;
   }
-  function kc(n) { return n.toLocaleString('cs-CZ', { maximumFractionDigits: 2 }) + ' Kč'; }
+  function kc(n) { return n.toLocaleString(document.documentElement.lang || 'cs', { maximumFractionDigits: 2 }) + ' Kč'; }
 
   function compute() {
     var p = num('dc-price'), d1 = num('dc-d1'), d2 = num('dc-d2');
@@ -21,7 +21,7 @@
     finalEl.textContent = kc(after2);
     saved.textContent = kc(p - after2);
     var t = p > 0 ? (1 - after2 / p) * 100 : 0;
-    total.textContent = t.toLocaleString('cs-CZ', { maximumFractionDigits: 2 }) + ' %';
+    total.textContent = t.toLocaleString(document.documentElement.lang || 'cs', { maximumFractionDigits: 2 }) + ' %';
   }
 
   ['dc-price', 'dc-d1', 'dc-d2'].forEach(function (id) { ToolUI.el(id).addEventListener('input', compute); });

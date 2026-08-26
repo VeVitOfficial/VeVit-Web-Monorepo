@@ -24,10 +24,10 @@
       val.textContent = '—'; cat.textContent = '—'; idealRow.classList.add('hidden'); return;
     }
     var m = H / 100, bmi = W / (m * m);
-    val.textContent = bmi.toLocaleString('cs-CZ', { maximumFractionDigits: 1 });
+    val.textContent = bmi.toLocaleString(document.documentElement.lang || 'cs', { maximumFractionDigits: 1 });
     cat.textContent = catOf(bmi);
     var lo = 18.5 * m * m, hi = 24.9 * m * m;
-    ideal.textContent = lo.toLocaleString('cs-CZ', { maximumFractionDigits: 1 }) + '–' + hi.toLocaleString('cs-CZ', { maximumFractionDigits: 1 }) + ' kg';
+    ideal.textContent = lo.toLocaleString(document.documentElement.lang || 'cs', { maximumFractionDigits: 1 }) + '–' + hi.toLocaleString(document.documentElement.lang || 'cs', { maximumFractionDigits: 1 }) + ' kg';
     idealRow.classList.remove('hidden');
   }
 

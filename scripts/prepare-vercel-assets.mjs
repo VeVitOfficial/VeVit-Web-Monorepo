@@ -34,7 +34,8 @@ if (process.env.VERCEL === "1") {
 async function copyTree(source, destination, options = {}) {
   const entries = await readdir(source, { withFileTypes: true });
   for (const entry of entries) {
-    if (entry.name.startsWith(".") || excludedSegments.has(entry.name)) continue;
+    const isSectionRoot = options.sourceRoot === source;
+    if (entry.name.startsWith(".") || (isSectionRoot && excludedSegments.has(entry.name))) continue;
     const from = join(source, entry.name);
     const to = join(destination, entry.name);
     if (entry.isDirectory()) {

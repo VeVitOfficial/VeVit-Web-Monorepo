@@ -272,6 +272,76 @@ const UI_STRINGS = [
     'tool_page.not_found_text' => ['cs'=>'Tento nástroj neexistuje.','en'=>'This tool does not exist.','de'=>'Dieses Werkzeug existiert nicht.','es'=>'Esta herramienta no existe.','uk'=>'Цей інструмент не існує.','fr'=>'Cet outil n\'existe pas.','sk'=>'Tento nástroj neexistuje.'],
     'tool_page.not_found_back' => ['cs'=>'Zpět na přehled','en'=>'Back to overview','de'=>'Zurück zur Übersicht','es'=>'Volver al resumen','uk'=>'Назад до огляду','fr'=>'Retour à l\'aperçu','sk'=>'Späť na prehľad'],
     'tool_page.placeholder_status' => ['cs'=>'{status}.','en'=>'{status}.','de'=>'{status}.','es'=>'{status}.','uk'=>'{status}.','fr'=>'{status}.','sk'=>'{status}.'],
+    'tool_page.workflow_label' => ['cs'=>'Průběh nástroje','en'=>'Tool progress','de'=>'Werkzeugfortschritt','es'=>'Progreso de la herramienta','uk'=>'Хід роботи інструмента','fr'=>'Progression de l’outil','sk'=>'Priebeh nástroja'],
+    'tool_page.step_input' => ['cs'=>'Vstup','en'=>'Input','de'=>'Eingabe','es'=>'Entrada','uk'=>'Вхід','fr'=>'Entrée','sk'=>'Vstup'],
+    'tool_page.step_settings' => ['cs'=>'Nastavení','en'=>'Settings','de'=>'Einstellungen','es'=>'Ajustes','uk'=>'Налаштування','fr'=>'Réglages','sk'=>'Nastavenie'],
+    'tool_page.step_result' => ['cs'=>'Výsledek','en'=>'Result','de'=>'Ergebnis','es'=>'Resultado','uk'=>'Результат','fr'=>'Résultat','sk'=>'Výsledok'],
+    'tool_page.processing_title' => ['cs'=>'Kde a jak probíhá zpracování','en'=>'Where and how processing happens','de'=>'Wo und wie die Verarbeitung erfolgt','es'=>'Dónde y cómo se procesa','uk'=>'Де і як відбувається обробка','fr'=>'Où et comment se fait le traitement','sk'=>'Kde a ako prebieha spracovanie'],
+    'tool_page.requirements_title' => ['cs'=>'Požadavky a omezení','en'=>'Requirements and limits','de'=>'Anforderungen und Grenzen','es'=>'Requisitos y límites','uk'=>'Вимоги та обмеження','fr'=>'Prérequis et limites','sk'=>'Požiadavky a obmedzenia'],
+    'tool_page.ready_announcement' => ['cs'=>'Nástroj je připraven.','en'=>'The tool is ready.','de'=>'Das Werkzeug ist bereit.','es'=>'La herramienta está lista.','uk'=>'Інструмент готовий.','fr'=>'L’outil est prêt.','sk'=>'Nástroj je pripravený.'],
+
+    // ── shared ToolUI runtime ────────────────────────────────────
+    'tool_ui.copied' => ['cs'=>'Zkopírováno do schránky','en'=>'Copied to clipboard','de'=>'In die Zwischenablage kopiert','es'=>'Copiado al portapapeles','uk'=>'Скопійовано в буфер обміну','fr'=>'Copié dans le presse-papiers','sk'=>'Skopírované do schránky'],
+    'tool_ui.copy_failed' => ['cs'=>'Kopírování selhalo','en'=>'Copy failed','de'=>'Kopieren fehlgeschlagen','es'=>'No se pudo copiar','uk'=>'Не вдалося скопіювати','fr'=>'Échec de la copie','sk'=>'Kopírovanie zlyhalo'],
+    'tool_ui.copy' => ['cs'=>'Kopírovat','en'=>'Copy','de'=>'Kopieren','es'=>'Copiar','uk'=>'Копіювати','fr'=>'Copier','sk'=>'Kopírovať'],
+    'tool_ui.invalid_type' => ['cs'=>'Některé soubory byly přeskočeny: tento typ není podporovaný.','en'=>'Some files were skipped because their type is not supported.','de'=>'Einige Dateien wurden wegen eines nicht unterstützten Typs übersprungen.','es'=>'Se omitieron algunos archivos porque su tipo no es compatible.','uk'=>'Деякі файли пропущено через непідтримуваний тип.','fr'=>'Certains fichiers ont été ignorés car leur type n’est pas pris en charge.','sk'=>'Niektoré súbory boli preskočené, pretože ich typ nie je podporovaný.'],
+    'tool_ui.file_too_large' => ['cs'=>'Soubor {name} je větší než povolený limit {limit}.','en'=>'{name} is larger than the {limit} limit.','de'=>'{name} überschreitet das Limit von {limit}.','es'=>'{name} supera el límite de {limit}.','uk'=>'Файл {name} перевищує ліміт {limit}.','fr'=>'Le fichier {name} dépasse la limite de {limit}.','sk'=>'Súbor {name} prekračuje limit {limit}.'],
+    'tool_ui.remove_file' => ['cs'=>'Odebrat {name}','en'=>'Remove {name}','de'=>'{name} entfernen','es'=>'Quitar {name}','uk'=>'Видалити {name}','fr'=>'Retirer {name}','sk'=>'Odobrať {name}'],
+    'tool_ui.move_up' => ['cs'=>'Přesunout {name} výše','en'=>'Move {name} up','de'=>'{name} nach oben verschieben','es'=>'Subir {name}','uk'=>'Перемістити {name} вище','fr'=>'Déplacer {name} vers le haut','sk'=>'Presunúť {name} vyššie'],
+    'tool_ui.move_down' => ['cs'=>'Přesunout {name} níže','en'=>'Move {name} down','de'=>'{name} nach unten verschieben','es'=>'Bajar {name}','uk'=>'Перемістити {name} нижче','fr'=>'Déplacer {name} vers le bas','sk'=>'Presunúť {name} nižšie'],
+    'tool_ui.load_failed' => ['cs'=>'Potřebnou část nástroje se nepodařilo načíst. Zkontrolujte připojení a zkuste to znovu.','en'=>'A required part of the tool failed to load. Check your connection and try again.','de'=>'Ein benötigter Teil konnte nicht geladen werden. Prüfen Sie die Verbindung und versuchen Sie es erneut.','es'=>'No se pudo cargar una parte necesaria. Comprueba la conexión e inténtalo de nuevo.','uk'=>'Не вдалося завантажити потрібну частину. Перевірте з’єднання та спробуйте ще раз.','fr'=>'Une partie requise n’a pas pu être chargée. Vérifiez la connexion et réessayez.','sk'=>'Potrebnú časť nástroja sa nepodarilo načítať. Skontrolujte pripojenie a skúste to znova.'],
+    'tool_ui.state_idle' => ['cs'=>'Čeká na vstup','en'=>'Waiting for input','de'=>'Wartet auf Eingabe','es'=>'Esperando entrada','uk'=>'Очікує на введення','fr'=>'En attente d’une entrée','sk'=>'Čaká na vstup'],
+    'tool_ui.state_ready' => ['cs'=>'Připraveno ke zpracování','en'=>'Ready to process','de'=>'Bereit zur Verarbeitung','es'=>'Listo para procesar','uk'=>'Готово до обробки','fr'=>'Prêt à traiter','sk'=>'Pripravené na spracovanie'],
+    'tool_ui.state_processing' => ['cs'=>'Probíhá zpracování','en'=>'Processing','de'=>'Verarbeitung läuft','es'=>'Procesando','uk'=>'Триває обробка','fr'=>'Traitement en cours','sk'=>'Prebieha spracovanie'],
+    'tool_ui.state_success' => ['cs'=>'Výsledek je připraven','en'=>'Result is ready','de'=>'Ergebnis ist bereit','es'=>'El resultado está listo','uk'=>'Результат готовий','fr'=>'Le résultat est prêt','sk'=>'Výsledok je pripravený'],
+    'tool_ui.state_error' => ['cs'=>'Zpracování se nezdařilo','en'=>'Processing failed','de'=>'Verarbeitung fehlgeschlagen','es'=>'El procesamiento falló','uk'=>'Помилка обробки','fr'=>'Échec du traitement','sk'=>'Spracovanie zlyhalo'],
+    'tool_ui.cancel' => ['cs'=>'Zrušit','en'=>'Cancel','de'=>'Abbrechen','es'=>'Cancelar','uk'=>'Скасувати','fr'=>'Annuler','sk'=>'Zrušiť'],
+    'tool_ui.retry' => ['cs'=>'Zkusit znovu','en'=>'Try again','de'=>'Erneut versuchen','es'=>'Intentar de nuevo','uk'=>'Спробувати ще раз','fr'=>'Réessayer','sk'=>'Skúsiť znova'],
+    'tool_ui.reset' => ['cs'=>'Začít znovu','en'=>'Start over','de'=>'Neu beginnen','es'=>'Empezar de nuevo','uk'=>'Почати знову','fr'=>'Recommencer','sk'=>'Začať znova'],
+    'tool_ui.download' => ['cs'=>'Stáhnout výsledek','en'=>'Download result','de'=>'Ergebnis herunterladen','es'=>'Descargar resultado','uk'=>'Завантажити результат','fr'=>'Télécharger le résultat','sk'=>'Stiahnuť výsledok'],
+    'tool_ui.result_ready' => ['cs'=>'Hotovo — výsledek je připraven','en'=>'Done — your result is ready','de'=>'Fertig — Ihr Ergebnis ist bereit','es'=>'Listo — el resultado está preparado','uk'=>'Готово — результат підготовлено','fr'=>'Terminé — votre résultat est prêt','sk'=>'Hotovo — výsledok je pripravený'],
+    'tool_ui.enter_json' => ['cs'=>'Vložte JSON ke zpracování.','en'=>'Enter JSON to process.','de'=>'Geben Sie JSON zur Verarbeitung ein.','es'=>'Introduce el JSON que quieres procesar.','uk'=>'Введіть JSON для обробки.','fr'=>'Saisissez le JSON à traiter.','sk'=>'Vložte JSON na spracovanie.'],
+    'tool_ui.invalid_json' => ['cs'=>'Neplatný JSON: {message}','en'=>'Invalid JSON: {message}','de'=>'Ungültiges JSON: {message}','es'=>'JSON no válido: {message}','uk'=>'Некоректний JSON: {message}','fr'=>'JSON invalide : {message}','sk'=>'Neplatný JSON: {message}'],
+    'tool_ui.invalid_range' => ['cs'=>'Zkontrolujte zadaný rozsah.','en'=>'Check the entered range.','de'=>'Prüfen Sie den eingegebenen Bereich.','es'=>'Comprueba el intervalo introducido.','uk'=>'Перевірте введений діапазон.','fr'=>'Vérifiez la plage saisie.','sk'=>'Skontrolujte zadaný rozsah.'],
+    'tool_ui.invalid_time' => ['cs'=>'Čas zadávejte jako HH:MM:SS a konec musí být později než začátek.','en'=>'Use HH:MM:SS and make sure the end is later than the start.','de'=>'Verwenden Sie HH:MM:SS; das Ende muss nach dem Start liegen.','es'=>'Usa HH:MM:SS y asegúrate de que el final sea posterior al inicio.','uk'=>'Використовуйте HH:MM:SS; кінець має бути пізніше за початок.','fr'=>'Utilisez HH:MM:SS et placez la fin après le début.','sk'=>'Použite HH:MM:SS a koniec musí byť neskôr ako začiatok.'],
+    'tool_ui.loading' => ['cs'=>'Načítání…','en'=>'Loading…','de'=>'Wird geladen…','es'=>'Cargando…','uk'=>'Завантаження…','fr'=>'Chargement…','sk'=>'Načítava sa…'],
+    'tool_ui.saving' => ['cs'=>'Příprava výsledku…','en'=>'Preparing result…','de'=>'Ergebnis wird vorbereitet…','es'=>'Preparando el resultado…','uk'=>'Підготовка результату…','fr'=>'Préparation du résultat…','sk'=>'Pripravuje sa výsledok…'],
+    'tool_ui.thinking' => ['cs'=>'Přemýšlím…','en'=>'Thinking…','de'=>'Denke nach…','es'=>'Pensando…','uk'=>'Обмірковую…','fr'=>'Réflexion…','sk'=>'Premýšľam…'],
+    'tool_ui.interrupted' => ['cs'=>'Odpověď byla zastavena.','en'=>'The response was stopped.','de'=>'Die Antwort wurde gestoppt.','es'=>'La respuesta se detuvo.','uk'=>'Відповідь зупинено.','fr'=>'La réponse a été arrêtée.','sk'=>'Odpoveď bola zastavená.'],
+    'tool_ui.unknown_error' => ['cs'=>'Nastala neznámá chyba. Zkuste to znovu.','en'=>'An unknown error occurred. Try again.','de'=>'Ein unbekannter Fehler ist aufgetreten. Versuchen Sie es erneut.','es'=>'Se produjo un error desconocido. Inténtalo de nuevo.','uk'=>'Сталася невідома помилка. Спробуйте ще раз.','fr'=>'Une erreur inconnue s’est produite. Réessayez.','sk'=>'Nastala neznáma chyba. Skúste to znova.'],
+    'tool_ui.page' => ['cs'=>'Strana {number}','en'=>'Page {number}','de'=>'Seite {number}','es'=>'Página {number}','uk'=>'Сторінка {number}','fr'=>'Page {number}','sk'=>'Strana {number}'],
+    'tool_ui.undo' => ['cs'=>'Vrátit změnu','en'=>'Undo change','de'=>'Änderung rückgängig','es'=>'Deshacer cambio','uk'=>'Скасувати зміну','fr'=>'Annuler la modification','sk'=>'Vrátiť zmenu'],
+    'ai_chat.new_chat' => ['cs'=>'Nový chat','en'=>'New chat','de'=>'Neuer Chat','es'=>'Nuevo chat','uk'=>'Новий чат','fr'=>'Nouveau chat','sk'=>'Nový chat'],
+    'ai_chat.starter_explain' => ['cs'=>'Vysvětli mi složité téma jednoduše','en'=>'Explain a complex topic simply','de'=>'Erkläre ein komplexes Thema einfach','es'=>'Explica un tema complejo de forma sencilla','uk'=>'Поясни складну тему просто','fr'=>'Explique simplement un sujet complexe','sk'=>'Vysvetli zložitú tému jednoducho'],
+    'ai_chat.starter_plan' => ['cs'=>'Pomoz mi vytvořit praktický plán','en'=>'Help me make a practical plan','de'=>'Hilf mir, einen praktischen Plan zu erstellen','es'=>'Ayúdame a crear un plan práctico','uk'=>'Допоможи скласти практичний план','fr'=>'Aide-moi à créer un plan pratique','sk'=>'Pomôž mi vytvoriť praktický plán'],
+    'ai_chat.starter_improve' => ['cs'=>'Vylepši srozumitelnost mého textu','en'=>'Improve the clarity of my text','de'=>'Verbessere die Verständlichkeit meines Textes','es'=>'Mejora la claridad de mi texto','uk'=>'Покращ зрозумілість мого тексту','fr'=>'Améliore la clarté de mon texte','sk'=>'Zlepši zrozumiteľnosť môjho textu'],
+    'ai_chat.disclaimer' => ['cs'=>'AI může chybovat. Nezadávejte citlivé údaje a důležité informace si ověřte.','en'=>'AI can make mistakes. Do not enter sensitive data and verify important information.','de'=>'KI kann Fehler machen. Geben Sie keine sensiblen Daten ein und prüfen Sie wichtige Informationen.','es'=>'La IA puede equivocarse. No introduzcas datos sensibles y verifica la información importante.','uk'=>'ШІ може помилятися. Не вводьте конфіденційні дані та перевіряйте важливу інформацію.','fr'=>'L’IA peut se tromper. Ne saisissez pas de données sensibles et vérifiez les informations importantes.','sk'=>'AI sa môže mýliť. Nezadávajte citlivé údaje a dôležité informácie si overte.'],
+    'ai_chat.copy_response' => ['cs'=>'Kopírovat odpověď','en'=>'Copy response','de'=>'Antwort kopieren','es'=>'Copiar respuesta','uk'=>'Копіювати відповідь','fr'=>'Copier la réponse','sk'=>'Kopírovať odpoveď'],
+    'ai_chat.retry' => ['cs'=>'Zopakovat dotaz','en'=>'Retry prompt','de'=>'Anfrage wiederholen','es'=>'Repetir consulta','uk'=>'Повторити запит','fr'=>'Relancer la demande','sk'=>'Zopakovať otázku'],
+    'tool_ui.print' => ['cs'=>'Vytisknout výsledek','en'=>'Print result','de'=>'Ergebnis drucken','es'=>'Imprimir resultado','uk'=>'Друкувати результат','fr'=>'Imprimer le résultat','sk'=>'Vytlačiť výsledok'],
+    'loan_calc.extra' => ['cs'=>'Mimořádná splátka za období (Kč)','en'=>'Extra payment per period (CZK)','de'=>'Zusätzliche Zahlung pro Periode (CZK)','es'=>'Pago extra por periodo (CZK)','uk'=>'Додатковий платіж за період (CZK)','fr'=>'Paiement supplémentaire par période (CZK)','sk'=>'Mimoriadna splátka za obdobie (CZK)'],
+    'loan_calc.principal_share' => ['cs'=>'Jistina','en'=>'Principal','de'=>'Tilgung','es'=>'Principal','uk'=>'Основна сума','fr'=>'Capital','sk'=>'Istina'],
+    'loan_calc.interest_share' => ['cs'=>'Úrok','en'=>'Interest','de'=>'Zinsen','es'=>'Intereses','uk'=>'Відсотки','fr'=>'Intérêts','sk'=>'Úrok'],
+    'tool_page.info_title' => ['cs'=>'Co je potřeba vědět','en'=>'What you need to know','de'=>'Was Sie wissen müssen','es'=>'Lo que debes saber','uk'=>'Що потрібно знати','fr'=>'Ce qu’il faut savoir','sk'=>'Čo potrebujete vedieť'],
+    'tool_page.info_no_action' => ['cs'=>'Tato stránka momentálně nic nezpracovává ani neodesílá.','en'=>'This page currently processes and sends nothing.','de'=>'Diese Seite verarbeitet und sendet derzeit nichts.','es'=>'Esta página no procesa ni envía nada actualmente.','uk'=>'Ця сторінка зараз нічого не обробляє і не надсилає.','fr'=>'Cette page ne traite et n’envoie actuellement aucune donnée.','sk'=>'Táto stránka momentálne nič nespracúva ani neodosiela.'],
+    'tool_page.alternatives' => ['cs'=>'Bezpečné alternativy','en'=>'Safe alternatives','de'=>'Sichere Alternativen','es'=>'Alternativas seguras','uk'=>'Безпечні альтернативи','fr'=>'Alternatives sûres','sk'=>'Bezpečné alternatívy'],
+    'tool_page.alt_ai_image' => ['cs'=>'Pro generování obrázků použijte službu, které důvěřujete, a předem zkontrolujte její práci s daty.','en'=>'Use an image service you trust and review its data policy first.','de'=>'Nutzen Sie einen vertrauenswürdigen Bilddienst und prüfen Sie zuvor dessen Datenrichtlinie.','es'=>'Usa un servicio de imágenes de confianza y revisa antes su política de datos.','uk'=>'Скористайтеся надійним сервісом зображень і спершу перевірте його політику даних.','fr'=>'Utilisez un service d’images de confiance et vérifiez d’abord sa politique de données.','sk'=>'Použite dôveryhodnú službu na obrázky a vopred si overte jej pravidlá práce s údajmi.'],
+    'tool_page.alt_pdf_password' => ['cs'=>'Heslo lze spravovat lokálně v desktopové aplikaci s podporou šifrování PDF, například qpdf.','en'=>'Manage the password locally in a desktop PDF encryption app such as qpdf.','de'=>'Verwalten Sie das Passwort lokal in einer Desktop-App zur PDF-Verschlüsselung, etwa qpdf.','es'=>'Gestiona la contraseña localmente con una aplicación de escritorio que cifre PDF, como qpdf.','uk'=>'Керуйте паролем локально в настільній програмі для шифрування PDF, наприклад qpdf.','fr'=>'Gérez le mot de passe localement avec une application de chiffrement PDF telle que qpdf.','sk'=>'Heslo spravujte lokálne v desktopovej aplikácii na šifrovanie PDF, napríklad qpdf.'],
+    'tool_page.alt_screenshot' => ['cs'=>'Použijte vestavěný snímek obrazovky v prohlížeči nebo operačním systému; citlivá URL tak neopustí zařízení.','en'=>'Use the browser or operating system screenshot feature so a sensitive URL stays on your device.','de'=>'Nutzen Sie die Screenshot-Funktion des Browsers oder Betriebssystems, damit eine sensible URL auf Ihrem Gerät bleibt.','es'=>'Usa la captura del navegador o del sistema operativo para mantener una URL sensible en tu dispositivo.','uk'=>'Скористайтеся знімком екрана в браузері або ОС, щоб конфіденційна URL-адреса залишалася на пристрої.','fr'=>'Utilisez la capture du navigateur ou du système pour conserver une URL sensible sur votre appareil.','sk'=>'Použite snímku obrazovky v prehliadači alebo systéme, aby citlivá URL zostala v zariadení.'],
+    'tool_ui.text_meta' => ['cs'=>'{characters} znaků · {lines} řádků','en'=>'{characters} characters · {lines} lines','de'=>'{characters} Zeichen · {lines} Zeilen','es'=>'{characters} caracteres · {lines} líneas','uk'=>'{characters} символів · {lines} рядків','fr'=>'{characters} caractères · {lines} lignes','sk'=>'{characters} znakov · {lines} riadkov'],
+    'tool_ui.file_format' => ['cs'=>'{type} · {size}','en'=>'{type} · {size}','de'=>'{type} · {size}','es'=>'{type} · {size}','uk'=>'{type} · {size}','fr'=>'{type} · {size}','sk'=>'{type} · {size}'],
+    'tool_ui.strength_very_weak' => ['cs'=>'Velmi slabé','en'=>'Very weak','de'=>'Sehr schwach','es'=>'Muy débil','uk'=>'Дуже слабкий','fr'=>'Très faible','sk'=>'Veľmi slabé'],
+    'tool_ui.strength_weak' => ['cs'=>'Slabé','en'=>'Weak','de'=>'Schwach','es'=>'Débil','uk'=>'Слабкий','fr'=>'Faible','sk'=>'Slabé'],
+    'tool_ui.strength_medium' => ['cs'=>'Střední','en'=>'Medium','de'=>'Mittel','es'=>'Medio','uk'=>'Середній','fr'=>'Moyen','sk'=>'Stredné'],
+    'tool_ui.strength_strong' => ['cs'=>'Silné','en'=>'Strong','de'=>'Stark','es'=>'Fuerte','uk'=>'Сильний','fr'=>'Fort','sk'=>'Silné'],
+    'tool_ui.strength_very_strong' => ['cs'=>'Velmi silné','en'=>'Very strong','de'=>'Sehr stark','es'=>'Muy fuerte','uk'=>'Дуже сильний','fr'=>'Très fort','sk'=>'Veľmi silné'],
+    'tool_ui.choose_charset' => ['cs'=>'Vyberte alespoň jednu skupinu znaků.','en'=>'Select at least one character group.','de'=>'Wählen Sie mindestens eine Zeichengruppe.','es'=>'Selecciona al menos un grupo de caracteres.','uk'=>'Виберіть принаймні одну групу символів.','fr'=>'Sélectionnez au moins un groupe de caractères.','sk'=>'Vyberte aspoň jednu skupinu znakov.'],
+    'tool_ui.password_copied' => ['cs'=>'Heslo bylo zkopírováno.','en'=>'Password copied.','de'=>'Passwort kopiert.','es'=>'Contraseña copiada.','uk'=>'Пароль скопійовано.','fr'=>'Mot de passe copié.','sk'=>'Heslo bolo skopírované.'],
+    'password_gen.mode' => ['cs'=>'Režim','en'=>'Mode','de'=>'Modus','es'=>'Modo','uk'=>'Режим','fr'=>'Mode','sk'=>'Režim'],
+    'password_gen.mode_chars' => ['cs'=>'Náhodné znaky','en'=>'Random characters','de'=>'Zufällige Zeichen','es'=>'Caracteres aleatorios','uk'=>'Випадкові символи','fr'=>'Caractères aléatoires','sk'=>'Náhodné znaky'],
+    'password_gen.mode_words' => ['cs'=>'Heslová fráze','en'=>'Passphrase','de'=>'Passphrase','es'=>'Frase de contraseña','uk'=>'Парольна фраза','fr'=>'Phrase secrète','sk'=>'Heslová fráza'],
+    'password_gen.ambiguous' => ['cs'=>'Vynechat podobné znaky (0/O, 1/l/I)','en'=>'Exclude ambiguous characters (0/O, 1/l/I)','de'=>'Mehrdeutige Zeichen ausschließen (0/O, 1/l/I)','es'=>'Excluir caracteres ambiguos (0/O, 1/l/I)','uk'=>'Виключити схожі символи (0/O, 1/l/I)','fr'=>'Exclure les caractères ambigus (0/O, 1/l/I)','sk'=>'Vynechať podobné znaky (0/O, 1/l/I)'],
+    'password_gen.entropy' => ['cs'=>'Odhad entropie: {bits} bitů','en'=>'Estimated entropy: {bits} bits','de'=>'Geschätzte Entropie: {bits} Bit','es'=>'Entropía estimada: {bits} bits','uk'=>'Оцінка ентропії: {bits} біт','fr'=>'Entropie estimée : {bits} bits','sk'=>'Odhad entropie: {bits} bitov'],
 
     // ── status labels ──────────────────────────────────────────────
     'status.working' => ['cs'=>'Dostupný','en'=>'Available','de'=>'Verfügbar','es'=>'Disponible','uk'=>'Доступний','fr'=>'Disponible','sk'=>'Dostupný'],
@@ -287,7 +357,7 @@ const UI_STRINGS = [
     'location.server.label' => ['cs'=>'Na serveru','en'=>'On server','de'=>'Auf dem Server','es'=>'En el servidor','uk'=>'На сервері','fr'=>'Sur le serveur','sk'=>'Na serveri'],
     'location.server.title' => ['cs'=>'Soubor se zpracuje na serveru a po dokončení se smaže.','en'=>'The file is processed on the server and deleted after completion.','de'=>'Die Datei wird auf dem Server verarbeitet und nach Abschluss gelöscht.','es'=>'El archivo se procesa en el servidor y se elimina al terminar.','uk'=>'Файл обробляється на сервері та видаляється після завершення.','fr'=>'Le fichier est traité sur le serveur et supprimé après achèvement.','sk'=>'Súbor sa spracuje na serveri a po dokončení sa vymaže.'],
     'location.ai.label' => ['cs'=>'Přes AI','en'=>'Via AI','de'=>'Über KI','es'=>'Vía IA','uk'=>'Через ШІ','fr'=>'Via IA','sk'=>'Cez AI'],
-    'location.ai.title' => ['cs'=>'Zpracování probíhá přes AI model.','en'=>'Processing runs through an AI model.','de'=>'Die Verarbeitung läuft über ein KI-Modell.','es'=>'El procesamiento se realiza mediante un modelo de IA.','uk'=>'Обробка відбувається через модель ШІ.','fr'=>'Le traitement s\'effectue via un modèle d\'IA.','sk'=>'Spracovanie prebieha cez AI model.'],
+    'location.ai.title' => ['cs'=>'Zadaný obsah se po vědomém spuštění odešle přes server VeVit do externího AI modelu.','en'=>'After you deliberately start the tool, the entered content is sent through the VeVit server to an external AI model.','de'=>'Nach dem bewussten Start wird der eingegebene Inhalt über den VeVit-Server an ein externes KI-Modell gesendet.','es'=>'Cuando inicias la herramienta, el contenido introducido se envía mediante el servidor VeVit a un modelo de IA externo.','uk'=>'Після свідомого запуску введений вміст надсилається через сервер VeVit до зовнішньої моделі ШІ.','fr'=>'Après votre action explicite, le contenu saisi est envoyé via le serveur VeVit à un modèle d’IA externe.','sk'=>'Po vedomom spustení sa zadaný obsah odošle cez server VeVit do externého AI modelu.'],
 
     // ── category labels ────────────────────────────────────────────
     'category.pdf.label' => ['cs'=>'PDF','en'=>'PDF','de'=>'PDF','es'=>'PDF','uk'=>'PDF','fr'=>'PDF','sk'=>'PDF'],
@@ -341,6 +411,30 @@ function export_array_php(array $dict): string {
     return implode("\n", $lines) . "\n";
 }
 
+/** Aktualizuje existující slovník bez zahození komentářů a pořadí klíčů. */
+function merge_array_php(string $path, array $dict): string {
+    $source = (string) file_get_contents($path);
+    $existing = require $path;
+    $append = [];
+    foreach ($dict as $key => $value) {
+        $keyEncoded = var_export($key, true);
+        $valueEncoded = var_export($value, true);
+        if (array_key_exists($key, $existing)) {
+            $pattern = '/^\s*' . preg_quote($keyEncoded, '/') . '\s*=>\s*.*,$/m';
+            $updated = preg_replace($pattern, '  ' . $keyEncoded . ' => ' . $valueEncoded . ',', $source);
+            if (is_string($updated)) $source = $updated;
+        } else {
+            $append[] = '  ' . $keyEncoded . ' => ' . $valueEncoded . ',';
+        }
+    }
+    if ($append) {
+        $position = strrpos($source, '];');
+        if ($position === false) throw new RuntimeException("Slovník {$path} nemá ukončení ];");
+        $source = substr($source, 0, $position) . "\n  // === UX redesign shared runtime ===\n" . implode("\n", $append) . "\n" . substr($source, $position);
+    }
+    return $source;
+}
+
 $outDir = __DIR__ . '/../lang';
 if (!is_dir($outDir) && !mkdir($outDir, 0755, true)) {
     fwrite(STDERR, "Nelze vytvořit $outDir\n");
@@ -358,7 +452,12 @@ foreach (TOOLS as $t) {
 
 $counts = [];
 foreach (VV_LANGS as $lang) {
-    $dict = [];
+    // Zachovej všechny tool-specific překlady, které historicky vznikly mimo
+    // tuto tabulku. Generátor spravuje známé UI klíče a pouze doplňuje chybějící
+    // registry položky; nikdy nesmí zmenšit existující slovník.
+    $existingPath = $outDir . '/' . $lang . '.php';
+    $existing = is_file($existingPath) ? require $existingPath : [];
+    $dict = is_array($existing) ? $existing : [];
     // UI strings
     foreach (UI_STRINGS as $key => $_) {
         $dict[$key] = resolve_ui($key, $lang);
@@ -370,7 +469,7 @@ foreach (VV_LANGS as $lang) {
         if (isset($toolOverrides[$lang][$overKey])) {
             $dict[$overKey] = $toolOverrides[$lang][$overKey];
         } else {
-            $dict[$overKey] = $csCatDesc[$cat]; // cs fallback placeholder
+            $dict[$overKey] = $dict[$overKey] ?? $csCatDesc[$cat];
         }
     }
     // status + location (již v UI_STRINGS)
@@ -382,17 +481,18 @@ foreach (VV_LANGS as $lang) {
         if (isset($toolOverrides[$lang][$slug]['name'])) {
             $dict[$nameKey] = $toolOverrides[$lang][$slug]['name'];
         } else {
-            $dict[$nameKey] = $csToolName[$slug];
+            $dict[$nameKey] = $dict[$nameKey] ?? $csToolName[$slug];
         }
         if (isset($toolOverrides[$lang][$slug]['desc'])) {
             $dict[$descKey] = $toolOverrides[$lang][$slug]['desc'];
         } else {
-            $dict[$descKey] = $csToolDesc[$slug];
+            $dict[$descKey] = $dict[$descKey] ?? $csToolDesc[$slug];
         }
     }
     ksort($dict);
     $path = $outDir . '/' . $lang . '.php';
-    if (file_put_contents($path, export_array_php($dict), LOCK_EX) === false) {
+    $output = is_file($path) ? merge_array_php($path, $dict) : export_array_php($dict);
+    if (file_put_contents($path, $output, LOCK_EX) === false) {
         fwrite(STDERR, "Nelze zapsat $path\n");
         exit(1);
     }
