@@ -13,11 +13,14 @@
   var eyeOpen = passwordToggle.querySelector('[data-eye-open]');
   var eyeClosed = passwordToggle.querySelector('[data-eye-closed]');
   var loginGirlFrame = document.getElementById('loginGirlFrame');
+  // Absolutní cesty: login se servuje na locale-prefixed URL (/cs/account/login),
+  // takže relativní ./images/ by se vyřešilo vůči /cs/account/images/ a vrátilo 404
+  // (statické assety se servují z /account/images/ bez locale prefixu).
   var girlFrames = [
-    './images/holka odkryté oči.webp',
-    './images/zakrývání 1.webp',
-    './images/zakrývání 2.webp',
-    './images/holka zakryté oči.webp'
+    '/account/images/holka odkryté oči.webp',
+    '/account/images/zakrývání 1.webp',
+    '/account/images/zakrývání 2.webp',
+    '/account/images/holka zakryté oči.webp'
   ];
   var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   var currentGirlFrame = 0;
