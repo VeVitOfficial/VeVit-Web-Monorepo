@@ -92,7 +92,7 @@ export function proxy(request: NextRequest) {
   }
   if (section === "account") {
     const page = suffix.replace(/\.php$/, "").replace(/\.html$/, "") || "index";
-    const allowed = new Set(["index", "login", "register", "forgot-password", "reset-password"]);
+    const allowed = new Set(["index", "login", "register", "forgot-password", "reset-password", "verify-2fa"]);
     return legacyRewrite(request, `account/${allowed.has(page) ? page : "index"}.html`);
   }
   if (section === "edu") {

@@ -8,7 +8,9 @@
   const status = document.getElementById('status');
   const toggle = document.getElementById('switch');
   const description = document.getElementById('description');
-  const challenge = form.dataset.challenge;
+  // Staticky servírovaná stránka nemůže do data-challenge vložit ?challenge= ze URL,
+  // takže ho vezmeme z query (s fallbackem na data-challenge pro PHP-renderovanou verzi).
+  var challenge = form.dataset.challenge || new URLSearchParams(window.location.search).get('challenge') || '';
 
   toggle.addEventListener('click', () => {
     recovery = !recovery;

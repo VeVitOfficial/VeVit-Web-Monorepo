@@ -167,6 +167,17 @@ export async function verifyPassword(user: Record<string, unknown> | null, passw
   return hasUser && ok;
 }
 
+/** Verify a candidate against a PHP-issued bcrypt hash ($2y$ is rewritten to $2a$). */
+export async function verifyBcrypt(candidate: string, hash: string): Promise<boolean> {
+  const usable = usableBcryptHash(hash);
+  if (!usable) return false;
+  try {
+    return await bcrypt.compare(candidate, usable);
+  } catch {
+    return false;
+  }
+}
+
 export function isProviderOnlyAccount(user: Record<string, unknown> | null): boolean {
   return (
     !!user &&
@@ -265,6 +276,47 @@ export function setSessionCookie(response: NextResponse, token: string, remember
     path: "/",
     ...(remember ? { maxAge: SESSION_DAYS * 86400 } : {}),
   });
+}
+
+/**
+ * Finish a 2FA login: create the server-side session from a consumed challenge
+ * (payload carries remember + destination), set the session + locale cookies,
+ * and return { redirect } the frontend location.replace()s to.
+ *
+ * Ported from completeTotpSession in account/lib/totp-endpoint.php: the
+ * verify-2fa endpoints call this once the challenge is atomically consumed.
+ */
+export async function completeTotpSession(
+  request: Request,
+  consumed: { user_id: string; payload?: Record<string, unknown> },
+): Promise<Response> {
+  const userId = consumed.user_id;
+  if (!userId) return json({ success: false, error: "Ověření se nepodařilo dokončit." }, 409);
+
+  const payload = consumed.payload ?? {};
+  const remember = payload.remember === true;
+  const session = await createSession(request, userId, remember);
+  if (session === null) return json({ success: false, error: "Chyba serveru." }, 500);
+
+  const rawDestination = typeof payload.destination === "string" ? payload.destination : "/account";
+  const destination = rawDestination.startsWith("/") && !rawDestination.startsWith("//") ? rawDestination : "/account";
+
+  const { data: langRow } = await accountSupabase()
+    .from("users")
+    .select("language")
+    .eq("id", userId)
+    .limit(1)
+    .maybeSingle();
+  const lang = (langRow as Record<string, unknown> | null)?.language ?? "cs";
+
+  const redirect = localeRedirectTarget(destination, lang);
+  const response = NextResponse.json(
+    { success: true, redirect },
+    { headers: { "Cache-Control": "no-store", "Content-Type": "application/json; charset=UTF-8" } },
+  );
+  setSessionCookie(response, session.token, remember);
+  setLocaleCookie(response, String(lang));
+  return response;
 }
 
 // ── Locale + redirect helpers (ported from shared/i18n/locale.php) ─────────────
