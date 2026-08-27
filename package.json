@@ -12,6 +12,7 @@
   "devDependencies": {
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/forms": "^0.5.10",
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^26.3.0",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.5",
@@ -25,6 +26,7 @@
     "@supabase/supabase-js": "^2.112.4",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
+    "bcryptjs": "^3.0.3",
     "next": "^16.3.2",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
