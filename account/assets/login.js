@@ -126,7 +126,7 @@
       method: 'POST',
       credentials: 'same-origin',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ identifier: identifier, password: pass, remember: remember, return_to: returnUrl, hp_confirm: hpConfirm.value, hp_ts: Number(hpTs.value) }),
+      body: JSON.stringify({ identifier: identifier, password: pass, remember: remember, return_to: returnUrl, hp_confirm: hpConfirm.value, hp_ts: Number(hpTs.value), cf_turnstile: window.VVCaptcha ? window.VVCaptcha.token() : '' }),
     })
     .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, data: d }; }); })
     .then(function (res) {
@@ -135,6 +135,7 @@
         location.replace(res.data.redirect ? res.data.redirect : './index.html');
       } else {
         setLoading(btnLogin, false);
+        if (window.VVCaptcha) window.VVCaptcha.reset();
         showErr(res.data.error || t('auth.login.errFailed'));
       }
     })

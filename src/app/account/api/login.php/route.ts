@@ -20,6 +20,7 @@ import {
   totpIsActive,
   verifyPassword,
 } from "@/lib/account-auth";
+import { verifyTurnstile } from "@/lib/turnstile";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -51,6 +52,11 @@ async function login(request: Request): Promise<Response> {
   // Honeypot + timing gate. Reuses the rate-limit response so a bot cannot
   // distinguish "detected" from "throttled".
   if (!antiBotPassed(body)) return json({ success: false, error: RATE_LIMIT_MESSAGE }, 429);
+
+  // Cloudflare Turnstile — enforced only while TURNSTILE_SECRET is configured.
+  if (!(await verifyTurnstile(body.cf_turnstile, ip))) {
+    return json({ success: false, error: "CAPTCHA ověření selhalo." }, 400);
+  }
 
   const usesUnifiedIdentifier = "identifier" in body;
   const rawIdentifier = typeof body.identifier === "string"

@@ -237,7 +237,7 @@
     setSubmitting(true);
     var phone = identityMode === 'phone' ? normalizeCzechPhone(inputs.email.value) : null;
     var endpoint = identityMode === 'phone' ? './api/phone/register-start.php' : './api/register.php';
-    var payload = { nickname: normalizeNicknameInput(inputs.nickname.value), full_name: inputs.name.value.trim(), password: inputs.password.value, password_confirmation: inputs.passwordConfirm.value, hp_confirm: hpConfirm.value, hp_ts: Number(hpTs.value) };
+    var payload = { nickname: normalizeNicknameInput(inputs.nickname.value), full_name: inputs.name.value.trim(), password: inputs.password.value, password_confirmation: inputs.passwordConfirm.value, hp_confirm: hpConfirm.value, hp_ts: Number(hpTs.value), cf_turnstile: window.VVCaptcha ? window.VVCaptcha.token() : '' };
     if (identityMode === 'phone') payload.phone = phone;
     else payload.email = inputs.email.value.trim();
     fetch(endpoint, {
@@ -248,6 +248,7 @@
       .then(function (result) {
         if (!result.ok) {
           setSubmitting(false);
+          if (window.VVCaptcha) window.VVCaptcha.reset();
           showError(result.data.error || t('auth.register.errFailed'));
           return;
         }
@@ -260,6 +261,7 @@
       })
       .catch(function () {
         setSubmitting(false);
+        if (window.VVCaptcha) window.VVCaptcha.reset();
         showError(t('auth.common.networkError'));
       });
   });
