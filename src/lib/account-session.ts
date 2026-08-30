@@ -1,10 +1,26 @@
 import "server-only";
 
+import { cookies } from "next/headers";
 import { createHash, createHmac } from "node:crypto";
 import { createClient } from "@supabase/supabase-js";
 
 export const ACCOUNT_SESSION_COOKIE = "__Host-vvsession";
 export const ACCOUNT_LEGACY_SESSION_COOKIE = "__vvsession";
+
+/** Authenticated account session (user row + derived CSRF token). */
+export type AccountSession = NonNullable<Awaited<ReturnType<typeof loadAccountSession>>>;
+
+/**
+ * Load the account session from the request cookies. Returns null when no
+ * valid session cookie is present; throws AccountBackendUnavailableError when
+ * the backend cannot be reached.
+ */
+export async function loadSessionFromCookies(): Promise<AccountSession | null> {
+  const cookieStore = await cookies();
+  const rawToken = cookieStore.get(ACCOUNT_SESSION_COOKIE)?.value
+    ?? cookieStore.get(ACCOUNT_LEGACY_SESSION_COOKIE)?.value;
+  return loadAccountSession(rawToken);
+}
 
 const USER_COLUMNS = [
   "id", "email", "nickname", "full_name", "tier", "tier_expires",

@@ -2,6 +2,8 @@ import "server-only";
 
 import { createHmac, timingSafeEqual } from "node:crypto";
 import nacl from "tweetnacl";
+import bcrypt from "bcryptjs";
+import QRCode from "qrcode";
 
 import { accountSupabase, verifyBcrypt } from "@/lib/account-auth";
 
@@ -239,4 +241,101 @@ export async function consumeRecoveryLogin(challengeId: string, codeId: number):
   });
   if (error || !data) return null;
   return consumedFromRow(rpcScalar<Record<string, unknown>>(data));
+}
+// ── 2FA management helpers (ports from totp.php / totp-endpoint.php used by
+//    setup-start / setup-confirm / disable / recovery-regenerate) ─────────────
+
+/** Port of encryptTotpSecret — libsodium secretbox with a random nonce, "v1." envelope. */
+export function encryptTotpSecret(secret: string): string {
+  const key = totpEncryptionKey();
+  const nonce = nacl.randomBytes(nacl.secretbox.nonceLength);
+  const box = nacl.secretbox(new Uint8Array(Buffer.from(secret, "utf8")), nonce, key);
+  const combined = new Uint8Array(nonce.length + box.length);
+  combined.set(nonce);
+  combined.set(box, nonce.length);
+  return "v1." + Buffer.from(combined).toString("base64url");
+}
+
+/** Port of generateTotpSecret — 20 random bytes as base32 (RFC 4648, no padding). */
+export function generateTotpSecret(): string {
+  const bytes = nacl.randomBytes(20);
+  const alphabet = BASE32_ALPHABET;
+  let bits = 0;
+  let value = 0;
+  let out = "";
+  for (const byte of bytes) {
+    value = (value << 8) | byte;
+    bits += 8;
+    while (bits >= 5) {
+      out += alphabet[(value >>> (bits - 5)) & 31];
+      bits -= 5;
+    }
+  }
+  if (bits > 0) out += alphabet[(value << (5 - bits)) & 31];
+  return out;
+}
+
+/** Port of totpProvisioningUri — otpauth:// URI with issuer included as parameter. */
+export function totpProvisioningUri(secret: string, rawLabel: string): string {
+  const label = rawLabel.trim().slice(0, 80);
+  const params = new URLSearchParams({
+    secret,
+    issuer: "VEVIT",
+    algorithm: "SHA1",
+    digits: "6",
+    period: "30",
+  });
+  return `otpauth://totp/VEVIT:${encodeURIComponent(label)}?${params.toString()}`;
+}
+
+/** Port of totpQrDataUri — QR of the provisioning URI as an SVG data URI. */
+export async function totpQrDataUri(uri: string): Promise<string> {
+  const svg = await QRCode.toString(uri, { type: "svg", width: 240, margin: 1, errorCorrectionLevel: "M" });
+  return "data:image/svg+xml;base64," + Buffer.from(svg, "utf8").toString("base64");
+}
+
+/** Port of generateRecoveryCodes — 10 codes XXXX-XXXX-XXXX from an unambiguous alphabet. */
+export function generateRecoveryCodes(count = 10): string[] {
+  const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  const codes = new Set<string>();
+  while (codes.size < count) {
+    let raw = "";
+    for (let i = 0; i < 12; i++) raw += alphabet[Math.floor(Math.random() * alphabet.length)];
+    codes.add(`${raw.slice(0, 4)}-${raw.slice(4, 8)}-${raw.slice(8, 12)}`);
+  }
+  return [...codes];
+}
+
+/** Port of hashRecoveryCodes — bcrypt each plaintext code. */
+export async function hashRecoveryCodes(codes: string[]): Promise<string[]> {
+  return await Promise.all(codes.map((code) => bcrypt.hash(code, 10)));
+}
+
+/**
+ * Port of requireTotpReauthentication: password accounts must re-confirm with
+ * their password; OAuth-only accounts pass a one-time totp_setup challenge
+ * issued by the OAuth reauth flow. Throws ReauthRequiredError on failure.
+ */
+export class ReauthRequiredError extends Error {
+  constructor(message: string) {
+    super(message);
+  }
+}
+
+export async function requireTotpReauthentication(userId: string, body: Record<string, unknown>): Promise<void> {
+  const { data, error } = await accountSupabase().from("users").select("password").eq("id", userId).limit(1).maybeSingle();
+  const hash = (data as { password?: string } | null)?.password;
+  if (typeof hash === "string" && hash !== "") {
+    if (!(await verifyBcrypt(String(body.password ?? ""), hash))) {
+      throw new ReauthRequiredError("Současné heslo je nesprávné.");
+    }
+    return;
+  }
+  const id = totpChallengeId(body.reauth_challenge);
+  const challenge = id ? await loadTotpChallenge(id, "totp_setup") : null;
+  const payload = challenge?.payload ?? {};
+  if (!challenge || challenge.user_id !== userId || payload.purpose !== "oauth_reauth") {
+    throw new ReauthRequiredError("Je nutné nové ověření přes připojenou službu.");
+  }
+  await accountSupabase().from("auth_challenges").update({ used_at: new Date().toISOString().replace(/\.\d{3}Z$/, "Z") }).eq("id", id);
 }
