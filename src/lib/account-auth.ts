@@ -101,6 +101,52 @@ export function classifyIdentifier(raw: string): Identifier | null {
   return null;
 }
 
+// ── Registration validation (ported from registration-validation.php) ──────────
+// Keep the policy identical between the register endpoint and the availability
+// lookup so the UI never promises an unusable nickname.
+
+/** Port of registerNicknameIsValid: 2–30 characters from [\p{L}\p{M}\p{N} ._'’-]. */
+export function registerNicknameIsValid(nickname: string): boolean {
+  const normalized = normalizeNickname(nickname);
+  if (normalized === null) return false;
+  const length = Array.from(normalized).length;
+  return length >= 2 && length <= 30 && /^[\p{L}\p{M}\p{N} ._'’-]+$/u.test(normalized);
+}
+
+/** Port of registerNormalizeNickname (trim, collapse whitespace, NFC, no control chars). */
+export function registerNormalizeNickname(nickname: string): string | null {
+  return normalizeNickname(nickname);
+}
+
+export function registerNicknameLookupKey(nickname: string): string | null {
+  return nicknameLookupKey(nickname);
+}
+
+/**
+ * Port of registerPasswordError. Buffer.byteLength is deliberate: bcrypt's
+ * 72-byte input ceiling is byte-based, not character-based.
+ */
+export function registerPasswordError(password: string): string | null {
+  const bytes = Buffer.byteLength(password, "utf8");
+  if (bytes < 8) return "Heslo musí mít alespoň 8 znaků.";
+  if (bytes > 72) return "Heslo je příliš dlouhé.";
+  if (!/[A-Z]/.test(password) || !/[a-z]/.test(password) || !/\d/.test(password) || !/[^A-Za-z0-9]/.test(password)) {
+    return "Heslo nesplňuje bezpečnostní požadavky.";
+  }
+  return null;
+}
+
+/** Port of logActivity in auth-helpers.php: append to account_activity. */
+export async function logActivity(userId: string, kind: string, detail = ""): Promise<void> {
+  const { error } = await accountSupabase().from("account_activity").insert({
+    user_id: userId,
+    kind,
+    detail,
+    created_at: new Date().toISOString(),
+  });
+  if (error) console.error("[auth] account_activity insert failed");
+}
+
 // ── Anti-bot honeypot + timing gate (ported from anti-bot.php) ──────────────────
 // On failure we reuse the rate-limit status/message so a bot cannot tell
 // "detected as a bot" apart from "throttled".
