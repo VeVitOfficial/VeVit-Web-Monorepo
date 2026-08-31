@@ -1,0 +1,39 @@
+/* Supplemental design classes for the store React port.
+   The legacy store markup (store/lib/header.php, agenda pages) relies on a
+   Tailwind utility set that the compiled public/assets/css/vevit-tailwind.css
+   does not fully cover (typography scale, a few spacing/color steps). These
+   definitions mirror the original design tokens from store/assets/css/style.css
+   so the React pages render the same look as the PHP originals. */
+
+/* Typography scale (design-system intend of the retired legacy build) */
+.text-h1, .font-h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); line-height: 1.12; letter-spacing: -0.03em; }
+.text-h2, .font-h2 { font-size: 1.3rem; line-height: 1.3; }
+.text-h3, .font-h3 { font-size: 1.1rem; line-height: 1.35; }
+.font-body-md, .text-body-md { font-family: var(--font-sans); font-size: 0.95rem; line-height: 1.6; }
+.font-caption, .text-caption { font-size: 0.7rem; line-height: 1.45; }
+.text-mono-label { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.14em; }
+.font-display { font-family: 'Bricolage Grotesque', system-ui, sans-serif; }
+
+/* Container */
+.max-w-store { max-width: 80rem; }
+
+/* Missing spacing steps */
+.py-2\.5 { padding-top: 0.625rem; padding-bottom: 0.625rem; }
+.mt-0\.5 { margin-top: 0.125rem; }
+.divide-y > :not([hidden]) ~ :not([hidden]) { border-top-width: 1px; }
+
+/* Missing color steps */
+.bg-primary\/8 { background-color: rgba(16, 185, 129, 0.08); }
+.border-primary\/25 { border-color: rgba(16, 185, 129, 0.25); }
+.border-primary\/30 { border-color: rgba(16, 185, 129, 0.3); }
+
+/* Arbitrary font sizes used by the original markup */
+.text-\[9px\] { font-size: 9px; }
+.text-\[10px\] { font-size: 10px; }
+.text-\[14px\] { font-size: 14px; }
+.text-\[16px\] { font-size: 16px; }
+.text-\[18px\] { font-size: 18px; }
+.text-\[20px\] { font-size: 20px; }
+.text-\[22px\] { font-size: 22px; }
+.text-\[40px\] { font-size: 40px; }
+.max-w-\[680px\] { max-width: 680px; }

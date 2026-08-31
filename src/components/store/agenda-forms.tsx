@@ -16,6 +16,34 @@ function randomKey() {
   return `idem-${Date.now()}-${Math.random().toString(36).slice(2)}`;
 }
 
+const FORM_CARD = "bg-surface-container border border-outline-variant rounded-xl p-6 space-y-4";
+
+function ItemPicker({ items, selected, setSelected }: { items: AgendaItem[]; selected: Record<number, number>; setSelected: React.Dispatch<React.SetStateAction<Record<number, number>>> }) {
+  return (
+    <>
+      {items.map((item) => (
+        <div className="flex items-center gap-3" key={item.order_item_id}>
+          <input
+            type="checkbox"
+            checked={(selected[item.order_item_id] ?? 0) > 0}
+            onChange={(event) => setSelected((current) => ({ ...current, [item.order_item_id]: event.target.checked ? 1 : 0 }))}
+          />
+          <label className="flex-1">{item.name}</label>
+          <input
+            type="number"
+            min={1}
+            max={item.maxQuantity}
+            value={selected[item.order_item_id] ?? 0}
+            disabled={(selected[item.order_item_id] ?? 0) === 0}
+            aria-label="Množství"
+            onChange={(event) => setSelected((current) => ({ ...current, [item.order_item_id]: Math.max(1, Math.min(item.maxQuantity, Number(event.target.value) || 0)) }))}
+          />
+        </div>
+      ))}
+    </>
+  );
+}
+
 export function ClaimCreateForm({ orderId, items }: { orderId: string; items: AgendaItem[] }) {
   const router = useRouter();
   const [selected, setSelected] = useState<Record<number, number>>(() => Object.fromEntries(items.map((item) => [item.order_item_id, 0])));
@@ -23,8 +51,7 @@ export function ClaimCreateForm({ orderId, items }: { orderId: string; items: Ag
   const [busy, setBusy] = useState(false);
   async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const form = event.currentTarget;
-    const data = new FormData(form);
+    const data = new FormData(event.currentTarget);
     setBusy(true);
     try {
       const itemsPayload = items
@@ -53,47 +80,26 @@ export function ClaimCreateForm({ orderId, items }: { orderId: string; items: Ag
     }
   }
   return (
-    <form className="store-form" onSubmit={submit}>
-      <p className="store-eyebrow">Zákaznická agenda</p>
-      <p>Položky a množství server vždy znovu ověří proti objednávce.</p>
-      {items.map((item) => (
-        <div className="store-form-row" key={item.order_item_id}>
-          <label>
-            <span>
-              <input
-                type="checkbox"
-                checked={(selected[item.order_item_id] ?? 0) > 0}
-                onChange={(event) => setSelected((current) => ({ ...current, [item.order_item_id]: event.target.checked ? 1 : 0 }))}
-              />{" "}
-              {item.name}
-            </span>
-          </label>
-          <label>
-            Množství
-            <input
-              type="number"
-              min={1}
-              max={item.maxQuantity}
-              value={selected[item.order_item_id] ?? 0}
-              disabled={(selected[item.order_item_id] ?? 0) === 0}
-              onChange={(event) => setSelected((current) => ({ ...current, [item.order_item_id]: Math.max(1, Math.min(item.maxQuantity, Number(event.target.value) || 0)) }))}
-            />
-          </label>
-        </div>
-      ))}
-      <label>Důvod<input name="reason_code" required maxLength={64} /></label>
-      <label>Popis<textarea name="problem_description" required maxLength={5000} /></label>
-      <label>
-        Požadované řešení
-        <select name="requested_resolution" defaultValue="repair">
+    <form className={FORM_CARD} onSubmit={submit} style={{ maxWidth: 680 }}>
+      <p className="text-on-surface-variant">Položky a množství server vždy znovu ověří proti objednávce.</p>
+      <ItemPicker items={items} selected={selected} setSelected={setSelected} />
+      <label className="block">Důvod
+        <input className="w-full mt-1" name="reason_code" required maxLength={64} />
+      </label>
+      <label className="block">Popis
+        <textarea className="w-full mt-1" name="problem_description" required maxLength={5000} />
+      </label>
+      <label className="block">Požadované řešení
+        <select className="w-full mt-1" name="requested_resolution" defaultValue="repair">
           <option value="repair">Oprava</option>
           <option value="replacement">Výměna</option>
           <option value="refund">Vrácení peněz</option>
           <option value="other">Jiné</option>
         </select>
       </label>
-      <button className="store-button primary" type="submit" disabled={busy}>Odeslat reklamaci</button>
-      <output aria-live="polite">{output}</output>
+      <button className="btn btn-primary" type="submit" disabled={busy}>Odeslat reklamaci</button>
+      <output className="block" aria-live="polite" />
+      <output className="text-on-surface-variant" aria-live="polite">{output}</output>
     </form>
   );
 }
@@ -105,8 +111,7 @@ export function ReturnCreateForm({ orderId, items }: { orderId: string; items: A
   const [busy, setBusy] = useState(false);
   async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const form = event.currentTarget;
-    const data = new FormData(form);
+    const data = new FormData(event.currentTarget);
     setBusy(true);
     try {
       const itemsPayload = items
@@ -129,37 +134,14 @@ export function ReturnCreateForm({ orderId, items }: { orderId: string; items: A
     }
   }
   return (
-    <form className="store-form" onSubmit={submit}>
-      <p className="store-eyebrow">Zákaznická agenda</p>
-      <p>Způsobilost a množství server vždy znovu ověří.</p>
-      {items.map((item) => (
-        <div className="store-form-row" key={item.order_item_id}>
-          <label>
-            <span>
-              <input
-                type="checkbox"
-                checked={(selected[item.order_item_id] ?? 0) > 0}
-                onChange={(event) => setSelected((current) => ({ ...current, [item.order_item_id]: event.target.checked ? 1 : 0 }))}
-              />{" "}
-              {item.name}
-            </span>
-          </label>
-          <label>
-            Množství
-            <input
-              type="number"
-              min={1}
-              max={item.maxQuantity}
-              value={selected[item.order_item_id] ?? 0}
-              disabled={(selected[item.order_item_id] ?? 0) === 0}
-              onChange={(event) => setSelected((current) => ({ ...current, [item.order_item_id]: Math.max(1, Math.min(item.maxQuantity, Number(event.target.value) || 0)) }))}
-            />
-          </label>
-        </div>
-      ))}
-      <label>Důvod<input name="reason_code" required maxLength={64} /></label>
-      <button className="store-button primary" type="submit" disabled={busy}>Odeslat žádost</button>
-      <output aria-live="polite">{output}</output>
+    <form className={FORM_CARD} onSubmit={submit} style={{ maxWidth: 680 }}>
+      <p className="text-on-surface-variant">Způsobilost a množství server vždy znovu ověří.</p>
+      <ItemPicker items={items} selected={selected} setSelected={setSelected} />
+      <label className="block">Důvod
+        <input className="w-full mt-1" name="reason_code" required maxLength={64} />
+      </label>
+      <button className="btn btn-primary" type="submit" disabled={busy}>Odeslat žádost</button>
+      <output className="block text-on-surface-variant" aria-live="polite">{output}</output>
     </form>
   );
 }
@@ -188,10 +170,12 @@ export function AgendaMessageForm({ endpoint, caseId }: { endpoint: "claims" | "
     }
   }
   return (
-    <form className="store-form" onSubmit={submit}>
-      <label>Doplnit zprávu<textarea name="message" required maxLength={2000} value={message} onChange={(event) => setMessage(event.target.value)} /></label>
-      <button className="store-button" type="submit" disabled={busy}>Odeslat zprávu</button>
-      <output className="store-eyebrow" aria-live="polite">{output}</output>
+    <form className="mt-6 border-t border-outline-variant pt-5" onSubmit={submit}>
+      <label className="block">Doplnit zprávu
+        <textarea className="w-full mt-2" name="message" required maxLength={2000} value={message} onChange={(event) => setMessage(event.target.value)} />
+      </label>
+      <button className="btn btn-outline mt-3" type="submit" disabled={busy}>Odeslat zprávu</button>
+      <output className="block mt-2 text-on-surface-variant" aria-live="polite">{output}</output>
     </form>
   );
 }
@@ -217,8 +201,8 @@ export function FavoriteRemoveButton({ productId, name }: { productId: number; n
   }
   return (
     <span>
-      <button className="store-button" type="button" onClick={remove} disabled={busy} aria-label={`Odebrat ${name} z oblíbených`}>Odebrat</button>
-      <output className="store-eyebrow" aria-live="polite">{error}</output>
+      <button className="btn btn-outline" type="button" onClick={remove} disabled={busy} aria-label={`Odebrat ${name} z oblíbených`}>Odebrat</button>
+      <output className="sr-only" aria-live="polite">{error}</output>
     </span>
   );
 }

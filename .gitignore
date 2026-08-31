@@ -47,3 +47,7 @@ Thumbs.db
 .vscode/
 .vercel
 .env*
+
+.playwright-mcp/
+AGENTS.md
+CLAUDE.md

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { connection } from "next/server";
 import { claimAccountList } from "@/lib/store-claims";
 import { getStoreUser } from "@/lib/store-config";
+import { AgendaPage, AgendaUnavailable } from "@/components/store/agenda-shell";
 
 export const metadata = { title: "Moje reklamace — VeVit Store", robots: { index: false } };
 export const dynamic = "force-dynamic";
@@ -13,24 +14,19 @@ export default async function ClaimsPage() {
   await connection();
   const state = await loadClaims();
   return (
-    <main className="store-main">
-      <div className="store-section-head"><div><p className="store-eyebrow">Zákaznická agenda</p><h1>Moje reklamace</h1></div></div>
+    <AgendaPage title="Moje reklamace">
       {state === "unavailable" ? (
-        <section className="store-form" role="status">
-          <h2>Funkce je dočasně nedostupná</h2>
-          <p>Seznam všech reklamací vyžaduje ověřenou identitu VeVit Account. Reklamaci konkrétní guest objednávky otevřete bezpečným odkazem.</p>
-          <Link className="store-button primary" href="/store/catalog">Přejít do katalogu</Link>
-        </section>
+        <AgendaUnavailable message="Seznam všech reklamací vyžaduje ověřenou identitu VeVit Account. Reklamaci konkrétní guest objednávky otevřete bezpečným odkazem." />
       ) : state.length === 0 ? (
-        <p className="store-eyebrow">Zatím nemáte žádné reklamace.</p>
+        <p className="text-on-surface-variant">Zatím nemáte žádné reklamace.</p>
       ) : state.map((row) => (
-        <article className="store-form" key={String(row.public_id)}>
-          <h2>{String(row.reason_code)}</h2>
+        <article className="bg-surface-container border border-outline-variant rounded-xl p-5 mb-4" key={String(row.public_id)}>
+          <h2 className="font-h2 text-h2">{String(row.reason_code)}</h2>
           <p>{String(row.status)}</p>
-          <Link className="store-button" href={`/store/claim?id=${encodeURIComponent(String(row.public_id))}`}>Detail reklamace</Link>
+          <Link className="text-primary underline" href={`/store/claim?id=${encodeURIComponent(String(row.public_id))}`}>Detail reklamace</Link>
         </article>
       ))}
-    </main>
+    </AgendaPage>
   );
 }
 

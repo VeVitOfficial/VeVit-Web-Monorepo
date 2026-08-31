@@ -5,17 +5,33 @@ export const metadata = { title: "Platba zrušena — VeVit Store", robots: { in
 /** Port of store/cancel.php. */
 export default function CancelPage() {
   return (
-    <main className="store-main">
-      <section className="store-hero">
-        <p className="store-eyebrow">Checkout</p>
-        <h1>Platba byla zrušena</h1>
-        <p>Tvá objednávka nebyla dokončena. Obsah košíku zůstal uložen — můžeš to zkusit znovu nebo si nechat čas na rozmyšlenou.</p>
-        <div className="store-actions">
-          <Link className="store-button" href="/store/cart">Zpět do košíku</Link>
-          <Link className="store-button primary" href="/store/checkout">Zkusit znovu</Link>
-        </div>
-        <Link className="store-button" href="/store/catalog">Nebo pokračovat v nákupu</Link>
-      </section>
+    <main className="flex-1 w-full max-w-[560px] mx-auto px-margin py-16 flex flex-col items-center text-center gap-6">
+      <div className="order-status-icon error">
+        <span className="material-symbols-outlined icon-filled text-[40px] text-error" aria-hidden="true">cancel</span>
+      </div>
+
+      <div>
+        <span className="font-mono-label text-mono-label text-on-surface-variant uppercase tracking-widest block mb-2">Checkout</span>
+        <h1 className="font-display text-h1 text-on-surface mb-3">Platba byla zrušena</h1>
+        <p className="font-body-md text-on-surface-variant max-w-sm mx-auto">
+          Tvá objednávka nebyla dokončena. Obsah košíku zůstal uložen — můžeš to zkusit znovu nebo si nechat čas na rozmyšlenou.
+        </p>
+      </div>
+
+      <div className="flex flex-col sm:flex-row gap-3 mt-2">
+        <Link href="/store/cart" className="btn btn-outline">
+          <span className="material-symbols-outlined text-[18px]" aria-hidden="true">shopping_bag</span>
+          Zpět do košíku
+        </Link>
+        <Link href="/store/checkout" className="btn btn-primary">
+          <span className="material-symbols-outlined text-[18px]" aria-hidden="true">replay</span>
+          Zkusit znovu
+        </Link>
+      </div>
+
+      <Link href="/store/catalog" className="text-sm text-on-surface-variant hover:text-primary transition-colors">
+        Nebo pokračovat v nákupu
+      </Link>
     </main>
   );
 }

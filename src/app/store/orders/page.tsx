@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { connection } from "next/server";
 import { accountOrdersList, type AccountOrderRow } from "@/lib/store-order-page";
+import { AgendaPage, AgendaUnavailable } from "@/components/store/agenda-shell";
 
 export const metadata = { title: "Moje objednávky — VeVit Store", robots: { index: false } };
 export const dynamic = "force-dynamic";
@@ -10,29 +11,27 @@ export default async function OrdersPage() {
   await connection();
   const state = await loadOrders();
   return (
-    <main className="store-main">
-      <div className="store-section-head"><div><p className="store-eyebrow">Zákaznická agenda</p><h1>Moje objednávky</h1></div></div>
+    <AgendaPage title="Moje objednávky" subtitle="Přehled objednávek je dostupný jen po ověřeném přihlášení VeVit Account.">
       {state === "unavailable" ? (
-        <section className="store-form" role="status">
-          <h2>Funkce je dočasně nedostupná</h2>
-          <p>Přehled objednávek je dostupný jen po ověřeném přihlášení VeVit Account. Pro konkrétní objednávku použijte bezpečný odkaz z potvrzovacího e-mailu.</p>
-          <Link className="store-button primary" href="/store/catalog">Přejít do katalogu</Link>
-        </section>
+        <AgendaUnavailable message="Serverový kontrakt VeVit Account zatím není ověřený. Pro konkrétní objednávku použijte bezpečný odkaz z potvrzovacího e-mailu." />
       ) : state.length === 0 ? (
-        <p className="store-eyebrow">Zatím zde nejsou žádné objednávky.</p>
+        <p className="text-on-surface-variant">Zatím zde nejsou žádné objednávky.</p>
       ) : state.map((order) => (
-        <article className="store-form" key={order.public_id}>
-          <div className="store-section-head">
-            <div><h2>{order.order_number}</h2><span>{order.created_at}</span></div>
-            <div className="store-summary">
+        <article className="bg-surface-container border border-outline-variant rounded-xl p-5 mb-4" key={order.public_id}>
+          <div className="flex flex-wrap justify-between gap-3">
+            <div>
+              <h2 className="font-h2 text-h2">{order.order_number}</h2>
+              <p className="text-on-surface-variant">{order.created_at}</p>
+            </div>
+            <div className="text-right">
               <p>{order.status}</p>
-              <strong>{order.total} {order.currency}</strong>
+              <strong>{order.total} {(order.currency ?? "").toUpperCase()}</strong>
             </div>
           </div>
-          <Link className="store-button" href={`/store/order?id=${encodeURIComponent(order.public_id)}`}>Detail objednávky</Link>
+          <Link className="btn btn-outline mt-4 inline-flex" href={`/store/order?id=${encodeURIComponent(order.public_id)}`}>Detail objednávky</Link>
         </article>
       ))}
-    </main>
+    </AgendaPage>
   );
 }
 

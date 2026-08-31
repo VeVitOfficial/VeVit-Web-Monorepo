@@ -1,9 +1,9 @@
-import Link from "next/link";
 import { connection } from "next/server";
 import { claimDetailPayload, claimGuestOrderPublicId, claimOrderForCreate } from "@/lib/store-claims";
 import { orderDetailForPage } from "@/lib/store-order-page";
 import { agendaActorForOrder } from "@/lib/store-order-access";
 import { ClaimCreateForm, AgendaMessageForm } from "@/components/store/agenda-forms";
+import { AgendaPage, AgendaUnavailable, AgendaTimeline } from "@/components/store/agenda-shell";
 
 export const metadata = { title: "Reklamace — VeVit Store", robots: { index: false } };
 export const dynamic = "force-dynamic";
@@ -39,34 +39,27 @@ export default async function ClaimPage({ searchParams }: Props) {
   const orderId = single("order");
   const state: CreateState | DetailState = id === "" ? await loadClaimCreate(orderId) : await loadClaimDetail(id);
   return (
-    <main className="store-main">
-      <div className="store-section-head"><div><p className="store-eyebrow">Zákaznická agenda</p><h1>{id !== "" ? "Detail reklamace" : "Nová reklamace"}</h1></div></div>
-      {state.mode === "unavailable" ? <Unavailable message={state.message} /> : state.mode === "form" ? (
+    <AgendaPage title={id !== "" ? "Detail reklamace" : "Nová reklamace"}>
+      {state.mode === "unavailable" ? (
+        <AgendaUnavailable message={state.message} />
+      ) : state.mode === "form" ? (
         <ClaimCreateForm orderId={state.orderId} items={state.items} />
       ) : (
-        <article className="store-form">
-          <div className="store-section-head"><h2>Stav: {state.status}</h2></div>
-          <p>{state.problem}</p>
-          <h2>Reklamované položky</h2>
-          {state.items.map((item) => (
-            <div className="store-cart-item" key={item.key}>
-              <span>{item.name} × {item.quantity}</span>
-            </div>
-          ))}
-          <h2>Průběh</h2>
-          <ol data-events>
-            {state.events.map((event, index) => (
-              <li key={index}>
-                <strong>{event.state}</strong>
-                {event.message !== "" ? <p className="store-eyebrow">{event.message}</p> : null}
-                <time className="store-eyebrow">{event.at}</time>
-              </li>
+        <article className="bg-surface-container border border-outline-variant rounded-xl p-6">
+          <h2 className="font-h2 text-h2">Stav: {state.status}</h2>
+          <p className="mt-3">{state.problem}</p>
+          <h3 className="font-h2 text-h2 mt-7">Reklamované položky</h3>
+          <ul className="divide-y divide-outline-variant">
+            {state.items.map((item) => (
+              <li className="py-3" key={item.key}>{item.name} × {item.quantity}</li>
             ))}
-          </ol>
+          </ul>
+          <h3 className="font-h2 text-h2 mt-7">Průběh</h3>
+          <AgendaTimeline events={state.events} />
           {CLOSED.has(state.status) ? null : <AgendaMessageForm endpoint="claims" caseId={state.id} />}
         </article>
       )}
-    </main>
+    </AgendaPage>
   );
 }
 
@@ -113,14 +106,4 @@ async function loadClaimDetail(id: string): Promise<DetailState> {
   } catch {
     return { mode: "unavailable", message: "Reklamace není dostupná." };
   }
-}
-
-function Unavailable({ message }: { message: string }) {
-  return (
-    <section className="store-form" role="status">
-      <h2>Funkce je dočasně nedostupná</h2>
-      <p>{message}</p>
-      <Link className="store-button primary" href="/store/catalog">Přejít do katalogu</Link>
-    </section>
-  );
 }
