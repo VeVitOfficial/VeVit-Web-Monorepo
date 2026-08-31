@@ -1,0 +1,10 @@
+/* Forgot-password — inline <style> z account/forgot-password.html přenesený 1:1. */
+.auth-wrap { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:28px; padding:32px 16px; background:var(--bg); }
+.auth-brand { display:flex; align-items:center; gap:10px; }
+.auth-card { width:100%; max-width:480px; background:var(--card); border:1px solid var(--card-border); border-radius:var(--r-card); padding:32px; display:flex; flex-direction:column; gap:20px; }
+.auth-title { font-size:20px; font-weight:700; margin:0 0 4px; }
+.auth-sub { font-size:13px; color:var(--text-3); margin:0; }
+.auth-error { background:#f9731620; border:1px solid #f9731660; border-radius:var(--r-control); padding:10px 14px; font-size:13px; color:#f97316; }
+.auth-error[hidden] { display:none; }
+.auth-ok { background:#10b98120; border:1px solid #10b98160; border-radius:var(--r-control); padding:10px 14px; font-size:13px; color:#10b981; }
+.auth-ok[hidden] { display:none; }

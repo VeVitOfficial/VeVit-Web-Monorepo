@@ -7,6 +7,8 @@
  * (texty se renderují přímo), tz/plurály jsou rozšířené o locale parametr.
  */
 
+import AUTH_DICT from './account-auth-i18n';
+
 const SUPPORTED = ['cs', 'en', 'de', 'es', 'uk', 'fr', 'sk'] as const;
 export type AccountLocale = (typeof SUPPORTED)[number];
 
@@ -1904,6 +1906,13 @@ const TZ_CITIES: Record<string, Record<string, string>> = {
 export function accountInterpolate(str: string, vars: Record<string, unknown> | undefined): string {
   if (!vars) return str;
   return str.replace(/\{(\w+)\}/g, (m, name) => (vars[name] !== undefined ? String(vars[name]) : m));
+}
+
+// Auth obrazovky (login/register/forgot/reset/verify-2fa/…) mají klíče v
+// samostatném modulu account-auth-i18n.ts — mergneme je sem, ať lookup i
+// cs fallback zůstávají na jednom místě (klíče se nepřekrývají: auth.*).
+for (const code of Object.keys(DICT)) {
+  if (AUTH_DICT[code]) Object.assign(DICT[code], AUTH_DICT[code]);
 }
 
 function lookup(key: string, langCode: string): string | undefined {
