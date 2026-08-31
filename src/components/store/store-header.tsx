@@ -11,6 +11,9 @@ export function StoreHeader() {
       <nav aria-label="Obchod">
         <Link href="/store/catalog">Katalog</Link>
         <Link href="/store/catalog?deals=1">Akce</Link>
+        <Link href="/store/cart">Košík</Link>
+        <Link href="/store/orders">Objednávky</Link>
+        <Link href="/store/favorites">Oblíbené</Link>
         <Link href="/account">Účet</Link>
       </nav>
     </header>

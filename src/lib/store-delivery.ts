@@ -63,16 +63,15 @@ export interface DeliveryRow {
 }
 
 /** DeliveryService::customerDetail — rows for the order, unsafe URLs nulled. */
-export async function deliveryCustomerDetail(orderPublicId: string, identity: AgendaIdentity, order: AccessOrder): Promise<Record<string, unknown>[]> {
+export async function deliveryCustomerDetail(orderPublicId: string, identity: AgendaIdentity, order: AccessOrder): Promise<DeliveryRow[]> {
   const user = identityUser(identity);
   if (!orderCanAccess(order, user, identity.grant, orderPublicId)) throw new AgendaDomainError("Delivery unavailable.");
   const rows = await storeRestSelect<DeliveryRow>(
     "store_deliveries",
     `select=public_id,carrier_code,carrier_name,shipping_method,tracking_number,tracking_url,shipped_at,estimated_delivery_at,delivered_at,last_updated_at,status,customer_message,version&order_id=eq.${order.id}&order=created_at.asc,id.asc`,
   );
-  const mapped: Record<string, unknown>[] = rows.map((row): Record<string, unknown> => {
+  return rows.map((row) => {
     const safe = trackingUrlIsSafe(row.carrier_code ?? "", row.tracking_url);
-    return safe ? { ...row } : { ...row, tracking_url: null };
+    return safe ? row : { ...row, tracking_url: null };
   });
-  return mapped;
 }
