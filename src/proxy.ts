@@ -63,6 +63,9 @@ export function proxy(request: NextRequest) {
 
   const sectionParts = parts.slice(1);
   const isApi = sectionParts[0] === "api" || sectionParts[0] === "php" || sectionParts[0] === "public";
+  // Legacy edu app (static pages + its ported MariaDB API under edu/legacy/...)
+  // is served directly by the app router / public assets — never rewritten.
+  if (sectionParts[0] === "legacy") return NextResponse.next();
   if (isApi) {
     if (!locale) return NextResponse.next();
     const url = request.nextUrl.clone();
