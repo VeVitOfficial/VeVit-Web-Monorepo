@@ -29,7 +29,7 @@ export async function POST(request: Request) {
     const kind = body.kind;
     const lessonSlug = body.lesson_slug;
     const questionId = body.question_id;
-    let text = body.body;
+    const text = body.body;
     if (
       !["open", "prompt_lab"].includes(kind as string)
       || typeof lessonSlug !== "string"

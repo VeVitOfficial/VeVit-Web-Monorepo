@@ -323,7 +323,7 @@ export class ReauthRequiredError extends Error {
 }
 
 export async function requireTotpReauthentication(userId: string, body: Record<string, unknown>): Promise<void> {
-  const { data, error } = await accountSupabase().from("users").select("password").eq("id", userId).limit(1).maybeSingle();
+  const { data } = await accountSupabase().from("users").select("password").eq("id", userId).limit(1).maybeSingle();
   const hash = (data as { password?: string } | null)?.password;
   if (typeof hash === "string" && hash !== "") {
     if (!(await verifyBcrypt(String(body.password ?? ""), hash))) {

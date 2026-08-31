@@ -94,9 +94,16 @@ export function proxy(request: NextRequest) {
     return legacyRewrite(request, `home/${page}`);
   }
   if (section === "account") {
-    const page = suffix.replace(/\.php$/, "").replace(/\.html$/, "") || "index";
-    const allowed = new Set(["index", "login", "register", "forgot-password", "reset-password", "verify-2fa"]);
-    return legacyRewrite(request, `account/${allowed.has(page) ? page : "index"}.html`);
+    const page = suffix.replace(/\.php$/, "").replace(/\.html$/, "");
+    // Autentizační obrazovky zůstávají na legacy statickém renderu,
+    // dashboard (i cokoliv jiného) už běží na React routách /account/*.
+    const legacyPages = new Set(["login", "register", "forgot-password", "reset-password", "verify-2fa"]);
+    if (legacyPages.has(page)) return legacyRewrite(request, `account/${page}.html`);
+    const url = request.nextUrl.clone();
+    url.pathname = `/account${page && page !== "index" ? `/${page}` : ""}`;
+    const requestHeaders = new Headers(request.headers);
+    requestHeaders.set("x-vv-locale", locale);
+    return NextResponse.rewrite(url, { request: { headers: requestHeaders } });
   }
   if (section === "edu") {
     const isAiLiteracy = suffix === "ai-gramotnost" || suffix.startsWith("ai-gramotnost/");
