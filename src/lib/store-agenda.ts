@@ -131,11 +131,26 @@ export function agendaFlattenRateLimit(error: unknown, code: string, message: st
 const AGENDA_JSON_RESPONSE_HEADERS = { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" } as const;
 
 /** agenda response helper with the shared headers. */
-export function agendaJson(payload: unknown, cacheControl = "no-store"): Response {
+export function agendaJson(payload: unknown, cacheControl = "no-store", status = 200): Response {
   return new Response(JSON.stringify(payload), {
-    status: 200,
+    status,
     headers: { ...AGENDA_JSON_RESPONSE_HEADERS, "Cache-Control": cacheControl },
   });
+}
+
+/**
+ * Non-throwing twin of storeJsonError for catch blocks: echo's an error body
+ * directly instead of exit-ing (PHP store_emit_json_error semantics).
+ */
+export function agendaErrorPayload(status: number, code: string, message: string, headers: Record<string, string> = {}): Response {
+  return new Response(JSON.stringify({ error: { code, message } }), {
+    status,
+    headers: { ...AGENDA_JSON_RESPONSE_HEADERS, ...headers },
+  });
+}
+
+export function isStoreRateLimitError(error: unknown): error is StoreRateLimitExceededError {
+  return error instanceof StoreRateLimitExceededError;
 }
 
 /** The flattened 401 every PHP catch(Throwable) produced. */

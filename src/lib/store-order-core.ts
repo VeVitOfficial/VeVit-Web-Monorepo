@@ -50,3 +50,21 @@ export function sha256Hex(value: string): string {
 export function randomHex(bytes: number): string {
   return randomBytes(bytes).toString("hex");
 }
+
+/** PHP (int) cast: leading integer of the string form, 0 when absent. */
+export function phpIntCast(value: unknown): number {
+  if (typeof value === "number") return Math.trunc(value);
+  const match = /^[+-]?\d+/.exec(String(value ?? "").trim());
+  const parsed = match !== null ? Number.parseInt(match[0], 10) : 0;
+  return Number.isNaN(parsed) ? 0 : parsed;
+}
+
+/** PHP trim() default charlist (" \t\n\r\0\x0B"), not the Unicode set. */
+export function phpTrim(value: string): string {
+  return value.replace(/^[\t\n\v\f\r\0 ]+/, "").replace(/[\t\n\v\f\r\0 ]+$/, "");
+}
+
+/** mb_strlen() — code points, not UTF-16 units. */
+export function phpMbLength(value: string): number {
+  return Array.from(value).length;
+}
