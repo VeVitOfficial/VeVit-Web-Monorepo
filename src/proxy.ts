@@ -19,13 +19,11 @@ const sections = new Set(["home", "account", "edu", "store", "tools"]);
 const publicFile = /\.(?:css|js|mjs|json|map|png|jpe?g|webp|gif|svg|ico|woff2?|ttf|wasm|pdf|bin|data|mp3|wav|mp4|webm)$/i;
 
 function preferredLocale(request: NextRequest) {
+  // Čeština je výchozí jazyk webu bez ohledu na Accept-Language prohlížeče
+  // (viz zásada 05 "Čeština od začátku"). Jiný jazyk se nastaví jen explicitní
+  // volbou v přepínači CS/EN, která se persistuje do cookie `vevit-lang`.
   const cookie = request.cookies.get("vevit-lang")?.value;
   if (cookie && locales.has(cookie)) return cookie;
-  const accepted = request.headers.get("accept-language")?.toLowerCase() ?? "";
-  for (const language of accepted.split(",")) {
-    const candidate = language.trim().split(";")[0]?.split("-")[0];
-    if (candidate && locales.has(candidate)) return candidate;
-  }
   return "cs";
 }
 
@@ -86,12 +84,22 @@ export function proxy(request: NextRequest) {
     return NextResponse.rewrite(url);
   }
   if (section === "tools") {
-    const tool = suffix.replace(/\.php$/, "");
-    return legacyRewrite(request, `${locale}/tools/${tool ? `${tool}.html` : "index.html"}`);
+    // Celá tools sekce běží na React routách /tools + /tools/<tool>,
+    // locale se předává hlavičkou x-vv-locale (stejný vzor jako account).
+    const tool = suffix.replace(/\.php$/, "").replace(/\.html$/, "");
+    const url = request.nextUrl.clone();
+    url.pathname = `/tools${tool ? `/${tool}` : ""}`;
+    const requestHeaders = new Headers(request.headers);
+    requestHeaders.set("x-vv-locale", locale);
+    return NextResponse.rewrite(url, { request: { headers: requestHeaders } });
   }
   if (section === "home") {
-    const page = suffix === "support" || suffix === "support.html" ? "support.html" : "index.html";
-    return legacyRewrite(request, `home/${page}`);
+    const page = suffix === "support" || suffix === "support.html" ? "support" : "";
+    const url = request.nextUrl.clone();
+    url.pathname = `/home${page ? `/${page}` : ""}`;
+    const requestHeaders = new Headers(request.headers);
+    requestHeaders.set("x-vv-locale", locale);
+    return NextResponse.rewrite(url, { request: { headers: requestHeaders } });
   }
   if (section === "account") {
     const page = suffix.replace(/\.php$/, "").replace(/\.html$/, "");
@@ -104,8 +112,15 @@ export function proxy(request: NextRequest) {
     return NextResponse.rewrite(url, { request: { headers: requestHeaders } });
   }
   if (section === "edu") {
+    // Edu React SPA: /edu + podstránky (dashboard, programovani, kurzy, lekce, hledat),
+    // locale se předává hlavičkou x-vv-locale. ai-gramotnost zůstává legacy PHP.
     const isAiLiteracy = suffix === "ai-gramotnost" || suffix.startsWith("ai-gramotnost/");
-    return legacyRewrite(request, isAiLiteracy ? "edu/ai-gramotnost/index.html" : "edu/index.html");
+    if (isAiLiteracy) return legacyRewrite(request, "edu/ai-gramotnost/index.html");
+    const url = request.nextUrl.clone();
+    url.pathname = `/edu${suffix ? `/${suffix}` : ""}`;
+    const requestHeaders = new Headers(request.headers);
+    requestHeaders.set("x-vv-locale", locale);
+    return NextResponse.rewrite(url, { request: { headers: requestHeaders } });
   }
   return NextResponse.next();
 }

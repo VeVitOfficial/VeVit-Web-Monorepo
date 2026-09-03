@@ -24,8 +24,8 @@
 **/.playwright-cli/
 **/.playwright/
 .next/
-public/
-legacy-public/
+/public/
+/legacy-public/
 next-env.d.ts
 *.tsbuildinfo
 

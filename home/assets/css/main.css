@@ -31,10 +31,14 @@
   --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3);
   --shadow-md: 4px 4px 12px rgba(0, 0, 0, 0.5), -2px -2px 6px rgba(255, 255, 255, 0.03);
 
+  /* Zredukovaná škála: sm pro drobné prvky (chipy, malé ikony), md jako
+     výchozí pro karty a vstupy, lg pro velké feature karty a panely.
+     Mimo tuto škálu zůstávají tři samostatné výjimky s vlastním pravidlem:
+     999px pro pill/badge prvky, 50% pro kruhy/avatary a 2px pro tenké
+     dekorativní pruhy (progress bary, sloupečky grafů). */
   --radius-sm: 6px;
   --radius-md: 10px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
+  --radius-lg: 18px;
 
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -355,7 +359,7 @@ section[id] { scroll-margin-top: 84px; }
   display: flex;
   align-items: center;
   padding: 0 10px;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   color: var(--text-secondary);
   text-align: left;
   text-decoration: none;
@@ -862,8 +866,6 @@ section[id] { scroll-margin-top: 84px; }
   gap: 6px;
   margin: 0;
 }
-.footer-copy .heart { color: var(--error); }
-
 .social-row {
   display: flex;
   gap: 16px;
@@ -1116,13 +1118,16 @@ section[id] { scroll-margin-top: 84px; }
    ============================================ */
 
 :root {
-  --c-tools:    #10b981;  /* emerald — primary */
-  --c-games:    #f97316;  /* orange */
-  --c-edu:      #8b5cf6;  /* violet */
-  --c-services: #06b6d4;  /* cyan */
-  --c-account:  #facc15;  /* amber */
-  --c-search:   #ec4899;  /* pink */
-  --c-store:    #ef4444;  /* red */
+  /* Vlastní paleta per-app barev, mimo výchozí Tailwind stupnici (žádná
+     hodnota nesedí na kulaté 500/400 úrovni) a oddělená od sémantických
+     --accent/--success/--warning/--error/--info výše. */
+  --c-tools:    #41983e;  /* jehličnatá zeleň */
+  --c-games:    #d06639;  /* pálená terakota */
+  --c-edu:      #966ac8;  /* indigová fialová */
+  --c-services: #3195b9;  /* ocelová modrozeleň */
+  --c-account:  #b2ae34;  /* starozlatá */
+  --c-search:   #ca4978;  /* malinová */
+  --c-store:    #9f418c;  /* vínová švestka */
 }
 
 /* ----- HERO REWORK — orbit constellation ----- */
@@ -1177,7 +1182,7 @@ section[id] { scroll-margin-top: 84px; }
   margin: 20px 0 24px;
 }
 .hero-h1-epic .gradient-word {
-  background: linear-gradient(135deg, #10b981 0%, #06b6d4 50%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #41983e 0%, #3195b9 50%, #966ac8 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -1191,11 +1196,11 @@ section[id] { scroll-margin-top: 84px; }
   content: '';
   position: absolute;
   left: -2%; right: -2%;
-  top: 52%;
+  bottom: 2%;
   height: 6px;
   background: var(--accent);
   transform: rotate(-1.5deg);
-  border-radius: 4px;
+  border-radius: 2px;
 }
 
 .hero-sub-epic {
@@ -1301,7 +1306,7 @@ section[id] { scroll-margin-top: 84px; }
   transform: translate(-50%, -50%);
   width: clamp(48px, 9%, 64px);
   aspect-ratio: 1 / 1;
-  border-radius: 14px;
+  border-radius: var(--radius-md);
   display: flex; align-items: center; justify-content: center;
   background: var(--surface-elev);
   border: 1px solid var(--border-hover);
@@ -1378,7 +1383,7 @@ section[id] { scroll-margin-top: 84px; }
   position: relative;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 18px;
+  border-radius: var(--radius-lg);
   padding: 24px;
   display: flex;
   flex-direction: column;
@@ -1398,23 +1403,24 @@ section[id] { scroll-margin-top: 84px; }
   outline-offset: 3px;
 }
 
-.ec-glow {
+/* Strukturální značka aplikace: tenká barevná linka nad kartou (nahrazuje
+   dřívější plošnou radial-gradient "záři" — nese stejnou informaci o barvě
+   kategorie, ale jako jeden konzistentní prvek, ne dekorativní pozadí). */
+.ec::before {
+  content: '';
   position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  background: radial-gradient(ellipse 60% 50% at 50% 0%, var(--c-soft, transparent) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity 250ms var(--ease);
-  pointer-events: none;
-  z-index: 0;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--c, var(--accent));
+  opacity: 0.85;
+  z-index: 1;
 }
-.ec:hover .ec-glow { opacity: 1; }
 
 .ec > * { position: relative; z-index: 1; }
 
 .ec-icon-wrap {
   width: 44px; height: 44px;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   display: inline-flex; align-items: center; justify-content: center;
   background: var(--c-soft);
   color: var(--c);
@@ -1497,14 +1503,11 @@ section[id] { scroll-margin-top: 84px; }
 /* tools — HERO card with toolkit grid */
 .ec-tools {
   --c: var(--c-tools);
-  --c-soft: rgba(16,185,129,0.10);
-  --c-border: rgba(16,185,129,0.25);
+  --c-soft: rgba(65,152,62,0.10);
+  --c-border: rgba(65,152,62,0.25);
   grid-column: span 8;
   grid-row: span 4;
-  background:
-    radial-gradient(ellipse 80% 60% at 100% 100%, rgba(16,185,129,0.10) 0%, transparent 60%),
-    var(--surface);
-  border-color: rgba(16,185,129,0.18);
+  border-color: rgba(65,152,62,0.18);
 }
 @media (max-width: 1023px) { .ec-tools { grid-column: span 6; grid-row: span 4; } }
 @media (max-width: 640px)  { .ec-tools { grid-column: 1; grid-row: auto; min-height: 420px; } }
@@ -1517,7 +1520,7 @@ section[id] { scroll-margin-top: 84px; }
   font-weight: 700;
   line-height: 0.85;
   letter-spacing: -0.05em;
-  background: linear-gradient(180deg, #10b981 0%, #047857 100%);
+  background: linear-gradient(180deg, #41983e 0%, #245422 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -1527,7 +1530,7 @@ section[id] { scroll-margin-top: 84px; }
 .ec-tools-num sup {
   font-size: 0.4em;
   vertical-align: super;
-  background: linear-gradient(180deg, #10b981 0%, #047857 100%);
+  background: linear-gradient(180deg, #41983e 0%, #245422 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -1545,7 +1548,7 @@ section[id] { scroll-margin-top: 84px; }
 
 .toolkit-tile {
   aspect-ratio: 1 / 1;
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   background: rgba(255,255,255,0.025);
   border: 1px solid var(--border);
   display: flex; align-items: center; justify-content: center;
@@ -1553,12 +1556,12 @@ section[id] { scroll-margin-top: 84px; }
   transition: all 150ms var(--ease);
 }
 .ec-tools:hover .toolkit-tile {
-  border-color: rgba(16,185,129,0.18);
+  border-color: rgba(65,152,62,0.18);
 }
 .toolkit-tile.hot {
-  background: rgba(16,185,129,0.10);
+  background: rgba(65,152,62,0.10);
   color: var(--c-tools);
-  border-color: rgba(16,185,129,0.3);
+  border-color: rgba(65,152,62,0.3);
 }
 .toolkit-tile.dim {
   opacity: 0.4;
@@ -1567,13 +1570,10 @@ section[id] { scroll-margin-top: 84px; }
 /* games */
 .ec-games {
   --c: var(--c-games);
-  --c-soft: rgba(249,115,22,0.10);
-  --c-border: rgba(249,115,22,0.25);
+  --c-soft: rgba(208,102,57,0.10);
+  --c-border: rgba(208,102,57,0.25);
   grid-column: span 4;
   grid-row: span 2;
-  background:
-    repeating-linear-gradient(45deg, rgba(249,115,22,0.04) 0 2px, transparent 2px 14px),
-    var(--surface);
 }
 @media (max-width: 1023px) { .ec-games { grid-column: span 3; grid-row: span 2; } }
 @media (max-width: 640px)  { .ec-games { grid-column: 1; grid-row: auto; min-height: 220px; } }
@@ -1586,20 +1586,17 @@ section[id] { scroll-margin-top: 84px; }
   flex: 1;
   height: 12px;
   border-radius: 2px;
-  background: rgba(249,115,22,0.15);
+  background: rgba(208,102,57,0.15);
 }
-.pixel-cell.on { background: var(--c-games); box-shadow: 0 0 8px rgba(249,115,22,0.6); }
+.pixel-cell.on { background: var(--c-games); box-shadow: 0 0 8px rgba(208,102,57,0.6); }
 
 /* edu */
 .ec-edu {
   --c: var(--c-edu);
-  --c-soft: rgba(139,92,246,0.10);
-  --c-border: rgba(139,92,246,0.25);
+  --c-soft: rgba(150,106,200,0.10);
+  --c-border: rgba(150,106,200,0.25);
   grid-column: span 4;
   grid-row: span 2;
-  background:
-    radial-gradient(circle at 90% 90%, rgba(139,92,246,0.08) 0%, transparent 50%),
-    var(--surface);
 }
 @media (max-width: 1023px) { .ec-edu { grid-column: span 3; grid-row: span 2; } }
 @media (max-width: 640px)  { .ec-edu { grid-column: 1; grid-row: auto; min-height: 220px; } }
@@ -1611,7 +1608,7 @@ section[id] { scroll-margin-top: 84px; }
 }
 .lesson-bars span {
   flex: 1;
-  background: linear-gradient(180deg, var(--c-edu), rgba(139,92,246,0.3));
+  background: linear-gradient(180deg, var(--c-edu), rgba(150,106,200,0.3));
   border-radius: 2px;
   opacity: 0.85;
 }
@@ -1619,8 +1616,8 @@ section[id] { scroll-margin-top: 84px; }
 /* services */
 .ec-services {
   --c: var(--c-services);
-  --c-soft: rgba(6,182,212,0.10);
-  --c-border: rgba(6,182,212,0.25);
+  --c-soft: rgba(49,149,185,0.10);
+  --c-border: rgba(49,149,185,0.25);
   grid-column: span 4;
   grid-row: span 2;
 }
@@ -1630,13 +1627,10 @@ section[id] { scroll-margin-top: 84px; }
 /* account */
 .ec-account {
   --c: var(--c-account);
-  --c-soft: rgba(250,204,21,0.10);
-  --c-border: rgba(250,204,21,0.25);
+  --c-soft: rgba(178,174,52,0.10);
+  --c-border: rgba(178,174,52,0.25);
   grid-column: span 4;
   grid-row: span 2;
-  background:
-    linear-gradient(135deg, rgba(250,204,21,0.04) 0%, transparent 50%),
-    var(--surface);
 }
 @media (max-width: 1023px) { .ec-account { grid-column: span 3; grid-row: span 2; } }
 @media (max-width: 640px)  { .ec-account { grid-column: 1; grid-row: auto; min-height: 200px; } }
@@ -1654,7 +1648,7 @@ section[id] { scroll-margin-top: 84px; }
 .xp-bar-fill {
   height: 100%;
   width: 64%;
-  background: linear-gradient(90deg, #facc15, #f59e0b);
+  background: linear-gradient(90deg, #b2ae34, #f59e0b);
   border-radius: 999px;
 }
 .xp-bar-meta {
@@ -1669,8 +1663,8 @@ section[id] { scroll-margin-top: 84px; }
 /* search soon */
 .ec-search {
   --c: var(--c-search);
-  --c-soft: rgba(236,72,153,0.08);
-  --c-border: rgba(236,72,153,0.20);
+  --c-soft: rgba(202,73,120,0.10);
+  --c-border: rgba(202,73,120,0.25);
   grid-column: span 4;
   grid-row: span 2;
   opacity: 0.62;
@@ -1681,8 +1675,8 @@ section[id] { scroll-margin-top: 84px; }
 /* store soon */
 .ec-store {
   --c: var(--c-store);
-  --c-soft: rgba(239,68,68,0.08);
-  --c-border: rgba(239,68,68,0.20);
+  --c-soft: rgba(159,65,140,0.10);
+  --c-border: rgba(159,65,140,0.25);
   grid-column: span 4;
   grid-row: span 2;
   opacity: 0.62;
