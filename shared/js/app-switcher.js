@@ -34,7 +34,7 @@ const APPS = Object.freeze([
   { id: 'Edu', label: 'Edu', href: '/edu', icon: 'E' },
   { id: 'Store', label: 'Store', href: '/store', icon: 'S' },
   { id: 'Art', label: 'VeVit Art', href: 'https://vevit.art', icon: 'V' },
-  { id: 'Studios', label: 'Software Studios', href: 'https://studios.vevit.cz', icon: 'V' },
+  { id: 'Studios', label: 'Software Studios', href: 'https://www.vevit.space', icon: 'V' },
 ]);
 
 function makeGridIcon() {

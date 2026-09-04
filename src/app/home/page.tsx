@@ -318,7 +318,7 @@ export default async function HomePage() {
               >
                 <a
                   className="dd-item"
-                  href="https://studios.vevit.cz"
+                  href="https://www.vevit.space"
                   role="menuitem"
                 >
                   <span className="dd-icon">
@@ -419,7 +419,7 @@ export default async function HomePage() {
             Služby VeVit
           </li>
           <li>
-            <a href="https://studios.vevit.cz">VeVit Software Studios</a>
+            <a href="https://www.vevit.space">VeVit Software Studios</a>
           </li>
           <li>
             <a href="https://vevit.art">VeVit Art</a>
@@ -731,7 +731,7 @@ export default async function HomePage() {
             <div className="explore-grid">
               <a
                 className="explore-card"
-                href="https://studios.vevit.cz"
+                href="https://www.vevit.space"
                 data-track="explore:studios"
               >
                 <div className="explore-icon">
@@ -746,7 +746,7 @@ export default async function HomePage() {
                   Software na míru
                 </span>
                 <span className="explore-cta">
-                  studios.vevit.cz <Icon name="arrow-up-right" size={16} />
+                  vevit.space <Icon name="arrow-up-right" size={16} />
                 </span>
               </a>
 
