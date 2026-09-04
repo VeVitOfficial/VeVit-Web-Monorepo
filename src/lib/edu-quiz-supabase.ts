@@ -27,11 +27,16 @@ function err(error: { message: string } | null): string | null {
   return error ? error.message : null;
 }
 
-/** sb_get(): select with eq filters and optional limit. */
+/**
+ * sb_get(): select with eq filters and optional limit.
+ * `select` has no default on purpose — these queries run under the
+ * service-role key (RLS bypassed), so an accidental "*" would silently
+ * return every column, including ones a caller shouldn't see.
+ */
 export async function sbGet<T = Record<string, unknown>>(
   table: string,
   eq: Record<string, unknown>,
-  select = "*",
+  select: string,
   limit?: number,
 ): Promise<SbResult<T[]>> {
   let query = eduSupabase().from(table).select(select);
@@ -72,11 +77,11 @@ export async function sbRpc<T = unknown>(fn: string, args: Record<string, unknow
   return { data: (data as T) ?? null, error: err(error) };
 }
 
-/** sb_find_one(): single row or null. */
+/** sb_find_one(): single row or null. `select` has no default — see sbGet(). */
 export async function sbFindOne<T = Record<string, unknown>>(
   table: string,
   eq: Record<string, unknown>,
-  select = "*",
+  select: string,
 ): Promise<SbResult<T | null>> {
   let query = eduSupabase().from(table).select(select);
   for (const [column, value] of Object.entries(eq)) {
