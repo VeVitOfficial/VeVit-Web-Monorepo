@@ -13,21 +13,37 @@ import { useEffect, useRef } from "react";
 declare global {
   interface Window {
     turnstile?: {
-      render: (container: HTMLElement, options: { sitekey: string; theme: string }) => string;
-      getResponse: () => string | undefined;
-      reset: () => void;
+      render: (container: HTMLElement, options: TurnstileOptions) => string | undefined;
+      getResponse: (widgetId?: string) => string | undefined;
+      reset: (widgetId?: string) => void;
+      remove: (widgetId?: string) => void;
     };
   }
 }
+
+interface TurnstileOptions {
+  sitekey: string;
+  theme?: string;
+  "refresh-expired"?: "auto" | "manual" | "never";
+  "expired-callback"?: () => void;
+  "timeout-callback"?: () => void;
+  "error-callback"?: () => void;
+}
+
+const SCRIPT_SRC = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
 
 function turnstile(): Window["turnstile"] {
   return typeof window !== "undefined" ? window.turnstile : undefined;
 }
 
+// ID aktuálně vykresleného widgetu. Turnstile umí getResponse()/reset() i bez
+// něj, ale jen dokud je na stránce právě jeden widget — s ID je to jednoznačné.
+let currentWidgetId: string | null = null;
+
 /** Token z widgetu; prázdný řetězec když CAPTCHA není aktivní. */
 export function captchaToken(): string {
   try {
-    return turnstile()?.getResponse() || "";
+    return turnstile()?.getResponse(currentWidgetId ?? undefined) || "";
   } catch {
     return "";
   }
@@ -37,55 +53,108 @@ export function captchaToken(): string {
 export function resetCaptcha() {
   try {
     const ts = turnstile();
-    if (ts && ts.getResponse()) ts.reset();
+    if (!ts || currentWidgetId === null) return;
+    ts.reset(currentWidgetId);
   } catch {
     /* noop */
   }
 }
 
-function loadTurnstileScript(onLoad: () => void) {
-  const script = document.createElement("script");
-  script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
-  script.async = true;
-  script.onload = onLoad;
-  document.head.appendChild(script);
+// api.js smí na stránce běžet jen jednou — sdílená promise, aby remount
+// komponenty (Strict Mode, klientská navigace login ⇄ registrace) nepřidával
+// další <script> a nepřepisoval window.turnstile pod rukama.
+let scriptPromise: Promise<void> | null = null;
+
+function loadTurnstileScript(): Promise<void> {
+  if (turnstile()) return Promise.resolve();
+  if (scriptPromise) return scriptPromise;
+  scriptPromise = new Promise<void>((resolve, reject) => {
+    const existing = document.querySelector<HTMLScriptElement>(`script[src="${SCRIPT_SRC}"]`);
+    const script = existing ?? document.createElement("script");
+    script.addEventListener("load", () => resolve());
+    script.addEventListener("error", () => {
+      // Další pokus (jiný mount) smí zkusit načtení znovu.
+      scriptPromise = null;
+      reject(new Error("Turnstile script failed to load"));
+    });
+    if (!existing) {
+      script.src = SCRIPT_SRC;
+      script.async = true;
+      document.head.appendChild(script);
+    }
+  });
+  return scriptPromise;
 }
 
 export function TurnstileField({ className, style }: { className?: string; style?: React.CSSProperties }) {
-  // Strict mode (dev) volá effect 2× — data-ready guard zajistí jediný render.
-  const mounted = useRef(false);
-  useEffect(() => {
-    if (mounted.current) return;
-    mounted.current = true;
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
+  useEffect(() => {
+    // Pozn.: dřív tu byl `mounted` ref proti dvojímu efektu ve Strict Mode.
+    // Ve dvojici s `cancelled` se ale navzájem zablokovaly: první mount spustil
+    // fetch, cleanup nastavil cancelled=true a druhý mount se kvůli `mounted`
+    // hned vrátil — dokončený fetch pak spadl do `if (cancelled) return` a
+    // widget se nevykreslil vůbec. Teď se každý mount stará jen o svůj widget
+    // a při unmountu ho zase odstraní.
     let cancelled = false;
-    fetch("/account/api/captcha-config.php", { credentials: "same-origin" })
-      .then((r) => (r.ok ? r.json() : { siteKey: null }))
-      .catch(() => ({ siteKey: null }))
-      .then((data: { siteKey?: string | null }) => {
-        if (cancelled || !data?.siteKey) return;
-        const container = document.getElementById("cfCaptcha");
-        if (!container || container.dataset.ready === "true") return;
-        loadTurnstileScript(() => {
-          if (container.dataset.ready === "true") return;
-          try {
-            const widget = turnstile()?.render(container, { sitekey: data.siteKey as string, theme: "dark" });
-            container.dataset.ready = "true";
-            container.dataset.widget = widget ?? "";
-          } catch {
-            /* noop */
-          }
-        });
-      })
-      .catch(() => {
-        /* captcha zůstane vypnutá */
-      });
+    let widgetId: string | null = null;
+    // Uzavřeme si element hned — v cleanupu už `containerRef.current` může být
+    // null (React ref odpojí před úklidem), takže by se `data-ready` neuklidilo.
+    const container = containerRef.current;
+
+    (async () => {
+      let siteKey: string | null = null;
+      try {
+        const res = await fetch("/account/api/captcha-config.php", { credentials: "same-origin" });
+        if (res.ok) {
+          const data = (await res.json()) as { siteKey?: string | null };
+          siteKey = data?.siteKey ?? null;
+        }
+      } catch {
+        return; // CAPTCHA zůstane vypnutá
+      }
+      if (cancelled || !siteKey) return;
+
+      try {
+        await loadTurnstileScript();
+      } catch {
+        return;
+      }
+      if (cancelled || !container || container.dataset.ready === "true") return;
+
+      try {
+        widgetId = turnstile()?.render(container, {
+          sitekey: siteKey,
+          theme: "dark",
+          // Token platí ~5 minut. Bez obnovení by odeslaný formulář skončil na
+          // "CAPTCHA ověření selhalo", i když uživatel widget vyplnil.
+          "refresh-expired": "auto",
+          "expired-callback": () => { try { turnstile()?.reset(widgetId ?? undefined); } catch { /* noop */ } },
+          "timeout-callback": () => { try { turnstile()?.reset(widgetId ?? undefined); } catch { /* noop */ } },
+        }) ?? null;
+        if (widgetId === null) return;
+        container.dataset.ready = "true";
+        container.dataset.widget = widgetId;
+        currentWidgetId = widgetId;
+      } catch {
+        /* noop */
+      }
+    })();
+
     return () => {
       cancelled = true;
+      if (container) {
+        delete container.dataset.ready;
+        delete container.dataset.widget;
+      }
+      if (widgetId !== null) {
+        try { turnstile()?.remove(widgetId); } catch { /* noop */ }
+        if (currentWidgetId === widgetId) currentWidgetId = null;
+      }
     };
   }, []);
 
   return (
-    <div id="cfCaptcha" data-captcha="1" aria-label="Ochrana proti robotům" className={className} style={style} />
+    <div ref={containerRef} id="cfCaptcha" data-captcha="1" aria-label="Ochrana proti robotům" className={className} style={style} />
   );
 }
