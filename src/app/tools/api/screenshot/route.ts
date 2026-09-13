@@ -1,7 +1,9 @@
+import net from "node:net";
 import { Browserbase } from "@browserbasehq/sdk";
 import { chromium } from "playwright-core";
 import { clientIp } from "@/lib/account-auth";
 import { toolsRateLimit } from "@/lib/tools-rate-limit";
+import { sslIsPublicIp, sslResolve } from "@/lib/tools-ssl-check";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -26,14 +28,35 @@ function fail(code: number, message: string): Response {
   });
 }
 
-function isSafeTargetUrl(raw: string): URL | null {
+// SSRF guard: WHATWG URL normalizuje alternativní zápisy IPv4 (desítkový,
+// osmičkový, hex, zkrácený tvar) na tečkovou notaci, takže je vidí i tahle
+// funkce — ale samotné porovnání s hostname literálem nechytí IPv6 (dřívější
+// verze `[::1]`/`[fc00::1]` propouštěla bez povšimnutí) ani DNS rebinding
+// (veřejná doména, která se přeresolvuje na privátní IP). Obojí řeší
+// `sslIsPublicIp`/`sslResolve` z tools-ssl-check.ts (stejná politika jako u
+// SSL Checkeru — DNS se resolvuje jednou a validují se úplně všechny vrácené
+// adresy, ne jen ta první).
+async function isSafeTargetUrl(raw: string): Promise<URL | null> {
   let url: URL;
   try { url = new URL(raw); } catch { return null; }
   if (url.protocol !== "http:" && url.protocol !== "https:") return null;
-  const host = url.hostname.toLowerCase();
-  if (host === "localhost" || host === "0.0.0.0" || host.endsWith(".local")) return null;
-  if (/^(127\.|10\.|192\.168\.|169\.254\.)/.test(host)) return null;
-  if (/^172\.(1[6-9]|2\d|3[01])\./.test(host)) return null;
+  const host = url.hostname.toLowerCase().replace(/^\[|\]$/g, "");
+  if (host === "" || host.endsWith(".local")) return null;
+
+  if (net.isIP(host)) {
+    return sslIsPublicIp(host) ? url : null;
+  }
+
+  let ips: string[];
+  try {
+    ips = await sslResolve(host);
+  } catch {
+    return null;
+  }
+  if (ips.length === 0) return null;
+  for (const ip of ips) {
+    if (!sslIsPublicIp(ip)) return null;
+  }
   return url;
 }
 
@@ -50,7 +73,7 @@ export async function POST(request: Request): Promise<Response> {
   }
   const rawUrl = typeof body.url === "string" ? body.url.trim() : "";
   if (rawUrl === "") return fail(400, "Chybí URL.");
-  const target = isSafeTargetUrl(rawUrl);
+  const target = await isSafeTargetUrl(rawUrl);
   if (!target) return fail(400, "Neplatná nebo nepovolená URL.");
 
   const fullPage = body.fullPage === true;

@@ -139,7 +139,7 @@ export function sslIsPublicIp(ip: string): boolean {
 
 // ── Resolver (ssl_default_resolver) ──────────────────────────────────────────
 
-async function sslResolve(hostname: string): Promise<string[]> {
+export async function sslResolve(hostname: string): Promise<string[]> {
   const [v4, v6] = await Promise.allSettled([
     dns.promises.resolve4(hostname),
     dns.promises.resolve6(hostname),
