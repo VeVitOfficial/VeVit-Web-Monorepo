@@ -1,6 +1,6 @@
 "use client";
 
-// AI psaní e-mailu — jeden dotaz na /tools/api/ai/ollama (NDJSON stream).
+// AI psaní e-mailu — jeden dotaz na /tools/api/ai/[tool] (NDJSON stream).
 // Port legacy ai-email-writer.js. Markdown se renderuje přes UMD safe-markdown (DOMPurify).
 // Komponenta renderuje pouze vnitřní tělo .tool-tool — shell dodává stránka.
 import { useCallback, useEffect, useRef, useState } from "react";

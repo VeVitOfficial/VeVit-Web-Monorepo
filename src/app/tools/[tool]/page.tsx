@@ -5,11 +5,13 @@ import { notFound } from "next/navigation";
 import { SiteHeader } from "@/components/tools/site-header";
 import { SiteFooter } from "@/components/tools/site-footer";
 import { Toaster } from "@/components/tools/tool-runtime";
+import { RecordRecent } from "@/components/tools/record-recent";
 import { TOOL_COMPONENTS } from "@/components/tools/registry";
 import {
   getTool, HUB_I18N, TOOL_UI_I18N, SUPPORTED_LOCALES, CATEGORY_COLORS, CATEGORY_LABELS,
   statusLabel, locationMeta, localizeTool, type Locale, type ToolStatus,
 } from "@/components/tools/registry/data";
+import { toolAlternates } from "@/lib/tools-seo";
 
 // Legacy CSS — className v shellu i komponentách zůstávají totožné s legacy.
 import "../../../../public/assets/fonts/vevit-fonts.css";
@@ -28,7 +30,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!tool) return { title: "Nástroj nenalezen | VeVit Tools" };
   const locale = await readLocale();
   const loc = localizeTool(tool, locale);
-  return { title: `${loc.name} | VeVit Tools`, description: loc.description };
+  return {
+    title: `${loc.name} | VeVit Tools`,
+    description: loc.description,
+    alternates: toolAlternates(locale, `tools/${slug}`),
+  };
 }
 
 const STATUS_BADGE_CLASS: Record<ToolStatus, string> = {
@@ -36,7 +42,6 @@ const STATUS_BADGE_CLASS: Record<ToolStatus, string> = {
   limited: "tool-status-limited",
   experimental: "tool-status-experimental",
   coming_soon: "tool-status-coming-soon",
-  unavailable_on_wedos: "tool-status-unavailable_on_wedos",
   broken: "tool-status-broken",
 };
 
@@ -107,6 +112,7 @@ export default async function ToolPage({ params }: Props) {
               <p className="sr-only" id="tool-live-status" role="status" aria-live="polite" aria-atomic="true">{uiStrings.state_ready}</p>
               <Component locale={locale} />
               <Toaster />
+              <RecordRecent slug={tool.slug} />
             </div>
           ) : (
             <div className="tool-placeholder tool-info-only">
@@ -146,7 +152,7 @@ export default async function ToolPage({ params }: Props) {
           </div>
         </aside>
       </main>
-      <SiteFooter locale={locale} strings={{ back: strings.footer_back, privacy: strings.footer_privacy, copyright: strings.footer_copyright }} />
+      <SiteFooter locale={locale} strings={{ back: strings.footer_back, privacy: loc.title, copyright: strings.footer_copyright }} />
     </>
   );
 }

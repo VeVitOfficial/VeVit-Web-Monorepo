@@ -1,6 +1,6 @@
 "use client";
 
-// AI shrnutí textu — jeden dotaz na /tools/api/ai/ollama (NDJSON stream).
+// AI shrnutí textu — jeden dotaz na /tools/api/ai/[tool] (NDJSON stream).
 // Port legacy summarize-text.js. Markdown se renderuje přes UMD safe-markdown (DOMPurify).
 // Komponenta renderuje pouze vnitřní tělo .tool-tool — shell dodává stránka.
 import { useCallback, useEffect, useRef, useState } from "react";

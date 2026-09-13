@@ -11,15 +11,17 @@ import { useEffect } from "react";
 const LEGACY_SCRIPTS = [
   "/assets/vendor/lucide/lucide.min.js",
   "/home/assets/js/ui.js",
-  "/assets/shared/session.js",
 ] as const;
-// app-switcher.js a localization.js jsou ES moduly (import/export) — legacy je
-// načítal s type="module". next/script vkládá klasický <script>, což způsobuje
-// SyntaxError, proto jdou jako plain <script type="module"> (provedou se po
+// app-switcher.js, localization.js a session.js jsou ES moduly (mají top-level
+// export) — legacy je načítal s type="module". next/script vkládá klasický
+// <script>, což způsobuje "SyntaxError: export declarations may only appear
+// at top level of a module" (session.js dřív bylo omylem v LEGACY_SCRIPTS
+// výše), proto jdou jako plain <script type="module"> (provedou se po
 // parsování, shodně s legacy chováním).
 const LEGACY_MODULE_SCRIPTS = [
   "/assets/shared/app-switcher.js?v=20260825b",
   "/assets/shared/localization.js?v=20260826f",
+  "/assets/shared/session.js",
 ] as const;
 
 declare global {

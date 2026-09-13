@@ -24,7 +24,7 @@ export const DEFAULT_STATE: HubState = {
 
 const CATEGORIES: readonly Category[] = ["pdf", "image", "media", "text", "ai", "dev", "security", "calc"];
 const PROCESSINGS: readonly ProcessingLocation[] = ["client", "vevit_server", "external_ai"];
-const STATUSES: readonly ToolStatus[] = ["working", "limited", "experimental", "coming_soon", "unavailable_on_wedos", "broken"];
+const STATUSES: readonly ToolStatus[] = ["working", "limited", "experimental", "coming_soon", "broken"];
 const SORTS: readonly ("relevance" | "name" | "newest")[] = ["relevance", "name", "newest"];
 
 export function parseState(sp: URLSearchParams | Record<string, string | string[] | undefined>): HubState {
@@ -181,6 +181,11 @@ export function sectionTools(tools: readonly Tool[], s: HubState, cat: Category 
 }
 
 export function categoryOrder(): readonly Category[] { return CATEGORY_ORDER; }
+
+/** Počet nástrojů podle místa zpracování (pásmo o soukromí). */
+export function countByLocation(tools: readonly Tool[], loc: ProcessingLocation): number {
+  return tools.reduce((n, t) => (t.processing_location === loc ? n + 1 : n), 0);
+}
 
 // ── highlight (port hub.js appendHighlighted) ───────────────────────────
 // Vrátí pole React uzlů se <mark> kolem shody (case-insensitive, diakritika-agnostic).

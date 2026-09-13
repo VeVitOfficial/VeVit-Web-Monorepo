@@ -1,7 +1,7 @@
 "use client";
 
 // Sdílený helper pro AI nástroje (Dávka dev) — port legacy ai-tool.js.
-// Zapouzdřuje volání /tools/api/ai/ollama s NDJSON streamem a bezpečné
+// Zapouzdřuje volání /tools/api/ai/[tool] s NDJSON streamem a bezpečné
 // vykreslení markdownu přes VeVitMarkdown (marked + DOMPurify).
 //
 // Bezpečnost: system prompt nikdy neposílá klient (posílá jen `tool`
@@ -36,7 +36,7 @@ export function aiRun(opts: Opts): AbortController {
   let full = "";
   let done = false;
 
-  fetch("/tools/api/ai/ollama", {
+  fetch(`/tools/api/ai/${opts.tool}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ prompt: opts.prompt, tool: opts.tool, stream: true }),

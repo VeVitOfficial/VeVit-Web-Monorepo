@@ -16,7 +16,7 @@ import type { ComponentType } from "react";
 
 export type Category = "pdf" | "image" | "media" | "text" | "ai" | "dev" | "security" | "calc";
 export type ProcessingLocation = "client" | "vevit_server" | "external_ai";
-export type ToolStatus = "working" | "limited" | "experimental" | "coming_soon" | "unavailable_on_wedos" | "broken";
+export type ToolStatus = "working" | "limited" | "experimental" | "coming_soon" | "broken";
 export type Locale = "cs" | "en" | "de" | "es" | "uk" | "fr" | "sk";
 
 /** Props, které dostává každá komponenta nástroje od shellu. */
@@ -119,14 +119,14 @@ const RAW_TOOLS: RawTool[] = [
   ["pdf-watermark", "Vodoznak PDF", "Přidá textový vodoznak do PDF.", "pdf", "client", "Stamp", true],
   ["pdf-page-numbers", "Číslování stránek", "Přidá čísla stránek do PDF.", "pdf", "client", "Hash", true],
   ["pdf-extract-text", "Extrakce textu PDF", "Vytáhne text z PDF (pdf.js).", "pdf", "client", "AlignLeft", true],
-  ["pdf-password", "Ochrana PDF heslem", "Nastaví nebo odstraní heslo PDF (qpdf).", "pdf", "server", "FileKey", false, "Tento nástroj vyžaduje VPS / shell_exec (nástroj qpdf). Na sdíleném hostingu jej provozovat nelze."],
+  ["pdf-password", "Ochrana PDF heslem", "Nastaví nebo odstraní heslo PDF (qpdf.js, běží ve web workeru).", "pdf", "client", "FileKey", false],
 
   // ── Obrázky ────────────────────────────────────────────────────────────
   ["img-compress", "Komprese obrázku", "Zmenšete obrázek přes canvas (kvalita, JPEG/WebP).", "image", "client", "Image", false],
   ["bg-remover", "Odstranit pozadí", "AI odstranění pozadí z fotografií (ONNX MODNet).", "image", "ai", "Eraser", true],
   ["img-upscaler", "Zvětšení kvality", "Zvětší rozlišení obrázku (2×/3×/4×) přes canvas.", "image", "client", "Maximize", true],
   ["gif-maker", "Tvůrce GIFu", "Vytvořte animovaný GIF ze sekvence obrázků.", "image", "client", "Film", true],
-  ["screenshot-tool", "Screenshot URL", "Pořiďte screenshot libovolné webové stránky.", "image", "server", "Camera", true, "Tento nástroj vyžaduje VPS / shell_exec (headless Chromium). Na sdíleném hostingu jej provozovat nelze."],
+  ["screenshot-tool", "Screenshot URL", "Pořiďte screenshot libovolné webové stránky.", "image", "server", "Camera", true],
   ["image-convert", "Převod formátu", "Převeďte PNG/JPG/WebP/BMP přes canvas.", "image", "client", "Repeat", true],
   ["image-crop", "Oříznutí obrázku", "Interaktivně ořízněte obrázek v canvasu.", "image", "client", "Crop", true],
   ["image-rotate-flip", "Otočení/Překlopení", "Otočte nebo překlopte obrázek (90/180/270/flip).", "image", "client", "RotateCw", true],
@@ -238,7 +238,6 @@ function canonicalize(raw: RawTool): Tool {
 
   let status: ToolStatus = loc === "ai" ? "limited" : "working";
   if (FFMPEG_TOOLS.has(slug)) status = "limited";
-  if (slug === "pdf-password" || slug === "screenshot-tool") status = "unavailable_on_wedos";
   if (slug === "ai-image-gen") status = "coming_soon";
 
   const slugWords = slug.split(/-+/);
@@ -379,6 +378,12 @@ export interface HubI18n {
   loc: Record<ProcessingLocation, string>;
   badge_new: string;
   card_open: string;
+  hero_eyebrow: string;
+  search_cta: string;
+  suggestions_label: string;
+  stat_tools_label: string;
+  stat_price_label: string;
+  stat_price_value: string;
   results_title: string;
   results_count: string;
   results_title_empty: string;
@@ -388,6 +393,7 @@ export interface HubI18n {
   filters_status: string;
   filters_sort: string;
   filters_new_only: string;
+  filters_only_local: string;
   filters_reset: string;
   category_all: string;
   processing_all: string;
@@ -397,6 +403,11 @@ export interface HubI18n {
   sort_newest: string;
   section_newest_title: string;
   section_newest_desc: string;
+  recent_title: string;
+  recent_desc: string;
+  privacy_band_title: string;
+  favorite_add: string;
+  favorite_remove: string;
   hero_title_a: string;
   hero_title_b: string;
   hero_title_c: string;
@@ -423,10 +434,16 @@ export interface HubI18n {
 }
 
 const HUB_CS: HubI18n = {
-  statuses: { limited: "Omezeně dostupný", experimental: "Experimentální", coming_soon: "Připravujeme", unavailable_on_wedos: "Nedostupné na WEDOS", broken: "Dočasně nefunkční" },
+  statuses: { limited: "Omezeně dostupný", experimental: "Experimentální", coming_soon: "Připravujeme", broken: "Dočasně nefunkční" },
   loc: { client: "Lokálně", external_ai: "Přes AI", vevit_server: "Na serveru" },
   badge_new: "NOVÉ",
   card_open: "Otevřít →",
+  hero_eyebrow: "{count} nástrojů — zdarma, bez registrace",
+  search_cta: "Hledat",
+  suggestions_label: "Nejhledanější:",
+  stat_tools_label: "nástrojů",
+  stat_price_label: "cena",
+  stat_price_value: "0 Kč",
   results_title: "{count} výsledků pro „{q}“",
   results_count: "{count} výsledků",
   results_title_empty: "Žádné výsledky",
@@ -436,6 +453,7 @@ const HUB_CS: HubI18n = {
   filters_status: "Stav",
   filters_sort: "Řazení",
   filters_new_only: "Jen nové nástroje",
+  filters_only_local: "Jen nástroje, které nic neodesílají",
   filters_reset: "Zrušit filtry",
   category_all: "Všechny kategorie",
   processing_all: "Všechna místa",
@@ -445,6 +463,11 @@ const HUB_CS: HubI18n = {
   sort_newest: "Nejnovější",
   section_newest_title: "Nejnovější nástroje",
   section_newest_desc: "Čerstvě přidané nástroje, které ještě nemusíte znát.",
+  recent_title: "Kde jste skončili",
+  recent_desc: "Uloženo jen ve vašem prohlížeči. Nikam se to neposílá a nepotřebuje to účet.",
+  privacy_band_title: "Kde se vaše data zpracovávají",
+  favorite_add: "Přidat do oblíbených",
+  favorite_remove: "Odebrat z oblíbených",
   hero_title_a: "práci",
   hero_title_b: " & ",
   hero_title_c: "každý den.",
@@ -471,10 +494,16 @@ const HUB_CS: HubI18n = {
 };
 
 const HUB_EN: HubI18n = {
-  statuses: { limited: "Limited availability", experimental: "Experimental", coming_soon: "Coming soon", unavailable_on_wedos: "Unavailable on WEDOS", broken: "Temporarily broken" },
+  statuses: { limited: "Limited availability", experimental: "Experimental", coming_soon: "Coming soon", broken: "Temporarily broken" },
   loc: { client: "Local", external_ai: "Via AI", vevit_server: "On server" },
   badge_new: "NEW",
   card_open: "Open →",
+  hero_eyebrow: "{count} tools — free, no sign-up",
+  search_cta: "Search",
+  suggestions_label: "Most searched:",
+  stat_tools_label: "tools",
+  stat_price_label: "price",
+  stat_price_value: "$0",
   results_title: "{count} results for “{q}”",
   results_count: "{count} results",
   results_title_empty: "No results",
@@ -484,6 +513,7 @@ const HUB_EN: HubI18n = {
   filters_status: "Status",
   filters_sort: "Sort",
   filters_new_only: "New tools only",
+  filters_only_local: "Only tools that send nothing",
   filters_reset: "Reset filters",
   category_all: "All categories",
   processing_all: "All locations",
@@ -493,6 +523,11 @@ const HUB_EN: HubI18n = {
   sort_newest: "Newest",
   section_newest_title: "Newest tools",
   section_newest_desc: "Freshly added tools you may not know yet.",
+  recent_title: "Where you left off",
+  recent_desc: "Saved only in your browser. Nothing is sent anywhere and no account is needed.",
+  privacy_band_title: "Where your data is processed",
+  favorite_add: "Add to favorites",
+  favorite_remove: "Remove from favorites",
   hero_title_a: "work",
   hero_title_b: " & ",
   hero_title_c: "every day.",
@@ -567,13 +602,13 @@ export const TOOL_UI_I18N: Record<Locale, ToolUiI18n> = {
 
 // ── Stavové labely (pro badge Stav v dropdownu a na kartách) ────────────
 export const STATUS_LABELS: Record<Locale, Record<ToolStatus, string>> = {
-  cs: { working: "Dostupné", limited: "Omezeně dostupné", experimental: "Experimentální", coming_soon: "Připravujeme", unavailable_on_wedos: "Nedostupné na WEDOS", broken: "Nefunkční" },
-  en: { working: "Available", limited: "Limited", experimental: "Experimental", coming_soon: "Coming soon", unavailable_on_wedos: "Unavailable on WEDOS", broken: "Broken" },
-  de: { working: "Verfügbar", limited: "Eingeschränkt", experimental: "Experimentell", coming_soon: "In Vorbereitung", unavailable_on_wedos: "Nicht auf WEDOS", broken: "Defekt" },
-  es: { working: "Disponible", limited: "Limitado", experimental: "Experimental", coming_soon: "Próximamente", unavailable_on_wedos: "No en WEDOS", broken: "Roto" },
-  uk: { working: "Доступний", limited: "Обмежений", experimental: "Експериментальний", coming_soon: "Очікується", unavailable_on_wedos: "Недоступно на WEDOS", broken: "Зламаний" },
-  fr: { working: "Disponible", limited: "Limité", experimental: "Expérimental", coming_soon: "Bientôt", unavailable_on_wedos: "Indisponible sur WEDOS", broken: "Cassé" },
-  sk: { working: "Dostupné", limited: "Obmedzene dostupné", experimental: "Experimentálne", coming_soon: "Pripravujeme", unavailable_on_wedos: "Nedostupné na WEDOS", broken: "Nefunkčné" },
+  cs: { working: "Dostupné", limited: "Omezeně dostupné", experimental: "Experimentální", coming_soon: "Připravujeme", broken: "Nefunkční" },
+  en: { working: "Available", limited: "Limited", experimental: "Experimental", coming_soon: "Coming soon", broken: "Broken" },
+  de: { working: "Verfügbar", limited: "Eingeschränkt", experimental: "Experimentell", coming_soon: "In Vorbereitung", broken: "Defekt" },
+  es: { working: "Disponible", limited: "Limitado", experimental: "Experimental", coming_soon: "Próximamente", broken: "Roto" },
+  uk: { working: "Доступний", limited: "Обмежений", experimental: "Експериментальний", coming_soon: "Очікується", broken: "Зламаний" },
+  fr: { working: "Disponible", limited: "Limité", experimental: "Expérimental", coming_soon: "Bientôt", broken: "Cassé" },
+  sk: { working: "Dostupné", limited: "Obmedzene dostupné", experimental: "Experimentálne", coming_soon: "Pripravujeme", broken: "Nefunkčné" },
 };
 
 export const SUPPORTED_LOCALES: readonly Locale[] = ["cs", "en", "de", "es", "uk", "fr", "sk"];

@@ -1,5 +1,4 @@
 // Registr obrazových nástrojů — viz konvence v pdf.ts.
-// screenshot-tool je server-side (legacy HTML nemá .tool-tool tělo) → undefined (shell ukáže placeholder).
 import type { ToolComponent } from "@/components/tools/registry/data";
 import BgRemover from "@/components/tools/tools/bg-remover";
 import FaviconGenerator from "@/components/tools/tools/favicon-generator";
@@ -14,6 +13,7 @@ import ImageWatermark from "@/components/tools/tools/image-watermark";
 import ImgCompress from "@/components/tools/tools/img-compress";
 import ImgUpscaler from "@/components/tools/tools/img-upscaler";
 import MemeGenerator from "@/components/tools/tools/meme-generator";
+import ScreenshotTool from "@/components/tools/tools/screenshot-tool";
 
 const IMAGE: Record<string, ToolComponent | undefined> = {
   "bg-remover": BgRemover,
@@ -29,7 +29,7 @@ const IMAGE: Record<string, ToolComponent | undefined> = {
   "img-compress": ImgCompress,
   "img-upscaler": ImgUpscaler,
   "meme-generator": MemeGenerator,
-  "screenshot-tool": undefined,
+  "screenshot-tool": ScreenshotTool,
 };
 
 export default IMAGE;

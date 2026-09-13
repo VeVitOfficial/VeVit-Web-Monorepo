@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     type: "website",
     title: "VeVit | Nástroje, hry a vzdělávání",
     description: "Nástroje, hry a lekce na jednom místě. Bez reklam.",
-    url: "https://vevit.cz",
+    url: "https://www.vevit.cz",
     locale: "cs_CZ",
   },
   twitter: { card: "summary_large_image" },
@@ -108,26 +108,29 @@ export default async function HomePage() {
                     </span>
                   </span>
                 </a>
-                <div
-                  className="dd-item dd-soon"
-                  role="menuitem"
-                  aria-disabled="true"
-                >
+                <a className="dd-item" href="https://www.vevit.fun" role="menuitem">
                   <span className="dd-icon">
                     <Icon name="gamepad-2" size={18} />
                   </span>
                   <span>
                     <span className="dd-name">
                       Games{" "}
-                      <span className="dd-soon-tag" data-ui-text="hub.preparing">
-                        Připravuje se
+                      <span
+                        className="dd-soon-tag"
+                        style={{
+                          background: "rgba(208,102,57,0.12)",
+                          color: "#d06639",
+                          borderColor: "rgba(208,102,57,0.25)",
+                        }}
+                      >
+                        28 her
                       </span>
                     </span>
                     <span className="dd-desc" data-ui-text="page.navItem.games">
                       Hry s XP odměnami
                     </span>
                   </span>
-                </div>
+                </a>
                 <a className="dd-item" href={`${L}/edu`} role="menuitem">
                   <span className="dd-icon">
                     <Icon name="graduation-cap" size={18} />
@@ -404,7 +407,7 @@ export default async function HomePage() {
             <a href={`${L}/tools`}>Tools</a>
           </li>
           <li>
-            <a href={`${L}/home#roadmap`}>Games</a>
+            <a href="https://www.vevit.fun">Games</a>
           </li>
           <li>
             <a href={`${L}/edu`}>Edu</a>
@@ -470,7 +473,7 @@ export default async function HomePage() {
                     data-ui-text="landing.counts.toolsLabel"
                   />{" "}
                   <span data-ui-text="page.hero.sub">
-                    21+ her a 300+ lekcí. Nástroje můžeš používat přímo v
+                    28 her a 300+ lekcí. Nástroje můžeš používat přímo v
                     prohlížeči.
                   </span>
                 </p>
@@ -503,7 +506,7 @@ export default async function HomePage() {
                   </div>
                   <span className="hero-meta-sep" aria-hidden="true" />
                   <div className="hero-meta-item">
-                    <span className="hero-meta-num">21+</span>
+                    <span className="hero-meta-num">28</span>
                     <span data-ui-text="page.hero.metaGames">her</span>
                   </div>
                   <span className="hero-meta-sep" aria-hidden="true" />
@@ -516,7 +519,7 @@ export default async function HomePage() {
 
               <div className="orbit rise rise-2" aria-hidden="true">
                 <span className="orbit-tag tag-1">vevit.cz/tools</span>
-                <span className="orbit-tag tag-2">games.vevit.cz</span>
+                <span className="orbit-tag tag-2">www.vevit.fun</span>
                 <span className="orbit-tag tag-3">vevit.cz/edu</span>
                 <span className="orbit-tag tag-4">services.vevit.cz</span>
 
@@ -652,7 +655,7 @@ export default async function HomePage() {
             </span>
             <span>
               <span className="dot" />
-              <span data-ui-text="page.marquee.games">21+ HER</span>
+              <span data-ui-text="page.marquee.games">28 HER</span>
             </span>
             <span>
               <span className="dot" />
@@ -679,7 +682,7 @@ export default async function HomePage() {
             </span>
             <span>
               <span className="dot" />
-              <span data-ui-text="page.marquee.games">21+ HER</span>
+              <span data-ui-text="page.marquee.games">28 HER</span>
             </span>
             <span>
               <span className="dot" />
@@ -883,21 +886,24 @@ export default async function HomePage() {
               </a>
 
               {/* GAMES */}
-              <div className="ec ec-games" aria-disabled="true">
-                <span className="ec-badge muted">
-                  <Icon name="lock" size={10} />{" "}
-                  <span data-ui-text="hub.preparing">Připravuje se</span>
+              <a
+                className="ec ec-games"
+                href="https://www.vevit.fun"
+                data-track="bento:games"
+              >
+                <span className="ec-badge" style={{ background: "rgba(208,102,57,0.12)", color: "#d06639", borderColor: "rgba(208,102,57,0.25)" }}>
+                  Hraj teď
                 </span>
                 <span className="ec-icon-wrap">
                   <Icon name="gamepad-2" size={22} />
                 </span>
                 <h3 className="ec-title">Games</h3>
                 <p className="ec-desc" data-ui-text="page.platforms.gamesDesc">
-                  Připravujeme 21+ her, včetně Snake, Tetrisu, Pac-Mana a 2048.
+                  28 her k vyzkoušení, včetně Snake, Tetrisu, Pac-Mana a 2048.
                 </p>
                 <div className="ec-meta">
                   <span className="ec-count" style={{ fontSize: "24px" }}>
-                    21<sup style={{ fontSize: "0.5em" }}>+</sup>
+                    28
                   </span>
                   <span data-ui-text="page.platforms.gamesMeta">her na výběr</span>
                 </div>
@@ -915,7 +921,10 @@ export default async function HomePage() {
                   <span className="pixel-cell on" />
                   <span className="pixel-cell on" />
                 </div>
-              </div>
+                <span className="ec-arrow">
+                  <Icon name="arrow-up-right" size={16} />
+                </span>
+              </a>
 
               {/* EDU */}
               <a
@@ -1540,8 +1549,7 @@ export default async function HomePage() {
                   <h3>Games</h3>
                 </div>
                 <p data-ui-text="page.roadmap.gamesDesc">
-                  Připravujeme 21+ her s XP odměnami, včetně Snake, Tetrisu,
-                  Pac-Mana a 2048.
+                  28 her s XP odměnami, včetně Snake, Tetrisu, Pac-Mana a 2048.
                 </p>
                 <div
                   className="roadmap-prog"
@@ -1549,7 +1557,7 @@ export default async function HomePage() {
                 />
                 <div className="roadmap-meta">
                   <span data-ui-text="landing.roadmap.games.progress" />
-                  <span>games.vevit.cz</span>
+                  <span>www.vevit.fun</span>
                 </div>
               </article>
 
@@ -2018,7 +2026,7 @@ export default async function HomePage() {
               <h4 data-ui-text="page.footer.colPlatforms">Platformy</h4>
               <ul>
                 <li>
-                  <a href={`${L}/home#roadmap`} data-ui-text="page.footer.linkGames">
+                  <a href="https://www.vevit.fun" data-ui-text="page.footer.linkGames">
                     Hry
                   </a>
                 </li>

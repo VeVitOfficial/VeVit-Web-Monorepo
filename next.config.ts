@@ -8,6 +8,10 @@ const securityHeaders = [
   { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=(self)" },
   { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
   { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
+  // "credentialless" (ne "require-corp"): dovolí SharedArrayBuffer pro
+  // ffmpeg.wasm média nástroje (Fáze 1, bod 6 zadání), bez CORP hlaviček
+  // nerozbije Cloudflare Turnstile ani Google Fonts, které dnes fungují bez nich.
+  { key: "Cross-Origin-Embedder-Policy", value: "credentialless" },
   { key: "X-DNS-Prefetch-Control", value: "on" },
   {
     key: "Content-Security-Policy-Report-Only",

@@ -1,7 +1,7 @@
 "use client";
 
 // AI generátor regexu — port legacy ai-regex-generator.js.
-// Jeden dotaz na /tools/api/ai/ollama, generuje PCRE/JavaScript regex.
+// Jeden dotaz na /tools/api/ai/[tool], generuje PCRE/JavaScript regex.
 import { useRef } from "react";
 import type { ToolComponentProps } from "@/components/tools/registry/data";
 import { useCopy, Icon } from "@/components/tools/tool-runtime";

@@ -1,15 +1,14 @@
 "use client";
 
 // AI asistent (chat) — React port legacy tools/assets/js/tools/ai-chat.js.
-// Stream z /tools/api/ai/ollama.php (NDJSON), výstup přes VeVitMarkdown
+// Stream z /tools/api/ai/[tool] (NDJSON), výstup přes VeVitMarkdown
 // (marked + DOMPurify + safe-markdown, líně načítané z public URL). Markup i
 // logika 1:1 s legacy (identické classNames, aby public/tools/assets/css/style.css
 // fungoval). Komponenta renderuje POUZE vnitřní tělo (.ai-chat) — shell dodává
 // stránka src/app/tools/[tool]/page.tsx.
 //
-// Odchylka od legacy: proxy route (src/app/tools/api/ai/ollama.php/route.ts)
+// Odchylka od legacy: proxy route (src/app/tools/api/ai/[tool]/route.ts)
 // odmítá `model` v těle (model vybírá server) — legacy posílalo model:'llama3.2';
-// port ho neodesílá. URL končí na `.php` (Next route), legacy volalo bez přípony.
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { ToolComponentProps } from "@/components/tools/registry/data";
 import { copyText, loadScript, useToolUi } from "@/components/tools/tool-runtime";
@@ -47,7 +46,7 @@ function runAi(opts: AiOpts): { abort: () => void } {
   let done = false;
   const body: Record<string, unknown> = { prompt: opts.prompt, tool: opts.tool, stream: true };
   if (opts.images && opts.images.length) body.images = opts.images;
-  fetch("/tools/api/ai/ollama.php", {
+  fetch(`/tools/api/ai/${opts.tool || "ai-chat"}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),

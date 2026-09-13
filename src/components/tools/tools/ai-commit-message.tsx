@@ -1,7 +1,7 @@
 "use client";
 
 // AI commit zpráva z diffu — port legacy ai-commit-message.js.
-// Jeden dotaz na /tools/api/ai/ollama, Conventional Commits formát.
+// Jeden dotaz na /tools/api/ai/[tool], Conventional Commits formát.
 import { useRef } from "react";
 import type { ToolComponentProps } from "@/components/tools/registry/data";
 import { useCopy, Icon } from "@/components/tools/tool-runtime";

@@ -1,8 +1,10 @@
 export const runtime = "nodejs";
 
-// Legacy cesta z WEDOS éry (.php artefakt na Next.js/Vercelu). Skutečný
-// handler žije teď v /tools/api/ai/[tool]/route.ts — sem přesměrováváme
-// 308, ať se zachová metoda i tělo požadavku (Fáze 1, bod 3 zadání).
+// Legacy cesta bez přípony — dřív bez vlastního handleru propadala do
+// catch-allu /tools/api/[...path] a dostávala tichou 200 od Supabase Edge
+// Function (Fáze 1, bod 3 zadání: audit "dvě cesty ke stejnému API").
+// Skutečný handler žije v /tools/api/ai/[tool]/route.ts — sem přesměrováváme
+// 308, ať se zachová metoda i tělo požadavku.
 async function handler(request: Request): Promise<Response> {
   let tool = "ai-chat";
   try {

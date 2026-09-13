@@ -1,12 +1,11 @@
 "use client";
 
 // AI analýza obrázku (llava) — React port legacy tools/assets/js/tools/ai-vision.js.
-// Obrázek jako base64 + otázka na /tools/api/ai/ollama.php (NDJSON stream),
+// Obrázek jako base64 + otázka na /tools/api/ai/[tool] (NDJSON stream),
 // výstup přes VeVitMarkdown. Markup i logika 1:1 s legacy. Komponenta renderuje
 // POUZE vnitřní tělo (.stack) — shell dodává src/app/tools/[tool]/page.tsx.
 //
 // Odchylka: route odmítá `model` v těle (server vybírá model) — legacy posílalo
-// model:'llava'; port ho neodesílá. URL končí na `.php` (Next route), legacy
 // volalo bez přípony. Legacy renderFileList nezobrazuje náhled obrázku (jen
 // ikona + název + velikost + odebrat) — port je 1:1 (žádný object URL preview).
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -33,7 +32,7 @@ function runAi(opts: AiOpts): { abort: () => void } {
   const controller = new AbortController();
   let full = "";
   let done = false;
-  fetch("/tools/api/ai/ollama.php", {
+  fetch("/tools/api/ai/ai-vision", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ prompt: opts.prompt, tool: "ai-vision", stream: true, images: opts.images }),

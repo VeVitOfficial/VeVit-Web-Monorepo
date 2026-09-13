@@ -10,11 +10,10 @@
 // qrcode-generator, html-pdf-sanitize) se načítají líně z /tools/assets/js/lib/
 // přes loadScript() — žádné npm závislosti.
 //
-// pdf-password: legacy nemá klientský JS (vyžaduje qpdf na serveru/VPS),
-// proto je registrován jako undefined — shell zobrazí placeholder.
 import type { ToolComponent } from "@/components/tools/registry/data";
 
 import PdfMerge from "@/components/tools/tools/pdf-merge";
+import PdfPassword from "@/components/tools/tools/pdf-password";
 import PdfSplit from "@/components/tools/tools/pdf-split";
 import PdfCompress from "@/components/tools/tools/pdf-compress";
 import PdfRotate from "@/components/tools/tools/pdf-rotate";
@@ -42,8 +41,7 @@ const PDF: Record<string, ToolComponent | undefined> = {
   "images-to-pdf": ImagesToPdf,
   "html-to-pdf": HtmlToPdf,
   "invoice-gen": InvoiceGen,
-  // pdf-password vyžaduje qpdf (shell_exec) na VPS — legacy JS neexistuje.
-  "pdf-password": undefined,
+  "pdf-password": PdfPassword,
 };
 
 export default PDF;

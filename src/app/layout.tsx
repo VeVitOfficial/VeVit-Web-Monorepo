@@ -3,7 +3,11 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://vevit.cz";
+// Produkce přesměrovává apex (vevit.cz) na www.vevit.cz (308) — metadataBase
+// musí ukazovat na kanonickou doménu, jinak z ní odvozené relativní URL
+// (og:image, canonical přes alternates: { canonical: "/" } níže) míří na
+// adresu, která se přesměruje, místo na finální URL. Viz src/lib/tools-seo.ts.
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.vevit.cz";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

@@ -1,13 +1,12 @@
 "use client";
 
 // AI otázky nad textem (kontext Q&A) — React port legacy
-// tools/assets/js/tools/ai-text-qa.js. Jeden dotaz na /tools/api/ai/ollama.php
+// tools/assets/js/tools/ai-text-qa.js. Jeden dotaz na /tools/api/ai/[tool]
 // (NDJSON stream), výstup přes VeVitMarkdown. Markup i logika 1:1 s legacy.
 // Komponenta renderuje POUZE vnitřní tělo (.stack) — shell dodává
 // src/app/tools/[tool]/page.tsx.
 //
 // Odchylka: route odmítá `model` v těle (server vybírá model) — port ho
-// neodesílá. URL končí na `.php` (Next route), legacy volalo bez přípony.
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { ToolComponentProps } from "@/components/tools/registry/data";
 import { copyText, loadScript } from "@/components/tools/tool-runtime";
@@ -32,7 +31,7 @@ function runAi(opts: AiOpts): { abort: () => void } {
   const controller = new AbortController();
   let full = "";
   let done = false;
-  fetch("/tools/api/ai/ollama.php", {
+  fetch("/tools/api/ai/ai-text-qa", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ prompt: opts.prompt, tool: "ai-text-qa", stream: true }),

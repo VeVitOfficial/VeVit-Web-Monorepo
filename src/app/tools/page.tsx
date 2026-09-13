@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/tools/site-header";
 import { SiteFooter } from "@/components/tools/site-footer";
 import { HubApp } from "@/components/tools/hub-app";
 import { HUB_I18N, SUPPORTED_LOCALES, type Locale } from "@/components/tools/registry/data";
+import { toolAlternates } from "@/lib/tools-seo";
 
 // Legacy CSS — className v komponentách zůstávají totožné s legacy HTML,
 // aby public/tools/assets/css/style.css a vevit-fonts.css styl fungoval.
@@ -18,7 +19,7 @@ async function readLocale(): Promise<Locale> {
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await readLocale();
   const s = HUB_I18N[locale] ?? HUB_I18N.cs;
-  return { title: s.doc_title, description: s.doc_description };
+  return { title: s.doc_title, description: s.doc_description, alternates: toolAlternates(locale, "tools") };
 }
 
 export default async function ToolsHubPage({
@@ -30,7 +31,10 @@ export default async function ToolsHubPage({
   const sp = await searchParams;
   const strings = HUB_I18N[locale] ?? HUB_I18N.cs;
   return (
-    <>
+    // .tools-hub — vizuální scope pro redesign hlavní stránky nástrojů
+    // (viz tools-hub blok ve style.css). Ostatní stránky (jednotlivé nástroje)
+    // sdílejí SiteHeader/SiteFooter beze změny, tenhle wrapper je nezasahuje.
+    <div className="tools-hub">
       <SiteHeader
         locale={locale}
         strings={{
@@ -44,6 +48,6 @@ export default async function ToolsHubPage({
       />
       <HubApp locale={locale} initialSearchParams={sp} strings={strings} />
       <SiteFooter locale={locale} strings={{ back: strings.footer_back, privacy: strings.footer_privacy, copyright: strings.footer_copyright }} />
-    </>
+    </div>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 // AI vysvětlení kódu — port legacy ai-code-explainer.js.
-// Jeden dotaz na /tools/api/ai/ollama se streamem, vykreslení přes VeVitMarkdown.
+// Jeden dotaz na /tools/api/ai/[tool] se streamem, vykreslení přes VeVitMarkdown.
 import { useRef } from "react";
 import type { ToolComponentProps } from "@/components/tools/registry/data";
 import { useCopy, Icon } from "@/components/tools/tool-runtime";
