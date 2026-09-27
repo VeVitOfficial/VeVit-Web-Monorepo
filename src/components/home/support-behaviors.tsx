@@ -9,7 +9,7 @@ import { useEffect } from "react";
 // initContactEmail: desktop (hover+fine pointer) kopíruje mail do schránky;
 // na stránce může být víc [data-contact-email] odkazů (quick-links + FAQ).
 const SUPPORT_SCRIPTS = [
-  "/assets/shared/session.js",
+  "/assets/shared/session.js?v=20260928a",
 ] as const;
 // app-switcher.js je ES modul — legacy ho načítal s type="module".
 // next/script vkládá klasický <script> → SyntaxError, proto plain tag.

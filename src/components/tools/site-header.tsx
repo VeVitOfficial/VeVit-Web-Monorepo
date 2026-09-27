@@ -32,13 +32,21 @@ const CATEGORY_DOT_LABEL: Record<Category, string> = {
 const MODULE_SCRIPTS = [
   "/assets/shared/app-switcher.js?v=20260825b",
   "/assets/shared/localization.js?v=20260826f",
+  "/assets/shared/session.js?v=20260928a",
 ] as const;
+const SESSION_CSS = "/assets/shared/session.css?v=20260928a";
 
 export function SiteHeader({ locale, strings }: Props) {
   const [open, setOpen] = useState(false);
   const wrapRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    if (!document.querySelector(`link[href="${SESSION_CSS}"]`)) {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = SESSION_CSS;
+      document.head.appendChild(link);
+    }
     const injected: HTMLScriptElement[] = [];
     for (const src of MODULE_SCRIPTS) {
       if (document.querySelector(`script[src="${src}"]`)) continue;
@@ -112,16 +120,19 @@ export function SiteHeader({ locale, strings }: Props) {
         <div className="header-right vv-app-actions">
           <span data-vevit-language></span>
           <span data-vevit-app-switcher data-vevit-app="Tools"></span>
-          <a
-            className="login-btn"
-            href={`/${locale}/account/login`}
-            title={strings.login_title}
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" /><polyline points="10 17 15 12 10 7" /><line x1="15" y1="12" x2="3" y2="12" />
-            </svg>{" "}
-            {strings.login}
-          </a>
+          {/* session.js replaces the fallback with the account menu once signed in. */}
+          <span data-vevit-session>
+            <a
+              className="login-btn"
+              href={`/${locale}/account/login`}
+              title={strings.login_title}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" /><polyline points="10 17 15 12 10 7" /><line x1="15" y1="12" x2="3" y2="12" />
+              </svg>{" "}
+              {strings.login}
+            </a>
+          </span>
         </div>
       </div>
 

@@ -75,7 +75,7 @@ export function EduRoot({
             {/* Sdílené pill skripty – po hydrataci (data-vevit-* placeholdery
                 v Navbar už jsou v DOM). app-switcher.js je ES modul, vkládaný
                 imperativně (viz useModuleScripts výše). */}
-            <Script src="/assets/shared/session.js" strategy="lazyOnload" />
+            <Script src="/assets/shared/session.js?v=20260928a" type="module" strategy="lazyOnload" />
           </ToastProvider>
         </BreadcrumbsProvider>
       </EduThemeProvider>

@@ -31,7 +31,7 @@ export async function loadSession({ fetchImpl = globalThis.fetch } = {}) {
     }
 
     csrfToken = payload.csrf_token;
-    return { state: 'authenticated', user: payload.user };
+    return { state: 'authenticated', user: payload.user, access: payload.access ?? null };
   } catch {
     return { state: 'unavailable' };
   }
@@ -78,13 +78,54 @@ function clear(root) {
   root.removeAttribute('aria-busy');
 }
 
-function renderAuthenticated(root, user) {
+const RANK_LABELS = {
+  novacek: 'Nováček', ucen: 'Učeň', pruzkumnik: 'Průzkumník', tvurce: 'Tvůrce', expert: 'Expert',
+  mistr: 'Mistr', legenda: 'Legenda', bronze: 'Bronze', silver: 'Silver', gold: 'Gold', platinum: 'Platinum',
+  betatester: 'Betatester', partner: 'Partner', moderator: 'Moderátor', admin: 'Admin', owner: 'Owner',
+};
+const TIER_LABELS = { free: 'Free', bronze: 'Bronze', silver: 'Silver', gold: 'Gold', platinum: 'Platinum' };
+
+function menuLink(href, label, hint) {
+  const item = document.createElement('a');
+  item.className = 'vv-session-menu__item';
+  item.href = href;
+  item.setAttribute('role', 'menuitem');
+  item.tabIndex = -1;
+  const text = document.createElement('span');
+  text.textContent = label;
+  item.append(text);
+  if (hint) {
+    const small = document.createElement('small');
+    small.textContent = hint;
+    item.append(small);
+  }
+  return item;
+}
+
+async function logout() {
+  try {
+    await fetch('/account/api/logout.php', {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: { 'X-CSRF-Token': csrfToken, Accept: 'application/json' },
+    });
+  } finally {
+    window.location.reload();
+  }
+}
+
+function renderAuthenticated(root, user, access) {
   clear(root);
   const name = displayName(user);
-  const link = document.createElement('a');
-  link.className = 'vv-session vv-session--authenticated';
-  link.href = '/account';
-  link.setAttribute('aria-label', `Otevřít účet: ${name}`);
+  const wrap = document.createElement('div');
+  wrap.className = 'vv-session-wrap';
+
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = 'vv-session vv-session--authenticated';
+  button.setAttribute('aria-haspopup', 'menu');
+  button.setAttribute('aria-expanded', 'false');
+  button.setAttribute('aria-label', `Účet: ${name}`);
 
   const avatar = document.createElement('span');
   avatar.className = 'vv-session__avatar';
@@ -114,8 +155,98 @@ function renderAuthenticated(root, user) {
   chevron.setAttribute('aria-hidden', 'true');
   chevron.textContent = '⌄';
   meta.append(label, email);
-  link.append(avatar, meta, chevron);
-  root.append(link);
+  button.append(avatar, meta, chevron);
+
+  const menu = document.createElement('div');
+  menu.className = 'vv-session-menu';
+  menu.setAttribute('role', 'menu');
+  menu.setAttribute('aria-label', 'Účet');
+  menu.hidden = true;
+
+  const head = document.createElement('div');
+  head.className = 'vv-session-menu__head';
+  const headName = document.createElement('strong');
+  headName.textContent = name;
+  const headMeta = document.createElement('small');
+  const level = Number(user.level) || 1;
+  const xp = Number(user.xp) || 0;
+  headMeta.textContent = `Level ${level} · ${xp.toLocaleString('cs-CZ')} XP`;
+  head.append(headName, headMeta);
+  const ranks = Array.isArray(access?.ranks) ? access.ranks : [];
+  if (ranks.length) {
+    const chips = document.createElement('span');
+    chips.className = 'vv-session-menu__ranks';
+    for (const key of ranks) {
+      const chip = document.createElement('span');
+      chip.textContent = RANK_LABELS[key] ?? key;
+      chips.append(chip);
+    }
+    head.append(chips);
+  }
+
+  const tier = typeof access?.tier === 'string' ? access.tier : 'free';
+  const permissions = Array.isArray(access?.permissions) ? access.permissions : [];
+  const items = [
+    menuLink('/account', 'Můj účet', 'Přehled, level a aktivita'),
+    menuLink('/account/profile', 'Profil'),
+    menuLink('/account/billing', 'Předplatné', tier === 'free' ? 'Vyzkoušet Premium' : TIER_LABELS[tier] ?? tier),
+    menuLink('/account/security', 'Zabezpečení', '2FA, heslo, relace'),
+    menuLink('/account/preferences', 'Předvolby'),
+  ];
+  if (permissions.includes('*') || permissions.includes('admin.console')) {
+    items.push(menuLink('/account/admin', 'Konzole', 'Správa uživatelů a ranků'));
+  }
+  const separator = document.createElement('div');
+  separator.className = 'vv-session-menu__sep';
+  separator.setAttribute('role', 'separator');
+  const out = document.createElement('button');
+  out.type = 'button';
+  out.className = 'vv-session-menu__item vv-session-menu__item--danger';
+  out.setAttribute('role', 'menuitem');
+  out.tabIndex = -1;
+  out.textContent = 'Odhlásit se';
+  out.addEventListener('click', () => {
+    out.disabled = true;
+    logout();
+  });
+  menu.append(head, ...items, separator, out);
+
+  const focusables = () => Array.from(menu.querySelectorAll('[role="menuitem"]'));
+  const setOpen = (open, focusFirst = false) => {
+    menu.hidden = !open;
+    button.setAttribute('aria-expanded', String(open));
+    wrap.classList.toggle('is-open', open);
+    if (open && focusFirst) focusables()[0]?.focus();
+  };
+  button.addEventListener('click', () => setOpen(menu.hidden));
+  button.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowDown' || event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      setOpen(true, true);
+    }
+  });
+  menu.addEventListener('keydown', (event) => {
+    const list = focusables();
+    const index = list.indexOf(document.activeElement);
+    if (event.key === 'Escape') {
+      setOpen(false);
+      button.focus();
+    } else if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      list[(index + 1) % list.length]?.focus();
+    } else if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      list[(index - 1 + list.length) % list.length]?.focus();
+    } else if (event.key === 'Tab') {
+      setOpen(false);
+    }
+  });
+  document.addEventListener('click', (event) => {
+    if (!wrap.contains(event.target)) setOpen(false);
+  });
+
+  wrap.append(button, menu);
+  root.append(wrap);
 }
 
 function renderAnonymous(root, locationRef) {
@@ -146,7 +277,7 @@ function renderLoading(root) {
 }
 
 export function renderSessionResult(root, result, locationRef = window.location) {
-  if (result?.state === 'authenticated') renderAuthenticated(root, result.user);
+  if (result?.state === 'authenticated') renderAuthenticated(root, result.user, result.access);
   else if (result?.state === 'anonymous') renderAnonymous(root, locationRef);
   else renderUnavailable(root);
 }

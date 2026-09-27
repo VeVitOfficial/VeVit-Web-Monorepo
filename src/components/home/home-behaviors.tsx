@@ -21,7 +21,7 @@ const LEGACY_SCRIPTS = [
 const LEGACY_MODULE_SCRIPTS = [
   "/assets/shared/app-switcher.js?v=20260825b",
   "/assets/shared/localization.js?v=20260826f",
-  "/assets/shared/session.js",
+  "/assets/shared/session.js?v=20260928a",
 ] as const;
 
 declare global {

@@ -1968,3 +1968,18 @@ section[id] { scroll-margin-top: 84px; }
   background: var(--surface-elev);
   border-color: var(--border-hover);
 }
+
+/* Nav never wraps: items stay on one line, the account button shrinks first. */
+.nav-inner { gap: 16px; }
+.nav-links { flex-wrap: nowrap; min-width: 0; }
+.nav-link, .nav-links a { white-space: nowrap; }
+.nav-cta { flex-wrap: nowrap; flex-shrink: 0; }
+.nav-cta .vv-session__name, .nav-cta .vv-session__email { max-width: 9rem; }
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .nav-links { gap: 20px; }
+}
+/* Below 1440 px only the avatar + chevron; name and e-mail are in the menu. */
+@media (max-width: 1439px) {
+  .nav-cta .vv-session--authenticated { grid-template-columns: 2.25rem 1rem; }
+  .nav-cta .vv-session__meta { display: none; }
+}
