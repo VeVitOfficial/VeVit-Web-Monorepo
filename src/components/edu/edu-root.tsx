@@ -69,7 +69,7 @@ export function EduRoot({
             <Script src="/assets/vendor/lucide/lucide.min.js" strategy="afterInteractive" />
             <Script src="/assets/vendor/katex/katex.min.js" strategy="afterInteractive" />
             <Script src="/edu/assets/js/vendor/dompurify.min.js" strategy="afterInteractive" />
-            <Script src="/edu/assets/js/content-sanitizer.js" strategy="afterInteractive" />
+            <Script src="/edu/assets/js/content-sanitizer.js?v=20260928b" strategy="afterInteractive" />
             <Script src="/edu/assets/js/sandbox-runner.js" strategy="afterInteractive" />
 
             {/* Sdílené pill skripty – po hydrataci (data-vevit-* placeholdery

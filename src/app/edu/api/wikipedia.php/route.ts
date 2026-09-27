@@ -13,7 +13,7 @@ const BASE_HEADERS: Record<string, string> = {
 };
 
 const ALLOWED_LANGUAGES = ["cs", "en", "de", "uk", "es"];
-const ALLOWED_ACTIONS = ["search", "article", "parse"];
+const ALLOWED_ACTIONS = ["search", "article", "parse", "summary"];
 
 function wikipediaError(message: string, status: number): Response {
   return new Response(
@@ -111,6 +111,46 @@ export async function GET(request: Request): Promise<Response> {
       status: 200,
       headers: { "Content-Type": "application/json; charset=utf-8", ...BASE_HEADERS },
     });
+  }
+
+  if (action === "summary") {
+    const key = (params.get("key") ?? "").trim();
+    if (key === "" || [...key].length > 300 || /[\x00-\x1f]/.test(key)) {
+      return wikipediaError("Neplatný klíč článku.", 400);
+    }
+    const result = await wikipediaFetch(
+      `https://${language}.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(key)}`,
+      256 * 1024,
+      "application/json",
+    );
+    if (!result.ok) return wikipediaError(result.message, result.status);
+    let data: Record<string, unknown>;
+    try {
+      data = JSON.parse(result.body) as Record<string, unknown>;
+    } catch {
+      return wikipediaError("Wikipedia vrátila neplatná data.", 502);
+    }
+    // Only plain fields the article header needs; images only from Wikimedia.
+    const image = (value: unknown) => {
+      const img = value !== null && typeof value === "object" ? (value as Record<string, unknown>) : null;
+      const source = typeof img?.source === "string" ? img.source : "";
+      if (!/^https:\/\/(?:upload|thumb)\.wikimedia\.org\//i.test(source)) return null;
+      return { source, width: Number(img?.width) || null, height: Number(img?.height) || null };
+    };
+    const text = (value: unknown, max: number) =>
+      typeof value === "string" ? phpMbSubstr(phpStripTags(value), 0, max) : "";
+    return new Response(
+      JSON.stringify({
+        type: data.type === "disambiguation" ? "disambiguation" : "standard",
+        title: text(data.title, 300),
+        description: text(data.description, 300),
+        extract: text(data.extract, 1200),
+        thumbnail: image(data.thumbnail),
+        lang: language,
+        timestamp: typeof data.timestamp === "string" ? data.timestamp : null,
+      }),
+      { status: 200, headers: { "Content-Type": "application/json; charset=utf-8", ...BASE_HEADERS } },
+    );
   }
 
   if (action === "article") {

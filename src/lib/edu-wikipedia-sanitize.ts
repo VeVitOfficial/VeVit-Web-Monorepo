@@ -161,7 +161,8 @@ export function vevitWikipediaSanitizeHtml(html: string): string {
       if (src) {
         let value = src.value.trim();
         if (value.startsWith("//")) value = `https:${value}`;
-        if (!/^https:\/\/upload\.wikimedia\.org\//i.test(value)) {
+        // Wikimedia serves originals from upload.* and thumbnails from thumb.*.
+        if (!/^https:\/\/(?:upload|thumb)\.wikimedia\.org\//i.test(value)) {
           node.attrs = node.attrs.filter((attribute) => attribute !== src);
         } else {
           src.value = value;

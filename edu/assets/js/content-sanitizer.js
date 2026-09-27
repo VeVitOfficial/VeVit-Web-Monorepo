@@ -26,6 +26,9 @@
       ALLOW_DATA_ATTR: false,
       ALLOW_ARIA_ATTR: false,
       ALLOWED_URI_REGEXP: SAFE_URI,
+      // ALLOWED_URI_REGEXP is also applied to every attribute DOMPurify does not
+      // know as URI-safe, which silently dropped colspan="2", width="250", …
+      ADD_URI_SAFE_ATTR: ["colspan", "rowspan", "width", "height", "scope", "loading", "lang", "dir"],
       SAFE_FOR_TEMPLATES: true,
     }, extra || {});
   }

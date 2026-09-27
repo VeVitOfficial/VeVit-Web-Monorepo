@@ -8,6 +8,7 @@ module.exports = {
     './tools/**/*.{html,php,js}',
     './edu/**/*.{html,php,js}',
     './home/**/*.{html,php,js}',
+    './src/**/*.{ts,tsx}',
     '!./**/vendor/**',
     '!./**/node_modules/**',
     '!./**/tests/**',

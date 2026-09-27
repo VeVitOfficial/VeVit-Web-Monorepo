@@ -43,12 +43,85 @@ export async function fetchArticleHTML(keyOrTitle: string): Promise<string> {
   return await res.text();
 }
 
+export interface WikiSummary {
+  type: "standard" | "disambiguation";
+  title: string;
+  description: string;
+  extract: string;
+  thumbnail: { source: string; width: number | null; height: number | null } | null;
+  lang: string;
+  timestamp: string | null;
+}
+
+// Short summary (type standard/disambiguation, description, thumbnail).
+// Optional: the article renders without it.
+export async function fetchSummary(key: string): Promise<WikiSummary | null> {
+  try {
+    const res = await fetch(`${WIKI_PROXY}?action=summary&key=${encodeURIComponent(key)}`, { headers: { Accept: "application/json" } });
+    if (!res.ok) return null;
+    return (await res.json()) as WikiSummary;
+  } catch {
+    return null;
+  }
+}
+
+/** A link to another Wikipedia article, rewritten to the in-app search. */
+export interface WikiLinkRef {
+  title: string;
+  /** In-app path (/edu/hledat?q=…), empty when the article does not exist yet. */
+  href: string;
+  missing: boolean;
+}
+
+/** Lead notes such as "Další významy jsou uvedeny na stránce Praha (rozcestník)". */
+export interface WikiHatnote {
+  text: string;
+  links: WikiLinkRef[];
+}
+
 export interface ParsedArticle {
   contentEl: Element | null;
   title: string;
+  /** Sanitized infobox HTML moved out of the text into the side card. */
+  infoboxHtml: string;
+  hatnotes: WikiHatnote[];
+  readingMinutes: number;
 }
 
-// Sanitizace + příprava obsahu článku. Vrací { contentEl, title }.
+export interface DisambiguationItem extends WikiLinkRef {
+  description: string;
+}
+
+export interface DisambiguationGroup {
+  label: string;
+  items: DisambiguationItem[];
+}
+
+export interface ParsedDisambiguation {
+  intro: string;
+  groups: DisambiguationGroup[];
+}
+
+const SPECIAL_NAMESPACE = /^(Soubor|Kategorie|Speciální|Nápověda|Wikipedie|Šablona|Portál|Diskuse|Wikipedista|Soubor diskuse|Meta):/;
+
+function titleFromHref(href: string): string {
+  const raw = href.replace(/^\.\//, "").split("#")[0].split("?")[0];
+  try {
+    return decodeURIComponent(raw).replace(/_/g, " ");
+  } catch {
+    return raw.replace(/_/g, " ");
+  }
+}
+
+function inAppHref(title: string): string {
+  return "/edu/hledat?q=" + encodeURIComponent(title);
+}
+
+function cleanText(text: string | null | undefined): string {
+  return (text ?? "").replace(/\s+/g, " ").trim();
+}
+
+// Sanitizace + příprava obsahu článku.
 // Vyžaduje window.VeVitContentSanitizer (globální sanitizer z assets/js).
 export function parseArticle(html: string, fallbackTitle?: string): ParsedArticle {
   // DOMPurify with RETURN_DOM hands back the <body> element, not a Document;
@@ -58,26 +131,62 @@ export function parseArticle(html: string, fallbackTitle?: string): ParsedArticl
   const clean = sanitizer ? sanitizer.sanitizeWikipedia(html) : doc;
   const cleanRoot: Element | null = clean instanceof Document ? clean.body : clean;
   const root: Element | null = cleanRoot?.querySelector(".mw-parser-output") ?? cleanRoot ?? null;
-  if (!root) return { contentEl: null, title: fallbackTitle ?? "" };
+  const empty = { infoboxHtml: "", hatnotes: [], readingMinutes: 0 };
+  if (!root) return { contentEl: null, title: fallbackTitle ?? "", ...empty };
 
   // Titulek z <title> nebo firstHeading
   const title = (doc.querySelector("title")?.textContent || fallbackTitle || "").replace(/ – Wikipedie.*$/i, "").trim();
 
+  // The server strips <head>, which leaves the page title as a bare text node.
+  Array.from(root.childNodes).forEach((node) => {
+    if (node.nodeType === Node.TEXT_NODE) node.parentNode?.removeChild(node);
+  });
+
+  // Lead section = everything before the first h2; its notes and infobox move
+  // into the article header and side card.
+  const firstHeading = root.querySelector("h2");
+  const inLead = (el: Element) =>
+    !firstHeading || Boolean(el.compareDocumentPosition(firstHeading) & Node.DOCUMENT_POSITION_FOLLOWING);
+
+  const hatnotes: WikiHatnote[] = [];
+  root.querySelectorAll(".hatnote, .uvodni-upozorneni, .rellink, .dablink").forEach((note) => {
+    if (!inLead(note) || note.closest("table")) return;
+    const links: WikiLinkRef[] = [];
+    note.querySelectorAll("a[href^='./']").forEach((a) => {
+      const t = titleFromHref(a.getAttribute("href") || "");
+      if (!t || SPECIAL_NAMESPACE.test(t)) return;
+      const missing = a.classList.contains("new");
+      links.push({ title: cleanText(a.textContent) || t, href: missing ? "" : inAppHref(t), missing });
+    });
+    const text = cleanText(note.textContent);
+    if (text) hatnotes.push({ text, links });
+    note.remove();
+  });
+
   // Sanitizace: odstranění rušivých prvků
   root.querySelectorAll(
-    "script, style, link, base, .mw-editsection, .mw-empty-elt, .navbox, .vertical-navbox, .metadata, .ambox, .mbox-small, .mw-jump-link, .noprint, .mw-redirectedfrom, .mw-ref, .reference, .mw-cite-backlink, .mw-headline-anchor, .pcs-edit-section-link, .pcs-meta, .hatnote .noprint, .printfooter, .mw-indicators, .mw-content-ltr .mw-empty-elt",
+    "script, style, link, base, .mw-editsection, .mw-empty-elt, .navbox, .vertical-navbox, .metadata, .ambox, .mbox-small, .mw-jump-link, .noprint, .mw-redirectedfrom, .mw-ref, .reference, .mw-cite-backlink, .mw-headline-anchor, .pcs-edit-section-link, .pcs-meta, .hatnote .noprint, .printfooter, .mw-indicators, .mw-content-ltr .mw-empty-elt, .sisterproject",
   ).forEach((e) => e.remove());
   root.querySelectorAll("sup.reference").forEach((e) => e.remove());
+
+  // Articles that do not exist yet (red links) become plain text.
+  root.querySelectorAll("a.new").forEach((a) => {
+    const span = doc.createElement("span");
+    span.className = "wp-redlink";
+    span.textContent = a.textContent;
+    span.setAttribute("title", "Tento článek na Wikipedii zatím neexistuje");
+    a.replaceWith(span);
+  });
 
   // Přepis interních odkazů (./Název → in-app /hledat?q=Název) a externích (target _blank)
   root.querySelectorAll("a[href]").forEach((a) => {
     const href = a.getAttribute("href") || "";
     if (href.startsWith("./")) {
       const raw = href.slice(2).split("#")[0].split("?")[0];
-      const t = decodeURIComponent(raw).replace(/_/g, " ");
+      const t = titleFromHref(href);
       if (!t) {
         a.removeAttribute("href");
-      } else if (/^(Soubor|Kategorie|Speciální|Nápověda|Wikipedie|Šablona|Portál|Diskuse|Wikipedista|Soubor diskuse|Meta):/.test(t)) {
+      } else if (SPECIAL_NAMESPACE.test(t)) {
         a.setAttribute("href", "https://cs.wikipedia.org/wiki/" + raw);
         a.setAttribute("target", "_blank");
         a.setAttribute("rel", "noopener noreferrer");
@@ -101,7 +210,68 @@ export function parseArticle(html: string, fallbackTitle?: string): ParsedArticl
     // protokol-relativní (//) odkazy necháme, prohlížeč resolvinguje
   });
 
-  return { contentEl: root, title };
+  // Infobox from the lead goes to the side card.
+  let infoboxHtml = "";
+  const infobox = root.querySelector("table.infobox");
+  if (infobox && inLead(infobox)) {
+    infoboxHtml = infobox.outerHTML;
+    infobox.remove();
+  }
+
+  // Wide tables scroll horizontally instead of stretching the page.
+  root.querySelectorAll("table").forEach((table) => {
+    if (table.closest(".wp-table-scroll") || table.parentElement?.closest("table")) return;
+    const wrap = doc.createElement("div");
+    wrap.className = "wp-table-scroll";
+    table.replaceWith(wrap);
+    wrap.appendChild(table);
+  });
+
+  const words = cleanText(root.textContent).split(" ").length;
+  return { contentEl: root, title, infoboxHtml, hatnotes, readingMinutes: Math.max(1, Math.round(words / 200)) };
+}
+
+const DISAMBIGUATION_STOP = /^(Externí odkazy|Reference|Poznámky|Literatura|Související články)$/i;
+
+/**
+ * Turns a (already parsed) disambiguation page into groups of meanings:
+ * each list item's first link is the meaning, the rest of the line its
+ * description. Group labels come from headings and <dt> captions.
+ */
+export function parseDisambiguation(contentEl: Element): ParsedDisambiguation {
+  const intro = cleanText(contentEl.querySelector("p")?.textContent);
+  const groups: DisambiguationGroup[] = [{ label: "", items: [] }];
+  let stopped = false;
+  contentEl.querySelectorAll("h2, h3, h4, dt, li").forEach((el) => {
+    if (stopped) return;
+    const tag = el.tagName.toLowerCase();
+    if (tag !== "li") {
+      const label = cleanText(el.textContent);
+      if (DISAMBIGUATION_STOP.test(label)) {
+        stopped = true;
+        return;
+      }
+      groups.push({ label, items: [] });
+      return;
+    }
+    // Nested lists are listed on their own; skip the parent's copy of them.
+    const link = el.querySelector(":scope > a[data-inapp], :scope > span.wp-redlink, :scope > i > a[data-inapp], :scope > b > a[data-inapp], :scope > i > span.wp-redlink");
+    if (!link) return;
+    const clone = el.cloneNode(true) as Element;
+    clone.querySelectorAll("ul, ol").forEach((nested) => nested.remove());
+    const linkText = cleanText(link.textContent);
+    const description = cleanText(clone.textContent).replace(linkText, "").replace(/^[\s,–—:-]+/, "").trim();
+    const missing = link.classList.contains("wp-redlink");
+    const hrefQuery = !missing ? new URLSearchParams((link.getAttribute("href") || "").split("?")[1] || "").get("q") : null;
+    const title = hrefQuery || linkText;
+    groups.at(-1)!.items.push({ title: linkText || title, description, missing, href: missing ? "" : inAppHref(title) });
+  });
+  return { intro, groups: groups.filter((group) => group.items.length > 0) };
+}
+
+/** Fallback when the summary is unavailable. */
+export function looksLikeDisambiguation(description: string, intro: string): boolean {
+  return /rozcestník/i.test(description) || /má (více|několik|další) význam/i.test(intro);
 }
 
 // Vytvoření TOC stromu ze sekčních nadpisů (h2/h3/h4 uvnitř <section>)
