@@ -61,7 +61,8 @@ export async function POST(request: Request) {
     try {
       secret = generateTotpSecret();
       cipher = encryptTotpSecret(secret);
-    } catch {
+    } catch (error) {
+      console.error("2FA setup: TOTP encryption unavailable", error instanceof Error ? error.message : error);
       return Response.json({ error: "2FA není na serveru správně nakonfigurováno." }, { status: 503 });
     }
 
