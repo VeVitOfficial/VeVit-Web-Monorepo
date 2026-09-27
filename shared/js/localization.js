@@ -268,7 +268,10 @@ function render(root) {
     btn.type = 'button';
     btn.className = 'vv-locale__btn' + (locale.code === activeLocale ? ' is-active' : '');
     btn.dataset.locale = locale.code;
-    btn.textContent = `${locale.flag} ${locale.label}`;
+    const label = document.createElement('span');
+    label.className = 'vv-locale__label';
+    label.textContent = locale.label;
+    btn.append(`${locale.flag} `, label);
     btn.title = locale.label;
     btn.setAttribute('aria-pressed', locale.code === activeLocale ? 'true' : 'false');
     btn.setAttribute('aria-label', locale.label);

@@ -517,18 +517,21 @@ export default async function HomePage() {
                 </div>
               </div>
 
-              <div className="orbit rise rise-2" aria-hidden="true">
-                <span className="orbit-tag tag-1">vevit.cz/tools</span>
-                <span className="orbit-tag tag-2">www.vevit.fun</span>
-                <span className="orbit-tag tag-3">vevit.cz/edu</span>
-                <span className="orbit-tag tag-4">services.vevit.cz</span>
+              <div className="orbit rise rise-2">
+                <a className="orbit-tag tag-1" href={`${L}/tools`}>vevit.cz/tools</a>
+                <a className="orbit-tag tag-2" href="https://www.vevit.fun">www.vevit.fun</a>
+                <a className="orbit-tag tag-3" href={`${L}/edu`}>vevit.cz/edu</a>
+                {/* /services zatím neexistuje — vede na sekci s projekty VeVit */}
+                <a className="orbit-tag tag-4" href={`${L}/home#explore`}>vevit.cz/services</a>
+                <a className="orbit-tag tag-5" href="https://www.vevit.space">Software Studio</a>
+                <a className="orbit-tag tag-6" href="https://vevit.art">VeVit Art</a>
 
-                <div className="orbit-ring" />
-                <div className="orbit-ring r2" />
-                <div className="orbit-ring r3" />
-                <div className="orbit-ring r4" />
+                <div className="orbit-ring" aria-hidden="true" />
+                <div className="orbit-ring r2" aria-hidden="true" />
+                <div className="orbit-ring r3" aria-hidden="true" />
+                <div className="orbit-ring r4" aria-hidden="true" />
 
-                <div className="orbit-core">
+                <div className="orbit-core" aria-hidden="true">
                   {/* eslint-disable-next-line @next/next/no-img-element -- dekorativní orbit logo */}
                   <img
                     className="orbit-core-logo"
@@ -538,7 +541,7 @@ export default async function HomePage() {
                 </div>
 
                 {/* Outer ring, fast, 4 nodes */}
-                <div className="orbit-track t-fast">
+                <div className="orbit-track t-fast" aria-hidden="true">
                   <span
                     className="orbit-node n-pos-1"
                     style={cssVar({ "--n": "var(--c-tools)" })}
@@ -590,7 +593,7 @@ export default async function HomePage() {
                 </div>
 
                 {/* Mid ring, slow reverse */}
-                <div className="orbit-track t-rev" style={{ inset: "18%" }}>
+                <div className="orbit-track t-rev" style={{ inset: "18%" }} aria-hidden="true">
                   <span
                     className="orbit-node n-pos-5"
                     style={cssVar({

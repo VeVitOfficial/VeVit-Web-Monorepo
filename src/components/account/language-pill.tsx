@@ -73,7 +73,7 @@ export function LanguagePill({
           title={locale.label}
           onClick={() => choose(locale.code)}
         >
-          {locale.flag} {locale.label}
+          {locale.flag} <span className="vv-locale__label">{locale.label}</span>
         </button>
       ))}
     </div>

@@ -221,6 +221,23 @@ section[id] { scroll-margin-top: 84px; }
   gap: 12px;
 }
 @media (min-width: 1024px) { .nav-cta { display: flex; } }
+/* Nav je v kontejneru max 1200 px — nav-links + jazykový pill + switcher +
+   účet (přihlášený až 14rem) se vedle sebe nevejdou. Pill proto ukazuje jen
+   vlajky; pod 1280 px navíc užší mezery a účet jen s avatarem. */
+@media (min-width: 1024px) {
+  .nav-cta .vv-locale { grid-template-columns: repeat(var(--vv-locale-count), minmax(40px, 1fr)); }
+  .nav-cta .vv-locale__btn { padding-inline: 8px; }
+  .nav-cta .vv-locale__label { display: none; }
+}
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .nav-links { gap: 20px; }
+  .nav-cta { gap: 8px; }
+  .nav-cta .vv-session--authenticated { grid-template-columns: 2.25rem 1rem; }
+  .nav-cta .vv-session__meta { display: none; }
+}
+@media (min-width: 1024px) and (max-width: 1179px) {
+  .nav .wordmark-suffix { display: none; }
+}
 
 /* ============ BUTTONS ============ */
 .btn {
@@ -1359,6 +1376,11 @@ section[id] { scroll-margin-top: 84px; }
 .tag-2 { top: 18%; right: 6%; --td: var(--c-games); }
 .tag-3 { bottom: 22%; left: 4%; --td: var(--c-edu); }
 .tag-4 { bottom: 8%; right: 10%; --td: var(--c-services); }
+.tag-5 { top: 40%; left: -2%; --td: var(--c-services); }
+.tag-6 { top: 58%; right: -2%; --td: var(--c-store); }
+a.orbit-tag { text-decoration: none; transition: border-color 150ms var(--ease), color 150ms var(--ease), transform 150ms var(--ease); }
+a.orbit-tag:hover { border-color: var(--td); color: var(--td); transform: translateY(-1px); }
+a.orbit-tag:focus-visible { outline: 2px solid var(--td); outline-offset: 2px; }
 
 @media (max-width: 768px) {
   .orbit-tag { font-size: 10px; padding: 3px 8px; }
