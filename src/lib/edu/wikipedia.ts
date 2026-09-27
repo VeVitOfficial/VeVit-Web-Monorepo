@@ -51,11 +51,13 @@ export interface ParsedArticle {
 // Sanitizace + příprava obsahu článku. Vrací { contentEl, title }.
 // Vyžaduje window.VeVitContentSanitizer (globální sanitizer z assets/js).
 export function parseArticle(html: string, fallbackTitle?: string): ParsedArticle {
-  const sanitizer = (window as unknown as { VeVitContentSanitizer?: { sanitizeWikipedia: (html: string) => Document } }).VeVitContentSanitizer;
+  // DOMPurify with RETURN_DOM hands back the <body> element, not a Document;
+  // without the sanitizer script we fall back to the parsed document's body.
+  const sanitizer = (window as unknown as { VeVitContentSanitizer?: { sanitizeWikipedia: (html: string) => Element | Document } }).VeVitContentSanitizer;
   const doc = new DOMParser().parseFromString(html, "text/html");
-  const cleanDocument = sanitizer ? sanitizer.sanitizeWikipedia(html) : doc;
-  const root: Element | null =
-    cleanDocument.querySelector(".mw-parser-output") || cleanDocument.documentElement || null;
+  const clean = sanitizer ? sanitizer.sanitizeWikipedia(html) : doc;
+  const cleanRoot: Element | null = clean instanceof Document ? clean.body : clean;
+  const root: Element | null = cleanRoot?.querySelector(".mw-parser-output") ?? cleanRoot ?? null;
   if (!root) return { contentEl: null, title: fallbackTitle ?? "" };
 
   // Titulek z <title> nebo firstHeading

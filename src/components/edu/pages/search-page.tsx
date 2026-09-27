@@ -56,6 +56,7 @@ export function EduSearchPage({ locale, query }: { locale: string; query: string
   const [ai, setAI] = useState<AIState | null>(null);
 
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [draft, setDraft] = useState(trimmed);
   const mainRef = useRef<HTMLDivElement | null>(null);
   const articleRef = useRef<HTMLElement | null>(null);
 
@@ -239,6 +240,34 @@ export function EduSearchPage({ locale, query }: { locale: string; query: string
           )}
         </div>
         <div className="max-w-6xl mx-auto px-4 pb-3">
+          <form
+            role="search"
+            className="flex gap-2 mb-2"
+            onSubmit={(e) => {
+              e.preventDefault();
+              const v = draft.trim();
+              if (v) router.push(`/edu/hledat?q=${encodeURIComponent(v)}`);
+            }}
+          >
+            <label className="sr-only" htmlFor="wiki-search">Hledat na Wikipedii</label>
+            <input
+              id="wiki-search"
+              type="search"
+              value={draft}
+              onChange={(e) => setDraft(e.target.value)}
+              placeholder="Hledat na Wikipedii… (otazník na konci = AI režim)"
+              maxLength={200}
+              autoFocus={!searchQuery}
+              className="flex-1 min-w-0 h-10 px-3 rounded-lg bg-[var(--color-card-bg)] border border-[var(--color-border-subtle)] text-sm text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:border-emerald-500"
+            />
+            <button
+              type="submit"
+              className="h-10 px-4 rounded-lg bg-emerald-500 text-black text-sm font-semibold hover:bg-emerald-400 transition disabled:opacity-50"
+              disabled={!draft.trim()}
+            >
+              Hledat
+            </button>
+          </form>
           {ai && <AIBanner ai={ai} />}
         </div>
       </div>
@@ -257,7 +286,7 @@ export function EduSearchPage({ locale, query }: { locale: string; query: string
         <main ref={mainRef} onClick={onMainClick} className="min-h-screen">
           {phase === "empty" && (
             <div className="p-20 text-center text-[var(--color-text-muted)]">
-              Zadej hledaný výraz. Tip: ukonči dotaz otazníkem <span className="text-emerald-500">?</span> pro AI režim.
+              Zadej hledaný výraz do pole nahoře. Tip: ukonči dotaz otazníkem <span className="text-emerald-500">?</span> pro AI režim.
             </div>
           )}
           {phase === "loading" && (

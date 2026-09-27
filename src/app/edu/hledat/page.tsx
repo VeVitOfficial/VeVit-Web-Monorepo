@@ -22,7 +22,7 @@ export default async function EduSearchPageRoute({ searchParams }: PageProps) {
   const query = (Array.isArray(sp.q) ? sp.q[0] : sp.q) ?? "";
   return (
     <EduRoot locale={locale}>
-      <EduSearchPage locale={locale} query={query} />
+      <EduSearchPage key={query} locale={locale} query={query} />
     </EduRoot>
   );
 }
