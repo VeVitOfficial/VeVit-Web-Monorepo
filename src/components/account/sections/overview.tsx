@@ -4,7 +4,8 @@ import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { accountT as t, accountTp, accountFormatDate, type AccountLocale } from "@/lib/account-i18n";
 import { useAccountLocale } from "../use-account-locale";
-import { useAccountApi } from "../api";
+import { AccountApiError, useAccountApi } from "../api";
+import { useSession } from "../session";
 import { SectionSkeleton, StateError } from "../ui";
 import { XpCard } from "./xp-card";
 
@@ -14,7 +15,7 @@ import { XpCard } from "./xp-card";
  */
 
 type OverviewData = {
-  profile: { completion: number; missing: string[] };
+  profile: { completion: number; missing: string[]; claimable?: boolean; claimed?: boolean };
   security: { two_factor_enabled: boolean; active_sessions: number; last_password_change: string | null };
   activity: Array<{ kind: string; detail: string; created_at: string }>;
   errors?: { security?: string; activity?: string };
@@ -53,6 +54,8 @@ export function OverviewSection() {
   const [core, setCore] = useState<OverviewData | null>(null);
   const [subscription, setSubscription] = useState<SubscriptionData | null>(null);
   const [failed, setFailed] = useState({ core: false, subscription: false });
+  const [claiming, setClaiming] = useState(false);
+  const { showToast } = useSession();
 
   const fetchCore = useCallback(() => run<OverviewData>("account-overview.php"), [run]);
   const fetchSubscription = useCallback(() => run<SubscriptionData>("subscription.php"), [run]);
@@ -88,6 +91,21 @@ export function OverviewSection() {
     loadSubscription();
   }, [loadCore, loadSubscription]);
 
+  async function claimProfile() {
+    setClaiming(true);
+    try {
+      const result = await run<{ xp_award: { awarded: number } | null }>("profile-complete.php", { method: "POST", body: {} });
+      showToast(result.xp_award
+        ? t("overview.profileClaimedXp", locale, { n: result.xp_award.awarded })
+        : t("overview.profileComplete", locale));
+      loadCore();
+    } catch (error) {
+      showToast(error instanceof AccountApiError && error.message ? error.message : t("overview.profileClaimFailed", locale), "error");
+    } finally {
+      setClaiming(false);
+    }
+  }
+
   function actionLink(label: string, route: string) {
     return <Link className="btn btn--ghost btn--sm" href={route === "profile" ? "/account/profile" : `/account/${route}`}>{label}</Link>;
   }
@@ -120,10 +138,18 @@ export function OverviewSection() {
             <p className="overview-detail">
               {core.profile.missing?.length
                 ? `${t("overview.missingPrefix", locale)} ${core.profile.missing.join(", ")}.`
-                : t("overview.profileComplete", locale)}
+                : core.profile.claimable
+                  ? t("overview.profileReady", locale)
+                  : t("overview.profileComplete", locale)}
             </p>
             <div className="overview-actions">
-              {actionLink(core.profile.missing?.length ? t("overview.completeProfile", locale) : t("overview.viewProfile", locale), "profile")}
+              {core.profile.claimable ? (
+                <button className="btn btn--primary btn--sm" type="button" disabled={claiming} onClick={claimProfile}>
+                  {t("overview.claimProfile", locale)}
+                </button>
+              ) : (
+                actionLink(core.profile.missing?.length ? t("overview.completeProfile", locale) : t("overview.viewProfile", locale), "profile")
+              )}
             </div>
           </div>
         ) : (

@@ -142,7 +142,7 @@ export function ProfileSection() {
   const initials = initialsFor(user);
 
   return (
-    <section>
+    <section className="account-panel">
       <article className="card profile-avatar-card">
         <div className="profile-avatar-card__preview">
           <button

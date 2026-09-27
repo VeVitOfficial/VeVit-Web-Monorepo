@@ -103,7 +103,7 @@ export function BillingSection() {
   const subscribed = plans.current_tier !== "free";
 
   return (
-    <section>
+    <section className="account-panel">
       {message && <p className={`status status--${message.kind}`} role="status">{message.text}</p>}
 
       <article className="card">

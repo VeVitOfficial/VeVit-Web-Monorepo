@@ -773,3 +773,9 @@
 }
 @keyframes twinkle { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
 @media (min-width: 1024px) { .upgrade-pill { display: inline-flex; } }
+
+/* Four plans (Bronze, Silver, Gold, Platinum) */
+.tier-grid--four { max-width: 1180px; }
+@media (min-width: 1100px) { .tier-grid--four { grid-template-columns: repeat(4, 1fr); } }
+a.tier-cta { text-align: center; text-decoration: none; }
+.tier-pin-gold { background: var(--t-gold, #f5b700); color: #1a1400; }

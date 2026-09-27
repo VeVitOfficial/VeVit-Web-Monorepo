@@ -1,5 +1,6 @@
 import { handleAccountRequest } from "@/lib/account-route";
 import { accountSupabase } from "@/lib/account-auth";
+import { profileCompletion } from "@/lib/profile-completion";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -7,15 +8,6 @@ export const dynamic = "force-dynamic";
 // Port of account/api/account-overview.php: profile completion, security
 // summary (session/TOTP/password-change) and the last 8 activity entries with
 // IP masking — per-section degradation instead of a hard failure.
-
-const PROFILE_FIELDS: [string, string][] = [
-  ["full_name", "jméno a příjmení"],
-  ["nickname", "přezdívka"],
-  ["bio", "bio"],
-  ["location", "lokalita"],
-  ["birth_date", "datum narození"],
-  ["avatar_url", "profilová fotografie"],
-];
 
 const ipPattern = /\b(\d{1,3})\.(\d{1,3})\.\d{1,3}\.\d{1,3}\b/g;
 
@@ -66,12 +58,7 @@ export async function GET() {
     const activityRows = (activityRes.error ? [] : activityRes.data ?? []) as ActivityRow[];
     if (activityRes.error) errors.activity = "Aktivitu účtu se nepodařilo načíst.";
 
-    const missing: string[] = [];
-    for (const [field, label] of PROFILE_FIELDS) {
-      const value = user[field];
-      if (typeof value !== "string" || value.trim() === "") missing.push(label);
-    }
-    const completion = Math.round(((PROFILE_FIELDS.length - missing.length) / PROFILE_FIELDS.length) * 100);
+    const profile = await profileCompletion(session.user);
 
     let lastPasswordChange: string | null = null;
     for (const row of activityRows) {
@@ -84,7 +71,7 @@ export async function GET() {
 
     return Response.json(
       {
-        profile: { completion, missing },
+        profile,
         security: {
           two_factor_enabled: user.two_factor_enabled === true,
           active_sessions: sessions.length,

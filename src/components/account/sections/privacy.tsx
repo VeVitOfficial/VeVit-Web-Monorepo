@@ -53,7 +53,7 @@ export function PrivacySection() {
   }
 
   return (
-    <section>
+    <section className="account-panel">
       <article className="card">
         <div className="card-heading card-heading--split">
           <div>

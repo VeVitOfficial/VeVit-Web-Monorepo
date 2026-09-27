@@ -19,7 +19,8 @@ export type XpSource =
   | "account.daily"
   | "account.streak_7"
   | "account.onboarding"
-  | "account.2fa";
+  | "account.2fa"
+  | "account.profile_complete";
 
 export type XpAward = {
   awarded: number;

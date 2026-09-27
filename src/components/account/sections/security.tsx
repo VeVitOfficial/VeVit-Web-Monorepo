@@ -238,7 +238,7 @@ export function SecuritySection() {
   const recoveryRemaining = Number(twofa.recovery_codes_remaining) || 0;
 
   return (
-    <section>
+    <section className="account-panel">
       <article className="card">
         <div className="card-heading card-heading--split">
           <div>
