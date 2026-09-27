@@ -32,7 +32,10 @@ export const ACCOUNT_ROUTES: Record<string, { path: string; descKey: string }> =
 };
 
 export function accountRouteFromPathname(pathname: string): string {
-  const normalized = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
+  // The browser URL keeps the locale prefix (/cs/account/profile) even though
+  // the proxy rewrites to /account/profile; match on the unprefixed path.
+  const unprefixed = pathname.replace(/^\/(cs|en|de|es|uk|fr|sk)(?=\/|$)/, "") || "/";
+  const normalized = unprefixed.length > 1 ? unprefixed.replace(/\/+$/, "").replace(/\.(php|html)$/, "") : unprefixed;
   const found = Object.entries(ACCOUNT_ROUTES).find(([, route]) => route.path === normalized);
   return found ? found[0] : "overview";
 }
