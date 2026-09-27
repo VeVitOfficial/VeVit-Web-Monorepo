@@ -5,14 +5,17 @@ import {
   antiBotPassed,
   checkRateLimit,
   classifyIdentifier,
+  clearIdentifierFailures,
   clientIp,
   createSession,
   createTotpLoginChallenge,
   findUserForLogin,
+  identifierAllowed,
   isProviderOnlyAccount,
   json,
   localeRedirectTarget,
   recordAttempt,
+  recordIdentifierFailure,
   safeReturnTo,
   safeUser,
   setLocaleCookie,
@@ -79,6 +82,9 @@ async function login(request: Request): Promise<Response> {
     );
   }
 
+  // Too many recent failures for this account from any IP.
+  if (!(await identifierAllowed(identifier))) return json({ success: false, error: RATE_LIMIT_MESSAGE }, 429);
+
   const user = await findUserForLogin(identifier);
 
   // Phone login requires a verified phone; still run bcrypt to avoid an
@@ -88,12 +94,15 @@ async function login(request: Request): Promise<Response> {
     && (!user || typeof user.phone_verified_at !== "string" || user.phone_verified_at === "")
   ) {
     await verifyPassword(user, password);
+    await recordIdentifierFailure(identifier, ip);
     return json({ success: false, error: "Neplatné přihlašovací údaje." }, 401);
   }
 
   if (isProviderOnlyAccount(user) || !(await verifyPassword(user, password))) {
+    await recordIdentifierFailure(identifier, ip);
     return json({ success: false, error: "Neplatné přihlašovací údaje." }, 401);
   }
+  await clearIdentifierFailures(identifier);
 
   // verifyPassword only returns true for a real, non-empty user.id, so reaching
   // here means the lookup found an account. Guard keeps the type checker honest.

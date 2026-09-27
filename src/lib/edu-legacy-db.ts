@@ -1,4 +1,5 @@
 import { createPool, type Pool, type RowDataPacket } from "mysql2/promise";
+import { ACCOUNT_LEGACY_SESSION_COOKIE, ACCOUNT_SESSION_COOKIE, loadAccountSession } from "@/lib/account-session";
 
 // Port of edu/legacy/api/config.php: MariaDB connection, JSON envelope,
 // CORS and legacy vevit_auth cookie session for the old edu API.
@@ -124,31 +125,44 @@ export function legacyEsc(value: string): string {
     .replaceAll("'", "&#039;");
 }
 
-// Port of getVevitUser(): reads the legacy vevit_auth cookie (URL-encoded
-// JSON blob written by the old account system).
-export function legacyGetVevitUser(request: Request): Record<string, unknown> | null {
-  const cookieHeader = request.headers.get("cookie") ?? "";
-  for (const part of cookieHeader.split(";")) {
+// Port of getVevitUser(). The legacy vevit_auth cookie was an unsigned JSON
+// blob anyone could forge ({"id":"<victim>"}), so identity now comes only from
+// the server-side account session (__Host-vvsession), mapped to the old shape.
+function cookieValue(request: Request, name: string): string | undefined {
+  for (const part of (request.headers.get("cookie") ?? "").split(";")) {
     const trimmed = part.trim();
     const separator = trimmed.indexOf("=");
-    if (separator === -1 || trimmed.slice(0, separator) !== "vevit_auth") continue;
-    try {
-      const decoded = decodeURIComponent(trimmed.slice(separator + 1));
-      const user = JSON.parse(decoded) as unknown;
-      if (user === null || typeof user !== "object" || Array.isArray(user)) return null;
-      const record = user as Record<string, unknown>;
-      if (!Object.prototype.hasOwnProperty.call(record, "id")) return null;
-      return record;
-    } catch {
-      return null;
-    }
+    if (separator !== -1 && trimmed.slice(0, separator) === name) return trimmed.slice(separator + 1);
   }
-  return null;
+  return undefined;
+}
+
+export async function legacyGetVevitUser(request: Request): Promise<Record<string, unknown> | null> {
+  const token = cookieValue(request, ACCOUNT_SESSION_COOKIE) ?? cookieValue(request, ACCOUNT_LEGACY_SESSION_COOKIE);
+  let session: Awaited<ReturnType<typeof loadAccountSession>>;
+  try {
+    session = await loadAccountSession(token);
+  } catch {
+    return null; // backend unavailable: treat as signed out
+  }
+  if (!session) return null;
+  const user = session.user;
+  return {
+    id: user.id,
+    nickname: user.nickname ?? null,
+    email: user.email ?? null,
+    full_name: user.full_name ?? null,
+    role: user.role ?? "User",
+    tier: user.tier ?? "free",
+    level: user.level ?? 1,
+    xp: user.xp ?? 0,
+    avatar_url: user.avatar_url ?? null,
+  };
 }
 
 // Port of vyzadujPrihlaseni().
-export function legacyVyzadujPrihlaseni(request: Request): Record<string, unknown> {
-  const user = legacyGetVevitUser(request);
+export async function legacyVyzadujPrihlaseni(request: Request): Promise<Record<string, unknown>> {
+  const user = await legacyGetVevitUser(request);
   if (user === null) legacyChyba(request, "Přihlášení vyžadováno", 401);
   return user as Record<string, unknown>;
 }

@@ -56,7 +56,7 @@ export async function GET(request: Request): Promise<Response> {
     const limit = params.has("limit") ? Math.min(50, Math.max(1, phpIntOr(params.get("limit"), 20))) : 20;
 
     const db = legacyEduDb();
-    const user = legacyGetVevitUser(request);
+    const user = await legacyGetVevitUser(request);
     const userId = user ? String(user.id) : null;
 
     const countRows = await legacyQuery<RowDataPacket & { total: number }>(
@@ -98,7 +98,7 @@ export async function GET(request: Request): Promise<Response> {
 
 export async function POST(request: Request): Promise<Response> {
   try {
-    const user = legacyVyzadujPrihlaseni(request);
+    const user = await legacyVyzadujPrihlaseni(request);
     let body: unknown;
     try {
       body = JSON.parse(await request.text());
@@ -178,7 +178,7 @@ export async function POST(request: Request): Promise<Response> {
 
 export async function DELETE(request: Request): Promise<Response> {
   try {
-    const user = legacyVyzadujPrihlaseni(request);
+    const user = await legacyVyzadujPrihlaseni(request);
     const params = new URL(request.url).searchParams;
     const id = phpIntOr(params.get("id"), 0);
     if (id <= 0) legacyChyba(request, "Chybí id komentáře", 400);

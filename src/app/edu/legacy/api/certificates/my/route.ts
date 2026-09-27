@@ -15,7 +15,7 @@ export async function OPTIONS(request: Request) {
 
 export async function GET(request: Request): Promise<Response> {
   try {
-    const user = legacyVyzadujPrihlaseni(request);
+    const user = await legacyVyzadujPrihlaseni(request);
     const rows = await legacyQuery<RowDataPacket & Record<string, unknown>>(
       legacyEduDb(),
       "SELECT uuid, course_slug, course_title, issued_at FROM certificates WHERE user_id = ? ORDER BY issued_at DESC",

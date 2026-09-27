@@ -22,7 +22,7 @@ export async function OPTIONS(request: Request) {
 
 export async function POST(request: Request): Promise<Response> {
   try {
-    const user = legacyVyzadujPrihlaseni(request);
+    const user = await legacyVyzadujPrihlaseni(request);
     let body: unknown;
     try {
       body = JSON.parse(await request.text());

@@ -198,6 +198,42 @@ export async function recordAttempt(ip: string, action: string): Promise<void> {
   await accountSupabase().from("login_attempts").insert({ ip_address: ip, action });
 }
 
+// ── Per-identifier backoff (migration 013) ─────────────────────────────────────
+// IP limits alone let an attacker rotate addresses against one account. These
+// rows count failed logins per hashed identifier regardless of the source IP.
+
+function identifierHash(identifier: Identifier): string {
+  return createHash("sha256").update(`${identifier.kind}:${identifier.value}`).digest("hex");
+}
+
+export async function identifierAllowed(identifier: Identifier, maxFailures = 8, minutes = 15): Promise<boolean> {
+  const { count, error } = await accountSupabase()
+    .from("login_attempts")
+    .select("*", { count: "exact", head: true })
+    .eq("identifier_hash", identifierHash(identifier))
+    .eq("action", "login_identifier")
+    .gt("attempt_time", isoFromMs(-minutes * 60 * 1000));
+  if (error) {
+    console.error("[auth] identifier backoff lookup failed");
+    return true;
+  }
+  return (count ?? 0) < maxFailures;
+}
+
+export async function recordIdentifierFailure(identifier: Identifier, ip: string): Promise<void> {
+  await accountSupabase()
+    .from("login_attempts")
+    .insert({ ip_address: ip, action: "login_identifier", identifier_hash: identifierHash(identifier) });
+}
+
+export async function clearIdentifierFailures(identifier: Identifier): Promise<void> {
+  await accountSupabase()
+    .from("login_attempts")
+    .delete()
+    .eq("identifier_hash", identifierHash(identifier))
+    .eq("action", "login_identifier");
+}
+
 // ── Password verification (ported from login.php) ──────────────────────────────
 
 function usableBcryptHash(hash: unknown): string | null {

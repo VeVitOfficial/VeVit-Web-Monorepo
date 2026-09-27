@@ -19,7 +19,7 @@ export async function GET(request: Request): Promise<Response> {
       legacyEduDb(),
       "SELECT * FROM courses WHERE is_active = 1 ORDER BY sort_order ASC",
     );
-    const user = legacyGetVevitUser(request);
+    const user = await legacyGetVevitUser(request);
     if (user) {
       const progressRows = await legacyQuery<RowDataPacket & { course_id: string; completed: number }>(
         legacyEduDb(),

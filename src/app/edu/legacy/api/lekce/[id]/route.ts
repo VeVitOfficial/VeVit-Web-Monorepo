@@ -21,7 +21,7 @@ export async function GET(request: Request, context: { params: Promise<{ id: str
   try {
     if (id <= 0) legacyChyba(request, "Neplatné ID lekce", 400);
     const db = legacyEduDb();
-    const user = legacyGetVevitUser(request);
+    const user = await legacyGetVevitUser(request);
 
     const lessonRows = await legacyQuery<RowDataPacket & Record<string, unknown>>(
       db,

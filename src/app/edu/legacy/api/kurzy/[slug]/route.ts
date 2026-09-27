@@ -22,7 +22,7 @@ export async function GET(request: Request, context: { params: Promise<{ slug: s
   const { slug } = await context.params;
   try {
     const db = legacyEduDb();
-    const user = legacyGetVevitUser(request);
+    const user = await legacyGetVevitUser(request);
 
     const courseRows = await legacyQuery<CourseRow>(db, "SELECT * FROM courses WHERE slug = ? AND is_active = 1", [slug]);
     if (courseRows.length === 0) legacyChyba(request, "Kurz nenalezen", 404);
