@@ -53,8 +53,8 @@ async function login(request: Request): Promise<Response> {
   // distinguish "detected" from "throttled".
   if (!antiBotPassed(body)) return json({ success: false, error: RATE_LIMIT_MESSAGE }, 429);
 
-  // Cloudflare Turnstile — enforced only while TURNSTILE_SECRET is configured.
-  if (!(await verifyTurnstile(body.cf_turnstile, ip))) {
+  // Cloudflare Turnstile — enforced only while TURNSTILE_SECRET is configured (action + hostname checked).
+  if (!(await verifyTurnstile(body.cf_turnstile, ip, "login"))) {
     return json({ success: false, error: "CAPTCHA ověření selhalo." }, 400);
   }
 

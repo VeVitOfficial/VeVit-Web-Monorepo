@@ -254,7 +254,7 @@ export function LoginForm({ locale }: { locale: AccountLocale }) {
           </a>
         </div>
         <HpFields />
-        <TurnstileField style={{ marginTop: 14 }} />
+        <TurnstileField action="login" style={{ marginTop: 14 }} />
         <button id="btnLogin" type="submit" className="btn btn--primary" style={{ justifyContent: "center" }} disabled={submitting}>
           {submitting ? t("auth.common.loading") : t("auth.login.submit")}
         </button>

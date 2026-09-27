@@ -479,7 +479,7 @@ export function RegisterForm({ locale }: { locale: AccountLocale }) {
               <span className="field-error" id="errPassConfirm" aria-live="polite">{touched.passwordConfirm && !fields.passwordConfirm.valid ? fields.passwordConfirm.message : ""}</span>
             </div>
 
-            <TurnstileField style={{ marginTop: 14 }} />
+            <TurnstileField action="register" style={{ marginTop: 14 }} />
             <button
               id="btnRegister"
               className="btn btn--primary btn-register"

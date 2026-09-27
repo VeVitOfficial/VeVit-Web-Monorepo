@@ -298,7 +298,7 @@ function InterestForm({ t }: { t: (key: string) => string }) {
             />
           </div>
 
-          <TurnstileField style={{ marginTop: 4 }} />
+          <TurnstileField action="skoly_interest" style={{ marginTop: 4 }} />
 
           <button
             type="submit"

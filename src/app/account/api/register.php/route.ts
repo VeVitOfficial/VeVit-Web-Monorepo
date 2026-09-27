@@ -59,8 +59,8 @@ async function register(request: Request): Promise<Response> {
   // distinguish "detected" from "throttled".
   if (!antiBotPassed(body)) return json({ error: RATE_LIMIT_MESSAGE }, 429);
 
-  // Cloudflare Turnstile — enforced only while TURNSTILE_SECRET is configured.
-  if (!(await verifyTurnstile(body.cf_turnstile, ip))) {
+  // Cloudflare Turnstile — enforced only while TURNSTILE_SECRET is configured (action + hostname checked).
+  if (!(await verifyTurnstile(body.cf_turnstile, ip, "register"))) {
     return json({ error: "CAPTCHA ověření selhalo." }, 400);
   }
 

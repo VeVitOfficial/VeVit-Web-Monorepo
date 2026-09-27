@@ -23,6 +23,7 @@ declare global {
 
 interface TurnstileOptions {
   sitekey: string;
+  action?: string;
   theme?: string;
   "refresh-expired"?: "auto" | "manual" | "never";
   "expired-callback"?: () => void;
@@ -86,7 +87,12 @@ function loadTurnstileScript(): Promise<void> {
   return scriptPromise;
 }
 
-export function TurnstileField({ className, style }: { className?: string; style?: React.CSSProperties }) {
+/** `action` musí odpovídat tomu, co backend předává do verifyTurnstile(). */
+export function TurnstileField({ action, className, style }: {
+  action: "login" | "register" | "skoly_interest";
+  className?: string;
+  style?: React.CSSProperties;
+}) {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -125,6 +131,7 @@ export function TurnstileField({ className, style }: { className?: string; style
       try {
         widgetId = turnstile()?.render(container, {
           sitekey: siteKey,
+          action,
           theme: "dark",
           // Token platí ~5 minut. Bez obnovení by odeslaný formulář skončil na
           // "CAPTCHA ověření selhalo", i když uživatel widget vyplnil.
@@ -152,7 +159,7 @@ export function TurnstileField({ className, style }: { className?: string; style
         if (currentWidgetId === widgetId) currentWidgetId = null;
       }
     };
-  }, []);
+  }, [action]);
 
   return (
     <div ref={containerRef} id="cfCaptcha" data-captcha="1" aria-label="Ochrana proti robotům" className={className} style={style} />

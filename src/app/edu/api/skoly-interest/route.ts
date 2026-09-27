@@ -116,7 +116,7 @@ async function handler(request: Request): Promise<Response> {
 
   const ip = clientIp(request);
 
-  if (!(await verifyTurnstile(fields.cfTurnstile, ip))) {
+  if (!(await verifyTurnstile(fields.cfTurnstile, ip, "skoly_interest"))) {
     return fail(400, "CAPTCHA ověření selhalo.");
   }
 
