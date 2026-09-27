@@ -6,6 +6,8 @@ import {
   AccountBackendUnavailableError,
   loadAccountSession
 } from "@/lib/account-session";
+import { getUserAccess } from "@/lib/permissions";
+import { awardXp, pragueDay } from "@/lib/xp";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -31,9 +33,19 @@ export async function GET() {
       return response;
     }
 
+    // Daily visit XP is idempotent per Prague day; award first so the returned
+    // xp/level/ranks already include it.
+    const daily = await awardXp(session.user.id, "account.daily", pragueDay());
+    const user = daily && daily.awarded > 0
+      ? { ...session.user, xp: daily.xp, level: daily.level }
+      : session.user;
+    const access = await getUserAccess(session.user.id);
+
     return NextResponse.json({
       authenticated: true,
-      user: session.user,
+      user,
+      access,
+      xp_award: daily && daily.awarded > 0 ? daily : null,
       csrf_token: session.csrfToken
     }, { headers: { "Cache-Control": "no-store" } });
   } catch (error) {

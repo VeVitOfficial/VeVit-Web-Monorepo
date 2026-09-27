@@ -16,6 +16,7 @@ import {
   totpMethod,
   verifyTotpWindow,
 } from "@/lib/account-totp";
+import { awardXp } from "@/lib/xp";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -75,6 +76,7 @@ export async function POST(request: Request) {
     }
 
     await logActivity(session.user.id, "twofa_enabled", "2FA zapnuto");
+    await awardXp(session.user.id, "account.2fa", "enabled");
     return Response.json(
       { recovery_codes: codes },
       { headers: { "Cache-Control": "no-store" } },

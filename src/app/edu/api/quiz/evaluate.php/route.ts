@@ -16,6 +16,7 @@ import {
 } from "@/lib/edu-quiz-lib";
 import { quizEvaluateQuestion, wordCount, type QuizEvalResult } from "@/lib/edu-quiz-evaluator";
 import { sbFindOne, sbGet, sbInsert, sbRpc } from "@/lib/edu-quiz-supabase";
+import { awardXp } from "@/lib/xp";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -90,6 +91,12 @@ export async function POST(request: Request) {
     }
     const record = saved.data[0];
     const duplicate = record.duplicate === true;
+    // Lesson XP stays in edu_quiz_*; the account-wide total goes through the
+    // XP ledger (tier bonus, dedupe on the client attempt id).
+    const quizXp = toInt(record.xp_awarded ?? 0);
+    const accountXp = !duplicate && quizXp > 0
+      ? await awardXp(userId, "edu.quiz", String(body.client_attempt_uuid), quizXp)
+      : null;
     let answerForSubmission = asDict(body.answer);
     let responseResult: QuizEvalResult = result;
     if (duplicate) {
@@ -212,7 +219,8 @@ export async function POST(request: Request) {
     return quizJsonOk(request, {
       duplicate,
       result: responseResult,
-      xp_awarded: toInt(record.xp_awarded ?? 0),
+      xp_awarded: quizXp,
+      account_xp: accountXp,
       state: {
         xp_total: toInt(record.lesson_xp_total ?? 0),
         best_score_pct: Number(record.best_score_pct ?? 0),

@@ -942,3 +942,29 @@ button { color: inherit; }
     transition-duration: .01ms !important;
   }
 }
+
+/* ── XP, ranks and plans ─────────────────────────────────────────────── */
+.rank-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: -4px 0 14px; }
+.rank-chip {
+  --rank-color: #9aa4b2;
+  font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: var(--r-pill);
+  color: var(--rank-color);
+  background: color-mix(in srgb, var(--rank-color) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--rank-color) 35%, transparent);
+}
+.cycle-toggle { display: flex; gap: 6px; flex-wrap: wrap; }
+.plan-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.plan-card {
+  --rank-color: #9aa4b2;
+  display: flex; flex-direction: column; gap: 12px; padding: 18px;
+  border: 1px solid var(--card-border); border-top: 3px solid var(--rank-color);
+  border-radius: 12px; background: #ffffff04;
+}
+.plan-card--current { border-color: color-mix(in srgb, var(--rank-color) 50%, transparent); }
+.plan-name { display: flex; align-items: center; gap: 8px; font-weight: 650; color: var(--rank-color); }
+.plan-price { font-size: 24px; font-weight: 700; letter-spacing: -.03em; }
+.plan-price span { font-size: 12px; font-weight: 400; color: var(--text-3); letter-spacing: 0; }
+.plan-benefits { margin: 0; padding-left: 16px; color: var(--text-2); font-size: 12px; line-height: 1.7; flex: 1; }
+@media (max-width: 760px) {
+  .plan-grid { grid-template-columns: 1fr; }
+}

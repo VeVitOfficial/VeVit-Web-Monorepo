@@ -4,6 +4,7 @@ import {
   logActivity,
   registerNicknameIsValid,
 } from "@/lib/account-auth";
+import { awardXp } from "@/lib/xp";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -48,6 +49,7 @@ export async function POST(request: Request) {
     if (updateError) return Response.json({ error: "Profil se nepodařilo uložit." }, { status: 500 });
 
     await logActivity(session.user.id, "profile_update", "Dokončení OAuth profilu");
+    await awardXp(session.user.id, "account.onboarding", "completed");
     return new Response(null, { status: 204, headers: { "Cache-Control": "no-store" } });
   });
 }

@@ -6,6 +6,7 @@ import { accountT as t, accountTp, accountFormatDate, type AccountLocale } from 
 import { useAccountLocale } from "../use-account-locale";
 import { useAccountApi } from "../api";
 import { SectionSkeleton, StateError } from "../ui";
+import { XpCard } from "./xp-card";
 
 /**
  * Port of loadOverviewCore + loadSubscriptionOverview + render* from app.js:
@@ -98,6 +99,7 @@ export function OverviewSection() {
 
   return (
     <div className="overview-grid">
+      <XpCard />
       <article className="card overview-card" aria-labelledby="overviewProfileTitle">
         <div className="card-heading">
           <span className="card-icon card-icon--green" aria-hidden="true">○</span>
