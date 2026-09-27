@@ -528,3 +528,28 @@ mark.ai-highlight {
 /* Galerie */
 .wp-article .gallery { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1.25rem 0; }
 .wp-article .gallerybox { display: inline-block; }
+
+/* ─── Našeptávač: skupiny a ikony zdroje (VeVit Edu / Wikipedie) ───── */
+.suggest-listbox li.suggest-group {
+  cursor: default;
+  padding: 8px 12px 4px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+.suggest-listbox li.suggest-group:hover { background: transparent; }
+.suggest-listbox li.suggest-option { flex-direction: row; align-items: center; gap: 10px; }
+.suggest-icon {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+}
+.suggest-icon--edu { color: #10b981; background: rgba(16, 185, 129, 0.12); }
+.suggest-icon--wiki { color: var(--color-text-secondary); background: rgba(127, 127, 127, 0.12); }
+.suggest-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.suggest-text .hsl-label, .suggest-text .hsl-sub { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

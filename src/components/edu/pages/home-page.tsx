@@ -7,8 +7,7 @@
 // (innerHTML/$/navigate) nahraženo React stavem + next/link + useRouter.
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useEduLang } from "../i18n";
 import { useEduBreadcrumbs } from "../breadcrumbs";
 import { getIndex } from "@/lib/edu/api";
@@ -21,6 +20,7 @@ import {
 import { PROGRAMMING_COURSES_COUNT, PROGRAMMING_TOTAL_LESSONS } from "@/lib/edu/config";
 import type { CourseIndexMeta, Progress } from "@/lib/edu/config";
 import { Icon } from "./home-icons";
+import { EduCapIcon, SearchSuggest, WikiIcon, eduSuggestionsFromIndex, type EduSuggestion } from "../search-suggest";
 
 // Kategorie → ikona pro „recently added" a vlastní lekce (shodně s legacy).
 const categoryIconMap: Record<string, string> = {
@@ -62,12 +62,6 @@ interface ContinueItem {
   href: string;
 }
 
-interface Suggestion {
-  type: "course" | "lesson" | "recent" | "custom";
-  label: string;
-  sub: string;
-  href: () => string;
-}
 
 // První textový náhled bloku vlastní lekce (shodně s legacy getFirstTextPreview).
 function getFirstTextPreview(blocks: unknown[] | undefined): string {
@@ -85,7 +79,6 @@ export function EduHomePage({ locale }: { locale: string }) {
   void locale;
   const { t, lessonsUnit, lang } = useEduLang();
   const { setBreadcrumbs } = useEduBreadcrumbs();
-  const router = useRouter();
 
   const [index, setIndex] = useState<CourseIndexMeta[] | null>(null);
   const [progress, setProgress] = useState<Progress | null>(null);
@@ -219,7 +212,7 @@ export function EduHomePage({ locale }: { locale: string }) {
           recentlyAdded={RECENTLY_ADDED}
           customLessons={customLessons}
           placeholder={t("landing.searchPlaceholder")}
-          router={router}
+          lang={lang}
           titleParts={titleParts}
         />
 
@@ -284,110 +277,25 @@ function HeroSearch({
   recentlyAdded,
   customLessons,
   placeholder,
-  router,
+  lang,
   titleParts,
 }: {
   index: CourseIndexMeta[];
   recentlyAdded: { id: string; category: string; title: string }[];
   customLessons: CustomLesson[];
   placeholder: string;
-  router: ReturnType<typeof useRouter>;
+  lang: string;
   titleParts: string[];
 }) {
-  const [value, setValue] = useState("");
-  const [open, setOpen] = useState(false);
-  const [matches, setMatches] = useState<Suggestion[]>([]);
-  const [activeIndex, setActiveIndex] = useState(-1);
-  const wrapRef = useRef<HTMLDivElement | null>(null);
-  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  const suggestions = useMemo<Suggestion[]>(() => {
-    const out: Suggestion[] = [];
-    for (const c of index || []) {
-      out.push({ type: "course", label: c.title, sub: c.category, href: () => `/edu/kurzy/${encodeURIComponent(c.slug)}` });
-      for (const l of (c.lessons || [])) {
-        out.push({ type: "lesson", label: l.title, sub: c.title, href: () => `/edu/lekce/${encodeURIComponent(l.slug)}` });
-      }
-    }
-    for (const r of recentlyAdded || []) {
-      out.push({ type: "recent", label: r.title, sub: r.category, href: () => `/edu/hledat?q=${encodeURIComponent(r.title)}` });
-    }
-    for (const cl of customLessons || []) {
-      out.push({ type: "custom", label: cl.title, sub: String(cl.category || "Vlastní lekce"), href: () => `/edu/lekce/moje/detail?slug=${encodeURIComponent(cl.slug)}` });
-    }
-    return out;
-  }, [index, recentlyAdded, customLessons]);
-
-  const close = useCallback(() => {
-    setOpen(false);
-    setActiveIndex(-1);
-  }, []);
-
-  const renderMatches = useCallback((q: string) => {
-    const ql = q.toLowerCase();
-    const scored = suggestions
-      .map((s, i) => {
-        const hay = (s.label + " " + (s.sub || "")).toLowerCase();
-        const idx = hay.indexOf(ql);
-        if (idx === -1) return null;
-        const prefix = s.label.toLowerCase().indexOf(ql) === 0 ? 0 : 1;
-        return { s, prefix, order: i };
-      })
-      .filter(Boolean)
-      .sort((a, b) => (a!.prefix - b!.prefix) || (a!.order - b!.order))
-      .slice(0, 8)
-      .map((x) => x!.s);
-    setMatches(scored);
-    setActiveIndex(-1);
-    setOpen(true);
-  }, [suggestions]);
-
-  const selectItem = useCallback((item: Suggestion | undefined) => {
-    if (!item) return;
-    setValue(item.label);
-    close();
-    router.push(item.href());
-  }, [router, close]);
-
-  const onInput = useCallback((v: string) => {
-    setValue(v);
-    if (debounceRef.current) clearTimeout(debounceRef.current);
-    const trimmed = v.trim();
-    if (!trimmed) { close(); return; }
-    debounceRef.current = setTimeout(() => renderMatches(trimmed), 150);
-  }, [close, renderMatches]);
-
-  const onKeyDown = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "ArrowDown") {
-      if (!open) { const v = value.trim(); if (v) renderMatches(v); return; }
-      if (matches.length === 0) return;
-      e.preventDefault();
-      setActiveIndex((i) => (i + 1) % matches.length);
-    } else if (e.key === "ArrowUp") {
-      if (!open || matches.length === 0) return;
-      e.preventDefault();
-      setActiveIndex((i) => (i - 1 + matches.length) % matches.length);
-    } else if (e.key === "Enter") {
-      if (open && activeIndex >= 0 && matches[activeIndex]) {
-        e.preventDefault();
-        selectItem(matches[activeIndex]);
-      } else {
-        const v = value.trim();
-        if (v) router.push(`/edu/hledat?q=${encodeURIComponent(v)}`);
-      }
-    } else if (e.key === "Escape") {
-      if (open) { e.preventDefault(); close(); }
-    }
-  }, [open, matches, activeIndex, value, router, selectItem, close, renderMatches]);
-
-  // Klik mimo wrapper zavře dropdown.
-  useEffect(() => {
-    function onDocClick(e: MouseEvent) {
-      if (wrapRef.current && !wrapRef.current.contains(e.target as Node)) close();
-    }
-    document.addEventListener("click", onDocClick);
-    return () => document.removeEventListener("click", onDocClick);
-  }, [close]);
+  const eduItems = useMemo<EduSuggestion[]>(() => [
+    ...eduSuggestionsFromIndex(index),
+    ...(recentlyAdded || []).map((r) => ({
+      source: "edu" as const, label: r.title, sub: `Nově přidáno · ${r.category}`, href: `/edu/hledat?q=${encodeURIComponent(r.title)}`,
+    })),
+    ...(customLessons || []).map((cl) => ({
+      source: "edu" as const, label: cl.title, sub: `Vlastní lekce · ${String(cl.category || "")}`, href: `/edu/lekce/moje/detail?slug=${encodeURIComponent(cl.slug)}`,
+    })),
+  ], [index, recentlyAdded, customLessons]);
 
   return (
     <section className="text-center pt-8 pb-16 md:pt-12 md:pb-20">
@@ -395,71 +303,19 @@ function HeroSearch({
         {titleSafe(titleParts[0])}. {titleSafe(titleParts[1])}.{" "}
         <span className="text-emerald-500">{titleSafe(titleParts[2])}.</span>
       </h1>
-      <div className="mt-8 max-w-2xl mx-auto relative">
-        <div className="relative" ref={wrapRef}>
-          <Icon name="search" className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-[var(--color-text-muted)] pointer-events-none" />
-          <label className="sr-only" htmlFor="hero-search">Vyhledat kurz, téma nebo článek</label>
-          <input
-            id="hero-search"
-            type="search"
-            role="combobox"
-            aria-expanded={open ? "true" : "false"}
-            aria-controls="hero-search-listbox"
-            aria-autocomplete="list"
-            aria-activedescendant={activeIndex >= 0 ? `hero-search-opt-${activeIndex}` : undefined}
-            aria-describedby="hero-search-help"
-            autoComplete="off"
-            placeholder={placeholder}
-            value={value}
-            onChange={(e) => onInput(e.target.value)}
-            onKeyDown={onKeyDown}
-            className="w-full h-14 pl-12 pr-4 rounded-xl bg-[var(--color-input-bg)] border border-[var(--color-border-subtle)] text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500/50 backdrop-blur-md transition-all"
-          />
-          {open ? (
-            <ul id="hero-search-listbox" className="hero-search-listbox" role="listbox">
-              {matches.length === 0 ? (
-                <li className="hsl-empty" role="presentation">Nic nenalezeno</li>
-              ) : matches.map((m, i) => (
-                <li
-                  key={`${m.type}-${m.label}-${i}`}
-                  role="option"
-                  id={`hero-search-opt-${i}`}
-                  aria-selected={i === activeIndex ? "true" : "false"}
-                  data-index={i}
-                  onMouseOver={() => setActiveIndex(i)}
-                  onClick={() => selectItem(m)}
-                  className={i === activeIndex ? "hsl-active" : undefined}
-                >
-                  <span className="hsl-label">
-                    <HighlightMatch label={m.label} query={value.trim()} />
-                  </span>
-                  {m.sub ? <span className="hsl-sub">{m.sub}</span> : null}
-                </li>
-              ))}
-            </ul>
-          ) : null}
-        </div>
-        <p id="hero-search-help" className="mt-3 text-xs text-[var(--color-text-muted)]">
-          Hledej kurzy, témata i články z Wikipedie. Dotaz ukončený <span className="text-emerald-500 font-medium">?</span> zapne odpověď AI nad článkem. Potvrď Enterem.
+      <div className="mt-8 max-w-2xl mx-auto relative text-left">
+        <SearchSuggest
+          eduItems={eduItems}
+          lang={lang}
+          placeholder={placeholder}
+          inputClassName="w-full h-14 px-4 rounded-xl bg-[var(--color-input-bg)] border border-[var(--color-border-subtle)] text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500/50 backdrop-blur-md transition-all"
+        />
+        <p className="mt-3 text-xs text-center text-[var(--color-text-muted)]">
+          <span className="inline-flex items-center gap-1 align-middle text-emerald-500"><EduCapIcon className="h-3.5 w-3.5" /></span> kurzy a lekce VeVit Edu,{" "}
+          <span className="inline-flex items-center gap-1 align-middle"><WikiIcon className="h-3.5 w-3.5" /></span> články z Wikipedie. Dotaz ukončený <span className="text-emerald-500 font-medium">?</span> zapne odpověď AI nad článkem.
         </p>
       </div>
     </section>
-  );
-}
-
-// Zvýraznění shody — bez dangerouslySetInnerHTML: renderujeme <mark>.
-function HighlightMatch({ label, query }: { label: string; query: string }) {
-  const q = String(query || "");
-  if (!q) return <>{label}</>;
-  const text = String(label ?? "");
-  const idx = text.toLowerCase().indexOf(q.toLowerCase());
-  if (idx === -1) return <>{text}</>;
-  return (
-    <>
-      {text.slice(0, idx)}
-      <mark className="search-match">{text.slice(idx, idx + q.length)}</mark>
-      {text.slice(idx + q.length)}
-    </>
   );
 }
 

@@ -26,6 +26,8 @@ import {
   type WikiSearchResult,
 } from "@/lib/edu/wikipedia";
 import { Icon } from "./home-icons";
+import { SearchSuggest, eduSuggestionsFromIndex, type EduSuggestion } from "../search-suggest";
+import { getIndex } from "@/lib/edu/api";
 
 type Phase = "empty" | "loading" | "notfound" | "error" | "ready";
 
@@ -38,7 +40,7 @@ interface AIState {
 export function EduSearchPage({ locale, query }: { locale: string; query: string }) {
   void locale;
   // useEduLang zajistí správný locale kontext (t není na této stránce potřeba).
-  useEduLang();
+  const { lang } = useEduLang();
   const { setBreadcrumbs } = useEduBreadcrumbs();
   const router = useRouter();
 
@@ -56,9 +58,19 @@ export function EduSearchPage({ locale, query }: { locale: string; query: string
   const [ai, setAI] = useState<AIState | null>(null);
 
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [draft, setDraft] = useState(trimmed);
+  const [eduItems, setEduItems] = useState<EduSuggestion[]>([]);
   const mainRef = useRef<HTMLDivElement | null>(null);
   const articleRef = useRef<HTMLElement | null>(null);
+
+  // Edu courses and lessons for the suggestions (same index as the home page).
+  useEffect(() => {
+    let cancelled = false;
+    getIndex(lang).then(
+      (index) => { if (!cancelled) setEduItems(eduSuggestionsFromIndex(index)); },
+      () => { /* suggestions fall back to Wikipedia only */ },
+    );
+    return () => { cancelled = true; };
+  }, [lang]);
 
   // Breadcrumbs (legacy předával [{Domů, /dashboard/}, {Vyhledávání}]).
   useEffect(() => {
@@ -240,34 +252,17 @@ export function EduSearchPage({ locale, query }: { locale: string; query: string
           )}
         </div>
         <div className="max-w-6xl mx-auto px-4 pb-3">
-          <form
-            role="search"
-            className="flex gap-2 mb-2"
-            onSubmit={(e) => {
-              e.preventDefault();
-              const v = draft.trim();
-              if (v) router.push(`/edu/hledat?q=${encodeURIComponent(v)}`);
-            }}
-          >
-            <label className="sr-only" htmlFor="wiki-search">Hledat na Wikipedii</label>
-            <input
-              id="wiki-search"
-              type="search"
-              value={draft}
-              onChange={(e) => setDraft(e.target.value)}
-              placeholder="Hledat na Wikipedii… (otazník na konci = AI režim)"
-              maxLength={200}
+          <div className="mb-2">
+            <SearchSuggest
+              initialValue={trimmed}
+              eduItems={eduItems}
+              lang={lang}
               autoFocus={!searchQuery}
-              className="flex-1 min-w-0 h-10 px-3 rounded-lg bg-[var(--color-card-bg)] border border-[var(--color-border-subtle)] text-sm text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:border-emerald-500"
+              showButton
+              placeholder="Hledat kurzy, lekce a články z Wikipedie… (otazník na konci = AI režim)"
+              inputClassName="w-full h-10 px-3 rounded-lg bg-[var(--color-card-bg)] border border-[var(--color-border-subtle)] text-sm text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:border-emerald-500"
             />
-            <button
-              type="submit"
-              className="h-10 px-4 rounded-lg bg-emerald-500 text-black text-sm font-semibold hover:bg-emerald-400 transition disabled:opacity-50"
-              disabled={!draft.trim()}
-            >
-              Hledat
-            </button>
-          </form>
+          </div>
           {ai && <AIBanner ai={ai} />}
         </div>
       </div>
