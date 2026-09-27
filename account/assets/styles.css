@@ -968,3 +968,26 @@ button { color: inherit; }
 @media (max-width: 760px) {
   .plan-grid { grid-template-columns: 1fr; }
 }
+
+/* ── Owner console ───────────────────────────────────────────────────── */
+.admin-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+.admin-stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; margin-bottom: 8px; }
+.admin-stat { display: flex; flex-direction: column; gap: 6px; padding: 14px; border: 1px solid var(--card-border); border-radius: 12px; background: #ffffff04; }
+.admin-search { display: flex; gap: 8px; margin: 0 0 14px; flex-wrap: wrap; }
+.admin-search .input { flex: 1 1 220px; }
+.admin-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.admin-table th { text-align: left; color: var(--text-3); font-weight: 500; padding: 8px 10px; border-bottom: 1px solid var(--divider); }
+.admin-table td { padding: 8px 10px; border-bottom: 1px solid var(--divider-soft); vertical-align: middle; }
+.admin-table .input { height: 32px; font-size: 12px; }
+.admin-table--click tbody tr { cursor: pointer; }
+.admin-table--click tbody tr:hover, .admin-table tr.is-selected { background: #ffffff06; }
+.admin-detail { margin-top: 18px; padding: 16px; border: 1px solid var(--card-border); border-radius: 12px; background: #ffffff03; }
+.admin-detail__head { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.admin-actions { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin: 12px 0; }
+.admin-actions fieldset { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 0; padding: 12px; border: 1px solid var(--card-border); border-radius: 10px; }
+.admin-actions legend { padding: 0 6px; color: var(--text-2); font-size: 12px; }
+.admin-actions .input { flex: 1 1 140px; height: 34px; font-size: 12px; }
+.admin-subhead { margin: 18px 0 8px; font-size: 13px; font-weight: 600; }
+.admin-mono { font-family: var(--font-mono); font-size: 11px; color: var(--text-2); word-break: break-all; }
+.input--narrow { max-width: 110px; }
+.overflow-x { overflow-x: auto; }

@@ -28,6 +28,7 @@ export const ACCOUNT_ROUTES: Record<string, { path: string; descKey: string }> =
   notifications: { path: "/account/notifications", descKey: "route.notifications.desc" },
   preferences: { path: "/account/preferences", descKey: "route.preferences.desc" },
   privacy: { path: "/account/privacy", descKey: "route.privacy.desc" },
+  admin: { path: "/account/admin", descKey: "route.admin.desc" },
 };
 
 export function accountRouteFromPathname(pathname: string): string {
@@ -45,6 +46,7 @@ const NAV_ICONS: Record<string, React.ReactNode> = {
   notifications: <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4" />,
   preferences: <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18ZM3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18" />,
   privacy: <path d="M4 10h16v11H4zM8 10V7a4 4 0 0 1 8 0v3M12 15h.01" />,
+  admin: <path d="M4 5h16v14H4zM8 9l3 3-3 3M13 15h4" />,
 };
 
 function initialsFor(user: AccountUser, locale: string): string {
@@ -127,8 +129,10 @@ function UserMenu({ user, locale }: { user: AccountUser; locale: string }) {
   );
 }
 
-export function AccountShell({ children }: { children: React.ReactNode }) {
+export function AccountShell({ children, showConsole = false }: { children: React.ReactNode; showConsole?: boolean }) {
   const { user } = useSession();
+  // The console entry is only listed for staff; the page itself re-checks on the server.
+  const routeKeys = Object.keys(ACCOUNT_ROUTES).filter((key) => key !== "admin" || showConsole);
   const pathname = usePathname() ?? "/account";
   const locale = useAccountLocale();
   const currentRoute = accountRouteFromPathname(pathname);
@@ -162,7 +166,7 @@ export function AccountShell({ children }: { children: React.ReactNode }) {
             <small>{accountT("sidebar.subheading", locale)}</small>
           </div>
           <nav className="settings-nav" aria-label={accountT("sidebar.ariaLabel", locale)}>
-            {Object.keys(ACCOUNT_ROUTES).map((key) => (
+            {routeKeys.map((key) => (
               <Link
                 key={key}
                 className={`settings-nav__item${key === currentRoute ? " is-active" : ""}`}
@@ -188,7 +192,7 @@ export function AccountShell({ children }: { children: React.ReactNode }) {
               value={currentRoute}
               onChange={(event) => router.push(ACCOUNT_ROUTES[event.target.value].path)}
             >
-              {Object.keys(ACCOUNT_ROUTES).map((key) => (
+              {routeKeys.map((key) => (
                 <option key={key} value={key}>{accountT(`nav.${key}`, locale)}</option>
               ))}
             </select>

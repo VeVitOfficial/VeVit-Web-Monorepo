@@ -62,6 +62,7 @@ export const RANKS: Record<string, RankMeta> = Object.fromEntries(
     { key: "partner", kind: "program", color: "#ff9f1c" },
     { key: "moderator", kind: "staff", color: "#3a86ff" },
     { key: "admin", kind: "staff", color: "#e63946" },
+    { key: "owner", kind: "staff", color: "#ffb703" },
   ].map((rank) => [rank.key, rank as RankMeta]),
 );
 

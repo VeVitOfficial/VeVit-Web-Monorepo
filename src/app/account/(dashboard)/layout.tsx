@@ -15,6 +15,7 @@ import "../../../../account/assets/styles.css";
 import "../../../../public/assets/shared/session.css";
 import "../../../../public/assets/shared/app-switcher.css";
 import "@/components/account/language-pill.css";
+import { getUserAccess, hasPermission } from "@/lib/permissions";
 
 const SUPPORTED: readonly string[] = ["cs", "en", "de", "es", "uk", "fr", "sk"];
 
@@ -35,6 +36,7 @@ export default async function AccountLayout({ children }: Readonly<{ children: R
   // nekompletní profil → /account/onboarding, jinak render s bootstrap daty.
   let user: AccountUser;
   let csrfToken: string;
+  let showConsole = false;
   try {
     const session = await loadSessionFromCookies();
     if (!session) redirect("/account/login");
@@ -43,6 +45,7 @@ export default async function AccountLayout({ children }: Readonly<{ children: R
     const fullName = String(user.full_name ?? "").trim();
     const nickname = String(user.nickname ?? "").trim();
     if (!fullName || !nickname) redirect("/account/onboarding");
+    showConsole = hasPermission(await getUserAccess(session.user.id), "admin.console");
   } catch (error) {
     if (error instanceof AccountBackendUnavailableError) {
       return (
@@ -67,7 +70,7 @@ export default async function AccountLayout({ children }: Readonly<{ children: R
   return (
     <AccountLocaleProvider locale={locale}>
       <SessionProvider user={user} csrfToken={csrfToken}>
-        <AccountShell>{children}</AccountShell>
+        <AccountShell showConsole={showConsole}>{children}</AccountShell>
       </SessionProvider>
     </AccountLocaleProvider>
   );
