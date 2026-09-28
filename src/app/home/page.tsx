@@ -174,13 +174,13 @@ export default async function HomePage() {
                       <span
                         className="dd-soon-tag"
                         style={{
-                          background: "rgba(178,174,52,0.12)",
-                          color: "#b2ae34",
-                          borderColor: "rgba(178,174,52,0.25)",
+                          background: "rgba(16,185,129,0.12)",
+                          color: "#10b981",
+                          borderColor: "rgba(16,185,129,0.25)",
                         }}
                         data-ui-text="landing.roadmap.account.status"
                       >
-                        V betě
+                        Spuštěno
                       </span>
                     </span>
                     <span className="dd-desc" data-ui-text="landing.account.navigation" />
@@ -993,7 +993,7 @@ export default async function HomePage() {
                   className="ec-badge"
                   data-ui-text="landing.roadmap.account.status"
                 >
-                  V betě
+                  Spuštěno
                 </span>
                 <span className="ec-icon-wrap">
                   <Icon name="user-round" size={22} />
@@ -1463,7 +1463,7 @@ export default async function HomePage() {
                   className="roadmap-q"
                   data-ui-text="landing.roadmap.account.status"
                 >
-                  V betě
+                  Spuštěno
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
                   <span className="roadmap-icon">
