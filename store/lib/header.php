@@ -226,9 +226,9 @@ $announcementLink = '';
 
 <script src="<?= $vvBase ?>assets/js/header.js"></script>
 <link rel="stylesheet" href="/assets/shared/session.css?v=20260809b">
-<link rel="stylesheet" href="/assets/shared/app-switcher.css?v=20260826a">
+<link rel="stylesheet" href="/assets/shared/app-switcher.css?v=20260928a">
 <script type="module" src="/assets/shared/session.js?v=20260809c"></script>
-<script type="module" src="/assets/shared/app-switcher.js?v=20260825b"></script>
+<script type="module" src="/assets/shared/app-switcher.js?v=20260928a"></script>
 <script type="module" src="/assets/shared/localization.js?v=20260825a"></script>
 
 <!-- Main content landmark starts here (id used by skip link) -->

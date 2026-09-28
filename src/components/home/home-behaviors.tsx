@@ -19,7 +19,7 @@ const LEGACY_SCRIPTS = [
 // výše), proto jdou jako plain <script type="module"> (provedou se po
 // parsování, shodně s legacy chováním).
 const LEGACY_MODULE_SCRIPTS = [
-  "/assets/shared/app-switcher.js?v=20260825b",
+  "/assets/shared/app-switcher.js?v=20260928a",
   "/assets/shared/localization.js?v=20260928a",
   "/assets/shared/session.js?v=20260928a",
 ] as const;

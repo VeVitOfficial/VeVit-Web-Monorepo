@@ -4,17 +4,58 @@
 .vv-app-brand a + a { margin-left:6px; color:var(--text,#f8fafc); opacity:.85; font-weight:400; }
 .vv-app-switcher { position:relative; display:inline-flex; align-items:center; }
 .vv-app-actions { display:flex; align-items:center; gap:.75rem; }
-.vv-app-switcher__trigger { display:grid; place-items:center; width:2.5rem; height:2.5rem; padding:0; border:1px solid color-mix(in srgb,currentColor 22%,transparent); border-radius:.55rem; background:var(--surface-elev,#1e1e1e); color:inherit; cursor:pointer; }
+.vv-app-switcher__trigger { display:grid; place-items:center; width:2.5rem; height:2.5rem; padding:0; border:1px solid color-mix(in srgb,currentColor 22%,transparent); border-radius:.55rem; background:var(--surface-elev,#1e1e1e); color:inherit; cursor:pointer; transition:background-color 160ms ease,border-color 160ms ease; }
 .vv-app-switcher__trigger:hover,.vv-app-switcher__trigger[aria-expanded="true"] { background:color-mix(in srgb,#fff 12%,var(--surface-elev,#1e1e1e)); }
+.vv-app-switcher__trigger[aria-expanded="true"] { border-color:#10b98199; }
 .vv-app-switcher__trigger:focus-visible,.vv-app-switcher__link:focus-visible { outline:2px solid var(--accent,#10b981); outline-offset:2px; }
 .vv-app-switcher__grid { display:grid; grid-template-columns:repeat(3,4px); gap:3px; }
 .vv-app-switcher__grid i { width:4px; height:4px; border-radius:1px; background:currentColor; }
-.vv-app-switcher__menu { position:absolute; top:calc(100% + .6rem); right:0; z-index:100; width:min(23rem,calc(100vw - 1.5rem)); padding:.75rem; border:1px solid #10b98155; border-radius:.8rem; background:#101814; color:#ecfdf5; box-shadow:0 1rem 2.5rem rgb(0 0 0 / .35); }
-.vv-app-switcher__title { margin:.35rem .45rem .6rem; color:#6ee7b7; font-size:.72rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
-.vv-app-switcher__list { display:grid; grid-template-columns:1fr; gap:.25rem; }
-.vv-app-switcher__link { display:flex; gap:.7rem; align-items:center; min-width:0; padding:.65rem; border-radius:.55rem; color:#ecfdf5; text-decoration:none; }
-.vv-app-switcher__link:hover,.vv-app-switcher__link[aria-current="page"] { background:#10b98120; color:#fff; }
-.vv-app-switcher__app-icon { display:grid; flex:0 0 auto; place-items:center; width:2rem; height:2rem; border-radius:.45rem; background:#10b981; color:#052e16; font-size:.72rem; font-weight:800; }
-.vv-app-switcher__app-icon--tools,.vv-app-switcher__app-icon--edu,.vv-app-switcher__app-icon--store,.vv-app-switcher__app-icon--art,.vv-app-switcher__app-icon--studios { background:#10b981; }
-.vv-app-switcher__link strong,.vv-app-switcher__link small { display:block; white-space:normal; }.vv-app-switcher__link strong { font-size:.86rem; }.vv-app-switcher__link small { margin-top:.12rem; color:#a7f3d0; font-size:.72rem; line-height:1.3; }
-@media (max-width:420px) { .vv-app-switcher__list { grid-template-columns:1fr; } }
+
+/* ── Menu ─────────────────────────────────────────────────────────────── */
+.vv-app-switcher__menu {
+  --vv-menu-bg:#141414; --vv-menu-border:#262626; --vv-menu-text:#f4f4f5; --vv-menu-muted:#a1a1aa; --vv-menu-hover:#1f1f1f; --vv-menu-current:#10b98114;
+  position:absolute; top:calc(100% + .6rem); right:0; z-index:1000;
+  width:min(22rem,calc(100vw - 1.5rem)); padding:.5rem;
+  border:1px solid var(--vv-menu-border); border-radius:1rem;
+  background:var(--vv-menu-bg); color:var(--vv-menu-text);
+  box-shadow:0 1.25rem 3rem rgb(0 0 0 / .45),0 0 0 1px rgb(255 255 255 / .02) inset;
+  font-family:Geist,Inter,system-ui,sans-serif; text-align:left;
+  transform-origin:top right; animation:vv-app-menu-in 160ms cubic-bezier(.2,.8,.3,1);
+}
+.vv-app-switcher__menu[hidden] { display:none; }
+@keyframes vv-app-menu-in { from { opacity:0; transform:translateY(-4px) scale(.98); } to { opacity:1; transform:none; } }
+.vv-app-switcher__title,.vv-app-switcher__subtitle { margin:.55rem .7rem .4rem; color:var(--vv-menu-muted); font-size:.6875rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; }
+.vv-app-switcher__subtitle { margin-top:.35rem; padding-top:.75rem; border-top:1px solid var(--vv-menu-border); }
+.vv-app-switcher__list { display:grid; grid-template-columns:1fr; gap:2px; }
+.vv-app-switcher__link { display:flex; gap:.75rem; align-items:center; min-width:0; padding:.55rem .6rem; border-radius:.7rem; color:var(--vv-menu-text); text-decoration:none; transition:background-color 140ms ease; }
+.vv-app-switcher__link:hover { background:var(--vv-menu-hover); }
+.vv-app-switcher__link[aria-current="page"] { background:var(--vv-menu-current); }
+.vv-app-switcher__app-icon { --vv-app:#10b981; display:grid; flex:0 0 auto; place-items:center; width:2.25rem; height:2.25rem; border-radius:.65rem; background:color-mix(in srgb,var(--vv-app) 15%,transparent); color:var(--vv-app); }
+.vv-app-switcher__app-icon svg { width:1.125rem; height:1.125rem; }
+.vv-app-switcher__app-icon--home { --vv-app:#10b981; }
+.vv-app-switcher__app-icon--account { --vv-app:#eab308; }
+.vv-app-switcher__app-icon--tools { --vv-app:#22c55e; }
+.vv-app-switcher__app-icon--edu { --vv-app:#a78bfa; }
+.vv-app-switcher__app-icon--store { --vv-app:#f472b6; }
+.vv-app-switcher__app-icon--art { --vv-app:#fb923c; }
+.vv-app-switcher__app-icon--studios { --vv-app:#38bdf8; }
+.vv-app-switcher__copy { flex:1 1 auto; min-width:0; }
+.vv-app-switcher__link strong,.vv-app-switcher__link small { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.vv-app-switcher__link strong { font-size:.875rem; font-weight:600; }
+.vv-app-switcher__link small { margin-top:.1rem; color:var(--vv-menu-muted); font-size:.75rem; line-height:1.3; }
+.vv-app-switcher__badge { flex:0 0 auto; padding:.15rem .5rem; border-radius:999px; background:#10b98126; color:#34d399; font-size:.6875rem; font-weight:600; white-space:nowrap; }
+.vv-app-switcher__ext { flex:0 0 auto; width:1rem; height:1rem; color:var(--vv-menu-muted); opacity:.7; }
+.vv-app-switcher__link:hover .vv-app-switcher__ext { opacity:1; }
+
+/* Telefon: menu přes celou šířku pod headerem (JS nastaví --vv-menu-top),
+   aby nevyjíždělo za okraj, když tlačítko není úplně vpravo. */
+@media (max-width:640px) {
+  .vv-app-switcher__menu { position:fixed; top:var(--vv-menu-top,4.5rem); left:.75rem; right:.75rem; width:auto; max-height:calc(100dvh - var(--vv-menu-top,4.5rem) - .75rem); overflow-y:auto; overscroll-behavior:contain; transform-origin:top center; }
+  .vv-app-switcher__link { padding:.65rem .6rem; }
+}
+
+/* Světlý motiv (Edu přepíná html.light). */
+html.light .vv-app-switcher__menu { --vv-menu-bg:#fff; --vv-menu-border:#e4e4e7; --vv-menu-text:#18181b; --vv-menu-muted:#71717a; --vv-menu-hover:#f4f4f5; --vv-menu-current:#10b98112; box-shadow:0 1.25rem 3rem rgb(15 23 42 / .14); }
+html.light .vv-app-switcher__badge { background:#10b9811f; color:#047857; }
+
+@media (prefers-reduced-motion:reduce) { .vv-app-switcher__menu { animation:none; } }

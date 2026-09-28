@@ -68,7 +68,7 @@ export function Navbar() {
             <Link href="/edu">Edu</Link>
           </span>
           {breadcrumbs.length ? (
-            <nav className="hidden md:flex items-center gap-2 text-xs text-[var(--color-muted)] ml-4">
+            <nav className="edu-navbar__crumbs hidden md:flex items-center gap-2 text-xs text-[var(--color-muted)] ml-4" aria-label="Drobečková navigace">
               {breadcrumbs.map((c, i) => (
                 <div key={i} className="flex items-center gap-2">
                   {i > 0 ? <span className="text-[var(--color-text-muted)]">/</span> : null}

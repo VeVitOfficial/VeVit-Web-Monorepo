@@ -20,7 +20,7 @@ $hreflang = vv_hreflang_tags('/tools', $lang);
   <link rel="icon" href="/tools/assets/favicon.ico">
   <link rel="stylesheet" href="/assets/fonts/vevit-fonts.css">
   <link rel="stylesheet" href="/tools/assets/css/style.css">
-  <link rel="stylesheet" href="/assets/shared/app-switcher.css?v=20260826a">
+  <link rel="stylesheet" href="/assets/shared/app-switcher.css?v=20260928a">
   <?= $hreflang ?>
   <?php if (!empty($page_head)) echo $page_head; ?>
 </head>
@@ -61,5 +61,5 @@ $hreflang = vv_hreflang_tags('/tools', $lang);
     </div>
   </div>
 </header>
-<script type="module" src="/assets/shared/app-switcher.js?v=20260825b"></script>
+<script type="module" src="/assets/shared/app-switcher.js?v=20260928a"></script>
 <script type="module" src="/assets/shared/localization.js?v=20260826f"></script>

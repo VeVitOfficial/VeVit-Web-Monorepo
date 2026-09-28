@@ -20,7 +20,7 @@ import type { ReactNode } from "react";
 // (a v client-only renderu <script> ani nespustí), pokud se <script> vrací
 // přímo z JSX.
 const MODULE_SCRIPTS = [
-  "/assets/shared/app-switcher.js?v=20260825b",
+  "/assets/shared/app-switcher.js?v=20260928a",
   "/assets/shared/localization.js?v=20260826f",
 ] as const;
 function useModuleScripts() {

@@ -216,7 +216,9 @@ html.light .edu-navbar .vv-app-switcher__trigger[aria-expanded="true"] { backgro
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.42);
 }
 @media (min-width: 960px) { .edu-navbar__links { display: flex; } }
-@media (max-width: 1199px) { .edu-navbar__inner nav[aria-label]:not(.edu-navbar__links) { display: none; } }
+/* Drobečková navigace se pod 1200 px nevejde. (Dřív nav[aria-label], což
+   schovalo i menu aplikací — to je taky <nav aria-label>.) */
+@media (max-width: 1199px) { .edu-navbar__crumbs { display: none; } }
 @media (max-width: 640px) {
   .edu-navbar__inner { width: calc(100% - 16px); gap: 6px; }
   .edu-navbar__actions.vv-app-actions { gap: 6px; }
