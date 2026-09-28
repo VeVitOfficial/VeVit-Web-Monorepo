@@ -37,6 +37,7 @@
 .vv-app-switcher__app-icon--tools { --vv-app:#22c55e; }
 .vv-app-switcher__app-icon--edu { --vv-app:#a78bfa; }
 .vv-app-switcher__app-icon--store { --vv-app:#f472b6; }
+.vv-app-switcher__app-icon--services { --vv-app:#38bdf8; }
 .vv-app-switcher__app-icon--art { --vv-app:#fb923c; }
 .vv-app-switcher__app-icon--studios { --vv-app:#38bdf8; }
 .vv-app-switcher__copy { flex:1 1 auto; min-width:0; }

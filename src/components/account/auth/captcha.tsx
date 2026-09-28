@@ -89,7 +89,7 @@ function loadTurnstileScript(): Promise<void> {
 
 /** `action` musí odpovídat tomu, co backend předává do verifyTurnstile(). */
 export function TurnstileField({ action, className, style }: {
-  action: "login" | "register" | "skoly_interest";
+  action: "login" | "register" | "skoly_interest" | "services_request";
   className?: string;
   style?: React.CSSProperties;
 }) {

@@ -20,7 +20,10 @@ export type XpSource =
   | "account.streak_7"
   | "account.onboarding"
   | "account.2fa"
-  | "account.profile_complete";
+  | "account.profile_complete"
+  | "services.request_created"
+  | "services.job_completed"
+  | "services.review";
 
 export type XpAward = {
   awarded: number;

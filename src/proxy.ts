@@ -7,15 +7,18 @@ import { NextRequest, NextResponse } from "next/server";
  * relevant section on the canonical main site (www.vevit.cz).
  *
  * studios.vevit.cz → the "explore" section on the home page, where the
- * VeVit Software Studios card lives.
+ * VeVit Software Studios card lives. services.vevit.cz → VeVit Services,
+ * which runs as a section of this app (/<locale>/services).
  */
 const HOST_REDIRECTS: Record<string, string> = {
   "studios.vevit.cz": "https://www.vevit.cz/home#explore",
   "www.studios.vevit.cz": "https://www.vevit.cz/home#explore",
+  "services.vevit.cz": "https://www.vevit.cz/cs/services",
+  "www.services.vevit.cz": "https://www.vevit.cz/cs/services",
 };
 
 const locales = new Set(["cs", "en", "de", "es", "uk", "fr", "sk"]);
-const sections = new Set(["home", "account", "edu", "store", "tools"]);
+const sections = new Set(["home", "account", "edu", "store", "tools", "services"]);
 const publicFile = /\.(?:css|js|mjs|json|map|png|jpe?g|webp|gif|svg|ico|woff2?|ttf|wasm|pdf|bin|data|mp3|wav|mp4|webm)$/i;
 
 function preferredLocale(request: NextRequest) {
@@ -107,6 +110,14 @@ export function proxy(request: NextRequest) {
     // locale se předává hlavičkou x-vv-locale.
     const url = request.nextUrl.clone();
     url.pathname = `/account${page && page !== "index" ? `/${page}` : ""}`;
+    const requestHeaders = new Headers(request.headers);
+    requestHeaders.set("x-vv-locale", locale);
+    return NextResponse.rewrite(url, { request: { headers: requestHeaders } });
+  }
+  if (section === "services") {
+    // VeVit Services (React routy /services/*), locale v hlavičce x-vv-locale.
+    const url = request.nextUrl.clone();
+    url.pathname = `/services${suffix ? `/${suffix}` : ""}`;
     const requestHeaders = new Headers(request.headers);
     requestHeaders.set("x-vv-locale", locale);
     return NextResponse.rewrite(url, { request: { headers: requestHeaders } });

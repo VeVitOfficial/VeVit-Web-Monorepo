@@ -14,7 +14,7 @@ const SUPPORT_SCRIPTS = [
 // app-switcher.js je ES modul — legacy ho načítal s type="module".
 // next/script vkládá klasický <script> → SyntaxError, proto plain tag.
 const SUPPORT_MODULE_SCRIPTS = [
-  "/assets/shared/app-switcher.js?v=20260928a",
+  "/assets/shared/app-switcher.js?v=20260928b",
 ] as const;
 
 export function SupportBehaviors() {

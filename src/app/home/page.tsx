@@ -413,7 +413,7 @@ export default async function HomePage() {
             <a href={`${L}/edu`}>Edu</a>
           </li>
           <li>
-            <a href="https://services.vevit.cz">Services</a>
+            <a href={`${L}/services`}>Services</a>
           </li>
           <li>
             <a href={`${L}/account`}>Account</a>
@@ -521,8 +521,7 @@ export default async function HomePage() {
                 <a className="orbit-tag tag-1" href={`${L}/tools`}>vevit.cz/tools</a>
                 <a className="orbit-tag tag-2" href="https://www.vevit.fun">www.vevit.fun</a>
                 <a className="orbit-tag tag-3" href={`${L}/edu`}>vevit.cz/edu</a>
-                {/* /services zatím neexistuje — vede na sekci s projekty VeVit */}
-                <a className="orbit-tag tag-4" href={`${L}/home#explore`}>vevit.cz/services</a>
+                <a className="orbit-tag tag-4" href={`${L}/services`}>vevit.cz/services</a>
                 <a className="orbit-tag tag-5" href="https://www.vevit.space">Software Studio</a>
                 <a className="orbit-tag tag-6" href="https://vevit.art">VeVit Art</a>
 
@@ -1582,7 +1581,7 @@ export default async function HomePage() {
                 />
                 <div className="roadmap-meta">
                   <span data-ui-text="landing.roadmap.services.progress" />
-                  <span>services.vevit.cz</span>
+                  <span>vevit.cz/services</span>
                 </div>
               </article>
 
@@ -2081,7 +2080,7 @@ export default async function HomePage() {
                 </li>
                 <li>
                   <a
-                    href="https://services.vevit.cz"
+                    href={`${L}/services`}
                     data-ui-text="page.footer.linkServices"
                   >
                     Služby

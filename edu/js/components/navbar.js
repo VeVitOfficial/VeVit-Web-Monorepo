@@ -4,7 +4,7 @@ import { icon, renderIcons, escapeHtml } from "../lib/dom.js";
 import { toggleTheme, getTheme } from "../store/theme.js";
 import { currentLang, t } from "../store/lang.js?v=20260824a";
 import { initSession, renderSessionResult } from "/assets/shared/session.js?v=20260809c";
-import { initAppSwitchers } from "/assets/shared/app-switcher.js?v=20260809b";
+import { initAppSwitchers } from "/assets/shared/app-switcher.js?v=20260928b";
 
 let lastPath = "";
 let sessionResult = null;

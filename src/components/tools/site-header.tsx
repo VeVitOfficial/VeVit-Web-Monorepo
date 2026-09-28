@@ -30,8 +30,8 @@ const CATEGORY_DOT_LABEL: Record<Category, string> = {
 // (a v client-only renderu <script> ani nespustí), pokud se <script> vrací
 // přímo z JSX.
 const MODULE_SCRIPTS = [
-  "/assets/shared/app-switcher.js?v=20260928a",
-  "/assets/shared/localization.js?v=20260826f",
+  "/assets/shared/app-switcher.js?v=20260928b",
+  "/assets/shared/localization.js?v=20260928b",
   "/assets/shared/session.js?v=20260928a",
 ] as const;
 const SESSION_CSS = "/assets/shared/session.css?v=20260928a";

@@ -946,7 +946,7 @@ async function boot() {
   try {
     const bootstrap = $('vv-bootstrap');
     const session = await import('/assets/shared/session.js?v=20260809c');
-    await import('/assets/shared/app-switcher.js?v=20260809b');
+    await import('/assets/shared/app-switcher.js?v=20260928b');
     sharedGetCsrfToken = session.getCsrfToken;
     const result = await session.loadSession();
     if (result.state === 'anonymous') {

@@ -109,11 +109,11 @@ export function setPreferredLocale(code) {
 }
 
 /** Sekce pod per-locale routingem (odpovídá .htaccess prefix pravidlu). */
-const ROUTED_SECTION_RE = /^(\/(?:cs|en|de|es|uk|fr|sk))?\/(?:home|account|edu|store|tools)(?:\/|$)/i;
+const ROUTED_SECTION_RE = /^(\/(?:cs|en|de|es|uk|fr|sk))?\/(?:home|account|edu|store|tools|services)(?:\/|$)/i;
 
 /* ── Per-locale routing helpers (Fáze B6) ────────────────────────────── */
 
-const SECTION_RE = /^(\/(?:home|account|edu|store|tools|auth))(?:\/|$)/i;
+const SECTION_RE = /^(\/(?:home|account|edu|store|tools|services|auth))(?:\/|$)/i;
 
 /**
  * Vrátí cestu aktuální sekce BEZ locale prefixu, vč. počátečního lomítka.
