@@ -2,7 +2,6 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
-import { TurnstileField, captchaToken, resetCaptcha } from "@/components/account/auth/captcha";
 
 // Klientské části Services: volání API, formuláře, tlačítka akcí a konverzace.
 
@@ -60,87 +59,6 @@ export function ActionButton({ path, label, confirm, variant = "primary", done }
       <button type="button" className={cls} disabled={busy} onClick={run}>{busy ? "Moment…" : label}</button>
       <Alert message={error} />
     </span>
-  );
-}
-
-export function RequestForm({ categories, base }: { categories: { slug: string; name_cs: string }[]; base: string }) {
-  const router = useRouter();
-  const [busy, setBusy] = useState(false);
-  const [error, setError] = useState("");
-  const [remote, setRemote] = useState(false);
-  async function submit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const form = new FormData(event.currentTarget);
-    setBusy(true);
-    setError("");
-    try {
-      const result = await servicesPost<{ id: string }>("requests", {
-        category: formValue(form, "category"),
-        title: formValue(form, "title"),
-        description: formValue(form, "description"),
-        city: formValue(form, "city"),
-        remote,
-        budget_min: formValue(form, "budget_min"),
-        budget_max: formValue(form, "budget_max"),
-        deadline: formValue(form, "deadline"),
-        cf_turnstile: captchaToken(),
-      });
-      router.push(`${base}/poptavka/${result.id}`);
-    } catch (reason) {
-      resetCaptcha();
-      setError(reason instanceof Error ? reason.message : String(reason));
-      setBusy(false);
-    }
-  }
-  return (
-    <form className="svc-form svc-card" onSubmit={submit}>
-      <label className="svc-field">
-        <span>Kategorie</span>
-        <select className="svc-select" name="category" required defaultValue="">
-          <option value="" disabled>Vyberte kategorii</option>
-          {categories.map((category) => <option key={category.slug} value={category.slug}>{category.name_cs}</option>)}
-        </select>
-      </label>
-      <label className="svc-field">
-        <span>Co potřebujete</span>
-        <input className="svc-input" name="title" required minLength={5} maxLength={120} placeholder="Např. Web pro kavárnu, doučování matematiky" />
-      </label>
-      <label className="svc-field">
-        <span>Popis</span>
-        <textarea className="svc-textarea" name="description" required minLength={20} maxLength={4000} rows={6} placeholder="Co přesně má být hotové, v jakém rozsahu a co už máte připravené." />
-        <small>Kontakt sem nepište — zobrazí se až vybranému poskytovateli.</small>
-      </label>
-      <div className="svc-fields-2">
-        <label className="svc-field">
-          <span>Město</span>
-          <input className="svc-input" name="city" maxLength={80} required={!remote} placeholder="Např. Brno" />
-        </label>
-        <label className="svc-check" style={{ alignSelf: "end", minHeight: 44 }}>
-          <input type="checkbox" checked={remote} onChange={(event) => setRemote(event.target.checked)} />
-          Lze i na dálku
-        </label>
-      </div>
-      <div className="svc-fields-2">
-        <label className="svc-field">
-          <span>Rozpočet od (Kč)</span>
-          <input className="svc-input" name="budget_min" inputMode="numeric" pattern="[0-9 ]*" placeholder="Nepovinné" />
-        </label>
-        <label className="svc-field">
-          <span>Rozpočet do (Kč)</span>
-          <input className="svc-input" name="budget_max" inputMode="numeric" pattern="[0-9 ]*" placeholder="Nepovinné" />
-        </label>
-      </div>
-      <label className="svc-field">
-        <span>Termín</span>
-        <input className="svc-input" type="date" name="deadline" />
-      </label>
-      <TurnstileField action="services_request" />
-      <Alert message={error} />
-      <div className="svc-row">
-        <button className="svc-btn svc-btn--primary" type="submit" disabled={busy}>{busy ? "Ukládám…" : "Zveřejnit poptávku"}</button>
-        <span className="svc-small">Poptávka bude veřejná 30 dní nebo do výběru nabídky.</span>
-      </div>
-    </form>
   );
 }
 
@@ -294,79 +212,6 @@ export function ReviewForm({ requestId, subject }: { requestId: string; subject:
       </label>
       <Alert message={error} />
       <div><button className="svc-btn svc-btn--primary" type="submit" disabled={busy}>Odeslat hodnocení</button></div>
-    </form>
-  );
-}
-
-export type ProviderDraft = { headline: string; bio: string; categories: string[]; city: string; radius_km: number; remote: boolean; active: boolean };
-
-export function ProviderForm({ categories, initial, base }: { categories: { slug: string; name_cs: string }[]; initial: ProviderDraft | null; base: string }) {
-  const [remote, setRemote] = useState(initial?.remote ?? false);
-  const [busy, setBusy] = useState(false);
-  const [message, setMessage] = useState<{ kind: "ok" | "error"; text: string } | null>(null);
-  async function submit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const form = new FormData(event.currentTarget);
-    setBusy(true);
-    setMessage(null);
-    try {
-      await servicesPost("provider", {
-        headline: formValue(form, "headline"),
-        bio: formValue(form, "bio"),
-        categories: form.getAll("categories"),
-        city: formValue(form, "city"),
-        radius_km: formValue(form, "radius_km"),
-        remote,
-        active: form.get("active") === "on",
-      });
-      setMessage({ kind: "ok", text: "Profil je uložený. Teď můžete posílat nabídky." });
-    } catch (reason) {
-      setMessage({ kind: "error", text: reason instanceof Error ? reason.message : String(reason) });
-    } finally {
-      setBusy(false);
-    }
-  }
-  const chosen = new Set(initial?.categories ?? []);
-  return (
-    <form className="svc-form svc-card" onSubmit={submit}>
-      <label className="svc-field">
-        <span>Co nabízíte</span>
-        <input className="svc-input" name="headline" required minLength={3} maxLength={120} defaultValue={initial?.headline ?? ""} placeholder="Např. Weby na WordPressu a e-shopy" />
-      </label>
-      <fieldset className="svc-field" style={{ border: 0, padding: 0, margin: 0 }}>
-        <span>Kategorie</span>
-        <div className="svc-chips">
-          {categories.map((category) => (
-            <label key={category.slug} className="svc-chip">
-              <input type="checkbox" name="categories" value={category.slug} defaultChecked={chosen.has(category.slug)} />
-              {category.name_cs}
-            </label>
-          ))}
-        </div>
-      </fieldset>
-      <label className="svc-field">
-        <span>O vás</span>
-        <textarea className="svc-textarea" name="bio" maxLength={2000} rows={5} defaultValue={initial?.bio ?? ""} placeholder="Zkušenosti, ukázky práce, jak pracujete." />
-      </label>
-      <div className="svc-fields-2">
-        <label className="svc-field">
-          <span>Město</span>
-          <input className="svc-input" name="city" maxLength={80} required={!remote} defaultValue={initial?.city ?? ""} />
-        </label>
-        <label className="svc-field">
-          <span>Okruh (km)</span>
-          <input className="svc-input" name="radius_km" inputMode="numeric" pattern="[0-9]*" defaultValue={String(initial?.radius_km ?? 20)} />
-        </label>
-      </div>
-      <div className="svc-row">
-        <label className="svc-check"><input type="checkbox" checked={remote} onChange={(event) => setRemote(event.target.checked)} /> Pracuji i na dálku</label>
-        <label className="svc-check"><input type="checkbox" name="active" defaultChecked={initial?.active ?? true} /> Profil je aktivní</label>
-      </div>
-      {message ? <Alert kind={message.kind} message={message.text} /> : null}
-      <div className="svc-row">
-        <button className="svc-btn svc-btn--primary" type="submit" disabled={busy}>{busy ? "Ukládám…" : "Uložit profil"}</button>
-        <a className="svc-btn" href={base}>Procházet poptávky</a>
-      </div>
     </form>
   );
 }

@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
+import { SvcIcon } from "./icons";
 
 // Sdílené moduly (jazyk, přepínač aplikací, účet) — stejné jako v Tools a Edu.
 const MODULE_SCRIPTS = [
@@ -11,13 +12,13 @@ const MODULE_SCRIPTS = [
 ] as const;
 
 const LINKS = [
-  { href: "", label: "Poptávky", match: (path: string) => path === "" || path.startsWith("/poptavka/") && !path.startsWith("/poptavka/nova") },
-  { href: "/poptavka/nova", label: "Zadat poptávku", match: (path: string) => path.startsWith("/poptavka/nova") },
+  { href: "/poptavky", label: "Poptávky", match: (path: string) => path.startsWith("/poptavky") || (path.startsWith("/poptavka/") && !path.startsWith("/poptavka/nova")) },
+  { href: "/poskytovatele", label: "Poskytovatelé", match: (path: string) => path.startsWith("/poskytovatel") },
   { href: "/moje", label: "Moje zakázky", match: (path: string) => path.startsWith("/moje") },
   { href: "/profil", label: "Profil poskytovatele", match: (path: string) => path.startsWith("/profil") },
 ];
 
-export function ServicesHeader({ locale }: { locale: string }) {
+export function ServicesHeader({ locale, unread = 0 }: { locale: string; unread?: number }) {
   const pathname = usePathname() ?? "";
   const rel = pathname.replace(/^\/[a-z]{2}(?=\/)/, "").replace(/^\/services/, "").replace(/\/$/, "");
   const base = `/${locale}/services`;
@@ -38,6 +39,7 @@ export function ServicesHeader({ locale }: { locale: string }) {
   const nav = LINKS.map((link) => (
     <a key={link.label} href={`${base}${link.href}`} aria-current={link.match(rel) ? "page" : undefined}>
       {link.label}
+      {link.href === "/moje" && unread > 0 ? <span className="svc-navbadge" aria-label={`${unread} nepřečtených zpráv`}>{unread > 99 ? "99+" : unread}</span> : null}
     </a>
   ));
 
@@ -49,6 +51,9 @@ export function ServicesHeader({ locale }: { locale: string }) {
           <a href={base}>Services</a>
         </span>
         <nav className="svc-nav" aria-label="Navigace VeVit Services">{nav}</nav>
+        <a className="svc-btn svc-btn--primary svc-btn--sm svc-header__cta" href={`${base}/poptavka/nova`}>
+          <SvcIcon name="plus" size={15} /> Zadat poptávku
+        </a>
         <div className="svc-actions vv-app-actions">
           <span data-vevit-language />
           <span data-vevit-app-switcher data-vevit-app="Services" />

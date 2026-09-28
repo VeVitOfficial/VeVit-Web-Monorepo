@@ -5,6 +5,7 @@ import {
   getOffer,
   handleServicesWrite,
   listMessages,
+  markRead,
   notifyUser,
   rateLimit,
   readJson,
@@ -26,7 +27,9 @@ export async function GET(_request: Request, context: { params: Promise<{ id: st
   const offer = /^[0-9a-f-]{36}$/i.test(id) ? await getOffer(id.toLowerCase()) : null;
   const access = offer ? await canAccessOffer(offer, session.user.id) : null;
   if (!offer || !access) return Response.json({ error: { code: "not_found", message: "Konverzace nebyla nalezena." } }, { status: 404, headers });
-  return Response.json({ messages: await listMessages(offer.id), me: session.user.id }, { headers });
+  const messages = await listMessages(offer.id);
+  await markRead(session.user.id, offer.id, messages);
+  return Response.json({ messages, me: session.user.id }, { headers });
 }
 
 export async function POST(request: Request, context: { params: Promise<{ id: string }> }): Promise<Response> {
@@ -60,6 +63,8 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
         `Odpovědět: ${requestUrl(access.request.id)}`,
       ]);
     }
-    return Response.json({ messages: await listMessages(offer.id) }, { status: 201 });
+    const messages = await listMessages(offer.id);
+    await markRead(session.user.id, offer.id, messages);
+    return Response.json({ messages }, { status: 201 });
   });
 }

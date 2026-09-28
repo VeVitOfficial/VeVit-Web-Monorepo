@@ -21,6 +21,7 @@ import { Avatar } from "./ui";
 /** Port of account_route_from_uri + routeFromPath from app.js. */
 export const ACCOUNT_ROUTES: Record<string, { path: string; descKey: string }> = {
   overview: { path: "/account", descKey: "route.overview.desc" },
+  services: { path: "/account/services", descKey: "route.services.desc" },
   profile: { path: "/account/profile", descKey: "route.profile.desc" },
   security: { path: "/account/security", descKey: "route.security.desc" },
   billing: { path: "/account/billing", descKey: "route.billing.desc" },
@@ -42,6 +43,7 @@ export function accountRouteFromPathname(pathname: string): string {
 
 const NAV_ICONS: Record<string, React.ReactNode> = {
   overview: <path d="m3 11 9-8 9 8M5 10v10h14V10M9 20v-6h6v6" />,
+  services: (<><path d="m11 17 2 2a1 1 0 1 0 3-3" /><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4" /><path d="m21 3 1 11h-2" /><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3" /><path d="M3 4h8" /></>),
   profile: (<><circle cx="12" cy="8" r="4" /><path d="M4 21a8 8 0 0 1 16 0" /></>),
   security: <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Zm-3-10 2 2 4-4" />,
   billing: <path d="M3 5h18v14H3zM3 10h18M7 15h3" />,

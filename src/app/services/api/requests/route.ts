@@ -1,7 +1,9 @@
+import { after } from "next/server";
 import { accountSupabase, clientIp } from "@/lib/account-auth";
 import { verifyTurnstile } from "@/lib/turnstile";
 import { awardXp } from "@/lib/xp";
-import { categoryExists, handleServicesWrite, optionalInt, rateLimit, readJson, text, ServicesError } from "@/lib/services";
+import { getRequest, handleServicesWrite, listCategories, rateLimit, readJson, ServicesError } from "@/lib/services";
+import { notifyWatchdogs, parseRequestInput } from "@/lib/services-requests";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -15,33 +17,26 @@ export async function POST(request: Request): Promise<Response> {
     }
     await rateLimit("services_request_create", session.user.id, 5, 86400);
 
-    const category = text(body.category, "Kategorie", 1, 40);
-    if (!(await categoryExists(category))) throw new ServicesError(400, "invalid_input", "Vyberte kategorii.");
-    const title = text(body.title, "Název", 5, 120);
-    const description = text(body.description, "Popis", 20, 4000);
-    const remote = body.remote === true;
-    const city = text(body.city, "Město", remote ? 0 : 2, 80);
-    const budgetMin = optionalInt(body.budget_min, "Rozpočet od");
-    const budgetMax = optionalInt(body.budget_max, "Rozpočet do");
-    if (budgetMin !== null && budgetMax !== null && budgetMin > budgetMax) {
-      throw new ServicesError(400, "invalid_input", "Rozpočet od musí být menší než rozpočet do.");
-    }
-    let deadline: string | null = null;
-    if (typeof body.deadline === "string" && body.deadline !== "") {
-      if (!/^\d{4}-\d{2}-\d{2}$/.test(body.deadline) || Number.isNaN(Date.parse(body.deadline))) {
-        throw new ServicesError(400, "invalid_input", "Termín není platné datum.");
-      }
-      deadline = body.deadline;
-    }
-
+    const categories = await listCategories();
+    const input = parseRequestInput(body, categories);
     const { data, error } = await accountSupabase()
       .from("services_requests")
-      .insert({ author_id: session.user.id, category, title, description, city, remote, budget_min: budgetMin, budget_max: budgetMax, deadline })
+      .insert({ author_id: session.user.id, ...input })
       .select("id")
       .single();
     if (error || !data) throw new Error(`request insert failed: ${error?.code ?? "no row"}`);
     const id = (data as { id: string }).id;
     await awardXp(session.user.id, "services.request_created", id);
+
+    // Hlídací psi až po odpovědi, ať zadavatel nečeká na e-maily.
+    after(async () => {
+      try {
+        const created = await getRequest(id);
+        if (created) await notifyWatchdogs(created, categories);
+      } catch (reason) {
+        console.error("[services] watchdog failed", reason instanceof Error ? reason.message : reason);
+      }
+    });
     return Response.json({ id }, { status: 201, headers: { "Cache-Control": "no-store" } });
   });
 }

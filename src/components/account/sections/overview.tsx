@@ -8,6 +8,7 @@ import { AccountApiError, useAccountApi } from "../api";
 import { useSession } from "../session";
 import { SectionSkeleton, StateError } from "../ui";
 import { XpCard } from "./xp-card";
+import { ServicesOverviewCard } from "./services";
 
 /**
  * Port of loadOverviewCore + loadSubscriptionOverview + render* from app.js:
@@ -225,6 +226,8 @@ export function OverviewSection() {
           </div>
         )}
       </article>
+
+      <ServicesOverviewCard />
 
       <article className="card activity-card" aria-labelledby="activityTitle">
         <div className="card-heading">

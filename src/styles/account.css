@@ -991,3 +991,24 @@ button { color: inherit; }
 .admin-mono { font-family: var(--font-mono); font-size: 11px; color: var(--text-2); word-break: break-all; }
 .input--narrow { max-width: 110px; }
 .overflow-x { overflow-x: auto; }
+
+/* VeVit Services v účtu (sekce /account/services + karta v přehledu) */
+.svc-acc-kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.account-main .card.svc-acc-kpi { display: flex; flex-direction: column; gap: 4px; padding: 18px; text-decoration: none; color: inherit; }
+.svc-acc-kpi strong { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; }
+.svc-acc-kpi span { color: var(--text-3); font-size: 12px; }
+a.svc-acc-kpi:hover { border-color: #ffffff26; }
+.svc-acc-kpi.is-hot strong { color: var(--primary); }
+.svc-acc-list { list-style: none; margin: 0; padding: 0; }
+.svc-acc-list li + li { border-top: 1px solid #ffffff0d; }
+.svc-acc-list a { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 12px 0; color: inherit; text-decoration: none; }
+.svc-acc-list a:hover strong { color: var(--primary); }
+.svc-acc-list__main { display: grid; gap: 3px; min-width: 0; }
+.svc-acc-list__main strong { font-size: 13px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.svc-acc-list__main small { color: var(--text-3); font-size: 11px; }
+.svc-acc-list__meta { display: flex; align-items: center; gap: 10px; flex-shrink: 0; color: var(--text-2); font-size: 12px; }
+.svc-acc-dot { padding: 2px 8px; border-radius: 999px; background: #10b98126; color: var(--primary); font-size: 11px; font-weight: 600; }
+@media (max-width: 760px) {
+  .svc-acc-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .svc-acc-list a { flex-direction: column; align-items: flex-start; }
+}

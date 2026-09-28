@@ -7,15 +7,17 @@ import {
   type AccountSession,
 } from "@/lib/account-session";
 import { StoreRateLimitExceededError, storeRateLimitConsume } from "@/lib/store-ratelimit";
+import type { ServicesCategory } from "@/components/services/categories";
+import { normalizeText } from "@/components/services/constants";
 
 /**
- * VeVit Services MVP (migration 023). Every read and write goes through the
+ * VeVit Services (migrace 023 + 024). Every read and write goes through the
  * service-role client; clients have no direct table access. Ownership and
  * visibility rules live here, state transitions that must be atomic live in
  * the SQL functions services_accept_offer / services_mark_done.
  */
 
-export type ServicesCategory = { slug: string; name_cs: string };
+export type { ServicesCategory };
 
 export type ServicesRequest = {
   id: string;
@@ -34,6 +36,16 @@ export type ServicesRequest = {
   provider_done: boolean;
   expires_at: string;
   created_at: string;
+  job_type: string;
+  budget_type: string;
+  urgent: boolean;
+  city_code: number | null;
+  region: string;
+  lat: number | null;
+  lng: number | null;
+  views: number;
+  prolonged_count: number;
+  search_text: string;
 };
 
 export type ServicesOffer = {
@@ -58,12 +70,20 @@ export type ServicesProvider = {
   radius_km: number;
   remote: boolean;
   active: boolean;
+  hourly_rate: number | null;
+  website: string;
+  city_code: number | null;
+  region: string;
+  lat: number | null;
+  lng: number | null;
+  created_at?: string;
 };
 
 export type PublicUser = { id: string; name: string; avatar_url: string | null };
 
 const REQUEST_COLUMNS =
-  "id,author_id,category,title,description,city,remote,budget_min,budget_max,deadline,status,accepted_offer_id,author_done,provider_done,expires_at,created_at";
+  "id,author_id,category,title,description,city,remote,budget_min,budget_max,deadline,status,accepted_offer_id,author_done,provider_done,expires_at,created_at,job_type,budget_type,urgent,city_code,region,lat,lng,views,prolonged_count,search_text";
+const PROVIDER_COLUMNS = "user_id,headline,bio,categories,city,radius_km,remote,active,hourly_rate,website,city_code,region,lat,lng,created_at";
 const OFFER_COLUMNS = "id,request_id,provider_id,price,delivery,message,status,created_at";
 
 export class ServicesError extends Error {
@@ -72,7 +92,7 @@ export class ServicesError extends Error {
   }
 }
 
-function db() {
+export function db() {
   return accountSupabase();
 }
 
@@ -168,9 +188,36 @@ export function uuid(value: unknown): string {
 // ── Reads ────────────────────────────────────────────────────────────────────
 
 export async function listCategories(): Promise<ServicesCategory[]> {
-  const { data, error } = await db().from("services_categories").select("slug,name_cs").eq("active", true).order("sort_order");
+  const { data, error } = await db()
+    .from("services_categories")
+    .select("slug,name_cs,parent_slug,icon,description_cs,sort_order")
+    .eq("active", true)
+    .order("sort_order");
   if (error) throw new AccountBackendUnavailableError("categories unavailable");
   return (data ?? []) as ServicesCategory[];
+}
+
+/** Počty otevřených poptávek podle kategorie; hlavní kategorie sčítá podkategorie. */
+export async function categoryCounts(categories: ServicesCategory[]): Promise<Map<string, number>> {
+  const { data } = await db().rpc("services_category_counts");
+  const counts = new Map<string, number>();
+  const parentOf = new Map(categories.map((category) => [category.slug, category.parent_slug]));
+  for (const row of (data ?? []) as { category: string; open_count: number }[]) {
+    counts.set(row.category, (counts.get(row.category) ?? 0) + row.open_count);
+    const parent = parentOf.get(row.category);
+    if (parent) counts.set(parent, (counts.get(parent) ?? 0) + row.open_count);
+  }
+  return counts;
+}
+
+/** Souhrnná čísla na úvodní stránku. */
+export async function servicesStats(): Promise<{ open: number; providers: number; completed: number }> {
+  const [open, providers, completed] = await Promise.all([
+    db().from("services_requests").select("id", { count: "exact", head: true }).eq("status", "open").gte("expires_at", new Date().toISOString()),
+    db().from("services_providers").select("user_id", { count: "exact", head: true }).eq("active", true),
+    db().from("services_requests").select("id", { count: "exact", head: true }).eq("status", "completed"),
+  ]);
+  return { open: open.count ?? 0, providers: providers.count ?? 0, completed: completed.count ?? 0 };
 }
 
 export async function categoryExists(slug: string): Promise<boolean> {
@@ -178,20 +225,22 @@ export async function categoryExists(slug: string): Promise<boolean> {
   return data !== null;
 }
 
-export async function listOpenRequests(filters: { category?: string; city?: string; remote?: boolean; q?: string }): Promise<ServicesRequest[]> {
-  await db().rpc("services_expire_requests");
-  let query = db().from("services_requests").select(REQUEST_COLUMNS).eq("status", "open").order("created_at", { ascending: false }).limit(60);
-  if (filters.category) query = query.eq("category", filters.category);
-  if (filters.remote) query = query.eq("remote", true);
-  if (filters.city) query = query.ilike("city", `%${escapeLike(filters.city)}%`);
-  if (filters.q) query = query.ilike("title", `%${escapeLike(filters.q)}%`);
-  const { data, error } = await query;
-  if (error) throw new AccountBackendUnavailableError("requests unavailable");
-  return (data ?? []) as ServicesRequest[];
+/** Normalizovaný text pro hledání bez diakritiky (sloupec search_text). */
+export function searchTextFor(title: string, description: string): string {
+  return normalizeText(`${title} ${description}`).replace(/\s+/g, " ").slice(0, 4400);
 }
 
-function escapeLike(value: string): string {
-  return value.slice(0, 60).replace(/[%_\\,()]/g, " ");
+/** Poptávky podle id ve stejném pořadí. */
+export async function requestsByIds(ids: string[]): Promise<ServicesRequest[]> {
+  if (ids.length === 0) return [];
+  const { data, error } = await db().from("services_requests").select(REQUEST_COLUMNS).in("id", ids);
+  if (error) throw new AccountBackendUnavailableError("requests unavailable");
+  const byId = new Map(((data ?? []) as ServicesRequest[]).map((row) => [row.id, row]));
+  return ids.map((id) => byId.get(id)).filter((row): row is ServicesRequest => row !== undefined);
+}
+
+export async function expireRequests(): Promise<void> {
+  await db().rpc("services_expire_requests");
 }
 
 export async function getRequest(id: string): Promise<ServicesRequest | null> {
@@ -269,12 +318,59 @@ export async function contactFor(userId: string): Promise<{ email: string; phone
 }
 
 export async function getProvider(userId: string): Promise<ServicesProvider | null> {
-  const { data } = await db()
-    .from("services_providers")
-    .select("user_id,headline,bio,categories,city,radius_km,remote,active")
-    .eq("user_id", userId)
-    .maybeSingle();
+  const { data } = await db().from("services_providers").select(PROVIDER_COLUMNS).eq("user_id", userId).maybeSingle();
   return data as ServicesProvider | null;
+}
+
+export async function activeProviders(limit = 300): Promise<ServicesProvider[]> {
+  const { data } = await db().from("services_providers").select(PROVIDER_COLUMNS).eq("active", true).order("updated_at", { ascending: false }).limit(limit);
+  return (data ?? []) as ServicesProvider[];
+}
+
+/** Průměr a počet hodnocení pro více uživatelů najednou. */
+export async function ratingsFor(userIds: string[]): Promise<Map<string, { count: number; average: number }>> {
+  const map = new Map<string, { count: number; average: number }>();
+  const unique = [...new Set(userIds)];
+  if (unique.length === 0) return map;
+  const { data } = await db().from("services_reviews").select("subject_id,stars").in("subject_id", unique).limit(5000);
+  const sums = new Map<string, { count: number; total: number }>();
+  for (const row of (data ?? []) as { subject_id: string; stars: number }[]) {
+    const entry = sums.get(row.subject_id) ?? { count: 0, total: 0 };
+    entry.count += 1;
+    entry.total += row.stars;
+    sums.set(row.subject_id, entry);
+  }
+  for (const [id, entry] of sums) map.set(id, { count: entry.count, average: entry.total / entry.count });
+  return map;
+}
+
+/** Počet dokončených zakázek poskytovatelů (přijatá nabídka + dokončená poptávka). */
+export async function completedJobsFor(userIds: string[]): Promise<Map<string, number>> {
+  const map = new Map<string, number>();
+  const unique = [...new Set(userIds)];
+  if (unique.length === 0) return map;
+  const { data } = await db()
+    .from("services_offers")
+    .select("provider_id,request:services_requests!services_offers_request_id_fkey(status)")
+    .in("provider_id", unique)
+    .eq("status", "accepted")
+    .limit(5000);
+  for (const row of (data ?? []) as unknown as { provider_id: string; request: { status: string } | null }[]) {
+    if (row.request?.status === "completed") map.set(row.provider_id, (map.get(row.provider_id) ?? 0) + 1);
+  }
+  return map;
+}
+
+/** Veřejné údaje o důvěryhodnosti: členem od, ověřený telefon. */
+export async function trustInfo(userIds: string[]): Promise<Map<string, { since: string | null; phoneVerified: boolean }>> {
+  const map = new Map<string, { since: string | null; phoneVerified: boolean }>();
+  const unique = [...new Set(userIds.filter(Boolean))];
+  if (unique.length === 0) return map;
+  const { data } = await db().from("users").select("id,created_at,phone_verified_at").in("id", unique);
+  for (const row of (data ?? []) as { id: string; created_at: string | null; phone_verified_at: string | null }[]) {
+    map.set(row.id, { since: row.created_at, phoneVerified: Boolean(row.phone_verified_at) });
+  }
+  return map;
 }
 
 export async function reviewSummary(userId: string): Promise<{ count: number; average: number | null; reviews: { stars: number; body: string; author_id: string; created_at: string }[] }> {
@@ -318,6 +414,11 @@ const SITE = (process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://www.vevit.cz"
 
 export function requestUrl(requestId: string): string {
   return `${SITE}/cs/services/poptavka/${requestId}`;
+}
+
+/** Absolutní URL v Services (e-maily). */
+export function servicesUrl(path: string): string {
+  return `${SITE}/cs/services${path}`;
 }
 
 /** Transactional notice to one user; failures are logged, never thrown. */
@@ -368,4 +469,83 @@ export function categoryName(categories: ServicesCategory[], slug: string): stri
 /** Čas vykreslení serverové stránky (pro „před 3 h“), mimo tělo komponenty. */
 export function renderTime(): number {
   return Date.now();
+}
+
+// ── Záložky, hlídací psi, přečtení, zobrazení ────────────────────────────────
+
+export async function bookmarkedIds(userId: string): Promise<Set<string>> {
+  const { data } = await db().from("services_bookmarks").select("request_id").eq("user_id", userId).limit(500);
+  return new Set(((data ?? []) as { request_id: string }[]).map((row) => row.request_id));
+}
+
+export async function bookmarkedRequests(userId: string): Promise<ServicesRequest[]> {
+  const { data } = await db().from("services_bookmarks").select("request_id").eq("user_id", userId).order("created_at", { ascending: false }).limit(200);
+  return requestsByIds(((data ?? []) as { request_id: string }[]).map((row) => row.request_id));
+}
+
+export type SavedSearch = { id: string; name: string; query: string; notify: boolean; last_notified_at: string | null; created_at: string };
+
+export async function savedSearches(userId: string): Promise<SavedSearch[]> {
+  const { data } = await db()
+    .from("services_saved_searches")
+    .select("id,name,query,notify,last_notified_at,created_at")
+    .eq("user_id", userId)
+    .order("created_at", { ascending: false })
+    .limit(50);
+  return (data ?? []) as SavedSearch[];
+}
+
+/** Nepřečtené zprávy: po nabídkách a součet po poptávkách. */
+export async function unreadCounts(userId: string): Promise<{ byOffer: Map<string, number>; byRequest: Map<string, number>; total: number }> {
+  const byOffer = new Map<string, number>();
+  const byRequest = new Map<string, number>();
+  let total = 0;
+  const { data } = await db().rpc("services_unread_counts", { p_user_id: userId });
+  for (const row of (data ?? []) as { offer_id: string; request_id: string; unread: number }[]) {
+    byOffer.set(row.offer_id, row.unread);
+    byRequest.set(row.request_id, (byRequest.get(row.request_id) ?? 0) + row.unread);
+    total += row.unread;
+  }
+  return { byOffer, byRequest, total };
+}
+
+export async function markRead(userId: string, offerId: string, messages: ServicesMessage[]): Promise<void> {
+  const last = messages.reduce((max, message) => Math.max(max, message.id), 0);
+  if (last > 0) await db().rpc("services_mark_read", { p_user_id: userId, p_offer_id: offerId, p_message_id: last });
+}
+
+export async function registerView(requestId: string, viewerKey: string): Promise<void> {
+  await db().rpc("services_register_view", { p_request_id: requestId, p_viewer: viewerKey.slice(0, 64) });
+}
+
+/** Podobné otevřené poptávky ze stejné (pod)kategorie. */
+export async function similarRequests(request: ServicesRequest, categories: ServicesCategory[], limit = 4): Promise<ServicesRequest[]> {
+  const category = categories.find((item) => item.slug === request.category);
+  const parent = category?.parent_slug ?? category?.slug ?? request.category;
+  const family = categories.filter((item) => item.slug === parent || item.parent_slug === parent).map((item) => item.slug);
+  const { data } = await db()
+    .from("services_requests")
+    .select(REQUEST_COLUMNS)
+    .eq("status", "open")
+    .in("category", family.length ? family : [request.category])
+    .neq("id", request.id)
+    .gte("expires_at", new Date().toISOString())
+    .order("created_at", { ascending: false })
+    .limit(limit);
+  return (data ?? []) as ServicesRequest[];
+}
+
+/** Pomocné pro validaci URL webu poskytovatele. */
+export function safeWebsite(value: unknown): string {
+  const raw = typeof value === "string" ? value.trim() : "";
+  if (!raw) return "";
+  const withScheme = /^https?:\/\//i.test(raw) ? raw : `https://${raw}`;
+  try {
+    const url = new URL(withScheme);
+    if (url.protocol !== "https:" && url.protocol !== "http:") throw new Error("scheme");
+    if (!url.hostname.includes(".")) throw new Error("host");
+    return url.toString().slice(0, 200);
+  } catch {
+    fail(400, "invalid_input", "Web: zadejte platnou adresu, např. https://mujweb.cz.");
+  }
 }
