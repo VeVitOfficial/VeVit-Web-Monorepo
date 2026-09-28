@@ -155,24 +155,15 @@ export default async function HomePage() {
                     </span>
                   </span>
                 </a>
-                <div
-                  className="dd-item dd-soon"
-                  role="menuitem"
-                  aria-disabled="true"
-                >
+                <a className="dd-item" href={`${L}/services`} role="menuitem">
                   <span className="dd-icon">
                     <Icon name="layers" size={18} />
                   </span>
                   <span>
-                    <span className="dd-name">
-                      Services{" "}
-                      <span className="dd-soon-tag" data-ui-text="hub.preparing">
-                        Připravuje se
-                      </span>
-                    </span>
+                    <span className="dd-name">Services</span>
                     <span className="dd-desc" data-ui-text="landing.services.navigation" />
                   </span>
-                </div>
+                </a>
                 <a className="dd-item" href={`${L}/account`} role="menuitem">
                   <span className="dd-icon">
                     <Icon name="user-round" size={18} />
@@ -970,10 +961,13 @@ export default async function HomePage() {
               </a>
 
               {/* SERVICES */}
-              <div className="ec ec-services" aria-disabled="true">
-                <span className="ec-badge muted">
-                  <Icon name="lock" size={10} />{" "}
-                  <span data-ui-text="hub.preparing">Připravuje se</span>
+              <a
+                className="ec ec-services"
+                href={`${L}/services`}
+                data-track="bento:services"
+              >
+                <span className="ec-badge" data-ui-text="page.platforms.badgeBeta">
+                  Beta testing
                 </span>
                 <span className="ec-icon-wrap">
                   <Icon name="layers" size={22} />
@@ -984,7 +978,10 @@ export default async function HomePage() {
                   <span data-ui-text="landing.services.meta" />
                   <span style={{ color: "var(--c-services)" }}>→</span>
                 </div>
-              </div>
+                <span className="ec-arrow">
+                  <Icon name="arrow-up-right" size={16} />
+                </span>
+              </a>
 
               {/* ACCOUNT */}
               <a
