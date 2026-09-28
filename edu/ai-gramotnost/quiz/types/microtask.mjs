@@ -1,1 +1,0 @@
-import { createRenderer as renderer } from './renderer.mjs'; import { textControl } from './controls/text.mjs'; export const type='microtask'; export const createRenderer=()=>renderer(type,textControl);

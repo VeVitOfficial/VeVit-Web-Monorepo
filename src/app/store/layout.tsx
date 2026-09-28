@@ -5,8 +5,8 @@ import { StoreFooter } from "@/components/store/store-footer";
 // compiled Tailwind build and the storefront design tokens —
 // see store/lib/tw_config.php for the PHP load order.
 import "../../../public/assets/fonts/vevit-fonts.css";
-import "../../../public/assets/css/vevit-tailwind.css";
-import "../../../store/assets/css/style.css";
+import "@/styles/vevit-tailwind.css";
+import "@/styles/store.css";
 // Sdílený brand (.vv-app-brand) jako v ostatních aplikacích.
 import "../../../public/assets/shared/app-switcher.css";
 import "./store-design.css";

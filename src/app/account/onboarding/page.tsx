@@ -5,7 +5,7 @@ import { OnboardingForm } from "./onboarding-form";
 
 // Styly pro .card/.input/.btn/.auth-brand z legacy account/onboarding.php.
 import "../../../../public/assets/fonts/vevit-fonts.css";
-import "../../../../account/assets/styles.css";
+import "@/styles/account.css";
 
 export const metadata = { title: "Dokončit profil — VEVIT" };
 

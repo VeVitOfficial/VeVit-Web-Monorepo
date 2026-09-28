@@ -6,7 +6,7 @@ import type React from "react";
 /**
  * Port of the `data-vevit-app-switcher` widget from
  * public/assets/shared/app-switcher.js (labels + app list copied 1:1,
- * markup mirrors renderSwitcher so shared/js/app-switcher.css applies).
+ * markup mirrors renderSwitcher so public/assets/shared/app-switcher.css applies).
  */
 
 const STRINGS: Record<string, { menuTitle: string; more: string; current: string; home: string; apps: Record<string, string> }> = {
@@ -19,7 +19,7 @@ const STRINGS: Record<string, { menuTitle: string; more: string; current: string
   sk: { menuTitle: "Aplikácie VeVit", more: "Ďalšie projekty", current: "Práve tu", home: "Domov", apps: { Home: "Hlavná stránka", Account: "Účet a prihlásenie", Tools: "Online nástroje", Edu: "Výuka a kurzy", Store: "Obchod VeVit", Services: "Dopyty a služby", Art: "Platforma pre umelcov", Studios: "Software na mieru" } },
 };
 
-// Ikony (lucide) — stejné jako v shared/js/app-switcher.js.
+// Ikony (lucide) — stejné jako v public/assets/shared/app-switcher.js.
 const ICONS: Record<string, React.ReactNode> = {
   Home: <><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></>,
   Account: <><circle cx="12" cy="8" r="5" /><path d="M20 21a8 8 0 0 0-16 0" /></>,

@@ -1,7 +1,7 @@
 "use client";
 
 // Převodník barev — HEX / RGB / HSL, živý přepočet + swatch. Čistě client-side.
-// Portuje legacy-public/tools/color-converter.html + public/tools/assets/js/tools/color-converter.js.
+// Port původní vanilla verze nástroje color-converter (HTML + JS).
 import { useState } from "react";
 import type { ToolComponentProps } from "@/components/tools/registry/data";
 import { Icon, copyText } from "@/components/tools/tool-runtime";

@@ -1,7 +1,7 @@
 "use client";
 
 // DPH kalkulačka — přidat / odebrat DPH, živý výpočet.
-// Portuje legacy-public/tools/vat-calc.html + public/tools/assets/js/tools/vat-calc.js.
+// Port původní vanilla verze nástroje vat-calc (HTML + JS).
 import { useEffect, useState } from "react";
 import type { ToolComponentProps } from "@/components/tools/registry/data";
 

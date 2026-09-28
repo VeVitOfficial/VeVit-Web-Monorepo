@@ -1,1 +1,0 @@
-import { createRenderer as renderer } from './renderer.mjs'; import { textControl } from './controls/text.mjs'; export const type='prompt_lab'; export const createRenderer=()=>renderer(type,textControl);

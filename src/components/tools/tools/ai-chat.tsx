@@ -3,7 +3,7 @@
 // AI asistent (chat) — React port legacy tools/assets/js/tools/ai-chat.js.
 // Stream z /tools/api/ai/[tool] (NDJSON), výstup přes VeVitMarkdown
 // (marked + DOMPurify + safe-markdown, líně načítané z public URL). Markup i
-// logika 1:1 s legacy (identické classNames, aby public/tools/assets/css/style.css
+// logika 1:1 s legacy (identické classNames, aby src/styles/tools.css
 // fungoval). Komponenta renderuje POUZE vnitřní tělo (.ai-chat) — shell dodává
 // stránka src/app/tools/[tool]/page.tsx.
 //

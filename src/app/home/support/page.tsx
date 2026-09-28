@@ -7,8 +7,8 @@ import { SupportBehaviors } from "@/components/home/support-behaviors";
 // Legacy CSS — import z public/ jako u home stránky. Support stránka
 // nepoužívá tailwind ani premium.css, ani lucide/ui.js/localization.js.
 import "../../../../public/assets/fonts/vevit-fonts.css";
-import "../../../../public/home/assets/css/main.css";
-import "../../../../public/home/assets/css/support.css";
+import "@/styles/home/main.css";
+import "@/styles/home/support.css";
 import "../../../../public/assets/shared/session.css";
 import "../../../../public/assets/shared/app-switcher.css";
 

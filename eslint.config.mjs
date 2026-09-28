@@ -7,12 +7,6 @@ export default defineConfig([
   ...nextTypescript,
   globalIgnores([
     ".next/**",
-    "public/**",
-    "legacy-public/**",
-    "account/**",
-    "edu/**",
-    "home/**",
-    "store/**",
-    "tools/**"
+    "public/**"
   ])
 ]);

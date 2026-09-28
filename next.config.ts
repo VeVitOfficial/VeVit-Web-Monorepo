@@ -1,5 +1,4 @@
 import type { NextConfig } from "next";
-import { Analytics } from "@vercel/analytics/next"
 
 const securityHeaders = [
   { key: "X-Content-Type-Options", value: "nosniff" },
@@ -48,9 +47,6 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
   compress: true,
-  outputFileTracingIncludes: {
-    "/legacy-render/[...path]": ["./legacy-public/**/*"]
-  },
   images: {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 86400,

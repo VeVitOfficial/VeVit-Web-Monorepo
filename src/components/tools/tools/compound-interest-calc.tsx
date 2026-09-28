@@ -1,7 +1,7 @@
 "use client";
 
 // Složené úročení — živý výpočet v prohlížeči.
-// Portuje legacy-public/tools/compound-interest-calc.html + public/tools/assets/js/tools/compound-interest-calc.js.
+// Port původní vanilla verze nástroje compound-interest-calc (HTML + JS).
 import { useMemo } from "react";
 import type { ToolComponentProps } from "@/components/tools/registry/data";
 

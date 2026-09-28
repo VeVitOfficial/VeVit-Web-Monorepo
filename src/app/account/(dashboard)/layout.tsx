@@ -11,7 +11,7 @@ import { accountT, type AccountLocale } from "@/lib/account-i18n";
 // Design systém v pořadí podle legacy account/index.php:
 // fonty → účtové styly → session (bootstrap states) → app switcher → pill.
 import "../../../../public/assets/fonts/vevit-fonts.css";
-import "../../../../account/assets/styles.css";
+import "@/styles/account.css";
 import "../../../../public/assets/shared/session.css";
 import "../../../../public/assets/shared/app-switcher.css";
 import "@/components/account/language-pill.css";

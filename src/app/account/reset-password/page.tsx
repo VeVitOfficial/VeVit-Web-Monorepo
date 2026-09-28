@@ -6,7 +6,7 @@ import { ResetForm } from "@/components/account/auth/reset-form";
 
 // Legacy auth design: tokens + komponenty (.btn/.input).
 import "../../../../public/assets/fonts/vevit-fonts.css";
-import "../../../../account/assets/styles.css";
+import "@/styles/account.css";
 import "./reset.css";
 
 const SUPPORTED: readonly string[] = ["cs", "en", "de", "es", "uk", "fr", "sk"];

@@ -1,7 +1,7 @@
 "use client";
 
 // Spotřeba paliva — l/100 km ↔ mpg, živý výpočet.
-// Portuje legacy-public/tools/fuel-consumption-calc.html + public/tools/assets/js/tools/fuel-consumption-calc.js.
+// Port původní vanilla verze nástroje fuel-consumption-calc (HTML + JS).
 import { useEffect, useMemo, useState } from "react";
 import type { ToolComponentProps } from "@/components/tools/registry/data";
 

@@ -1,7 +1,7 @@
 "use client";
 
 // Kalkulačka půjčky — anuitní splátka + amortizační tabulka. Čistě client-side.
-// Portuje legacy-public/tools/loan-calc.html + public/tools/assets/js/tools/loan-calc.js.
+// Port původní vanilla verze nástroje loan-calc (HTML + JS).
 import { useMemo, useState } from "react";
 import type { ToolComponentProps } from "@/components/tools/registry/data";
 

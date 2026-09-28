@@ -11,6 +11,12 @@ export const dynamic = "force-dynamic";
  */
 
 /** PHP htmlspecialchars(..., ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'). */
+// Styl certifikátu (dříve sdílený styles.css vanilla aplikace).
+const CERTIFICATE_CSS = "body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0a0a0f;color:#f9fafb;font-family:system-ui,-apple-system,sans-serif;line-height:1.6}"
+  + ".card{max-width:900px;margin:3rem auto;padding:2.5rem;text-align:center;background:#101014;border:1px solid rgba(255,255,255,.08);border-radius:16px}"
+  + "h1{font-size:clamp(1.8rem,4vw,2.6rem);margin:.5rem 0}h2{color:#10b981;margin:.75rem 0}p{color:rgba(255,255,255,.7)}"
+  + ".btn{display:inline-block;margin-top:1rem;padding:.6rem 1.1rem;border-radius:12px;background:#10b981;color:#04130d;font-weight:600;text-decoration:none}";
+
 function htmlEscape(value: string): string {
   return value
     .replaceAll("&", "&amp;")
@@ -68,7 +74,7 @@ async function handler(session: { user: Record<string, unknown> }): Promise<Resp
     : new Date().toISOString().replace("Z", "+00:00");
 
   const name = displayName(session.user);
-  const html = `<!doctype html><html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Certifikát AI gramotnosti</title><link rel="stylesheet" href="styles.css"></head><body><main class="container"><article class="card quiz-certificate"><p>VeVit Edu</p><h1>Certifikát AI gramotnosti</h1><p>Potvrzujeme, že</p><h2>${htmlEscape(name)}</h2><p>úspěšně dokončil(a) závěrečný test kurzu AI gramotnost a získal(a) odznak Skeptik s certifikátem.</p><p>Vydáno ${htmlEscape(awarded.slice(0, 10))}</p><p><a class="btn btn-primary" href="/edu/ai-gramotnost/#course">Zpět do kurzu</a></p></article></main></body></html>`;
+  const html = `<!doctype html><html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Certifikát AI gramotnosti</title><style>${CERTIFICATE_CSS}</style></head><body><main class="container"><article class="card quiz-certificate"><p>VeVit Edu</p><h1>Certifikát AI gramotnosti</h1><p>Potvrzujeme, že</p><h2>${htmlEscape(name)}</h2><p>úspěšně dokončil(a) závěrečný test kurzu AI gramotnost a získal(a) odznak Skeptik s certifikátem.</p><p>Vydáno ${htmlEscape(awarded.slice(0, 10))}</p><p><a class="btn btn-primary" href="/edu/ai-gramotnost/kurz">Zpět do kurzu</a></p></article></main></body></html>`;
 
   return new Response(html, {
     status: 200,

@@ -1,7 +1,7 @@
 "use client";
 
 // Převodník IBAN — český účet ↔ IBAN, mod 97 kontrolní součet. Čistě client-side.
-// Portuje legacy-public/tools/iban-converter.html + public/tools/assets/js/tools/iban-converter.js.
+// Port původní vanilla verze nástroje iban-converter (HTML + JS).
 import { useState } from "react";
 import type { ToolComponentProps } from "@/components/tools/registry/data";
 import { Icon, copyText } from "@/components/tools/tool-runtime";

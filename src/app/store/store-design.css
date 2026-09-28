@@ -1,8 +1,8 @@
 /* Supplemental design classes for the store React port.
    The legacy store markup (store/lib/header.php, agenda pages) relies on a
-   Tailwind utility set that the compiled public/assets/css/vevit-tailwind.css
+   Tailwind utility set that the compiled src/styles/vevit-tailwind.css
    does not fully cover (typography scale, a few spacing/color steps). These
-   definitions mirror the original design tokens from store/assets/css/style.css
+   definitions mirror the original design tokens from src/styles/store.css
    so the React pages render the same look as the PHP originals. */
 
 /* Typography scale (design-system intend of the retired legacy build) */

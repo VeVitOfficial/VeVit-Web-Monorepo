@@ -7,9 +7,9 @@ import { HUB_I18N, SUPPORTED_LOCALES, type Locale } from "@/components/tools/reg
 import { toolAlternates } from "@/lib/tools-seo";
 
 // Legacy CSS — className v komponentách zůstávají totožné s legacy HTML,
-// aby public/tools/assets/css/style.css a vevit-fonts.css styl fungoval.
+// aby src/styles/tools.css a vevit-fonts.css styl fungoval.
 import "../../../public/assets/fonts/vevit-fonts.css";
-import "../../../public/tools/assets/css/style.css";
+import "@/styles/tools.css";
 // Přepínač aplikací (data-vevit-app-switcher) — stejné styly jako ostatní aplikace.
 import "../../../public/assets/shared/app-switcher.css";
 

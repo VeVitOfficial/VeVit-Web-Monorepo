@@ -1,7 +1,7 @@
 "use client";
 
 // Konverze číselných soustav — bin/oct/dec/hex.
-// Portuje legacy-public/tools/number-base-converter.html + public/tools/assets/js/tools/number-base-converter.js.
+// Port původní vanilla verze nástroje number-base-converter (HTML + JS).
 import { useState } from "react";
 import type { ToolComponentProps } from "@/components/tools/registry/data";
 import { Icon, copyText } from "@/components/tools/tool-runtime";

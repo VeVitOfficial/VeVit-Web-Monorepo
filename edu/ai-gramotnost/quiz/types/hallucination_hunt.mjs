@@ -1,1 +1,0 @@
-import { createRenderer as renderer } from './renderer.mjs'; import { findControl } from './controls/find.mjs'; export const type='hallucination_hunt'; export const createRenderer=()=>renderer(type,findControl);

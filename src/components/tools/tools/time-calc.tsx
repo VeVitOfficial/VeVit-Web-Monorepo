@@ -1,7 +1,7 @@
 "use client";
 
 // Časová kalkulačka — trvání +/- a čas + trvání, živý výpočet.
-// Portuje legacy-public/tools/time-calc.html + public/tools/assets/js/tools/time-calc.js.
+// Port původní vanilla verze nástroje time-calc (HTML + JS).
 import { useEffect, useState } from "react";
 import type { ToolComponentProps } from "@/components/tools/registry/data";
 

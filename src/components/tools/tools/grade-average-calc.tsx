@@ -1,7 +1,7 @@
 "use client";
 
 // Průměr známek — vážený, dynamické řádky, živý výpočet.
-// Portuje legacy-public/tools/grade-average-calc.html + public/tools/assets/js/tools/grade-average-calc.js.
+// Port původní vanilla verze nástroje grade-average-calc (HTML + JS).
 import { useMemo, useState } from "react";
 import type { ToolComponentProps } from "@/components/tools/registry/data";
 import { Icon } from "@/components/tools/tool-runtime";

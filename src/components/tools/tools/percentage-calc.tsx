@@ -1,7 +1,7 @@
 "use client";
 
 // Kalkulačka procent — živý výpočet v prohlížeči.
-// Portuje legacy-public/tools/percentage-calc.html + public/tools/assets/js/tools/percentage-calc.js.
+// Port původní vanilla verze nástroje percentage-calc (HTML + JS).
 import { useEffect, useState } from "react";
 import type { ToolComponentProps } from "@/components/tools/registry/data";
 

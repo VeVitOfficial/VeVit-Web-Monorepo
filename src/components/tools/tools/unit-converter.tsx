@@ -1,7 +1,7 @@
 "use client";
 
 // Převodník jednotek — délka, hmotnost, teplota, objem, rychlost. Client-side.
-// Portuje legacy-public/tools/unit-converter.html + public/tools/assets/js/tools/unit-converter.js.
+// Port původní vanilla verze nástroje unit-converter (HTML + JS).
 import { useEffect, useMemo, useState } from "react";
 import type { ToolComponentProps } from "@/components/tools/registry/data";
 import { Icon } from "@/components/tools/tool-runtime";

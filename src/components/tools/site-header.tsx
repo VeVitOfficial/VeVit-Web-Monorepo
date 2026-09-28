@@ -11,7 +11,7 @@
 // cizí komplexní logiku — zůstáváme u legacy skriptů, stejně jako je proxy.ts
 // a ostatní sekce. Další batch agenti je mohou portovat centrálně.
 //
-// ClassName zůstává totožná s legacy, aby public/tools/assets/css/style.css
+// ClassName zůstává totožná s legacy, aby src/styles/tools.css
 // (a /assets/shared/app-switcher.css) styl fungoval beze změny.
 import { useEffect, useRef, useState } from "react";
 import { CATEGORY_COLORS, CATEGORY_ORDER, type Category, type Locale } from "@/components/tools/registry/data";

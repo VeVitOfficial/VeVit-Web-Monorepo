@@ -8,11 +8,11 @@ import type { ReactNode } from "react";
 // Fonty (Vercel Geist) + fallback.
 import "../../../public/assets/fonts/vevit-fonts.css";
 // Tailwind Play CDN build + design tokeny (reprodukce globals.css).
-import "../../../public/assets/css/vevit-tailwind.css";
+import "@/styles/vevit-tailwind.css";
 // KaTeX pro matematické vzorce.
 import "../../../public/assets/vendor/katex/katex.min.css";
-// Edu vlastní styly (jediný zdroj pravdy – edu/css/styles.css).
-import "../../../edu/css/styles.css";
+// Edu vlastní styly (jediný zdroj pravdy – src/styles/edu.css).
+import "@/styles/edu.css";
 // Sdílené styly session pill a app switcheru.
 import "../../../public/assets/shared/session.css";
 import "../../../public/assets/shared/app-switcher.css";

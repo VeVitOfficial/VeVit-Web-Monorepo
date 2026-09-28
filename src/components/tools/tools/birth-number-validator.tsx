@@ -1,7 +1,7 @@
 "use client";
 
 // Validátor rodného čísla — formát + kontrolní součet (mod 11), čistě client-side.
-// Portuje legacy-public/tools/birth-number-validator.html + public/tools/assets/js/tools/birth-number-validator.js.
+// Port původní vanilla verze nástroje birth-number-validator (HTML + JS).
 // Komponenta renderuje POUZE vnitřní tělo .tool-tool — shell dodává stránka.
 import { useState } from "react";
 import type { ToolComponentProps } from "@/components/tools/registry/data";

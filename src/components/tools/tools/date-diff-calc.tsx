@@ -1,7 +1,7 @@
 "use client";
 
 // Rozdíl datumů — živý výpočet v prohlížeči.
-// Portuje legacy-public/tools/date-diff-calc.html + public/tools/assets/js/tools/date-diff-calc.js.
+// Port původní vanilla verze nástroje date-diff-calc (HTML + JS).
 import { useMemo } from "react";
 import type { ToolComponentProps } from "@/components/tools/registry/data";
 

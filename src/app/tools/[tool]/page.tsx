@@ -15,7 +15,7 @@ import { toolAlternates } from "@/lib/tools-seo";
 
 // Legacy CSS — className v shellu i komponentách zůstávají totožné s legacy.
 import "../../../../public/assets/fonts/vevit-fonts.css";
-import "../../../../public/tools/assets/css/style.css";
+import "@/styles/tools.css";
 // Přepínač aplikací (data-vevit-app-switcher) — stejné styly jako ostatní aplikace.
 import "../../../../public/assets/shared/app-switcher.css";
 

@@ -161,7 +161,7 @@ export function EduHomePage({ locale }: { locale: string }) {
   const cats = useMemo(
     () => [
       { id: "programming", titleKey: "home.categories.programming", descKey: "home.categories.programmingDesc", icon: "Terminal", href: "/edu/programovani", color: "#00d084", count: PROGRAMMING_COURSES_COUNT, countLabel: t("home.courses"), disabled: false },
-      { id: "ai", titleKey: "home.categories.aiLiteracy", descKey: "home.categories.aiLiteracyDesc", icon: "Brain", href: "/edu/ai-gramotnost/", color: "#8b5cf6", count: 36, countLabel: lessonsUnit(36), disabled: false },
+      { id: "ai", titleKey: "home.categories.aiLiteracy", descKey: "home.categories.aiLiteracyDesc", icon: "Brain", href: "/edu/ai-gramotnost", color: "#8b5cf6", count: 36, countLabel: lessonsUnit(36), disabled: false },
       { id: "matematika", titleKey: "home.categories.math", descKey: "home.categories.mathDesc", icon: "Calculator", href: "#", color: "#facc15", count: 0, countLabel: t("landing.comingSoon"), disabled: true },
       { id: "fyzika", titleKey: "home.categories.physics", descKey: "home.categories.physicsDesc", icon: "Atom", href: "#", color: "#f97316", count: 0, countLabel: t("landing.comingSoon"), disabled: true },
       { id: "historie", titleKey: "home.categories.history", descKey: "home.categories.historyDesc", icon: "History", href: "#", color: "#a78bfa", count: 0, countLabel: t("landing.comingSoon"), disabled: true },
@@ -403,14 +403,6 @@ function CategoryCard({ cat, t }: { cat: CategoryDef; t: (key: string) => string
 
   if (cat.disabled) {
     return <div className="group cursor-not-allowed">{inner}</div>;
-  }
-  // ai-gramotnost je legacy PHP aplikace (ne React routa) → full reload přes <a>.
-  if (cat.href.startsWith("/edu/ai-gramotnost")) {
-    return (
-      <a href={cat.href} data-full-reload="true" className="group">
-        {inner}
-      </a>
-    );
   }
   return (
     <Link href={cat.href} className="group">

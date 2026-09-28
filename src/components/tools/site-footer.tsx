@@ -1,5 +1,5 @@
 // React port sdíleného footeru nástrojů (tools/includes/footer.php).
-// ClassName totožná s legacy, aby public/tools/assets/css/style.css styl fungoval.
+// ClassName totožná s legacy, aby src/styles/tools.css styl fungoval.
 import type { Locale } from "@/components/tools/registry/data";
 
 interface Props {

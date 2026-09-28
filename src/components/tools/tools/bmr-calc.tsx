@@ -1,7 +1,7 @@
 "use client";
 
 // BMR a kalorie — Mifflin-St Jeor, živý výpočet v prohlížeči.
-// Portuje legacy-public/tools/bmr-calc.html + public/tools/assets/js/tools/bmr-calc.js.
+// Port původní vanilla verze nástroje bmr-calc (HTML + JS).
 import { useMemo } from "react";
 import type { ToolComponentProps } from "@/components/tools/registry/data";
 

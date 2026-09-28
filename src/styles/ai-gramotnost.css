@@ -1,0 +1,180 @@
+/* AI gramotnost: design systém portovaný z vanilla aplikace, scoped pod .aigram. */
+.aigram { --bg-primary: #0A0A0F; --bg-surface: #101014; --bg-elevated: #17171d; --border-color: rgba(255, 255, 255, 0.08); --text-primary: #F9FAFB; --text-secondary: rgba(255, 255, 255, 0.6); --text-muted: rgba(255, 255, 255, 0.4); --primary: #10B981; --primary-hover: #059669; --primary-glow: rgba(16, 185, 129, 0.15); --secondary: #10B981; --accent-gradient: linear-gradient(135deg, #f8fafc 0%, #10b981 100%); --warning: #F59E0B; --error: #EF4444; --success: #10B981; --radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px; --radius-xl: 24px; --shadow: 0 4px 24px rgba(0,0,0,0.4); --shadow-glow: 0 0 20px rgba(16,185,129,0.15); --text: #f8fafc; --font: 'Geist', system-ui, -apple-system, sans-serif; --surface: var(--bg-surface); --surface-2: var(--bg-elevated); --border: var(--border-color); --muted: var(--text-muted); --control-border: rgba(255,255,255,.35); --hover-border: rgba(255,255,255,.18); }
+/* Světlý režim Edu (html.light). */
+html.light .aigram { --bg-primary: #f8fafc; --bg-surface: #ffffff; --bg-elevated: #f1f5f9; --border-color: rgba(15,23,42,.1); --text-primary: #0f172a; --text-secondary: rgba(15,23,42,.72); --text-muted: rgba(15,23,42,.5); --primary: #059669; --primary-hover: #047857; --primary-glow: rgba(16,185,129,.12); --accent-gradient: linear-gradient(135deg, #0f172a 0%, #10b981 100%); --text: #0f172a; --control-border: rgba(15,23,42,.35); --hover-border: rgba(15,23,42,.25); }
+.aigram, .aigram * { box-sizing: border-box; }
+.aigram { background: var(--bg-primary); color: var(--text-primary); font-family: var(--font); -webkit-font-smoothing: antialiased; line-height: 1.6; min-height: 100vh; }
+.aigram a { color: inherit; text-decoration: none; }
+.aigram .icon { display: inline-flex; width: 1em; height: 1em; }
+.aigram .icon svg { width: 100%; height: 100%; }
+.aigram .icon--flip { transform: rotate(180deg); }
+.aigram .aigram-main { max-width: 1180px; margin: 0 auto; padding: 2rem 1.25rem 4rem; width: 100%; }
+.aigram .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.6rem 1.1rem; border-radius: var(--radius-md); font-weight: 600; font-size: 0.9rem; cursor: pointer; border: 1px solid transparent; transition: all .2s; font-family: inherit; }
+.aigram .btn-primary { background: var(--primary); color: #04130d; }
+.aigram .btn-primary:hover { background: var(--primary-hover); transform: translateY(-2px); box-shadow: var(--shadow-glow); }
+.aigram .btn-ghost { background: var(--bg-surface); color: var(--text-primary); border-color: var(--border-color); }
+.aigram .btn-ghost:hover { border-color: var(--primary); color: var(--primary); }
+.aigram .btn-outline { background: transparent; color: var(--primary); border-color: var(--primary); }
+.aigram .btn-outline:hover { background: var(--primary-glow); }
+.aigram .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+.aigram .btn-lg { padding: 0.85rem 1.5rem; font-size: 1rem; }
+.aigram .btn-block { width: 100%; }
+.aigram .card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.5rem; }
+.aigram .hero { text-align: center; padding: 3rem 1rem 2.5rem; }
+.aigram .hero h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
+.aigram .hero h1 .grad { background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.aigram .hero p { color: var(--text-secondary); font-size: 1.1rem; max-width: 620px; margin: 1rem auto 0; }
+.aigram .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; max-width: 560px; margin: 2rem auto 0; }
+.aigram .stat-box { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1rem; text-align: center; }
+.aigram .stat-box .num { font-size: 1.6rem; font-weight: 800; color: var(--primary); }
+.aigram .stat-box .lbl { font-size: 0.78rem; color: var(--text-secondary); margin-top: 0.25rem; }
+.aigram .chapter { border: 1px solid var(--border-color); border-radius: var(--radius-lg); overflow: hidden; background: var(--bg-surface); }
+.aigram .chapter-head { padding: 1rem 1.25rem; display: flex; align-items: center; gap: 0.75rem; border-bottom: 1px solid var(--border-color); cursor: pointer; }
+.aigram .chapter-head .num { width: 28px; height: 28px; border-radius: var(--radius-sm); background: var(--primary-glow); color: var(--primary); display: grid; place-items: center; font-weight: 700; font-size: 0.85rem; }
+.aigram .lesson-row { display: flex; align-items: center; gap: 0.75rem; padding: 0.85rem 1.25rem; border-top: 1px solid var(--border-color); transition: background .15s; }
+.aigram .lesson-row:hover { background: var(--bg-elevated); }
+.aigram .lesson-row .status-ic { width: 22px; height: 22px; flex-shrink: 0; }
+.aigram .lesson-row .status-ic.completed { color: var(--success); }
+.aigram .lesson-row .status-ic.available { color: var(--primary); }
+.aigram .lesson-row .ltitle { font-weight: 500; flex: 1; }
+.aigram .lesson-row .lmeta { font-size: 0.78rem; color: var(--text-muted); display: flex; gap: 0.75rem; }
+.aigram .lesson-layout { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+.aigram .lesson-content { min-width: 0; }
+.aigram .lesson-content h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; }
+.aigram .lesson-content h2 { font-size: 1.3rem; font-weight: 600; margin: 1.8rem 0 0.7rem; color: var(--text-primary); }
+.aigram .lesson-content h3 { font-size: 1.1rem; font-weight: 600; margin: 1.3rem 0 0.5rem; }
+.aigram .lesson-content p { color: var(--text-secondary); margin-bottom: 0.9rem; }
+.aigram .lesson-content ul, .aigram .lesson-content ol { margin: 0 0 1rem 1.4rem; color: var(--text-secondary); }
+.aigram .lesson-content li { margin-bottom: 0.4rem; }
+.aigram .lesson-content code { font-family: ui-monospace, monospace; background: var(--bg-elevated); padding: 0.1rem 0.35rem; border-radius: 4px; font-size: 0.88em; }
+.aigram .lesson-content pre[class*="language-"] { border-radius: var(--radius-md); margin-bottom: 1rem; font-size: 0.85rem; }
+.aigram .lesson-content strong { color: var(--text-primary); }
+.aigram .lesson-sidebar { position: sticky; top: 80px; align-self: start; }
+.aigram .progress-mini { height: 8px; background: var(--bg-elevated); border-radius: 999px; overflow: hidden; margin: 0.5rem 0; }
+.aigram .progress-mini > div { height: 100%; background: var(--primary); transition: width .5s; }
+.aigram .ex-feedback { border-radius: var(--radius-md); padding: 0.9rem 1rem; margin-top: 0.85rem; font-size: 0.9rem; }
+.aigram .ex-feedback.ok { background: rgba(16,185,129,0.1); color: var(--success); border: 1px solid rgba(16,185,129,0.3); }
+.aigram .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.aigram .tag { font-size: 0.72rem; padding: 0.15rem 0.45rem; border-radius: 4px; background: var(--bg-elevated); color: var(--text-secondary); }
+.aigram .quiz-badge-gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:.5rem; margin-top:.75rem; }
+.aigram .quiz-badge-card { padding:.65rem; border:1px solid var(--border-color); border-radius:var(--radius-md); color:var(--text-muted); }
+.aigram .quiz-badge-card.is-earned { color:var(--success); border-color:var(--primary); background:var(--primary-glow); }
+.aigram .quiz-streak { color:var(--warning); font-weight:600; }
+@keyframes aigram-fade-in {from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); }}
+.aigram .fade-in { animation: aigram-fade-in .3s ease; }
+@media (min-width: 768px) {
+  .aigram .lesson-layout { grid-template-columns: 1fr 300px; }
+}
+@media (max-width: 767px) {
+  .aigram .stat-grid { grid-template-columns: 1fr 1fr 1fr; gap: 0.5rem; }
+  .aigram .stat-box { padding: 0.7rem 0.4rem; }
+  .aigram .stat-box .num { font-size: 1.2rem; }
+  .aigram .aigram-main { padding: 1.25rem 0.85rem 3rem; }
+  .aigram .grid-2 { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .aigram .hero { padding: 2rem 0.5rem 1.5rem; }
+  .aigram .stat-grid { grid-template-columns: 1fr; }
+}
+.aigram .quiz-calibration-chart { display:block;width:100%;max-width:40rem;margin:1rem auto;color:var(--text,#e5e7eb) }
+.aigram .quiz-calibration-chart text { fill:currentColor;font-size:12px }
+.aigram .quiz-calibration-axis { stroke:currentColor;stroke-width:2 }
+.aigram .quiz-calibration-actual { stroke:var(--success,#16a34a);stroke-width:10 }
+.aigram .quiz-calibration-point { fill:var(--success,#16a34a) }
+.aigram .quiz-calibration-expected { fill:var(--primary,#7c3aed);stroke:#fff;stroke-width:2 }
+.aigram .quiz-question--adaptive { border-color:var(--warning,#d97706) }
+.aigram .quiz-milestone-status { position:sticky;top:5rem;z-index:2;padding:.75rem 1rem;background:var(--surface,#111827);border:1px solid var(--border,#334155);border-radius:.75rem }
+.aigram .quiz-feedback--trap { border:2px solid var(--warning,#d97706);padding:1rem }
+.aigram .quiz-final-reflection { display:grid;gap:1rem }
+.aigram .quiz-final-reflection label { display:grid;gap:.4rem }
+@media(max-width:360px) {
+  .aigram .quiz-question, .aigram .quiz-rhythm-section { padding:.8rem }
+  .aigram .quiz-assignment-row { grid-template-columns:1fr }
+  .aigram .quiz-milestone-status { top:3.5rem }
+}
+@media(prefers-reduced-motion:reduce) {
+  .aigram .quiz-question *, .aigram .quiz-rhythm-section * { scroll-behavior:auto!important;animation:none!important;transition:none!important }
+}
+.aigram .quiz-neuron-widget { display:grid;gap:1rem }
+.aigram .quiz-neuron-widget svg { width:100%;max-width:34rem;stroke:currentColor;fill:none }
+.aigram .quiz-neuron-widget svg text { stroke:none;fill:currentColor }
+.aigram .quiz-neuron-controls { display:grid;gap:.75rem }
+.aigram .quiz-neuron-controls label { display:grid;grid-template-columns:8rem 1fr 2rem;gap:.5rem;align-items:center }
+.aigram .quiz-text-control { display:grid;gap:.75rem }
+.aigram .quiz-self-rubric { padding:.75rem;border:1px solid var(--border,#334155);border-radius:.75rem;background:var(--surface,#111827) }
+.aigram .quiz-self-rubric summary { cursor:pointer;font-weight:700 }
+.aigram .quiz-self-rubric__row { display:grid;grid-template-columns:minmax(0,1fr) 7rem;gap:.75rem;align-items:center;margin-top:.75rem }
+.aigram .quiz-self-rubric__row select { width:100%;padding:.55rem;border:1px solid var(--border,#334155);border-radius:.5rem;background:var(--surface-2,#1f2937);color:inherit }
+.aigram .quiz-self-rubric__sample { margin:.75rem 0 0;color:var(--muted,#9ca3af) }
+@media(max-width:480px) {
+  .aigram .quiz-self-rubric__row { grid-template-columns:1fr }
+}
+.aigram .quiz-peer-review { display:grid;gap:1rem;margin-top:1.5rem }
+.aigram .quiz-peer-review__card { display:grid;gap:.75rem }
+.aigram .quiz-peer-review__card blockquote { margin:0;padding:1rem;border-left:4px solid var(--primary,#7c3aed);background:var(--surface-2,#1f2937);white-space:pre-wrap }
+
+/* Kvízové bloky a formulářové prvky. Edu layout načítá Tailwind preflight
+   + @tailwindcss/forms (bílé pozadí polí, bez odrážek), proto je tu
+   přebíjíme tmavým vzhledem kurzu. */
+.aigram .btn-secondary { background: var(--bg-surface); color: var(--text-primary); border-color: var(--border-color); }
+.aigram .btn-secondary:hover:not(:disabled) { border-color: var(--primary); color: var(--primary); }
+.aigram textarea, .aigram select { width: 100%; background: var(--bg-elevated); color: var(--text-primary); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: .6rem .8rem; font: inherit; font-size: .92rem; }
+.aigram textarea:focus, .aigram select:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-glow); }
+.aigram select option { background: var(--bg-surface); color: var(--text-primary); }
+.aigram [type=radio], .aigram [type=checkbox] { color: var(--primary); border-color: var(--control-border); flex-shrink: 0; }
+.aigram [type=radio]:not(:checked), .aigram [type=checkbox]:not(:checked) { background-color: transparent; }
+.aigram [type=radio]:focus, .aigram [type=checkbox]:focus { --tw-ring-color: var(--primary); --tw-ring-offset-color: var(--bg-surface); }
+.aigram [type=range] { accent-color: var(--primary); width: 100%; max-width: 28rem; }
+.aigram fieldset { border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: .75rem 1rem; margin-bottom: .75rem; }
+.aigram legend { padding: 0 .35rem; color: var(--text-primary); font-weight: 500; }
+.aigram fieldset label { display: inline-flex; align-items: center; gap: .45rem; margin: .35rem 1.25rem .35rem 0; cursor: pointer; }
+.aigram .lesson-content ul, .aigram .chapter-introduction ul { list-style: disc; }
+.aigram .lesson-content ol, .aigram .chapter-introduction ol { list-style: decimal; }
+.aigram .lesson-content blockquote { border-left: 3px solid var(--primary); background: var(--primary-glow); padding: .75rem 1rem; border-radius: 0 var(--radius-md) var(--radius-md) 0; margin-bottom: 1rem; color: var(--text-secondary); }
+.aigram .quiz-rhythm-section { margin-bottom: 1.5rem; }
+.aigram .quiz-rhythm-section > h2 { margin-top: 0; }
+.aigram .quiz-rhythm-section__description { font-size: .88rem; color: var(--text-muted); }
+.aigram .quiz-question { margin-bottom: 1rem; }
+.aigram .quiz-question h3 { margin-top: 0; }
+.aigram .quiz-question__prompt, .aigram .lesson-content .quiz-question__prompt { color: var(--text-primary); font-weight: 600; }
+.aigram .quiz-help { font-size: .85rem; color: var(--text-muted); }
+.aigram .quiz-question__actions, .aigram .quiz-question > .btn { margin-top: 1rem; }
+.aigram .quiz-choice { display: flex; align-items: center; gap: .65rem; padding: .7rem .9rem; margin-bottom: .5rem; background: var(--bg-elevated); border: 1px solid var(--border-color); border-radius: var(--radius-md); cursor: pointer; transition: border-color .15s; }
+.aigram .quiz-choice:hover { border-color: var(--hover-border); }
+.aigram .quiz-choice:has(input:checked) { border-color: rgba(16,185,129,.5); background: var(--primary-glow); }
+.aigram .quiz-assignment-list { display: grid; gap: .5rem; }
+.aigram .quiz-assignment-row { display: grid; grid-template-columns: minmax(0,1fr) minmax(10rem,16rem); gap: .75rem; align-items: center; }
+.aigram .quiz-find-list { display: flex; flex-wrap: wrap; gap: .5rem; }
+.aigram .quiz-find-item { padding: .5rem .8rem; background: var(--bg-elevated); color: var(--text-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-md); cursor: pointer; text-align: left; font: inherit; font-size: .9rem; }
+.aigram .quiz-find-item[aria-pressed="true"] { color: var(--primary); border-color: rgba(16,185,129,.5); background: var(--primary-glow); }
+.aigram .quiz-slider { display: flex; align-items: center; gap: 1rem; }
+.aigram .quiz-poll, .aigram .quiz-branching { display: grid; gap: .75rem; }
+.aigram .quiz-branching .btn { justify-self: start; }
+.aigram .quiz-feedback { margin-top: .85rem; padding: .9rem 1rem; border-radius: var(--radius-md); font-size: .9rem; }
+.aigram .quiz-feedback p { margin: .5rem 0 0; color: inherit; }
+.aigram .quiz-feedback--ok { background: rgba(16,185,129,.1); color: var(--success); border: 1px solid rgba(16,185,129,.3); }
+.aigram .quiz-feedback--bad { background: rgba(239,68,68,.08); color: var(--error); border: 1px solid rgba(239,68,68,.3); }
+.aigram .quiz-feedback .btn { margin-top: .75rem; }
+.aigram .quiz-difficulty { display: inline-flex; align-items: center; gap: .5rem; margin-bottom: 1rem; font-size: .9rem; color: var(--text-secondary); }
+.aigram .quiz-difficulty select { width: auto; }
+.aigram .chapter { margin-bottom: 1.25rem; }
+.aigram .chapter-introduction { margin-bottom: 1.25rem; display: grid; gap: .9rem; }
+.aigram .chapter-introduction h1 { font-size: 1.5rem; font-weight: 700; }
+.aigram .chapter-introduction h2 { font-size: 1rem; font-weight: 600; color: var(--primary); margin-bottom: .25rem; }
+.aigram .chapter-introduction p, .aigram .chapter-introduction li { color: var(--text-secondary); }
+.aigram .chapter-introduction ol { padding-left: 1.4rem; }
+.aigram .chapter-introduction figure { margin: 0; }
+.aigram .chapter-introduction figure { text-align: center; }
+.aigram .chapter-introduction img { display: block; width: 100%; max-width: 560px; height: auto; margin: 0 auto; border-radius: var(--radius-md); }
+.aigram .chapter-introduction figcaption { font-size: .8rem; color: var(--text-muted); margin-top: .35rem; }
+.aigram .quiz-progress { margin-bottom: 1.5rem; }
+.aigram .quiz-progress h2, .aigram .card > h2 { font-size: 1.15rem; font-weight: 700; margin-bottom: .5rem; }
+.aigram .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+@media (max-width: 767px) {
+  .aigram .card { padding: 1rem; }
+  .aigram .lesson-content.card { padding: 0; background: transparent; border: 0; }
+  .aigram .quiz-rhythm-section .quiz-question { padding: .85rem; }
+}
+@media (max-width: 480px) {
+  .aigram .quiz-assignment-row { grid-template-columns: 1fr; }
+}

@@ -4,7 +4,7 @@
 // default React komponentu s props { locale: Locale }. Komponenta renderuje
 // POUZE vnitřní tělo nástroje (obsah .tool-tool) — shell dodává stránka
 // src/app/tools/[tool]/page.tsx. ClassName zůstávají totožné s legacy HTML,
-// aby public/tools/assets/css/style.css styl fungoval.
+// aby src/styles/tools.css styl fungoval.
 //
 // UMD knihovny (md5, qrcode-generator) se načítají líně z /tools/assets/js/lib/
 // přes loadScript() — žádné npm závislosti. Web Crypto API (crypto.subtle)

@@ -2,7 +2,7 @@
 
 // Sloučení PDF — React port legacy tools/assets/js/tools/pdf-merge.js.
 // Čistě client-side přes pdf-lib (líně načtený z public URL). Markup i logika
-// 1:1 s legacy (identické classNames, aby public/tools/assets/css/style.css
+// 1:1 s legacy (identické classNames, aby src/styles/tools.css
 // fungoval). Komponenta renderuje POUZE vnitřní tělo (.stack) — shell dodává
 // stránka src/app/tools/[tool]/page.tsx.
 import { useCallback, useEffect, useRef, useState } from "react";

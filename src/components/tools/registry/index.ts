@@ -13,7 +13,7 @@
 //
 // Tento soubor (index.ts) NIKDY needitujte — jen agreguje part soubory,
 // aby paralelní agenti pracovali izolovaně. ClassName zůstávají totožné
-// s legacy HTML, aby public/tools/assets/css/style.css styl fungoval.
+// s legacy HTML, aby src/styles/tools.css styl fungoval.
 //
 // Těžké legacy UMD knihovny (pdf-lib, pdf.js, qrcode-generator, marked,
 // purify, md5, ffmpeg…) se načítají z existujících public URL přes

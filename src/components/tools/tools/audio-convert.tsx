@@ -7,7 +7,7 @@
 // (11 nástrojů). Protože batch agent smí vytvářet jen své <slug>.tsx soubory,
 // žijí společné mini-komponenty (Dropzone / FileList / Progress / ResultArea)
 // a ffmpeg loadery zde jako pojmenované exporty a ostatní media nástroje je
-// importují. ClassName jsou 1:1 s legacy, aby public/tools/assets/css/style.css
+// importují. ClassName jsou 1:1 s legacy, aby src/styles/tools.css
 // platil beze změny. Žádné nové npm závislosti — ffmpeg UMD zůstává v public/.
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { ToolComponentProps, Locale } from "@/components/tools/registry/data";

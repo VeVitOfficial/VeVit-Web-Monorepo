@@ -3,7 +3,7 @@
 // Port edu/js/components/navbar.js do Reactu.
 // Header (brand + breadcrumbs + navigace + theme toggle + lang switcher +
 // app-switcher/session placeholdery). ClassNames identické s legacy, aby
-// public/edu/css/styles.css + public/assets/shared/*.css aplikovaly styly.
+// src/styles/edu.css + public/assets/shared/*.css aplikovaly styly.
 //
 // Rozdíly oproti legacy:
 //   - setBreadcrumbs() → useEduBreadcrumbs() kontext
@@ -97,13 +97,12 @@ export function Navbar() {
           >
             {t("nav.programming")}
           </Link>
-          <a
-            href="/edu/ai-gramotnost/"
-            data-full-reload="true"
+          <Link
+            href="/edu/ai-gramotnost"
             className={`edu-navbar__link${isAiLiteracy ? " edu-navbar__link--active" : ""}`}
           >
             {t("nav.aiLiteracy")}
-          </a>
+          </Link>
           <Link
             href="/edu/hledat"
             className={`edu-navbar__link${isSearch ? " edu-navbar__link--active" : ""}`}

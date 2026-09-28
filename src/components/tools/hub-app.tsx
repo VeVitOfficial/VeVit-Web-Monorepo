@@ -1,7 +1,7 @@
 "use client";
 
 // Interaktivní hub nástrojů — React port tools/assets/js/hub.js + search-core.js.
-// ClassName totožná s legacy (public/tools/assets/css/style.css).
+// ClassName totožná s legacy (src/styles/tools.css).
 // URL stav je serializován paritně s legacy search-core.js (q, category,
 // processing, status, new, sort) přes history.replaceState — bez full navigace.
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";

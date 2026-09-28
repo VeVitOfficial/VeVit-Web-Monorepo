@@ -2,7 +2,7 @@
 
 // Kurz – port edu/js/pages/course.js. Přehled kurzu: hlavička s progress,
 // seznam kapitol s lekcemi, gamifikace a „proč se učit". Třídy identické
-// s legacy (edu/css/styles.css). Navigace přes next/link na /<lang>/edu/...
+// s legacy (src/styles/edu.css). Navigace přes next/link na /<lang>/edu/...
 
 import { useEffect, useState } from "react";
 import Link from "next/link";

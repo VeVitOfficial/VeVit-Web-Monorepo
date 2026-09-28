@@ -1,7 +1,7 @@
 "use client";
 
 // Kalkulačka slev — vícenásobné slevy (postupně), živý výpočet.
-// Portuje legacy-public/tools/discount-calc.html + public/tools/assets/js/tools/discount-calc.js.
+// Port původní vanilla verze nástroje discount-calc (HTML + JS).
 import { useMemo } from "react";
 import type { ToolComponentProps } from "@/components/tools/registry/data";
 

@@ -1,7 +1,7 @@
 "use client";
 
 // Kalkulačka čisté mzdy — zjednodušený odhad pro CZ 2024, živý výpočet.
-// Portuje legacy-public/tools/net-salary-calc.html + public/tools/assets/js/tools/net-salary-calc.js.
+// Port původní vanilla verze nástroje net-salary-calc (HTML + JS).
 import { useMemo } from "react";
 import type { ToolComponentProps } from "@/components/tools/registry/data";
 

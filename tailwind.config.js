@@ -3,16 +3,10 @@
 module.exports = {
   darkMode: 'class',
   content: [
-    './account/**/*.{html,php,js}',
-    './store/**/*.{html,php,js}',
-    './tools/**/*.{html,php,js}',
-    './edu/**/*.{html,php,js}',
-    './home/**/*.{html,php,js}',
     './src/**/*.{ts,tsx}',
-    '!./**/vendor/**',
-    '!./**/node_modules/**',
-    '!./**/tests/**',
-    '!./**/*.min.js',
+    './public/assets/shared/*.js',
+    './public/home/assets/js/*.js',
+    './public/edu/assets/js/*.js',
   ],
   theme: {
     extend: {

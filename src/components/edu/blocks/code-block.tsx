@@ -2,7 +2,7 @@
 
 // CodeBlock – port edu/js/components/code-block.js. Statický blok kódu s
 // kopírovacím tlačítkem (místo legacy `onclick=vevit.copyCode(this)` používáme
-// React stav + navigator.clipboard). Třídy jsou identické, aby edu/css/styles.css
+// React stav + navigator.clipboard). Třídy jsou identické, aby src/styles/edu.css
 // i Tailwind fungovaly jako v legacy.
 
 import { useState } from "react";

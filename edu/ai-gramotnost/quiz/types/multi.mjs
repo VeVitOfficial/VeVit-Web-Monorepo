@@ -1,1 +1,0 @@
-import { createRenderer as renderer } from './renderer.mjs'; import { choiceControl } from './controls/choice.mjs'; export const type='multi'; export const createRenderer=()=>renderer(type,choiceControl);

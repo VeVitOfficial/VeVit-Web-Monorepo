@@ -6,13 +6,13 @@ import { HomeBehaviors } from "@/components/home/home-behaviors";
 import { PremiumBehaviors } from "@/components/home/premium-behaviors";
 
 // Legacy CSS — importujeme z public/ (jako account stránky importují
-// ../../../../account/assets/styles.css), aby styl zůstal jediný zdroj.
+// src/styles/account.css), aby styl zůstal jediný zdroj.
 import "../../../public/assets/fonts/vevit-fonts.css";
-import "../../../public/assets/css/vevit-tailwind.css";
-import "../../../public/home/assets/css/main.css";
+import "@/styles/vevit-tailwind.css";
+import "@/styles/home/main.css";
 import "../../../public/assets/shared/session.css";
 import "../../../public/assets/shared/app-switcher.css";
-import "../../../public/home/assets/css/premium.css";
+import "@/styles/home/premium.css";
 
 const SUPPORTED: readonly string[] = ["cs", "en", "de", "es", "uk", "fr", "sk"];
 

@@ -1,7 +1,7 @@
 "use client";
 
 // Port edu/js/components/ui.js do Reactu + toast systém z edu/js/lib/dom.js.
-// ClassNames jsou identické s legacy, aby se aplikoval public/edu/css/styles.css.
+// ClassNames jsou identické s legacy, aby se aplikoval src/styles/edu.css.
 // Ikony renderujeme inline SVG (account sekce používá stejný přístup — viz
 // src/components/account/account-shell.tsx), protože lucide vendor bundle
 // v public/ není a nepřidáváme nové závislosti.

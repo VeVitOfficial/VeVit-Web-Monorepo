@@ -19,7 +19,9 @@ const HOST_REDIRECTS: Record<string, string> = {
 
 const locales = new Set(["cs", "en", "de", "es", "uk", "fr", "sk"]);
 const sections = new Set(["home", "account", "edu", "store", "tools", "services"]);
-const publicFile = /\.(?:css|js|mjs|json|map|png|jpe?g|webp|gif|svg|ico|woff2?|ttf|wasm|pdf|bin|data|mp3|wav|mp4|webm)$/i;
+const publicFile = /\.(?:css|js|mjs|json|map|png|jpe?g|webp|gif|svg|ico|woff2?|ttf|wasm|onnx|pdf|bin|data|mp3|wav|mp4|webm)$/i;
+// Statické HTML v public/, které se servíruje přímo (bez locale prefixu).
+const publicHtml = new Set(["/edu/sandbox-frame.html"]);
 
 function preferredLocale(request: NextRequest) {
   // Čeština je výchozí jazyk webu bez ohledu na Accept-Language prohlížeče
@@ -28,12 +30,6 @@ function preferredLocale(request: NextRequest) {
   const cookie = request.cookies.get("vevit-lang")?.value;
   if (cookie && locales.has(cookie)) return cookie;
   return "cs";
-}
-
-function legacyRewrite(request: NextRequest, path: string) {
-  const url = request.nextUrl.clone();
-  url.pathname = `/legacy-render/${path}`;
-  return NextResponse.rewrite(url);
 }
 
 function redirect(request: NextRequest, pathname: string) {
@@ -52,8 +48,8 @@ export function proxy(request: NextRequest) {
     return NextResponse.redirect(new URL(target), { status: 301 });
   }
 
-  if (pathname.startsWith("/legacy-render/") || pathname.startsWith("/_next/") || pathname.startsWith("/assets/")) return NextResponse.next();
-  if (pathname === "/robots.txt" || pathname === "/sitemap.xml" || publicFile.test(pathname)) return NextResponse.next();
+  if (pathname.startsWith("/_next/") || pathname.startsWith("/assets/")) return NextResponse.next();
+  if (pathname === "/robots.txt" || pathname === "/sitemap.xml" || publicFile.test(pathname) || publicHtml.has(pathname)) return NextResponse.next();
 
   const parts = pathname.split("/").filter(Boolean);
   if (parts.length === 0) return redirect(request, `/${preferredLocale(request)}/home`);
@@ -64,9 +60,6 @@ export function proxy(request: NextRequest) {
 
   const sectionParts = parts.slice(1);
   const isApi = sectionParts[0] === "api" || sectionParts[0] === "php" || sectionParts[0] === "public";
-  // Legacy edu app (static pages + its ported MariaDB API under edu/legacy/...)
-  // is served directly by the app router / public assets — never rewritten.
-  if (sectionParts[0] === "legacy") return NextResponse.next();
   if (isApi) {
     if (!locale) return NextResponse.next();
     const url = request.nextUrl.clone();
@@ -123,10 +116,8 @@ export function proxy(request: NextRequest) {
     return NextResponse.rewrite(url, { request: { headers: requestHeaders } });
   }
   if (section === "edu") {
-    // Edu React SPA: /edu + podstránky (dashboard, programovani, kurzy, lekce, hledat),
-    // locale se předává hlavičkou x-vv-locale. ai-gramotnost zůstává legacy PHP.
-    const isAiLiteracy = suffix === "ai-gramotnost" || suffix.startsWith("ai-gramotnost/");
-    if (isAiLiteracy) return legacyRewrite(request, "edu/ai-gramotnost/index.html");
+    // Edu React: /edu + podstránky (dashboard, programovani, kurzy, lekce, hledat,
+    // ai-gramotnost), locale se předává hlavičkou x-vv-locale.
     const url = request.nextUrl.clone();
     url.pathname = `/edu${suffix ? `/${suffix}` : ""}`;
     const requestHeaders = new Headers(request.headers);

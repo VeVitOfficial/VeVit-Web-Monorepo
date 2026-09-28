@@ -4,7 +4,7 @@
 // default React komponentu s props { locale: Locale }. Komponenta renderuje
 // POUZE vnitřní tělo nástroje (obsah .tool-tool) — shell dodává stránka
 // src/app/tools/[tool]/page.tsx. ClassName zůstávají totožné s legacy HTML,
-// aby public/tools/assets/css/style.css styl fungoval.
+// aby src/styles/tools.css styl fungoval.
 //
 // UMD knihovny (pdf-lib, pdf.js + worker, jszip, jspdf, html2canvas,
 // qrcode-generator, html-pdf-sanitize) se načítají líně z /tools/assets/js/lib/
