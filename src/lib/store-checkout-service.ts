@@ -396,6 +396,8 @@ export interface CheckoutCreateInput {
   user: { id: string } | null;
   guestSessionKey: string;
   now: Date;
+  /** Tier perk (Silver+), resolved server-side by the route — see store-perks.ts. */
+  freeShipping?: boolean;
 }
 
 export async function createCheckoutSnapshot(params: CheckoutCreateInput): Promise<CheckoutCreateResult> {
@@ -461,7 +463,7 @@ export async function createCheckoutSnapshot(params: CheckoutCreateInput): Promi
   }
 
   const shipping = normalizeShipping(normalized.shipping, hasPhysical);
-  const shippingMinor = hasPhysical && subtotalMinor < 100000 ? 9900 : 0;
+  const shippingMinor = hasPhysical && subtotalMinor < 100000 && params.freeShipping !== true ? 9900 : 0;
   const totalMinor = subtotalMinor + shippingMinor;
   if (totalMinor > CHECKOUT_MAX_TOTAL_MINOR) {
     throw new CheckoutValidationException("order_total_limit", "Celková cena objednávky je příliš vysoká.");

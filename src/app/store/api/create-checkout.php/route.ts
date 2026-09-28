@@ -14,6 +14,7 @@ import {
   type VerifiedSnapshot,
 } from "@/lib/store-checkout-service";
 import { saveCheckoutGrant, readCheckoutGrant } from "@/lib/store-guest-grants";
+import { userHasFreeShipping } from "@/lib/store-perks";
 import "server-only";
 
 export const runtime = "nodejs";
@@ -108,6 +109,7 @@ async function handler(request: Request): Promise<Response> {
       user: user !== null ? { id: user.id } : null,
       guestSessionKey: guestSessionKey(request, ip),
       now: new Date(),
+      freeShipping: user !== null && (await userHasFreeShipping(user.id)),
     });
 
     if (result.reused) {

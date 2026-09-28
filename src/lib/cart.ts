@@ -29,8 +29,14 @@ export function cartSubtotal(items: CartItem[]) {
   return items.reduce((sum, item) => sum + item.price * item.qty, 0);
 }
 
-export function cartShipping(items: CartItem[]) {
+/** Standard shipping before tier perks (same rule as the checkout snapshot). */
+export function cartBaseShipping(items: CartItem[]) {
   const hasPhysical = items.some((item) => item.type === "physical");
   const subtotal = cartSubtotal(items);
   return hasPhysical && subtotal < 1000 ? 99 : 0;
+}
+
+/** Shipping shown to the customer; Silver+ ships free (store-perks.ts). */
+export function cartShipping(items: CartItem[], freeShipping = false) {
+  return freeShipping ? 0 : cartBaseShipping(items);
 }

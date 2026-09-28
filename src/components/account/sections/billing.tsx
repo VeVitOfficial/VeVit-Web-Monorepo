@@ -27,6 +27,7 @@ type Plan = {
   xp_bonus_pct: number;
   ai_daily_limit: number | null;
   store_discount_pct: number;
+  free_shipping: boolean;
   prices: { monthly: number | null; yearly: number | null };
   available: { monthly: boolean; yearly: boolean };
 };
@@ -183,6 +184,7 @@ export function BillingSection() {
                       : t("billing.aiLimit", locale, { n: plan.ai_daily_limit })}
                   </li>
                   <li>{t("billing.storeDiscount", locale, { n: plan.store_discount_pct })}</li>
+                  {plan.free_shipping && <li>{t("billing.freeShipping", locale)}</li>}
                 </ul>
                 {!subscribed && (
                   <button

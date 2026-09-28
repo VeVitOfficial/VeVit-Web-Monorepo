@@ -4,6 +4,7 @@ import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { cartShipping, cartSubtotal } from "@/lib/cart";
 import { useCart } from "@/components/store/use-cart";
+import { useFreeShipping } from "@/components/store/use-free-shipping";
 
 const money = new Intl.NumberFormat("cs-CZ", { style: "currency", currency: "CZK", maximumFractionDigits: 0 });
 
@@ -13,7 +14,8 @@ export default function CheckoutPage() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const physical = items.some((item) => item.type === "physical");
-  const total = cartSubtotal(items) + cartShipping(items);
+  const freeShipping = useFreeShipping();
+  const total = cartSubtotal(items) + cartShipping(items, freeShipping);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();

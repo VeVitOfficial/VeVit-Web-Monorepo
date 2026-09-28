@@ -1,6 +1,7 @@
 import "server-only";
 
 import { getStoreUser } from "@/lib/store-config";
+import { userHasFreeShipping } from "@/lib/store-perks";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -57,6 +58,8 @@ async function handler(request: Request): Promise<Response> {
           avatar_url: user.avatar_url,
         }
       : null,
+    // Display only — the checkout re-checks the perk server-side.
+    perks: { free_shipping: user !== null && (await userHasFreeShipping(user.id)) },
   }), { status: 200, headers });
 }
 

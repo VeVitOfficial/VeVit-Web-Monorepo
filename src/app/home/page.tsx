@@ -1771,6 +1771,7 @@ export default async function HomePage() {
                     <li>Lekce offline a certifikáty</li>
                     <li>200 AI dotazů denně</li>
                     <li>10 % sleva ve VeVit Store</li>
+                    <li>Doprava ve VeVit Store zdarma</li>
                     <li>+25 % XP za aktivitu</li>
                   </ul>
 
