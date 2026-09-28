@@ -61,10 +61,10 @@ export async function POST(request: Request) {
         subscription_data: { metadata: { user_id: session.user.id } },
         // The webhook compares the paid amount with the catalogue: no coupons.
         allow_promotion_codes: false,
-        automatic_tax: { enabled: process.env.STRIPE_TAX_ENABLED === "1" },
-        ...(process.env.STRIPE_TAX_ENABLED === "1"
-          ? { customer_update: { address: "auto" as const, name: "auto" as const }, tax_id_collection: { enabled: true } }
-          : {}),
+        // Stripe Managed Payments (merchant of record) handles VAT, invoices
+        // and disputes, so automatic_tax, tax_id_collection and customer_update
+        // must not be sent (Stripe rejects them with managed_payments enabled).
+        managed_payments: { enabled: true },
         locale: "cs",
         success_url: `${billingUrl}?checkout=success`,
         cancel_url: `${billingUrl}?checkout=cancelled`,
