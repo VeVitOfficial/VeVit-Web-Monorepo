@@ -7,6 +7,8 @@ import { StoreFooter } from "@/components/store/store-footer";
 import "../../../public/assets/fonts/vevit-fonts.css";
 import "../../../public/assets/css/vevit-tailwind.css";
 import "../../../store/assets/css/style.css";
+// Sdílený brand (.vv-app-brand) jako v ostatních aplikacích.
+import "../../../public/assets/shared/app-switcher.css";
 import "./store-design.css";
 
 export default function StoreLayout({ children }: Readonly<{ children: React.ReactNode }>) {

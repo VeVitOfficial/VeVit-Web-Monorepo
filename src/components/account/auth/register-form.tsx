@@ -495,7 +495,6 @@ export function RegisterForm({ locale }: { locale: AccountLocale }) {
 
           <div className="oauth-divider" aria-hidden="true">{t("auth.common.oauthDivider")}</div>
           <OauthButtons locale={locale} mode="register" />
-          <p className="oauth-status" role="status" aria-live="polite" />
 
           <div className="register-success" id="registerSuccess" role="status" aria-live="polite" hidden={!success}>
             <div className="success-check" aria-hidden="true">✓</div>

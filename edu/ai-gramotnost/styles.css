@@ -49,6 +49,10 @@ a { color: inherit; text-decoration: none; }
 .ai-edu-navbar__links a.active { color: #10b981; }
 .ai-edu-navbar__links a.active::after { content: ""; position: absolute; right: 0; bottom: -21px; left: 0; height: 2px; background: #10b981; }
 .ai-edu-navbar__actions { display: flex; align-items: center; justify-content: flex-end; gap: 8px; flex: 1; min-width: 0; }
+.ai-edu-navbar__actions > * { flex-shrink: 0; }
+.ai-edu-navbar .vv-app-brand { flex-shrink: 0; }
+@media (max-width: 420px) { .ai-edu-navbar__actions { gap: 6px; } .ai-edu-navbar .vv-session--anonymous { padding: .45rem .6rem; font-size: .8125rem; } }
+@media (max-width: 1199px) { .ai-edu-navbar .vv-locale { grid-template-columns: repeat(var(--vv-locale-count), minmax(36px, 1fr)); } .ai-edu-navbar .vv-locale__btn { padding-inline: 7px; } .ai-edu-navbar .vv-locale__label { display: none; } }
 main { flex: 1; max-width: 1180px; margin: 0 auto; padding: 2rem 1.25rem 4rem; width: 100%; }
 
 /* === BUTTONS === */

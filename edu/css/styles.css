@@ -192,16 +192,37 @@ body {
   border-radius: 6px;
 }
 .edu-navbar__icon-button:hover { color: var(--color-nav-hover); background: var(--color-glass-highlight); }
+/* Akce vpravo jako ve zbytku aplikací (jazyk · motiv · aplikace · účet). */
+.edu-navbar__actions.vv-app-actions { flex: 1 0 auto; gap: .75rem; color: var(--color-foreground); }
+.edu-navbar .edu-navbar__icon-button {
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+  border-radius: .55rem;
+}
+.edu-navbar .vv-app-brand { flex-shrink: 0; }
+.edu-navbar .vv-app-brand a + a { color: var(--color-foreground); }
+/* Sdílené pill/switcher styly jsou jen tmavé — světlá varianta pro edu. */
+html.light .edu-navbar .vv-locale { background: rgba(15, 23, 42, .05); border-color: rgba(15, 23, 42, .14); box-shadow: none; }
+html.light .edu-navbar .vv-locale__btn:hover:not(.is-active) { color: #059669; }
+html.light .edu-navbar .vv-app-switcher__trigger { background: #fff; }
+html.light .edu-navbar .vv-app-switcher__trigger:hover,
+html.light .edu-navbar .vv-app-switcher__trigger[aria-expanded="true"] { background: #f1f5f9; }
+@media (max-width: 1199px) { .edu-navbar .vv-locale__label { display: none; } .edu-navbar .vv-locale { grid-template-columns: repeat(var(--vv-locale-count), minmax(40px, 1fr)); } }
 .edu-lang-menu {
   background: var(--color-card-bg);
   border-color: var(--color-glass-highlight);
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.42);
 }
-@media (min-width: 1200px) { .edu-navbar__links { display: flex; } }
+@media (min-width: 960px) { .edu-navbar__links { display: flex; } }
 @media (max-width: 1199px) { .edu-navbar__inner nav[aria-label]:not(.edu-navbar__links) { display: none; } }
 @media (max-width: 640px) {
   .edu-navbar__inner { width: calc(100% - 16px); gap: 6px; }
-  .edu-navbar__actions { gap: 4px; }
+  .edu-navbar__actions.vv-app-actions { gap: 6px; }
+  .edu-navbar .edu-navbar__icon-button { display: none; }
+  .edu-navbar .vv-locale { grid-template-columns: repeat(var(--vv-locale-count), minmax(34px, 1fr)); }
+  .edu-navbar .vv-locale__btn { padding-inline: 6px; }
 }
 
 .glow-border {
@@ -433,6 +454,8 @@ mark.ai-highlight {
   padding: 2rem 1.25rem 6rem;
   max-width: 48rem;
   margin: 0 auto;
+  /* Dlouhá URL v referencích jinak roztáhnou stránku do strany. */
+  overflow-wrap: break-word;
 }
 .wp-article p { margin: 0 0 1rem; color: var(--color-text-secondary); }
 .wp-article h2,

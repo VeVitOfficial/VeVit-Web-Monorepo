@@ -16,6 +16,8 @@ import { toolAlternates } from "@/lib/tools-seo";
 // Legacy CSS — className v shellu i komponentách zůstávají totožné s legacy.
 import "../../../../public/assets/fonts/vevit-fonts.css";
 import "../../../../public/tools/assets/css/style.css";
+// Přepínač aplikací (data-vevit-app-switcher) — stejné styly jako ostatní aplikace.
+import "../../../../public/assets/shared/app-switcher.css";
 
 async function readLocale(): Promise<Locale> {
   const h = (await headers()).get("x-vv-locale");
@@ -75,7 +77,8 @@ export default async function ToolPage({ params }: Props) {
           brand_suffix: "Tools",
         }}
       />
-      <main>
+      {/* Stejná obálka jako legacy tools.php (main.main > .tool-page): okraje a max šířka. */}
+      <main className="main tool-page">
         <nav className="breadcrumb">
           <a href={`/${locale}/tools/`}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

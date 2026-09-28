@@ -69,7 +69,7 @@ function StaticBlock({ block }: { block: CustomBlock }) {
       return <Tag className={cls}>{block.text || ""}</Tag>;
     }
     case "paragraph":
-      return <p className="text-base leading-7 text-[var(--color-text-secondary)] mb-4 text-balance">{block.text || ""}</p>;
+      return <p className="text-base leading-7 text-[var(--color-text-secondary)] mb-4 text-pretty">{block.text || ""}</p>;
     case "list": {
       const Tag = block.ordered ? "ol" : "ul";
       const style = block.ordered ? "list-decimal" : "list-disc";

@@ -37,3 +37,12 @@
 .text-\[22px\] { font-size: 22px; }
 .text-\[40px\] { font-size: 40px; }
 .max-w-\[680px\] { max-width: 680px; }
+/* Mobile: kratší oznamovací lišta, patička ve dvou sloupcích. */
+@media (max-width: 640px) {
+  .announcement-bar { font-size: 12px; }
+  .announcement-bar__extra { display: none; }
+}
+@media (max-width: 767px) {
+  .store-footer-grid { gap: 2rem 1.5rem; }
+  .store-footer-brand { grid-column: 1 / -1; }
+}

@@ -8,8 +8,8 @@
 // Rozdíly oproti legacy:
 //   - setBreadcrumbs() → useEduBreadcrumbs() kontext
 //   - theme toggle → useEduTheme() kontext
-//   - lang switcher → useEduLang().setLang + nativní <select> (legacy
-//     používala data-vevit-language span + /assets/shared/localization.js)
+//   - lang switcher = sdílený data-vevit-language pill (localization.js),
+//     stejně jako Home/Tools — přepnutí vede na /<lang>/edu/…
 //   - session / app-switcher zůstávají jako <span data-vevit-*> placeholdery
 //     a edu-root načítá sdílené skripty, takže fungují jako v legacy
 
@@ -38,7 +38,7 @@ function MoonIcon() {
 }
 
 export function Navbar() {
-  const { lang, setLang, t, languages } = useEduLang();
+  const { t } = useEduLang();
   const { theme, toggleTheme } = useEduTheme();
   const { breadcrumbs } = useEduBreadcrumbs();
   const pathname = usePathname() ?? "/edu";
@@ -89,7 +89,7 @@ export function Navbar() {
             href="/edu/dashboard"
             className={`edu-navbar__link${isDashboard ? " edu-navbar__link--active" : ""}`}
           >
-            Přehled
+            {t("nav.overview")}
           </Link>
           <Link
             href="/edu/programovani"
@@ -102,28 +102,17 @@ export function Navbar() {
             data-full-reload="true"
             className={`edu-navbar__link${isAiLiteracy ? " edu-navbar__link--active" : ""}`}
           >
-            AI gramotnost
+            {t("nav.aiLiteracy")}
           </a>
           <Link
             href="/edu/hledat"
             className={`edu-navbar__link${isSearch ? " edu-navbar__link--active" : ""}`}
           >
-            Vyhledat
+            {t("nav.search")}
           </Link>
         </nav>
-        <div className="edu-navbar__actions">
-          <select
-            value={lang}
-            onChange={(e) => setLang(e.target.value as typeof lang)}
-            aria-label="Změnit jazyk"
-            className="edu-navbar__lang"
-          >
-            {languages.map((l) => (
-              <option key={l.code} value={l.code}>
-                {l.flag} {l.label}
-              </option>
-            ))}
-          </select>
+        <div className="edu-navbar__actions vv-app-actions">
+          <span data-vevit-language />
           <button
             id="theme-btn"
             type="button"

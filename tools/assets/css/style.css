@@ -473,9 +473,21 @@ svg { display: block; }
   .cat-toggle { min-height:2.5rem; }
   .login-btn { min-height:2.5rem; padding:.5rem .65rem; }
 }
+/* Mobilní header: brand + jazyk (vlajky) + aplikace + účet. Kategorie jsou
+   na stránce jako mřížka, v headeru by se s pillem překrývaly. */
+@media (max-width: 640px) {
+  .cat-wrap, .brand-logo { display:none; }
+  .header-right { gap:.4rem; min-width:0; }
+  .header-right > * { flex-shrink:0; }
+  .header-right .vv-locale { grid-template-columns:repeat(var(--vv-locale-count), minmax(34px, 1fr)); }
+  .header-right .vv-locale__btn { padding-inline:6px; }
+  .header-right .vv-locale__label { display:none; }
+  .header-right .vv-session--anonymous { padding:.45rem .6rem; font-size:.8125rem; }
+}
 @media (max-width: 380px) {
   .hub-control-grid { grid-template-columns:1fr; }
   .brand-mark, .cat-wrap { display:none; }
+  .brand-logo { display:grid; }
   .header-right { gap:.25rem; margin-left:auto; min-width:0; }
   .header-right .login-btn { width:2.5rem; padding:0; justify-content:center; font-size:0; }
   .site-header .bar { gap:.35rem; }

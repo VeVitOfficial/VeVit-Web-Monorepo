@@ -2,7 +2,7 @@
 
 // Myšlenková mapa — radiální strom z odsazeného textu (SVG), čistě client-side. Port legacy mind-map.js.
 // Komponenta renderuje pouze vnitřní tělo .tool-tool — shell dodává stránka.
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { ToolComponentProps } from "@/components/tools/registry/data";
 
 interface MmNode {
@@ -141,14 +141,14 @@ export default function MindMap({ locale }: ToolComponentProps) {
   const wrapRef = useRef<HTMLDivElement>(null);
 
   // Vykreslí SVG imperativně do wrapRef (věrně legacy render() — staví SVG DOM).
-  // useMemo aby se SVG přepočítalo jen při změně textu; effect jej mountuje do DOM.
-  const svg = useMemo(() => buildSvg(parse(text)), [text]);
+  // Staví se až v effectu: buildSvg sahá na document, který při SSR není.
   useEffect(() => {
     const wrap = wrapRef.current;
     if (!wrap) return;
+    const svg = buildSvg(parse(text));
     wrap.replaceChildren();
     if (svg) wrap.appendChild(svg);
-  }, [svg]);
+  }, [text]);
 
   const onDownload = useCallback(() => {
     const node = wrapRef.current?.querySelector("svg");

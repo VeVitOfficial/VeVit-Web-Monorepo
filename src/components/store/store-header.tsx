@@ -48,7 +48,7 @@ export function StoreHeader() {
 
       <div className="announcement-bar" role="status" aria-live="polite">
         <Icon name="local_shipping" className="text-[16px] icon-filled" />
-        <span>Doprava zdarma u objednávek nad 1&nbsp;000&nbsp;Kč · Digitální produkty ihned po platbě</span>
+        <span>Doprava zdarma u objednávek nad 1&nbsp;000&nbsp;Kč<span className="announcement-bar__extra"> · Digitální produkty ihned po platbě</span></span>
       </div>
 
       <header className="sticky top-0 z-50 bg-background/90 backdrop-blur-md border-b border-outline-variant">
@@ -71,7 +71,7 @@ export function StoreHeader() {
           </div>
 
           <div className="flex items-center gap-3">
-            <form method="get" action="/store/catalog" role="search" className="relative flex items-center group">
+            <form method="get" action="/store/catalog" role="search" className="relative hidden lg:flex items-center group">
               <label htmlFor="header-search-desktop" className="sr-only">Hledat produkty</label>
               <Icon name="search" className="absolute left-3 text-on-surface-variant pointer-events-none group-focus-within:text-primary transition-colors text-[20px]" />
               <input

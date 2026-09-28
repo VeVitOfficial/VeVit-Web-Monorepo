@@ -238,6 +238,19 @@ section[id] { scroll-margin-top: 84px; }
 @media (min-width: 1024px) and (max-width: 1179px) {
   .nav .wordmark-suffix { display: none; }
 }
+/* Mobil/tablet: jazyk (jen vlajky) + přepínač aplikací + hamburger. Účet je
+   v mobilním panelu. (.vv-app-actions ze sdíleného CSS jinak přebije
+   display:none výše a akce přetékají mimo obrazovku.) */
+@media (max-width: 1023px) {
+  .nav-cta.vv-app-actions { display: flex; gap: 8px; margin-left: auto; margin-right: 8px; }
+  .nav-cta [data-vevit-session] { display: none; }
+  .nav-cta .vv-locale { grid-template-columns: repeat(var(--vv-locale-count), minmax(36px, 1fr)); }
+  .nav-cta .vv-locale__btn { padding-inline: 7px; }
+  .nav-cta .vv-locale__label { display: none; }
+}
+@media (max-width: 480px) {
+  .nav .wordmark-suffix { display: none; }
+}
 
 /* ============ BUTTONS ============ */
 .btn {
@@ -508,6 +521,10 @@ section[id] { scroll-margin-top: 84px; }
 }
 @media (max-width: 768px) {
   .section { padding: 64px 0; }
+}
+/* Telefon: dvě sekce pod sebou dávaly ~130 px prázdna. */
+@media (max-width: 640px) {
+  .section { padding: 44px 0; }
 }
 
 .section-head {

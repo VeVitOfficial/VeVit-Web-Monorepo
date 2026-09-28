@@ -44,8 +44,8 @@ export function StoreFooter() {
   return (
     <footer className="bg-surface-container-lowest border-t border-outline-variant mt-auto" role="contentinfo">
       <div className="max-w-store mx-auto px-margin py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
-          <div className="md:col-span-1">
+        <div className="store-footer-grid grid grid-cols-2 md:grid-cols-4 gap-10 mb-12">
+          <div className="store-footer-brand md:col-span-1">
             <Link href="/store" className="flex items-center gap-2.5 mb-4 hover:opacity-90 transition-opacity">
               <Image src="/store/images/logo_notext.webp" alt="VeVit" width={36} height={36} className="w-9 h-9 rounded-lg object-contain" />
               <span className="font-display text-lg font-extrabold text-on-surface tracking-tight">VeVit<span className="text-primary">.</span></span>

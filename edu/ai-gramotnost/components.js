@@ -14,7 +14,8 @@ function renderShell() {
           <a href="#dashboard" data-route="dashboard">AI gramotnost</a>
           <a href="/edu/hledat/">Vyhledat</a>
         </nav>
-        <div class="ai-edu-navbar__actions">
+        <div class="ai-edu-navbar__actions vv-app-actions">
+          <span data-vevit-language></span>
           <span data-vevit-app-switcher data-vevit-app="Edu"></span>
           <span data-vevit-session><span class="vv-session vv-session--loading">Ověřuji přihlášení…</span></span>
         </div>

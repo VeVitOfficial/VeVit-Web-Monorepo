@@ -143,7 +143,7 @@ export function LessonContent({ blocks }: { blocks: LessonBlock[] }) {
             return <Tag key={i} className={cls}>{block.text || ""}</Tag>;
           }
           case "paragraph":
-            return <p key={i} className="text-base leading-7 text-[var(--color-text-secondary)] mb-4 text-balance">{block.text || ""}</p>;
+            return <p key={i} className="text-base leading-7 text-[var(--color-text-secondary)] mb-4 text-pretty">{block.text || ""}</p>;
           case "list":
             return <ListBlock key={i} items={block.items || []} ordered={block.ordered} />;
           case "code":

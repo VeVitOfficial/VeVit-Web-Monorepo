@@ -443,15 +443,19 @@
 }
 
 @media (max-width: 900px) {
+  /* Akce (.vv-app-actions) zůstávají vpravo na stejném řádku; na telefonu
+     jen přepínač aplikací (viz níže). */
   .support-nav {
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto 1fr auto;
   }
 
   .support-nav nav {
     justify-content: flex-end;
   }
+}
 
-  .support-account-actions {
+@media (max-width: 640px) {
+  .support-account-actions.vv-app-actions [data-vevit-session] {
     display: none;
   }
 }

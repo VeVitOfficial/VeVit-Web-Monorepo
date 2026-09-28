@@ -19,7 +19,10 @@ import type { ReactNode } from "react";
 // Modulové skripty vkládáme imperativně mimo React render — React varuje
 // (a v client-only renderu <script> ani nespustí), pokud se <script> vrací
 // přímo z JSX.
-const MODULE_SCRIPTS = ["/assets/shared/app-switcher.js?v=20260825b"] as const;
+const MODULE_SCRIPTS = [
+  "/assets/shared/app-switcher.js?v=20260825b",
+  "/assets/shared/localization.js?v=20260826f",
+] as const;
 function useModuleScripts() {
   useEffect(() => {
     const injected: HTMLScriptElement[] = [];
@@ -56,7 +59,7 @@ export function EduRoot({
       <EduThemeProvider>
         <BreadcrumbsProvider>
           <ToastProvider>
-            <div className="min-h-full flex flex-col bg-background text-foreground font-sans">
+            <div className="min-h-full flex flex-col text-foreground font-sans" style={{ background: "var(--color-background)" }}>
               <div id="navbar">
                 <Navbar />
               </div>

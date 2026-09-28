@@ -70,3 +70,5 @@
 @keyframes success-pop { from { transform:scale(.55); } to { transform:scale(1); } }
 @media (max-width:640px) { .auth-wrap { justify-content:flex-start; padding-top:28px; } .auth-card { padding:25px 20px; } .identity-grid, .password-rules ul, .oauth-buttons { grid-template-columns:1fr; } }
 @media (prefers-reduced-motion:reduce) { *, *::before, *::after { animation-duration:.01ms !important; transition-duration:.01ms !important; scroll-behavior:auto !important; } }
+/* Prázdný status (žádná OAuth akce) nezabírá místo. */
+.oauth-status:empty { min-height:0; }

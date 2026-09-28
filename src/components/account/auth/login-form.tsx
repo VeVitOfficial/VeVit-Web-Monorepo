@@ -260,7 +260,6 @@ export function LoginForm({ locale }: { locale: AccountLocale }) {
         </button>
       </form>
       <OauthButtons locale={locale} mode="login" />
-      <p className="oauth-status" role="status" aria-live="polite" />
     </div>
     <p className="auth-hint">
       <span>{t("auth.login.noAccount")}</span>{" "}
