@@ -1,0 +1,147 @@
+{
+  "desktop/acc-billing": {
+    "width": 1600,
+    "height": 1000,
+    "frames": 1
+  },
+  "desktop/acc-overview": {
+    "width": 1600,
+    "height": 1300,
+    "frames": 1
+  },
+  "desktop/acc-security": {
+    "width": 1600,
+    "height": 900,
+    "frames": 1
+  },
+  "desktop/ai-lesson": {
+    "width": 1600,
+    "height": 1300,
+    "frames": 1
+  },
+  "desktop/ai-overview": {
+    "width": 1600,
+    "height": 1700,
+    "frames": 1
+  },
+  "desktop/edu-js": {
+    "width": 1600,
+    "height": 790,
+    "frames": 5
+  },
+  "desktop/edu-programming": {
+    "width": 1600,
+    "height": 1900,
+    "frames": 1
+  },
+  "desktop/edu-python": {
+    "width": 1600,
+    "height": 900,
+    "frames": 1
+  },
+  "desktop/home-hero": {
+    "width": 1600,
+    "height": 900,
+    "frames": 1
+  },
+  "desktop/svc-detail": {
+    "width": 1600,
+    "height": 1824,
+    "frames": 1
+  },
+  "desktop/svc-home": {
+    "width": 1600,
+    "height": 1750,
+    "frames": 1
+  },
+  "desktop/svc-list": {
+    "width": 1600,
+    "height": 1300,
+    "frames": 1
+  },
+  "desktop/tool-compress": {
+    "width": 1600,
+    "height": 1000,
+    "frames": 1
+  },
+  "desktop/tool-merge": {
+    "width": 1600,
+    "height": 900,
+    "frames": 1
+  },
+  "desktop/tool-password": {
+    "width": 1600,
+    "height": 900,
+    "frames": 1
+  },
+  "desktop/tool-qr": {
+    "width": 1600,
+    "height": 1350,
+    "frames": 8
+  },
+  "desktop/tools-hub-long": {
+    "width": 1600,
+    "height": 3400,
+    "frames": 1
+  },
+  "desktop/tools-search": {
+    "width": 1600,
+    "height": 900,
+    "frames": 4
+  },
+  "mobile/m-acc-billing": {
+    "width": 390,
+    "height": 1517,
+    "frames": 1
+  },
+  "mobile/m-acc-overview": {
+    "width": 390,
+    "height": 1800,
+    "frames": 1
+  },
+  "mobile/m-ai-overview": {
+    "width": 390,
+    "height": 2200,
+    "frames": 1
+  },
+  "mobile/m-edu-js": {
+    "width": 390,
+    "height": 844,
+    "frames": 1
+  },
+  "mobile/m-edu-programming": {
+    "width": 390,
+    "height": 1900,
+    "frames": 1
+  },
+  "mobile/m-home": {
+    "width": 390,
+    "height": 844,
+    "frames": 1
+  },
+  "mobile/m-svc-detail": {
+    "width": 390,
+    "height": 2600,
+    "frames": 1
+  },
+  "mobile/m-svc-home": {
+    "width": 390,
+    "height": 2400,
+    "frames": 1
+  },
+  "mobile/m-tool-compress": {
+    "width": 390,
+    "height": 1463,
+    "frames": 1
+  },
+  "mobile/m-tool-qr": {
+    "width": 390,
+    "height": 844,
+    "frames": 5
+  },
+  "mobile/m-tools": {
+    "width": 390,
+    "height": 2400,
+    "frames": 1
+  }
+}

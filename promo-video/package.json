@@ -1,0 +1,30 @@
+{
+  "name": "vevit-promo-video",
+  "private": true,
+  "description": "Promo video k prvnímu veřejnému releasu VeVit (Remotion). Samostatné, nezasahuje do aplikace.",
+  "type": "module",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render": "npm run render:landscape && npm run render:vertical",
+    "render:landscape": "remotion render src/index.ts Promo out/vevit-promo-1920x1080.mp4",
+    "render:vertical": "remotion render src/index.ts PromoVertical out/vevit-promo-1080x1920.mp4",
+    "stills": "node scripts/stills.mjs",
+    "capture": "node capture/capture.mjs",
+    "app:start": "bash capture/start-app.sh",
+    "fonts:setup": "bash capture/setup-fonts.sh",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.529",
+    "@remotion/fonts": "^4.0.529",
+    "@remotion/transitions": "^4.0.529",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "remotion": "4.0.529"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.0",
+    "playwright": "1.56.1",
+    "typescript": "^5.9.3"
+  }
+}
