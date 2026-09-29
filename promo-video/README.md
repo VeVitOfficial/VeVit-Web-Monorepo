@@ -39,7 +39,9 @@ npm run render          # obě verze do out/
 ```
 
 `npm run render:landscape` nebo `npm run render:vertical` vyrenderuje jen jednu
-verzi. Remotion si při prvním renderu stáhne Chrome Headless Shell. Pokud to
+verzi. Na 4 jádrech trvá render jedné verze asi 5 minut. Výstup je H.264,
+`yuv420p`, BT.709, CRF 18 (`remotion.config.ts`), tedy formát, který přijmou
+YouTube, Instagram, TikTok, LinkedIn i běžné přehrávače. Remotion si při prvním renderu stáhne Chrome Headless Shell. Pokud to
 prostředí nedovolí, nastav vlastní binárku:
 `PROMO_CHROMIUM=/cesta/k/headless_shell npm run render`.
 
@@ -56,6 +58,14 @@ verzi), a pak `npm run render`.
   Geist Mono) jsou zkopírovaná z `public/assets/fonts` aplikace a logo
   z `public/home/images`.
 - Rozvržení obou formátů: `src/layout.ts`.
+
+> **Poznámka k hooku:** Původní scénář počítal s „Sloučit PDF.“. Nástroj
+> Sloučení PDF ale v aktuální verzi aplikace nepřijme žádný soubor
+> (`src/components/tools/tools/pdf-merge.tsx`, řádek 69: `matchesAccept`
+> dostává celý řetězec `ACCEPT` místo pole přípon). Video proto zatím ukazuje
+> funkční Kompresi PDF. Po opravě stačí v `src/texts.ts` vrátit text, spustit
+> `npm run capture -- merge`, který pořídí i záběr `tool-merge-files`, a
+> v `src/scenes/Hook.tsx` ho použít místo `tool-compress`.
 
 ## Hudba
 

@@ -6,6 +6,8 @@ Config.setJpegQuality(92);
 Config.setCodec("h264");
 Config.setCrf(18);
 Config.setPixelFormat("yuv420p");
+// BT.709 (TV rozsah) – nejširší kompatibilita s YouTube, Instagramem, TikTokem i přehrávači.
+Config.setColorSpace("bt709");
 Config.setOverwriteOutput(true);
 
 // Volitelně vlastní Chrome/Chromium (např. předinstalovaný headless shell).
