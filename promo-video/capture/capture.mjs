@@ -61,10 +61,21 @@ async function newContext(browser, device) {
     document.addEventListener("DOMContentLoaded", () => {
       const style = document.createElement("style");
       // Skryje vývojářský indikátor Next.js, posuvníky a blikající kurzor.
-      style.textContent = "nextjs-portal{display:none!important} html{scrollbar-width:none} ::-webkit-scrollbar{display:none} *{caret-color:transparent!important}";
+      // Oprava jen pro video: hledání v Tools má vedle vlastního „ד i nativní
+      // křížek prohlížeče, takže by se zobrazily dva.
+      style.textContent = "nextjs-portal{display:none!important} html{scrollbar-width:none} ::-webkit-scrollbar{display:none} *{caret-color:transparent!important} input[type=search]::-webkit-search-cancel-button{-webkit-appearance:none;display:none}";
       document.head.appendChild(style);
     });
   }, { edu: EDU_PROGRESS, aigram: AIGRAM_PROGRESS });
+  // Oprava jen pro video: Sloučení PDF v aplikaci odmítá všechny soubory
+  // (pdf-merge.tsx předává `[ACCEPT]` místo seznamu přípon). Zdrojový kód
+  // aplikace neměníme – opravíme jen skript, který dostane natáčející prohlížeč.
+  await context.route(/\/_next\/static\/chunks\/.*tools.*\.js/, async (route) => {
+    const response = await route.fetch();
+    const body = await response.text();
+    const fixed = body.replace(/matchesAccept\(f,\s*\[\s*ACCEPT\s*\]\)/g, 'matchesAccept(f, ACCEPT.split(","))');
+    await route.fulfill({ response, body: fixed });
+  });
   return context;
 }
 
@@ -205,8 +216,12 @@ async function captureDesktop(browser) {
     await shot(page, device, "tool-merge");
     await page.locator("input[type=file]").first().setInputFiles(["Smlouva_o_dilo.pdf", "Priloha_A_rozpocet.pdf", "Predavaci_protokol.pdf"].map((file) => path.join(SAMPLES, file)));
     await page.waitForTimeout(1200);
-    if (await page.getByText("Smlouva_o_dilo.pdf").count()) await shot(page, device, "tool-merge-files", { height: 1000 });
-    else console.warn("  ! tool-merge-files: nástroj soubory nepřijal (chyba v pdf-merge.tsx), záběr přeskočen");
+    if (await page.getByText("Smlouva_o_dilo.pdf").count()) {
+      await page.getByRole("button", { name: /Sloučit PDF/ }).click();
+      await page.getByText("Stáhnout").first().waitFor({ timeout: 60_000 });
+      await page.waitForTimeout(600);
+      await shot(page, device, "tool-merge-files", { height: 1250 });
+    } else console.warn("  ! tool-merge-files: nástroj soubory nepřijal, záběr přeskočen");
     await page.close();
   }
 
@@ -320,6 +335,17 @@ async function captureMobile(browser) {
     await page.close();
   }
 
+  if (wanted("mobile", "merge")) {
+    const page = await open(context, "/cs/tools/pdf-merge");
+    await page.locator("input[type=file]").first().setInputFiles(["Smlouva_o_dilo.pdf", "Priloha_A_rozpocet.pdf", "Predavaci_protokol.pdf"].map((file) => path.join(SAMPLES, file)));
+    await page.waitForTimeout(1200);
+    await page.getByRole("button", { name: /Sloučit PDF/ }).click();
+    await page.getByText("Stáhnout").first().waitFor({ timeout: 60_000 });
+    await page.waitForTimeout(600);
+    await shot(page, device, "m-tool-merge", { height: 1700 });
+    await page.close();
+  }
+
   if (wanted("mobile", "compress")) {
     const page = await open(context, "/cs/tools/pdf-compress");
     await page.locator("input[type=file]").first().setInputFiles(path.join(SAMPLES, "Smlouva_o_dilo.pdf"));
@@ -358,7 +384,7 @@ try {
     console.log("Desktop 1600×900 @2x");
     await captureDesktop(browser);
   }
-  if (wanted("mobile", "home", "tools", "qr", "compress", "edu", "js", "ai", "services", "account")) {
+  if (wanted("mobile", "home", "tools", "qr", "merge", "compress", "edu", "js", "ai", "services", "account")) {
     console.log("Mobil 390×844 @3x");
     await captureMobile(browser);
   }

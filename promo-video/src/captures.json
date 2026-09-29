@@ -69,6 +69,11 @@
     "height": 900,
     "frames": 1
   },
+  "desktop/tool-merge-files": {
+    "width": 1600,
+    "height": 1168,
+    "frames": 1
+  },
   "desktop/tool-password": {
     "width": 1600,
     "height": 900,
@@ -132,6 +137,11 @@
   "mobile/m-tool-compress": {
     "width": 390,
     "height": 1463,
+    "frames": 1
+  },
+  "mobile/m-tool-merge": {
+    "width": 390,
+    "height": 1431,
     "frames": 1
   },
   "mobile/m-tool-qr": {

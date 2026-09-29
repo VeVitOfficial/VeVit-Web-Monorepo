@@ -5,7 +5,7 @@
 export const TEXTS = {
   hook: {
     // Tři rychlé střihy (každý ~1 s), pak pointa.
-    lines: ["Zmenšit PDF.", "Naučit se Python.", "Sehnat elektrikáře."],
+    lines: ["Sloučit PDF.", "Naučit se Python.", "Sehnat elektrikáře."],
     punch: "Všechno na jednom místě.",
   },
   intro: {

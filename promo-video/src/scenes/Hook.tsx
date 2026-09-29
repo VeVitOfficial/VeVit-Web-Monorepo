@@ -10,12 +10,12 @@ const FLASH = 30;
 
 const FLASHES = {
   desktop: [
-    { capture: "desktop/tool-compress", scroll: 260 },
+    { capture: "desktop/tool-merge-files", scroll: 300 },
     { capture: "desktop/edu-python", scroll: 0 },
     { capture: "desktop/svc-detail", scroll: 60 },
   ],
   mobile: [
-    { capture: "mobile/m-tool-compress", scroll: 380 },
+    { capture: "mobile/m-tool-merge", scroll: 260 },
     { capture: "mobile/m-edu-programming", scroll: 700 },
     { capture: "mobile/m-svc-detail", scroll: 0 },
   ],

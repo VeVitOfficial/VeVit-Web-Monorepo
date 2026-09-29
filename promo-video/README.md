@@ -17,7 +17,7 @@ okna prohlížeče ukazuje mobilní zobrazení v telefonu.
 
 | # | Čas | Na obrazovce | Titulek | Přechod |
 |---|---|---|---|---|
-| 1 | 0:00–0:04,5 | Hook: tři rychlé střihy skutečného UI (Komprese PDF, kurz Pythonu, poptávka na elektrikáře) | „Zmenšit PDF.“ / „Naučit se Python.“ / „Sehnat elektrikáře.“ → „Všechno na jednom místě.“ | tvrdé střihy, prolnutí |
+| 1 | 0:00–0:04,5 | Hook: tři rychlé střihy skutečného UI (Sloučení PDF, kurz Pythonu, poptávka na elektrikáře) | „Sloučit PDF.“ / „Naučit se Python.“ / „Sehnat elektrikáře.“ → „Všechno na jednom místě.“ | tvrdé střihy, prolnutí |
 | 2 | 0:04–0:09,5 | Logo VeVit, pak domovská stránka vevit.cz | Český digitální ekosystém – Nástroje, lekce a služby na jednom místě. **Bez reklam.** | posun zprava |
 | 3 | 0:09–0:15 | Tools: psaní „pdf“ do hledání, průjezd mřížkou nástrojů, počítadla | VeVit Tools – 107 nástrojů zdarma, bez registrace | prolnutí |
 | 4 | 0:14,5–0:21,5 | QR generátor (živé psaní URL), Komprese PDF (−60 %), Generátor hesel; zvýrazněný štítek „Lokálně“ | Soubory neopouštějí tvůj počítač. | posun zprava |
@@ -59,13 +59,16 @@ verzi), a pak `npm run render`.
   z `public/home/images`.
 - Rozvržení obou formátů: `src/layout.ts`.
 
-> **Poznámka k hooku:** Původní scénář počítal s „Sloučit PDF.“. Nástroj
-> Sloučení PDF ale v aktuální verzi aplikace nepřijme žádný soubor
-> (`src/components/tools/tools/pdf-merge.tsx`, řádek 69: `matchesAccept`
-> dostává celý řetězec `ACCEPT` místo pole přípon). Video proto zatím ukazuje
-> funkční Kompresi PDF. Po opravě stačí v `src/texts.ts` vrátit text, spustit
-> `npm run capture -- merge`, který pořídí i záběr `tool-merge-files`, a
-> v `src/scenes/Hook.tsx` ho použít místo `tool-compress`.
+> **Opravy jen pro video:** Dvě chyby aplikace, které by byly vidět v záběrech,
+> opravuje jen natáčecí prohlížeč (`capture/capture.mjs`, funkce `newContext`).
+> Zdrojový kód aplikace zůstává beze změny.
+> - Sloučení PDF: v `pdf-merge.tsx` se předává `[ACCEPT]` místo seznamu přípon,
+>   takže nástroj nepřijme žádný soubor. Skript `tools` se při natáčení za běhu
+>   přepíše na `ACCEPT.split(",")`.
+> - Hledání v Tools: vedle vlastního „ד se zobrazuje i nativní křížek
+>   prohlížeče. Při natáčení se nativní křížek skryje přes CSS.
+>
+> Až aplikaci opravíš, obě úpravy v `newContext` smaž.
 
 ## Hudba
 
