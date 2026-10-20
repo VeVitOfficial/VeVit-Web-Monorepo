@@ -202,11 +202,11 @@ Obsah kroku podle `udaje-firma.html`: kontakt (jméno, e-mail, telefon s předvo
   - `buildCreatePacketXml(input: { apiPassword: string; number: string; name: string; surname: string; email: string; phone: string; addressId: string; valueCzk: string; weightKg: string; eshop: string }): string` a `parseCreatePacketResponse(xml: string): { ok: true; id: string; barcode: string } | { ok: false; fault: string }` (Zásilkovna REST `https://www.zasilkovna.cz/api/rest`, `createPacket`; ověř tvar v `docs.packeta.com`). Text v XML escapovat.
   - Handler `packeta_create_packet` (ref = `order.public_id`): `createPacket` → insert do `store_deliveries` (`carrier_code: "packeta"`, `carrier_name: "Zásilkovna"`, `tracking_number` = barcode, `tracking_url = "https://tracking.packeta.com/cs/?id=" + id`, ostatní sloupce podle migrace `202607300002_customer_agenda_up.sql`) a `fulfillment_status` dle stávajícího automatu.
 
-- [ ] **Step 1: Write failing tests**: `nextRunDelaySeconds(0) === 60`, `(4) === 21600`, `(5) === null`; `buildCreatePacketXml` escapuje `&` a `<` ve jméně; `parseCreatePacketResponse` nad ukázkovou úspěšnou a chybovou odpovědí z dokumentace.
-- [ ] **Step 2: Run** — FAIL.
-- [ ] **Step 3: Implement.** Hmotnost = součet `weight_grams × quantity` fyzických položek / 1000, hodnota = `total_minor` v Kč.
-- [ ] **Step 4: Verify** testy, typecheck, lint PASS; s testovacím API heslem Zásilkovny zaplacená testovací objednávka založí zásilku (vidět v klientské sekci Zásilkovny) a v `/store/order` je sledovací odkaz. Volání `/api/jobs/run` bez tokenu → 401.
-- [ ] **Step 5: Commit** `feat(store): payment jobs and automatic Packeta packets`
+- [x] **Step 1: Write failing tests**: `nextRunDelaySeconds(0) === 60`, `(4) === 21600`, `(5) === null`; `buildCreatePacketXml` escapuje `&` a `<` ve jméně; `parseCreatePacketResponse` nad ukázkovou úspěšnou a chybovou odpovědí z dokumentace.
+- [x] **Step 2: Run** — FAIL.
+- [x] **Step 3: Implement.** Hmotnost = součet `weight_grams × quantity` fyzických položek / 1000, hodnota = `total_minor` v Kč.
+- [x] **Step 4: Verify** testy, typecheck, lint PASS; s testovacím API heslem Zásilkovny zaplacená testovací objednávka založí zásilku (vidět v klientské sekci Zásilkovny) a v `/store/order` je sledovací odkaz. Volání `/api/jobs/run` bez tokenu → 401. Testy, typecheck, lint PASS; `GET /api/jobs/run` bez tokenu i se špatným tokenem → 401 (ověřeno curlem na dev serveru). NEOVĚŘENO (blokováno): založení zásilky s testovacím API heslem a `PACKETA_API_PASSWORD`, `PACKETA_SENDER_LABEL`, `CRON_SECRET`, a spuštěná migrace 202610200004.
+- [x] **Step 5: Commit** `feat(store): payment jobs and automatic Packeta packets`
 
 ### Task 8: Texty a úklid
 

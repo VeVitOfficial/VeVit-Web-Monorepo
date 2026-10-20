@@ -276,3 +276,22 @@ rozhodnutí uživatele i bezpečnější výklad rozporů nalezených během rea
   neumí, spadne na kartu. Odkaz „Změnit způsob platby“ vede na krok 2 (nový snapshot a objednávka).
 - Na stránce Hotovo (`/store/success`) se po načtení existující objednávky smaže koncept i košík
   (`ClearCheckout`); rekapitulace ukazuje dopravu (včetně cenové položky) a platbu z objednávky.
+- Fronta úloh (`payment_jobs`) je v Supabase a zpracovává ji `GET /api/jobs/run`: hned po zaplacení z webhooku
+  přes `after()` (jen při výsledku `paid`, `runDueJobs(5)`) a pojistně Vercel Cron každých 15 minut
+  (`CRON_SECRET` jako Bearer; bez nastaveného tajemství vrací vždy 401). Supabase `pg_cron` se nepoužil,
+  protože úloha volá externí API a potřebuje serverové tajemství Zásilkovny.
+- Úloha se zařazuje ve webhooku PŘED označením objednávky za zaplacenou (`enqueueShipmentForOrder`). Když
+  zařazení selže, webhook vrátí 500 a Stripe ho zopakuje; handler sám čeká na `payment_status = paid`
+  (jinak opakuje), takže nelze ztratit zásilku ani poslat nezaplacené zboží.
+- `attempts` se zvyšuje při převzetí úlohy (CAS na `status` + `updated_at`); po selhání se čeká
+  `nextRunDelaySeconds(attempts - 1)` (1 min, 5 min, 15 min, 1 h, 6 h), šestý neúspěch → `failed` s
+  důvodem v `last_error`. Úloha ve stavu `running` starší než 10 minut se považuje za osiřelou a převezme se.
+  Chyby, které se opakováním nespraví (objednávka bez místa/telefonu, ruční kontrola), jdou rovnou na `failed`.
+- Zásilka se po vytvoření uloží do `payload.packet` dřív, než se zapíše `store_deliveries`; opakování po pádu
+  tak zásilku v Zásilkovně nezaloží podruhé. `store_deliveries` má stav `prepared`, položky se zapíšou do
+  `store_delivery_items`, objednávka přejde `ready → processing` (stávající automat, jen CAS z `paid/ready`).
+- Tvar chybové odpovědi REST `createPacket` není v dokumentaci Zásilkovny popsán, proto je parser
+  tolerantní: bere `status`, `fault`, `string` a dvojice `name`/`fault` z detailu. Úspěšný tvar je z dokumentace.
+- `createPacket` posílá jen `addressId` (ID místa), hodnotu v CZK z `total_minor`, hmotnost ze součtu
+  `weight_grams × množství` fyzických položek (min. 100 g) a bez dobírky. Jméno se dělí na jméno/příjmení
+  podle povolených znaků Zásilkovny (jedno slovo se použije pro obojí).

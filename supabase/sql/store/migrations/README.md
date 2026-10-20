@@ -161,3 +161,15 @@ a sazbu DPH (`vat_rate`, výchozí 21 %). Skutečné hmotnosti a sazby nastaví 
 Migrace je opakovatelná. Bez ní vytvoření objednávky ze snapshotu selže, protože nové
 sloupce se zapisují vždy. Rollback `202610200003_checkout_details_down.sql` ztratí uložené
 údaje; po prvních reálných objednávkách raději obnova ze zálohy.
+
+Druhá migrace fáze 2 se spouští po `202610200003`:
+
+```bash
+psql "$DB_DSN" -v ON_ERROR_STOP=1 -f migrations/202610200004_payment_jobs_up.sql
+```
+
+Vytváří tabulku `payment_jobs` (fronta úloh po zaplacení: založení zásilky v Zásilkovně, ve fázi 5
+i faktury), jen pro service role, s unikátním `(kind, ref)`. Je opakovatelná. Rollback
+`202610200004_payment_jobs_down.sql` zahodí i nedokončené úlohy; před ním zkontroluj
+`select * from payment_jobs where status <> 'done'`. Úlohy zpracovává `GET /api/jobs/run`
+(po webhooku přes `after()` a pojistně Vercel Cron každých 15 minut, vyžaduje `CRON_SECRET`).

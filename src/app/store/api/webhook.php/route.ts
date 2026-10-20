@@ -1,8 +1,10 @@
 import { createHash } from "node:crypto";
+import { after } from "next/server";
 import Stripe from "stripe";
 import { StoreError, storeStripeConfig } from "@/lib/store-config";
 import { processStripeEvent, StripeEventStructureError } from "@/lib/store-webhook-processor";
 import { resolveEdgeFunctionUrl } from "@/lib/edge-proxy";
+import { runDueJobs } from "@/lib/jobs/payment-jobs";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -63,6 +65,17 @@ export async function POST(request: Request): Promise<Response> {
     }
 
     await forwardToEdgeFunction(request, body);
+
+    // A freshly paid order has jobs waiting (Packeta packet): run them now, after the response, so Stripe is not kept waiting.
+    if (localResult.result === "paid") {
+      after(async () => {
+        try {
+          await runDueJobs(5);
+        } catch (error) {
+          console.error("[store:webhook] post-payment jobs failed", error instanceof Error ? error.name : "unknown");
+        }
+      });
+    }
 
     return Response.json({ received: true, result: localResult.result }, {
       status: localResult.http_status,

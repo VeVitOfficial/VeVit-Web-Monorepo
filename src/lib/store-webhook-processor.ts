@@ -1,4 +1,5 @@
 import Stripe from "stripe";
+import { enqueueShipmentForOrder } from "@/lib/jobs/payment-jobs";
 import { publicDeclineCode } from "@/lib/payments/decline-messages";
 import { intentMismatch, paymentMethodFromCharge } from "@/lib/payments/intent-checks";
 import { storeRest, storeStripeConfig } from "@/lib/store-config";
@@ -345,6 +346,9 @@ async function fulfillPaidOrder(ledgerId: number, order: OrderRow, intent: strin
   for (const item of items) {
     if (item.product_type === "digital") await createEntitlement(order.id, order.user_id, item.id);
   }
+  // Queued before the order is marked paid: if this throws the webhook is retried, and the job itself
+  // waits for the paid state, so a crash in between can neither lose the packet nor ship unpaid goods.
+  await enqueueShipmentForOrder(order.id);
   await payOrder(order, intent, null, now, paymentMethod);
   await markEvent(ledgerId, "processed", "paid", order.id);
   return { result: "paid", http_status: 200 };
