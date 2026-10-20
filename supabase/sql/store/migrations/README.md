@@ -135,3 +135,14 @@ psql "$DB_DSN" -v ON_ERROR_STOP=1 -f migrations/202610200001_card_bin_cache_up.s
 
 Rollback `202610200001_card_bin_cache_down.sql` je bezpečný kdykoliv (tabulka
 obsahuje jen mezipaměť, ztratí se jen už zjištěné banky).
+
+Druhá migrace fáze 1 se spouští až po první:
+
+```bash
+psql "$DB_DSN" -v ON_ERROR_STOP=1 -f migrations/202610200002_payment_intents_up.sql
+```
+
+Přidává do `store_orders` sloupce `payment_provider`, `payment_method`,
+`payment_attempts`, `payment_intent_seq`, `last_payment_error`. Je opakovatelná
+(`IF NOT EXISTS`). Rollback `202610200002_payment_intents_down.sql` ztratí počítadla
+pokusů a zaznamenanou metodu platby; po prvních reálných platbách raději obnova ze zálohy.

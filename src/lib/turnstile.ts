@@ -1,7 +1,7 @@
 import "server-only";
 
 /** Actions the frontend widgets render with; siteverify must echo the same one. */
-export type TurnstileAction = "login" | "register" | "skoly_interest" | "services_request";
+export type TurnstileAction = "login" | "register" | "skoly_interest" | "services_request" | "store_payment";
 
 /**
  * Cloudflare Turnstile verification. When TURNSTILE_SECRET is configured, the

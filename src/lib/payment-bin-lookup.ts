@@ -1,6 +1,7 @@
 import { mapBinResponse, matchKnownBank } from "@/lib/payments/bin-response";
 import type { CardBankKey } from "@/lib/payments/card-banks";
 import { storeRest } from "@/lib/store-config";
+import { storeRateLimitConsume, StoreRateLimitExceededError } from "@/lib/store-ratelimit";
 import "server-only";
 
 /**
@@ -32,6 +33,19 @@ const LOOKUP_TIMEOUT_MS = 1500;
 const MISS_TTL_MS = 7 * 24 * 60 * 60 * 1000;
 // Known-bank branding is only trusted for the two markets the local table covers.
 const BRANDED_COUNTRIES = new Set(["CZ", "SK"]);
+// Global cap on outbound lookups, independent of the (spoofable) per-IP limit in the route.
+const EXTERNAL_LOOKUPS_PER_WINDOW = 300;
+const EXTERNAL_WINDOW_SECONDS = 600;
+
+async function externalLookupAllowed(): Promise<boolean> {
+  try {
+    await storeRateLimitConsume("card_bin_external", "all", EXTERNAL_LOOKUPS_PER_WINDOW, EXTERNAL_WINDOW_SECONDS);
+    return true;
+  } catch (error) {
+    if (error instanceof StoreRateLimitExceededError) return false;
+    throw error;
+  }
+}
 
 function infoFromRow(row: CacheRow): BinInfo | null {
   if (row.source === "miss") return null;
@@ -85,6 +99,7 @@ export async function lookupBin(prefix: string): Promise<BinInfo | null> {
   const cached = await readCache(prefix);
   if (cached.hit) return cached.info;
 
+  if (!(await externalLookupAllowed())) return null;
   const external = await fetchExternal(prefix);
   if (external.status === "unavailable") return null;
   if (external.status === "miss") {
