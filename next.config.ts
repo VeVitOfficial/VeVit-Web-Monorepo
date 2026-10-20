@@ -16,15 +16,15 @@ const securityHeaders = [
     key: "Content-Security-Policy-Report-Only",
     value: [
       "default-src 'self'",
-      // Stripe.js and wallets (docs.stripe.com/security/guide); GoPay and Packeta are added in later phases.
-      "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://challenges.cloudflare.com https://js.stripe.com https://*.js.stripe.com https://pay.google.com",
+      // Stripe.js and wallets (docs.stripe.com/security/guide); GoPay is added in a later phase. Packeta: widget library, health check and iframe hosts.
+      "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://challenges.cloudflare.com https://js.stripe.com https://*.js.stripe.com https://pay.google.com https://widget.packeta.com",
       "style-src 'self' 'unsafe-inline'",
       "font-src 'self' data:",
       "img-src 'self' data: blob: https:",
-      "connect-src 'self' https://*.supabase.co https://api.pwnedpasswords.com https://challenges.cloudflare.com https://api.stripe.com https://*.js.stripe.com https://pay.google.com https://google.com/pay",
+      "connect-src 'self' https://*.supabase.co https://api.pwnedpasswords.com https://challenges.cloudflare.com https://api.stripe.com https://*.js.stripe.com https://pay.google.com https://google.com/pay https://widget.packeta.com https://hd.widget.packeta.com",
       "media-src 'self' blob:",
       "worker-src 'self' blob:",
-      "frame-src 'self' blob: https://challenges.cloudflare.com https://js.stripe.com https://*.js.stripe.com https://hooks.stripe.com https://pay.google.com",
+      "frame-src 'self' blob: https://challenges.cloudflare.com https://js.stripe.com https://*.js.stripe.com https://hooks.stripe.com https://pay.google.com https://widget.packeta.com https://hd.widget.packeta.com https://backup.widget.packeta.com https://error-page-service-widget-errors.prod.packeta-com.codenow.com",
       "object-src 'none'",
       "base-uri 'self'",
       "form-action 'self'",
@@ -32,6 +32,13 @@ const securityHeaders = [
       "upgrade-insecure-requests"
     ].join("; ")
   }
+];
+
+// The delivery step embeds Packeta's map iframe, which is not COEP-tagged, and the map offers "near me".
+const deliveryPageHeaders = [
+  { key: "Cross-Origin-Embedder-Policy", value: "unsafe-none" },
+  { key: "Permissions-Policy", value: 'camera=(), microphone=(), geolocation=(self "https://widget.packeta.com"), payment=(self)' },
+  { key: "Cache-Control", value: "no-store" }
 ];
 
 // Payment pages differ from the global policy: Stripe's Google Pay popup needs window.opener (COOP)
@@ -65,6 +72,7 @@ const nextConfig: NextConfig = {
     return [
       { source: "/:path*", headers: securityHeaders },
       { source: "/:locale(cs|en|de|es|uk|fr|sk)?/store/checkout/platba", headers: paymentPageHeaders },
+      { source: "/:locale(cs|en|de|es|uk|fr|sk)?/store/checkout/doprava", headers: deliveryPageHeaders },
       {
         source: "/assets/:path*",
         headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }]

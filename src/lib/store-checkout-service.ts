@@ -15,6 +15,7 @@ import {
 } from "@/lib/checkout/checkout-input";
 import type { PostalAddress } from "@/lib/checkout/company";
 import { shippingMinor as computeShippingMinor } from "@/lib/checkout/shipping";
+import { lookupPacketaPoint } from "@/lib/packeta";
 import { snapshotIntegrityHash, sha256Hex } from "@/lib/store-order-core";
 import { storeRest, StoreRestError } from "@/lib/store-config";
 import "server-only";
@@ -349,6 +350,14 @@ export async function createCheckoutSnapshot(params: CheckoutCreateInput): Promi
   }
 
   const details = finalizeCheckoutDetails(normalized, { hasPhysical, hasDigital });
+  if (details.delivery?.method === "packeta_pickup") {
+    // The point arrives from the browser: Packeta confirms it exists and its data replaces the client's.
+    const lookup = await lookupPacketaPoint(details.delivery.point);
+    if (lookup.status === "invalid") {
+      throw new CheckoutValidationException("invalid_delivery", "Vybrané výdejní místo už není dostupné. Vyber jiné.");
+    }
+    if (lookup.status === "valid") details.delivery = { method: "packeta_pickup", point: lookup.point };
+  }
   const shipping = details.shipping;
   const shippingMinor = computeShippingMinor({
     method: deliveryMethodOf(details.delivery),

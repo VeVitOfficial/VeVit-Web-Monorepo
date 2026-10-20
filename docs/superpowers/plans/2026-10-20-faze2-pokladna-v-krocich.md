@@ -127,11 +127,11 @@ test("shipping rules", () => {
   - `<PacketaPicker value={PacketaPoint | null} onChange={(p: PacketaPoint | null) => void} />` načte `https://widget.packeta.com/v6/www/js/library.js` až při kliknutí, volá `Packeta.Widget.pick(apiKey, cb, { country: "cz,sk", language: "cs" })`
   - `validatePacketaPoint(point: PacketaPoint): Promise<"valid" | "invalid" | "unknown">` přes validační API výdejních míst podle `docs.packeta.com`; `"unknown"` při nedostupnosti (pokladna pak pokračuje, chybu zachytí založení zásilky). Volá se v `createCheckoutSnapshot`; `"invalid"` → `CheckoutValidationException("invalid_delivery", "Vybrané výdejní místo už není dostupné. Vyber jiné.")`.
 
-- [ ] **Step 1: Write failing tests** pro `pointFromWidget`: objekt s `id`, `name`, `street`, `city`, `zip`, `country: "cz"` → `PacketaPoint` s `country: "CZ"`; chybějící `id` → `null`; Z-BOX → `kind: "zbox"`.
-- [ ] **Step 2: Run** — FAIL.
-- [ ] **Step 3: Implement.**
-- [ ] **Step 4: Verify** testy, typecheck, lint PASS; v prohlížeči s testovacím API klíčem se otevře mapa a vybrané místo se vrátí.
-- [ ] **Step 5: Commit** `feat(store): Packeta pickup point picker`
+- [x] **Step 1: Write failing tests** pro `pointFromWidget`: objekt s `id`, `name`, `street`, `city`, `zip`, `country: "cz"` → `PacketaPoint` s `country: "CZ"`; chybějící `id` → `null`; Z-BOX → `kind: "zbox"`.
+- [x] **Step 2: Run** — FAIL.
+- [x] **Step 3: Implement.**
+- [ ] **Step 4: Verify** testy, typecheck, lint PASS; v prohlížeči s testovacím API klíčem se otevře mapa a vybrané místo se vrátí. Testy, typecheck a lint PASS. Ověření mapy v prohlížeči ČEKÁ na testovací `NEXT_PUBLIC_PACKETA_API_KEY` (blokováno).
+- [x] **Step 5: Commit** `feat(store): Packeta pickup point picker`
 
 ### Task 5: Kroky 1–2 a koncept pokladny
 

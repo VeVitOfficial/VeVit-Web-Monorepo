@@ -235,3 +235,20 @@ rozhodnutí uživatele i bezpečnější výklad rozporů nalezených během rea
   mezipamětí `card_bin_cache`. Značka známé banky se z externí odpovědi použije
   jen pro CZ/SK, aby zahraniční banka stejného jména nedostala české barvy.
   Globální strop 300 externích dotazů za 10 minut chrání službu při podvržených IP.
+
+## Pokladna v krocích (fáze 2, 2026-10-21)
+
+- Výdejní místo Zásilkovny přichází z prohlížeče, proto ho server při vytváření snapshotu ověří
+  validačním endpointem Zásilkovny (`/v6/pps/api/widget/v1/validate`, jen s ID místa). `invalid` → chyba
+  `invalid_delivery`; `valid` → do snapshotu a objednávky se uloží názvy a adresa z odpovědi Zásilkovny,
+  ne ta z prohlížeče; `unknown` (klíč chybí, Zásilkovna nedostupná, HTTP 400/401) → pokladna pokračuje
+  a poslední kontrolou je založení zásilky. Zásilka se zakládá jen podle ID místa (`addressId`).
+  `validatePacketaPoint` z plánu zůstává, přibyla `lookupPacketaPoint` s ověřenými daty.
+- Widget se omezuje přes `vendors` (Packeta Z-BOX a výdejní místa CZ/SK), ne přes `country`: dokumentace
+  Zásilkovny `country` označuje za vhodné jen pro zúžení a externí dopravci nemají ID pobočky, které
+  `createPacket` potřebuje. Místa bez ID se v `pointFromWidget` odmítnou.
+- Stránka `/store/checkout/doprava` dostává jako platební stránka `Cross-Origin-Embedder-Policy:
+  unsafe-none`, protože iframe widgetu Zásilkovny nemá COEP hlavičku, a `Permissions-Policy` s
+  geolokací pro `widget.packeta.com` (tlačítko „blízko mě“ na mapě). Zbytek webu zůstává beze změny.
+- CSP (Report-Only) povoluje `widget.packeta.com` (skript, spojení, iframe), `hd.widget.packeta.com`
+  a záložní/chybové hostitele widgetu.
