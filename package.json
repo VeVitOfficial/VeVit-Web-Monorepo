@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@browserbasehq/sdk": "^2.19.1",
+    "@stripe/stripe-js": "10.1.0",
     "@supabase/ssr": "^0.12.5",
     "@supabase/supabase-js": "^2.112.4",
     "@vercel/analytics": "^2.0.1",
