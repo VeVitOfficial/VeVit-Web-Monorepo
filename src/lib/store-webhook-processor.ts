@@ -1,4 +1,6 @@
-import { storeRest } from "@/lib/store-config";
+import Stripe from "stripe";
+import { intentMismatch, paymentMethodFromCharge } from "@/lib/payments/intent-checks";
+import { storeRest, storeStripeConfig } from "@/lib/store-config";
 import { canTransitionPayment } from "@/lib/store-payment-service";
 import "server-only";
 
@@ -209,7 +211,13 @@ async function createEntitlement(orderId: number, userId: string | null, itemId:
 }
 
 /** store_orders update with the PHP COALESCE(column, value) semantics. */
-async function payOrder(order: OrderRow, paymentIntent: string | null, manualReviewReason: string | null, now: Date): Promise<void> {
+async function payOrder(
+  order: OrderRow,
+  paymentIntent: string | null,
+  manualReviewReason: string | null,
+  now: Date,
+  paymentMethod: string | null = null,
+): Promise<void> {
   const nowIso = now.toISOString();
   const body: Record<string, unknown> = {
     payment_status: "paid",
@@ -217,6 +225,8 @@ async function payOrder(order: OrderRow, paymentIntent: string | null, manualRev
     payment_evidence_at: order.payment_evidence_at ?? nowIso,
     stripe_payment_intent: order.stripe_payment_intent ?? paymentIntent,
   };
+  // Only the PaymentIntent flow records the method (column comes from migration 202610200002).
+  if (paymentMethod !== null) body.payment_method = paymentMethod;
   if (manualReviewReason !== null) {
     body.fulfillment_status = "manual_review";
     body.status = "manual_review";
@@ -256,7 +266,8 @@ export async function processStripeEvent(
   if (["processed", "ignored", "manual_review"].includes(ledger.processing_status)) {
     return { result: "duplicate", http_status: 200 };
   }
-  if (eventType !== "checkout.session.completed") {
+  const isIntentEvent = eventType === "payment_intent.succeeded" || eventType === "payment_intent.payment_failed";
+  if (eventType !== "checkout.session.completed" && !isIntentEvent) {
     if (ledger.processing_status === "received") {
       await markEvent(ledger.id, "ignored", "unsupported_event", null);
       return { result: "ignored", http_status: 200 };
@@ -267,6 +278,7 @@ export async function processStripeEvent(
     await markEvent(ledger.id, "manual_review", "environment_mismatch", null);
     return { result: "manual_review", http_status: 200 };
   }
+  if (isIntentEvent) return processPaymentIntentEvent(eventType, objectRecord, ledger.id, expectedLiveMode);
 
   const order = await lockCorrelatedOrder(objectRecord);
   if (order === null) {
@@ -298,12 +310,19 @@ export async function processStripeEvent(
   }
   await ledgerOrderPatch;
 
+  const intent = typeof objectRecord.payment_intent === "string" && objectRecord.payment_intent !== "" ? objectRecord.payment_intent : null;
+  return fulfillPaidOrder(ledger.id, order, intent, null);
+}
+
+// ── Shared fulfillment tail (checkout.session.completed and payment_intent.succeeded) ─
+
+async function fulfillPaidOrder(ledgerId: number, order: OrderRow, intent: string | null, paymentMethod: string | null): Promise<ProcessResult> {
   if (order.payment_status === "paid" && order.payment_effects_applied_at !== null) {
-    await markEvent(ledger.id, "processed", "already_fulfilled", order.id);
+    await markEvent(ledgerId, "processed", "already_fulfilled", order.id);
     return { result: "duplicate_payment", http_status: 200 };
   }
   if (order.payment_status === "paid" && order.fulfillment_status === "manual_review") {
-    await markEvent(ledger.id, "processed", "already_manual_review", order.id);
+    await markEvent(ledgerId, "processed", "already_manual_review", order.id);
     return { result: "paid_manual_review", http_status: 200 };
   }
   if (!canTransitionPayment(order.payment_status, "paid")) {
@@ -313,10 +332,9 @@ export async function processStripeEvent(
   const items = await loadOrderItemsAndProducts(order.id);
   const conflict = fulfillmentConflict(items);
   const now = new Date();
-  const intent = typeof objectRecord.payment_intent === "string" && objectRecord.payment_intent !== "" ? objectRecord.payment_intent : null;
   if (conflict !== null) {
-    await payOrder(order, intent, conflict, now);
-    await markEvent(ledger.id, "processed", conflict, order.id);
+    await payOrder(order, intent, conflict, now, paymentMethod);
+    await markEvent(ledgerId, "processed", conflict, order.id);
     return { result: "paid_manual_review", http_status: 200 };
   }
 
@@ -326,7 +344,129 @@ export async function processStripeEvent(
   for (const item of items) {
     if (item.product_type === "digital") await createEntitlement(order.id, order.user_id, item.id);
   }
-  await payOrder(order, intent, null, now);
-  await markEvent(ledger.id, "processed", "paid", order.id);
+  await payOrder(order, intent, null, now, paymentMethod);
+  await markEvent(ledgerId, "processed", "paid", order.id);
   return { result: "paid", http_status: 200 };
+}
+
+// ── PaymentIntent events (custom payment gateway) ────────────────────────────
+
+const ORDER_FIELDS =
+  "id,user_id,payment_status,fulfillment_status,status,total_minor,currency,stripe_payment_intent,paid_at,payment_evidence_at,payment_effects_applied_at,public_id";
+
+interface IntentOrderRow extends OrderRow {
+  public_id: string;
+}
+
+async function chargePaymentMethod(intent: Record<string, unknown>): Promise<string | null> {
+  const latest = intent.latest_charge;
+  try {
+    if (latest !== null && typeof latest === "object") {
+      return paymentMethodFromCharge((latest as Record<string, unknown>).payment_method_details as Parameters<typeof paymentMethodFromCharge>[0]);
+    }
+    const config = storeStripeConfig();
+    if (typeof latest !== "string" || !/^ch_[A-Za-z0-9_]+$/.test(latest) || config === null) return null;
+    const charge = await new Stripe(config.secretKey).charges.retrieve(latest);
+    return paymentMethodFromCharge(charge.payment_method_details as unknown as Parameters<typeof paymentMethodFromCharge>[0]);
+  } catch {
+    // The method is bookkeeping only; a failed lookup must not hold back a verified payment.
+    return null;
+  }
+}
+
+async function processPaymentIntentEvent(
+  eventType: "payment_intent.succeeded" | "payment_intent.payment_failed",
+  intent: Record<string, unknown>,
+  ledgerId: number,
+  expectedLiveMode: boolean,
+): Promise<ProcessResult> {
+  const metadata = (intent.metadata ?? null) as Record<string, string> | null;
+  const publicId = metadata?.order_public_id;
+  const intentId = intent.id;
+  // Intents created by other flows (e.g. Premium subscriptions) share this endpoint: not ours.
+  if (metadata?.schema_version !== "2" || typeof publicId !== "string" || !/^[a-f0-9]{32}$/.test(publicId) ||
+    typeof intentId !== "string" || !/^pi_[A-Za-z0-9_]+$/.test(intentId)) {
+    await markEvent(ledgerId, "ignored", "not_store_intent", null);
+    return { result: "ignored", http_status: 200 };
+  }
+
+  const rows = await storeRest<IntentOrderRow[]>("GET", "store_orders", {
+    query: `select=${ORDER_FIELDS}&public_id=eq.${publicId}&limit=1`,
+  });
+  const order = rows.json[0];
+  if (!order) {
+    await markEvent(ledgerId, "manual_review", "order_correlation_failed", null);
+    return { result: "manual_review", http_status: 200 };
+  }
+  await storeRest("PATCH", "store_payment_events", { query: `id=eq.${ledgerId}`, prefer: "return=minimal", body: { order_id: order.id } });
+
+  const amount = eventType === "payment_intent.succeeded" ? intent.amount_received : intent.amount;
+  const mismatch = intentMismatch(
+    order,
+    {
+      id: intentId,
+      amount_received: amount as number,
+      currency: intent.currency as string,
+      metadata,
+      livemode: intent.livemode as boolean,
+    },
+    expectedLiveMode,
+  );
+
+  if (eventType === "payment_intent.payment_failed") {
+    // A superseded intent (method switch) failing later is harmless noise.
+    if (mismatch === "intent_mismatch") {
+      await markEvent(ledgerId, "ignored", "superseded_intent", order.id);
+      return { result: "ignored", http_status: 200 };
+    }
+    if (mismatch !== null) {
+      await markEvent(ledgerId, "manual_review", mismatch, order.id);
+      return { result: "manual_review", http_status: 200 };
+    }
+    // Never move a paid (or otherwise settled) order back to failed.
+    if (order.payment_status !== "awaiting_payment" || !canTransitionPayment(order.payment_status, "failed")) {
+      await markEvent(ledgerId, "processed", "ignored_state", order.id);
+      return { result: "ignored", http_status: 200 };
+    }
+    const lastError = (intent.last_payment_error ?? null) as { decline_code?: string; code?: string } | null;
+    const rawCode = lastError?.decline_code || lastError?.code || "card_declined";
+    await storeRest("PATCH", "store_orders", {
+      query: `id=eq.${order.id}&payment_status=eq.awaiting_payment`,
+      prefer: "return=minimal",
+      body: { payment_status: "failed", last_payment_error: /^[a-z0-9_]{1,64}$/.test(rawCode) ? rawCode : "card_declined" },
+    });
+    await markEvent(ledgerId, "processed", "payment_failed", order.id);
+    return { result: "payment_failed", http_status: 200 };
+  }
+
+  if (intent.status !== "succeeded") {
+    await markEvent(ledgerId, "manual_review", "payment_not_complete", order.id);
+    return { result: "manual_review", http_status: 200 };
+  }
+  if (mismatch !== null) {
+    await markEvent(ledgerId, "manual_review", mismatch, order.id);
+    return { result: "manual_review", http_status: 200 };
+  }
+  if (["cancelled", "refunded"].includes(order.payment_status)) {
+    await markEvent(ledgerId, "manual_review", "order_closed", order.id);
+    return { result: "manual_review", http_status: 200 };
+  }
+  const reused = await storeRest<Array<Pick<OrderRow, "id">>>("GET", "store_orders", {
+    query: `select=id&stripe_payment_intent=eq.${intentId}&id=neq.${order.id}&limit=1`,
+  });
+  if (reused.json.length > 0) {
+    await markEvent(ledgerId, "manual_review", "payment_intent_reused", order.id);
+    return { result: "manual_review", http_status: 200 };
+  }
+  if (order.payment_status === "failed") {
+    // A retry on the same intent can succeed after an earlier decline marked the order failed.
+    // The verified success is authoritative: reopen the order so the normal paid transition applies.
+    await storeRest("PATCH", "store_orders", {
+      query: `id=eq.${order.id}&payment_status=eq.failed`,
+      prefer: "return=minimal",
+      body: { payment_status: "awaiting_payment" },
+    });
+    order.payment_status = "awaiting_payment";
+  }
+  return fulfillPaidOrder(ledgerId, order, intentId, await chargePaymentMethod(intent));
 }

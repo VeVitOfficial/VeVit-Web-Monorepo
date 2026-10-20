@@ -216,3 +216,22 @@ rozhodnutí uživatele i bezpečnější výklad rozporů nalezených během rea
   zneužití bez platného cookie je nemožné. Burst ochrana (např. 10 req/min
   per user_id) se přidá v jednom uceleném průchodu přes všechny autentizační
   endpointy v Task 12, nikoli ad-hoc po jednom.
+
+## Platební brána (fáze 1, 2026-10-20)
+
+- Stripe destination pro Store nově přijímá i `payment_intent.succeeded` a
+  `payment_intent.payment_failed` (k původním událostem). Provozovatel je musí
+  přidat ve Stripe Dashboardu (Developers → Webhooks → endpoint → Select events);
+  bez nich zůstanou nové objednávky v `awaiting_payment`. Události platebních
+  záměrů bez `metadata.schema_version = "2"` (např. Premium) se ledgerují jako
+  `ignored`.
+- `store_orders.payment_attempts` počítá zamítnuté potvrzení karty (limit 5),
+  `payment_intent_seq` je číslo generace PaymentIntentu v idempotency klíči.
+  Přepnutí metody platby vytvoří nový PaymentIntent a starý se zruší.
+- Úspěšný `payment_intent.succeeded` na objednávce ve stavu `failed` ji nejdřív
+  znovu otevře (`awaiting_payment`) a teprve pak označí `paid`: ověřená platba má
+  přednost před dřívějším zamítnutím téhož záměru.
+- BIN: lokální tabulka bank + volitelná externí služba (`BIN_LOOKUP_URL`) s
+  mezipamětí `card_bin_cache`. Značka známé banky se z externí odpovědi použije
+  jen pro CZ/SK, aby zahraniční banka stejného jména nedostala české barvy.
+  Globální strop 300 externích dotazů za 10 minut chrání službu při podvržených IP.
