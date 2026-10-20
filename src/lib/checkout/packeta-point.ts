@@ -70,19 +70,21 @@ export function buildValidationRequest(id: string, apiKey: string) {
 }
 
 /**
- * Validation errors that say the point itself cannot be used. Other codes (age verification, claim
- * assistant, empty country list ...) describe options of our own request, so they must not block a customer.
+ * Validation errors that only describe options of OUR request (age check, claim assistant, drop-off,
+ * weight, dimensions, cash on delivery, empty country list). The checkout sends none of those options,
+ * so an answer made only of these says nothing against the point. Anything else, an unknown code or an
+ * invalid answer without errors included, blocks the order: validation fails closed.
  */
-const POINT_ERRORS = new Set([
-  "NotFound",
-  "InvalidCarrier",
-  "InvalidCountry",
-  "InvalidVendor",
-  "PickupPointVacation",
-  "PickupPointClosing",
-  "PickupPointIsFull",
-  "PickupPointForbidden",
-  "PickupPointTechnicalReason",
+const REQUEST_OPTION_ERRORS = new Set([
+  "EmptyListOfAllowedCountries",
+  "NoClaimAssistant",
+  "HasClaimAssistant",
+  "NoPacketConsignment",
+  "HasPacketConsignment",
+  "InvalidWeight",
+  "NoAgeVerification",
+  "NoCashOnDelivery",
+  "InvalidDimensions",
 ]);
 
 export type PointValidation =
@@ -99,12 +101,25 @@ export function parseValidationResponse(id: string, json: unknown): PointValidat
   if (!source || typeof source.isValid !== "boolean") return { status: "unknown" };
   if (!source.isValid) {
     const errors = Array.isArray(source.errors) ? source.errors : [];
-    const blocked = errors.some((error) => POINT_ERRORS.has(String(record(error)?.code ?? "")));
-    return { status: blocked ? "invalid" : "unknown" };
+    const onlyOptionErrors = errors.length > 0 && errors.every((error) => REQUEST_OPTION_ERRORS.has(String(record(error)?.code ?? "")));
+    return { status: onlyOptionErrors ? "unknown" : "invalid" };
   }
   const point = record(source.point);
   const address = record(point?.address);
   if (!point || !address) return { status: "unknown" };
   const rebuilt = build(id, point.name, address.street, address.city, address.zip, address.country, point.group === "zbox");
   return rebuilt ? { status: "valid", point: rebuilt } : { status: "unknown" };
+}
+
+/** What the order keeps about a point Packeta did not confirm: its id (all packet creation uses) and nothing the browser typed. */
+export function idOnlyPoint(point: PacketaPoint): PacketaPoint {
+  return {
+    id: point.id,
+    name: `Výdejní místo č. ${point.id}`,
+    street: "adresu ověří Zásilkovna",
+    city: "",
+    zip: "",
+    country: point.country,
+    kind: "pickup",
+  };
 }

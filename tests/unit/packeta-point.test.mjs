@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import {
   buildValidationRequest,
   PACKETA_VENDORS,
+  idOnlyPoint,
   parseValidationResponse,
   pointFromWidget,
 } from "../../src/lib/checkout/packeta-point.ts";
@@ -61,9 +62,20 @@ test("validation response: invalid and unusable answers", () => {
   assert.deepEqual(parseValidationResponse("1", {}), { status: "unknown" });
 });
 
-test("validation answers about our own request settings never block a customer", () => {
-  assert.deepEqual(parseValidationResponse("1", { isValid: false, errors: [{ code: "EmptyListOfAllowedCountries" }] }), { status: "unknown" });
-  assert.deepEqual(parseValidationResponse("1", { isValid: false, errors: [{ code: "NoAgeVerification" }] }), { status: "unknown" });
-  assert.deepEqual(parseValidationResponse("1", { isValid: false, errors: [] }), { status: "unknown" });
-  assert.deepEqual(parseValidationResponse("1", { isValid: false }), { status: "unknown" });
+test("an invalid answer blocks unless every error is about an option we never send", () => {
+  const verdict = (errors) => parseValidationResponse("1", { isValid: false, errors: errors?.map((code) => ({ code })) });
+  assert.deepEqual(verdict(["EmptyListOfAllowedCountries"]), { status: "unknown" });
+  assert.deepEqual(verdict(["NoAgeVerification", "InvalidDimensions"]), { status: "unknown" });
+  // One point-specific error is enough, even next to harmless ones.
+  assert.deepEqual(verdict(["NoAgeVerification", "NotFound"]), { status: "invalid" });
+  // Fail closed: unknown codes, no errors at all, or no error list.
+  assert.deepEqual(verdict(["SomethingNew"]), { status: "invalid" });
+  assert.deepEqual(verdict([]), { status: "invalid" });
+  assert.deepEqual(verdict(undefined), { status: "invalid" });
+});
+
+test("an unverified point keeps only its id", () => {
+  assert.deepEqual(idOnlyPoint({ id: "12345", name: "Fake <b>", street: "x", city: "y", zip: "17000", country: "SK", kind: "zbox" }), {
+    id: "12345", name: "Výdejní místo č. 12345", street: "adresu ověří Zásilkovna", city: "", zip: "", country: "SK", kind: "pickup",
+  });
 });

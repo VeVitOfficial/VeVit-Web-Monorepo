@@ -299,6 +299,8 @@ rozhodnutí uživatele i bezpečnější výklad rozporů nalezených během rea
   se nemůže rozejít s pokladnou. Texty o platbě popisují jen metody fáze 1 (karta, Apple Pay, Google Pay,
   PayPal); GoPay se doplní ve fázi 3. Úklid: `cartBaseShipping`/`cartShipping` (starý výpočet dopravy v
   `cart.ts`) zrušeny, košík i pokladna používají jen `shippingMinor`.
-- Validace výdejního místa blokuje zákazníka jen u chyb, které říkají, že místo samo nejde použít
-  (`NotFound`, `InvalidCarrier/Country/Vendor`, `PickupPoint*`). Ostatní kódy a `isValid:false` bez
-  chyb se berou jako `unknown`, aby špatně nastavená volba v našem požadavku nezablokovala všechny objednávky.
+- Validace výdejního místa selhává uzavřeně: `isValid: false` blokuje objednávku (`invalid_delivery`), pokud
+  aspoň jedna chyba není z krátkého seznamu kódů o volbách, které náš požadavek vůbec neposílá
+  (`NoAgeVerification`, `EmptyListOfAllowedCountries`, vlastnosti zásilky …). Neznámý kód nebo odpověď bez
+  chyb tedy blokuje. Když Zásilkovna nic nepotvrdí (`unknown`: nedostupná, chybí klíč, HTTP 400/401), objednávka
+  si ponechá jen ID místa (`idOnlyPoint`) a nic z textu z prohlížeče; zásilka se stejně zakládá jen podle ID.

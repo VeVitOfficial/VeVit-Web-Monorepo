@@ -15,6 +15,7 @@ import {
 } from "@/lib/checkout/checkout-input";
 import type { PostalAddress } from "@/lib/checkout/company";
 import { shippingMinor as computeShippingMinor } from "@/lib/checkout/shipping";
+import { idOnlyPoint } from "@/lib/checkout/packeta-point";
 import { lookupPacketaPoint } from "@/lib/packeta";
 import { snapshotIntegrityHash, sha256Hex } from "@/lib/store-order-core";
 import { storeRest, StoreRestError } from "@/lib/store-config";
@@ -356,7 +357,8 @@ export async function createCheckoutSnapshot(params: CheckoutCreateInput): Promi
     if (lookup.status === "invalid") {
       throw new CheckoutValidationException("invalid_delivery", "Vybrané výdejní místo už není dostupné. Vyber jiné.");
     }
-    if (lookup.status === "valid") details.delivery = { method: "packeta_pickup", point: lookup.point };
+    // Confirmed: Packeta's data. Not confirmed (Packeta unreachable, key missing): the id only, never the browser's text.
+    details.delivery = { method: "packeta_pickup", point: lookup.status === "valid" ? lookup.point : idOnlyPoint(details.delivery.point) };
   }
   const shipping = details.shipping;
   const shippingMinor = computeShippingMinor({
