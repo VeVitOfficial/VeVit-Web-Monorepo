@@ -154,9 +154,9 @@ test("shipping rules", () => {
   - `<CheckoutSummary shippingMethod={DeliveryMethod | null} paymentLabel={string | null} />`
   - Apple Pay / Google Pay se v kroku 2 nabízí jen když `stripe.paymentRequest({ country: "CZ", currency: "czk", total: { label: "VeVit Store", amount } }).canMakePayment()` vrátí `applePay`/`googlePay` true.
 
-- [ ] **Step 1: Implement** podle `pokladna-flow-v4.html` (loga Zásilkovny, karet, Apple Pay, Google Pay, PayPal; přeškrtnutá cena při dopravě zdarma; ukazatel do dopravy zdarma). Tlačítko „Pokračovat k údajům“ aktivní až po volbě dopravy (a výdejního místa) i platby.
-- [ ] **Step 2: Verify** typecheck, lint; ruční průchod v prohlížeči: volby přežijí reload i krok zpět; digitální košík jde rovnou na údaje.
-- [ ] **Step 3: Commit** `feat(store): checkout steps 1-2 with delivery and payment choice`
+- [x] **Step 1: Implement** podle `pokladna-flow-v4.html` (loga Zásilkovny, karet, Apple Pay, Google Pay, PayPal; přeškrtnutá cena při dopravě zdarma; ukazatel do dopravy zdarma). Tlačítko „Pokračovat k údajům“ aktivní až po volbě dopravy (a výdejního místa) i platby.
+- [x] **Step 2: Verify** typecheck, lint; ruční průchod v prohlížeči: volby přežijí reload i krok zpět; digitální košík jde rovnou na údaje. Typecheck a lint PASS; ruční průchod v prohlížeči (Chromium, dev server): volby přežijí reload, digitální košík jde rovnou na údaje. Apple Pay/Google Pay disabled v prohlížeči bez podpory. Mapa Zásilkovny čeká na API klíč.
+- [x] **Step 3: Commit** `feat(store): checkout steps 1-2 with delivery and payment choice`
 
 ### Task 6: Krok 3 Údaje a přechod na platbu
 

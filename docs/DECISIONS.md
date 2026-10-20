@@ -252,3 +252,14 @@ rozhodnutí uživatele i bezpečnější výklad rozporů nalezených během rea
   geolokací pro `widget.packeta.com` (tlačítko „blízko mě“ na mapě). Zbytek webu zůstává beze změny.
 - CSP (Report-Only) povoluje `widget.packeta.com` (skript, spojení, iframe), `hd.widget.packeta.com`
   a záložní/chybové hostitele widgetu.
+- Koncept pokladny: čistý parser `src/lib/checkout/checkout-draft.ts` (testovaný) + hook
+  `useCheckoutDraft`. Nevalidní nebo cizí hodnota v `sessionStorage` se zahodí po částech, nikdy
+  nerozbije pokladnu. Když je `sessionStorage` nedostupný, koncept žije v paměti stránky.
+- Výběr „Zásilkovna“ před výběrem místa je jen stav stránky (koncept vyžaduje bod); `delivery` se do
+  konceptu zapíše až s vybraným místem, takže „Pokračovat“ je do té doby neaktivní.
+- Digitální košík: krok 2 se přeskočí (i volba platby). Způsob platby se pak volí na stránce platby,
+  výchozí je karta.
+- Logo Zásilkovny je zatím PNG z prototypu (`public/payments/brands/zasilkovna.png`); oficiální SVG
+  je úkol provozovatele (návrh kap. 9).
+- Košík neukazuje cenu dopravy, jen „od 69 Kč · vybereš v dalším kroku“ (nebo „Zdarma“), protože
+  metoda se volí až v kroku 2.

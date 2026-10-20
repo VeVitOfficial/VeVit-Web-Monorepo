@@ -1,54 +1,25 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { cartShipping, cartSubtotal } from "@/lib/cart";
+import { useEffect } from "react";
 import { useCart } from "@/components/store/use-cart";
-import { useFreeShipping } from "@/components/store/use-free-shipping";
 
-const money = new Intl.NumberFormat("cs-CZ", { style: "currency", currency: "CZK", maximumFractionDigits: 0 });
-
-export default function CheckoutPage() {
+/** Entry point of the checkout: physical goods go to delivery and payment choice, digital-only carts to the details. */
+export default function CheckoutEntryPage() {
   const router = useRouter();
   const items = useCart();
-  const [busy, setBusy] = useState(false);
-  const [error, setError] = useState("");
   const physical = items.some((item) => item.type === "physical");
-  const freeShipping = useFreeShipping();
-  const total = cartSubtotal(items) + cartShipping(items, freeShipping);
 
-  async function submit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    if (!items.length) { router.push("/store/cart"); return; }
-    setBusy(true); setError("");
-    const form = new FormData(event.currentTarget);
-    const idempotencyKey = crypto.randomUUID();
-    const payload = {
-      items: items.map((item) => ({ product_id: item.id, quantity: item.qty })),
-      idempotency_key: idempotencyKey,
-      name: form.get("name"), email: form.get("email"), notes: form.get("notes"),
-      shipping: physical ? { street: form.get("street"), city: form.get("city"), zip: form.get("zip"), country: form.get("country") } : null
-    };
-    try {
-      const snapshotResponse = await fetch("/store/api/create-checkout.php", { method: "POST", headers: { "Content-Type": "application/json", "Idempotency-Key": idempotencyKey }, body: JSON.stringify(payload) });
-      const snapshot = await snapshotResponse.json();
-      if (!snapshotResponse.ok || !snapshot.checkout?.id) throw new Error(snapshot.error?.message ?? "Objednávku se nepodařilo připravit.");
-      // Full page load on purpose: the payment page runs without analytics scripts.
-      // eslint-disable-next-line @next/next/no-location-assign-relative-destination -- deliberate full page load
-      window.location.assign(`/store/checkout/platba?snapshot=${encodeURIComponent(snapshot.checkout.id)}`);
-    } catch (reason) {
-      setError(reason instanceof Error ? reason.message : "Služba je dočasně nedostupná.");
-      setBusy(false);
-    }
-  }
+  useEffect(() => {
+    if (items.length > 0) router.replace(physical ? "/store/checkout/doprava" : "/store/checkout/udaje");
+  }, [items.length, physical, router]);
 
   return (
     <main className="store-main">
-      <div className="store-section-head"><div><p className="store-eyebrow">2 / 3</p><h1>Pokladna</h1></div></div>
-      {!items.length ? <div className="store-empty">Načítám košík…</div> : <form className="store-checkout-grid" onSubmit={submit}>
-        <section className="store-form"><h2>Kontaktní údaje</h2><label>Jméno a příjmení<input required name="name" autoComplete="name" /></label><label>E-mail<input required type="email" name="email" autoComplete="email" /></label>{physical && <><h2>Doručovací adresa</h2><label>Ulice<input required name="street" autoComplete="street-address" /></label><div className="store-form-row"><label>Město<input required name="city" autoComplete="address-level2" /></label><label>PSČ<input required name="zip" autoComplete="postal-code" /></label></div><label>Země<select name="country"><option value="CZ">Česko</option><option value="SK">Slovensko</option></select></label></>}<label>Poznámka<textarea name="notes" rows={4} /></label></section>
-        <aside className="store-summary"><h2>Objednávka</h2>{items.map((item) => <p key={item.id}><span>{item.qty}× {item.name}</span><strong>{money.format(item.price * item.qty)}</strong></p>)}<p className="total"><span>Celkem</span><strong>{money.format(total)}</strong></p>{error && <p className="store-error" role="alert">{error}</p>}<button className="store-button primary" disabled={busy} type="submit">{busy ? "Připravuji platbu…" : "Pokračovat k platbě"}</button></aside>
-      </form>}
+      {items.length === 0
+        ? <div className="store-empty"><h2>Košík je prázdný</h2><Link className="store-button primary" href="/store/catalog">Pokračovat v nákupu</Link></div>
+        : <div className="store-empty">Pokračuji do pokladny…</div>}
     </main>
   );
 }
