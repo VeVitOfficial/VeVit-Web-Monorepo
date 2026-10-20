@@ -6,6 +6,7 @@
     "lint": "eslint src next.config.ts",
     "typecheck": "tsc --noEmit",
     "test": "node tests/sandbox-runner-test.js",
+    "test:unit": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test tests/unit/",
     "test:browser": "bash tests/xss-client-browser-test.sh && bash tests/tools-markdown-browser-test.sh",
     "test:smoke": "bash tests/production-smoke-test.sh",
     "secret-scan": "node scripts/secret-scan.mjs",
