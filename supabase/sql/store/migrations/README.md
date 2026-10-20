@@ -124,3 +124,14 @@ nové tabulky. Jakmile existuje jediný zákaznický, favorite nebo auditní ř�
 odmítne pokračovat. Produkční rollback je obnovení ověřené databázové zálohy a
 předchozí verze aplikace v jednom servisním okně. Samotný rollback PHP bez
 obnovy databáze nesmí vést k fyzickému mazání nové historie.
+
+## Platební brána, fáze 1 (202610200001, 202610200002)
+
+Cache BIN a platební sloupce objednávek. Před spuštěním ověřte zálohu. Pořadí:
+
+```bash
+psql "$DB_DSN" -v ON_ERROR_STOP=1 -f migrations/202610200001_card_bin_cache_up.sql
+```
+
+Rollback `202610200001_card_bin_cache_down.sql` je bezpečný kdykoliv (tabulka
+obsahuje jen mezipaměť, ztratí se jen už zjištěné banky).
