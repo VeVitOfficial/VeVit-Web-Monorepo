@@ -1,0 +1,156 @@
+<style>
+  .ck-steps { display: flex; gap: 6px; flex-wrap: wrap; margin: 4px 0 18px; }
+  .ck-step { font-size: 12px; padding: 6px 12px; border-radius: 999px; background: var(--bg-tertiary); color: var(--text-secondary); }
+  .ck-step.done { background: rgba(16,185,129,.15); color: #0e9f6e; }
+  .ck-step.now { background: #10b981; color: #fff; font-weight: 700; }
+  .ck-grid { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 24px; align-items: start; }
+  @media (max-width: 820px) { .ck-grid { grid-template-columns: 1fr; } }
+  .ck-box { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 16px; padding: 20px; margin-bottom: 18px; }
+  .ck-box h3 { margin: 0 0 12px; }
+  .f { display: block; font-size: 13px; color: var(--text-secondary); margin-bottom: 12px; }
+  .f input, .f select { display: block; width: 100%; box-sizing: border-box; margin-top: 6px; padding: 10px 12px; font-size: 15px; border-radius: 10px; border: 1.5px solid var(--border); background: var(--bg-primary); color: var(--text-primary); transition: border-color .2s, box-shadow .2s; }
+  .f input:focus { outline: none; border-color: #10b981; box-shadow: 0 0 0 3px rgba(16,185,129,.2); }
+  .f.bad input { border-color: #ff3b30; box-shadow: 0 0 0 3px rgba(255,59,48,.18); }
+  .f.ok input { border-color: #10b981; }
+  .f .err { display: block; min-height: 15px; margin-top: 4px; font-size: 12px; color: #e0362c; }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .row-phone { display: grid; grid-template-columns: 110px 1fr; gap: 10px; }
+  .toggle { display: flex; align-items: center; gap: 12px; padding: 14px; border: 1.5px solid var(--border); border-radius: 12px; cursor: pointer; user-select: none; margin-bottom: 12px; transition: border-color .2s, background .2s; }
+  .toggle.on { border-color: #10b981; background: rgba(16,185,129,.07); }
+  .sw { width: 38px; height: 22px; border-radius: 99px; background: var(--bg-tertiary); position: relative; flex: none; transition: background .2s; }
+  .sw::after { content: ""; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.3); transition: left .2s; }
+  .toggle.on .sw { background: #10b981; }
+  .toggle.on .sw::after { left: 19px; }
+  .toggle b { display: block; font-size: 14px; }
+  .toggle small { color: var(--text-secondary); font-size: 12px; }
+  .reveal { display: none; animation: ck-in .25s ease; }
+  .reveal.show { display: block; }
+  @keyframes ck-in { from { opacity: 0; transform: translateY(-4px) } to { opacity: 1; transform: none } }
+  .ico-wrap { position: relative; }
+  .ico-state { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 12px; font-weight: 700; }
+  .ares { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; padding: 3px 9px; border-radius: 999px; background: rgba(16,185,129,.15); color: #0e9f6e; font-weight: 600; margin: -4px 0 12px; }
+  .spin { width: 12px; height: 12px; border-radius: 50%; border: 2px solid #10b981; border-right-color: transparent; animation: sp .7s linear infinite; display: inline-block; }
+  @keyframes sp { to { transform: rotate(360deg) } }
+  .deliv { display: flex; gap: 12px; align-items: center; padding: 12px 14px; border-radius: 12px; background: var(--bg-primary); font-size: 14px; }
+  .deliv a { margin-left: auto; color: #0e9f6e; font-size: 13px; font-weight: 600; cursor: pointer; }
+  .ck-sum p { display: flex; justify-content: space-between; margin: 8px 0; font-size: 14px; }
+  .ck-sum .tot { border-top: 1px solid var(--border); padding-top: 10px; font-size: 17px; font-weight: 800; }
+  .btn { width: 100%; padding: 13px; font-size: 15px; font-weight: 700; border: 0; border-radius: 12px; background: #10b981; color: #fff; cursor: pointer; }
+  .btn:disabled { opacity: .4; cursor: not-allowed; }
+  .terms { display: flex; gap: 8px; font-size: 13px; margin: 6px 0 14px; align-items: flex-start; }
+  .note { font-size: 12px; color: var(--text-secondary); line-height: 1.55; }
+  .hint code { background: var(--bg-tertiary); padding: 1px 6px; border-radius: 5px; cursor: pointer; font-size: 12px; }
+</style>
+
+<h2>Krok 3: Údaje, včetně nákupu na firmu</h2>
+<p class="subtitle">Zapni „Nakupuji na firmu“ a zadej IČO. Firma, DIČ a sídlo se načtou z ARES (opravdový dotaz do registru). Neplatné IČO zčervená.</p>
+
+<div class="ck-steps">
+  <span class="ck-step done">1 Košík</span><span class="ck-step done">2 Doprava a platba</span><span class="ck-step now">3 Údaje</span><span class="ck-step">4 Platba</span><span class="ck-step">5 Hotovo</span>
+</div>
+
+<div class="ck-grid">
+  <div>
+    <div class="ck-box">
+      <h3>Kontaktní údaje</h3>
+      <label class="f">Jméno a příjmení<input placeholder="Jan Novák" autocomplete="name"><span class="err"></span></label>
+      <div class="row2">
+        <label class="f">E-mail<input type="email" placeholder="jan@novak.cz"><span class="err"></span></label>
+        <label class="f">Telefon
+          <span class="row-phone"><select style="margin-top:6px"><option>🇨🇿 +420</option><option>🇸🇰 +421</option></select><input placeholder="777 123 456" style="margin-top:6px"></span>
+          <span class="err" style="color:var(--text-secondary)">Zásilkovna pošle SMS, až bude balík připravený.</span>
+        </label>
+      </div>
+      <div class="deliv"><img alt="" style="height:22px;border-radius:4px" src="https://www.google.com/s2/favicons?domain=zasilkovna.cz&sz=64"> <span>Zásilkovna · <b>Albert Letná, Čechova 11</b></span><a>Změnit</a></div>
+    </div>
+
+    <div class="ck-box">
+      <h3>Fakturace</h3>
+      <div class="toggle" id="tFirm" onclick="tg('tFirm','firm')"><span class="sw"></span><span><b>Nakupuji na firmu</b><small>Faktura na IČO a DIČ, údaje doplníme z ARES</small></span></div>
+      <div class="reveal" id="firm">
+        <label class="f" id="fIco">IČO
+          <span class="ico-wrap" style="display:block"><input id="iIco" inputmode="numeric" maxlength="8" placeholder="12345678"><span class="ico-state" id="icoState"></span></span>
+          <span class="err"></span>
+        </label>
+        <div id="aresBadge"></div>
+        <label class="f">Název firmy<input id="iFirm" placeholder="Načte se z ARES"><span class="err"></span></label>
+        <div class="row2">
+          <label class="f">DIČ<input id="iDic" placeholder="CZ12345678"><span class="err" id="dicNote" style="color:var(--text-secondary)"></span></label>
+          <label class="f">Sídlo<input id="iSidlo" placeholder="Načte se z ARES"><span class="err"></span></label>
+        </div>
+        <p class="hint note">Vyzkoušej: <code onclick="fillIco('27082440')">27082440</code> (Alza.cz) · <code onclick="fillIco('12345678')">12345678</code> (neplatné IČO)</p>
+      </div>
+      <div class="toggle" id="tBill" onclick="tg('tBill','bill')"><span class="sw"></span><span><b>Fakturační adresa je jiná</b><small>Jinak použijeme sídlo firmy nebo doručovací adresu</small></span></div>
+      <div class="reveal" id="bill">
+        <label class="f">Ulice a číslo<input placeholder="Dukelských hrdinů 21"><span class="err"></span></label>
+        <div class="row2"><label class="f">Město<input placeholder="Praha"><span class="err"></span></label><label class="f">PSČ<input placeholder="170 00"><span class="err"></span></label></div>
+      </div>
+      <label class="f" style="margin-top:6px">Poznámka k objednávce<input placeholder="Nepovinné"><span class="err"></span></label>
+    </div>
+  </div>
+
+  <aside class="ck-box ck-sum">
+    <h3>Souhrn</h3>
+    <p><span>2× Mikina VeVit</span><b>1 380 Kč</b></p>
+    <p><span>Doprava · Zásilkovna</span><b>zdarma</b></p>
+    <p><span>Platba</span><b>Karta</b></p>
+    <p class="tot"><span>Celkem</span><span>1 380 Kč</span></p>
+    <p id="vatLine" style="display:none;font-size:12px;color:var(--text-secondary)"><span>z toho DPH 21 %</span><span>239,50 Kč</span></p>
+    <label class="terms"><input type="checkbox" id="terms" onchange="ready()"> <span>Souhlasím s obchodními podmínkami a beru na vědomí zpracování osobních údajů.</span></label>
+    <button class="btn" id="go" disabled>Pokračovat k platbě</button>
+    <p class="note" style="margin-top:10px">Fakturu pošleme e-mailem po zaplacení. U nákupu na firmu bude obsahovat IČO a DIČ.</p>
+  </aside>
+</div>
+
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  window.tg = function (t, r) { var on = $(t).classList.toggle("on"); $(r).classList.toggle("show", on); $("vatLine").style.display = $("tFirm").classList.contains("on") ? "flex" : "none"; };
+  window.ready = function () { $("go").disabled = !$("terms").checked; };
+
+  function icoValid(v) {
+    if (!/^\d{8}$/.test(v)) return false;
+    var s = 0;
+    for (var i = 0; i < 7; i++) s += +v[i] * (8 - i);
+    var m = s % 11, c = m === 0 ? 1 : m === 1 ? 0 : 11 - m;
+    return c === +v[7];
+  }
+  function setIco(state, msg) {
+    var f = $("fIco");
+    f.classList.toggle("bad", state === "bad");
+    f.classList.toggle("ok", state === "ok");
+    f.querySelector(".err").textContent = msg || "";
+  }
+  var lastLookup = "";
+  function onIco() {
+    var v = $("iIco").value.replace(/\D/g, "").slice(0, 8);
+    $("iIco").value = v;
+    $("aresBadge").innerHTML = "";
+    $("icoState").textContent = "";
+    if (v.length < 8) { setIco(null, ""); return; }
+    if (!icoValid(v)) { setIco("bad", "IČO není platné. Zkontroluj, jestli v něm není překlep."); return; }
+    setIco("ok", "");
+    if (v === lastLookup) return;
+    lastLookup = v;
+    $("aresBadge").innerHTML = '<span class="ares"><span class="spin"></span> Hledám v ARES…</span>';
+    fetch("https://ares.gov.cz/ekonomicke-subjekty-v-be/rest/ekonomicke-subjekty/" + v)
+      .then(function (r) { if (r.status === 404) throw new Error("404"); if (!r.ok) throw new Error("x"); return r.json(); })
+      .then(function (d) {
+        if ($("iIco").value !== v) return;
+        $("iFirm").value = d.obchodniJmeno || "";
+        $("iDic").value = d.dic || "";
+        $("dicNote").textContent = d.dic ? "" : "Firma není plátce DPH, DIČ nevyplňuj.";
+        $("iSidlo").value = (d.sidlo && d.sidlo.textovaAdresa) || "";
+        $("aresBadge").innerHTML = '<span class="ares">✓ Načteno z ARES · ' + (d.obchodniJmeno || "") + "</span>";
+      })
+      .catch(function (e) {
+        if ($("iIco").value !== v) return;
+        $("aresBadge").innerHTML = "";
+        if (e.message === "404") setIco("bad", "Firma s tímto IČO v registru není.");
+        else setIco(null, "ARES teď neodpovídá, údaje vyplň ručně.");
+      });
+  }
+  $("iIco").addEventListener("input", onIco);
+  window.fillIco = function (v) { $("iIco").value = v; onIco(); };
+})();
+</script>

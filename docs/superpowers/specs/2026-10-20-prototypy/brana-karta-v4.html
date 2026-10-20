@@ -1,0 +1,327 @@
+<style>
+  .pg-wrap { display: grid; grid-template-columns: minmax(300px, 400px) minmax(280px, 380px); gap: 2.5rem; align-items: start; justify-content: center; margin-top: 1.5rem; }
+  @media (max-width: 760px) { .pg-wrap { grid-template-columns: 1fr; } }
+  .pg-stage { perspective: 1200px; }
+  .pg-card { position: relative; width: 100%; aspect-ratio: 1.586; transform-style: preserve-3d; transition: transform .7s cubic-bezier(.2,.8,.2,1); }
+  .pg-card.flipped { transform: rotateY(180deg); }
+  .pg-face { position: absolute; inset: 0; border-radius: 18px; backface-visibility: hidden; -webkit-backface-visibility: hidden; padding: 22px 24px; box-sizing: border-box; color: #fff; overflow: hidden; box-shadow: 0 18px 40px rgba(0,0,0,.28); transition: background .5s ease, color .5s ease; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+  .pg-face::after { content: ""; position: absolute; inset: 0; background: radial-gradient(120% 80% at 85% 0%, rgba(255,255,255,.22), transparent 55%); pointer-events: none; }
+  .pg-back { transform: rotateY(180deg); padding: 0; }
+  .pg-top { display: flex; justify-content: space-between; align-items: flex-start; font-family: system-ui, sans-serif; }
+  .pg-bank { font-weight: 700; font-size: 15px; letter-spacing: .01em; min-height: 20px; transition: opacity .3s; }
+  .pg-bank small { display: block; font-weight: 500; font-size: 11px; opacity: .75; }
+  .pg-brand { font-weight: 800; font-style: italic; font-size: 22px; min-height: 26px; letter-spacing: -.02em; transition: opacity .3s, transform .3s; }
+  .pg-banklogo { display: inline-flex; width: 34px; height: 34px; border-radius: 9px; background: #fff; align-items: center; justify-content: center; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,.2); flex: none; }
+  .pg-banklogo img { width: 100%; height: 100%; object-fit: contain; }
+  .pg-bankrow { display: flex; align-items: center; gap: 10px; animation: pg-pop .45s ease; }
+  .pg-brand svg { height: 34px; width: auto; display: block; }
+  .pg-accept { display: flex; gap: 8px; margin: -4px 0 16px; }
+  .pg-accept span { display: inline-flex; height: 26px; padding: 0 6px; border: 1px solid var(--border); border-radius: 6px; background: #fff; align-items: center; opacity: .35; filter: grayscale(1); transition: opacity .25s, filter .25s, transform .25s; }
+  .pg-accept span.on { opacity: 1; filter: none; transform: scale(1.08); border-color: #10b981; }
+  .pg-accept svg { height: 18px; width: auto; }
+  .pg-inwrap { position: relative; }
+  .pg-inicon { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); height: 22px; display: flex; gap: 6px; align-items: center; pointer-events: none; }
+  .pg-inicon svg { height: 20px; width: auto; }
+  .pg-inicon img { height: 22px; width: 22px; border-radius: 5px; }
+  .pg-brand.pop { animation: pg-pop .45s ease; }
+  @keyframes pg-pop { 0% { transform: scale(.6); opacity: 0 } 70% { transform: scale(1.12) } 100% { transform: scale(1); opacity: 1 } }
+  .pg-chip { width: 42px; height: 32px; border-radius: 6px; background: linear-gradient(135deg, #e9d59a, #b8954a); margin: 18px 0 14px; }
+  .pg-zone { border-radius: 8px; padding: 3px 6px; margin: 0 -6px; outline: 2px solid transparent; transition: outline-color .25s, background .25s; }
+  .pg-zone.active { outline-color: rgba(255,255,255,.85); background: rgba(255,255,255,.10); }
+  .pg-zone.bad { outline-color: #ff5a5f; background: rgba(255,90,95,.18); animation: pg-shake .35s; }
+  @keyframes pg-shake { 25% { transform: translateX(-4px) } 75% { transform: translateX(4px) } }
+  .pg-number { font-size: clamp(17px, 4.6vw, 23px); letter-spacing: .08em; white-space: nowrap; }
+  .pg-number span { display: inline-block; transition: transform .2s, opacity .2s; }
+  .pg-number span.new { animation: pg-digit .25s ease; }
+  @keyframes pg-digit { from { transform: translateY(-8px); opacity: 0 } to { transform: none; opacity: 1 } }
+  .pg-row { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 16px; gap: 12px; }
+  .pg-label { font-family: system-ui, sans-serif; font-size: 9px; text-transform: uppercase; letter-spacing: .14em; opacity: .7; }
+  .pg-val { font-size: 14px; text-transform: uppercase; letter-spacing: .06em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 220px; }
+  .pg-strip { height: 44px; background: #111; margin-top: 26px; }
+  .pg-sig { display: flex; align-items: center; gap: 10px; margin: 18px 24px 0; }
+  .pg-sig-band { flex: 1; height: 38px; border-radius: 4px; background: repeating-linear-gradient(-45deg, #f4f4f4 0 6px, #e6e6e6 6px 12px); }
+  .pg-cvc { min-width: 54px; height: 38px; border-radius: 4px; background: #fff; color: #111; display: flex; align-items: center; justify-content: center; font-size: 16px; letter-spacing: .15em; }
+  .pg-backnote { font-family: system-ui, sans-serif; font-size: 10px; opacity: .7; margin: 16px 24px 0; }
+  .pg-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; min-height: 28px; }
+  .pg-tag { font-size: 12px; padding: 4px 10px; border-radius: 999px; background: var(--bg-tertiary); color: var(--text-primary); }
+  .pg-tag.ok { background: rgba(16,185,129,.15); color: #0e9f6e; }
+  .pg-tag.err { background: rgba(255,59,48,.14); color: #e0362c; }
+
+  .pg-form { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 16px; padding: 22px; }
+  .pg-form h3 { margin: 0 0 14px; }
+  .pg-field { display: block; margin-bottom: 14px; font-size: 13px; color: var(--text-secondary); }
+  .pg-field input { display: block; width: 100%; box-sizing: border-box; margin-top: 6px; padding: 11px 12px; font-size: 16px; border-radius: 10px; border: 1.5px solid var(--border); background: var(--bg-primary); color: var(--text-primary); font-family: ui-monospace, Menlo, monospace; transition: border-color .2s, box-shadow .2s; }
+  .pg-field input:focus { outline: none; border-color: #10b981; box-shadow: 0 0 0 3px rgba(16,185,129,.2); }
+  .pg-field.bad input { border-color: #ff3b30; box-shadow: 0 0 0 3px rgba(255,59,48,.18); }
+  .pg-err { display: block; min-height: 16px; margin-top: 4px; font-size: 12px; color: #e0362c; }
+  .pg-split { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .pg-pay { width: 100%; padding: 13px; font-size: 16px; font-weight: 700; border: 0; border-radius: 12px; background: #10b981; color: #fff; cursor: pointer; opacity: .45; transition: opacity .2s; }
+  .pg-pay.ready { opacity: 1; }
+  .pg-secure { font-size: 11px; color: var(--text-secondary); text-align: center; margin-top: 10px; }
+  .pg-hint { font-size: 12px; color: var(--text-secondary); margin-top: 18px; line-height: 1.6; }
+  .pg-hint code { background: var(--bg-tertiary); padding: 1px 6px; border-radius: 5px; cursor: pointer; }
+</style>
+
+<h2>Vlastní platební brána: interaktivní návrh</h2>
+<p class="subtitle">Zkus kartu vyplnit. Karta zvýrazní pole, které vyplňuješ, při CVC se otočí a chybné pole zčervená. Banka a značka se poznají už z prvních číslic.</p>
+
+<div class="options" style="margin-top:1rem">
+  <div class="option selected" data-choice="banka" onclick="toggleSelect(this); pgStyle('bank')">
+    <div class="letter">A</div>
+    <div class="content"><h3>Karta v barvách banky</h3><p>Po rozpoznání banky se karta přebarví (ČS modrá, KB červená, Raiffeisen žlutá…).</p></div>
+  </div>
+  <div class="option" data-choice="vevit" onclick="toggleSelect(this); pgStyle('vevit')">
+    <div class="letter">B</div>
+    <div class="content"><h3>Karta ve stylu VeVit</h3><p>Vždy tmavě smaragdová, banka a značka jsou jen popisky na kartě.</p></div>
+  </div>
+</div>
+
+<div class="pg-wrap">
+  <div>
+    <div class="pg-stage">
+      <div class="pg-card" id="pgCard">
+        <div class="pg-face pg-front" id="pgFront">
+          <div class="pg-top">
+            <div class="pg-bank" id="pgBank">&nbsp;</div>
+            <div class="pg-brand" id="pgBrand"></div>
+          </div>
+          <div class="pg-chip"></div>
+          <div class="pg-zone" data-zone="number"><div class="pg-number" id="pgNumber"></div></div>
+          <div class="pg-row">
+            <div class="pg-zone" data-zone="name" style="flex:1;min-width:0"><div class="pg-label">Držitel karty</div><div class="pg-val" id="pgName">JMÉNO PŘÍJMENÍ</div></div>
+            <div class="pg-zone" data-zone="exp"><div class="pg-label">Platnost</div><div class="pg-val" id="pgExp">MM/RR</div></div>
+          </div>
+        </div>
+        <div class="pg-face pg-back" id="pgBackFace">
+          <div class="pg-strip"></div>
+          <div class="pg-sig"><div class="pg-sig-band"></div><div class="pg-zone" data-zone="cvc"><div class="pg-cvc" id="pgCvc">•••</div></div></div>
+          <div class="pg-backnote" id="pgBackNote">Tři číslice na zadní straně karty</div>
+        </div>
+      </div>
+    </div>
+    <div class="pg-meta" id="pgMeta"></div>
+    <p class="pg-hint">
+      Klikni pro vyplnění testovacím číslem:<br>
+      <code onclick="pgFill('4140920000000002')">ČS Visa (414092…)</code>
+      <code onclick="pgFill('5402980000000006')">KB Mastercard</code>
+      <code onclick="pgFill('5168440000000005')">Air Bank</code>
+      <code onclick="pgFill('4083610000000008')">Raiffeisen</code>
+      <code onclick="pgFill('4568030000000003')">UniCredit</code>
+      <code onclick="pgFill('5434550000000009')">ČSOB</code>
+      <code onclick="pgFill('4785440000000001')">MONETA</code>
+      <code onclick="pgFill('4111111111111112')">chybné číslo (Luhn)</code>
+    </p>
+  </div>
+
+  <form class="pg-form" onsubmit="return false" autocomplete="off">
+    <h3>Platba kartou · 1 290 Kč</h3>
+    <div class="pg-accept" id="pgAccept"><span data-b="visa"></span><span data-b="mc"></span><span data-b="maestro"></span><span data-b="amex"></span></div>
+    <label class="pg-field" id="fNumber">Číslo karty
+      <span class="pg-inwrap" style="display:block"><input id="iNumber" inputmode="numeric" placeholder="1234 5678 9012 3456" maxlength="23" style="padding-right:70px"><span class="pg-inicon" id="pgInIcon"></span></span>
+      <span class="pg-err"></span>
+    </label>
+    <label class="pg-field" id="fName">Jméno na kartě
+      <input id="iName" placeholder="Jan Novák" style="font-family:inherit">
+      <span class="pg-err"></span>
+    </label>
+    <div class="pg-split">
+      <label class="pg-field" id="fExp">Platnost
+        <input id="iExp" inputmode="numeric" placeholder="MM/RR" maxlength="5">
+        <span class="pg-err"></span>
+      </label>
+      <label class="pg-field" id="fCvc">CVC
+        <input id="iCvc" inputmode="numeric" placeholder="123" maxlength="4">
+        <span class="pg-err"></span>
+      </label>
+    </div>
+    <button class="pg-pay" id="pgPay" type="button">Zaplatit 1 290 Kč</button>
+    <p class="pg-secure">🔒 Šifrované spojení · 3D Secure ověření v aplikaci banky</p>
+  </form>
+</div>
+
+<script>
+(function () {
+  // Prototyp. Prefixy jsou z veřejných BIN databází: neúplné a místy zastaralé.
+  var BANKS = {
+    cs:   { name: "Česká spořitelna", bg: "linear-gradient(135deg,#2870ed,#0b3d91)", fg: "#fff",
+            bins: "414092 414084 406457 434359 440507 440508 440678 451158 451159 451160 451161 490729 494068 421577 440616 430119 440558 540718 544490 549077 550447 552733 556072 557890 520136" },
+    csob: { name: "ČSOB", bg: "linear-gradient(135deg,#00a3e0,#003b71)", fg: "#fff",
+            bins: "440752 440753 440754 491011 491080 491825 494359 494360 487494 526276 540452 543455 543463 544494 547122 547360 547361 547375 554275 554354 554355 554398 556071 557018 557019 558623" },
+    kb:   { name: "Komerční banka", bg: "linear-gradient(135deg,#e4002b,#1a1a1a)", fg: "#fff",
+            bins: "412500 412501 413015 427848 445965 445966 449319 449320 483737 491701 477975 446514 446515 420964 418803 491779 532185 532317 518998 543402 540298 540299 544322 547533 547698 549725 552857 552974 554286 554585 557711" },
+    rb:   { name: "Raiffeisenbank", bg: "linear-gradient(135deg,#fee600,#e8c900)", fg: "#111",
+            bins: "408359 408360 408361 408363 408364 413093 414667 415461 418609 418808 418865 427881 472941 472942 472943 472944 474138 480234 520655 520637 527446 541934 541963 544208 548163 548164 548361 552682 558270 558278 548391 518651 512588 543769 544738 547982" },
+    uc:   { name: "UniCredit Bank", bg: "linear-gradient(135deg,#e2001a,#7a0010)", fg: "#fff",
+            bins: "433738 456803 456817 456820 457049 459017 460317 477996 477997 498568 479073 455734 429041 415012 528706 547055 547056 547431 547438 558499 542812" },
+    mon:  { name: "MONETA Money Bank", bg: "linear-gradient(135deg,#3c3c3c,#f26a21)", fg: "#fff",
+            bins: "478544 546882 543554 547411 553061 464461 529923" },
+    air:  { name: "Air Bank", bg: "linear-gradient(135deg,#7ac943,#2e8b2e)", fg: "#fff", bins: "516844" }
+  };
+  var LOGOS = {"cs": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAAAIVBMVEVHcEwocO0ocO0ocO0ocO3///8Sae1IhfDl7/3C1vp5o/QHuHa5AAAABHRSTlMAvjqcoEO0lgAAAptJREFUeJztm+t6gzAIhjUnjfd/wdO261obSP1goYd8z35u4R2QRBSG4V7OeT/+m7x3bmDkfGggTzG4sYX5TWMRocl//yv/+O+3NL/JGdvfERjYvyMwsX9LgK6QLkL/Xpj/KSx5XpWXCUTwkgCkkONVGUQ4BwE6f9IS75QhghF2QMpxpxkicGAGPNoHCTy2Bfb+F0QBikCaSvZjXAACBwEUAoAGwUEpULa/uuD4Uh4AKGcAmAUeOAWoCEAxGBGAmQKIh9dCAFIi7cepBQDngW8BIJMwNkpCEgDYhhAAcRJDZzECQCfB8aVAAOIoRK5DCIByAbASClC8jqDnQgwghEIeIk8DOECa9lHA7MMA+9MAfS4XAKxOyBcvzLB5EcBWmE3LqgmvzWQA4VIcShaQAsjVATrAOwBs2/2qVFe4+20xwN95h2iuvr2pAKzmceuXWyKwCDwAXQUeEXtPsgDM87caAQegZZ8lYAB0/F8j4AAE2b8XXbfTAJoOYFzAACg6gHEBCUDXX5ioupkGUI0AHQMaQG0PnkWVbR2gA3wPAHUSHQGYJ4k0AGRFWAfoAB8BIJAGQJwFMj8JO4A5gMZlJJK5BzpAz4EO0AGO7oKUsuTyVfBAqD9jMNIAkKgDdAAtgAT+lHbB4dsw1AtuRgoe+Lij+P0AgjWA9W1oHwJ7AOvX9aVGHYkOf7DQ/mRDWGn20YpsM+MuI00A0sgrf7hU3IlMn1+Tj9fcC8aRbe3WIWD7HCu95WkRb8aZb7PzfHv/WmPIWjhyrdHsifmCU1vKAujUxVJb3T054oG9Hn7i7XbrMb+9vN2g2VkOHnTS0Wg5a7fJGQx73uo6+GkF8DoDj+Yjn/ZDr/Zjv633wuPg82A/+j2YD7+fGVqP//8APCgT7mEbM6wAAAAASUVORK5CYII=", "csob": "data:image/png;base64,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", "kb": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAAAJFBMVEUAAADhACfmACnmACkAAAAAAADmACkAAAD////lAAza2dnOr7IMglfWAAAABnRSTlOk7rPW1nh0sB62AAAAkUlEQVR4nO3ZyRGAIBBFwVFxAfLP1wTgYBWKh34JTNe/TqzL1LZYj6kBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/BeQx/cEkOs1vNIUfAioswHdBZpf9TcW6Lzv42z1BqB5KAH0AGV4zwCfBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACQYo+p7TfR3prpg5+ptgAAAABJRU5ErkJggg==", "rb": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAeFBMVEX+5gArLTO5qhFrZCT34AK1pxIzNDFIRyzKuQw2NzBXVCjhzAfkzwaUiRneywjbxwhnYSUwMTJMSis8PC/WwwpdWCdDQi1+dR/y2wPs1gROTCvFtQ7Rvws/Py6lmBWdkRdzbCKDeh5TUCmPhBuBeB7AsA+rnhSXjBmP9QCzAAABuklEQVRIic1UyYKCMAxt2VdRcAF3ZNT//8MB0pKmhHGOvovyFkrTJkJ8MVa+X/BK4furuX0teyRMpEgGZZ1SNqrkiMCx/U4AShWRt8RSYfOk/tNGK/EWWe8oJZ84BaiU3kS/pYHAWDsKTOU2LVCZtIzPWjjHRKj0Er6k0F+7jS3BV4GDxctqrO7qYvMHFShnym6gdzZ7KdUWwuyqqCQcf/bZwGf78SFMlHjNQhXoD/EGnAumOwh3CLug9TVKsbAih4AqQDtQrdooBHJhoYOAI3Wig38OBFrbDy+cAjLPpRlg/EL8DIesAxOc4fgOnL8/j/5SMAERLfhHcIE/USfU/6g/BET9MP3H5pNfiCZEf/gPP+kZu/840B4Iok9+uwewm3gUtPkk7f055j2ju4lHiv4YP+2SLvkzLGgQGZuHfpqjKUk5jfLyx9EciV+I5zT0ZMkkjCuxUePEwcT8SnnGjHhp8oVcUi/7r0gbiR1JeC4qN1O4Ir/2eP+bLv1mEzmynb25DjWcNNhmzHSYEmaldE3Zbm9Bo80Hp7Y0TbizG+7FnfePQ3Z+O7K9WTcKz+XuX7bo7xML9/U78AsfDRUE0jPiSgAAAABJRU5ErkJggg==", "uc": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAE90lEQVRYha2XfWxTVRjGn3PubW+3Dlru1tpVYDARvxIjOBDEABsTBQlpCjjQRQeCgBiCOjQCMZKAwvgMQ12IihCNhBgCc0wYwwgOCTCmQVxwFPmK3datHfug7W3vvcc/GGPr2vV28vx53+e+vzf3vPec8xLGGIEGhev+fjRQeaRWOn8W4SsuKI2NgCIDADiLBfywTOifehpJ2VMgjB7Dg1JVS17SZwGMUf9PZTPav/xiSejihScB2LUk5YcM9QyYv6jImJe/k+h0oX4VEHbVjWxZ88EGqeacQws0aiFDM9ziuk0FwrhnK2N6oj30Hz7k8K0qLGKBwAgtIJJsBD94MKiYBqLXg7M+AKIXQJKS7P6yg/kQ9EFhVFZV1Hcjv0DHd3sKWtauXoc+Prdx9lyYlheCiiKITgcQTW3UJSbLesLzMgDQ7gF/2UFHPDgACKOzwNlsIHp9wnAACB6vcDJJMvQoIOyqG+lbvbIoHhwAfKsK4S1cDua/nTAcjKF15/Z9UvWZyfcKYIy2rHlf85oDgL/0AP7NegJqa6t2uKrC+85SyFdd0D30cC3Q2YT+8tKZUk31TO2Z7kiYMBHUZNJmVmQ0LchH8HQVjHPm7eVs6TeAziZsdE4vD1288GIicE4UkX6y+k4fxBELheCZ50Tozz8AANRkDtlPnk0jSckdNHyp9vHOTUa7CIF1/4+a4GpHBxqmTe6CA4DaeksfOF7hBAAa+PnYRWjc4e5K3LgN/NCMuD7F04iGnPGQb97oFQtUHnUAAJWqzybCRvL0mTA6Zsf1hV2XUZ89Dsqtlqhx6ffzEwGAhq9c1gznbXaIm3fE9UmnT6HhpRywcDimR6l3i2pbm5kqHo82OiGw7j8Ewkfdvbt0+8B+eF7PAxiLm1L1eX383SM1nsT1m8DZ0mMbGEPrji1o+2y7pnwAwAL+6IdRpIRxE2CclRfboCjwvrcM/vIyzXAAgE4HnrNYoTTFXgai1yOt5OuYez4LBuCZ60Co9q/E4AC4NIuV8sMz+zRZdn8PmmyMGlPq3aifNLZfcGoy+6l5UDMVRmXFNKXkvQphzDNRY9LpU3DnjIfSEv03iycha+wvAEAN2blRDZzFikEfr+8dYAztJcV3Ol1R+gUHAMOknHIAIExVufoXJrrka1eHdTekH/sVfMbwnuxQCM1L5iNYdaLfYAAggqDaq2qs1GTyURCiDpj/5tbuBvPKVb3gituN+slj/zccAIxzXimhJpMP6DwNmSzzjTNyL4X/cWXqHnkMttKKHl0fqDyK5mULNW0u8URTBgRtFSczuTRLA9B5ISE8Lw9aX7QAPA/LN/vuwRUFLWtXo/mtN+4LHADMH3604i4ciLiUyjevj+CHZNQBgNLcBM88J+TrV+8LGACMzpe/FTdsfa37s2hzgeo/chjeFUsBVdNwo0lJOc+XpxbvckYOKl2XUrWjY6Da5LE1v72o1Lt88X2FG2fl7Y0G71EATUlpay0pXiOd+S03dXNxgWXPvqn8g4MbIl9IRNRk8osbty0UP91SEGtE670EisKD42QAYMGgoX3PV4Xtu3e9q/q8Zq1gkpQsp8zN/3zg4mWfUDG1z/O+7+G0Uywc1gdPHJ8RqKxwSDXnnpOvXxsW+Vdw6XaPMCqryjApuzx56rQfiDGlTVOxWsfzyILUJo+dhSQ9dDqZS7W4icEQTDQPAPwHToD8dphz8ywAAAAASUVORK5CYII=", "mon": "data:image/png;base64,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", "air": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAAAPFBMVEVHcEwHBwcCAgIJCQkFBQUAAAAtNCIEBAQGBgaZzDMJCQkLCwsaHhUBAQGazDWczjmZzDOZzDKbzTYAAABk9KM0AAAAE3RSTlMAS7Y4d/IDkWL+EyUI1GQapdM8SwzS5AAABLxJREFUeJztWNd26yAQZOmhxEn8//96t6DmKvnGJy87PseSAInRsA0Zo1AoFAqFQqFQKBQKhUKhUCgUC1oppf3Z7NH5ZK1N2UW6LBkB0TQ6OuzNufK4T8Lp9+dvqZ8F3ZMKlU5tMy3gMTXfwznTuJ8PxPcbCKTzgrQiEJmApysm8EUEPn9/fqB5AlRgHepCwFBDoN6zN5MAvz+/8dMMMN51Q4A49I6tp3cJYMAjyMrKWIMtgZCg1oIW+C4LMJFMv1Xn4CYBW3hUe5sAiOptWFnh1gZAxrAAX+8QAP188sKbBJyM+n6fADJ/Tyk9ICACvCVWNsuWVlpkI7Q3CTQW4Ocd84sAiQyx3ldABDARE8YrKYMyzd37OA4xgZteQATiaQjgMGPYHI/OHzPdB48IkK8Ve3cJJgvITPGwBDHN4fwGxAYtZHvXC1iAb7SAPKt1CI2CbbhHIM65KPQ7CnAM+oovE4iPCYj06IhA43q7InD6GAIsBOJ2GVrBaH25MrHUEncogIvvbe82OeMwKeSG194nMrVMWaJMLjATwMiJQSOX+f6c+AHSEkHuAq5xYKtA5Edem/EoyGLDn+FjlCOdiAucFgKSt0MfZr0EUm5ptKShegnuwW8UYIs/3/OH24irLMQElsDNosozQwgjcbBNBbseNCsgXP2h+c3P95KGs7xWt1ZEgPHC5+T4lQPVUUyABglT9PCJgFjbQTdeCzAIWFeKvEsqptBJryOk48nwqlRL5fm6mwlw6WPrQQHWdQgTkODsgjy8kVkBvZSXPiHQaUwdbjQI1OXuAxgCxIWASNhW0S0WB5kD2UyA15klx3USAr4fN8DLUpwJiA3xQzkmNLB9qmdmAvmKwDmMQHsIcVuIMYERUKa8UNJcTT0kECTkH5z/ohTfEJDlkPmC9d4+UeCVJbgsxWUJ4koByeFs2f6JApmH9kNOcFmJMgHLRjjZWhrxYDQ8ImAOh4GrvcjKDcsome3UUp4sARKAKVq+KsAIRJ2SThp68hx+7ntIQFzXltuzXSNeVaIjFAc79tN+bOxCyqOqgEcERi7Y7YqfUx2yJdDnbISRWKIdgzc3jwlwWiSZduF0XYqz5XtJx1TKU9u4wnzUeeJbBOamut7tPUE88QeRTVulwO9oK2etd2LOsXI9A61JJ5c1vNnFGEnVR5Um/soSuTPvdsWrymXVEI+WhodLScXfo7X2t+tWMyxx+5LKYRtc37tzHFj0puYK1/oZHQzAlBHJK3tcdYZcCnk6djb60slnuTX0UtwoOPE47IJIX6McP2ufG7qEEuAuhQrOBPSdyttaJY62VHESA+j6VAcX45FYzg7P8J4I3RXcm/hcJFjhWU0V/53F0fysHfASzYRABjxQoBmBPCUoFAX5ciKAGQEJZPrwlioSKCkNwTD4EAH8RwIe9hHAJ7W2JUCRTTqr84m2X4l7mUDMiQbhbREgJ08Ep+TvucsT6/0EXHK0BDh3QQK0mN5VOy2BAyKAomN7Yu1ZBSZAy2Ap4Ds/EYD5H2/dNT2ORMspHM/LMEIkAdOGkMM9GiE4ThHUzAYXK7VX48iDqhsGL7YoA9zueuA1PPXP/3FghUKhUCgUCoVCoVAoFAqFQvHL+Acmn2QFAQ42zgAAAABJRU5ErkJggg=="};
+  var BRAND_SVG = {
+    visa: function (c) { return '<svg viewBox="0 0 64 22"><text x="0" y="19" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-style="italic" font-size="22" letter-spacing="-1" fill="' + c + '">VISA</text></svg>'; },
+    mc: function () { return '<svg viewBox="0 0 52 32"><circle cx="16" cy="16" r="16" fill="#EB001B"/><circle cx="36" cy="16" r="16" fill="#F79E1B"/><path d="M26 3.6a16 16 0 0 1 0 24.8a16 16 0 0 1 0-24.8z" fill="#FF5F00"/></svg>'; },
+    maestro: function () { return '<svg viewBox="0 0 52 32"><circle cx="16" cy="16" r="16" fill="#0099DF"/><circle cx="36" cy="16" r="16" fill="#ED0006"/><path d="M26 3.6a16 16 0 0 1 0 24.8a16 16 0 0 1 0-24.8z" fill="#6C6BBD"/></svg>'; },
+    amex: function () { return '<svg viewBox="0 0 52 32"><rect width="52" height="32" rx="5" fill="#2E77BC"/><text x="26" y="21" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="13" fill="#fff">AMEX</text></svg>'; }
+  };
+  document.querySelectorAll("#pgAccept span").forEach(function (el) { el.innerHTML = BRAND_SVG[el.dataset.b]("#1a1f71"); });
+  var BIN_MAP = {};
+  Object.keys(BANKS).forEach(function (k) { BANKS[k].bins.split(" ").forEach(function (b) { BIN_MAP[b] = k; }); });
+  var NEUTRAL = "linear-gradient(135deg,#3a3f47,#15181c)";
+  var VEVIT = "linear-gradient(135deg,#0b2a1f,#064e3b 55%,#10b981)";
+  var style = "bank";
+
+  function brandOf(d) {
+    if (/^4/.test(d)) return { key: "visa", label: "VISA", len: [13, 16, 19], cvc: 3 };
+    if (/^(5[1-5]|2(2[2-9][1-9]|2[3-9]\d|[3-6]\d\d|7[01]\d|720))/.test(d)) return { key: "mc", label: "mastercard", len: [16], cvc: 3 };
+    if (/^3[47]/.test(d)) return { key: "amex", label: "AMEX", len: [15], cvc: 4 };
+    if (/^(50|5[6-9]|6)/.test(d)) return { key: "maestro", label: "maestro", len: [12, 13, 14, 15, 16, 17, 18, 19], cvc: 3 };
+    return null;
+  }
+  function bankKeyFor(d) { return d.length >= 6 ? (BIN_MAP[d.slice(0, 6)] || null) : null; }
+  function luhn(d) {
+    var sum = 0, alt = false;
+    for (var i = d.length - 1; i >= 0; i--) {
+      var n = +d[i];
+      if (alt) { n *= 2; if (n > 9) n -= 9; }
+      sum += n; alt = !alt;
+    }
+    return sum % 10 === 0;
+  }
+
+  var $ = function (id) { return document.getElementById(id); };
+  var card = $("pgCard"), front = $("pgFront"), back = $("pgBackFace");
+  var iNumber = $("iNumber"), iName = $("iName"), iExp = $("iExp"), iCvc = $("iCvc");
+  var prevDigits = "", prevBrand = null;
+  var state = { number: false, name: false, exp: false, cvc: false };
+
+  function zone(z) { return document.querySelector('.pg-zone[data-zone="' + z + '"]'); }
+  function setErr(fieldId, z, msg) {
+    var f = $(fieldId);
+    f.classList.toggle("bad", !!msg);
+    f.querySelector(".pg-err").textContent = msg || "";
+    zone(z).classList.toggle("bad", !!msg);
+  }
+
+  function paint(bankKey) {
+    var bank = bankKey ? BANKS[bankKey] : null;
+    var bg = style === "vevit" ? VEVIT : (bank ? bank.bg : NEUTRAL);
+    var fg = style === "vevit" ? "#fff" : (bank ? bank.fg : "#fff");
+    [front, back].forEach(function (el) { el.style.background = bg; el.style.color = fg; });
+  }
+
+  function renderNumber() {
+    var d = iNumber.value.replace(/\D/g, "").slice(0, 19);
+    var brand = brandOf(d);
+    var groups = brand && brand.key === "amex" ? [4, 6, 5] : [4, 4, 4, 4, 3];
+    // formátování inputu
+    var out = [], i = 0;
+    groups.forEach(function (g) { if (i < d.length) { out.push(d.slice(i, i + g)); i += g; } });
+    iNumber.value = out.join(" ");
+    // karta
+    var total = brand && brand.key === "amex" ? 15 : Math.max(16, d.length);
+    var html = "", pos = 0;
+    groups.forEach(function (g, gi) {
+      if (pos >= total) return;
+      for (var k = 0; k < g && pos < total; k++, pos++) {
+        var ch = pos < d.length ? d[pos] : "•";
+        var isNew = pos < d.length && pos >= prevDigits.length;
+        html += '<span class="' + (isNew ? "new" : "") + '">' + ch + "</span>";
+      }
+      html += "&nbsp;";
+    });
+    $("pgNumber").innerHTML = html;
+    prevDigits = d;
+
+    // značka
+    var brandEl = $("pgBrand");
+    var label = brand ? BRAND_SVG[brand.key](style !== "vevit" && bankKeyFor(d) === "rb" ? "#1a1f71" : "#fff") : "";
+    if ((brand && brand.key) !== prevBrand || brandEl.dataset.style !== style + bankKeyFor(d)) {
+      brandEl.innerHTML = label; brandEl.dataset.style = style + bankKeyFor(d);
+      brandEl.classList.remove("pop"); void brandEl.offsetWidth; if (label) brandEl.classList.add("pop");
+      prevBrand = brand && brand.key;
+    }
+    // banka
+    var bankKey = d.length >= 6 ? BIN_MAP[d.slice(0, 6)] : null;
+    var bankHtml = bankKey ? '<span class="pg-bankrow"><span class="pg-banklogo"><img alt="" src="' + LOGOS[bankKey] + '"></span><span>' + BANKS[bankKey].name + "</span></span>" : (d.length >= 6 ? "<small>banka nerozpoznána</small>" : "&nbsp;");
+    if ($("pgBank").dataset.k !== String(bankKey) + (d.length >= 6)) { $("pgBank").innerHTML = bankHtml; $("pgBank").dataset.k = String(bankKey) + (d.length >= 6); }
+    document.querySelectorAll("#pgAccept span").forEach(function (el) { el.classList.toggle("on", !!brand && el.dataset.b === brand.key); });
+    $("pgInIcon").innerHTML = (bankKey ? '<img alt="" src="' + LOGOS[bankKey] + '">' : "") + (brand ? BRAND_SVG[brand.key]("#1a1f71") : "");
+    paint(bankKey);
+    $("pgBackNote").textContent = brand && brand.key === "amex" ? "Čtyři číslice na přední straně karty" : "Tři číslice na zadní straně karty";
+    iCvc.maxLength = brand ? brand.cvc : 4;
+
+    // validace
+    var msg = "";
+    if (d.length >= 2 && !brand) msg = "Tento typ karty nepřijímáme.";
+    else if (brand && brand.len.indexOf(d.length) !== -1 && d.length >= (brand.key === "amex" ? 15 : 16) && !luhn(d)) msg = "Číslo karty není platné. Zkontroluj překlep.";
+    setErr("fNumber", "number", msg);
+    state.number = !!brand && !msg && d.length >= (brand.key === "amex" ? 15 : 16) && luhn(d);
+
+    var meta = [];
+    if (brand) meta.push('<span class="pg-tag">' + ({ visa: "Visa", mc: "Mastercard", amex: "American Express", maestro: "Maestro" })[brand.key] + "</span>");
+    if (bankKey) meta.push('<span class="pg-tag">' + BANKS[bankKey].name + "</span>");
+    if (state.number) meta.push('<span class="pg-tag ok">✓ číslo ověřeno (Luhn)</span>');
+    if (msg) meta.push('<span class="pg-tag err">✗ ' + msg + "</span>");
+    $("pgMeta").innerHTML = meta.join("");
+    checkReady();
+  }
+
+  function renderName() {
+    var v = iName.value.replace(/[^\p{L} .'-]/gu, "");
+    iName.value = v;
+    $("pgName").textContent = v.trim() ? v.normalize("NFD").replace(/[̀-ͯ]/g, "") : "JMÉNO PŘÍJMENÍ";
+    state.name = v.trim().length >= 3;
+    checkReady();
+  }
+
+  function renderExp(e) {
+    var d = iExp.value.replace(/\D/g, "").slice(0, 4);
+    if (d.length === 1 && +d > 1) d = "0" + d;
+    iExp.value = d.length > 2 ? d.slice(0, 2) + "/" + d.slice(2) : d;
+    $("pgExp").textContent = iExp.value || "MM/RR";
+    var msg = "";
+    if (d.length >= 2 && (+d.slice(0, 2) < 1 || +d.slice(0, 2) > 12)) msg = "Měsíc musí být 01–12.";
+    else if (d.length === 4) {
+      var m = +d.slice(0, 2), y = 2000 + +d.slice(2), now = new Date();
+      if (y < now.getFullYear() || (y === now.getFullYear() && m < now.getMonth() + 1)) msg = "Karta už je prošlá.";
+      else if (y > now.getFullYear() + 20) msg = "Neplatný rok.";
+    }
+    setErr("fExp", "exp", msg);
+    state.exp = d.length === 4 && !msg;
+    checkReady();
+  }
+
+  function renderCvc() {
+    var d = iCvc.value.replace(/\D/g, "").slice(0, iCvc.maxLength);
+    iCvc.value = d;
+    $("pgCvc").textContent = d ? d.replace(/./g, "•") : "•••";
+    state.cvc = d.length === iCvc.maxLength;
+    checkReady();
+  }
+
+  function checkReady() {
+    $("pgPay").classList.toggle("ready", state.number && state.name && state.exp && state.cvc);
+  }
+
+  function focusZone(z) {
+    document.querySelectorAll(".pg-zone").forEach(function (el) { el.classList.toggle("active", el.dataset.zone === z); });
+    card.classList.toggle("flipped", z === "cvc");
+  }
+
+  iNumber.addEventListener("input", renderNumber);
+  iName.addEventListener("input", renderName);
+  iExp.addEventListener("input", renderExp);
+  iCvc.addEventListener("input", renderCvc);
+  [[iNumber, "number"], [iName, "name"], [iExp, "exp"], [iCvc, "cvc"]].forEach(function (p) {
+    p[0].addEventListener("focus", function () { focusZone(p[1]); });
+    p[0].addEventListener("blur", function () { setTimeout(function () { if (!document.activeElement || !document.activeElement.closest(".pg-form")) focusZone(null); }, 0); });
+  });
+  iCvc.addEventListener("blur", function () { if (iCvc.value && !state.cvc) setErr("fCvc", "cvc", "CVC je neúplné."); });
+  iCvc.addEventListener("input", function () { setErr("fCvc", "cvc", ""); });
+
+  window.pgStyle = function (s) { style = s; renderNumber(); };
+  window.pgFill = function (n) { prevDigits = ""; iNumber.value = n; renderNumber(); iNumber.focus(); };
+  renderNumber();
+})();
+</script>
