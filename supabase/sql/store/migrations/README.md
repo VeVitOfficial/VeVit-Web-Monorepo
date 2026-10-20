@@ -146,3 +146,18 @@ Přidává do `store_orders` sloupce `payment_provider`, `payment_method`,
 `payment_attempts`, `payment_intent_seq`, `last_payment_error`. Je opakovatelná
 (`IF NOT EXISTS`). Rollback `202610200002_payment_intents_down.sql` ztratí počítadla
 pokusů a zaznamenanou metodu platby; po prvních reálných platbách raději obnova ze zálohy.
+
+## Pokladna v krocích, fáze 2 (202610200003, 202610200004)
+
+Spouští se až po migracích fáze 1 (`202610200001`, `202610200002`):
+
+```bash
+psql "$DB_DSN" -v ON_ERROR_STOP=1 -f migrations/202610200003_checkout_details_up.sql
+```
+
+Přidává do `store_orders` telefon, způsob doručení, výdejní místo Zásilkovny, firemní a
+fakturační údaje a časy souhlasů; do `store_products` hmotnost (`weight_grams`, výchozí 500 g)
+a sazbu DPH (`vat_rate`, výchozí 21 %). Skutečné hmotnosti a sazby nastaví provozovatel.
+Migrace je opakovatelná. Bez ní vytvoření objednávky ze snapshotu selže, protože nové
+sloupce se zapisují vždy. Rollback `202610200003_checkout_details_down.sql` ztratí uložené
+údaje; po prvních reálných objednávkách raději obnova ze zálohy.

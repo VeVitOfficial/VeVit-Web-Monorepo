@@ -1,4 +1,19 @@
 import { randomBytes } from "node:crypto";
+import {
+  CHECKOUT_MAX_ITEMS,
+  CHECKOUT_MAX_QUANTITY,
+  CheckoutValidationException,
+  deliveryMethodOf,
+  finalizeCheckoutDetails,
+  normalizeCheckoutInput,
+  requestHashInput,
+  type CheckoutBilling,
+  type CheckoutConsents,
+  type CheckoutPaymentMethod,
+  type DeliveryInput,
+  type NormalizedInput,
+} from "@/lib/checkout/checkout-input";
+import type { PostalAddress } from "@/lib/checkout/company";
 import { shippingMinor as computeShippingMinor } from "@/lib/checkout/shipping";
 import { snapshotIntegrityHash, sha256Hex } from "@/lib/store-order-core";
 import { storeRest, StoreRestError } from "@/lib/store-config";
@@ -20,14 +35,10 @@ import "server-only";
  * same outcome the PHP code produces for a missing or unsafe binding.
  */
 
-export class CheckoutValidationException extends Error {
-  constructor(readonly errorCode: string, message: string = "Objednávku se nepodařilo ověřit.") {
-    super(message);
-  }
-}
+// Input normalization lives in the pure module so it is unit-tested; re-exported for existing callers.
+export { CheckoutValidationException, CHECKOUT_MAX_ITEMS, CHECKOUT_MAX_QUANTITY, normalizeCheckoutInput };
+export type { NormalizedInput };
 
-export const CHECKOUT_MAX_ITEMS = 25;
-export const CHECKOUT_MAX_QUANTITY = 100;
 export const CHECKOUT_SNAPSHOT_TTL_SECONDS = 1800;
 export const CHECKOUT_MAX_TOTAL_MINOR = 9999999999;
 
@@ -45,21 +56,19 @@ export interface CheckoutItem {
   backorder: boolean;
 }
 
-export interface NormalizedInput {
-  items: Array<{ productId: number; quantity: number }>;
-  email: string;
-  name: string;
-  shipping: { street: string; city: string; zip: string; country: "CZ" | "SK" } | null;
-  notes: string;
-  idempotencyKey: string;
-}
-
 export interface CheckoutSnapshot {
   public_id: string;
   user_id: string | null;
   customer_email: string;
   customer_name: string;
-  shipping: { street: string; city: string; zip: string; country: string } | null;
+  customer_phone: string | null;
+  shipping: PostalAddress | null;
+  delivery: DeliveryInput | null;
+  billing: CheckoutBilling;
+  payment_method: CheckoutPaymentMethod | null;
+  consents: CheckoutConsents;
+  terms_accepted_at: string | null;
+  digital_waiver_at: string | null;
   notes: string;
   currency: "czk";
   items: CheckoutItem[];
@@ -88,96 +97,6 @@ function phpYmdHis(date: Date): string {
   const pad = (n: number) => String(n).padStart(2, "0");
   return `${date.getUTCFullYear()}${pad(date.getUTCMonth() + 1)}${pad(date.getUTCDate())}` +
     `${pad(date.getUTCHours())}${pad(date.getUTCMinutes())}${pad(date.getUTCSeconds())}`;
-}
-
-// ── Input normalization (normalizeInput) ─────────────────────────────────────
-
-const CLIENT_OWNED_ITEM_FIELDS = ["price", "sale_price", "currency", "name", "type", "stock", "shipping", "tax", "total", "download_url", "download_token"];
-const REQUIRED_ITEM_FIELDS = ["product_id", "quantity", "variant_id"];
-
-function positiveInteger(value: unknown, errorCode: string): number {
-  if (typeof value === "number" && Number.isInteger(value) && value >= 1) return value;
-  if (typeof value === "string" && /^[1-9][0-9]*$/.test(value)) {
-    const number = Number(value);
-    if (Number.isSafeInteger(number) && number >= 1) return number;
-  }
-  throw new CheckoutValidationException(errorCode, "Neplatné množství nebo produkt.");
-}
-
-export function normalizeCheckoutInput(input: Record<string, unknown>): NormalizedInput {
-  const allowedTopLevel = ["items", "email", "name", "shipping", "notes", "idempotency_key"];
-  for (const key of Object.keys(input)) {
-    if (!allowedTopLevel.includes(key)) {
-      throw new CheckoutValidationException("unexpected_field", "Požadavek obsahuje nepodporovaná data.");
-    }
-  }
-  const rawItems = input.items;
-  if (!Array.isArray(rawItems) || rawItems.length === 0 || rawItems.length > CHECKOUT_MAX_ITEMS) {
-    throw new CheckoutValidationException("invalid_items", "Košík není platný.");
-  }
-  const merged = new Map<number, number>();
-  for (const item of rawItems) {
-    if (item === null || typeof item !== "object" || Array.isArray(item)) {
-      throw new CheckoutValidationException("invalid_items", "Košík není platný.");
-    }
-    const itemRecord = item as Record<string, unknown>;
-    for (const key of Object.keys(itemRecord)) {
-      if (!REQUIRED_ITEM_FIELDS.includes(key) && !CLIENT_OWNED_ITEM_FIELDS.includes(key)) {
-        throw new CheckoutValidationException("unexpected_field", "Požadavek obsahuje nepodporovaná data.");
-      }
-    }
-    if (itemRecord.variant_id !== undefined && itemRecord.variant_id !== null && itemRecord.variant_id !== "") {
-      throw new CheckoutValidationException("variants_not_supported", "Vybraná varianta není dostupná.");
-    }
-    const productId = positiveInteger(itemRecord.product_id ?? null, "invalid_product");
-    const quantity = positiveInteger(itemRecord.quantity ?? null, "invalid_quantity");
-    if (quantity > CHECKOUT_MAX_QUANTITY) {
-      throw new CheckoutValidationException("quantity_limit", "Požadované množství je příliš vysoké.");
-    }
-    const next = (merged.get(productId) ?? 0) + quantity;
-    if (next > CHECKOUT_MAX_QUANTITY) {
-      throw new CheckoutValidationException("quantity_limit", "Požadované množství je příliš vysoké.");
-    }
-    merged.set(productId, next);
-  }
-  if (merged.size > CHECKOUT_MAX_ITEMS) {
-    throw new CheckoutValidationException("invalid_items", "Košík obsahuje příliš mnoho položek.");
-  }
-  const items = [...merged.entries()]
-    .sort((a, b) => a[0] - b[0])
-    .map(([productId, quantity]) => ({ productId, quantity }));
-
-  const email = typeof input.email === "string" ? input.email : "";
-  if (!isValidEmail(email) || email.length > 255) {
-    throw new CheckoutValidationException("invalid_contact", "Zadejte platný e-mail.");
-  }
-  const name = typeof input.name === "string" ? input.name.trim() : "";
-  if (name === "" || [...name].length > 120) {
-    throw new CheckoutValidationException("invalid_contact", "Zadejte jméno objednatele.");
-  }
-  const notes = typeof input.notes === "string" ? input.notes.trim() : "";
-  if ([...notes].length > 2000) {
-    throw new CheckoutValidationException("invalid_notes", "Poznámka je příliš dlouhá.");
-  }
-  const key = typeof input.idempotency_key === "string" ? input.idempotency_key : "";
-  if (!/^[A-Za-z0-9_-]{16,128}$/.test(key)) {
-    throw new CheckoutValidationException("invalid_idempotency_key", "Požadavek nelze bezpečně zopakovat.");
-  }
-  const shippingRaw = (input.shipping === undefined) ? null : input.shipping;
-  return {
-    items,
-    email,
-    name,
-    shipping: (shippingRaw === null || typeof shippingRaw !== "object" || Array.isArray(shippingRaw)) ? null : (shippingRaw as NormalizedInput["shipping"]),
-    notes,
-    idempotencyKey: key,
-  };
-}
-
-/** filter_var(FILTER_VALIDATE_EMAIL) approximation with the same spirit. */
-function isValidEmail(value: string): boolean {
-  if (value === "" || value.includes("\0")) return false;
-  return /^[^@\s]+@[^@\s.]+(\.[^@\s.]+)+$/.test(value) && value.length <= 320;
 }
 
 function databaseBoolean(value: unknown): boolean {
@@ -285,36 +204,6 @@ function buildItem(product: StoreProductRow, quantity: number): CheckoutItem {
   };
 }
 
-// ── Shipping (normalizeShipping) ─────────────────────────────────────────────
-
-function normalizeShipping(shipping: NormalizedInput["shipping"], required: boolean): { street: string; city: string; zip: string; country: string } | null {
-  if (!required) return null;
-  if (shipping === null || typeof shipping !== "object") {
-    throw new CheckoutValidationException("shipping_required", "Doplňte doručovací adresu.");
-  }
-  const record = shipping as Record<string, unknown>;
-  for (const key of Object.keys(record)) {
-    if (!["street", "city", "zip", "country"].includes(key)) {
-      throw new CheckoutValidationException("invalid_shipping", "Doručovací adresa není platná.");
-    }
-  }
-  const result: Record<string, string> = {};
-  const limits: Array<[string, number]> = [["street", 160], ["city", 100], ["zip", 24]];
-  for (const [field, limit] of limits) {
-    const value = String(record[field] ?? "").trim();
-    if (value === "" || [...value].length > limit) {
-      throw new CheckoutValidationException("invalid_shipping", "Doručovací adresa není platná.");
-    }
-    result[field] = value;
-  }
-  const country = String(record.country ?? "").trim().toUpperCase();
-  if (country !== "CZ" && country !== "SK") {
-    throw new CheckoutValidationException("invalid_shipping", "Země doručení není podporovaná.");
-  }
-  result.country = country;
-  return result as { street: string; city: string; zip: string; country: string };
-}
-
 // ── Snapshot persistence ─────────────────────────────────────────────────────
 
 type PublicSnapshot = Omit<CheckoutSnapshot, "checkout_grant_hash" | "idempotency_scope_hash" | "idempotency_key_hash" | "request_hash">;
@@ -407,13 +296,7 @@ export async function createCheckoutSnapshot(params: CheckoutCreateInput): Promi
   const keyHash = sha256Hex(normalized.idempotencyKey);
   // PHP json_encode of the array-map with ksort(SORT_NUMERIC) keys: ascending
   // numeric order, which JSON.stringify reproduces from a sorted Map.
-  const requestHash = sha256Hex(JSON.stringify({
-    items: Object.fromEntries(normalized.items.map((item) => [item.productId, item.quantity])),
-    email: normalized.email,
-    name: normalized.name,
-    shipping: normalized.shipping,
-    notes: normalized.notes,
-  }));
+  const requestHash = sha256Hex(JSON.stringify(requestHashInput(normalized)));
 
   const existing = await findExistingSnapshot(scopeHash, keyHash);
   if (existing !== null && existing.request_hash !== requestHash) {
@@ -453,19 +336,26 @@ export async function createCheckoutSnapshot(params: CheckoutCreateInput): Promi
   const items: CheckoutItem[] = [];
   let subtotalMinor = 0;
   let hasPhysical = false;
+  let hasDigital = false;
   for (const { productId, quantity } of normalized.items) {
     const item = buildItem(productsById.get(productId)!, quantity);
     items.push(item);
     subtotalMinor += item.line_total_minor;
     hasPhysical = hasPhysical || item.type === "physical";
+    hasDigital = hasDigital || item.type === "digital";
   }
   if (items.some((item) => item.line_total_minor > CHECKOUT_MAX_TOTAL_MINOR - (subtotalMinor - item.line_total_minor))) {
     throw new CheckoutValidationException("order_total_limit", "Celková cena objednávky je příliš vysoká.");
   }
 
-  const shipping = normalizeShipping(normalized.shipping, hasPhysical);
-  // Delivery method input arrives with the extended checkout (phase 2, task 3); until then: address.
-  const shippingMinor = computeShippingMinor({ method: hasPhysical ? "address" : null, hasPhysical, subtotalMinor, freePerk: params.freeShipping === true });
+  const details = finalizeCheckoutDetails(normalized, { hasPhysical, hasDigital });
+  const shipping = details.shipping;
+  const shippingMinor = computeShippingMinor({
+    method: deliveryMethodOf(details.delivery),
+    hasPhysical,
+    subtotalMinor,
+    freePerk: params.freeShipping === true,
+  });
   const totalMinor = subtotalMinor + shippingMinor;
   if (totalMinor > CHECKOUT_MAX_TOTAL_MINOR) {
     throw new CheckoutValidationException("order_total_limit", "Celková cena objednávky je příliš vysoká.");
@@ -478,7 +368,14 @@ export async function createCheckoutSnapshot(params: CheckoutCreateInput): Promi
     user_id: params.user !== null ? params.user.id : null,
     customer_email: normalized.email,
     customer_name: normalized.name,
+    customer_phone: details.phone,
     shipping,
+    delivery: details.delivery,
+    billing: details.billing,
+    payment_method: normalized.paymentMethod,
+    consents: details.consents,
+    terms_accepted_at: details.consents.terms ? phpAtom(params.now) : null,
+    digital_waiver_at: hasDigital && details.consents.digital_waiver ? phpAtom(params.now) : null,
     notes: normalized.notes,
     currency: "czk",
     items,
