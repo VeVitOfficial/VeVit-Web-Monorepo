@@ -69,6 +69,22 @@ export function buildValidationRequest(id: string, apiKey: string) {
   };
 }
 
+/**
+ * Validation errors that say the point itself cannot be used. Other codes (age verification, claim
+ * assistant, empty country list ...) describe options of our own request, so they must not block a customer.
+ */
+const POINT_ERRORS = new Set([
+  "NotFound",
+  "InvalidCarrier",
+  "InvalidCountry",
+  "InvalidVendor",
+  "PickupPointVacation",
+  "PickupPointClosing",
+  "PickupPointIsFull",
+  "PickupPointForbidden",
+  "PickupPointTechnicalReason",
+]);
+
 export type PointValidation =
   | { status: "valid"; point: PacketaPoint }
   | { status: "invalid" }
@@ -81,7 +97,11 @@ export type PointValidation =
 export function parseValidationResponse(id: string, json: unknown): PointValidation {
   const source = record(json);
   if (!source || typeof source.isValid !== "boolean") return { status: "unknown" };
-  if (!source.isValid) return { status: "invalid" };
+  if (!source.isValid) {
+    const errors = Array.isArray(source.errors) ? source.errors : [];
+    const blocked = errors.some((error) => POINT_ERRORS.has(String(record(error)?.code ?? "")));
+    return { status: blocked ? "invalid" : "unknown" };
+  }
   const point = record(source.point);
   const address = record(point?.address);
   if (!point || !address) return { status: "unknown" };

@@ -55,7 +55,15 @@ test("validation response: valid point is rebuilt from the Packeta answer", () =
 test("validation response: invalid and unusable answers", () => {
   assert.deepEqual(parseValidationResponse("1", { isValid: false, errors: [{ code: "NotFound" }] }), { status: "invalid" });
   assert.deepEqual(parseValidationResponse("1", { isValid: false, errors: [{ code: "PickupPointIsFull" }] }), { status: "invalid" });
+  assert.deepEqual(parseValidationResponse("1", { isValid: false, errors: [{ code: "InvalidCountry" }, { code: "NoAgeVerification" }] }), { status: "invalid" });
   assert.deepEqual(parseValidationResponse("1", { isValid: true, point: { name: "x", address: { country: "pl" } } }), { status: "unknown" });
   assert.deepEqual(parseValidationResponse("1", "garbage"), { status: "unknown" });
   assert.deepEqual(parseValidationResponse("1", {}), { status: "unknown" });
+});
+
+test("validation answers about our own request settings never block a customer", () => {
+  assert.deepEqual(parseValidationResponse("1", { isValid: false, errors: [{ code: "EmptyListOfAllowedCountries" }] }), { status: "unknown" });
+  assert.deepEqual(parseValidationResponse("1", { isValid: false, errors: [{ code: "NoAgeVerification" }] }), { status: "unknown" });
+  assert.deepEqual(parseValidationResponse("1", { isValid: false, errors: [] }), { status: "unknown" });
+  assert.deepEqual(parseValidationResponse("1", { isValid: false }), { status: "unknown" });
 });
