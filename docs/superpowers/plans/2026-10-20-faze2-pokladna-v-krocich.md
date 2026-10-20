@@ -44,7 +44,7 @@
   - `shippingMinor(input: { method: DeliveryMethod | null; hasPhysical: boolean; subtotalMinor: number; freePerk: boolean }): number`
   - `missingForFreeShippingMinor(subtotalMinor: number): number` (0 když už je zdarma)
 
-- [ ] **Step 1: Write failing tests**
+- [x] **Step 1: Write failing tests**
 
 ```js
 test("shipping rules", () => {
@@ -59,10 +59,10 @@ test("shipping rules", () => {
 ```
 `shippingMinor` s `hasPhysical: true` a `method: null` vyhodí `Error("delivery_method_required")`.
 
-- [ ] **Step 2: Run `npm run test:unit`** — FAIL.
-- [ ] **Step 3: Implement** a napoj `cart.ts` (koruny = minor/100) i snapshot (metoda zatím `"address"`, dokud Task 3 nepřidá vstup).
-- [ ] **Step 4: Run** testy, typecheck, lint — PASS.
-- [ ] **Step 5: Commit** `refactor(store): single shipping price module`
+- [x] **Step 2: Run `npm run test:unit`** — FAIL.
+- [x] **Step 3: Implement** a napoj `cart.ts` (koruny = minor/100) i snapshot (metoda zatím `"address"`, dokud Task 3 nepřidá vstup).
+- [x] **Step 4: Run** testy, typecheck, lint — PASS.
+- [x] **Step 5: Commit** `refactor(store): single shipping price module`
 
 ### Task 2: IČO a ARES
 
@@ -79,11 +79,11 @@ test("shipping rules", () => {
   - `mapAresSubject(json: unknown): CompanyInfo | null` (street = `nazevUlice` nebo `nazevCastiObce` + ` cisloDomovni` + `/cisloOrientacni` když existuje; city = `nazevMestskehoObvodu ?? nazevObce`; zip = `String(psc)`; country `"CZ"`)
   - `GET /store/api/ares.php?ico=<8 číslic>` → `200 CompanyInfo` | `404 { error: { code: "ico_not_found" } }` | `422 { error: { code: "ico_invalid" } }` | `503 { error: { code: "ares_unavailable" } }`. Upstream `https://ares.gov.cz/ekonomicke-subjekty-v-be/rest/ekonomicke-subjekty/{ico}`, timeout 3000 ms, in-memory cache 1 h (Map s expirací), rate limit `storeRateLimitConsume("store_ares", <ip>, 20, 600)`.
 
-- [ ] **Step 1: Write failing tests**: `icoValid("27082440") === true`, `icoValid("12345678") === false`, `icoValid("1234567") === false`; `mapAresSubject` nad výřezem skutečné odpovědi pro 27082440 (`obchodniJmeno "Alza.cz a.s."`, `dic "CZ27082440"`, sidlo Jankovcova 1522/53, psc 17000, obvod „Praha 7“) → `{ name: "Alza.cz a.s.", dic: "CZ27082440", address: { street: "Jankovcova 1522/53", city: "Praha 7", zip: "17000", country: "CZ" } }`; firma bez `dic` → `dic: null`; nesmyslný vstup → `null`.
-- [ ] **Step 2: Run** — FAIL.
-- [ ] **Step 3: Implement** modul a route.
-- [ ] **Step 4: Run** testy, typecheck, lint — PASS; `curl 'localhost:3000/store/api/ares.php?ico=27082440' -H 'Origin: http://localhost:3000'` vrátí Alzu.
-- [ ] **Step 5: Commit** `feat(store): ICO validation and ARES lookup`
+- [x] **Step 1: Write failing tests**: `icoValid("27082440") === true`, `icoValid("12345678") === false`, `icoValid("1234567") === false`; `mapAresSubject` nad výřezem skutečné odpovědi pro 27082440 (`obchodniJmeno "Alza.cz a.s."`, `dic "CZ27082440"`, sidlo Jankovcova 1522/53, psc 17000, obvod „Praha 7“) → `{ name: "Alza.cz a.s.", dic: "CZ27082440", address: { street: "Jankovcova 1522/53", city: "Praha 7", zip: "17000", country: "CZ" } }`; firma bez `dic` → `dic: null`; nesmyslný vstup → `null`.
+- [x] **Step 2: Run** — FAIL.
+- [x] **Step 3: Implement** modul a route.
+- [x] **Step 4: Run** testy, typecheck, lint — PASS; `curl 'localhost:3000/store/api/ares.php?ico=27082440' -H 'Origin: http://localhost:3000'` vrátí Alzu.
+- [x] **Step 5: Commit** `feat(store): ICO validation and ARES lookup`
 
 ### Task 3: Rozšířený vstup pokladny (snapshot, objednávka, migrace)
 
@@ -105,11 +105,11 @@ test("shipping rules", () => {
   - Telefon povinný jen při fyzickém zboží; chyba `invalid_phone` → „Zadej platné telefonní číslo.“
   - Migrace: `store_orders` + `customer_phone varchar(16)`, `delivery_method varchar(16) check in ('packeta_pickup','address')`, `packeta_point jsonb`, `billing_company jsonb`, `billing_address jsonb`, `terms_accepted_at timestamptz`, `digital_waiver_at timestamptz`; `store_products` + `weight_grams int not null default 500 check (weight_grams > 0)`, `vat_rate numeric(4,2) not null default 21.00 check (vat_rate in (0, 12, 21))`.
 
-- [ ] **Step 1: Write failing tests**: SK telefon `"+421 905 123 456"` → `"+421905123456"`; Packeta bod s `country: "PL"` → `invalid_delivery`; firma s IČO `12345678` → `invalid_company`; `requestHashInput` se liší pro `delivery.method` `packeta_pickup` vs `address`; fyzický košík bez telefonu → `invalid_phone`; `requireConsents(true, { terms: true, digital_waiver: false })` → `digital_waiver_required`; `requireConsents(false, { terms: false, digital_waiver: false })` → `terms_required`; neznámé top-level pole → `unexpected_field` (zachovat stávající chování).
-- [ ] **Step 2: Run** — FAIL.
-- [ ] **Step 3: Implement** přesun + rozšíření, migraci, zápis do snapshotu a `insertOrder`. `shippingMinor` dostane metodu ze vstupu. `requireConsents` volat v `createCheckoutSnapshot` po sestavení položek.
-- [ ] **Step 4: Run** testy, typecheck, lint — PASS.
-- [ ] **Step 5: Commit** `feat(store): checkout snapshot with delivery, company and consents`
+- [x] **Step 1: Write failing tests**: SK telefon `"+421 905 123 456"` → `"+421905123456"`; Packeta bod s `country: "PL"` → `invalid_delivery`; firma s IČO `12345678` → `invalid_company`; `requestHashInput` se liší pro `delivery.method` `packeta_pickup` vs `address`; fyzický košík bez telefonu → `invalid_phone`; `requireConsents(true, { terms: true, digital_waiver: false })` → `digital_waiver_required`; `requireConsents(false, { terms: false, digital_waiver: false })` → `terms_required`; neznámé top-level pole → `unexpected_field` (zachovat stávající chování).
+- [x] **Step 2: Run** — FAIL.
+- [x] **Step 3: Implement** přesun + rozšíření, migraci, zápis do snapshotu a `insertOrder`. `shippingMinor` dostane metodu ze vstupu. `requireConsents` volat v `createCheckoutSnapshot` po sestavení položek.
+- [x] **Step 4: Run** testy, typecheck, lint — PASS.
+- [x] **Step 5: Commit** `feat(store): checkout snapshot with delivery, company and consents`
 
 ### Task 4: Výběr výdejního místa Zásilkovny
 
