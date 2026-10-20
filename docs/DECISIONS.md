@@ -263,3 +263,16 @@ rozhodnutí uživatele i bezpečnější výklad rozporů nalezených během rea
   je úkol provozovatele (návrh kap. 9).
 - Košík neukazuje cenu dopravy, jen „od 69 Kč · vybereš v dalším kroku“ (nebo „Zdarma“), protože
   metoda se volí až v kroku 2.
+- `/store/api/me.php` vrací navíc `user.email`, ale jen odpovědím bez CORS echo (stejný původ), aby
+  se e-mail přihlášeného nedostal k jiným povoleným původům. Používá se k předvyplnění pokladny.
+- Kontrola formuláře v kroku 3 je čistý modul `details-validation.ts` (testovaný); zrcadlí pravidla
+  serveru jen kvůli rychlému ukázání chyby u pole, autoritou zůstává server. Serverové kódy chyb
+  (`invalid_phone`, `terms_required`, `invalid_company`, `invalid_delivery` …) se mapují zpět k poli.
+- Pole firmy hlásí rodiči `CompanyInfo` až když je kompletní a platné (IČO, název, adresa; DIČ volitelné
+  ve tvaru `CZ12345678`); jinak `null`, takže „Pokračovat“ nepustí rozpracovanou firmu. IČO nenalezené
+  v ARES (404) blokuje, nedostupný ARES (503/timeout) ne.
+- Stránka platby čte volbu z kroku 2 přímo ze `sessionStorage` (jednorázově) a první PaymentIntent
+  vytváří rovnou pro zvolenou metodu (`apple_pay`/`google_pay` → `wallet`). Když zařízení wallet
+  neumí, spadne na kartu. Odkaz „Změnit způsob platby“ vede na krok 2 (nový snapshot a objednávka).
+- Na stránce Hotovo (`/store/success`) se po načtení existující objednávky smaže koncept i košík
+  (`ClearCheckout`); rekapitulace ukazuje dopravu (včetně cenové položky) a platbu z objednávky.

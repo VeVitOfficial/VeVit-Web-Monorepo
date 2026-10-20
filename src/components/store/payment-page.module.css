@@ -17,3 +17,5 @@
 .amount strong { color: var(--vv-text, #e8edf2); font-size: 1.2rem; }
 .captcha { margin: 0 0 14px; }
 @media (max-width: 520px) { .icons { width: 96px; } .icons span { padding: 3px 4px; } }
+.change { margin: -8px 0 16px; font-size: 13px; }
+.change a { color: #10b981; }

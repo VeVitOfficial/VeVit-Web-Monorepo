@@ -8,6 +8,9 @@ import { CardGateway } from "@/components/payments/card-gateway/card-gateway";
 import { PayPalButton } from "@/components/payments/paypal-button";
 import { getStripe } from "@/components/payments/stripe-client";
 import { WalletButton, type WalletAvailability } from "@/components/payments/wallet-button";
+import { CheckoutSteps } from "@/components/store/checkout/checkout-steps";
+import { DRAFT_KEY, parseDraft } from "@/lib/checkout/checkout-draft";
+import { intentMethodFor } from "@/lib/checkout/payment-labels";
 import { BRAND_LOGOS } from "@/lib/payments/card-banks";
 import { declineMessage } from "@/lib/payments/decline-messages";
 import styles from "./payment-page.module.css";
@@ -46,6 +49,16 @@ function goToSuccess(orderPublicId: string): void {
   window.location.assign(`/store/success?order=${encodeURIComponent(orderPublicId)}`);
 }
 
+/** Method and delivery choice made in step 2, read once (the page is only ever rendered on the client). */
+function readStepChoices(): { method: Method; hasDelivery: boolean } {
+  try {
+    const draft = parseDraft(sessionStorage.getItem(DRAFT_KEY));
+    return { method: intentMethodFor(draft.paymentMethod), hasDelivery: draft.delivery !== null };
+  } catch {
+    return { method: "card", hasDelivery: false };
+  }
+}
+
 export function PaymentPage() {
   const params = useSearchParams();
   // Captured once: the URL is rewritten from ?snapshot= to ?order= after the order exists.
@@ -54,11 +67,12 @@ export function PaymentPage() {
     order: params.get("order") ?? "",
     returned: params.has("payment_intent"),
     redirectStatus: params.get("redirect_status") ?? "",
+    ...readStepChoices(),
   }));
   const [orderId, setOrderId] = useState(initial.order);
   const [amountMinor, setAmountMinor] = useState<number | null>(null);
   const [ready, setReady] = useState(false);
-  const [method, setMethod] = useState<Method>("card");
+  const [chosen, setMethod] = useState<Method>(initial.method);
   const [wallet, setWallet] = useState<WalletAvailability | null>(null);
   const [error, setError] = useState("");
 
@@ -81,7 +95,7 @@ export function PaymentPage() {
           if (initial.returned) setError("Platba se nezdařila. Zkus to znovu nebo zvol jiný způsob platby.");
           setReady(true);
         } else if (initial.snapshot) {
-          const { ok, json } = await postJson("/store/api/payment-intent.php", { snapshot: initial.snapshot, method: "card" });
+          const { ok, json } = await postJson("/store/api/payment-intent.php", { snapshot: initial.snapshot, method: initial.method });
           const publicId = (json?.order as { public_id?: string } | undefined)?.public_id;
           if (!ok || !publicId || typeof json?.amount_minor !== "number") throw new Error(errorMessage(json, PREPARE_ERROR));
           if (cancelled) return;
@@ -128,11 +142,14 @@ export function PaymentPage() {
 
   const returnUrl = ready ? `${window.location.origin}/store/checkout/platba?order=${orderId}` : "";
   const walletUnavailable = wallet !== null && !wallet.applePay && !wallet.googlePay;
+  // A wallet chosen in step 2 may not exist on this device: fall back to the card form.
+  const method: Method = chosen === "wallet" && walletUnavailable ? "card" : chosen;
 
   if (!ready) {
     return (
       <main className="store-main">
-        <div className="store-section-head"><div><p className="store-eyebrow">Platba</p><h1>Platba</h1></div></div>
+        <CheckoutSteps current={4} skipDelivery={!initial.hasDelivery} />
+        <div className="store-section-head"><div><h1>Platba</h1></div></div>
         {error
           ? <><p className={styles.error} role="alert">{error}</p><Link className="store-button" href="/store/cart">Zpět do košíku</Link></>
           : <div className="store-empty">Připravuji platbu…</div>}
@@ -142,9 +159,11 @@ export function PaymentPage() {
 
   return (
     <main className="store-main">
-      <div className="store-section-head"><div><p className="store-eyebrow">Platba</p><h1>Zaplatit objednávku</h1></div></div>
+      <CheckoutSteps current={4} skipDelivery={!initial.hasDelivery} />
+      <div className="store-section-head"><div><h1>Zaplatit objednávku</h1></div></div>
       {amountMinor !== null && <p className={styles.amount}>K úhradě <strong>{money.format(amountMinor / 100)}</strong></p>}
       {error && <p className={styles.error} role="alert">{error}</p>}
+      {initial.hasDelivery && <p className={styles.change}><Link href="/store/checkout/doprava">Změnit způsob platby</Link></p>}
 
       <fieldset className={styles.methods}>
         <legend className="sr-only">Způsob platby</legend>

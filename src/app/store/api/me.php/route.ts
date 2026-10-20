@@ -48,6 +48,8 @@ async function handler(request: Request): Promise<Response> {
   const user = await getStoreUser();
   // PHP uses `$user['full_name'] ?? $user['nickname'] ?? ''` (null coalescing);
   // getStoreUser() coerces a missing full_name to '', so treat '' as absent.
+  // Own email for prefilling the checkout, never echoed to other origins (CORS responses).
+  const sameOrigin = Object.keys(corsEchoHeaders(request)).length === 0;
   const displayName = user !== null && user.full_name === "" ? (user.nickname ?? "") : user?.full_name ?? "";
   return new Response(JSON.stringify({
     authenticated: user !== null,
@@ -56,6 +58,7 @@ async function handler(request: Request): Promise<Response> {
           id: user.id,
           display_name: displayName,
           avatar_url: user.avatar_url,
+          ...(sameOrigin ? { email: user.email } : {}),
         }
       : null,
     // Display only — the checkout re-checks the perk server-side.

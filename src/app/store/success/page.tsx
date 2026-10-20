@@ -3,6 +3,9 @@ import { connection } from "next/server";
 import { successOrderForPage } from "@/lib/store-order-page";
 import { RequestDownloadButtons } from "@/components/store/request-download";
 import { PaymentStatusPoller } from "@/components/store/payment-status-poller";
+import { CheckoutSteps } from "@/components/store/checkout/checkout-steps";
+import { ClearCheckout } from "@/components/store/checkout/clear-checkout";
+import { PAYMENT_LABELS } from "@/lib/checkout/payment-labels";
 
 export const metadata = { title: "Stav objednávky — VeVit Store", robots: { index: false } };
 export const dynamic = "force-dynamic";
@@ -14,6 +17,9 @@ interface SuccessOrderLike {
   status: string;
   totalAmount: string | null;
   canDownload: boolean;
+  deliveryLabel: string | null;
+  paymentLabel: string | null;
+  shippingMinor: number | null;
   items: { id: number; name: string; type: string; quantity: number; unitPrice: number }[];
 }
 
@@ -53,6 +59,8 @@ export default async function SuccessPage({ searchParams }: Props) {
 
   return (
     <main id="main-content" className="flex-1 w-full max-w-[680px] mx-auto px-margin py-12 flex flex-col gap-6">
+      <ClearCheckout />
+      <CheckoutSteps current={5} skipDelivery={order.deliveryLabel === null} />
       {/* Status header */}
       <div className="flex flex-col items-center text-center gap-5">
         <div className={`order-status-icon ${sc.type === "default" ? "pending" : sc.type}`}>
@@ -118,6 +126,21 @@ export default async function SuccessPage({ searchParams }: Props) {
               ) : null}
             </div>
           ))}
+          {order.deliveryLabel !== null ? (
+            <div className="flex justify-between gap-4 pt-4 border-t border-outline-variant mt-2 text-sm">
+              <span className="text-on-surface-variant">Doprava</span>
+              <span className="text-on-surface text-right">
+                {order.deliveryLabel}
+                {order.shippingMinor !== null ? ` · ${order.shippingMinor === 0 ? "zdarma" : `${money(order.shippingMinor / 100)} Kč`}` : ""}
+              </span>
+            </div>
+          ) : null}
+          {order.paymentLabel !== null ? (
+            <div className="flex justify-between gap-4 pt-3 text-sm">
+              <span className="text-on-surface-variant">Platba</span>
+              <span className="text-on-surface">{order.paymentLabel}</span>
+            </div>
+          ) : null}
           {order.totalAmount !== null ? (
             <div className="flex justify-between items-center pt-4 border-t border-outline-variant mt-2">
               <span className="font-mono-label text-mono-label text-on-surface-variant uppercase">Celkem</span>
@@ -146,6 +169,14 @@ function Icon({ name, className }: { name: string; className?: string }) {
   return <span className={`material-symbols-outlined ${className ?? ""}`} aria-hidden="true">{name}</span>;
 }
 
+function deliveryLabelFor(method: string | null, point: { name?: string; street?: string; kind?: string } | null): string | null {
+  if (method === "packeta_pickup") {
+    const place = [point?.name, point?.street].filter(Boolean).join(", ");
+    return `${point?.kind === "zbox" ? "Zásilkovna Z-BOX" : "Zásilkovna výdejní místo"}${place ? `: ${place}` : ""}`;
+  }
+  return method === "address" ? "Doručení na adresu" : null;
+}
+
 interface ItemRow { id: number; product_name: unknown; product_type: unknown; quantity: unknown; unit_price: unknown }
 
 async function loadSuccessOrder(publicId: string): Promise<SuccessOrderLike | null> {
@@ -159,6 +190,9 @@ async function loadSuccessOrder(publicId: string): Promise<SuccessOrderLike | nu
       status: order.status ?? "",
       totalAmount: order.total_amount ?? null,
       canDownload: canRequestDownloads,
+      deliveryLabel: deliveryLabelFor(order.delivery_method, order.packeta_point),
+      paymentLabel: order.payment_method !== null && order.payment_method in PAYMENT_LABELS ? PAYMENT_LABELS[order.payment_method as keyof typeof PAYMENT_LABELS] : null,
+      shippingMinor: order.shipping_minor,
       items: items.map((item) => ({
         id: item.id,
         name: typeof item.product_name === "string" ? item.product_name : "",

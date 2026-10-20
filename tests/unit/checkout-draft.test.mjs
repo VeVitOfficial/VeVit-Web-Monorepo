@@ -43,3 +43,12 @@ test("a pickup delivery without a usable point is dropped", () => {
   assert.equal(parseDraft(JSON.stringify({ delivery: { method: "packeta_pickup", point: { id: "x" } } })).delivery, null);
   assert.deepEqual(parseDraft(JSON.stringify({ delivery: { method: "address" } })).delivery, { method: "address" });
 });
+
+test("step 2 payment choice maps to the intent method", async () => {
+  const { intentMethodFor } = await import("../../src/lib/checkout/payment-labels.ts");
+  assert.equal(intentMethodFor("apple_pay"), "wallet");
+  assert.equal(intentMethodFor("google_pay"), "wallet");
+  assert.equal(intentMethodFor("paypal"), "paypal");
+  assert.equal(intentMethodFor("card"), "card");
+  assert.equal(intentMethodFor(null), "card");
+});

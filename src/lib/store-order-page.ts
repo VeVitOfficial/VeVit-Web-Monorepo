@@ -105,6 +105,10 @@ export interface SuccessOrder {
   status: string;
   payment_status: string | null;
   total_amount: string | null;
+  delivery_method: string | null;
+  packeta_point: { name?: string; street?: string; city?: string; kind?: string } | null;
+  payment_method: string | null;
+  shipping_minor: number | null;
   items: { id: number; product_name: string; product_type: string; quantity: number; unit_price: number | null }[];
 }
 
@@ -116,9 +120,9 @@ export interface SuccessOrder {
 export async function successOrderForPage(publicId: string): Promise<SuccessOrder> {
   if (!/^[a-f0-9]{32}$/.test(publicId)) throw new AgendaDomainError("Order unavailable.");
   const identity: AgendaIdentity = await agendaActorForOrder(publicId);
-  const rows = await storeRestSelect<AccessOrder & { order_number: string; payment_status: string | null; total_amount: string | null }>(
+  const rows = await storeRestSelect<AccessOrder & { order_number: string; payment_status: string | null; total_amount: string | null; delivery_method: string | null; packeta_point: SuccessOrder["packeta_point"]; payment_method: string | null; shipping_minor: number | null }>(
     "store_orders",
-    `select=id,public_id,order_number,user_id,status,guest_grant_hash,guest_grant_expires_at,payment_status,total_amount&public_id=eq.${encodeURIComponent(publicId)}&limit=1`,
+    `select=id,public_id,order_number,user_id,status,guest_grant_hash,guest_grant_expires_at,payment_status,total_amount,delivery_method,packeta_point,payment_method,shipping_minor&public_id=eq.${encodeURIComponent(publicId)}&limit=1`,
   );
   if (rows.length === 0) throw new AgendaDomainError("Order unavailable.");
   const order = rows[0];
@@ -127,7 +131,17 @@ export async function successOrderForPage(publicId: string): Promise<SuccessOrde
     "store_order_items",
     `select=id,product_name,product_type,quantity,unit_price&order_id=eq.${order.id}&order=id.asc`,
   );
-  return { order_number: order.order_number, status: order.status ?? "", payment_status: order.payment_status, total_amount: order.total_amount, items };
+  return {
+    order_number: order.order_number,
+    status: order.status ?? "",
+    payment_status: order.payment_status,
+    total_amount: order.total_amount,
+    delivery_method: order.delivery_method,
+    packeta_point: order.packeta_point,
+    payment_method: order.payment_method,
+    shipping_minor: order.shipping_minor,
+    items,
+  };
 }
 
 function identityUser(identity: AgendaIdentity): { id: string } | null {

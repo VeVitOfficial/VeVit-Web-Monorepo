@@ -172,9 +172,9 @@ test("shipping rules", () => {
 
 Obsah kroku podle `udaje-firma.html`: kontakt (jméno, e-mail, telefon s předvolbou +420/+421), rekapitulace dopravy s „Změnit“, adresa jen u `address`, přepínač „Nakupuji na firmu“, přepínač „Fakturační adresa je jiná“, poznámka, souhlas s OP (odkaz na `/store/terms`, ochrana údajů `/store/privacy`, vrácení `/store/returns`), souhlas s digitálním plněním jen s digitálním produktem, souhrn s „z toho DPH“ (jen informativně, sazba 21 %). Přihlášenému předvyplnit jméno a e-mail z `/store/api/me.php`. „Pokračovat k platbě“ vytvoří snapshot a přejde na `/store/checkout/platba?snapshot=<id>`. Validační chyby serveru (`error.code`) zobrazit u odpovídajícího pole.
 
-- [ ] **Step 1: Implement.**
-- [ ] **Step 2: Verify** typecheck, lint, test:unit; ruční: IČO 27082440 doplní Alzu, 12345678 zčervená, vypnutý ARES (blokovat doménu v DevTools) → ruční vyplnění projde; mixovaný košík vyžaduje oba souhlasy; celý průchod až po zaplacení testovací kartou.
-- [ ] **Step 3: Commit** `feat(store): checkout step 3 with company purchase and consents`
+- [x] **Step 1: Implement.**
+- [ ] **Step 2: Verify** typecheck, lint, test:unit; ruční: IČO 27082440 doplní Alzu, 12345678 zčervená, vypnutý ARES (blokovat doménu v DevTools) → ruční vyplnění projde; mixovaný košík vyžaduje oba souhlasy; celý průchod až po zaplacení testovací kartou. Typecheck, lint, test:unit PASS. V prohlížeči ověřeno s mockem create-checkout/ARES: neplatné IČO zčervená, 27082440 doplní Alzu, nedostupný ARES → ruční vyplnění, souhlasy (oba u mixovaného košíku), SK telefon, mapování serverové chyby k poli. NEOVĚŘENO (blokováno): průchod až po zaplacení testovací kartou (potřebuje spuštěné migrace 202610200003/4, test Stripe klíče a webhook) a vypnutí ARES v DevTools proti skutečnému endpointu.
+- [x] **Step 3: Commit** `feat(store): checkout step 3 with company purchase and consents`
 
 ### Task 7: Úlohy po zaplacení a automatická zásilka
 
