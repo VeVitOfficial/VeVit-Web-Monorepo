@@ -1,5 +1,12 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { FREE_SHIPPING_THRESHOLD_MINOR, SHIPPING_PRICES_MINOR } from "@/lib/checkout/shipping";
+
+// Prices come from the one shipping module so the information page can never disagree with the checkout.
+const czk = (minor: number) => `${(minor / 100).toLocaleString("cs-CZ")}\u00a0Kč`;
+const PICKUP_PRICE = czk(SHIPPING_PRICES_MINOR.packeta_pickup);
+const ADDRESS_PRICE = czk(SHIPPING_PRICES_MINOR.address);
+const FREE_FROM = czk(FREE_SHIPPING_THRESHOLD_MINOR);
 
 type Content = { title: string; lead: string; sections: Array<{ title: string; body: string }> };
 const pages: Record<string, Content> = {
@@ -25,9 +32,12 @@ const pages: Record<string, Content> = {
     title: "Doprava a platba",
     lead: "Fyzické produkty doručujeme po České republice a na Slovensko, digitální produkty zpřístupňujeme po potvrzení platby.",
     sections: [
-      { title: "Fyzické produkty", body: "Obvyklá doba doručení je 2–3 pracovní dny. Doprava stojí 99 Kč a od 1 000 Kč je zdarma." },
-      { title: "Digitální produkty", body: "Odkaz ke stažení dostanete po potvrzení platby." },
-      { title: "Platba", body: "Platby kartou zpracovává Stripe. Údaje karty se odesílají přímo do Stripe a VeVit je neukládá." }
+      { title: "Zásilkovna: výdejní místo nebo Z-BOX", body: `Zboží si vyzvednete na výdejním místě nebo v Z-BOXu v ČR a SR, které vyberete na mapě Zásilkovny. Doprava stojí ${PICKUP_PRICE}. Na vyzvednutí vás upozorní SMS, proto při objednávce uveďte telefon.` },
+      { title: "Doručení na adresu", body: `Doručení domů nebo do práce v ČR a SR stojí ${ADDRESS_PRICE}. Dopravce a doba doručení se upřesní v potvrzení objednávky.` },
+      { title: "Doprava zdarma", body: `Doprava je zdarma u objednávek od ${FREE_FROM} a pro členy Premium od úrovně Silver, u obou způsobů doručení.` },
+      { title: "Digitální produkty", body: "Odkaz ke stažení dostanete po potvrzení platby. Obsahuje-li košík jen digitální produkty, výběr dopravy se přeskočí." },
+      { title: "Nákup na firmu", body: "V pokladně zapněte „Nakupuji na firmu“ a zadejte IČO. Název, DIČ a sídlo doplníme z registru ARES, případně je můžete vyplnit ručně. Fakturu pošleme e-mailem po zaplacení." },
+      { title: "Platba", body: "Zaplatit můžete platební kartou (Visa, Mastercard, Maestro, American Express), přes Apple Pay, Google Pay nebo PayPal. Platby zpracovává Stripe. Údaje karty se odesílají přímo do Stripe a VeVit je neukládá. Apple Pay a Google Pay se nabízejí jen na zařízeních, která je podporují." }
     ]
   },
   returns: {
@@ -54,11 +64,11 @@ const pages: Record<string, Content> = {
     title: "Ochrana soukromí",
     lead: "Shromažďujeme jen údaje nezbytné pro vyřízení objednávky. Neprodáváme je třetím stranám a platební údaje zpracovává Stripe.",
     sections: [
-      { title: "Jaké údaje zpracováváme", body: "Jméno, e-mail, případnou doručovací adresu, identifikátor objednávky a stav platby." },
+      { title: "Jaké údaje zpracováváme", body: "Jméno, e-mail, telefon, zvolené výdejní místo nebo doručovací adresa, u nákupu na firmu IČO, DIČ a sídlo, identifikátor objednávky, stav platby a čas udělených souhlasů." },
       { title: "Účel a doba uchování", body: "Údaje používáme k plnění smlouvy a zákonných povinností. Daňové doklady uchováváme po zákonem stanovenou dobu." },
-      { title: "Příjemci", body: "Údaje nezbytné pro platbu získává Stripe a údaje pro doručení zvolený dopravce. Údaje nepředáváme marketingovým partnerům." },
+      { title: "Příjemci", body: "Údaje nezbytné pro platbu získává Stripe. Zásilkovna dostane jméno, telefon, e-mail a místo vyzvednutí, aby mohla zásilku doručit a poslat vám SMS. Údaje nepředáváme marketingovým partnerům." },
       { title: "Vaše práva", body: "Máte právo na přístup, opravu, výmaz, omezení zpracování a přenositelnost. Žádost pošlete na info@vevit.cz." },
-      { title: "Cookies a localStorage", body: "Košík používá localStorage. Analytické měření se řídí nastavením souhlasu a konfigurací Vercelu." }
+      { title: "Cookies a localStorage", body: "Košík používá localStorage, rozpracovaná pokladna sessionStorage (do zaplacení objednávky, bez údajů karty). Mapa Zásilkovny si ukládá poslední zvolené výdejní místo. Analytické měření se řídí nastavením souhlasu a konfigurací Vercelu." }
     ]
   }
 };

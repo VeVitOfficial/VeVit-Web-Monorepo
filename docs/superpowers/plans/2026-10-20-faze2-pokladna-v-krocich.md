@@ -214,6 +214,6 @@ Obsah kroku podle `udaje-firma.html`: kontakt (jméno, e-mail, telefon s předvo
 - Modify: `src/app/store/[page]/page.tsx` („Doprava a platba“: Zásilkovna výdejní místo nebo Z-BOX 69 Kč, doručení na adresu 99 Kč, od 1 000 Kč a pro Silver+ zdarma; nákup na firmu; platební metody fáze 1)
 - Modify: kód staré jednostránkové pokladny (odstranit nepoužívané části, které Task 5 nahradil)
 
-- [ ] **Step 1: Implement.**
-- [ ] **Step 2: Verify** `npm run typecheck && npm run lint && npm run test:unit && npm run build` PASS.
-- [ ] **Step 3: Commit** `docs(store): shipping and payment information for the new checkout`
+- [x] **Step 1: Implement.**
+- [x] **Step 2: Verify** `npm run typecheck && npm run lint && npm run test:unit && npm run build` PASS. typecheck, lint (0 chyb), test:unit (94/94), build (exit 0) a secret-scan (PASS) prošly.
+- [x] **Step 3: Commit** `docs(store): shipping and payment information for the new checkout`

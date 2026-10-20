@@ -295,3 +295,7 @@ rozhodnutí uživatele i bezpečnější výklad rozporů nalezených během rea
 - `createPacket` posílá jen `addressId` (ID místa), hodnotu v CZK z `total_minor`, hmotnost ze součtu
   `weight_grams × množství` fyzických položek (min. 100 g) a bez dobírky. Jméno se dělí na jméno/příjmení
   podle povolených znaků Zásilkovny (jedno slovo se použije pro obojí).
+- Informační stránka „Doprava a platba“ bere ceny a hranici dopravy zdarma z modulu `shipping.ts`, takže
+  se nemůže rozejít s pokladnou. Texty o platbě popisují jen metody fáze 1 (karta, Apple Pay, Google Pay,
+  PayPal); GoPay se doplní ve fázi 3. Úklid: `cartBaseShipping`/`cartShipping` (starý výpočet dopravy v
+  `cart.ts`) zrušeny, košík i pokladna používají jen `shippingMinor`.
