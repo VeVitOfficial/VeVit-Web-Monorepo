@@ -33,10 +33,9 @@ export default function CheckoutPage() {
       const snapshotResponse = await fetch("/store/api/create-checkout.php", { method: "POST", headers: { "Content-Type": "application/json", "Idempotency-Key": idempotencyKey }, body: JSON.stringify(payload) });
       const snapshot = await snapshotResponse.json();
       if (!snapshotResponse.ok || !snapshot.checkout?.id) throw new Error(snapshot.error?.message ?? "Objednávku se nepodařilo připravit.");
-      const paymentResponse = await fetch("/store/api/create-payment.php", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ snapshot: snapshot.checkout.id }) });
-      const payment = await paymentResponse.json();
-      if (!paymentResponse.ok || !payment.url) throw new Error(payment.error?.message ?? "Platbu se nepodařilo připravit.");
-      window.location.assign(payment.url);
+      // Full page load on purpose: the payment page runs without analytics scripts.
+      // eslint-disable-next-line @next/next/no-location-assign-relative-destination -- deliberate full page load
+      window.location.assign(`/store/checkout/platba?snapshot=${encodeURIComponent(snapshot.checkout.id)}`);
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : "Služba je dočasně nedostupná.");
       setBusy(false);
@@ -45,10 +44,10 @@ export default function CheckoutPage() {
 
   return (
     <main className="store-main">
-      <div className="store-section-head"><div><p className="store-eyebrow">2 / 2</p><h1>Pokladna</h1></div></div>
+      <div className="store-section-head"><div><p className="store-eyebrow">2 / 3</p><h1>Pokladna</h1></div></div>
       {!items.length ? <div className="store-empty">Načítám košík…</div> : <form className="store-checkout-grid" onSubmit={submit}>
         <section className="store-form"><h2>Kontaktní údaje</h2><label>Jméno a příjmení<input required name="name" autoComplete="name" /></label><label>E-mail<input required type="email" name="email" autoComplete="email" /></label>{physical && <><h2>Doručovací adresa</h2><label>Ulice<input required name="street" autoComplete="street-address" /></label><div className="store-form-row"><label>Město<input required name="city" autoComplete="address-level2" /></label><label>PSČ<input required name="zip" autoComplete="postal-code" /></label></div><label>Země<select name="country"><option value="CZ">Česko</option><option value="SK">Slovensko</option></select></label></>}<label>Poznámka<textarea name="notes" rows={4} /></label></section>
-        <aside className="store-summary"><h2>Objednávka</h2>{items.map((item) => <p key={item.id}><span>{item.qty}× {item.name}</span><strong>{money.format(item.price * item.qty)}</strong></p>)}<p className="total"><span>Celkem</span><strong>{money.format(total)}</strong></p>{error && <p className="store-error" role="alert">{error}</p>}<button className="store-button primary" disabled={busy} type="submit">{busy ? "Připravuji platbu…" : "Zaplatit přes Stripe"}</button></aside>
+        <aside className="store-summary"><h2>Objednávka</h2>{items.map((item) => <p key={item.id}><span>{item.qty}× {item.name}</span><strong>{money.format(item.price * item.qty)}</strong></p>)}<p className="total"><span>Celkem</span><strong>{money.format(total)}</strong></p>{error && <p className="store-error" role="alert">{error}</p>}<button className="store-button primary" disabled={busy} type="submit">{busy ? "Připravuji platbu…" : "Pokračovat k platbě"}</button></aside>
       </form>}
     </main>
   );

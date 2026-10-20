@@ -192,8 +192,9 @@ export async function recordDecline(order: PaymentOrder, publicCode: string): Pr
   });
 }
 
-/** Reads and parses a small JSON object body with an exact key whitelist. */
-export async function readJsonObject(request: Request, keys: string[], maxBytes = 4096): Promise<Record<string, unknown>> {
+/** Reads and parses a small JSON object body whose keys must exactly match one of the allowed key sets. */
+export async function readJsonObject(request: Request, keySets: string[] | string[][], maxBytes = 4096): Promise<Record<string, unknown>> {
+  const allowed: string[][] = Array.isArray(keySets[0]) ? (keySets as string[][]) : [keySets as string[]];
   const contentType = (request.headers.get("content-type") ?? "").split(";")[0]!.trim().toLowerCase();
   if (contentType !== "application/json") storeJsonError(415, "content_type_invalid", "Požadavek musí používat JSON.");
   const body = await request.text();
@@ -209,7 +210,7 @@ export async function readJsonObject(request: Request, keys: string[], maxBytes 
   }
   const input = parsed as Record<string, unknown>;
   const present = Object.keys(input);
-  if (present.length !== keys.length || !present.every((key) => keys.includes(key))) {
+  if (!allowed.some((keys) => present.length === keys.length && present.every((key) => keys.includes(key)))) {
     storeJsonError(400, "request_invalid", "Požadavek není platný.");
   }
   return input;

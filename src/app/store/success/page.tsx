@@ -2,6 +2,7 @@ import Link from "next/link";
 import { connection } from "next/server";
 import { successOrderForPage } from "@/lib/store-order-page";
 import { RequestDownloadButtons } from "@/components/store/request-download";
+import { PaymentStatusPoller } from "@/components/store/payment-status-poller";
 
 export const metadata = { title: "Stav objednávky — VeVit Store", robots: { index: false } };
 export const dynamic = "force-dynamic";
@@ -20,7 +21,7 @@ interface StatusConfig { icon: string | null; type: "pending" | "success" | "rev
 
 /** Port of the $statusConfig table from store/success.php. */
 const STATUS: Record<string, StatusConfig> = {
-  pending: { icon: null, type: "pending", title: "Platba se zpracovává", desc: "Ověřujeme průběh platby. Tato stránka se neaktualizuje automaticky — stav zkontrolujte za chvíli nebo sledujte e-mail." },
+  pending: { icon: null, type: "pending", title: "Platba se zpracovává", desc: "Ověřujeme průběh platby. Stránka se aktualizuje sama, stav můžete sledovat i e-mailem." },
   pending_checkout: { icon: null, type: "pending", title: "Čekáme na zahájení platby", desc: "Platební relace ještě nebyla zahájena. Vraťte se do košíku a zkuste to znovu." },
   awaiting_payment: { icon: null, type: "pending", title: "Čekáme na potvrzení platby", desc: "Platba je evidována a čekáme na její potvrzení od poskytovatele. Obvykle to trvá jen chvíli." },
   paid: { icon: "check_circle", type: "success", title: "Platba potvrzena", desc: "Vaše objednávka byla úspěšně zaplacena a je připravena ke zpracování." },
@@ -68,6 +69,9 @@ export default async function SuccessPage({ searchParams }: Props) {
           <h1 className="font-display text-h1 text-on-surface mb-3">{sc.title}</h1>
           <p className="font-body-md text-on-surface-variant max-w-sm mx-auto">{sc.desc}</p>
         </div>
+        {["pending", "pending_checkout", "awaiting_payment"].includes(order.status) ? (
+          <PaymentStatusPoller orderId={publicId} />
+        ) : null}
         {["pending", "pending_checkout", "awaiting_payment"].includes(order.status) ? (
           <div className="flex items-center gap-2 bg-warning/10 border border-warning/30 text-warning rounded-xl px-5 py-3 text-sm">
             <Icon name="info" className="text-[18px] icon-filled flex-shrink-0" />

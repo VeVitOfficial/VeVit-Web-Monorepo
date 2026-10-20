@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+import { AnalyticsGate } from "@/components/analytics-gate";
 import "./globals.css";
 
 // Produkce přesměrovává apex (vevit.cz) na www.vevit.cz (308) — metadataBase
@@ -22,8 +21,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="cs">
       <body suppressHydrationWarning>
         {children}
-        <Analytics />
-        <SpeedInsights />
+        <AnalyticsGate />
       </body>
     </html>
   );

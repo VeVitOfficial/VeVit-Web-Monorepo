@@ -1,0 +1,19 @@
+.methods { display: flex; flex-direction: column; gap: 10px; margin: 0 0 20px; padding: 0; border: 0; }
+.method { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border: 1.5px solid var(--vv-line, #2a3340); border-radius: 12px; cursor: pointer; background: var(--vv-panel, #11161d); }
+.method.selected { border-color: #10b981; box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15); }
+.method.unavailable { opacity: 0.5; cursor: not-allowed; }
+.method input { accent-color: #10b981; flex: none; }
+/* Fixed icon column so the method titles start at the same x. */
+.icons { flex: none; width: 132px; display: flex; gap: 6px; align-items: center; }
+.icons span { display: inline-flex; align-items: center; height: 26px; padding: 3px 6px; border-radius: 6px; background: #fff; }
+.icons img { height: 100%; width: auto; display: block; }
+.title { font-weight: 700; }
+.hint { display: block; font-size: 12px; color: var(--vv-muted, #98a2b3); font-weight: 400; }
+.panel { margin-top: 4px; }
+.walletBox { min-height: 48px; }
+.hiddenWallet { height: 0; overflow: hidden; }
+.error { margin: 0 0 16px; padding: 12px 14px; border-radius: 10px; background: rgba(255, 59, 48, 0.12); color: #ff8f8f; }
+.amount { margin: 0 0 18px; color: var(--vv-muted, #98a2b3); }
+.amount strong { color: var(--vv-text, #e8edf2); font-size: 1.2rem; }
+.captcha { margin: 0 0 14px; }
+@media (max-width: 520px) { .icons { width: 96px; } .icons span { padding: 3px 4px; } }

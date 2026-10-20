@@ -22,7 +22,7 @@ async function handler(request: Request): Promise<Response> {
     }
     const order = await loadPaymentOrderByPublicId(publicId);
     if (order === null) storeJsonError(404, "order_unavailable", "Objednávka není dostupná.");
-    return jsonResponse({ payment_status: order.payment_status, last_payment_error: order.last_payment_error });
+    return jsonResponse({ payment_status: order.payment_status, last_payment_error: order.last_payment_error, amount_minor: order.total_minor });
   } catch (error) {
     if (error instanceof StoreError) return error.response;
     console.error("[store:payment-status] failure", error instanceof Error ? error.name : "unknown");

@@ -7,7 +7,7 @@ const pages: Record<string, Content> = {
     title: "O VeVit Store",
     lead: "Moderní e-shop zaměřený na digitální a fyzické produkty s důrazem na bezpečnost, transparentnost a spokojenost zákazníka.",
     sections: [
-      { title: "Bezpečnost", body: "Platby probíhají výhradně přes Stripe. Žádné platební údaje neprocházejí naším serverem." },
+      { title: "Bezpečnost", body: "Platby kartou zpracovává Stripe. Údaje karty se odesílají přímo do Stripe a VeVit je neukládá." },
       { title: "Transparentnost", body: "Zobrazujeme reálné ceny bez skrytých poplatků a stav objednávky ověřujeme na serveru." },
       { title: "Rychlost a podpora", body: "Digitální produkty jsou dostupné po potvrzení platby. Fyzické zboží odesíláme zpravidla do dvou pracovních dní." }
     ]
@@ -27,7 +27,7 @@ const pages: Record<string, Content> = {
     sections: [
       { title: "Fyzické produkty", body: "Obvyklá doba doručení je 2–3 pracovní dny. Doprava stojí 99 Kč a od 1 000 Kč je zdarma." },
       { title: "Digitální produkty", body: "Odkaz ke stažení dostanete po potvrzení platby." },
-      { title: "Platba", body: "Platby bezpečně zpracovává Stripe. Platební údaje se neukládají v systémech VeVit." }
+      { title: "Platba", body: "Platby kartou zpracovává Stripe. Údaje karty se odesílají přímo do Stripe a VeVit je neukládá." }
     ]
   },
   returns: {

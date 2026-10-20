@@ -16,14 +16,15 @@ const securityHeaders = [
     key: "Content-Security-Policy-Report-Only",
     value: [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://challenges.cloudflare.com",
+      // Stripe.js and wallets (docs.stripe.com/security/guide); GoPay and Packeta are added in later phases.
+      "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://challenges.cloudflare.com https://js.stripe.com https://*.js.stripe.com https://pay.google.com",
       "style-src 'self' 'unsafe-inline'",
       "font-src 'self' data:",
       "img-src 'self' data: blob: https:",
-      "connect-src 'self' https://*.supabase.co https://api.pwnedpasswords.com https://challenges.cloudflare.com",
+      "connect-src 'self' https://*.supabase.co https://api.pwnedpasswords.com https://challenges.cloudflare.com https://api.stripe.com https://*.js.stripe.com https://pay.google.com https://google.com/pay",
       "media-src 'self' blob:",
       "worker-src 'self' blob:",
-      "frame-src 'self' blob: https://challenges.cloudflare.com",
+      "frame-src 'self' blob: https://challenges.cloudflare.com https://js.stripe.com https://*.js.stripe.com https://hooks.stripe.com https://pay.google.com",
       "object-src 'none'",
       "base-uri 'self'",
       "form-action 'self'",
@@ -31,6 +32,14 @@ const securityHeaders = [
       "upgrade-insecure-requests"
     ].join("; ")
   }
+];
+
+// Payment pages differ from the global policy: Stripe's Google Pay popup needs window.opener (COOP)
+// and its frames are not COEP-tagged. Card fields live only on these pages.
+const paymentPageHeaders = [
+  { key: "Cross-Origin-Opener-Policy", value: "same-origin-allow-popups" },
+  { key: "Cross-Origin-Embedder-Policy", value: "unsafe-none" },
+  { key: "Cache-Control", value: "no-store" }
 ];
 
 const remotePatterns: NonNullable<NextConfig["images"]>["remotePatterns"] = [];
@@ -55,6 +64,7 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       { source: "/:path*", headers: securityHeaders },
+      { source: "/:locale(cs|en|de|es|uk|fr|sk)?/store/checkout/platba", headers: paymentPageHeaders },
       {
         source: "/assets/:path*",
         headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }]

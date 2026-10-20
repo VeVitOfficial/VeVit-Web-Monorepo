@@ -7,7 +7,8 @@ import {
   storeRequireSameOrigin,
   storeStripeConfig,
 } from "@/lib/store-config";
-import { readCheckoutGrant, saveOrderGrant } from "@/lib/store-guest-grants";
+import { readCheckoutGrant, readOrderGrant, saveOrderGrant } from "@/lib/store-guest-grants";
+import { orderCanAccess, orderRowByPublicId } from "@/lib/store-order-access";
 import { createOrderFromSnapshot, PaymentOrderException } from "@/lib/store-payment-service";
 import {
   createOrReuseOrderPaymentIntent,
@@ -37,10 +38,14 @@ async function handler(request: Request): Promise<Response> {
   try {
     storeRequireMethod(request, ["POST"]);
     storeRequireSameOrigin(request);
-    const input = await readJsonObject(request, ["snapshot", "method"]);
-    const snapshotId = input.snapshot;
+    const input = await readJsonObject(request, [["snapshot", "method"], ["order", "method"]]);
     const method = input.method;
-    if (typeof snapshotId !== "string" || !/^[a-f0-9]{32}$/.test(snapshotId)) {
+    const snapshotId = input.snapshot;
+    const existingOrderId = input.order;
+    if (
+      (snapshotId !== undefined && (typeof snapshotId !== "string" || !/^[a-f0-9]{32}$/.test(snapshotId))) ||
+      (existingOrderId !== undefined && (typeof existingOrderId !== "string" || !/^[a-f0-9]{32}$/.test(existingOrderId)))
+    ) {
       storeJsonError(404, "payment_unavailable", "Platbu se nyní nepodařilo připravit.");
     }
     if (typeof method !== "string" || !(STORE_PAYMENT_METHODS as readonly string[]).includes(method)) {
@@ -61,13 +66,23 @@ async function handler(request: Request): Promise<Response> {
     }
 
     const user = await getStoreUser();
-    const grantEntry = await readCheckoutGrant(snapshotId);
-    const checkoutGrant = grantEntry !== null && grantEntry.kind === "checkout" ? grantEntry.grant : null;
-
-    const orderResult = await createOrderFromSnapshot(snapshotId, user !== null ? { id: user.id } : null, checkoutGrant, new Date());
-    const order = orderResult.order;
-    if (orderResult.guest_grant !== "" && user === null) {
-      await saveOrderGrant(order.public_id, orderResult.guest_grant);
+    let order: { id: number; public_id: string };
+    if (typeof existingOrderId === "string") {
+      // Retry or method switch on an order that already exists: same access rules as the order pages.
+      const access = await orderRowByPublicId(existingOrderId);
+      const grant = await readOrderGrant(existingOrderId);
+      if (access === null || !orderCanAccess(access, user !== null ? { id: user.id } : null, grant, existingOrderId)) {
+        storeJsonError(404, "order_unavailable", "Objednávka není dostupná.");
+      }
+      order = { id: access.id, public_id: access.public_id };
+    } else {
+      const grantEntry = await readCheckoutGrant(snapshotId as string);
+      const checkoutGrant = grantEntry !== null && grantEntry.kind === "checkout" ? grantEntry.grant : null;
+      const orderResult = await createOrderFromSnapshot(snapshotId as string, user !== null ? { id: user.id } : null, checkoutGrant, new Date());
+      order = orderResult.order;
+      if (orderResult.guest_grant !== "" && user === null) {
+        await saveOrderGrant(order.public_id, orderResult.guest_grant);
+      }
     }
 
     const intent = await createOrReuseOrderPaymentIntent(order.id, method as StorePaymentMethod);
