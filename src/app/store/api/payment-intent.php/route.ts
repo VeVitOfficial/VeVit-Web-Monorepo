@@ -84,7 +84,8 @@ async function handler(request: Request): Promise<Response> {
       return storeJsonError(409, "payment_not_available", "Tuto objednávku už nelze zaplatit.");
     }
     logSecurity("payment_intent_failed", { reason: (error as Error)?.name ?? "unknown" });
-    console.error("[store:payment-intent] failure", error instanceof Error ? error.message : error);
+    // Name/status only: Stripe and PostgREST messages can echo request data.
+    console.error("[store:payment-intent] failure", error instanceof Error ? error.name : "unknown");
     return storeJsonError(503, "payment_unavailable", "Platbu se nyní nepodařilo připravit.");
   }
 }

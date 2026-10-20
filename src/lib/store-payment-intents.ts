@@ -136,9 +136,12 @@ export async function createOrReuseOrderPaymentIntent(
   if (typeof intent.client_secret !== "string" || intent.client_secret === "") throw new PaymentIntentError("intent_invalid");
 
   if (!canTransitionPayment(order.payment_status, "awaiting_payment")) throw new PaymentIntentError("order_not_payable");
-  await storeRest("PATCH", "store_orders", {
-    query: `id=eq.${order.id}`,
-    prefer: "return=minimal",
+  // CAS on the state we read: a concurrent request that already attached an intent wins, and the
+  // one created here is canceled instead of being left dangling.
+  const previousIntent = order.stripe_payment_intent === null ? "is.null" : `eq.${order.stripe_payment_intent}`;
+  const attached = await storeRest<Array<Pick<PaymentOrder, "id">>>("PATCH", "store_orders", {
+    query: `id=eq.${order.id}&payment_status=eq.${order.payment_status}&stripe_payment_intent=${previousIntent}`,
+    prefer: "return=representation",
     body: {
       stripe_payment_intent: intent.id,
       payment_intent_seq: seq,
@@ -148,6 +151,10 @@ export async function createOrReuseOrderPaymentIntent(
       status: "awaiting_payment",
     },
   });
+  if (attached.json.length !== 1) {
+    await cancelQuietly(stripe, intent.id);
+    throw new PaymentIntentError("order_not_payable");
+  }
   return { clientSecret: intent.client_secret, intentId: intent.id, amountMinor: order.total_minor };
 }
 
@@ -164,13 +171,24 @@ export async function markAwaitingPayment(order: PaymentOrder, paymentMethod: st
   });
 }
 
-/** Counts a declined confirmation. CAS on the counter, so concurrent declines may count once. */
-export async function recordFailedAttempt(order: PaymentOrder, errorCode: string): Promise<void> {
-  const safeCode = /^[a-z0-9_]{1,64}$/.test(errorCode) ? errorCode : "card_declined";
-  await storeRest("PATCH", "store_orders", {
+/**
+ * Takes the next confirmation slot before Stripe is called. CAS on the counter: of several
+ * concurrent requests (double click, parallel tabs) exactly one gets the slot.
+ */
+export async function reserveConfirmationAttempt(order: PaymentOrder): Promise<boolean> {
+  const taken = await storeRest<Array<Pick<PaymentOrder, "id">>>("PATCH", "store_orders", {
     query: `id=eq.${order.id}&payment_attempts=eq.${order.payment_attempts}`,
+    prefer: "return=representation",
+    body: { payment_attempts: Number(order.payment_attempts) + 1 },
+  });
+  return taken.json.length === 1;
+}
+
+export async function recordDecline(order: PaymentOrder, publicCode: string): Promise<void> {
+  await storeRest("PATCH", "store_orders", {
+    query: `id=eq.${order.id}`,
     prefer: "return=minimal",
-    body: { payment_attempts: Number(order.payment_attempts) + 1, last_payment_error: safeCode },
+    body: { last_payment_error: publicCode },
   });
 }
 

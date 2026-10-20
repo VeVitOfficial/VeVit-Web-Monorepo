@@ -1,4 +1,5 @@
 import Stripe from "stripe";
+import { publicDeclineCode } from "@/lib/payments/decline-messages";
 import { intentMismatch, paymentMethodFromCharge } from "@/lib/payments/intent-checks";
 import { storeRest, storeStripeConfig } from "@/lib/store-config";
 import { canTransitionPayment } from "@/lib/store-payment-service";
@@ -429,11 +430,11 @@ async function processPaymentIntentEvent(
       return { result: "ignored", http_status: 200 };
     }
     const lastError = (intent.last_payment_error ?? null) as { decline_code?: string; code?: string } | null;
-    const rawCode = lastError?.decline_code || lastError?.code || "card_declined";
+    const publicCode = publicDeclineCode(lastError?.decline_code || lastError?.code);
     await storeRest("PATCH", "store_orders", {
       query: `id=eq.${order.id}&payment_status=eq.awaiting_payment`,
       prefer: "return=minimal",
-      body: { payment_status: "failed", last_payment_error: /^[a-z0-9_]{1,64}$/.test(rawCode) ? rawCode : "card_declined" },
+      body: { payment_status: "failed", last_payment_error: publicCode },
     });
     await markEvent(ledgerId, "processed", "payment_failed", order.id);
     return { result: "payment_failed", http_status: 200 };

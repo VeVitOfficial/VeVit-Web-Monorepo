@@ -1,5 +1,5 @@
 -- Phase 1 of the custom payment gateway: provider/method bookkeeping on orders.
--- payment_attempts counts declined confirmations (limit enforced by the app);
+-- payment_attempts counts started card confirmations (limit enforced by the app);
 -- payment_intent_seq is the PaymentIntent generation used in the Stripe idempotency key.
 BEGIN;
 

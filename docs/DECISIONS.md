@@ -225,7 +225,7 @@ rozhodnutí uživatele i bezpečnější výklad rozporů nalezených během rea
   bez nich zůstanou nové objednávky v `awaiting_payment`. Události platebních
   záměrů bez `metadata.schema_version = "2"` (např. Premium) se ledgerují jako
   `ignored`.
-- `store_orders.payment_attempts` počítá zamítnuté potvrzení karty (limit 5),
+- `store_orders.payment_attempts` počítá zahájená potvrzení karty (limit 5, slot se bere atomicky před voláním Stripe),
   `payment_intent_seq` je číslo generace PaymentIntentu v idempotency klíči.
   Přepnutí metody platby vytvoří nový PaymentIntent a starý se zruší.
 - Úspěšný `payment_intent.succeeded` na objednávce ve stavu `failed` ji nejdřív

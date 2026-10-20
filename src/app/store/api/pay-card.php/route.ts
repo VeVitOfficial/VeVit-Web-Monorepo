@@ -1,6 +1,6 @@
 import Stripe from "stripe";
 import { clientIp } from "@/lib/account-auth";
-import { declineMessage } from "@/lib/payments/decline-messages";
+import { declineMessage, publicDeclineCode } from "@/lib/payments/decline-messages";
 import {
   getStoreUser,
   StoreError,
@@ -19,7 +19,8 @@ import {
   MAX_FAILED_PAYMENT_ATTEMPTS,
   PaymentIntentError,
   readJsonObject,
-  recordFailedAttempt,
+  recordDecline,
+  reserveConfirmationAttempt,
   stripeClient,
 } from "@/lib/store-payment-intents";
 import { StoreRateLimitExceededError, storeRateLimitConsume } from "@/lib/store-ratelimit";
@@ -82,9 +83,23 @@ async function handler(request: Request): Promise<Response> {
       storeJsonError(429, "too_many_attempts", "Příliš mnoho neúspěšných pokusů. Zkus jiný způsob platby nebo to později.");
     }
 
-    // Guests always pass the challenge; signed-in customers only after a failed attempt.
-    if ((user === null || order.payment_attempts >= 1) && !(await verifyTurnstile(token, ip, "store_payment"))) {
+    // Card testing guards: a challenge on every confirmation, never open in production, and
+    // limits per order and per account on top of the per-IP one.
+    if (process.env.NODE_ENV === "production" && !process.env.TURNSTILE_SECRET?.trim()) {
+      console.error("[store:pay-card] TURNSTILE_SECRET missing, refusing card payments");
+      storeJsonError(503, "payment_unavailable", "Platba se nyní nepodařila.");
+    }
+    if (!(await verifyTurnstile(token, ip, "store_payment"))) {
       storeJsonError(403, "challenge_failed", "Ověření selhalo. Obnov stránku a zkus to znovu.");
+    }
+    try {
+      await storeRateLimitConsume("store_pay_card_order", publicId, 10, 600);
+      if (user !== null) await storeRateLimitConsume("store_pay_card_user", user.id, 20, 3600);
+    } catch (error) {
+      if (error instanceof StoreRateLimitExceededError) {
+        storeJsonError(429, "rate_limited", "Příliš mnoho pokusů. Zkus to za chvíli.", { "Retry-After": String(error.retryAfter) });
+      }
+      throw error;
     }
 
     const { stripe, expectedLiveMode, appUrl } = stripeClient();
@@ -102,6 +117,9 @@ async function handler(request: Request): Promise<Response> {
       storeJsonError(409, "payment_not_available", "Tuto objednávku už nelze zaplatit.");
     }
     await markAwaitingPayment(order, null);
+    if (!(await reserveConfirmationAttempt(order))) {
+      storeJsonError(409, "payment_in_progress", "Platba už se zpracovává.");
+    }
 
     let confirmed: Stripe.PaymentIntent;
     try {
@@ -112,8 +130,8 @@ async function handler(request: Request): Promise<Response> {
       );
     } catch (error) {
       if (error instanceof Stripe.errors.StripeCardError) {
-        const code = error.decline_code || error.code || "card_declined";
-        await recordFailedAttempt(order, code);
+        const code = publicDeclineCode(error.decline_code || error.code);
+        await recordDecline(order, code);
         logSecurity("card_declined", { order_public_prefix: publicId.slice(0, 8), code });
         return jsonResponse({ error: { code, message: declineMessage(code) } }, 402);
       }
@@ -127,8 +145,8 @@ async function handler(request: Request): Promise<Response> {
       return jsonResponse({ status: "requires_action", client_secret: confirmed.client_secret });
     }
     // requires_payment_method after confirm = the attempt failed without a thrown card error.
-    const code = confirmed.last_payment_error?.decline_code || confirmed.last_payment_error?.code || "card_declined";
-    await recordFailedAttempt(order, code);
+    const code = publicDeclineCode(confirmed.last_payment_error?.decline_code || confirmed.last_payment_error?.code);
+    await recordDecline(order, code);
     return jsonResponse({ error: { code, message: declineMessage(code) } }, 402);
   } catch (error) {
     if (error instanceof StoreError) return error.response;
