@@ -59,7 +59,7 @@ Pravidla značek (shodná s prototypem): `^4` visa; `^(5[1-5]|2(2[2-9][1-9]|2[3-
 
 Chybové texty (přesně): `"Tento typ karty nepřijímáme."` (≥2 číslice a žádná značka), `"Číslo karty není platné. Zkontroluj překlep."` (plná délka, Luhn neprojde), `"Měsíc musí být 01–12."`, `"Karta už je prošlá."`, `"Neplatný rok."` (víc než +20 let), `"CVC je neúplné."`, `"Vyplň jméno na kartě."`.
 
-- [ ] **Step 1: Write the failing tests** (`tests/unit/card-validation.test.mjs`, `import … from "../../src/lib/payments/card-validation.ts"`)
+- [x] **Step 1: Write the failing tests** (`tests/unit/card-validation.test.mjs`, `import … from "../../src/lib/payments/card-validation.ts"`)
 
 ```js
 test("brand detection", () => {
@@ -101,10 +101,10 @@ test("cvc length by brand", () => {
 });
 ```
 
-- [ ] **Step 2: Run `npm run test:unit`** — Expected: FAIL (modul neexistuje).
-- [ ] **Step 3: Implement `src/lib/payments/card-validation.ts`** podle Interfaces; Luhn klasicky zprava, zdvojení každé druhé číslice.
-- [ ] **Step 4: Run `npm run test:unit && npm run typecheck`** — Expected: PASS.
-- [ ] **Step 5: Commit** `feat(payments): card validation module with Luhn and brand rules`
+- [x] **Step 2: Run `npm run test:unit`** — Expected: FAIL (modul neexistuje).
+- [x] **Step 3: Implement `src/lib/payments/card-validation.ts`** podle Interfaces; Luhn klasicky zprava, zdvojení každé druhé číslice.
+- [x] **Step 4: Run `npm run test:unit && npm run typecheck`** — Expected: PASS.
+- [x] **Step 5: Commit** `feat(payments): card validation module with Luhn and brand rules`
 
 ### Task 2: Banky podle BIN (čistý modul + loga)
 
@@ -124,7 +124,7 @@ test("cvc length by brand", () => {
 
 Data: přenes prefixy, názvy a gradienty bank 1:1 z objektu `BANKS` v `brana-karta-v4.html` (včetně UniCredit `542812`, bez `418809` a bez `408475`). Raiffeisen nese i bývalé Equa prefixy. Loga značek: Visa, Mastercard, American Express, Apple Pay, Google Pay a PayPal stáhni z `simple-icons@13.21.0` (`https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/<name>.svg`, licence CC0) a obarvi barvou značky. Maestro nakresli jako v prototypu (dva kruhy `#0099DF`/`#ED0006`, průnik `#6C6BBD`). Loga bank jsou zatím jednoduché monogramové SVG v barvě banky (`ČS`, `ČSOB`, `KB`, `RB`, `UC`, `M`, `air`). Výměnu za oficiální loga provozovatel dělá podle kontrolního seznamu ve spec, kap. 9.
 
-- [ ] **Step 1: Write the failing tests**
+- [x] **Step 1: Write the failing tests**
 
 ```js
 test("known czech prefixes", () => {
@@ -148,10 +148,10 @@ test("every logo file exists", () => {
 ```
 (Exportuj i `prefixesOf(key: CardBankKey): readonly string[]` pro test.)
 
-- [ ] **Step 2: Run `npm run test:unit`** — Expected: FAIL.
-- [ ] **Step 3: Implement modul a přidej SVG soubory.**
-- [ ] **Step 4: Run `npm run test:unit && npm run typecheck`** — Expected: PASS.
-- [ ] **Step 5: Commit** `feat(payments): czech bank BIN table and payment logos`
+- [x] **Step 2: Run `npm run test:unit`** — Expected: FAIL.
+- [x] **Step 3: Implement modul a přidej SVG soubory.**
+- [x] **Step 4: Run `npm run test:unit && npm run typecheck`** — Expected: PASS.
+- [x] **Step 5: Commit** `feat(payments): czech bank BIN table and payment logos`
 
 ### Task 3: BIN lookup endpoint s mezipamětí
 
@@ -174,11 +174,11 @@ test("every logo file exists", () => {
 
 Pravidla: dotaz do cache podle prvních 8, pak 6 číslic. Externí volání jen když je `BIN_LOOKUP_URL` nastavené (šablona s `{bin}`, např. `https://lookup.binlist.net/{bin}`). Volitelná hlavička `Authorization: Bearer ${BIN_LOOKUP_API_KEY}`. Timeout 1500 ms. Do cache se ukládá i negativní výsledek (`source = "miss"`, platí 7 dní). Rate limit `storeRateLimitConsume("card_bin", <ip>, 30, 600)`. Nic se neloguje (ani prefix).
 
-- [ ] **Step 1: Write failing tests** pro `mapBinResponse` (binlist JSON z `https://lookup.binlist.net/542812` → `bankName` UniCredit, `country "SK"`, `funding "credit"`, nevalidní vstup → všechna pole `null`) a `matchKnownBank` (všechny příklady z Interfaces + `"Some Bank"` → `null`).
-- [ ] **Step 2: Run `npm run test:unit`** — Expected: FAIL.
-- [ ] **Step 3: Implement** migraci, `bin-response.ts`, `payment-bin-lookup.ts`, route (validace `^\d{6,8}$`, jinak 400).
-- [ ] **Step 4: Run** `npm run test:unit && npm run typecheck && npm run lint` — Expected: PASS. Ruční: `curl -i 'localhost:3000/api/payments/bin?prefix=4140920000000002'` → 400.
-- [ ] **Step 5: Commit** `feat(payments): BIN lookup endpoint with cache`
+- [x] **Step 1: Write failing tests** pro `mapBinResponse` (binlist JSON z `https://lookup.binlist.net/542812` → `bankName` UniCredit, `country "SK"`, `funding "credit"`, nevalidní vstup → všechna pole `null`) a `matchKnownBank` (všechny příklady z Interfaces + `"Some Bank"` → `null`).
+- [x] **Step 2: Run `npm run test:unit`** — Expected: FAIL.
+- [x] **Step 3: Implement** migraci, `bin-response.ts`, `payment-bin-lookup.ts`, route (validace `^\d{6,8}$`, jinak 400).
+- [x] **Step 4: Run** `npm run test:unit && npm run typecheck && npm run lint` — Expected: PASS. Ruční: `curl -i 'localhost:3000/api/payments/bin?prefix=4140920000000002'` → 400.
+- [x] **Step 5: Commit** `feat(payments): BIN lookup endpoint with cache`
 
 ### Task 4: PaymentIntent pro objednávku Store (server)
 
@@ -206,11 +206,11 @@ Pravidla: dotaz do cache podle prvních 8, pak 6 číslic. Externí volání jen
   - `POST /store/api/pay-card.php` `{ order: string, payment_method: "pm_…", turnstile_token: string }` → server potvrdí PI (`confirm`, `return_url = <STORE_APP_URL>/checkout/platba?order=<public>`), odpověď `200 { status: "succeeded" | "processing" | "requires_action", client_secret }` nebo `402 { error: { code, message: declineMessage(...) } }`. Max. 5 neúspěšných pokusů na objednávku (`payment_attempts`), rate limit `storeRateLimitConsume("store_pay_card", <ip>, 10, 600)`, Turnstile akce `store_payment` (povinné od 2. pokusu a pro hosty vždy).
   - `GET /store/api/payment-status.php?order=<public>` → `200 { payment_status, last_payment_error }` (přístup přes `orderCanAccess`).
 
-- [ ] **Step 1: Write failing tests** pro `declineMessage` (všechny kódy z Interfaces + `undefined`) a `paymentIntentIdempotencyKey("ab"*16, 2)` === `"vevit-store:pi:v1:abab…:2"` a různé pokusy → různé klíče.
-- [ ] **Step 2: Run `npm run test:unit`** — Expected: FAIL.
-- [ ] **Step 3: Implement** čisté moduly, migraci, `store-payment-intents.ts` a tři routy. Před kódem přečti Stripe dokumentaci PaymentIntents pro API `2026-08-26.dahlia`. Stav objednávky „paid“ tady nikdy nezapisuj, to dělá webhook (Task 5).
-- [ ] **Step 4: Run** `npm run test:unit && npm run typecheck && npm run lint` — Expected: PASS.
-- [ ] **Step 5: Commit** `feat(store): PaymentIntent-based payment endpoints`
+- [x] **Step 1: Write failing tests** pro `declineMessage` (všechny kódy z Interfaces + `undefined`) a `paymentIntentIdempotencyKey("ab"*16, 2)` === `"vevit-store:pi:v1:abab…:2"` a různé pokusy → různé klíče.
+- [x] **Step 2: Run `npm run test:unit`** — Expected: FAIL.
+- [x] **Step 3: Implement** čisté moduly, migraci, `store-payment-intents.ts` a tři routy. Před kódem přečti Stripe dokumentaci PaymentIntents pro API `2026-08-26.dahlia`. Stav objednávky „paid“ tady nikdy nezapisuj, to dělá webhook (Task 5).
+- [x] **Step 4: Run** `npm run test:unit && npm run typecheck && npm run lint` — Expected: PASS.
+- [x] **Step 5: Commit** `feat(store): PaymentIntent-based payment endpoints`
 
 ### Task 5: Webhook `payment_intent.*`
 
@@ -226,11 +226,11 @@ Pravidla: dotaz do cache podle prvních 8, pak 6 číslic. Externí volání jen
   - `intentMismatch(order: { total_minor: number; currency: string; stripe_payment_intent: string | null; public_id: string }, intent: { id: string; amount_received: number; currency: string; metadata: Record<string, string> | null; livemode: boolean }, expectedLiveMode: boolean): string | null` → kódy `"metadata_mismatch" | "amount_mismatch" | "currency_mismatch" | "intent_mismatch" | "livemode_mismatch"`
   - `processStripeEvent` větve: `payment_intent.succeeded` → stávající `payOrder` (zásoby, entitlements, `paid`); `payment_intent.payment_failed` → `awaiting_payment → failed`, `last_payment_error = decline code`. Při `succeeded` doplň `payment_method` z `latest_charge.payment_method_details`: `card.wallet.type` `apple_pay`/`google_pay` → stejná hodnota, jinak `card`; typ `paypal` → `paypal`. Korelace podle `metadata.order_public_id` a `stripe_payment_intent`. `checkout.session.completed` větev zůstává beze změny.
 
-- [ ] **Step 1: Write failing tests** pro `intentMismatch`: shoda → `null`; jiná částka → `"amount_mismatch"`; `metadata.order_public_id` jiné → `"metadata_mismatch"`; objednávka už má jiný PI → `"intent_mismatch"`; livemode nesedí → `"livemode_mismatch"`.
-- [ ] **Step 2: Run** — Expected: FAIL.
-- [ ] **Step 3: Implement** čistý modul a obě větve v procesoru (stejné záruky jako `checkout.session.completed`: ledger, idempotence, manual_review při nesouladu).
-- [ ] **Step 4: Run** testy, typecheck, lint — PASS. Ruční: `stripe trigger payment_intent.succeeded` (Stripe CLI, test mode) proti lokálnímu `/store/api/webhook.php` přes `stripe listen` → odpověď 200, ledger řádek `ignored` (neznámá objednávka).
-- [ ] **Step 5: Commit** `feat(store): handle payment_intent webhooks`
+- [x] **Step 1: Write failing tests** pro `intentMismatch`: shoda → `null`; jiná částka → `"amount_mismatch"`; `metadata.order_public_id` jiné → `"metadata_mismatch"`; objednávka už má jiný PI → `"intent_mismatch"`; livemode nesedí → `"livemode_mismatch"`.
+- [x] **Step 2: Run** — Expected: FAIL.
+- [x] **Step 3: Implement** čistý modul a obě větve v procesoru (stejné záruky jako `checkout.session.completed`: ledger, idempotence, manual_review při nesouladu).
+- [ ] **Step 4: Run** testy, typecheck, lint — PASS. Ruční: `stripe trigger payment_intent.succeeded` (Stripe CLI, test mode) proti lokálnímu `/store/api/webhook.php` přes `stripe listen` → odpověď 200, ledger řádek `ignored` (neznámá objednávka). _(částečně hotovo: testy, typecheck, lint, build zelené; živé ověření se Stripe čeká na klíče a zapnuté raw card data API)_
+- [x] **Step 5: Commit** `feat(store): handle payment_intent webhooks`
 
 ### Task 6: Komponenta karty (UI)
 
@@ -251,11 +251,11 @@ Pravidla: dotaz do cache podle prvních 8, pak 6 číslic. Externí volání jen
 
 Chování (podle prototypu v4, styl A): aktivní zóna karty podle fokusu, otočení na CVC, animace nových číslic, pop loga značky, chybná pole i zóny červeně s třesením, karta v barvách banky (neznámá: grafit `linear-gradient(135deg,#3a3f47,#15181c)`), logo banky v bílém rámečku + název, „banka nerozpoznána“ při ≥6 číslicích bez shody, řada přijímaných značek nad formulářem, logo banky a značky uvnitř pole čísla. BIN endpoint volat jen když lokální tabulka nic nenašla, debounce 300 ms, jen jednou na prefix. `prefers-reduced-motion: reduce` vypne otáčení, třesení i animace číslic. `autocomplete` atributy `cc-number`, `cc-name`, `cc-exp`, `cc-csc`. Hodnoty karty nikdy neukládat do `localStorage`/`sessionStorage` ani do URL.
 
-- [ ] **Step 1: Write failing test** `buildPaymentMethodBody({number:"4242424242424242",expMonth:9,expYear:28,cvc:"123",name:"Jan Novák"})` → `card[exp_year]` `"2028"`, `card[exp_month]` `"9"`, `type` `"card"`, `billing_details[name]` `"Jan Novák"`.
-- [ ] **Step 2: Run** — FAIL.
-- [ ] **Step 3: Implement** modul a komponenty.
-- [ ] **Step 4: Verify** testy, typecheck, lint PASS; dočasně komponentu vlož do stránky z Task 8 a v prohlížeči (`npm run dev`) projdi: vložení „4111-1111 1111 1111“, automatické vyplnění prohlížečem, Amex 15 číslic + CVC 4, chybný Luhn, prošlá platnost, `prefers-reduced-motion` v DevTools.
-- [ ] **Step 5: Commit** `feat(payments): animated card gateway component`
+- [x] **Step 1: Write failing test** `buildPaymentMethodBody({number:"4242424242424242",expMonth:9,expYear:28,cvc:"123",name:"Jan Novák"})` → `card[exp_year]` `"2028"`, `card[exp_month]` `"9"`, `type` `"card"`, `billing_details[name]` `"Jan Novák"`.
+- [x] **Step 2: Run** — FAIL.
+- [x] **Step 3: Implement** modul a komponenty.
+- [x] **Step 4: Verify** testy, typecheck, lint PASS; dočasně komponentu vlož do stránky z Task 8 a v prohlížeči (`npm run dev`) projdi: vložení „4111-1111 1111 1111“, automatické vyplnění prohlížečem, Amex 15 číslic + CVC 4, chybný Luhn, prošlá platnost, `prefers-reduced-motion` v DevTools.
+- [x] **Step 5: Commit** `feat(payments): animated card gateway component`
 
 ### Task 7: Apple Pay, Google Pay, PayPal (UI)
 
@@ -271,9 +271,9 @@ Chování (podle prototypu v4, styl A): aktivní zóna karty podle fokusu, otoč
   - `<WalletButton amountMinor={number} createIntent={() => Promise<{ clientSecret: string }>} returnUrl={string} onAvailability={(available: { applePay: boolean; googlePay: boolean }) => void} />`: Express Checkout Element (`mode: "payment"`, `currency: "czk"`, `amount`), jen Apple Pay a Google Pay (ostatní `never`), potvrzení `stripe.confirmPayment({ elements, clientSecret, confirmParams: { return_url }, redirect: "if_required" })`.
   - `<PayPalButton createIntent={…} returnUrl={string} />` → `stripe.confirmPayPalPayment(clientSecret, { return_url })`.
 
-- [ ] **Step 1: Implement** (UI bez čisté logiky; žádný unit test).
-- [ ] **Step 2: Verify** typecheck, lint; v test mode Chrome s Google Pay testovací kartou projde platba až po `payment_intent.succeeded` (webhook přes `stripe listen`). PayPal v test mode přesměruje na sandbox a zpět.
-- [ ] **Step 3: Commit** `feat(payments): Apple Pay, Google Pay and PayPal buttons`
+- [x] **Step 1: Implement** (UI bez čisté logiky; žádný unit test).
+- [ ] **Step 2: Verify** typecheck, lint; v test mode Chrome s Google Pay testovací kartou projde platba až po `payment_intent.succeeded` (webhook přes `stripe listen`). PayPal v test mode přesměruje na sandbox a zpět. _(částečně hotovo: testy, typecheck, lint, build zelené; živé ověření se Stripe čeká na klíče a zapnuté raw card data API)_
+- [x] **Step 3: Commit** `feat(payments): Apple Pay, Google Pay and PayPal buttons`
 
 ### Task 8: Platební stránka Store + napojení stávající pokladny, CSP, texty
 
@@ -292,8 +292,8 @@ Analytika: v komponentě, která v root layoutu vykresluje `@vercel/analytics` a
 
 CSP doplnit (`script-src`, `frame-src`, `connect-src`): `https://js.stripe.com`, `https://*.js.stripe.com`, `https://hooks.stripe.com`, `https://api.stripe.com`, Apple Pay/Google Pay podle `docs.stripe.com/security/guide`. Texty v `[page]/page.tsx`: věty „Platby probíhají výhradně přes Stripe. Žádné platební údaje neprocházejí naším serverem.“ a „Platby bezpečně zpracovává Stripe. Platební údaje se neukládají v systémech VeVit.“ nahradit: „Platby kartou zpracovává Stripe. Údaje karty se odesílají přímo do Stripe a VeVit je neukládá.“
 
-- [ ] **Step 1: Implement** stránku a úpravy.
-- [ ] **Step 2: Verify** v test mode end-to-end: košík → pokladna → platba kartou `4242 4242 4242 4242` (úspěch), `4000 0027 6000 3184` (3D Secure), `4000 0000 0000 9995` (nedostatek prostředků → česká hláška, nový pokus funguje) → `/store/success` ukáže „zaplaceno“ až po webhooku. Ověř v síťovém panelu, že na `localhost` nikdy neodejde číslo karty ani CVC. `npm run typecheck && npm run lint && npm run test:unit && npm run build` PASS.
-- [ ] **Step 3: Commit** `feat(store): custom payment page replaces Stripe Checkout redirect`
+- [x] **Step 1: Implement** stránku a úpravy.
+- [ ] **Step 2: Verify** v test mode end-to-end: košík → pokladna → platba kartou `4242 4242 4242 4242` (úspěch), `4000 0027 6000 3184` (3D Secure), `4000 0000 0000 9995` (nedostatek prostředků → česká hláška, nový pokus funguje) → `/store/success` ukáže „zaplaceno“ až po webhooku. Ověř v síťovém panelu, že na `localhost` nikdy neodejde číslo karty ani CVC. `npm run typecheck && npm run lint && npm run test:unit && npm run build` PASS. _(částečně hotovo: testy, typecheck, lint, build zelené; živé ověření se Stripe čeká na klíče a zapnuté raw card data API)_
+- [x] **Step 3: Commit** `feat(store): custom payment page replaces Stripe Checkout redirect`
 
 **Předpoklad Task 8:** Stripe support zapnul raw card data API pro test mode (spec kap. 9). Bez toho Stripe vrátí chybu při vytvoření `pm_…`; v tom případě se zastav a nahlas to.

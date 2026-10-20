@@ -115,9 +115,9 @@ export function useCardForm() {
   const touch = useCallback((zone: Zone) => setTouched((current) => ({ ...current, [zone]: true })), []);
 
   const errors = {
-    number: numberResult.error ?? (touched.number && !numberResult.ok ? "Vyplň číslo karty." : null),
+    number: numberResult.error ?? (touched.number && !numberResult.ok ? (digits === "" ? "Vyplň číslo karty." : "Číslo karty je neúplné.") : null),
     name: touched.name && !holderResult.ok ? holderResult.error : null,
-    exp: expiryResult.error ?? (touched.exp && !expiryResult.ok ? "Vyplň platnost karty." : null),
+    exp: expiryResult.error ?? (touched.exp && !expiryResult.ok ? (expiry === "" ? "Vyplň platnost karty." : "Platnost je neúplná.") : null),
     cvc: touched.cvc && !cvcResult.ok ? cvcResult.error : null,
   };
 
