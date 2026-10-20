@@ -1,3 +1,5 @@
+import { shippingMinor } from "@/lib/checkout/shipping";
+
 export type CartItem = {
   id: number;
   name: string;
@@ -32,8 +34,8 @@ export function cartSubtotal(items: CartItem[]) {
 /** Standard shipping before tier perks (same rule as the checkout snapshot). */
 export function cartBaseShipping(items: CartItem[]) {
   const hasPhysical = items.some((item) => item.type === "physical");
-  const subtotal = cartSubtotal(items);
-  return hasPhysical && subtotal < 1000 ? 99 : 0;
+  // The delivery method is chosen later in checkout; the cart shows the standard (address) price.
+  return shippingMinor({ method: hasPhysical ? "address" : null, hasPhysical, subtotalMinor: Math.round(cartSubtotal(items) * 100), freePerk: false }) / 100;
 }
 
 /** Shipping shown to the customer; Silver+ ships free (store-perks.ts). */

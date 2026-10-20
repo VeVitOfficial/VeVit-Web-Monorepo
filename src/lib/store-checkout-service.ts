@@ -1,4 +1,5 @@
 import { randomBytes } from "node:crypto";
+import { shippingMinor as computeShippingMinor } from "@/lib/checkout/shipping";
 import { snapshotIntegrityHash, sha256Hex } from "@/lib/store-order-core";
 import { storeRest, StoreRestError } from "@/lib/store-config";
 import "server-only";
@@ -463,7 +464,8 @@ export async function createCheckoutSnapshot(params: CheckoutCreateInput): Promi
   }
 
   const shipping = normalizeShipping(normalized.shipping, hasPhysical);
-  const shippingMinor = hasPhysical && subtotalMinor < 100000 && params.freeShipping !== true ? 9900 : 0;
+  // Delivery method input arrives with the extended checkout (phase 2, task 3); until then: address.
+  const shippingMinor = computeShippingMinor({ method: hasPhysical ? "address" : null, hasPhysical, subtotalMinor, freePerk: params.freeShipping === true });
   const totalMinor = subtotalMinor + shippingMinor;
   if (totalMinor > CHECKOUT_MAX_TOTAL_MINOR) {
     throw new CheckoutValidationException("order_total_limit", "Celková cena objednávky je příliš vysoká.");
