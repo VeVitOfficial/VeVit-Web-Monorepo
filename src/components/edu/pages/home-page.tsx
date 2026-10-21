@@ -77,7 +77,7 @@ function getFirstTextPreview(blocks: unknown[] | undefined): string {
 export function EduHomePage({ locale }: { locale: string }) {
   // locale z x-vv-locale hlavičky — useEduLang() ho inicializuje a nabízí t/lessonsUnit.
   void locale;
-  const { t, lessonsUnit, lang } = useEduLang();
+  const { t, lang } = useEduLang();
   const { setBreadcrumbs } = useEduBreadcrumbs();
 
   const [index, setIndex] = useState<CourseIndexMeta[] | null>(null);
@@ -161,13 +161,13 @@ export function EduHomePage({ locale }: { locale: string }) {
   const cats = useMemo(
     () => [
       { id: "programming", titleKey: "home.categories.programming", descKey: "home.categories.programmingDesc", icon: "Terminal", href: "/edu/programovani", color: "#00d084", count: PROGRAMMING_COURSES_COUNT, countLabel: t("home.courses"), disabled: false },
-      { id: "ai", titleKey: "home.categories.aiLiteracy", descKey: "home.categories.aiLiteracyDesc", icon: "Brain", href: "/edu/ai-gramotnost", color: "#8b5cf6", count: 36, countLabel: lessonsUnit(36), disabled: false },
+      { id: "ai", titleKey: "home.categories.aiLiteracy", descKey: "home.categories.aiLiteracyDesc", icon: "Brain", href: "/edu/ai-gramotnost", color: "#8b5cf6", count: 0, countLabel: t("landing.comingSoon"), disabled: false },
       { id: "matematika", titleKey: "home.categories.math", descKey: "home.categories.mathDesc", icon: "Calculator", href: "#", color: "#facc15", count: 0, countLabel: t("landing.comingSoon"), disabled: true },
       { id: "fyzika", titleKey: "home.categories.physics", descKey: "home.categories.physicsDesc", icon: "Atom", href: "#", color: "#f97316", count: 0, countLabel: t("landing.comingSoon"), disabled: true },
-      { id: "historie", titleKey: "home.categories.history", descKey: "home.categories.historyDesc", icon: "History", href: "#", color: "#a78bfa", count: 0, countLabel: t("landing.comingSoon"), disabled: true },
-      { id: "chemie", titleKey: "home.categories.chemistry", descKey: "home.categories.chemistryDesc", icon: "FlaskConical", href: "#", color: "#0ea5e9", count: 0, countLabel: t("landing.comingSoon"), disabled: true },
+      { id: "historie", titleKey: "home.categories.history", descKey: "home.categories.historyDesc", icon: "History", href: "/edu/historie", color: "#a78bfa", count: 0, countLabel: t("landing.comingSoon"), disabled: false },
+      { id: "chemie", titleKey: "home.categories.chemistry", descKey: "home.categories.chemistryDesc", icon: "FlaskConical", href: "/edu/chemie", color: "#0ea5e9", count: 0, countLabel: t("landing.comingSoon"), disabled: false },
     ],
-    [t, lessonsUnit],
+    [t],
   );
 
   // Filtr recently added — bez programovacích jazyků v titulu/kategorii.
@@ -214,12 +214,13 @@ export function EduHomePage({ locale }: { locale: string }) {
           placeholder={t("landing.searchPlaceholder")}
           lang={lang}
           titleParts={titleParts}
+          lead={t("landing.lead")}
         />
 
         {continueItems.length > 0 ? (
           <section className="mb-16">
-            <h2 className="text-xl font-semibold text-[var(--color-text-primary)] mb-5 flex items-center gap-2">
-              <Icon name="play" className="h-5 w-5 text-emerald-500" />
+            <h2 className="eh-h2">
+              <span className="eh-bullet" aria-hidden="true" />
               {t("home.continueLearning")}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -231,8 +232,8 @@ export function EduHomePage({ locale }: { locale: string }) {
         ) : null}
 
         <section className="mb-20">
-          <h2 className="text-xl font-semibold text-[var(--color-text-primary)] mb-6">{t("home.categories.title")}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <h2 className="eh-h2"><span className="eh-bullet" aria-hidden="true" />{t("home.categories.title")}</h2>
+          <div className="eh-cats">
             {cats.map((cat) => (
               <CategoryCard key={cat.id} cat={cat} t={t} />
             ))}
@@ -240,7 +241,7 @@ export function EduHomePage({ locale }: { locale: string }) {
         </section>
 
         <section className="mb-20">
-          <h2 className="text-xl font-semibold text-[var(--color-text-primary)] mb-6">{t("landing.recentlyAdded")}</h2>
+          <h2 className="eh-h2"><span className="eh-bullet" aria-hidden="true" />{t("landing.recentlyAdded")}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {filteredRecently.map((item) => (
               <RecentCard key={item.id} item={item} />
@@ -251,8 +252,7 @@ export function EduHomePage({ locale }: { locale: string }) {
         <section className="mb-20">
           <div className="flex items-center justify-between gap-4 mb-2">
             <div className="flex items-center gap-3">
-              <h2 className="text-xl font-semibold text-[var(--color-text-primary)]">{t("landing.lessons")}</h2>
-              <Icon name="book-open" className="h-5 w-5 text-[var(--color-text-muted)]" />
+              <h2 className="eh-h2" style={{ margin: 0 }}><span className="eh-bullet" aria-hidden="true" />{t("landing.lessons")}</h2>
             </div>
             <Link
               href="/edu/lekce/vytvorit"
@@ -279,6 +279,7 @@ function HeroSearch({
   placeholder,
   lang,
   titleParts,
+  lead,
 }: {
   index: CourseIndexMeta[];
   recentlyAdded: { id: string; category: string; title: string }[];
@@ -286,6 +287,7 @@ function HeroSearch({
   placeholder: string;
   lang: string;
   titleParts: string[];
+  lead: string;
 }) {
   const eduItems = useMemo<EduSuggestion[]>(() => [
     ...eduSuggestionsFromIndex(index),
@@ -298,22 +300,36 @@ function HeroSearch({
   ], [index, recentlyAdded, customLessons]);
 
   return (
-    <section className="text-center pt-8 pb-16 md:pt-12 md:pb-20">
-      <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[var(--color-text-primary)] mb-2">
-        {titleSafe(titleParts[0])}. {titleSafe(titleParts[1])}.{" "}
-        <span className="text-emerald-500">{titleSafe(titleParts[2])}.</span>
-      </h1>
-      <div className="mt-8 max-w-2xl mx-auto relative text-left">
-        <SearchSuggest
-          eduItems={eduItems}
-          lang={lang}
-          placeholder={placeholder}
-          inputClassName="w-full h-14 px-4 rounded-xl bg-[var(--color-input-bg)] border border-[var(--color-border-subtle)] text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500/50 backdrop-blur-md transition-all"
-        />
-        <p className="mt-3 text-xs text-center text-[var(--color-text-muted)]">
-          <span className="inline-flex items-center gap-1 align-middle text-emerald-500"><EduCapIcon className="h-3.5 w-3.5" /></span> kurzy a lekce VeVit Edu,{" "}
-          <span className="inline-flex items-center gap-1 align-middle"><WikiIcon className="h-3.5 w-3.5" /></span> články z Wikipedie. Dotaz ukončený <span className="text-emerald-500 font-medium">?</span> zapne odpověď AI nad článkem.
-        </p>
+    <section className="eh-hero">
+      <div className="eh-hero__text">
+        <h1 className="eh-title">
+          <span>{titleSafe(titleParts[0])}.</span>
+          <span>{titleSafe(titleParts[1])}.</span>
+          <span>{titleSafe(titleParts[2]).replace(/\.$/, "")}.</span>
+        </h1>
+        <p className="eh-lead">{lead}</p>
+        <div className="eh-search">
+          <SearchSuggest
+            eduItems={eduItems}
+            lang={lang}
+            placeholder={placeholder}
+            inputClassName="eh-search-input"
+          />
+          <p className="eh-search-hint">
+            <span className="inline-flex items-center gap-1 align-middle text-emerald-500"><EduCapIcon className="h-3.5 w-3.5" /></span> kurzy a lekce VeVit Edu,{" "}
+            <span className="inline-flex items-center gap-1 align-middle"><WikiIcon className="h-3.5 w-3.5" /></span> články z Wikipedie. Dotaz ukončený <span className="text-emerald-500 font-medium">?</span> zapne odpověď AI nad článkem.
+          </p>
+        </div>
+      </div>
+      <div className="eh-art" aria-hidden="true">
+        <div className="eh-hex eh-hex--ring" />
+        <div className="eh-hex eh-hex--core" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className="eh-mascot" src="/edu/assets/img/maskot-v1.webp" alt="" width={860} height={1290} decoding="async" />
+        <span className="eh-tile eh-tile--a"><Icon name="terminal" /></span>
+        <span className="eh-tile eh-tile--b"><Icon name="brain" /></span>
+        <span className="eh-tile eh-tile--c"><Icon name="atom" /></span>
+        <span className="eh-tile eh-tile--d"><Icon name="calculator" /></span>
       </div>
     </section>
   );
@@ -367,45 +383,24 @@ type CategoryDef = {
 };
 
 function CategoryCard({ cat, t }: { cat: CategoryDef; t: (key: string) => string }) {
-  const innerCls = cat.disabled
-    ? "bg-[var(--color-card-bg)] opacity-50 border-[var(--color-border-subtle)]"
-    : "bg-[var(--color-card-bg)] hover:bg-[var(--color-glass-highlight)] border-[var(--color-border-subtle)] transition-all duration-300 hover:-translate-y-1";
-  const borderStyle: React.CSSProperties = cat.disabled ? {} : { borderColor: `${cat.color}30` };
-  const iconWrap = cat.disabled ? (
-    <div className="h-11 w-11 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: "var(--color-input-bg)", color: "var(--color-text-muted)" }}>
-      <Icon name={cat.icon} className="h-5 w-5" />
-    </div>
-  ) : (
-    <div className="h-11 w-11 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: `${cat.color}15`, color: cat.color }}>
-      <Icon name={cat.icon} className="h-5 w-5" />
-    </div>
-  );
-  const badge = cat.disabled ? (
-    <span className="text-[10px] px-2 py-0.5 rounded-full font-medium border whitespace-nowrap" style={{ color: "var(--color-text-muted)", backgroundColor: "var(--color-input-bg)", borderColor: "var(--color-border-subtle)" }}>{cat.countLabel}</span>
-  ) : (
-    <span className="text-[10px] px-2 py-0.5 rounded-full font-medium border whitespace-nowrap" style={{ color: cat.color, backgroundColor: `${cat.color}12`, borderColor: `${cat.color}22` }}>{cat.count} {cat.countLabel}</span>
-  );
-
+  const badgeText = `${cat.count > 0 ? `${cat.count} ` : ""}${cat.countLabel}`;
   const inner = (
-    <div className={`relative h-full rounded-xl backdrop-blur-md border p-5 shadow-sm ${innerCls}`} style={borderStyle}>
-      <div className="flex items-start gap-4">
-        {iconWrap}
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center justify-between gap-2 mb-1">
-            <h3 className={`text-base font-semibold ${cat.disabled ? "text-[var(--color-text-muted)]" : "text-[var(--color-text-primary)] group-hover:text-emerald-500 transition-colors"}`}>{t(cat.titleKey)}</h3>
-            {badge}
-          </div>
-          <p className={`text-xs line-clamp-2 ${cat.disabled ? "text-[var(--color-text-muted)]" : "text-[var(--color-text-secondary)]"}`}>{t(cat.descKey)}</p>
-        </div>
+    <div
+      className={`eh-card${cat.disabled ? " eh-card--off" : " eh-card--big"}`}
+      style={{ "--c": cat.color } as React.CSSProperties}
+    >
+      <span className="eh-hexicon"><Icon name={cat.icon} /></span>
+      <div className="eh-card__body">
+        <h3>{t(cat.titleKey)}</h3>
+        <p>{t(cat.descKey)}</p>
+        <span className="eh-badge">{badgeText}</span>
       </div>
     </div>
   );
 
-  if (cat.disabled) {
-    return <div className="group cursor-not-allowed">{inner}</div>;
-  }
+  if (cat.disabled) return <div className="eh-cell" aria-disabled="true">{inner}</div>;
   return (
-    <Link href={cat.href} className="group">
+    <Link href={cat.href} className="eh-cell eh-cell--big">
       {inner}
     </Link>
   );

@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { CourseIndexMeta } from "@/lib/edu/config";
+import { WIKI_LANG_STORAGE, parseWikiLang, wikiSearchHref, type WikiLang } from "@/lib/edu/wikipedia";
 
 /**
  * Search box with suggestions from two sources, each marked by its icon:
@@ -27,8 +28,6 @@ type WikiSuggestion = {
 
 type Suggestion = EduSuggestion | WikiSuggestion;
 
-const WIKI_LANGS = ["cs", "en", "de", "uk", "es"];
-
 export function eduSuggestionsFromIndex(index: CourseIndexMeta[] | null | undefined): EduSuggestion[] {
   const out: EduSuggestion[] = [];
   for (const course of index ?? []) {
@@ -38,10 +37,6 @@ export function eduSuggestionsFromIndex(index: CourseIndexMeta[] | null | undefi
     }
   }
   return out;
-}
-
-function searchHref(q: string): string {
-  return `/edu/hledat?q=${encodeURIComponent(q)}`;
 }
 
 export function EduCapIcon({ className = "h-4 w-4" }: { className?: string }) {
@@ -80,6 +75,8 @@ export function SearchSuggest({
   initialValue = "",
   eduItems,
   lang = "cs",
+  wikiLang: wikiLangProp,
+  onWikiLangChange,
   placeholder = "Hledej kurzy, lekce nebo články z Wikipedie…",
   inputClassName,
   autoFocus = false,
@@ -88,6 +85,9 @@ export function SearchSuggest({
   initialValue?: string;
   eduItems: EduSuggestion[];
   lang?: string;
+  /** Jazyk Wikipedie zadaný zvenku (např. z URL); bez něj se čte uložená volba. */
+  wikiLang?: WikiLang;
+  onWikiLangChange?: (lang: WikiLang) => void;
   placeholder?: string;
   inputClassName?: string;
   autoFocus?: boolean;
@@ -103,7 +103,30 @@ export function SearchSuggest({
   const wrapRef = useRef<HTMLDivElement | null>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const abortRef = useRef<AbortController | null>(null);
-  const wikiLang = WIKI_LANGS.includes(lang) ? lang : "cs";
+  const [wikiLang, setWikiLangState] = useState<WikiLang>(wikiLangProp ?? (lang === "en" ? "en" : "cs"));
+
+  // Bez zadaného jazyka platí uložená volba z minula (čtení až po hydrataci).
+  useEffect(() => {
+    if (wikiLangProp) return;
+    let stored: string | null = null;
+    try {
+      stored = localStorage.getItem(WIKI_LANG_STORAGE);
+    } catch {
+      // úložiště nedostupné — zůstává výchozí jazyk
+    }
+    if (stored) Promise.resolve().then(() => setWikiLangState(parseWikiLang(stored)));
+  }, [wikiLangProp]);
+
+  const toggleWikiLang = useCallback(() => {
+    const next: WikiLang = wikiLang === "cs" ? "en" : "cs";
+    setWikiLangState(next);
+    try {
+      localStorage.setItem(WIKI_LANG_STORAGE, next);
+    } catch {
+      // úložiště nedostupné — volba platí jen do obnovení stránky
+    }
+    onWikiLangChange?.(next);
+  }, [wikiLang, onWikiLangChange]);
 
   const query = value.trim().replace(/\?+\s*$/, "").trim();
 
@@ -154,7 +177,7 @@ export function SearchSuggest({
             source: "wiki",
             label: page.title,
             sub: page.description ? String(page.description) : "Článek na Wikipedii",
-            href: searchHref(page.title),
+            href: wikiSearchHref(page.title, wikiLang),
           })));
         })
         .catch((error: unknown) => {
@@ -186,8 +209,8 @@ export function SearchSuggest({
   const submit = useCallback(() => {
     const v = value.trim();
     if (!v) return;
-    go(searchHref(v));
-  }, [value, go]);
+    go(wikiSearchHref(v, wikiLang));
+  }, [value, go, wikiLang]);
 
   function onKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
     if (event.key === "ArrowDown") {
@@ -262,6 +285,16 @@ export function SearchSuggest({
           </ul>
         )}
       </div>
+      <button
+        type="button"
+        onClick={toggleWikiLang}
+        aria-label={wikiLang === "cs" ? "Wikipedie: čeština. Přepnout na anglickou Wikipedii" : "Wikipedia: English. Switch to Czech Wikipedia"}
+        title={wikiLang === "cs" ? "Česká Wikipedie (klikni pro anglickou)" : "English Wikipedia (click for Czech)"}
+        className="shrink-0 inline-flex items-center gap-1.5 px-3 rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-card-bg)] text-sm font-semibold text-[var(--color-text-primary)] hover:border-emerald-500 hover:text-emerald-500 transition-colors"
+      >
+        <WikiIcon className="h-4 w-4" />
+        {wikiLang.toUpperCase()}
+      </button>
       {showButton && (
         <button
           type="button"

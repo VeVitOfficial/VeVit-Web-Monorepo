@@ -1,0 +1,799 @@
+{
+ "meta": {
+  "name": "AIFB ve VeVit Edu – implementační plán pro Claude Code",
+  "version": "1.0",
+  "date": "2026-10-21",
+  "language": "cs",
+  "owner": "Vít Vedral (VeVit)",
+  "howToUse": [
+   "Tento soubor je zadání. Nejdřív ho celý přečti, potom proveď Fázi 0 (průzkum repozitáře) a teprve poté piš kód.",
+   "Obsah lekcí je hotový v souborech aifb-content-zs1.json, aifb-content-zs2.json a aifb-content-ss.json a nemá se přepisovat. Aplikace ho jen načítá a zobrazuje.",
+   "Vše, co je v tomto souboru označeno jako NÁVRH nebo OVĚŘIT, je předpoklad, ne rozhodnutí. Při rozporu se skutečným stavem repozitáře vyhrává repozitář a rozpor zapiš do docs/aifb/RECON.md.",
+   "Pokud se rozhodnutí týká přihlašování, účtů žáků, plateb nebo osobních údajů, zastav se a zeptej se vlastníka. Neimprovizuj."
+  ]
+ },
+ "goal": {
+  "summary": "V sekci Edu na vevit.cz vytvořit prostor pro AI gramotnost (AIFB). Karta „AI gramotnost“ otevře výběr kategorie, ta výběr levelu a level seznam lekcí (teorie a cvičení). Vzhled se přizpůsobí věku: pro nejmladší hravá pirátská mapa, pro starší žáky přehledná stezka a pro středoškoláky čistý, věcný přehled.",
+  "flow": [
+   "Karta AI gramotnost → výběr kategorie → výběr levelu (blok) → seznam lekcí → lekce (teorie nebo cvičení)"
+  ],
+  "audiences": [
+   "Učitelé (hlavní uživatelé ve třídě)",
+   "Žáci 1.–5. třídy (vede učitel)",
+   "Žáci 6.–9. třídy",
+   "Studenti SŠ a gymnázií",
+   "Dospělí a samouci (stávající online kurz)"
+  ]
+ },
+ "scope": {
+  "mvp": [
+   "Hub, výběr kategorie, výběr levelu, seznam lekcí a stránka lekce pro všechny tři kategorie s hotovým obsahem (16 levelů, 96 lekcí).",
+   "Tři vizuální témata: pirate-map (1. stupeň), trail (2. stupeň), clean (SŠ).",
+   "Zobrazení lekcí pro učitele včetně režimu pro projekci ve třídě a tisku.",
+   "Sekce Pro učitele s kapitolami průvodce (úvod, ochrana údajů, doporučený postup) a ke stažení původní plány v DOCX/PDF.",
+   "Lokální průběh (hotové lekce, XP) bez přihlášení.",
+   "Kontrola obsahu v CI (JSON Schema)."
+  ],
+  "later": [
+   "Žákovská vrstva lekcí (texty a interaktivní cvičení): začít pilotními lekcemi z Fáze 6.",
+   "Třídy a pseudonymní žákovské účty (jen pokud už vznikly v rámci Edu for Schools, viz assumptionsToVerify).",
+   "Certifikáty a veřejná ověřovací stránka (vevit.cz/aifb/verify/[ID]), nejdřív musí vzniknout rozhodnutí provozovatele o podmínkách."
+  ],
+  "outOfScope": [
+   "Vytváření nového přihlašovacího systému.",
+   "Přepisování metodického obsahu plánů.",
+   "Prodej certifikátů nebo tvrzení, že certifikace už existuje."
+  ]
+ },
+ "inputFiles": [
+  {
+   "path": "aifb-catalog.json",
+   "role": "Index kategorií a levelů pro hub a mapy. Nemusí se načítat celý obsah."
+  },
+  {
+   "path": "aifb-content-zs1.json",
+   "role": "Obsah pro 1. stupeň ZŠ: 4 bloky (A–D), 24 lekcí, 4 kapitoly průvodce."
+  },
+  {
+   "path": "aifb-content-zs2.json",
+   "role": "Obsah pro 2. stupeň ZŠ: 6 levelů, 36 lekcí, 3 kapitoly průvodce."
+  },
+  {
+   "path": "aifb-content-ss.json",
+   "role": "Obsah pro SŠ a gymnázia: 6 levelů, 36 lekcí, 3 kapitoly průvodce."
+  },
+  {
+   "path": "aifb-content.schema.json",
+   "role": "JSON Schema pro obsahové soubory. Použij ve validaci a v CI."
+  },
+  {
+   "path": "aifb-cviceni-detektiv-halucinaci.html",
+   "role": "Referenční prototyp interaktivního cvičení „Zadání, které funguje“ (Level 2). Název souboru je starší, obsahem je prompting. Slouží jako vzor pro AiSandbox (Fáze 6), ne k nasazení. Vlastník ho musí přiložit zvlášť."
+  },
+  {
+   "path": "AIFB_plan_cviceni_ZS_1_stupen.docx/.pdf, AIFB_plan_cviceni_ZS_2_stupen.docx/.pdf, AIFB_plan_cviceni_pro_skoly.docx/.pdf",
+   "role": "Původní metodické plány. Zdroj pravdy pro obsah a soubory ke stažení v sekci Pro učitele."
+  }
+ ],
+ "observedSite": {
+  "note": "Pozorováno z veřejného HTML 21. 10. 2026. Aplikace je SPA, takže skutečný stav (komponenty, tokeny, router) zjisti z repozitáře ve Fázi 0.",
+  "facts": [
+   "Web je česky, brand VeVit, bez reklam; meta theme-color je #0d0d0d, takže základ je tmavý.",
+   "Edu běží na vevit.cz/cs/edu (beta). Horní navigace Edu: Přehled, Programování, AI gramotnost, Vyhledat; k tomu přepínač 7 jazyků.",
+   "Stávající kurz AI gramotnost je na /edu/ai-gramotnost/ (lekce se odkazují přes #lesson/<číslo-slug>).",
+   "VeVit má jednotný účet s XP a levely (např. „LVL 1 · NOVICE“, 0 / 10 000 XP) a tarify Bronze, Silver, Gold, Platinum. Platinum je pro školy: třídy, učitelé, přehled pokroku.",
+   "V plánech AIFB (PDF/DOCX) je použita paleta teal #15857A, oranžová #FF6A3B, tmavá #37352F, šedá #6B6B6B. Je to paleta dokumentů, nemusí odpovídat webu."
+  ],
+  "rule": "Žádné barvy, fonty ani rozestupy si nevymýšlej. Použij existující designové tokeny a komponenty Edu. Jakýkoli nový prvek odvoď z nich."
+ },
+ "assumptionsToVerify": [
+  "Rozhodnutí z přípravy VeVit Edu for Schools (ověř, že stále platí a znovu je použij): žáci mají pseudonymní třídní účty přes kód třídy bez e-mailu, učitelé používají jednotný vevit.cz účet, obsah je zdarma a třídní funkce jsou pod školní licencí.",
+  "Router může být hashový (#lesson/…) nebo cestový. Přizpůsob návrh tras skutečnému routeru.",
+  "Služba XP existuje a má API; zjisti, jak do ní lze bezpečně zapisovat. Pokud ne, ukládej jen lokálně.",
+  "Existuje komponentová knihovna a režim světlý/tmavý; mapa musí fungovat v obou, pokud je web podporuje.",
+  "Edu už má strukturu obsahu, ze které lze převzít vzor načítání a typování (stávající kurz AI gramotnost)."
+ ],
+ "hardRules": [
+  {
+   "id": "R1",
+   "rule": "Žákům 1. stupně AI nikdy nepíšou do konverzace. AI ukázky ve třídě ovládá učitel."
+  },
+  {
+   "id": "R2",
+   "rule": "Osobní údaje se do žádné AI služby neposílají. Každé pole, jehož text jde modelu, projde kontrolou na e-mail, telefon, rodné číslo a URL a odeslání se zastaví (vzor je v prototypu)."
+  },
+  {
+   "id": "R3",
+   "rule": "Žádná analytika ani sledování uživatelů třetí stranou. Fonty a knihovny hostuj sám (žádné CDN fonty)."
+  },
+  {
+   "id": "R4",
+   "rule": "Neslibuj certifikaci. Štítek certifikace vždy zní „Připravuje se“, dokud provozovatel nerozhodne jinak. U nezletilých se nikdy nezobrazuje celé jméno."
+  },
+  {
+   "id": "R5",
+   "rule": "Pokud je nástroj AI použit s žáky mladšími 13 let, jen v režimu vedeném učitelem u společného zařízení. Individuální přístup jen 8.–9. třída a SŠ, a to s podmínkami popsanými v průvodci (souhlas zákonných zástupců, ověření s pověřencem školy)."
+  },
+  {
+   "id": "R6",
+   "rule": "Obsahové soubory se při buildu nesmějí měnit ani přeformátovávat. Aplikace je jen čte. Úpravy obsahu jdou přes pull request s popisem, co a proč."
+  },
+  {
+   "id": "R7",
+   "rule": "Text vytvořený pro žáky (pupil.text, kvízové odpovědi) se ukládá se stavem draft. Stav reviewed nebo published nastavuje jen vlastník nebo učitel."
+  },
+  {
+   "id": "R8",
+   "rule": "Vendor-neutrální pojetí: v uživatelském rozhraní se neuvádí značka modelu. Poskytovatel modelu musí být vyměnitelný na jednom místě na serveru."
+  },
+  {
+   "id": "R9",
+   "rule": "Přístupnost je podmínka dokončení každé fáze (viz quality), ne dodatečná úprava."
+  }
+ ],
+ "informationArchitecture": {
+  "routesNote": "NÁVRH tras, uprav podle skutečného routeru. Stávající odkazy kurzu (#lesson/…) musí fungovat dál.",
+  "screens": [
+   {
+    "id": "hub",
+    "route": "/edu/ai-gramotnost/",
+    "title": "AI gramotnost",
+    "purpose": "Výběr kategorie. Čtyři velké karty podle catalog.categories: 1. stupeň ZŠ, 2. stupeň ZŠ, Střední školy, Online kurz pro všechny.",
+    "data": "aifb-catalog.json",
+    "notes": [
+     "Karty mají krátký popis a počty (levely, lekce).",
+     "Karta Online kurz vede na stávající kurz (návrh /edu/ai-gramotnost/kurz), pokud to vlastník potvrdí.",
+     "Pro učitele: viditelný odkaz Pro učitele pod kartami."
+    ]
+   },
+   {
+    "id": "category",
+    "route": "/edu/ai-gramotnost/aifb/:category",
+    "title": "Mapa levelů",
+    "purpose": "Výběr levelu. Vzhled podle theme kategorie (pirate-map, trail, clean).",
+    "data": "catalog.categories[].levels",
+    "notes": [
+     "Žádné tvrdé zamykání. Pořadí je doporučené, učitel si může vybrat libovolný level.",
+     "U levelů 4–6 certifikace zobrazit jako Připravuje se."
+    ]
+   },
+   {
+    "id": "level",
+    "route": "/edu/ai-gramotnost/aifb/:category/:level",
+    "title": "Seznam lekcí",
+    "purpose": "Úvod levelu, cíle, časový rozvrh a 6 lekcí: Teorie a Cvičení 1–5.",
+    "data": "levels[].lessons + goals + schedule",
+    "notes": [
+     "Poznámky pro učitele a časová tabulka jsou v sbalených sekcích, u kategorií pro děti ve výchozím stavu sbalené.",
+     "Každá lekce ukazuje typ, název, orientační čas, stav (nezačato, rozpracováno, hotovo)."
+    ]
+   },
+   {
+    "id": "lesson",
+    "route": "/edu/ai-gramotnost/aifb/:category/:level/:lesson",
+    "title": "Lekce",
+    "purpose": "Teorie nebo cvičení. Zobrazení pro učitele je dostupné hned, vrstva pro žáky doroste po pilotech.",
+    "data": "lesson.teacher + lesson.pupil",
+    "notes": [
+     "Režimy: Pro učitele, Projekce (třída), Žák (jen pokud pupil.status je reviewed nebo published).",
+     "Tisková šablona (@media print)."
+    ]
+   },
+   {
+    "id": "teacher-guide",
+    "route": "/edu/ai-gramotnost/aifb/ucitele/:category",
+    "title": "Pro učitele",
+    "purpose": "Průvodce kategorií: kapitoly guide[] s čísly kapitol a oddílů, odkazy „oddíl 7.2“ proměnit na odkazy, ke stažení DOCX/PDF.",
+    "data": "guide[]"
+   }
+  ],
+  "breadcrumbs": "Edu › AI gramotnost › Kategorie › Level › Lekce. Každá úroveň má vlastní URL a funguje po přímém otevření i po obnovení stránky.",
+  "idRules": "Ve všech URL se používají id z obsahu (např. zs1-blok-a, zs1-blok-a-cv3). Jsou stabilní. Nikdy nepřečísluj."
+ },
+ "themes": {
+  "common": [
+   "Shell Edu (hlavička, přepínač jazyků, XP odznak, patička) zůstává beze změny. Téma mění jen obsah pod hlavičkou.",
+   "Tmavý základ webu: jakákoliv ilustrace musí v něm vypadat přirozeně. Mapa 1. stupně se proto navrhuje jako noční mořská mapa (tmavé moře, světlé ostrovy) uvnitř karty, ne jako velký pergamen přes celou stránku.",
+   "Jedna datová cesta: komponenty dostávají data z katalogu, téma řeší jen vzhled a texty tlačítek.",
+   "Alternativa k vizuálu vždy existuje: každá mapa má seznamové zobrazení (přepínač „Zobrazit jako seznam“), které čtečka obrazovky i klávesnice projdou stejně dobře.",
+   "prefers-reduced-motion: žádné animace plavby, vln ani konfet.",
+   "Jazyk dětských textů: krátké věty, činné tvary, bez ironie. Pro starší žáky věcný tón."
+  ],
+  "themes": [
+   {
+    "id": "pirate-map",
+    "category": "zs1",
+    "label": "Pirátská mapa",
+    "audience": "6–11 let (ovládá učitel, děti klikají na projekci)",
+    "layout": [
+     "Komponenta AdventureMap: SVG s viewBox 1000×600. Ostrovy podle level.visual (x, y v %). Čárkovaná cesta mezi ostrovy v pořadí levelů.",
+     "Čtyři ostrovy: Zátoka Objevitelů (Blok A), Ostrov Robotů (B), Přístav Hostů (C), Ostrov Pokladu (D). Názvy a ikony jsou NÁVRH ve visual.",
+     "Aktuální ostrov označí lodička. Dokončený ostrov má otevřenou truhlu.",
+     "Na úzkém displeji se ostrovy skládají do svislého klikatého pásu (automatické rozložení), x a y se ignorují."
+    ],
+    "labels": {
+     "theory": "Povídání u mapy",
+     "exercise": "Úkol {n}",
+     "level": "Ostrov",
+     "done": "Poklad nalezen"
+    },
+    "interaction": [
+     "Cíle klepnutí aspoň 64 px.",
+     "Jedno kliknutí otevře ostrov. Žádné tahání ani dvojklik.",
+     "Zvuk je ve výchozím stavu vypnutý.",
+     "Odměny: místo čísla XP ukazovat „drahokamy“ (přepočet 1 drahokam = 10 XP, NÁVRH)."
+    ],
+    "type": {
+     "minBody": "18px",
+     "note": "Používej existující písmo webu. Pokud je potřeba zaoblené písmo, musí mít české znaky a být hostované lokálně."
+    },
+    "classMode": "Výchozí zobrazení při otevření bloku z účtu učitele: velké písmo, bez poznámek pro učitele, tlačítko Další úkol."
+   },
+   {
+    "id": "trail",
+    "category": "zs2",
+    "label": "Stezka",
+    "audience": "11–15 let",
+    "status": "NÁVRH, potvrdit s vlastníkem",
+    "layout": [
+     "Klikatá stezka se šesti zastávkami (levely) a ukazatelem XP. Hravé, ale ne dětinské: žádní piráti, spíš expedice a odznaky.",
+     "Zastávka ukazuje číslo levelu, název, hodiny a odznak certifikace (Připravuje se).",
+     "Levely 4–6 mají štítek „pro pokročilé“ podle recommendedPlacement."
+    ],
+    "labels": {
+     "theory": "Teorie",
+     "exercise": "Cvičení {n}",
+     "level": "Level",
+     "done": "Splněno"
+    }
+   },
+   {
+    "id": "clean",
+    "category": "ss",
+    "label": "Přehled",
+    "audience": "15–19 let",
+    "layout": [
+     "Seznam karet nebo tabulka levelů: číslo, název, podtitul, hodiny, doporučený ročník, stav, odznak certifikace.",
+     "Bez ilustrací. Husté, přehledné rozvržení, klávesnicově ovladatelné. Přepínač Karty / Tabulka.",
+     "Postup jako tenký ukazatel u každého levelu."
+    ],
+    "labels": {
+     "theory": "Teorie",
+     "exercise": "Cvičení {n}",
+     "level": "Level",
+     "done": "Hotovo"
+    }
+   }
+  ]
+ },
+ "dataModel": {
+  "loading": [
+   "Hub a mapy načítají jen aifb-catalog.json. Obsah kategorie se načte až při vstupu do kategorie (dynamický import nebo fetch), aby hub zůstal malý.",
+   "Typy v TypeScriptu vygeneruj ze schématu (např. json-schema-to-typescript) a nepiš je ručně dvakrát.",
+   "Validace při buildu i v CI: každý obsahový soubor proti aifb-content.schema.json a katalog vůči obsahovým souborům (shoda id a počtů)."
+  ],
+  "invariants": [
+   "3 kategorie s obsahem, 16 levelů (zs1: 4, zs2: 6, ss: 6) a 96 lekcí (každý level 6: 1 teorie + 5 cvičení).",
+   "id jsou unikátní napříč soubory. Lekce má id ve tvaru <level-id>-teorie nebo <level-id>-cv<N>.",
+   "Čísla kapitol v guide[].number se zobrazují. Text odkazuje na „kapitola 7“ nebo „oddíl 7.2“. Id oddílu je g7-2, kapitoly g7. Převeď takové odkazy na odkazy v rámci stránky Pro učitele.",
+   "Texty obsahují lehký Markdown (jen **tučně** a *kurzíva*) a neoddělitelné mezery (U+00A0). Renderer je nesmí odstranit a nesmí přidávat vlastní HTML (žádné dangerouslySetInnerHTML bez sanitizace)."
+  ],
+  "lessonShapes": {
+   "theory": "teacher.intro (odstavce), teacher.reviewQuestions (opakovací otázky), teacher.discussionTopics (diskuzní témata).",
+   "exercise": "teacher.description (odstavce), expectedOutput, form, time.",
+   "pupil": "Každá lekce má pupil.status = todo. Vrstva pro žáky se doplňuje postupně (viz Fáze 6)."
+  },
+  "knownGaps": [
+   "Plány neobsahují hotový text pro žáky, vzorové odpovědi, karty ani hodnoticí rubriky. Aplikace proto zatím zobrazuje hlavně metodiku pro učitele.",
+   "Opakovací otázky nemají klíč odpovědí. Kvízy z nich vyžadují návrh odpovědí, který musí schválit vlastník (stav draft)."
+  ]
+ },
+ "lessonPlayer": {
+  "modes": [
+   {
+    "id": "teacher",
+    "desc": "Plná metodika: popis, očekávaný výstup, forma, čas, poznámky levelu."
+   },
+   {
+    "id": "projection",
+    "desc": "Velké písmo, jen to, co se promítá žákům. Skryté poznámky pro učitele. Navigace Předchozí / Další. Ovladatelné klávesnicí a prezentérem."
+   },
+   {
+    "id": "pupil",
+    "desc": "Dostupné jen pokud pupil.status je reviewed nebo published. Jinak se místo toho ukáže klidná zpráva „Žákovská verze se připravuje“ a odkaz na zobrazení pro učitele."
+   },
+   {
+    "id": "print",
+    "desc": "Tisková šablona pro lekci i pro celý level (A4, černobíle čitelné)."
+   }
+  ],
+  "lessonView": [
+   "Teorie: úvodní text, Opakovací otázky (zatím jen seznam; později kvíz), Diskuzní témata.",
+   "Cvičení: název, štítky času a formy, popis, očekávaný výstup.",
+   "U každé lekce tlačítko Označit jako hotové (lokální průběh)."
+  ],
+  "stateLabels": [
+   "nezačato",
+   "rozpracováno",
+   "hotovo"
+  ]
+ },
+ "progressAndRewards": {
+  "storage": "Lokálně v prohlížeči, klíč vevit.edu.aifb.progress.v1, bez osobních údajů. Nabídni export a import souboru.",
+  "shape": {
+   "lessons": {
+    "<lessonId>": {
+     "status": "started|done",
+     "at": "ISO datum"
+    }
+   },
+   "xp": "číslo odvozené z lekcí"
+  },
+  "xpProposal": {
+   "theory": 25,
+   "exercise": 40,
+   "levelCompleteBonus": 60,
+   "note": "NÁVRH v rozsahu stávajícího kurzu (25–60 XP za lekci). XP za AIFB zapisuj do jednotné služby XP jen pokud existuje a vlastník to schválí."
+  },
+  "accounts": "Nepřidávej nové přihlášení. Pokud uživatel přihlášen je, sloučení průběhu s účtem řeš přes stávající mechanismus. Třídy a pseudonymní žákovské účty jsou mimo MVP (viz assumptionsToVerify)."
+ },
+ "aiSandbox": {
+  "purpose": "Opakovaně použitelná komponenta AiSandbox pro cvičení, kde žák nebo učitel zkouší zadání modelu (zejména úrovně 1–3 pro 2. stupeň a SŠ). Vychází z prototypu aifb-cviceni-detektiv-halucinaci.html.",
+  "architecture": [
+   "Prototyp volá živý model přes capability dostupnou v prostředí artefaktů. Ve VeVit se nahradí vlastním serverovým endpointem (NÁVRH: POST /api/edu/ai/complete).",
+   "Klient posílá jen: lessonId, text zadání, volitelně předchozí zprávy. Systémový prompt a omezení odpovědi drží server per lekce.",
+   "Server: kontrola osobních údajů (e-mail, telefon, rodné číslo, URL), limit délky odpovědi (kolem 200 slov), rychlostní limity na relaci, žádné ukládání obsahu konverzací, bez značky modelu v odpovědi pro uživatele.",
+   "Záložní uložená odpověď pro každou lekci při výpadku (plány s ní počítají).",
+   "Stávající AI limity tarifů (dotazy za den) respektuj, pokud jsou na serveru dostupné."
+  ],
+  "policyByCategory": {
+   "zs1": "Žádné pole pro žáky. Jen učitelský demonstrační režim.",
+   "zs2": "6.–7. třída: jen učitelem vedený režim u sdíleného zařízení. 8.–9. třída: individuální režim jen po zapnutí učitelem, který potvrdí, že škola získala souhlas zákonných zástupců a ověřila postup se svým pověřencem.",
+   "ss": "Individuální režim."
+  }
+ },
+ "teacherArea": {
+  "content": [
+   "Kapitoly guide[] jako stránky s obsahem vlevo a čísly oddílů.",
+   "Soubory ke stažení: původní plány v DOCX a PDF (cesty doplní Fáze 0).",
+   "Dopis rodičům a časté otázky u 1. stupně jsou v kapitole 7.3 průvodce: nabídni tisk a kopírování.",
+   "Upozornění na ochranu údajů zobrazit přímo u lekcí, kde se pracuje s AI (odkaz na příslušný oddíl)."
+  ],
+  "access": "Sekce je veřejná a čitelná bez přihlášení. Funkce tříd a přehled pokroku zatím nepřidávej."
+ },
+ "quality": {
+  "accessibility": [
+   "WCAG 2.2 AA jako minimum. Kontrast textu a ovládacích prvků v obou režimech.",
+   "Všechny mapy a ostrovy dostupné z klávesnice, viditelný fokus, logické pořadí.",
+   "Informace nikdy jen barvou. Stav lekce má i text nebo ikonu s popiskem.",
+   "Čtečky: každá ilustrace buď dekorativní (aria-hidden), nebo má textovou alternativu. Seznamové zobrazení map.",
+   "Respektuj prefers-reduced-motion a prefers-color-scheme.",
+   "Dotykové cíle: 44 px obecně, 64 px v tématu pirate-map."
+  ],
+  "performance": [
+   "Hub: jen katalog (menší než 20 kB před kompresí).",
+   "Mapa je SVG bez rastrových závislostí. Obrázky v moderních formátech, vše lokálně."
+  ],
+  "tests": [
+   "Jednotkové: validátor obsahu, renderer lehkého Markdownu (zachování U+00A0), převod odkazů „oddíl X.Y“.",
+   "E2E (Playwright): hub → kategorie → level → lekce pro každou kategorii; přímé otevření URL; zpět/vpřed; seznamové zobrazení map; tisk lekce.",
+   "Vizuální kontrola: snímky při 360, 768 a 1280 px a v tmavém i světlém režimu."
+  ],
+  "privacy": [
+   "Žádné cookies třetích stran, žádné externí fonty, žádné trackery.",
+   "Lokální průběh neobsahuje jména ani e-maily."
+  ]
+ },
+ "phases": [
+  {
+   "id": "F0",
+   "title": "Průzkum repozitáře a kontrakt",
+   "size": "S",
+   "dependsOn": [],
+   "tasks": [
+    {
+     "id": "F0.1",
+     "title": "Zmapovat repozitář",
+     "do": [
+      "Najdi aplikaci Edu: framework, router, adresář s lekcemi stávajícího kurzu AI gramotnost, způsob načítání obsahu.",
+      "Najdi designový systém: tokeny, komponenty, režim světlý/tmavý, písma, ikony.",
+      "Najdi službu XP a přihlášení (jen čti, nic neměň).",
+      "Najdi i18n, testovací nástroje, CI a způsob nasazení."
+     ],
+     "acceptance": [
+      "Vznikne docs/aifb/RECON.md s nálezy, cestami k souborům a návrhem, kam co patří (trasy, adresáře pro obsah)."
+     ]
+    },
+    {
+     "id": "F0.2",
+     "title": "Odsouhlasit rozpory",
+     "do": [
+      "Porovnej assumptionsToVerify a observedSite se skutečností.",
+      "Připrav seznam otázek pro vlastníka (router, URL stávajícího kurzu, XP, třídy)."
+     ],
+     "acceptance": [
+      "RECON.md obsahuje sekci Otevřené otázky. Žádný další krok nezačne, dokud vlastník neodpoví na ty, které blokují Fázi 2."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "F1",
+   "title": "Obsahový základ",
+   "size": "M",
+   "dependsOn": [
+    "F0"
+   ],
+   "tasks": [
+    {
+     "id": "F1.1",
+     "title": "Nahrát obsah a schéma",
+     "do": [
+      "Zkopíruj aifb-catalog.json, tři obsahové soubory a schéma na místo určené ve Fázi 0.",
+      "Vygeneruj typy ze schématu."
+     ],
+     "acceptance": [
+      "Build selže, když obsahový soubor schématu neodpovídá.",
+      "Skript ověří počty: 3 kategorie, 16 levelů, 96 lekcí a shodu id mezi katalogem a obsahem."
+     ]
+    },
+    {
+     "id": "F1.2",
+     "title": "Renderer textu",
+     "do": [
+      "Napiš bezpečný renderer lehkého Markdownu (**tučně**, *kurzíva*).",
+      "Zachovej U+00A0. Převeď „kapitola N“ a „oddíl N.M“ na odkazy v rámci stránky Pro učitele (id g<N>, g<N>-<M>)."
+     ],
+     "acceptance": [
+      "Jednotkové testy včetně textů s U+00A0 a vnořeným tučným a kurzívou.",
+      "V obsahu se nenajde žádný odkaz na neexistující oddíl."
+     ]
+    },
+    {
+     "id": "F1.3",
+     "title": "Loader a cache",
+     "do": [
+      "Katalog při startu, obsah kategorie při vstupu. Chyby načtení ukaž srozumitelně a s tlačítkem Zkusit znovu."
+     ],
+     "acceptance": [
+      "Offline a výpadek sítě nezpůsobí prázdnou stránku."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "F2",
+   "title": "Navigační kostra bez témat",
+   "size": "M",
+   "dependsOn": [
+    "F1"
+   ],
+   "tasks": [
+    {
+     "id": "F2.1",
+     "title": "Trasy a obrazovky",
+     "do": [
+      "Implementuj hub, category, level, lesson a teacher-guide podle informationArchitecture.screens, zatím s jednoduchým seznamovým vzhledem z komponent webu.",
+      "Stávající kurz AI gramotnost nesmí přestat fungovat, staré odkazy zůstanou funkční."
+     ],
+     "acceptance": [
+      "Každá obrazovka má vlastní URL a funguje po přímém otevření i obnovení.",
+      "Drobečková navigace a tlačítko Zpět fungují.",
+      "Karta AI gramotnost v navigaci Edu otevře hub."
+     ]
+    },
+    {
+     "id": "F2.2",
+     "title": "Texty a i18n",
+     "do": [
+      "Všechny řetězce rozhraní přidej do i18n pod edu.aifb.*; zatím jen cs.",
+      "U ostatních jazyků ukaž jasné upozornění, že obsah je zatím česky."
+     ],
+     "acceptance": [
+      "V kódu nejsou pevné texty rozhraní mimo i18n."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "F3",
+   "title": "Témata a mapy",
+   "size": "L",
+   "dependsOn": [
+    "F2"
+   ],
+   "tasks": [
+    {
+     "id": "F3.1",
+     "title": "ThemeProvider a sdílené komponenty",
+     "do": [
+      "Téma z category.theme. Sdílené: LevelCard, LessonRow, ProgressBadge, CertBadge (vždy Připravuje se), SectionCallout.",
+      "Veškeré barvy z existujících tokenů."
+     ],
+     "acceptance": [
+      "Žádná pevná barva v komponentách. Přepnutí režimu světlý/tmavý funguje."
+     ]
+    },
+    {
+     "id": "F3.2",
+     "title": "Téma pirate-map (1. stupeň)",
+     "do": [
+      "AdventureMap podle themes.themes[pirate-map]: SVG, 4 ostrovy, cesta, lodička, truhla, svislé rozložení na úzkém displeji.",
+      "Seznamové zobrazení. Ostrov vede na level."
+     ],
+     "acceptance": [
+      "Funguje z klávesnice i dotykem, cíle 64 px, bez animací při reduced motion.",
+      "Snímky při 360/768/1280 px a v obou režimech jsou v pull requestu."
+     ]
+    },
+    {
+     "id": "F3.3",
+     "title": "Téma trail (2. stupeň)",
+     "do": [
+      "TrailMap se 6 zastávkami a ukazatelem XP. Odznaky Připravuje se u certifikací."
+     ],
+     "acceptance": [
+      "Stejné ověření přístupnosti jako F3.2."
+     ]
+    },
+    {
+     "id": "F3.4",
+     "title": "Téma clean (SŠ)",
+     "do": [
+      "Přepínač Karty / Tabulka s hodinami, doporučeným ročníkem a stavem."
+     ],
+     "acceptance": [
+      "Tabulka je správně označena pro čtečky (záhlaví, popisky)."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "F4",
+   "title": "Přehrávač lekce (pohled pro učitele)",
+   "size": "M",
+   "dependsOn": [
+    "F3"
+   ],
+   "tasks": [
+    {
+     "id": "F4.1",
+     "title": "Zobrazení teorie a cvičení",
+     "do": [
+      "Podle lessonPlayer: Teacher, Projection, Print. Pupil zatím jen zpráva, že se připravuje.",
+      "Úvod levelu, cíle, časový rozvrh a poznámky pro učitele na stránce levelu."
+     ],
+     "acceptance": [
+      "Všech 96 lekcí se zobrazí bez chyb (automatický test projde všechny id).",
+      "Režim Projekce je čitelný ze 6 metrů (zkontroluj velikost písma) a ovladatelný klávesnicí.",
+      "Tisk lekce i levelu je na A4 čitelný."
+     ]
+    },
+    {
+     "id": "F4.2",
+     "title": "Opakovací otázky a diskuze",
+     "do": [
+      "Zatím jen seznam. Připrav místo pro budoucí kvíz (pupil.interactive)."
+     ],
+     "acceptance": [
+      "Žádný kvíz s vymyšlenými odpověďmi není ve stavu published."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "F5",
+   "title": "Průběh a odměny (lokálně)",
+   "size": "S",
+   "dependsOn": [
+    "F4"
+   ],
+   "tasks": [
+    {
+     "id": "F5.1",
+     "title": "Lokální průběh a XP",
+     "do": [
+      "Podle progressAndRewards. Zobrazit u lekcí, levelů, na mapách.",
+      "Export a import souboru."
+     ],
+     "acceptance": [
+      "Po obnovení stránky se stav zachová.",
+      "V úložišti nejsou žádné osobní údaje."
+     ]
+    },
+    {
+     "id": "F5.2",
+     "title": "Napojení na XP účtu (volitelné)",
+     "do": [
+      "Jen pokud F0 potvrdí existující API a vlastník schválí."
+     ],
+     "acceptance": [
+      "Bez schválení se nic nepřidává."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "F6",
+   "title": "Žákovská vrstva: pilotní interaktivní lekce",
+   "size": "L",
+   "dependsOn": [
+    "F4"
+   ],
+   "tasks": [
+    {
+     "id": "F6.1",
+     "title": "Komponenty",
+     "do": [
+      "CardSort (třídění karet), TrafficLightCards (zelené a červené situace), QuizCard, AiSandbox (viz aiSandbox).",
+      "Každá komponenta má konfiguraci v pupil.interactive.config a funguje i s klávesnicí."
+     ],
+     "acceptance": [
+      "Komponenty mají testy a ukázky v knihovně komponent."
+     ]
+    },
+    {
+     "id": "F6.2",
+     "title": "Pilotní lekce",
+     "do": [
+      "zs1-blok-a-cv1 Hledačka AI kolem nás (CardSort, tři hromádky).",
+      "zs1-blok-a-cv4 Naše tajemství (TrafficLightCards).",
+      "zs2-level-2-cv1 a ss-level-2-cv1 Záchranář promptů (AiSandbox, podle prototypu; ověř shodu s prototypem).",
+      "zs2-level-1-cv2 a ss-level-1-cv2 Detektiv halucinací (AiSandbox s ověřením faktů)."
+     ],
+     "acceptance": [
+      "Texty pro žáky mají stav draft, dokud je nepřečte vlastník.",
+      "Server-side kontrola osobních údajů je pokryta testy (e-mail, telefon, rodné číslo, URL).",
+      "Při výpadku modelu se zobrazí uložená odpověď."
+     ]
+    },
+    {
+     "id": "F6.3",
+     "title": "Návrh kvízů z opakovacích otázek",
+     "do": [
+      "Pro jednu pilotní teorii (zs1-blok-a-teorie) navrhni kvíz s vysvětlením, vše ve stavu draft."
+     ],
+     "acceptance": [
+      "Vlastník schválí vzor, teprve poté se rozšiřuje na další lekce."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "F7",
+   "title": "Sekce Pro učitele",
+   "size": "S",
+   "dependsOn": [
+    "F2"
+   ],
+   "tasks": [
+    {
+     "id": "F7.1",
+     "title": "Průvodce a soubory ke stažení",
+     "do": [
+      "Kapitoly guide[] s číslováním a navigací, odkazy mezi oddíly.",
+      "DOCX a PDF ke stažení; správné názvy a velikost souboru u odkazu."
+     ],
+     "acceptance": [
+      "Každý odkaz „oddíl N.M“ vede na správný oddíl.",
+      "Soubory se stahují a otevírají."
+     ]
+    },
+    {
+     "id": "F7.2",
+     "title": "Dopis rodičům a časté otázky",
+     "do": [
+      "Kapitola 7.3 průvodce pro 1. stupeň: tisk a kopírování textu."
+     ],
+     "acceptance": [
+      "Tisková verze se vejde na A4."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "F8",
+   "title": "Kvalita a vydání",
+   "size": "M",
+   "dependsOn": [
+    "F4",
+    "F5",
+    "F7"
+   ],
+   "tasks": [
+    {
+     "id": "F8.1",
+     "title": "Audit přístupnosti a výkonu",
+     "do": [
+      "Projdi quality.accessibility a performance, oprav nálezy."
+     ],
+     "acceptance": [
+      "Zpráva v docs/aifb/QA.md s výsledky a otevřenými problémy."
+     ]
+    },
+    {
+     "id": "F8.2",
+     "title": "E2E a CI",
+     "do": [
+      "Playwright testy z quality.tests, validace obsahu v CI."
+     ],
+     "acceptance": [
+      "CI je zelená. Test obsahu selže při změně id nebo počtu lekcí."
+     ]
+    },
+    {
+     "id": "F8.3",
+     "title": "Kontrola soukromí",
+     "do": [
+      "Žádné třetí strany, žádné externí fonty, žádné trackery. Zkontroluj síťové požadavky v prohlížeči."
+     ],
+     "acceptance": [
+      "Seznam požadavků v QA.md obsahuje jen vevit.cz a související vlastní domény."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "F9",
+   "title": "Později: certifikáty a ověřování",
+   "size": "L",
+   "dependsOn": [
+    "F8"
+   ],
+   "status": "mimo MVP, začít až po rozhodnutí vlastníka",
+   "tasks": [
+    {
+     "id": "F9.1",
+     "title": "Ověřovací stránka",
+     "do": [
+      "Navrhni veřejnou stránku pro kontrolu platnosti certifikátu (plánovaná adresa vevit.cz/aifb/verify/[ID]), QR kód a unikátní identifikátor.",
+      "U osob mladších 18 let nezobrazuj celé jméno. Počítej s opravou a zneplatněním chybně vydaného certifikátu."
+     ],
+     "acceptance": [
+      "Před implementací existuje písemně schválený popis, co certifikát potvrzuje a co ne."
+     ]
+    }
+   ]
+  }
+ ],
+ "openQuestions": [
+  {
+   "id": "Q1",
+   "question": "Má stávající kurz AI gramotnost (34 lekcí) zůstat jako čtvrtá karta v hubu (Online kurz pro všechny)?",
+   "why": "Určuje, zda hub převezme URL /edu/ai-gramotnost/ a kam půjde starý kurz.",
+   "default": "Ano, kurz zůstane beze změny a hub na něj odkáže."
+  },
+  {
+   "id": "Q2",
+   "question": "Souhlasíš s tématem Stezka pro 2. stupeň (ne piráti, ale expedice a odznaky)?",
+   "default": "Ano."
+  },
+  {
+   "id": "Q3",
+   "question": "Nechat názvy ostrovů pro 1. stupeň (Zátoka Objevitelů, Ostrov Robotů, Přístav Hostů, Ostrov Pokladu)?",
+   "default": "Ano, jsou jen návrh a snadno se mění ve visual."
+  },
+  {
+   "id": "Q4",
+   "question": "Použít model účtů z Edu for Schools (pseudonymní třídní účty) i pro AIFB, a kdy?",
+   "default": "Až po MVP, nejdřív lokální průběh."
+  },
+  {
+   "id": "Q5",
+   "question": "Kde bude běžet serverový endpoint pro AiSandbox a který poskytovatel modelu se použije?",
+   "default": "Rozhodne Fáze 0; do té doby se používá jen uložená odpověď."
+  },
+  {
+   "id": "Q6",
+   "question": "Schvaluje texty pro žáky vlastník, nebo i spolupracující učitel?",
+   "default": "Vlastník."
+  }
+ ],
+ "workingAgreement": [
+  "Pracuj po malých pull requestech: jedna fáze nebo úloha, popis, snímky obrazovky u UI změn, výsledek testů.",
+  "Před každou úlohou si přečti její acceptance. Úloha je hotová, až jsou všechna kritéria splněna a doložena.",
+  "Nesahej na přihlašování, platby ani produkční data. Pokud je to nutné, zastav se a zeptej.",
+  "Nevymýšlej obsah. Pokud v datech něco chybí, přidej to do seznamu mezer a zeptej se.",
+  "Na konci každé fáze krátce shrň, co je hotové, co ne a co čeká na rozhodnutí."
+ ]
+}

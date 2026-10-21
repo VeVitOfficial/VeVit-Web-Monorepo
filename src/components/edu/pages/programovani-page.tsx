@@ -32,6 +32,17 @@ const CAT: Record<string, string> = {
   "zaklady-programovani": "zaklady",
 };
 
+// Loga jazyků a nástrojů (devicon, MIT) hostovaná lokálně v public/edu/assets/langs.
+// Kurz bez loga (zaklady-programovani) zůstává u obecné ikony.
+const LANG_LOGOS = new Set([
+  "python", "javascript", "html-css", "sql", "terminal-bash", "typescript", "php", "git-github", "docker",
+  "java", "csharp", "cpp", "rust", "go", "kotlin", "swift", "ruby",
+]);
+function LangLogo({ slug, size }: { slug: string; size: number }) {
+  // eslint-disable-next-line @next/next/no-img-element
+  return <img src={`/edu/assets/langs/${slug}.svg`} alt="" width={size} height={size} decoding="async" />;
+}
+
 // Pill filtry (kategorie + obtížnost).
 const PILLS: { key: string; labelKey: string; type: "all" | "category" | "difficulty" }[] = [
   { key: "all", labelKey: "programming.cat.all", type: "all" },
@@ -41,13 +52,6 @@ const PILLS: { key: string; labelKey: string; type: "all" | "category" | "diffic
   { key: "zaklady", labelKey: "programming.cat.basics", type: "category" },
   { key: "beginner", labelKey: "programming.cat.beginners", type: "difficulty" },
   { key: "advanced", labelKey: "programming.cat.advanced", type: "difficulty" },
-];
-
-// Pozadí hero sekce — rotující snippetů (legacy codeSnippets).
-const CODE_SNIPPETS = [
-  'print("Hello, World!")', 'const sum = (a, b) => a + b;', 'fn main() { println!("Rust!"); }',
-  'SELECT * FROM users WHERE active = 1;', 'docker run -p 3000:3000 myapp', '<div class="hero">VeVit Edu</div>',
-  'go func() { fmt.Println("Go!") }()', 'class Hero extends React.Component { }',
 ];
 
 export function EduProgramovaniPage({ locale }: { locale: string }) {
@@ -114,11 +118,6 @@ export function EduProgramovaniPage({ locale }: { locale: string }) {
     return r;
   }, [courses, active, query]);
 
-  const bgSpans = useMemo(
-    () => Array.from({ length: 60 }).map((_, i) => CODE_SNIPPETS[i % CODE_SNIPPETS.length]),
-    [],
-  );
-
   if (error) {
     return (
       <div className="max-w-3xl mx-auto p-8 text-center text-muted">
@@ -137,28 +136,30 @@ export function EduProgramovaniPage({ locale }: { locale: string }) {
 
   return (
     <div className="min-h-screen bg-[var(--color-background)]">
-      <section className="relative overflow-hidden border-b border-[var(--color-border-subtle)]">
-        <div className="absolute inset-0 opacity-[0.04] pointer-events-none select-none">
-          <div className="absolute inset-0 flex flex-wrap content-start gap-x-8 gap-y-2 p-8 text-[10px] font-mono text-emerald-500">
-            {bgSpans.map((s, i) => (
-              <span key={i} className="whitespace-nowrap">{s}</span>
-            ))}
-          </div>
-        </div>
-        <div className="relative max-w-6xl mx-auto px-6 pt-16 pb-20 md:pt-24 md:pb-28">
-          <div className="text-center max-w-3xl mx-auto">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 text-[var(--color-text-primary)]">
-              {t("programming.heroTitle")} <span className="text-emerald-500">{t("programming.heroAccent")}</span>
+      <div className="max-w-6xl mx-auto px-6">
+        <section className="eh-hero">
+          <div className="eh-hero__text">
+            <h1 className="eh-title eh-title--two">
+              <span>{t("programming.heroTitle")}</span>
+              <span>{t("programming.heroAccent")}</span>
             </h1>
-            <p className="text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed text-[var(--color-text-secondary)]">
-              {t("programming.heroSubtitle")}
-            </p>
+            <p className="eh-lead">{t("programming.heroSubtitle")}</p>
             <ResumePanel resume={resume} />
           </div>
-        </div>
-      </section>
+          <div className="eh-art" aria-hidden="true">
+            <div className="eh-hex eh-hex--ring" />
+            <div className="eh-hex eh-hex--core" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="eh-mascot" src="/edu/assets/img/maskot-v1.webp" alt="" width={860} height={1290} decoding="async" />
+            <span className="eh-tile eh-tile--a" style={{ "--c": "#facc15" } as React.CSSProperties}><LangLogo slug="python" size={28} /></span>
+            <span className="eh-tile eh-tile--b" style={{ "--c": "#3178c6" } as React.CSSProperties}><LangLogo slug="typescript" size={28} /></span>
+            <span className="eh-tile eh-tile--c" style={{ "--c": "#2496ed" } as React.CSSProperties}><LangLogo slug="docker" size={28} /></span>
+            <span className="eh-tile eh-tile--d" style={{ "--c": "#f05032" } as React.CSSProperties}><LangLogo slug="git-github" size={28} /></span>
+          </div>
+        </section>
+      </div>
 
-      <main className="max-w-6xl mx-auto px-6 py-10">
+      <main className="max-w-6xl mx-auto px-6 pb-10">
         <Filters
           active={active}
           onActive={setActive}
@@ -183,13 +184,11 @@ type ResumeData = ReturnType<typeof findResumeLesson>;
 function ResumePanel({ resume }: { resume: ResumeData }) {
   if (!resume) {
     return (
-      <div className="max-w-lg mx-auto rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-card-bg)] p-5 flex items-center gap-4">
-        <div className="h-12 w-12 rounded-xl flex items-center justify-center shrink-0 bg-emerald-500/15 text-emerald-500">
-          <Icon name="trophy" className="h-6 w-6" />
-        </div>
-        <div className="flex-1 text-left">
-          <p className="text-base font-semibold text-[var(--color-text-primary)]">Všechny lekce dokončeny!</p>
-          <p className="text-xs text-[var(--color-text-muted)]">Skvělá práce. Vrať se kdykoliv k repete.</p>
+      <div className="eh-resume">
+        <span className="eh-hexicon" style={{ "--c": "#10b981" } as React.CSSProperties}><Icon name="trophy" /></span>
+        <div className="eh-resume__text">
+          <p className="eh-resume__title">Všechny lekce dokončeny!</p>
+          <p className="eh-resume__sub">Skvělá práce. Vrať se kdykoliv k repete.</p>
         </div>
       </div>
     );
@@ -201,21 +200,14 @@ function ResumePanel({ resume }: { resume: ResumeData }) {
   };
   const [label, btn] = labels[resume.mode] ?? labels.start;
   return (
-    <Link
-      href={`/edu/lekce/${encodeURIComponent(resume.slug)}`}
-      className="max-w-lg mx-auto group block rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-card-bg)] hover:bg-[var(--color-glass-highlight)] hover:border-emerald-500/30 p-5 flex items-center gap-4 transition-all duration-300 hover:-translate-y-0.5"
-    >
-      <div className="h-12 w-12 rounded-xl flex items-center justify-center shrink-0 bg-emerald-500/15 text-emerald-500">
-        <Icon name="play" className="h-6 w-6" />
+    <Link href={`/edu/lekce/${encodeURIComponent(resume.slug)}`} className="eh-resume">
+      <span className="eh-hexicon" style={{ "--c": "#10b981" } as React.CSSProperties}><Icon name="play" /></span>
+      <div className="eh-resume__text">
+        <p className="eh-resume__label">{label}</p>
+        <h3 className="eh-resume__title">{resume.lesson.title}</h3>
+        <p className="eh-resume__sub">{resume.course.title}</p>
       </div>
-      <div className="flex-1 min-w-0 text-left">
-        <p className="text-[10px] uppercase tracking-wider font-semibold text-emerald-500">{label}</p>
-        <h3 className="text-base font-semibold truncate text-[var(--color-text-primary)] group-hover:text-emerald-500 transition-colors">{resume.lesson.title}</h3>
-        <p className="text-xs truncate text-[var(--color-text-muted)]">{resume.course.title}</p>
-      </div>
-      <span className="shrink-0 inline-flex items-center gap-1 px-4 py-2 rounded-lg font-semibold bg-emerald-500 text-black hover:bg-emerald-400 transition-colors">
-        {btn} <Icon name="arrow-right" className="h-4 w-4" />
-      </span>
+      <span className="eh-btn">{btn} <Icon name="arrow-right" className="h-4 w-4" /></span>
     </Link>
   );
 }
@@ -238,27 +230,16 @@ function Filters({
   t: (key: string) => string;
 }) {
   return (
-    <div className="flex flex-col md:flex-row md:items-center gap-4 mb-10">
-      <div className="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 -mx-1 px-1 md:flex-wrap md:overflow-visible">
-        {PILLS.map((p) => {
-          const on = active === p.key;
-          const cls = on
-            ? "bg-emerald-500/15 text-emerald-500 border-emerald-500/40"
-            : "bg-[var(--color-card-bg)] text-[var(--color-text-secondary)] border-[var(--color-border-subtle)] hover:text-[var(--color-text-primary)] hover:border-[var(--color-glass-highlight)]";
-          return (
-            <button
-              key={p.key}
-              type="button"
-              onClick={() => onActive(p.key)}
-              className={`shrink-0 px-4 py-2 rounded-lg text-sm font-medium transition-all border whitespace-nowrap ${cls}`}
-            >
-              {t(p.labelKey)} ({pillCount(p.key)})
-            </button>
-          );
-        })}
+    <div className="eh-filters">
+      <div className="eh-pills" role="group" aria-label="Filtr kurzů">
+        {PILLS.map((p) => (
+          <button key={p.key} type="button" className="eh-pill" aria-pressed={active === p.key} onClick={() => onActive(p.key)}>
+            {t(p.labelKey)} ({pillCount(p.key)})
+          </button>
+        ))}
       </div>
-      <div className="relative md:ml-auto md:w-72">
-        <Icon name="search" className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 pointer-events-none text-[var(--color-text-muted)]" />
+      <div className="eh-filter-search">
+        <Icon name="search" />
         <label className="sr-only" htmlFor="prog-search">Hledat kurz</label>
         <input
           id="prog-search"
@@ -266,7 +247,7 @@ function Filters({
           value={query}
           onChange={(e) => onQuery(e.target.value)}
           placeholder={t("programming.searchPlaceholder")}
-          className="w-full h-11 pl-12 pr-4 rounded-xl bg-[var(--color-card-bg)] border border-[var(--color-border-subtle)] text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500/40 transition-all"
+          className="eh-search-input"
         />
       </div>
     </div>
@@ -293,7 +274,7 @@ function Grid({
     );
   }
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+    <div className="eh-courses">
       {courses.map((course) => (
         <CourseCard key={course.slug} course={course} t={t} lessonsLabel={lessonsLabel} />
       ))}
@@ -316,28 +297,23 @@ function CourseCard({
   const dc = diff.color;
   const color = course.color || "#10b981";
   return (
-    <Link href={`/edu/kurzy/${course.slug}`} className="group block">
-      <div className="relative h-full rounded-xl bg-[var(--color-card-bg)] hover:bg-[var(--color-glass-highlight)] border border-[var(--color-border-subtle)] hover:border-emerald-500/30 p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_24px_-6px_rgba(16,185,129,0.3)]">
-        <div className="flex items-start justify-between gap-3 mb-4">
-          <div className="h-11 w-11 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: `${color}18`, color }}>
-            <Icon name={course.icon || "code-2"} className="h-5 w-5" />
-          </div>
-          <span
-            className="text-[10px] px-2.5 py-1 rounded-full font-medium border whitespace-nowrap"
-            style={{ color: dc, backgroundColor: `${dc}1F`, borderColor: `${dc}40` }}
-          >
-            {t(diff.labelKey)}
-          </span>
+    <Link href={`/edu/kurzy/${course.slug}`} className="eh-cell">
+      <div className="eh-card eh-card--course" style={{ "--c": color } as React.CSSProperties}>
+        <div className="eh-course-head">
+          {LANG_LOGOS.has(course.slug) ? (
+            <span className="eh-hexicon eh-hexicon--logo">
+              <LangLogo slug={course.slug} size={32} />
+            </span>
+          ) : (
+            <span className="eh-hexicon"><Icon name={course.icon || "code-2"} /></span>
+          )}
+          <span className="eh-badge eh-badge--diff" style={{ color: dc, background: `${dc}1F`, margin: 0 }}>{t(diff.labelKey)}</span>
         </div>
-        <h3 className="text-base font-semibold text-[var(--color-text-primary)] group-hover:text-emerald-500 transition-colors mb-2">{course.title}</h3>
-        <p className="text-sm text-[var(--color-text-secondary)] line-clamp-3 mb-4">{course.description}</p>
-        <div className="flex items-center justify-between text-[11px] pt-3 border-t border-[var(--color-border-subtle)]">
-          <span className="flex items-center gap-1 text-[var(--color-text-muted)]">
-            <Icon name="book-open" className="h-3.5 w-3.5" /> {lessonsLabel(count)}
-          </span>
-          <span className="flex items-center gap-1 font-semibold text-emerald-500">
-            <Icon name="star" className="h-3.5 w-3.5" /> {xp.toLocaleString("cs-CZ")} XP
-          </span>
+        <h3>{course.title}</h3>
+        <p>{course.description}</p>
+        <div className="eh-course-foot">
+          <span><Icon name="book-open" /> {lessonsLabel(count)}</span>
+          <span><Icon name="star" /> {xp.toLocaleString("cs-CZ")} XP</span>
         </div>
       </div>
     </Link>
@@ -348,33 +324,20 @@ function CourseCard({
 
 function Gamification({ t }: { t: (key: string) => string }) {
   return (
-    <section className="mt-20 rounded-2xl p-8 md:p-10 border border-[var(--color-border-subtle)] bg-[var(--color-card-bg)]">
-      <div className="flex flex-col md:flex-row items-center gap-8">
-        <div className="flex-1">
-          <div className="flex items-center gap-2 mb-3">
-            <Icon name="trophy" className="h-5 w-5 text-emerald-500" />
-            <h2 className="text-xl font-semibold text-[var(--color-text-primary)]">{t("programming.gamification.title")}</h2>
-          </div>
-          <p className="text-sm leading-relaxed mb-4 text-[var(--color-text-secondary)]">{t("programming.gamification.description")}</p>
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2 text-xs text-[var(--color-text-secondary)]">
-              <Icon name="bar-chart-3" className="h-4 w-4 text-emerald-500" />
-              <span>{t("programming.gamification.progress")}</span>
-            </div>
-            <div className="flex items-center gap-2 text-xs text-[var(--color-text-secondary)]">
-              <Icon name="star" className="h-4 w-4 text-emerald-500" />
-              <span>{t("programming.gamification.achievements")}</span>
-            </div>
-          </div>
+    <section className="eh-level">
+      <div className="eh-level__text">
+        <h2 className="eh-h2" style={{ marginBottom: "0.75rem" }}><span className="eh-bullet" aria-hidden="true" />{t("programming.gamification.title")}</h2>
+        <p>{t("programming.gamification.description")}</p>
+        <div className="eh-level__chips">
+          <span><Icon name="bar-chart-3" />{t("programming.gamification.progress")}</span>
+          <span><Icon name="star" />{t("programming.gamification.achievements")}</span>
         </div>
-        <div className="shrink-0 w-full md:w-auto">
-          <div className="flex items-center gap-4 rounded-xl p-4 border border-[var(--color-border-subtle)] bg-[var(--color-background)]">
-            <div className="h-14 w-14 rounded-full flex items-center justify-center font-bold text-lg bg-gradient-to-br from-emerald-500 to-emerald-600 text-black">1</div>
-            <div>
-              <div className="text-sm font-semibold text-[var(--color-text-primary)]">{t("programming.gamification.level.beginner")}</div>
-              <div className="text-xs text-[var(--color-text-secondary)]">{t("programming.gamification.level.xpToNext")}</div>
-            </div>
-          </div>
+      </div>
+      <div className="eh-level__me">
+        <span className="eh-hexnum">1</span>
+        <div>
+          <div className="text-sm font-semibold text-[var(--color-text-primary)]">{t("programming.gamification.level.beginner")}</div>
+          <div className="text-xs text-[var(--color-text-secondary)]">{t("programming.gamification.level.xpToNext")}</div>
         </div>
       </div>
     </section>
@@ -385,21 +348,21 @@ function Gamification({ t }: { t: (key: string) => string }) {
 
 function WhySection({ t }: { t: (key: string) => string }) {
   const cards = [
-    { ic: "globe", k: "programming.why.future" },
-    { ic: "lock", k: "programming.why.logic" },
-    { ic: "star", k: "programming.why.create" },
+    { ic: "globe", k: "programming.why.future", c: "#00d084" },
+    { ic: "lock", k: "programming.why.logic", c: "#8b5cf6" },
+    { ic: "star", k: "programming.why.create", c: "#f97316" },
   ];
   return (
     <section className="mt-20">
-      <h2 className="text-2xl font-bold mb-8 text-center text-[var(--color-text-primary)]">{t("programming.why.title")}</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <h2 className="eh-h2"><span className="eh-bullet" aria-hidden="true" />{t("programming.why.title")}</h2>
+      <div className="eh-why">
         {cards.map((c) => (
-          <div key={c.k} className="rounded-xl p-6 border border-[var(--color-border-subtle)] bg-[var(--color-card-bg)]">
-            <div className="h-12 w-12 rounded-xl flex items-center justify-center mb-4 bg-emerald-500/10 text-emerald-500">
-              <Icon name={c.ic} className="h-6 w-6" />
+          <div key={c.k} className="eh-card" style={{ "--c": c.c } as React.CSSProperties}>
+            <span className="eh-hexicon"><Icon name={c.ic} /></span>
+            <div className="eh-card__body">
+              <h3>{t(`${c.k}.title`)}</h3>
+              <p>{t(`${c.k}.text`)}</p>
             </div>
-            <h3 className="text-base font-semibold mb-2 text-[var(--color-text-primary)]">{t(`${c.k}.title`)}</h3>
-            <p className="text-sm leading-relaxed text-[var(--color-text-secondary)]">{t(`${c.k}.text`)}</p>
           </div>
         ))}
       </div>

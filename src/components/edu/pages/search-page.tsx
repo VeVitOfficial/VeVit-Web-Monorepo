@@ -25,7 +25,9 @@ import {
   parseArticle,
   parseDisambiguation,
   searchWikipedia,
+  wikiSearchHref,
   type ParsedDisambiguation,
+  type WikiLang,
   type TocEntry,
   type WikiHatnote,
   type WikiSummary,
@@ -62,7 +64,7 @@ interface ArticleData {
   toc: TocEntry[];
 }
 
-export function EduSearchPage({ locale, query }: { locale: string; query: string }) {
+export function EduSearchPage({ locale, query, wikiLang }: { locale: string; query: string; wikiLang: WikiLang }) {
   void locale;
   const { lang } = useEduLang();
   const { setBreadcrumbs } = useEduBreadcrumbs();
@@ -122,13 +124,13 @@ export function EduSearchPage({ locale, query }: { locale: string; query: string
 
     (async () => {
       try {
-        const f = await searchWikipedia(searchQuery);
+        const f = await searchWikipedia(searchQuery, wikiLang);
         if (cancelled) return;
         if (!f) { setPhase("notfound"); setInfo(searchQuery); return; }
 
-        const [html, sum] = await Promise.all([fetchArticleHTML(f.key), fetchSummary(f.key)]);
+        const [html, sum] = await Promise.all([fetchArticleHTML(f.key, wikiLang), fetchSummary(f.key, wikiLang)]);
         if (cancelled) return;
-        const parsed = parseArticle(html, sum?.title || f.title);
+        const parsed = parseArticle(html, sum?.title || f.title, wikiLang);
         if (!parsed.contentEl) {
           setPhase("error");
           setInfo("Nepodařilo se zpracovat obsah článku.");
@@ -139,7 +141,7 @@ export function EduSearchPage({ locale, query }: { locale: string; query: string
         const intro = parsed.contentEl.querySelector("p")?.textContent ?? "";
         const isDisambig = sum ? sum.type === "disambiguation" : looksLikeDisambiguation(f.description, intro);
         if (isDisambig) {
-          const data = parseDisambiguation(parsed.contentEl);
+          const data = parseDisambiguation(parsed.contentEl, wikiLang);
           if (data.groups.length > 0) {
             setArticle({ title, html: "", infoboxHtml: "", hatnotes: [], readingMinutes: 0, toc: [] });
             setDisambig(data);
@@ -167,7 +169,7 @@ export function EduSearchPage({ locale, query }: { locale: string; query: string
     })();
 
     return () => { cancelled = true; };
-  }, [searchQuery, isAI]);
+  }, [searchQuery, isAI, wikiLang]);
 
   // AI answer over the article text (from "?" queries or the header box).
   const runAI = useCallback(async (q: string) => {
@@ -256,6 +258,8 @@ export function EduSearchPage({ locale, query }: { locale: string; query: string
               initialValue={trimmed}
               eduItems={eduItems}
               lang={lang}
+              wikiLang={wikiLang}
+              onWikiLangChange={(next) => { if (trimmed) router.push(wikiSearchHref(trimmed, next)); }}
               autoFocus={!searchQuery}
               showButton
               placeholder="Hledat kurzy, lekce a články z Wikipedie… (otazník na konci = AI režim)"

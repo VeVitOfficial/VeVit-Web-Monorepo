@@ -48,7 +48,6 @@ export function Navbar() {
   const isDashboard = rel === "/dashboard" || rel === "/" || rel === "";
   const isProgramming = rel.startsWith("/programovani");
   const isSearch = rel.startsWith("/hledat");
-  const isAiLiteracy = rel.startsWith("/ai-gramotnost");
 
   // Scroll surface (edu-navbar--scrolled) — port bindNavbarScroll().
   useEffect(() => {
@@ -96,12 +95,6 @@ export function Navbar() {
             className={`edu-navbar__link${isProgramming ? " edu-navbar__link--active" : ""}`}
           >
             {t("nav.programming")}
-          </Link>
-          <Link
-            href="/edu/ai-gramotnost"
-            className={`edu-navbar__link${isAiLiteracy ? " edu-navbar__link--active" : ""}`}
-          >
-            {t("nav.aiLiteracy")}
           </Link>
           <Link
             href="/edu/hledat"

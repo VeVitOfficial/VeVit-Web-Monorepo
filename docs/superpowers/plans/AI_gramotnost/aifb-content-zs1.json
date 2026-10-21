@@ -1,0 +1,1131 @@
+{
+ "schemaVersion": "1.0",
+ "version": "2026-10",
+ "language": "cs",
+ "category": {
+  "id": "zs1",
+  "title": "1. stupeň ZŠ",
+  "subtitle": "Hravé bloky pro 1. až 5. třídu",
+  "grades": "1.–5. třída",
+  "unit": "Blok",
+  "theme": "pirate-map",
+  "usageMode": "teacher-led",
+  "audience": "Žáci 1.–5. třídy (cca 6–11 let); aplikaci ve třídě ovládá učitel, děti se zapojují hrou, kartami a kresbou.",
+  "source": {
+   "document": "AIFB_plan_cviceni_ZS_1_stupen.docx",
+   "note": "Strukturovaná verze metodického plánu pro učitele (říjen 2026). Text určený žákům v plánu není; pole pupil je zatím ve stavu todo."
+  }
+ },
+ "guide": [
+  {
+   "number": "1",
+   "id": "g1",
+   "title": "Úvod: jak s plánem pracovat",
+   "blocks": [],
+   "sections": [
+    {
+     "number": "1.1",
+     "id": "g1-1",
+     "title": "Účel a struktura plánu",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Tento dokument obsahuje plán cvičení pro výuku praktické gramotnosti v oblasti umělé inteligence podle systému AI Fluency Benchmark (AIFB), přizpůsobený žákům prvního stupně základní školy. Je určen především třídním učitelům a učitelům informatiky, kteří na prvním stupni vyučují, využít ho však mohou i vychovatelé školní družiny a vedoucí zájmových kroužků. Plán vychází z obsahu úrovní 1 a 2 systému AIFB a převádí je do čtyř výukových bloků odpovídajících věku žáků od prvního do pátého ročníku. Cílem není z malých žáků dělat odborníky na technologie, ale položit pevné základy: zdravý rozum při setkání s umělou inteligencí, bezpečné návyky a schopnost rozlišovat, kdy je počítač užitečný pomocník a kdy naopak nespolehlivý zdroj."
+      },
+      {
+       "type": "p",
+       "text": "Každá kapitola věnovaná jednomu bloku má stejnou strukturu, aby se v dokumentu učitel snadno orientoval. Nejprve jsou uvedeny vzdělávací cíle, tedy dovednosti, které by žák po absolvování bloku měl ovládat. Následuje časové rozvržení do hodin v rozsahu šesti až osmi vyučovacích hodin (u bloku D deseti až jedenácti), teoretická příprava s opakovacími otázkami a diskuzními tématy, pět konkrétních cvičení se zadáním a očekávaným výstupem a nakonec stručné poznámky pro učitele. Cvičení jsou navržena tak, aby je zvládla běžná třída s běžnými pomůckami, a aby jejich zadání bylo možné podle potřeby obměňovat podle aktuálního tématu výuky."
+      },
+      {
+       "type": "p",
+       "text": "Plán je metodickým podkladem, nikoli závaznou osnovou. Učitel může jednotlivé aktivity zkrátit, prodloužit nebo přeskládat podle své třídy, a zejména u nejmladších žáků je vhodné vracet se k probraným tématům průběžně celý rok. Důležité je zachovat návaznost bloků: každý blok staví na dovednostech z bloků předchozích, a proto se doporučuje absolvovat je v uvedeném pořadí. Žák, který nastoupil do školy později nebo blok zameškal, může chybějící část dohnat opakováním her a aktivit, které zvládne i v menší skupině."
+      }
+     ]
+    },
+    {
+     "number": "1.2",
+     "id": "g1-2",
+     "title": "Časová dotace a organizace výuky",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Na každý blok je orientačně počítáno šest až osm vyučovacích hodin, které lze rozložit do celého pololetí; blok D je rozsáhlejší (deset až jedenáct hodin), protože zahrnuje čtyřtýdenní projekt. Na prvním stupni není potřeba vyčlenit samostatný předmět: aktivity bloků A a B se hodí do prvouky, českého jazyka, přírodovědy i do školní družiny, bloky C a D navazují na informatiku a projektovou výuku. Jednotlivé činnosti jsou krátké, obvykle patnáct až čtyřicet minut, a proto je lze zařazovat jako oživení běžné hodiny i jako součást projektového dne. Doporučené členění jednoho bloku shrnuje následující tabulka."
+      },
+      {
+       "type": "table",
+       "caption": "Doporučené členění jednoho bloku na výukové části",
+       "header": [
+        "Část výuky",
+        "Obsah",
+        "Podíl na dotaci"
+       ],
+       "rows": [
+        [
+         "Povídání a hry",
+         "Vysvětlení nových pojmů, společné hry a opakování učiva.",
+         "cca 2 hodiny"
+        ],
+        [
+         "Cvičení 1 a 2",
+         "První dvě cvičení bloku, společná nebo skupinová práce.",
+         "cca 2 hodiny"
+        ],
+        [
+         "Cvičení 3 a 4",
+         "Navazující cvičení, procvičování dovedností bloku.",
+         "cca 2 hodiny"
+        ],
+        [
+         "Cvičení 5 a shrnutí",
+         "Závěrečné cvičení, společná reflexe a vyhodnocení.",
+         "1 až 2 hodiny"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Většina cvičení bloků A a B probíhá bez počítače, protože cílem je porozumění principům, nikoli ovládání konkrétního nástroje. Počítač s projektorem používá učitel pro krátké ukázky, které si vždy připraví předem. V blocích C a D se společná práce s konverzačním nástrojem stává pravidelnou součástí výuky, ale i tehdy platí, že nástroj ovládá výhradně učitel a žáci mu zadávají úkoly pouze ústně nebo písemně na papíře. Poslední hodina každého bloku by měla obsahovat společné shrnutí, ve kterém třída vlastními slovy vyjádří, co se naučila, a učitel odpoví na otevřené otázky."
+      }
+     ]
+    },
+    {
+     "number": "1.3",
+     "id": "g1-3",
+     "title": "Pomůcky a technické požadavky",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Požadavky na vybavení jsou na prvním stupně záměrně minimální, aby se plánu mohla věnovat každá škola. Většina aktivit vystačí s vytištěnými podklady, kartami, pastelkami a tabulí. Následující přehled slouží k časnému naplánování, aby technické překážky nezpomalily průběh výuky. U všech bloků se dále předpokládá funkční připojení k internetu alespoň pro učitelův počítač."
+      },
+      {
+       "type": "list",
+       "ordered": false,
+       "items": [
+        "**Bloky A a B:** žádné počítače nejsou potřeba. Stačí vytištěné obrázkové karty, velký papír na plakáty, barevné papírky a prostor pro hru ve třídě. Učitel používá počítač s projektorem jen pro krátké ukázky, které si předem připraví.",
+        "**Blok C:** počítač s projektorem a školní účet u jednoho z konverzačních nástrojů (například ChatGPT nebo Gemini; Claude je určen jen dospělým, což učitel splňuje), který spravuje výhradně učitel. Hodí se také pravidlo, že se skupiny střídají v navrhování zadání, která učitel zapisuje do počítače, aby se do činnosti zapojila celá třída.",
+        "**Blok D:** stejné vybavení jako u bloku C. Skupinová práce probíhá na papíře a u společné obrazovky, protože nástroj dál ovládá učitel; i pro závěrečný projekt stačí jeden společný počítač.",
+        "**Společné:** projektor nebo sdílená obrazovka pro ukázky, tabule nebo flipchart pro společné zapisování a vytištěné podklady ke každému cvičení, které nevyžaduje počítač."
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Zvláštní pozornost věnujte věkovým podmínkám služeb. Konverzační nástroje jako ChatGPT, Claude a Gemini stanovují nižší hranici věku uživatele, obvykle třináct let, a žáci prvního stupně si proto vlastní účty nezakládají. Veškerá práce s těmito nástroji probíhá výhradně prostřednictvím učitele, který nástroj ovládá na školním počítači a promítá ho třídě. Do konverzace se nikdy nezadávají jména žáků, fotografie třídy ani jakékoli údaje, podle kterých by bylo možné žáka identifikovat. Před zahájením bloku C informujte zákonné zástupce o podobě výuky a se školním pověřencem pro ochranu osobních údajů ověřte, zda je potřeba postupovat nad rámec informování rodičů; podrobněji to rozvádí kapitola 7."
+      }
+     ]
+    },
+    {
+     "number": "1.4",
+     "id": "g1-4",
+     "title": "Pravidla bezpečné a odpovědné práce",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Práce s nástroji umělé inteligence ve škole přináší i na prvním stupni povinnosti, které je třeba s žáky probrat formou odpovídající jejich věku a průběžně je připomínat. Základním pravidlem, které si mají žáci zapamatovat, je, že jméno, adresa, telefonní číslo a fotografie patří jen rodině a škole a do počítače, který ovládá někdo cizí, se nezadávají. Pravidlo platí i pro zdánlivě nevinné situace, jako je vymyšlení pohádky, do které patří celá třída podle jmen. Učitel proto vždy používá anonymní zadání, například hlavní hrdina se jmenuje Honza a jde o vymyšlenou postavu, nikoli o konkrétního žáka z třídy."
+      },
+      {
+       "type": "p",
+       "text": "Druhým pilířem je odpovědnost za výstupy. I malí žáci pochopí, že počítač si někdy vymýšlí a že vše, co od něj dostaneme, je jen návrh, který si člověk musí prověřit. Proto se každá důležitá informace z odpovědi modelu ověří v učebnici, v encyklopedii nebo s učitelem. Žáci se zároveň učí, že práci, kterou vytvořili s pomocí počítače, otevřeně přiznají: na prvním stupni stačí, když třída ví, že společný příběh vznikl s pomocí umělé inteligence. Tato pravidla se doporučuje shrnout do několika jednoduchých vět, které třída společně vytvoří a vyvěsí v učebně; návod přináší cvičení v blocích A a B."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "number": "2",
+   "id": "g2",
+   "title": "AIFB na prvním stupni: zapracování úrovní",
+   "blocks": [],
+   "sections": [
+    {
+     "number": "2.1",
+     "id": "g2-1",
+     "title": "Od úrovní AIFB k výukovým blokům",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Systém AI Fluency Benchmark definuje šest navazujících úrovní, které jsou určeny především starším žákům a dospělým. Obsah úrovní 1 a 2 lze však z velké části převést do podoby vhodné pro první stupeň, pokud se sníží rozsah teorie, zjednoduší pojmy a cvičení se podají formou her. Tento plán proto pracuje se čtyřmi výukovými bloky, které postupně připravují půdu pro pozdější absolvování úrovní AIFB v plné podobě na druhém stupni. Následující tabulka ukazuje, jak jednotlivé bloky vycházejí z obsahu úrovní AIFB a do kterých ročníků patří."
+      },
+      {
+       "type": "table",
+       "caption": "Výukové bloky prvního stupně a jejich vztah k úrovním AIFB",
+       "header": [
+        "Výukový blok",
+        "Ročníky",
+        "Vychází z",
+        "Hlavní témata"
+       ],
+       "rows": [
+        [
+         "Blok A",
+         "1. až 2. třída",
+         "Level 1 (základy)",
+         "Rozpoznávání umělé inteligence v okolním světě, hry bez počítače, první pravidla bezpečnosti."
+        ],
+        [
+         "Blok B",
+         "3. až 4. třída",
+         "Level 1 (principy)",
+         "Učení programu z příkladů, chyby a vymýšlení, odpovědnost člověka za výsledek."
+        ],
+        [
+         "Blok C",
+         "4. až 5. třída",
+         "Level 1 (praktická část)",
+         "První společné konverzace vedené učitelem, jasná zadání, ověřování odpovědí."
+        ],
+        [
+         "Blok D",
+         "5. třída",
+         "Level 2 (zjednodušeně)",
+         "Přesná zadání, strukturované výstupy, práce s příklady, vlastní projekt."
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Bloky na sebe plynule navazují, ale nepředpokládají, že je každý žák absolvuje v ideálním pořadí. Přirozenou cestou je začít blokem A už v první třídě a pokračovat postupně až k bloku D v páté třídě. Žák, který nastoupil do školy uprostřed trajektorie, zvládne chybějící blok zkrácenou formou, protože se klíčové poznatky vždy krátce zopakují. Po dokončení bloku D je žák připraven na druhý stupeň, kde úrovně 1 a 2 absolvuje v plné podobě; pro něj to bude opakování v nové hloubce, nikoli začátek od nuly."
+      }
+     ]
+    },
+    {
+     "number": "2.2",
+     "id": "g2-2",
+     "title": "Specifika výuky mladších žáků",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Výuka mladších žáků stojí na hře, pohybu a opakování. Pozornost prvňáka a druháka vydrží u jedné činnosti obvykle deset až patnáct minut, proto je každá hodina bloků A a B sestavena ze dvou až tří krátkých aktivit prostřídaných pohybem nebo odpočinkem. Starší žáci už zvládnou delší společnou práci, ale i pro ně platí, že konkrétní zážitek funguje lépe než výklad. Proto se v celém plánu přednostně používají hry, kreslení, třídění karet a společné vymýšlení, a teorie je vždy uvedena až poté, co si žáci téma vyzkoušeli."
+      },
+      {
+       "type": "p",
+       "text": "Druhým specifikem je role učitele jako prostředníka. Na rozdíl od starších ročníků žáci prvního stupně neovládají nástroje umělé inteligence sami: navrhují zadání, diskutují o odpovědích a hodnotí výsledky, ale do počítače nic nezapisují. Toto uspořádání má dvě výhody. Zaprvé odpadá starost s účty a technickou podporou, protože stačí jeden počítač a jeden účet. Zadruhé učitel vidí celý průběh konverzace a může včas zastavit nevhodný směr, což je u mladších dětí nenahraditelné."
+      },
+      {
+       "type": "p",
+       "text": "Třetím specifikem je propojení s rodinou. Žáci si z hodin odnášejí nejen poznatky, ale i otázky, které doma dále rozvíjejí, a rodiče bývají prvním místem, kde se děti s umělou inteligencí setkávají například v podobě hlasových asistentů v telefonech. Doporučujeme proto rodiče na začátku roku seznámit s tím, co se ve výuce dělá, a poslat jim krátký přehled pravidel, která si třída vytvořila. Kapitola 8 přináší návody, jak tuto komunikaci vést."
+      }
+     ]
+    },
+    {
+     "number": "2.3",
+     "id": "g2-3",
+     "title": "Propojení s běžnou výukou",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Bloky plánu nejsou samostatným předmětem, ale souborem aktivit, které se dají vetknout do běžných hodin. V českém jazyce se nabízí společné psaní příběhu s pomocníkem z bloku C nebo přesná zadání z bloku D při tvorbě osnovy vypravování. V prvouce a přírodovědě se uplatní rozpoznávání umělé inteligence v okolním světě z bloku A i ověřování odpovědí modelu v atlasu a encyklopedii z bloku C. V matematice lze využít vymýšlení slovních úloh a následnou kontrolu, zda je zadaná úloha řešitelná."
+      },
+      {
+       "type": "p",
+       "text": "Informatika je pak přirozeným domovem pro celý plán, protože její hodiny už obsahují práci s počítačem a digitálními technologiemi. Vhodné je zařadit bloky do hodin informatiky tak, aby na ně navazovala výuka práce s textem a tabulkami, kde žáci znalosti využijí v praxi. Pro projektové dny a týdenní projekty nabízí blok D hotový rámec měsíčního projektu, který lze rozvinout přesně podle zvyklostí konkrétní školy. Učitel, který hledá propojení s konkrétním učivem, najde u každého cvičení poznámku, do kterých předmětů se zadání hodí."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "number": "7",
+   "id": "g7",
+   "title": "Ochrana údajů a spolupráce s rodiči",
+   "blocks": [],
+   "sections": [
+    {
+     "number": "7.1",
+     "id": "g7-1",
+     "title": "Věkové podmínky služeb a školní účet",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Práce s umělou inteligencí na prvním stupni stojí na jednoduchém bezpečnostním principu: veškerou technickou část výuky zajišťuje dospělý. Konverzační nástroje stanovují dolní hranici věku svých uživatelů, obvykle třináct let, a žáci prvního stupně ji zdaleka nedosahují. Některé služby, například Claude, dokonce povolují používání až od osmnácti let. V žádném případě tedy nejde o to, že by si žáci mladší třinácti let založili vlastní účet, ať už s jakýmkoli souhlasem; to podmínky služeb neumožňují. Učitel proto pracuje s jedním školním účtem na počítači školy, promítá obrazovku třídě a do počítače zapisuje výhradně zadání, která vznikla ve třídě a která prošla kontrolou, že neobsahují osobní údaje."
+      },
+      {
+       "type": "p",
+       "text": "Toto uspořádání má pro školu dvě praktické výhody. Zaprvé do služeb nevstupují žádné osobní údaje dětí a žák nemá u poskytovatele žádný účet, takže odpadá většina rizik spojených se zpracováním údajů nezletilých. Jediným uživatelem je učitel a práci je vhodné vést ze školního účtu, nikoli ze soukromého. Škola však zůstává správcem osobních údajů, a proto postup před zahájením výuky ověřte se školním pověřencem pro ochranu osobních údajů. Zadruhé má škola plnou kontrolu nad tím, co se v hodině děje, protože celá konverzace probíhá na očích třídy. Podmínky služeb se přitom průběžně mění, a proto si před každým blokem, který s nástroji pracuje, ověřte jejich aktuální znění; stav uvedený v tomto dokumentu odpovídá říjnu 2026."
+      }
+     ]
+    },
+    {
+     "number": "7.2",
+     "id": "g7-2",
+     "title": "Jaká data ve výuce nikdy nepoužíváme",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Přestože žáci do počítače sami nezapisují, pravidla pro práci s daty si musí osvojit všichni, protože je budou potřebovat ve chvíli, kdy začnou nástroje používat sami. Třída si proto pravidla nastavuje společně a učitel je při každé ukázce připomíná. Následující přehled shrnuje, které údaje do konverzace s umělou inteligencí na prvním stupni nikdy nepatří. Tato pravidla platí bez výjimky pro všechna cvičení tohoto plánu a jsou zohledněna přímo v jejich zadáních."
+      },
+      {
+       "type": "table",
+       "caption": "Údaje, které do konverzace s AI na prvním stupni nikdy nezadáváme",
+       "header": [
+        "Kategorie",
+        "Příklady",
+        "Důvod"
+       ],
+       "rows": [
+        [
+         "Identifikační údaje",
+         "Jméno a příjmení žáka, rodné číslo, adresa bydliště, telefonní číslo.",
+         "Vedou k jednoznačné identifikaci žáka."
+        ],
+        [
+         "Fotografie",
+         "Fotky třídy, jednotlivých žáků, školních akcí, prostor školy s rozpoznatelnými detaily.",
+         "Obrazový model může osobu rozpoznat."
+        ],
+        [
+         "Školní záznamy",
+         "Známky, posudky, zdravotní záznamy, zápisy z jednání s rodiči.",
+         "Citlivé údaje, jejichž zpracování řídí zákon."
+        ],
+        [
+         "Soukromé příběhy",
+         "Rodinné poměry, zdravotní stav, konflikty ve třídě, informace o spolužácích.",
+         "Informace třetích osob, pro které nikdo v hodině nemá souhlas."
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Pokud cvičení pracuje s příběhem, do kterého má patřit reálná osoba, nahradí ji vymyšlená postava s vymyšleným jménem. Pokud cvičení potřebuje fotografii, použije se obrázek z volně dostupných stock galerií nebo obrázek vytvořený modelem. Pokud cvičení zpracovává školní dokument, například jídelní lístek nebo rozvrh, použije se zástupný dokument vytvořený pro účely hodiny."
+      }
+     ]
+    },
+    {
+     "number": "7.3",
+     "id": "g7-3",
+     "title": "Dopis rodičům a časté otázky",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Před zahájením bloku C zašlete rodičům krátký dopis, který výuku představí a uklidní. Dopis by měl obsahovat čtyři části: co se ve výuce děje a proč, jak probíhá práce s nástroji (výhradně přes školní účet vedený učitelem a na očích třídy), jaká pravidla si třída stanovila pro ochranu údajů, a kontakt na učitele pro dotazy. Stačí půl strany; delší dopis rodiče spíše odradí, než zaujme. Zda je vedle informování rodičů potřeba i souhlas, rozhoduje škola podle svých pravidel a doporučení pověřence; při dodržení pravidel z oddílu 7.2, tedy když se údaje dětí do služeb nezadávají, bývá riziko malé."
+      },
+      {
+       "type": "p",
+       "text": "Rodiče si k výuce často kladou otázky, na které je dobré mít připravenou odpověď. Tou nejběžnější je, zda si jejich dítě založí účet u nějaké služby; odpověď zní, že nikoli, protože věkové podmínky to neumožňují a celá výuka proto běží přes školní účet vedený učitelem. Druhou častou otázkou je, zda se dítě naučí spoléhat na počítač místo na vlastní myšlení; odpovědí je právě obsah tohoto plánu, který staví na kritickém přístupu, ověřování odpovědí a vědomí, že počítač si občas vymýšlí. Třetí otázka se týká domácího používání: doporučte rodičům, aby s dětmi nástroje používali společně, a odkážte je na pravidla, která si třída vytvořila, protože právě ta fungují i doma."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "number": "8",
+   "id": "g8",
+   "title": "Doporučený postup pro školy",
+   "blocks": [],
+   "sections": [
+    {
+     "number": "8.1",
+     "id": "g8-1",
+     "title": "Harmonogram zařazení bloků do výuky",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Nejpřirozenější cestou je rozložit čtyři bloky do pěti ročníků prvního stupně tak, jak je uvedeno v následující tabulce. Bloky A a B nepotřebují počítače, a proto je lze zařadit i v ročnících, kde informatika jako předmět ještě neprobíhá. Bloky C a D na počítačovou ukázku spoléhají, ale stále stačí jeden učitelův stroj. Důležitější než přesný ročník je zachovat pořadí bloků a vracet se k pravidlům z plakátů průběžně, protože bez opakování znalosti rychle vyprchají."
+      },
+      {
+       "type": "table",
+       "caption": "Doporučené rozložení bloků do ročníků",
+       "header": [
+        "Ročník",
+        "Výukový blok",
+        "Forma zařazení"
+       ],
+       "rows": [
+        [
+         "1. třída",
+         "Blok A – AI kolem nás",
+         "Prvouka a školní družina, hry a povídání."
+        ],
+        [
+         "2. třída",
+         "opakování bloku A",
+         "Prvouka, návazné hry s novými podklady."
+        ],
+        [
+         "3. třída",
+         "Blok B – Jak přemýšlí počítač",
+         "Prvouka, přírodověda, informatika."
+        ],
+        [
+         "4. třída",
+         "Blok C – Host AI ve třídě",
+         "Informatika a projektová výuka."
+        ],
+        [
+         "5. třída",
+         "Blok D – Přesná zadání a projekt",
+         "Informatika, měsíční projekt."
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Škola s těsnějším rozvrhem může bloky spojit: blok A absolvovat v první třídě, blok B ve třetí a bloky C a D spojit v páté třídě do jednoho pololetí. Naopak škola s volnější dotací může každý blok rozvést do celého školního roku a doplnit ho o vlastní aktivity, protože témata mají víc vrstev, než kolik jich cvičení stihne odkrýt. V obou případech platí, že žák odcházející z páté třídy by měl umět popsat, co umělá inteligence je, jak se chová, co si smí od ní dovolit nechat poradit a jak se chránit před jejími chybami."
+      }
+     ]
+    },
+    {
+     "number": "8.2",
+     "id": "g8-2",
+     "title": "Návaznost na druhý stupeň a úrovně AIFB",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Bloky prvního stupně jsou konstruovány tak, aby na ně plynule navazovaly úrovně 1 a 2 systému AIFB, které žák absolvuje na druhém stupni v plné podobě. Žák, který prošel všemi čtyřmi bloky, bude mít výhodu v tom, že mu pojmy nebudou cizí a bude mít vnitřní model toho, jak nástroje fungují; obsah úrovní 1 a 2 nicméně předpokládá práci s reálnými rozhraními a datovými formáty, které první stupeň záměrně neřeší. Přechod mezi stupni proto doporučujeme věnovat jednu hodinu opakování, která žákům připomene pravidla a zkušenosti z páté třídy."
+      },
+      {
+       "type": "p",
+       "text": "Pro druhý stupeň základní školy vychází samostatný plán cvičení, který úrovně 1 a 2 adaptuje pro ročníky šesté až deváté a volitelně nabízí i vyšší úrovně pro hlouběji zainteresované žáky. Vedení školy se proto může rozhodnout, zda pojme výuku umělé inteligence jako kontinuální trajektorii od první třídy až do deváté, nebo zda ji omezí na druhý stupeň; v obou případech existují podklady, které na sebe navazují. Propojení obou stupňů má smysl udržovat na úrovni školy, protože pravidla a návyky z prvního stupně výrazně usnadní práci učitelům na stupni druhém."
+      }
+     ]
+    },
+    {
+     "number": "8.3",
+     "id": "g8-3",
+     "title": "Vyhodnocování a zpětná vazba",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Každému dokončenému bloku věnujte krátkou reflexi přizpůsobenou věku: u nejmladších žáků stačí tři kartičky se smajlíky, kterými ohodnotí, jak se jim v bloku líbilo, a jedno kolo závěrečného povídání v kruhu, ve kterém řeknou, co je překvapilo. Ve čtvrté a páté třídě lze použít tři otázky: které cvičení bylo nejlepší, které bylo nejtěžší a co by ve výuce změnili. Odpovědi sbírejte anonymně a porovnávejte je s vlastním pozorováním z hodin, protože se často liší; hra, kterou třída hýřela, nemusela být nejpřínosnější, a naopak."
+      },
+      {
+       "type": "p",
+       "text": "Zkušenosti školy mají hodnotu i mimo ni. Provozovatel projektu AIFB sbírá zpětnou vazbu z pilotních škol a podle ní upravuje náročnost i podobu úloh, proto počítá i se zpětnou vazbou ze základních škol, které plán vyzkouší. Učitel, který chce sdílet zkušenosti, připomínky k jednotlivým cvičením nebo vlastní varianty zadání, se ozve přes kontakty uvedené na stránce vevit.cz. Zavedení výuky umělé inteligence na prvním stupni je běh na dlouhou trať, ale smysluplný první krok je malý: stačí jedna hledačka, jedna hra na robota a jedna společná konverzace, a žáci už budou mít o čem přemýšlet."
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "levels": [
+  {
+   "id": "zs1-blok-a",
+   "order": 1,
+   "code": "Blok A",
+   "title": "AI kolem nás",
+   "grades": "1. až 2. třída",
+   "intro": [
+    "První blok seznamuje nejmladší žáky s tím, že umělá inteligence není věc z filmu, ale něco, s čím se setkáváme každý den. Hlasová asistentka v telefonu rodičů, tablet, který navrhuje další videa, nebo fotoaparát, který sám najde tváře, jsou všechny příklady téhož jevu. Cílem bloku není vysvětlovat techniku, ale budovat správný postoj: počítač je užitečný nástroj, který vymysleli a naprogramovali lidé, není to kouzelník ani kamarád, který rozumí všemu. Žáci si v hravé podobě vyzkouší, že se počítač řídí přesnými pokyny, a položí si první otázky o bezpečnosti, které budou v dalších blocích rozvíjeny."
+   ],
+   "goals": [
+    "Žák rozpozná a pojmenuje alespoň tři zařízení nebo situace z běžného života, kde se setkal s umělou inteligencí.",
+    "Žák vysvětlí vlastními slovy, že počítač není živý a že vše, co umí, mu naučili lidé.",
+    "Žák si zapamatuje pravidlo, že jméno, adresa a fotografie patří jen rodině a škole.",
+    "Žák rozliší mezi tím, co umí počítač, a tím, na co stačí jen člověk.",
+    "Žák vyzkouší roli zadavatele i roli poslušného stroje ve hře na robota.",
+    "Žák navrhne alespoň jedno pravidlo pro společnou práci s počítačem ve třídě."
+   ],
+   "hours": "6 až 7 hodin",
+   "schedule": {
+    "header": [
+     "Blok",
+     "Obsah výuky",
+     "Časová dotace"
+    ],
+    "rows": [
+     [
+      "Blok 1",
+      "Povídání a hry: co je umělá inteligence, kde ji potkáváme a co není živé.",
+      "2 hodiny"
+     ],
+     [
+      "Blok 2",
+      "Cvičení 1 (Hledačka AI kolem nás) a cvičení 2 (Hra na robota).",
+      "1,5 hodiny"
+     ],
+     [
+      "Blok 3",
+      "Cvičení 3 (Skutečné, nebo vymyšlené) a cvičení 4 (Naše tajemství).",
+      "1,5 hodiny"
+     ],
+     [
+      "Blok 4",
+      "Cvičení 5 (Malý vynálezce) a společné shrnutí bloku.",
+      "1 až 2 hodiny"
+     ]
+    ]
+   },
+   "scheduleNote": [
+    "Rozvržení počítá s krátkými aktivitami, které se střídají maximálně po patnácti minutách, protože u nejmladších žáků je střídání forem práce důležitější než celkový objem času. Teoretická část je rozptýlena do povídání u obrazů a her, nikdy nepřesáhne pět minut souvislého výkladu. Pokud se třída unaví dříve, lze kteroukoli část přerušit a k hře se vrátit v další hodině; naopak při velkém zájmu lze hry opakovat s novými podklady. Závěrečné shrnutí vede učitel formou řízeného rozhovoru, ve kterém žáci vlastními slovy zopakují hlavní myšlenky."
+   ],
+   "lessons": [
+    {
+     "id": "zs1-blok-a-teorie",
+     "type": "theory",
+     "order": 0,
+     "title": "Teorie",
+     "teacher": {
+      "intro": [
+       "Teoretická část bloku A probíhá formou povídání nad obrázky a krátkých her, nikoli výkladu. Žáci se seznamí se třemi pojmy v dětské podobě: počítač je stroj, který udělá přesně to, co mu člověk naprogramuje; robot je stroj, který se umí pohybovat a pracovat; umělá inteligence je program, který se učí z mnoha příkladů, podobně jako se žák učí z opakování. Opakovací otázky pokládá učitel ústně v kruhu a nechává žáky odpovídat vlastními slovy; chyba není trestána, ale využita k společnému zamyšlení. Diskuzní témata jsou volné, aby si žáci mohli vyměňovat zkušenosti z domova i ze školy."
+      ],
+      "reviewQuestions": [
+       "Kde jsi už potkal umělou inteligenci? Vyjmenuj všechna místa, která tě napadnou.",
+       "Co udělá hlasová asistentka v telefonu, když se jí zeptáš, jaké bude počasí?",
+       "Je počítač živý? Umí se mu líbit, bolí ho něco nebo chce spát?",
+       "Proč nám tablet ukazuje jiná videa než spolužákovi, když si vybíráme sami?",
+       "Kdo vymyslel hru, kterou hraješ na tabletu? Jak to víš?",
+       "Když se počítač mýlí, kdo to může poznat a co s tím udělá?",
+       "Jaká tajemství smíme říct jen rodičům a učitelům a nikomu jinému?"
+      ],
+      "discussionTopics": [
+       "Kdybychom měli ve třídě robota, který by nám pomáhal, co by pro nás směl dělat a co naopak ne?",
+       "Je správné, když nám počítač sám vybere, jaké video uvidíme příště? Co bychom o tom měli vědět?"
+      ]
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs1-blok-a-cv1",
+     "type": "exercise",
+     "order": 1,
+     "title": "Hledačka AI kolem nás",
+     "teacher": {
+      "description": [
+       "Třída dostane sadu obrázkových karet s každodenními situacemi: hlasová asistentka, myčka nádobí, tablet s nabídkou videí, semafor na přechodu, pes, učitelka, fotoaparát, který najde tváře, nebo samoobslužná pokladna. Žáci ve skupinách karty roztřídí do tří hromádek: živé bytosti, stroje, které dělají jen to, co jim někdo nastavil, a chytří pomocníci, kteří si poradí i s něčím novým. O sporných kartách, například o pokladně, se klidně dohodněte, že patří na pomezí; důležitější než správné zařazení je zdůvodnění. Ke každé sporné kartě skupina řekne své zdůvodnění a závěr porovnají ostatní skupiny. Společně pak třída vytvoří plakát s názvem Kde potkáváme umělou inteligenci."
+      ],
+      "expectedOutput": "Roztříděné karty, společný plakát a krátké zdůvodnění za každou spornou kartu.",
+      "form": "Skupinová práce se společným shrnutím u plakátu.",
+      "time": "30 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs1-blok-a-cv2",
+     "type": "exercise",
+     "order": 2,
+     "title": "Hra na robota",
+     "teacher": {
+      "description": [
+       "Jeden žák hraje robota, který rozumí jen naprosto přesným příkazům a dělá vše doslova. Ostatní žáci mu dávají úkoly, například dojdi k oknu, zvedni pastelku a polož ji na tabuli. Záměrně se objevují příkazy nepřesné, jako třeba dej to tam, na které robot neví, jak zareagovat, a celá třída vidí, že stroj nevyluští z nepřesného pokynu myšlenku. Po několika kolech si žáci zkusí vymyslet příkaz, který robota dovede k cíli napoprvé, a společně shrnou, co přesný příkaz musí obsahovat."
+      ],
+      "expectedOutput": "Seznam přesných příkazů, které robota dovedly k cíli, a společné pravidlo, jak se má stroji zadávat úkol.",
+      "form": "Hra ve třídě, práce v malých skupinách.",
+      "time": "30 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs1-blok-a-cv3",
+     "type": "exercise",
+     "order": 3,
+     "title": "Skutečné, nebo vymyšlené",
+     "teacher": {
+      "description": [
+       "Učitel promítne několik dvojic obrázků na stejné téma: fotografie skutečného psa proti obrázku psa, který vytvořil počítač, a podobně fotografie města proti vygenerované scéně. Žáci se ptají a hledají stopy, které by mohly prozradit počítačový obrázek, například divné prsty, rozmazané pozadí nebo nemožné stíny. Učitel vysvětlí, že dnešní počítače umí obrázky vytvořit tak dobře, že tyto chyby často nemají a člověk obrázek nepozná na první pohled. Hledání chyb proto nestačí: je třeba se ptát, kdo obrázek vytvořil, odkud pochází a zda ho lze ověřit jinde, a nedůvěřovat automaticky všemu, co vidíme. Třída si vytvoří detektivní kartu se třemi otázkami, které si při prohlížení obrázků klade."
+      ],
+      "expectedOutput": "Detektivní karta se třemi otázkami k ověření původu obrázku.",
+      "form": "Společná práce u obrazovky, následuje kreslení karty.",
+      "time": "30 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs1-blok-a-cv4",
+     "type": "exercise",
+     "order": 4,
+     "title": "Naše tajemství",
+     "teacher": {
+      "description": [
+       "Třída hraje hru se zelenými a červenými kartami. Učitel čte situace, například kamarád na internetu se ptá, kde bydlíš; aplikace chce vědět, jak se jmenuje tvoje maminka; nová hra žádá telefonní číslo; oblíbená barva; jméno tvé kočky; adresa školy; fotka z narozeninové oslavy. Žáci zvednou zelenou kartu, pokud je v pořádku informaci prozradit, a červenou, pokud jde o tajemství. U každé červené situace třída poradí, co odpovědět a komu se se situací svěřit. Závěrem žáci vyberou tři nejdůležitější pravidla a nakreslí je na velký plakát."
+      ],
+      "expectedOutput": "Plakát se třemi pravidly ochrany osobních údajů, které si třída sama zvolila.",
+      "form": "Společná hra se zvedáním karet a povídáním v kruhu.",
+      "time": "30 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs1-blok-a-cv5",
+     "type": "exercise",
+     "order": 5,
+     "title": "Malý vynálezce",
+     "teacher": {
+      "description": [
+       "Každý žák nakreslí vynález, který by umělé inteligenci pomáhal ve škole: třeba mazací tabuli, která si sama pamatuje, co na ní bylo, nebo pomocníka, který přečte knížku slabozrakému spolužákovi. Kresbu pak v malých skupinách žáci představí a vybere se pět nejzajímavějších nápadů. Učitel u vybraných vynálezů na projektoru ukáže, jak by podobný návrh popsal konverzační nástroj, když ho o to požádáme, a třída porovná, co počítač vymyslel lépe a co naopak zůstalo jen na lidech. Vznikne tak první setkání s reálnou odpovědí modelu, které učitel plně řídí."
+      ],
+      "expectedOutput": "Galerie kreseb a společné porovnání pěti nápadů s odpovědí počítače.",
+      "form": "Kreslení, práce ve skupinách a společná ukázka vedená učitelem.",
+      "time": "30 až 45 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    }
+   ],
+   "teacherNotes": [
+    "U nejmladších žáků je hlavním rizikem poslechová únava, proto vše stavějte na pohybu a opakování, nikoli na výkladu. Názvy konkrétních služeb žákům neříkejte, protože je nepotřebují a mohly by je doma hledat; stačí říkat obecně počítač nebo chytrý pomocník. Ukázku ve cvičení 5 si vždy připravte předem a mějte k dispozici i uloženou odpověď pro případ výpadku internetu. Rodiče informujte dopisem o tom, že třída probírá téma umělé inteligence formou her, a že žáci s nástroji nepracují sami. K pravidlům z cvičení 4 se vracíme průběžně celý rok, ideálně vždy, když se ve výuce objeví nová aplikace nebo hračka."
+   ],
+   "derivedFrom": "Level 1 (základy)",
+   "themes": "Rozpoznávání umělé inteligence v okolním světě, hry bez počítače, první pravidla bezpečnosti.",
+   "visual": {
+    "islandName": "Zátoka Objevitelů",
+    "icon": "🔭",
+    "x": 12,
+    "y": 68,
+    "hint": "Kde všude se skrývá umělá inteligence?",
+    "proposal": true
+   },
+   "unitLabel": "Blok",
+   "certification": null,
+   "status": "content-ready",
+   "lessonCount": 6
+  },
+  {
+   "id": "zs1-blok-b",
+   "order": 2,
+   "code": "Blok B",
+   "title": "Jak přemýšlí počítač",
+   "grades": "3. až 4. třída",
+   "intro": [
+    "Druhý blok je určen žákům třetího a čtvrtého ročníku a přibližuje jim, jak se program umělé inteligence učí. Klíčovou představou je učení z příkladů: program nechápe svět jako člověk, ale z velkého množství příkladů si odvodí pravidla, podle kterých potom tipuje. Z této představy přirozeně vyplývá druhé téma bloku, totiž že se program může mýlit a někdy si i vymýšlet, protože neví, že neví. Třetím tématem je odpovědnost: za rozhodnutí udělaná s pomocí počítače vždy odpovídá člověk. Blok pracuje převážně bez počítače, s jednou až dvěma krátkými ukázkami na projektoru."
+   ],
+   "goals": [
+    "Žák vysvětlí vlastními slovy, že se program učí z mnoha příkladů a že z kvality příkladů vyplývá kvalita odpovědí.",
+    "Žák na konkrétním příkladu ukáže, že program může odpovědět chybně nebo si vymyslet.",
+    "Žák navrhne jednoduchý postup, kterým ověří, zda odpověď počítače odpovídá skutečnosti.",
+    "Žák rozřadí úkoly na ty, ve kterých vyniká počítač, a ty, ve kterých vyniká člověk.",
+    "Žák zformuluje otázku tak, aby na ni dostal srozumitelnou a použitelnou odpověď.",
+    "Žák vysvětlí, kdo nese odpovědnost za chybu, ke které dojde při použití počítačové odpovědi."
+   ],
+   "hours": "7 až 8 hodin",
+   "schedule": {
+    "header": [
+     "Blok",
+     "Obsah výuky",
+     "Časová dotace"
+    ],
+    "rows": [
+     [
+      "Blok 1",
+      "Povídání a hry: učení z příkladů, tipování odpovědí, vymýšlení a ověřování.",
+      "2 hodiny"
+     ],
+     [
+      "Blok 2",
+      "Cvičení 1 (Hra na učení) a cvičení 2 (Detektiv chyb).",
+      "2 hodiny"
+     ],
+     [
+      "Blok 3",
+      "Cvičení 3 (Tipovačka slov) a cvičení 4 (Člověk versus počítač).",
+      "2 hodiny"
+     ],
+     [
+      "Blok 4",
+      "Cvičení 5 (Třídní pravidla) a společné shrnutí bloku.",
+      "1 až 2 hodiny"
+     ]
+    ]
+   },
+   "scheduleNote": [
+    "Blok je vhodné rozložit do dvou až tří týdnů, aby mezi jednotlivými cvičeními zůstal čas na to, aby si žáci představy vyzkoušeli i mimo vyučování. Cvičení 1 a 3 na sebe tematicky navazují, proto je dobré je zařadit v bezprostřední blízkosti. Ukázky na projektoru si učitel vždy připraví předem, protože spontánní generování odpovědí před dětmi je pro tuto věkovou skupinu méně názorné než promyšlená ukázka s jasným cílem. Závěrečná hodina patří sestavení třídních pravidel, která navazují na plakát z bloku A a budou dále používány v blocích C a D."
+   ],
+   "lessons": [
+    {
+     "id": "zs1-blok-b-teorie",
+     "type": "theory",
+     "order": 0,
+     "title": "Teorie",
+     "teacher": {
+      "intro": [
+       "Teoretická část staví na představě učení z příkladů, kterou žáci znají ze své vlastní zkušenosti s procvičováním učiva. Učitel vysvětlí, že programu se ukáže tisíce až miliony příkladů a on si z nich odvodí, jak má na podobné podněty odpovídat; přitom nemá vlastní zkušenost ani pocit, že by mu něco rozuměl. Druhé téma vysvětluje, proč si program někdy odpověď vymyslí: když neví, neví o tom a snaží se tipnout co nejpřesvědčivěji. Třetí téma ukazuje, že za výsledek vždy odpovídá člověk, který se rozhodl počítači věřit. Opakovací otázky jsou formulovány tak, aby je žáci zvládli zodpovědět po prožitých hrách."
+      ],
+      "reviewQuestions": [
+       "Jak se program naučil poznat kočku na fotografii? Co všechno k tomu potřeboval?",
+       "Co se stane, když příklady, ze kterých se program učí, obsahují chyby?",
+       "Proč si program někdy vymyslí odpověď, i když správně neví?",
+       "Co znamená, že počítač neví, že neví? Zkus to vysvětlit na příkladu.",
+       "Ve kterých úkolech vyniká počítač a ve kterých člověk? Uveď alespoň dva příklady od každého.",
+       "Jak poznáme, že odpověď počítače je podezřelá a co s ní uděláme?",
+       "Kdo nese odpovědnost, když ve škole použijeme chybnou odpověď z počítače?"
+      ],
+      "discussionTopics": [
+       "Kdybys trénoval program na poznávání zvířat, jaké fotografie bys mu ukázal a na co bys musel dát pozor?",
+       "Kdyby škola měla počítačového pomocníka, který hlídá počasí a píše náměty na akce, kdo by měl jeho práci kontrolovat a jak často?"
+      ]
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs1-blok-b-cv1",
+     "type": "exercise",
+     "order": 1,
+     "title": "Hra na učení",
+     "teacher": {
+      "description": [
+       "Skupina žáků hraje program, který se učí poznávat psy. Ostatní spolužáci mu ukazují karty s obrázky psů a říkají ano, dokud program tipuje správně. Po chvíli učitel vsune do sady karty podvodné, například vlka s nápisem pes nebo obrázek mokrého psa s nápisem kočka. Program se začne mýlit přesně tam, kde ho učitelé vedli špatně. Třída následně rozebere, co se stalo, a formuluje pravidlo o kvalitě příkladů: program je přesně tak moudrý, jaké příklady dostal."
+      ],
+      "expectedOutput": "Společně formulované pravidlo o vlivu kvality příkladů na učení programu.",
+      "form": "Hra ve skupinách, společné vyhodnocení u tabule.",
+      "time": "45 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs1-blok-b-cv2",
+     "type": "exercise",
+     "order": 2,
+     "title": "Detektiv chyb",
+     "teacher": {
+      "description": [
+       "Učitel promítne nebo rozdá krátké odpovědi, které napsal počítač, a v každé z nich je ukrytá jedna chyba: přehozené datum, smyšlené zvíře, které neexistuje, nesmyslný údaj o planetě nebo špatně přiřazený autor knížky. Žáci pracují jako detektivové, chybu najdou, zakroužkují a zapíší, jakým postupem ji odhalili, například kontrolou v encyklopedii, otázkou učitele nebo porovnáním s učebnicí. Na závěr třída sestaví detektivní kontrolní seznam: tři kroky, které činí při kontrole každé počítačové odpovědi."
+      ],
+      "expectedOutput": "Opravené odpovědi a detektivní kontrolní seznam se třemi kontrolními kroky.",
+      "form": "Samostatná práce, společná kontrola v kruhu.",
+      "time": "45 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs1-blok-b-cv3",
+     "type": "exercise",
+     "order": 3,
+     "title": "Tipovačka slov",
+     "teacher": {
+      "description": [
+       "Učitel napíše na tabuli začátek věty, například Za školou rostl starý, a žáci navrhnou další slovo. Následně učitel ukáže, jak větu doplnil jazykový model, a třída porovná tipy žáků s tipem počítače. Po několika kolech žáci formulují, co společného mělo tipování dětí a počítače: oba volí slovo, které do věty podle zkušenosti hodí, a nikdo nemůže vědět jistotu. Tím si žáci přirozeně vysvětlí, že model nečte myšlenky ani nepamatuje pravdu, ale odhaduje nejpravděpodobnější pokračování."
+      ],
+      "expectedOutput": "Tabulka srovnávající tipy žáků a počítače a společný závěr o tom, jak model tvoří odpovědi.",
+      "form": "Společná hra u tabule s ukázkami na projektoru.",
+      "time": "30 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs1-blok-b-cv4",
+     "type": "exercise",
+     "order": 4,
+     "title": "Člověk versus počítač",
+     "teacher": {
+      "description": [
+       "Třída uspořádá soutěž mezi smíšenými družstvy a počítačem. Úkoly se volí tak, aby se střídaly silné stránky obou stran: zapamatovat si dvacet slov, vymyslet říkanku o třídě, spočítat příklad, rozeznat emoci na fotografii, navrhnout název pro školní akci a vysvětlit, proč se kamarádovi stýskalo. U počítačových úloh zadává úkoly učitel a odpovědi promítá. Výsledky se zapisují do tabulky na tabuli a závěrem třída pojmenuje situace, ve kterých se vyplatí počítač využít, a ty, ve kterých se nevyplatí."
+      ],
+      "expectedOutput": "Tabulka výsledků soutěže a seznam situací vhodných a nevhodných pro pomoc počítače.",
+      "form": "Soutěž družstev s učitelem jako zadavatelem.",
+      "time": "45 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs1-blok-b-cv5",
+     "type": "exercise",
+     "order": 5,
+     "title": "Třídní pravidla k umělé inteligenci",
+     "teacher": {
+      "description": [
+       "Na základě poznatků z celého bloku třída sestaví pět pravidel pro práci s umělou inteligencí, která navazují na plakát z bloku A. Pravidla žáci navrhují sami, učitel je uspořádá do podobné délky a formulace, například počítači neříkáme své tajemství, počítač si někdy vymýšlí, a proto odpověď prověříme, nebo práce s pomocí počítače se přizná. Hotový seznam třída přepíše na velký plakát, každý žák ho podepíše vlastnoručním podpisem jako symbol společné dohody a plakát se vyvěsí viditelně v učebně."
+      ],
+      "expectedOutput": "Podepsaný plakát s pěti pravidly, který bude třída používat v blocích C a D.",
+      "form": "Společná tvorba, psaní a podepisování plakátu.",
+      "time": "30 až 45 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    }
+   ],
+   "teacherNotes": [
+    "Mezi žáky tímto věkem kolují různé představy, například že umělá inteligence vše vidí nebo že je živá; berme je vážně a rozklíčovávejme je konkrétními ukázkami, ne jen poučkou. U citlivějších dětí může téma sledujícího zařízení vyvolat nejistotu, proto vždy zdůrazněte, že si sami můžeme vybrat, co aplikacím dovolíme. Ukázky odpovědí modelu si připravujte předem a kontrolujte, že neobsahují nic, co by vás přinutilo improvizovaně vysvětlovat pojmy nad rámec plánu. Při tvorbě pravidel ve cvičení 5 nespěchejte: právě společně vytvořená formulace má pro žáky mnohem větší váhu než pravidlo, které předepsal dospělý."
+   ],
+   "derivedFrom": "Level 1 (principy)",
+   "themes": "Učení programu z příkladů, chyby a vymýšlení, odpovědnost člověka za výsledek.",
+   "visual": {
+    "islandName": "Ostrov Robotů",
+    "icon": "🤖",
+    "x": 36,
+    "y": 34,
+    "hint": "Jak se učí a přemýšlí počítač?",
+    "proposal": true
+   },
+   "unitLabel": "Blok",
+   "certification": null,
+   "status": "content-ready",
+   "lessonCount": 6
+  },
+  {
+   "id": "zs1-blok-c",
+   "order": 3,
+   "code": "Blok C",
+   "title": "Host AI ve třídě",
+   "grades": "4. až 5. třída",
+   "intro": [
+    "Třetí blok přináší první pravidelnou práci s konverzačním nástrojem, a to v podobě hosta, který pravidelně navštěvuje hodinu. Nástroj vždy ovládá učitel na svém počítači a promítá konverzaci třídě; žáci zadání formulují společně u tabule, učitel je přepisuje do počítače a všichni společně odpovědi čtou a hodnotí. Tímto uspořádáním si žáci v bezpečném prostředí vyzkouší, jak se dá s modelem rozumně mluvit, co přesné zadání dokáže a kde se odpovědi propadají. Blok záměrně dává prostor i chybám: právě na nevydařených odpovědích se žáci nejlépe naučí, že odpovědi modelu je třeba číst kriticky a ověřovat je.",
+    "Bloku předchází seznámení rodičů. Žáci čtvrtých a pátých tříd jsou mladší než třináct let, což je dolní hranice věku většiny konverzačních nástrojů, a proto si vlastní účty nezakládají. Veškerá práce probíhá prostřednictvím školního účtu vedeného učitelem, který učitel promítá a který zůstává pod jeho kontrolou. Rodiče informujte dopisem o podobě výuky, o tom, že žáci s nástroji nepracují sami, a o pravidlech, která si třída stanoví; návod na takový dopis přináší kapitola 7. Toto uspořádání současně školu stojí minimálně: stačí jeden počítač, jeden účet a projektor."
+   ],
+   "goals": [
+    "Žák navrhne jasné zadání, které vede konverzační nástroj k použitelné odpovědi.",
+    "Žák porovná dvě různě formulovaná zadání téhož úkolu a popíše rozdíl ve výstupu.",
+    "Žák v odpovědi modelu najde případnou chybu nebo nesmysl a navrhne způsob ověření.",
+    "Žák vybere z odpovědi modelu užitečné informace a převypráví je vlastními slovy.",
+    "Žák dodržuje pravidla bezpečnosti při společné práci s umělou inteligencí ve třídě.",
+    "Žák vysvětlí, v kterých situacích je pomoc modelu přínosem a kdy práci spíše zdržuje."
+   ],
+   "hours": "7 až 8 hodin",
+   "schedule": {
+    "header": [
+     "Blok",
+     "Obsah výuky",
+     "Časová dotace"
+    ],
+    "rows": [
+     [
+      "Blok 1",
+      "Teoretická příprava: jak se ptát, jak vypadá dobré zadání a jak ověřujeme odpovědi.",
+      "2 hodiny"
+     ],
+     [
+      "Blok 2",
+      "Cvičení 1 (Společný rozhovor) a cvičení 2 (Vypravěč).",
+      "2 hodiny"
+     ],
+     [
+      "Blok 3",
+      "Cvičení 3 (Učitel na zkoušku) a cvičení 4 (Pravda, nebo výmysl).",
+      "2 hodiny"
+     ],
+     [
+      "Blok 4",
+      "Cvičení 5 (Návrh, prosím) a společné shrnutí bloku.",
+      "1 až 2 hodiny"
+     ]
+    ]
+   },
+   "scheduleNote": [
+    "Cvičení tohoto bloku jsou stavěná na společné práci celé třídy, proto je vhodné zařazovat je do hodin s dostatkem prostoru u tabule a s dobře viditelným promítáním. U každého cvičení učitel dbá na to, aby zadání, které jde do počítače, vznikla skutečně od žáků, i když jsou formulace nezralé; až porovnání nezralého a vylepšeného zadání ukáže smysl práce. Skupiny mohou navrhovat vlastní zadání na papír a učitel pak vybrané varianty zapíše do nástroje a vyzkouší na projektoru; žáci k počítači nepřistupují. Závěrečné shrnutí bloku spočívá ve společném sepsání zkušeností, které si třída odnáší do bloku D."
+   ],
+   "lessons": [
+    {
+     "id": "zs1-blok-c-teorie",
+     "type": "theory",
+     "order": 0,
+     "title": "Teorie",
+     "teacher": {
+      "intro": [
+       "Teoretická část zavádí žáky do umění ptát se. Dobré zadání má tři části, které si třída pojmenuje dětsky srozumitelně: kdo má být počítač, když odpovídá; co přesně má udělat; a jak má odpověď vypadat. Druhým tématem je čtení odpovědí s otazníkem: model píše sebejistě i tam, kde nemá tušení, a proto si u každého důležitého údaje ověříme, odkud víme, že je pravdivý. Třetím tématem je slušnost a bezpečnost: do konverzace se píše jen to, co bychom ukázali celé škole. Opakovací otázky slouží k rychlé kontrole porozumění na začátku hodiny, diskuzní témata k propojení se životem třídy."
+      ],
+      "reviewQuestions": [
+       "Z jakých tří částí se skládá dobré zadání a k čemu každá část slouží?",
+       "Proč dostaneme lepší odpověď na zadání vysvětli mi dělené zlomky s příkladem než na slovo zlomky?",
+       "Jak poznáme, že odpověď počítače je podezřelá a co s ní uděláme?",
+       "Kde si můžeme ověřit, že uvedený údaj je pravdivý? Uveď alespoň dvě místa.",
+       "Proč se nás model někdy na něco zeptá zpátky místo odpovědi?",
+       "Co děláme, když odpověď nesedí nebo je nepoužitelná?",
+       "Kdy je rychlejší zeptat se spolužáka nebo učitele než počítače?"
+      ],
+      "discussionTopics": [
+       "Kdy je pomoc počítače při domácím úkolu fér a kdy je to podvod? Zkuste najít hranici a obhájit ji.",
+       "Sestavte stanovisko třídy: měli by žáci používat umělou inteligenci na domácí úkoly, a za jakých pravidel?"
+      ]
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs1-blok-c-cv1",
+     "type": "exercise",
+     "order": 1,
+     "title": "Společný rozhovor",
+     "teacher": {
+      "description": [
+       "Třída si zvolí téma probírané ve výuce, například koloběh vody v přírodovědě, a společně sestaví první jednoduché zadání pro model. Učitel zadání zapíše, odpověď promítne a třída ji ohodnotí: co v ní chybělo, co bylo srozumitelné a co by chtěli jinak. Poté zadání vylepší tak, že určí, kdo má počítač být, co přesně má odpovědět a jak má odpověď vypadat, a nechají si odpovědět znovu. Společný vývoj zadání i odpovědí se zapisuje na tabuli a vzniká tak plakát s názvem Jak jsme se naučili ptát."
+      ],
+      "expectedOutput": "Plakát zachycující tři kola zadání a odpovědi se společným hodnocením pokroku.",
+      "form": "Společná práce celé třídy vedená učitelem.",
+      "time": "45 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs1-blok-c-cv2",
+     "type": "exercise",
+     "order": 2,
+     "title": "Vypravěč",
+     "teacher": {
+      "description": [
+       "Třída nechá model napsat krátký příběh na zadané téma, například o kouzelné knihovně. Pak žáci navrhnou tři změny: jiného hlavního hrdinu, jiné prostředí a jiné zakončení, a model nechají příběh napsat znovu se zohledněním změn. Vzniklé verze se porovnají a žáci hledají, co se změnilo a co naopak zůstalo stejné, přestože zadání změnu požadovalo. Závěrem třída vybere nejlepší verzi, doplní ji vlastním zakončením a všechny tři verze sešije do knížky třídy, která se uschová ve čtenářském koutku."
+      ],
+      "expectedOutput": "Knížka třídy se třemi verzemi příběhu a vlastním zakončením žáků.",
+      "form": "Společná práce, následuje samostatné dopisování konce.",
+      "time": "45 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs1-blok-c-cv3",
+     "type": "exercise",
+     "order": 3,
+     "title": "Učitel na zkoušku",
+     "teacher": {
+      "description": [
+       "Žáci ve skupinách vymyslí pět otázek z právě probrané látky, například z vlastivědy nebo přírodovědy, a zapíší si k nim správné odpovědi. Učitel poté otázky postupně zadá modelu a promítne odpovědi. Skupiny hrají učitele na zkoušku: každou odpověď modelu známkují, chyby opravují červenou pastelkou a píší krátké zdůvodnění, proč je odpověď chybná. Na závěr se porovná, které skupiny modelu dávaly lepší známky, a třída shrne, v čem modelu škola dává za jedna a v čem propadá."
+      ],
+      "expectedOutput": "Opravené a známkované odpovědi modelu se zdůvodněními a shrnutí jeho silných a slabých stránek.",
+      "form": "Skupinová práce se společným vyhodnocením.",
+      "time": "45 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs1-blok-c-cv4",
+     "type": "exercise",
+     "order": 4,
+     "title": "Pravda, nebo výmysl",
+     "teacher": {
+      "description": [
+       "Třída zadá modelu otázky o své obci, regionu nebo blízkém okolí, například jak se jmenuje řeka, která obcí protéká, nebo kdy byla založena místní škola. Každou odpověď žáci ověří v dostupných zdrojích: v atlase, v regionální publikaci, na mapě nebo dotazem na obecní úřad. Výsledky se zapisují do velké tabulky na tabuli do sloupců platí, platí částečně a neplatí. Žáci následně diskutují o tom, proč zrovna u místních informací model chybuje častěji než u obecných, a co to znamená pro jeho používání."
+      ],
+      "expectedOutput": "Tabulka ověřených odpovědí se sloupci platí, platí částečně a neplatí a společný závěr o spolehlivosti modelu.",
+      "form": "Společná práce s ověřováním ve zdrojích.",
+      "time": "45 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs1-blok-c-cv5",
+     "type": "exercise",
+     "order": 5,
+     "title": "Návrh, prosím",
+     "teacher": {
+      "description": [
+       "Třída rozdělená do skupin připravuje školní akci, například den dětí, vánoční jarmark nebo sportovní odpoledne. Každá skupina nejprve navrhne plán akce po svém, poté společně sestaví zadání pro model, aby navrhl plán také, a obě verze porovná: co model vymyslel lépe, co přehlédl a co je nepoužitelné. Skupiny se naučí zadání postupně zpřesňovat, když první odpověď nesedí. Závěrem každá skupina představí svou finální verzi plánu, která kombinuje nápady žáků a modelu, a vysvětlí, odkud který nápad pochází."
+      ],
+      "expectedOutput": "Finální plán akce kombinující nápady žáků a modelu s označením původu každého nápadu.",
+      "form": "Skupinová práce se společnou prezentací.",
+      "time": "45 až 90 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    }
+   ],
+   "teacherNotes": [
+    "Veškerou práci s konverzačním nástrojem v tomto bloku vede výhradně učitel z vlastního účtu; žáci do počítače nezapisují nic. Před každou hodinou si projděte plánovanou konverzaci a vyzkoušejte zadání předem, protože odpovědi se liší a ukázka, která má ilustrovat chybu, někdy chybu neobsahuje. Veškerá jména ve zadání nahraďte vymyšlenými postavami a do konverzace nikdy nezadávejte fotografie, plány školy ani cokoli, co by bylo možné přiřadit konkrétnímu žákovi. Pro případ výpadku internetu mějte uložené ukázkové odpovědi z předchozích hodin; většina cvičení funguje i s nimi. K pravidlům z plakátu se vracejte na začátku každé hodiny bloku."
+   ],
+   "derivedFrom": "Level 1 (praktická část)",
+   "themes": "První společné konverzace vedené učitelem, jasná zadání, ověřování odpovědí.",
+   "visual": {
+    "islandName": "Přístav Hostů",
+    "icon": "⚓",
+    "x": 62,
+    "y": 64,
+    "hint": "Host AI ve třídě – ptáme se a ověřujeme.",
+    "proposal": true
+   },
+   "unitLabel": "Blok",
+   "certification": null,
+   "status": "content-ready",
+   "lessonCount": 6
+  },
+  {
+   "id": "zs1-blok-d",
+   "order": 4,
+   "code": "Blok D",
+   "title": "Přesná zadání a vlastní projekt",
+   "grades": "5. třída",
+   "intro": [
+    "Čtvrtý blok je vrcholem prvního stupně a připravuje žáky na hladký přechod k úrovním 1 a 2 na druhém stupni. Staví na dovednostech z bloku C a rozvíjí je dvěma směry. Prvním směrem je přesnost zadání: žáci se učí zadávat úlohy tak, aby výsledek byl použitelný napoprvé, a popisovat požadovanou podobu odpovědi, například tabulku, seznam nebo stanovený počet bodů. Druhým směrem je strukturovaná práce s příklady: žáci poznají, že když modelu ukážou vzorový příklad toho, co chtějí, odpověď se zlepší. Celý blok vyúsťuje v měsíční projekt, který třída zvládne s pomocí učitele a který propojuje práci s modelem s ostatním učivem."
+   ],
+   "goals": [
+    "Žák sestaví zadání s rolí, úkolem a předepsanou podobou výstupu a na zadání iterativně pracuje.",
+    "Žák použije ukázkový příklad v zadání a popíše, jak se změnila odpověď modelu.",
+    "Žák převede jednoduchou informaci do podoby tabulky nebo seznamu podle předem daných pravidel.",
+    "Žák rozpozná, kdy je výstup modelu použitelný a kdy vyžaduje úpravu nebo úplné přepracování.",
+    "Žák naplánuje a zrealizuje malý projekt s pomocí umělé inteligence a popíše svou roli v něm.",
+    "Žák přizná pomoc modelu tam, kde byla použita, a vysvětlí, v čem spočívala."
+   ],
+   "hours": "10 až 11 hodin",
+   "schedule": {
+    "header": [
+     "Blok",
+     "Obsah výuky",
+     "Časová dotace"
+    ],
+    "rows": [
+     [
+      "Blok 1",
+      "Teoretická příprava: přesná zadání, předepsaná podoba výstupu, práce s ukázkovým příkladem.",
+      "2 hodiny"
+     ],
+     [
+      "Blok 2",
+      "Cvičení 1 (Tři podoby jedné odpovědi) a cvičení 2 (Ukaž mi příklad).",
+      "2 hodiny"
+     ],
+     [
+      "Blok 3",
+      "Cvičení 3 (Kvíz podle pravidel) a cvičení 4 (Opravář zadání).",
+      "2 hodiny"
+     ],
+     [
+      "Blok 4",
+      "Cvičení 5 (Měsíční projekt) a společné shrnutí celého plánu.",
+      "4 až 5 hodin (projekt běží souběžně)"
+     ]
+    ]
+   },
+   "scheduleNote": [
+    "Blok je koncipován jako doprovod výuky na šest až osm týdnů: cvičení 1 až 4 probíhají zhruba po týdnu a projekt běží na pozadí souběžně po dobu čtyř týdnů. Toto rozložení žákům umožňuje vstřebat každý poznatek zvlášť a zároveň udržet souvislost projektu. Cvičení lze také zhustit do tří týdnů, pokud se blíží konec školního roku; zachovejte však pořadí, protože cvičení na sebe navazují. Poslední hodina patří prezentaci projektů a společnému shrnutí celého plánu prvního stupně, na které mohou být přizváni i rodiče."
+   ],
+   "lessons": [
+    {
+     "id": "zs1-blok-d-teorie",
+     "type": "theory",
+     "order": 0,
+     "title": "Teorie",
+     "teacher": {
+      "intro": [
+       "Teoretická část opakuje tři části dobrého zadání z bloku C a přidává čtvrtou: předepsanou podobu výstupu. Žáci zjistí, že když modelu řeknou, že chtějí odpověď jako tabulku se třemi sloupci nebo jako pět bodů po jedné větě, odpověď se hned zlepší. Druhé téma, práce s ukázkovým příkladem, se žákům vysvětlí na analogii s nápodobou: model napodobuje, co vidí, a proto mu ukazujeme, jak má výsledek vypadat. Třetím tématem je poctivost: žáci se učí říct, kde začíná jejich práce a kde pomoc modelu, protože právě to budou muset prokázat v závěrečném projektu."
+      ],
+      "reviewQuestions": [
+       "Jaké čtyři části má podle nás dobré zadání a k čemu slouží předepsaná podoba výstupu?",
+       "Když chceme odpověď jako tabulku, co všechno musíme modelu o tabulce říct?",
+       "Co se stane s odpovědí, když modelu ukážeme vzorový příklad požadovaného výsledku?",
+       "Proč se vyplatí zadání po nevydařené odpovědi zpřesnit, místo ho úplně vyměnit?",
+       "Jak poznáme, že odpověď je použitelná, a co děláme, když není?",
+       "Kdy je poctivé říct, že jsme použili pomoc modelu, a jak se to popisuje?",
+       "Co by se mohlo pokazit, kdyby projekt celý nechali na modelu bez naší kontroly?"
+      ],
+      "discussionTopics": [
+       "Model odmítne odpovědět na neškodné zadání, protože se mu zdá nejednoznačné. Čí je to chyba a jak ji napravíme?",
+       "Dva žáci dostali ze stejného zadání různé odpovědi. Co všechno se za tím může skrývat?"
+      ]
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs1-blok-d-cv1",
+     "type": "exercise",
+     "order": 1,
+     "title": "Tři podoby jedné odpovědi",
+     "teacher": {
+      "description": [
+       "Třída zvolí jednu otázku z probíraného učiva a nechá si ji zodpovědět třikrát: poprvé bez jakýchkoli požadavků, podruhé s předepsanou délkou odpovědi a potřetí s předepsanou podobou, například jako tabulku nebo jako pět bodů. Všechny tři odpovědi se vytisknou nebo vypíší a žáci je porovnají: která byla nejpoužitelnější pro jaký účel a proč. Následně si každý žák vybere vlastní otázku a vyzkouší postup samostatně na papíře, kde navrhne, jak by podobu výstupu předepsal. Zkušenost shrne třída do pravidla: čím přesnější požadavek, tím použitelnější odpověď."
+      ],
+      "expectedOutput": "Tři porovnané podoby jedné odpovědi a vlastní návrh předepsané podoby výstupu u vybrané otázky.",
+      "form": "Společná práce, následuje samostatný návrh na papíře.",
+      "time": "45 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs1-blok-d-cv2",
+     "type": "exercise",
+     "order": 2,
+     "title": "Ukaž mi příklad",
+     "teacher": {
+      "description": [
+       "Třída zadá modelu úlohu, která bez příkladu selhává, například vytvoření kvízu, kde má každá otázka čtyři možnosti a jen jedna je správně, přičemž správná odpověď má být uvedena na konci. První pokus bez ukázky se porovná s druhým pokusem, do kterého žáci vloží jeden vzorový příklad hotové otázky. Žáci sledují, které z požadavků model splnil v každém pokusu, a zaznamenávají to do jednoduché tabulky na tabuli. Závěrem formulují, kdy se ukázkový příklad vyplatí a kdy naopak zadání zbytečně zkomplikuje."
+      ],
+      "expectedOutput": "Srovnávací tabulka dvou pokusů a formulované pravidlo o použití ukázkového příkladu v zadání.",
+      "form": "Společná práce vedená učitelem.",
+      "time": "45 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs1-blok-d-cv3",
+     "type": "exercise",
+     "order": 3,
+     "title": "Kvíz podle pravidel",
+     "teacher": {
+      "description": [
+       "Skupiny dostanou jednu stránku učiva, například výklad o slovních druzích nebo o planetách sluneční soustavy. Jejich úkolem je sestavit přesné zadání, podle kterého model vytvoří kvíz zadané podoby: stanovený počet otázek, čtyři možnosti u každé, správné odpovědi uvedené na konci a jazyk odpovídající věku spolužáků. Skupina zadání vyzkouší, vyhodnotí, ve kterých požadavcích odpověď selhala, a zadání zpřesní. Hotové kvízy si skupiny vzájemně vymění a vyplní, čímž se ověří i srozumitelnost pro čtenáře."
+      ],
+      "expectedOutput": "Přesné zadání, finální kvíz splňující stanovená pravidla a zkušenost s vyplněním kvízu jiné skupiny.",
+      "form": "Skupinová práce se vzájemným testováním.",
+      "time": "45 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs1-blok-d-cv4",
+     "type": "exercise",
+     "order": 4,
+     "title": "Opravář zadání",
+     "teacher": {
+      "description": [
+       "Učitel promítne několik zadání a k nim odpovědi modelu, které selhaly: odpověď je příliš dlouhá, tabulka má špatné sloupce, kvíz nemá správné možnosti nebo jazyk je pro čtenáře nesrozumitelný. Žáci hrají opraváře: u každého páru zadání a odpovědi najdou, který požadavek v zadání chyběl nebo byl nepřesný, a zadání přepíší tak, aby odpověď uspěla. Opravené verze se vyzkouší přímo v hodině a třída sleduje, zda se odpověď opravdu zlepšila. Tím si žáci upevní vztah mezi kvalitou zadání a kvalitou výstupu."
+      ],
+      "expectedOutput": "Sada opravených zadání s označenou chybějící nebo nepřesnou částí a doloženým zlepšením odpovědi.",
+      "form": "Společná práce s ukázkami na projektoru.",
+      "time": "45 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs1-blok-d-cv5",
+     "type": "exercise",
+     "order": 5,
+     "title": "Měsíční projekt",
+     "teacher": {
+      "description": [
+       "Třída si zvolí projekt propojený s učivem, například ilustrovaný putovní deník fiktivní postavy putující českým krajem, průvodce školou pro prvňáčky nebo encyklopedii zvířat z okolí školy. Projekt běží čtyři týdny: v prvním týdnu třída sestaví plán a rozdělí role, ve druhém a třetím týdnu skupiny shromažďují podklady a využívají model pro návrhy textů, kontrolu jazyka a náměty na ilustrace, přičemž každou pomoc modelu zaznamenávají do deníku projektu, a ve čtvrtém týdnu dílo složí a prezentuje. Učitel model ovládá i nadále, ale žáci již sami navrhují zadání. Na závěr třída reflektuje, co by bez modelu nešlo, co šlo lépe ručně a kde pomoc modelu naopak uškodila."
+      ],
+      "expectedOutput": "Dokončený projekt třídy, deník projektu se záznamy o pomoci modelu a závěrečná reflexe.",
+      "form": "Dlouhodobá skupinová práce se závěrečnou prezentací.",
+      "time": "průběžně 4 týdny, v hodinách cca 3 až 4 hodiny"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    }
+   ],
+   "teacherNotes": [
+    "Projekt je smysluplný jen tehdy, když zůstane malý: jedna řada encyklopedie, deset stran deníku, jedna nástěnka. Před startem si stanovte termíny dílčích kroků a kontrolujte je, protože pátá třída snadno ztrácí přehled. Deník projektu, do kterého žáci zapisují pomoc modelu, je nejdůležitější částí cvičení: právě v něm se učí poctivosti a právě z něj budou čerpat při reflexi. Při prezentacích důsledně žádejte po skupinách, aby u každé části řekly, kdo nebo co ji vytvořil. Pokud někde pomoc modelu převažuje nad prací žáků, vraťte se k plánu a rozdělte role nově; projekt má být důkazem jejich práce, ukázkou jejich dovednosti model řídit, ne soutěží o nejlepší výstup modelu."
+   ],
+   "derivedFrom": "Level 2 (zjednodušeně)",
+   "themes": "Přesná zadání, strukturované výstupy, práce s příklady, vlastní projekt.",
+   "visual": {
+    "islandName": "Ostrov Pokladu",
+    "icon": "💎",
+    "x": 86,
+    "y": 30,
+    "hint": "Přesná zadání a náš vlastní projekt.",
+    "proposal": true
+   },
+   "unitLabel": "Blok",
+   "certification": null,
+   "status": "content-ready",
+   "lessonCount": 6
+  }
+ ]
+}

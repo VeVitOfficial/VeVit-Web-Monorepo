@@ -17,11 +17,25 @@ export interface TocEntry {
 
 const WIKI_PROXY = "/edu/api/wikipedia.php";
 
+/** Jazyk Wikipedie, který uživatel přepíná vedle vyhledávacího řádku. */
+export type WikiLang = "cs" | "en";
+
+export const WIKI_LANG_STORAGE = "vevit-wiki-lang";
+
+export function parseWikiLang(value: string | null | undefined): WikiLang {
+  return value === "en" ? "en" : "cs";
+}
+
+/** In-app adresa hledání; `wl` se přidává jen pro angličtinu (čeština je výchozí). */
+export function wikiSearchHref(query: string, lang: WikiLang = "cs"): string {
+  return `/edu/hledat?q=${encodeURIComponent(query)}${lang === "en" ? "&wl=en" : ""}`;
+}
+
 // Vyhledání nejlepšího článku k dotazu. Vrací {title, key, description, thumbnail} | null
-export async function searchWikipedia(query: string): Promise<WikiSearchResult | null> {
+export async function searchWikipedia(query: string, lang: WikiLang = "cs"): Promise<WikiSearchResult | null> {
   const q = query.trim();
   if (!q) return null;
-  const url = `${WIKI_PROXY}?action=search&q=${encodeURIComponent(q)}`;
+  const url = `${WIKI_PROXY}?action=search&lang=${lang}&q=${encodeURIComponent(q)}`;
   const res = await fetch(url, { headers: { Accept: "application/json" } });
   if (!res.ok) throw new Error(`Wikipedia search HTTP ${res.status}`);
   const data = (await res.json()) as { pages?: Array<{ title: string; key: string; description?: string; thumbnail?: { url: string } }> };
@@ -36,8 +50,8 @@ export async function searchWikipedia(query: string): Promise<WikiSearchResult |
 }
 
 // Stažení HTML článku podle klíče (page.key) nebo titulku
-export async function fetchArticleHTML(keyOrTitle: string): Promise<string> {
-  const url = `${WIKI_PROXY}?action=article&key=${encodeURIComponent(keyOrTitle)}`;
+export async function fetchArticleHTML(keyOrTitle: string, lang: WikiLang = "cs"): Promise<string> {
+  const url = `${WIKI_PROXY}?action=article&lang=${lang}&key=${encodeURIComponent(keyOrTitle)}`;
   const res = await fetch(url, { headers: { Accept: "text/html" } });
   if (!res.ok) throw new Error(`Wikipedia article HTTP ${res.status}`);
   return await res.text();
@@ -55,9 +69,9 @@ export interface WikiSummary {
 
 // Short summary (type standard/disambiguation, description, thumbnail).
 // Optional: the article renders without it.
-export async function fetchSummary(key: string): Promise<WikiSummary | null> {
+export async function fetchSummary(key: string, lang: WikiLang = "cs"): Promise<WikiSummary | null> {
   try {
-    const res = await fetch(`${WIKI_PROXY}?action=summary&key=${encodeURIComponent(key)}`, { headers: { Accept: "application/json" } });
+    const res = await fetch(`${WIKI_PROXY}?action=summary&lang=${lang}&key=${encodeURIComponent(key)}`, { headers: { Accept: "application/json" } });
     if (!res.ok) return null;
     return (await res.json()) as WikiSummary;
   } catch {
@@ -102,7 +116,7 @@ export interface ParsedDisambiguation {
   groups: DisambiguationGroup[];
 }
 
-const SPECIAL_NAMESPACE = /^(Soubor|Kategorie|Speciální|Nápověda|Wikipedie|Šablona|Portál|Diskuse|Wikipedista|Soubor diskuse|Meta):/;
+const SPECIAL_NAMESPACE = /^(Soubor|Kategorie|Speciální|Nápověda|Wikipedie|Šablona|Portál|Diskuse|Wikipedista|Soubor diskuse|Meta|File|Category|Special|Help|Wikipedia|Template|Portal|Talk|User|Draft):/;
 
 function titleFromHref(href: string): string {
   const raw = href.replace(/^\.\//, "").split("#")[0].split("?")[0];
@@ -113,8 +127,13 @@ function titleFromHref(href: string): string {
   }
 }
 
-function inAppHref(title: string): string {
-  return "/edu/hledat?q=" + encodeURIComponent(title);
+function inAppHref(title: string, lang: WikiLang): string {
+  return wikiSearchHref(title, lang);
+}
+
+/** Relativní in-app odkaz uvnitř článku (/hledat?q=…), bez prefixu /edu. */
+function articleLinkHref(title: string, lang: WikiLang): string {
+  return "/hledat?q=" + encodeURIComponent(title) + (lang === "en" ? "&wl=en" : "");
 }
 
 function cleanText(text: string | null | undefined): string {
@@ -123,7 +142,7 @@ function cleanText(text: string | null | undefined): string {
 
 // Sanitizace + příprava obsahu článku.
 // Vyžaduje window.VeVitContentSanitizer (globální sanitizer z assets/js).
-export function parseArticle(html: string, fallbackTitle?: string): ParsedArticle {
+export function parseArticle(html: string, fallbackTitle?: string, lang: WikiLang = "cs"): ParsedArticle {
   // DOMPurify with RETURN_DOM hands back the <body> element, not a Document;
   // without the sanitizer script we fall back to the parsed document's body.
   const sanitizer = (window as unknown as { VeVitContentSanitizer?: { sanitizeWikipedia: (html: string) => Element | Document } }).VeVitContentSanitizer;
@@ -135,7 +154,7 @@ export function parseArticle(html: string, fallbackTitle?: string): ParsedArticl
   if (!root) return { contentEl: null, title: fallbackTitle ?? "", ...empty };
 
   // Titulek z <title> nebo firstHeading
-  const title = (doc.querySelector("title")?.textContent || fallbackTitle || "").replace(/ – Wikipedie.*$/i, "").trim();
+  const title = (doc.querySelector("title")?.textContent || fallbackTitle || "").replace(/ [–-] Wikipedi(?:e|a).*$/i, "").trim();
 
   // The server strips <head>, which leaves the page title as a bare text node.
   Array.from(root.childNodes).forEach((node) => {
@@ -156,7 +175,7 @@ export function parseArticle(html: string, fallbackTitle?: string): ParsedArticl
       const t = titleFromHref(a.getAttribute("href") || "");
       if (!t || SPECIAL_NAMESPACE.test(t)) return;
       const missing = a.classList.contains("new");
-      links.push({ title: cleanText(a.textContent) || t, href: missing ? "" : inAppHref(t), missing });
+      links.push({ title: cleanText(a.textContent) || t, href: missing ? "" : inAppHref(t, lang), missing });
     });
     const text = cleanText(note.textContent);
     if (text) hatnotes.push({ text, links });
@@ -187,11 +206,11 @@ export function parseArticle(html: string, fallbackTitle?: string): ParsedArticl
       if (!t) {
         a.removeAttribute("href");
       } else if (SPECIAL_NAMESPACE.test(t)) {
-        a.setAttribute("href", "https://cs.wikipedia.org/wiki/" + raw);
+        a.setAttribute("href", `https://${lang}.wikipedia.org/wiki/` + raw);
         a.setAttribute("target", "_blank");
         a.setAttribute("rel", "noopener noreferrer");
       } else {
-        a.setAttribute("href", "/hledat?q=" + encodeURIComponent(t));
+        a.setAttribute("href", articleLinkHref(t, lang));
         a.setAttribute("data-inapp", "1");
       }
     } else if (href.startsWith("#")) {
@@ -200,7 +219,7 @@ export function parseArticle(html: string, fallbackTitle?: string): ParsedArticl
     } else if (/^https?:\/\//.test(href)) {
       if (href.indexOf("wikipedia.org") !== -1 && href.indexOf("/wiki/") !== -1) {
         const t = decodeURIComponent(href.split("/wiki/")[1].split("#")[0]).replace(/_/g, " ");
-        a.setAttribute("href", "/hledat?q=" + encodeURIComponent(t));
+        a.setAttribute("href", articleLinkHref(t, lang));
         a.setAttribute("data-inapp", "1");
       } else {
         a.setAttribute("target", "_blank");
@@ -231,14 +250,14 @@ export function parseArticle(html: string, fallbackTitle?: string): ParsedArticl
   return { contentEl: root, title, infoboxHtml, hatnotes, readingMinutes: Math.max(1, Math.round(words / 200)) };
 }
 
-const DISAMBIGUATION_STOP = /^(Externí odkazy|Reference|Poznámky|Literatura|Související články)$/i;
+const DISAMBIGUATION_STOP = /^(Externí odkazy|Reference|Poznámky|Literatura|Související články|External links|References|Notes|Further reading|See also)$/i;
 
 /**
  * Turns a (already parsed) disambiguation page into groups of meanings:
  * each list item's first link is the meaning, the rest of the line its
  * description. Group labels come from headings and <dt> captions.
  */
-export function parseDisambiguation(contentEl: Element): ParsedDisambiguation {
+export function parseDisambiguation(contentEl: Element, lang: WikiLang = "cs"): ParsedDisambiguation {
   const intro = cleanText(contentEl.querySelector("p")?.textContent);
   const groups: DisambiguationGroup[] = [{ label: "", items: [] }];
   let stopped = false;
@@ -264,14 +283,14 @@ export function parseDisambiguation(contentEl: Element): ParsedDisambiguation {
     const missing = link.classList.contains("wp-redlink");
     const hrefQuery = !missing ? new URLSearchParams((link.getAttribute("href") || "").split("?")[1] || "").get("q") : null;
     const title = hrefQuery || linkText;
-    groups.at(-1)!.items.push({ title: linkText || title, description, missing, href: missing ? "" : inAppHref(title) });
+    groups.at(-1)!.items.push({ title: linkText || title, description, missing, href: missing ? "" : inAppHref(title, lang) });
   });
   return { intro, groups: groups.filter((group) => group.items.length > 0) };
 }
 
 /** Fallback when the summary is unavailable. */
 export function looksLikeDisambiguation(description: string, intro: string): boolean {
-  return /rozcestník/i.test(description) || /má (více|několik|další) význam/i.test(intro);
+  return /rozcestník|disambiguation/i.test(description) || /má (více|několik|další) význam|may refer to|can refer to/i.test(intro);
 }
 
 // Vytvoření TOC stromu ze sekčních nadpisů (h2/h3/h4 uvnitř <section>)
