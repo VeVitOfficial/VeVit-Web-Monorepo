@@ -3,8 +3,9 @@
 
 import Link from "next/link";
 import { aifbT } from "@/lib/edu/aifb/i18n";
+import { DATA_PROTECTION_ANCHOR, showsDataProtection } from "@/lib/edu/aifb/guide";
 import { pupilVisible, withMode, type LessonMode } from "@/lib/edu/aifb/mode";
-import { categoryPath, hubPath, lessonPath, lessonSlug, levelPath, levelSlug } from "@/lib/edu/aifb/routes";
+import { categoryPath, guidePath, hubPath, lessonPath, lessonSlug, levelPath, levelSlug } from "@/lib/edu/aifb/routes";
 import type { AifbContent, Level, Lesson } from "@/lib/edu/aifb/types";
 import type { EduLocale } from "@/lib/edu/i18n-data";
 import { Paragraphs } from "./blocks";
@@ -15,7 +16,7 @@ import { ModeSwitch } from "./mode-switch";
 import { PrintButton } from "./print-button";
 import { ProjectionView } from "./projection";
 import type { RichTextContext } from "./rich-text";
-import { lessonKindLabel } from "./shared";
+import { SectionCallout, lessonKindLabel } from "./shared";
 
 export function LessonView({
   locale, content, level, lesson, mode,
@@ -89,7 +90,15 @@ export function LessonView({
             </section>
           )
         ) : (
-          <LessonBody lesson={lesson} ctx={ctx} t={t} />
+          <>
+            {showsDataProtection(catId, level.id, lesson.type) ? (
+              <SectionCallout title={t("aifb.dataProtection.title")}>
+                <p>{t("aifb.dataProtection.body")}</p>
+                <p><Link href={guidePath(locale, catId, DATA_PROTECTION_ANCHOR[catId])} className="aifb-textlink">{t("aifb.dataProtection.link")}</Link></p>
+              </SectionCallout>
+            ) : null}
+            <LessonBody lesson={lesson} ctx={ctx} t={t} />
+          </>
         )}
       </article>
       <nav className="aifb-pager aifb-noprint" aria-label={t("aifb.level.lessons")}>

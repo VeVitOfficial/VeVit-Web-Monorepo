@@ -241,3 +241,22 @@ Původní kurz AI gramotnosti byl na pokyn vlastníka z webu odstraněn (stránk
 | `public/` v `.gitignore` | Nové soubory pod `public/` je třeba přidávat `git add -f` (jinak se nedostanou na Vercel) |
 
 Pozn.: obsah průvodců zmiňuje názvy konkrétních AI služeb (např. ChatGPT, Gemini). Je to obsah plánu a nemění se; pravidlo R8 (bez značky modelu) platí pro rozhraní, které aplikace generuje.
+
+## 18. Stav po F7 (2026-10-22)
+
+| Fáze | Stav |
+|---|---|
+| F1 obsahový základ | hotovo (validace v buildu a CI, typy ze schématu, renderer, loader) |
+| F2 navigační kostra | hotovo (hub, kategorie, level, lekce, Pro učitele, 404, chyba s „Zkusit znovu") |
+| F3 témata a mapy | hotovo (pirate-map, trail, clean; seznamové varianty) |
+| F4 přehrávač lekce | hotovo (Pro učitele, Projekce, Tisk lekce i levelu, Žák = zpráva) |
+| F5.1 místní průběh a XP | hotovo (klíč `vevit.edu.aifb.progress.v1`, export/import, drahokamy) |
+| F7 Pro učitele | hotovo (obsah průvodce, odkazy mezi oddíly, soubory ke stažení, dopis rodičům k tisku a kopírování, upozornění na ochranu údajů u lekcí s AI) |
+| F5.2, F6, F9, třídy a účty | záměrně nezačato (vyžaduje výslovný pokyn) |
+
+Rozhodnutí z F4 a F7:
+
+- Projekce promítá jen to, co patří žákům: u teorie opakovací otázky a diskuzní témata, u cvičení zadání, očekávaný výstup, formu a čas. Úvod a poznámky pro učitele zůstávají skryté.
+- Upozornění na ochranu údajů se ukazuje u cvičení, kde se pracuje s nástrojem AI: 1. stupeň bloky C a D, 2. stupeň a SŠ všechna cvičení. Odkaz vede na oddíl 7.2 (1. stupeň) nebo 1.4 (2. stupeň, SŠ). Pravidlo je v `src/lib/edu/aifb/guide.ts`, ne uhodnuté z textu.
+- Soubory ke stažení řídí `src/content/aifb/downloads.json`; validace kontroluje existenci i velikost. V `public/assets/aifb/2026-10/` je zatím jen `AIFB_plan_cviceni_pro_skoly.docx` (kategorie SŠ, podle `category.source.document`). Chybí DOCX pro 1. a 2. stupeň a všechna PDF.
+- Žákovská vrstva: všude `pupil.status = todo`, text pro žáky nevznikl (F6).

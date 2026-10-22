@@ -7,6 +7,7 @@ import "server-only";
 
 import { notFound } from "next/navigation";
 import catalogJson from "@/content/aifb/aifb-catalog.json";
+import downloadsJson from "@/content/aifb/downloads.json";
 import type { AifbContent, Catalog, CategoryId, Level, Lesson } from "./types.ts";
 import { isCategoryId } from "./types.ts";
 import { lessonIdFromSlug, levelIdFromSlug } from "./routes.ts";
@@ -53,4 +54,11 @@ export async function requireCategory(id: string): Promise<AifbContent> {
   const pending = loadCategory(id);
   if (!pending) notFound();
   return pending;
+}
+
+export type DownloadFile = { category: string; path: string; file: string; format: string; bytes: number };
+
+/** Soubory ke stažení pro kategorii (jen ty, které jsou v downloads.json a existují v public/). */
+export function getDownloads(categoryId: string): DownloadFile[] {
+  return (downloadsJson.files as DownloadFile[]).filter((item) => item.category === categoryId);
 }

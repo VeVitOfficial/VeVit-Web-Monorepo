@@ -3,7 +3,7 @@ import { connection } from "next/server";
 import type { Metadata } from "next";
 import { readEduLocale } from "@/lib/edu/locale";
 import { aifbT } from "@/lib/edu/aifb/i18n";
-import { requireCategory } from "@/lib/edu/aifb/content";
+import { getDownloads, requireCategory } from "@/lib/edu/aifb/content";
 import { AifbFrame } from "@/components/edu/aifb/frame";
 import { GuideView } from "@/components/edu/aifb/guide-view";
 
@@ -21,7 +21,7 @@ export default async function AifbGuideRoute({ params }: Props) {
   const [locale, content] = await Promise.all([readEduLocale(), requireCategory(category)]);
   return (
     <AifbFrame locale={locale} theme={content.category.theme}>
-      <GuideView locale={locale} content={content} />
+      <GuideView locale={locale} content={content} downloads={getDownloads(content.category.id)} />
     </AifbFrame>
   );
 }

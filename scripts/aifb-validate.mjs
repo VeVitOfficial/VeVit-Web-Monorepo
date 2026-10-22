@@ -6,12 +6,14 @@
 //    certifikace jen jako „planned", text pro žáky jen ve stavu todo/draft.
 // Obsahové soubory se nikdy nepřepisují ani nepřeformátovávají.
 
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync, statSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import { DATA_PROTECTION_ANCHOR, PRINTABLE_SECTIONS } from "../src/lib/edu/aifb/guide.ts";
 import { guideRefsIn } from "../src/lib/edu/aifb/markdown.ts";
 
-const defaultDir = join(dirname(fileURLToPath(import.meta.url)), "..", "src/content/aifb");
+const repoRoot = join(dirname(fileURLToPath(import.meta.url)), "..");
+const defaultDir = join(repoRoot, "src/content/aifb");
 const CATEGORY_FILES = { zs1: "aifb-content-zs1.json", zs2: "aifb-content-zs2.json", ss: "aifb-content-ss.json" };
 const EXPECTED = { categories: 3, levels: 16, lessons: 96 };
 
@@ -122,7 +124,7 @@ function collectStrings(value, out = []) {
   return out;
 }
 
-export function validateAifb(dir = defaultDir) {
+export function validateAifb(dir = defaultDir, publicDir = join(repoRoot, "public")) {
   const errors = [];
   const warnings = [];
   const read = (name) => JSON.parse(readFileSync(join(dir, name), "utf8"));
@@ -210,6 +212,21 @@ export function validateAifb(dir = defaultDir) {
         if (!anchors.has(ref.anchor)) errors.push(`${fileName}: odkaz „${ref.text}" vede na neexistující oddíl (#${ref.anchor})`);
       }
     }
+    // Oddíly, na které odkazuje upozornění u lekcí s AI, a oddíly s tiskem/kopírováním, musí existovat.
+    const needed = [DATA_PROTECTION_ANCHOR[categoryId], ...(PRINTABLE_SECTIONS[categoryId] ?? [])];
+    for (const anchor of needed) {
+      if (!anchors.has(anchor)) errors.push(`${fileName}: průvodce nemá oddíl "${anchor}" požadovaný aplikací`);
+    }
+  }
+
+  // Soubory ke stažení: položka musí odpovídat skutečnému souboru (existence i velikost).
+  const downloads = read("downloads.json");
+  for (const item of downloads.files ?? []) {
+    if (!CATEGORY_FILES[item.category]) errors.push(`downloads.json: neznámá kategorie "${item.category}"`);
+    if (!String(item.path).endsWith(`/${item.file}`)) errors.push(`downloads.json: path "${item.path}" nekončí názvem souboru "${item.file}"`);
+    const onDisk = join(publicDir, String(item.path));
+    if (!existsSync(onDisk)) errors.push(`downloads.json: soubor ${item.path} neexistuje v public/`);
+    else if (statSync(onDisk).size !== item.bytes) errors.push(`downloads.json: ${item.file} má ${statSync(onDisk).size} B, v manifestu ${item.bytes} B`);
   }
 
   const totals = catalog.totals ?? {};

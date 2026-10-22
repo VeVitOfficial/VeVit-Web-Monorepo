@@ -1,0 +1,13 @@
+{
+  "version": "2026-10",
+  "note": "Soubory ke stažení pro sekci Pro učitele. Zobrazují se jen položky uvedené zde; cesta vede do public/assets/aifb (verzovaná složka, protože /assets má dlouhou cache). Kontroluje scripts/aifb-validate.mjs.",
+  "files": [
+    {
+      "category": "ss",
+      "path": "/assets/aifb/2026-10/AIFB_plan_cviceni_pro_skoly.docx",
+      "file": "AIFB_plan_cviceni_pro_skoly.docx",
+      "format": "DOCX",
+      "bytes": 52253
+    }
+  ]
+}
