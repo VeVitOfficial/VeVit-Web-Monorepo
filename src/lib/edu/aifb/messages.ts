@@ -1,0 +1,101 @@
+// Texty rozhraní sekce AIFB (AI gramotnost). Zatím jen čeština; ostatní jazyky mají jen
+// upozornění, že obsah je česky, a zbytek se bere z češtiny (fallback v translate()).
+// Soubor je bez importů, aby se z něj dal načíst i jednotkový test; slovníky ho slučují
+// na konci src/lib/edu/i18n-data.ts.
+
+type Messages = Record<string, string>;
+type Locale = "cs" | "en" | "es" | "de" | "uk" | "fr" | "sk";
+
+const cs: Messages = {
+  "aifb.langNotice": "Obsah je zatím pouze v češtině.",
+  "aifb.crumbs.label": "Drobečková navigace",
+  "aifb.crumbs.edu": "Edu",
+  "aifb.crumbs.hub": "AI gramotnost",
+  "aifb.back": "Zpět",
+  "aifb.comingSoon": "Připravuje se",
+
+  "aifb.hub.title": "AI gramotnost",
+  "aifb.hub.lead": "AI Fluency Benchmark (AIFB): vyber, pro koho se učíš.",
+  "aifb.hub.cards": "Kategorie",
+  "aifb.hub.teachers.title": "Pro učitele",
+  "aifb.hub.teachers.lead": "Průvodce metodikou, ochranou údajů a doporučeným postupem pro školy.",
+  "aifb.hub.teachers.link": "Průvodce: {{category}}",
+  "aifb.hub.legacyCourse": "Samostatný online kurz se připravuje.",
+  "aifb.hub.heroCaption": "Robot právě kóduje.",
+
+  "aifb.unit.Blok.one": "blok", "aifb.unit.Blok.few": "bloky", "aifb.unit.Blok.many": "bloků",
+  "aifb.unit.Level.one": "level", "aifb.unit.Level.few": "levely", "aifb.unit.Level.many": "levelů",
+  "aifb.count.lessons.one": "lekce", "aifb.count.lessons.few": "lekce", "aifb.count.lessons.many": "lekcí",
+  "aifb.open": "Otevřít",
+
+  "aifb.usage.teacher-led": "Ovládá učitel",
+  "aifb.usage.teacher-led-then-individual": "Nejdřív s učitelem, později samostatně",
+  "aifb.usage.individual": "Samostatná práce",
+
+  "aifb.category.levels": "Přehled",
+  "aifb.category.audience": "Pro koho",
+  "aifb.category.guideLink": "Průvodce pro učitele",
+  "aifb.category.order": "Pořadí je doporučené. Vybrat si můžeš libovolný {{unit}}.",
+
+  "aifb.level.recommended": "Doporučeno pro",
+  "aifb.level.hours": "Rozsah",
+  "aifb.level.about.Blok": "O bloku",
+  "aifb.level.about.Level": "O levelu",
+  "aifb.level.goals": "Cíle",
+  "aifb.level.schedule": "Časový rozvrh",
+  "aifb.level.teacherNotes": "Poznámky pro učitele",
+  "aifb.level.lessons": "Lekce",
+  "aifb.level.themes": "Témata",
+  "aifb.level.advanced": "Pro pokročilé",
+  "aifb.level.certification": "Certifikace: Připravuje se",
+  "aifb.level.certificationNamed": "Plánovaná certifikace {{name}}: Připravuje se",
+
+  "aifb.lesson.theory": "Teorie",
+  "aifb.lesson.exercise": "Cvičení {{n}}",
+  "aifb.lesson.time": "Čas",
+  "aifb.lesson.form": "Forma",
+  "aifb.lesson.expectedOutput": "Očekávaný výstup",
+  "aifb.lesson.description": "Zadání",
+  "aifb.lesson.intro": "Úvod",
+  "aifb.lesson.reviewQuestions": "Opakovací otázky",
+  "aifb.lesson.discussionTopics": "Diskuzní témata",
+  "aifb.lesson.prev": "Předchozí lekce",
+  "aifb.lesson.next": "Další lekce",
+  "aifb.lesson.backToLevel": "Zpět na seznam lekcí",
+
+  "aifb.theme.pirate-map.theory": "Povídání u mapy",
+  "aifb.theme.pirate-map.exercise": "Úkol {{n}}",
+  "aifb.theme.pirate-map.level": "Ostrov",
+  "aifb.theme.pirate-map.done": "Poklad nalezen",
+  "aifb.theme.trail.theory": "Teorie",
+  "aifb.theme.trail.exercise": "Cvičení {{n}}",
+  "aifb.theme.trail.level": "Level",
+  "aifb.theme.trail.done": "Splněno",
+  "aifb.theme.clean.theory": "Teorie",
+  "aifb.theme.clean.exercise": "Cvičení {{n}}",
+  "aifb.theme.clean.level": "Level",
+  "aifb.theme.clean.done": "Hotovo",
+
+  "aifb.guide.title": "Průvodce pro učitele",
+  "aifb.guide.contents": "Obsah průvodce",
+  "aifb.guide.chapter": "Kapitola {{n}}",
+  "aifb.guide.downloads": "Ke stažení",
+  "aifb.guide.noDownloads": "Soubory ke stažení se připravují.",
+
+  "aifb.error.title": "Obsah se nepodařilo načíst",
+  "aifb.error.body": "Zkontroluj připojení k internetu a zkus to znovu.",
+  "aifb.error.retry": "Zkusit znovu",
+  "aifb.notFound.title": "Tuto stránku jsme nenašli",
+  "aifb.notFound.body": "Adresa neodpovídá žádné kategorii, úrovni ani lekci AIFB.",
+  "aifb.notFound.link": "Zpět na přehled AI gramotnosti",
+};
+
+export const aifbMessages: Record<Locale, Messages> = {
+  cs,
+  en: { "aifb.langNotice": "This content is currently available in Czech only." },
+  es: { "aifb.langNotice": "Este contenido está disponible por ahora solo en checo." },
+  de: { "aifb.langNotice": "Dieser Inhalt ist vorerst nur auf Tschechisch verfügbar." },
+  uk: { "aifb.langNotice": "Цей вміст поки що доступний лише чеською мовою." },
+  fr: { "aifb.langNotice": "Ce contenu n'est pour l'instant disponible qu'en tchèque." },
+  sk: { "aifb.langNotice": "Tento obsah je zatiaľ dostupný len v češtine." },
+};

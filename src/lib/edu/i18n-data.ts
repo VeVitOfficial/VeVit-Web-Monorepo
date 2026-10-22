@@ -3,6 +3,8 @@
 // React kontext (src/components/edu/i18n.tsx) drží aktuální lang a volá
 // translate/lessonsUnit/lessonsLabel s ním — module-level stav se nepoužívá.
 
+import { aifbMessages } from "./aifb/messages.ts";
+
 export type EduLocale = "cs" | "en" | "es" | "de" | "uk" | "fr" | "sk";
 
 export const EDU_SUPPORTED_LOCALES: readonly EduLocale[] = [
@@ -41,7 +43,7 @@ export const dictionaries: Record<EduLocale, EduDictionary> = {
     "home.categories.programming": "Programování",
     "home.categories.programmingDesc": "18 kurzů, 342 lekcí, praktická cvičení a gamifikovaný systém XP.",
     "home.categories.aiLiteracy": "AI gramotnost",
-    "home.categories.aiLiteracyDesc": "Kompletní kurz pro rozvoj AI gramotnosti — od základů umělé inteligence.",
+    "home.categories.aiLiteracyDesc": "AIFB: hravé bloky pro 1. stupeň, úrovně pro 2. stupeň a střední školy a metodika pro učitele.",
     "soon.back": "Zpět na přehled Edu",
     "soon.ai.body": "Připravujeme novou AI gramotnost pro 1. a 2. stupeň ZŠ i střední školy. Robot na tom právě pracuje.",
     "soon.ai.caption": "Robot kóduje. Hotovo bude brzy.",
@@ -176,7 +178,7 @@ export const dictionaries: Record<EduLocale, EduDictionary> = {
     "home.categories.programming": "Programming",
     "home.categories.programmingDesc": "18 courses, 342 lessons, practical exercises and a gamified XP system.",
     "home.categories.aiLiteracy": "AI Literacy",
-    "home.categories.aiLiteracyDesc": "Complete course for developing AI literacy — from fundamentals of artificial intelligence.",
+    "home.categories.aiLiteracyDesc": "AIFB: playful blocks for primary school, levels for lower and upper secondary school, and teacher guides (Czech only for now).",
     "home.categories.math": "Mathematics",
     "home.categories.mathDesc": "Basics of differential calculus, geometry and algebra.",
     "home.categories.physics": "Physics",
@@ -295,7 +297,7 @@ export const dictionaries: Record<EduLocale, EduDictionary> = {
     "home.categories.programming": "Programación",
     "home.categories.programmingDesc": "18 cursos, 342 lecciones, ejercicios prácticos y un sistema gamificado de XP.",
     "home.categories.aiLiteracy": "Alfabetización AI",
-    "home.categories.aiLiteracyDesc": "Curso completo para desarrollar la alfabetización AI — desde los fundamentos de la inteligencia artificial.",
+    "home.categories.aiLiteracyDesc": "AIFB: bloques lúdicos para primaria, niveles para secundaria y guías para docentes (por ahora solo en checo).",
     "home.categories.math": "Matemáticas",
     "home.categories.mathDesc": "Básicos de cálculo diferencial, geometría y álgebra.",
     "home.categories.physics": "Física",
@@ -400,7 +402,7 @@ export const dictionaries: Record<EduLocale, EduDictionary> = {
     "home.categories.programming": "Programmierung",
     "home.categories.programmingDesc": "18 Kurse, 342 Lektionen, praktische Übungen und ein gamifiziertes XP-System.",
     "home.categories.aiLiteracy": "KI-Kompetenz",
-    "home.categories.aiLiteracyDesc": "Komplettkurs zur Entwicklung von KI-Kompetenz — von den Grundlagen künstlicher Intelligenz.",
+    "home.categories.aiLiteracyDesc": "AIFB: spielerische Blöcke für die Grundschule, Stufen für die Sekundarstufe und Lehrerhandbücher (vorerst nur auf Tschechisch).",
     "home.categories.math": "Mathematik",
     "home.categories.mathDesc": "Grundlagen der Differentialrechnung, Geometrie und Algebra.",
     "home.categories.physics": "Physik",
@@ -505,7 +507,7 @@ export const dictionaries: Record<EduLocale, EduDictionary> = {
     "home.categories.programming": "Програмування",
     "home.categories.programmingDesc": "18 курсів, 342 уроки, практичні вправи та гейміфікована система XP.",
     "home.categories.aiLiteracy": "Грамотність AI",
-    "home.categories.aiLiteracyDesc": "Повний курс для розвитку грамотності AI — від основ штучного інтелекту.",
+    "home.categories.aiLiteracyDesc": "AIFB: ігрові блоки для початкової школи, рівні для середньої школи та посібники для вчителів (поки лише чеською).",
     "home.categories.math": "Математика",
     "home.categories.mathDesc": "Основи диференціального числення, геометрії та алгебри.",
     "home.categories.physics": "Фізика",
@@ -610,7 +612,7 @@ export const dictionaries: Record<EduLocale, EduDictionary> = {
     "home.categories.programming": "Programmation",
     "home.categories.programmingDesc": "18 cours, 342 leçons, exercices pratiques et un système gamifié d'XP.",
     "home.categories.aiLiteracy": "Alphabétisation IA",
-    "home.categories.aiLiteracyDesc": "Cours complet pour développer l'alphabétisation IA — des fondements de l'intelligence artificielle.",
+    "home.categories.aiLiteracyDesc": "AIFB : blocs ludiques pour le primaire, niveaux pour le secondaire et guides pour les enseignants (pour l'instant en tchèque uniquement).",
     "home.categories.math": "Mathématiques",
     "home.categories.mathDesc": "Bases du calcul différentiel, géométrie et algèbre.",
     "home.categories.physics": "Physique",
@@ -730,7 +732,7 @@ export const dictionaries: Record<EduLocale, EduDictionary> = {
     "home.categories.programming": "Programovanie",
     "home.categories.programmingDesc": "18 kurzov, 342 lekcií, praktické cvičenia a gamifikovaný systém XP.",
     "home.categories.aiLiteracy": "AI gramotnosť",
-    "home.categories.aiLiteracyDesc": "Kompletný kurz na rozvoj AI gramotnosti — od základov umelej inteligencie.",
+    "home.categories.aiLiteracyDesc": "AIFB: hravé bloky pre 1. stupeň, úrovne pre 2. stupeň a stredné školy a metodika pre učiteľov (zatiaľ len po česky).",
     "home.categories.math": "Matematika",
     "home.categories.mathDesc": "Základy diferenciálneho počtu, geometrie a algebry.",
     "home.categories.physics": "Fyzika",
@@ -834,6 +836,9 @@ export const dictionaries: Record<EduLocale, EduDictionary> = {
     "skoly.homeLink": "VeVit Edu pre školy (už čoskoro)",
   },
 };
+
+// Texty sekce AIFB žijí v ./aifb/messages.ts; sloučení do slovníků jednotlivých jazyků.
+for (const locale of EDU_SUPPORTED_LOCALES) Object.assign(dictionaries[locale], aifbMessages[locale]);
 
 // Čistá (stateless) verze t() — lang se předává explicitně z React kontextu.
 // Fallback na cs slovník, pokud klíč v lokalizovaném slovníku chybí.

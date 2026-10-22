@@ -74,10 +74,10 @@ function getFirstTextPreview(blocks: unknown[] | undefined): string {
   return "Vlastní lekce";
 }
 
-export function EduHomePage({ locale }: { locale: string }) {
+export function EduHomePage({ locale, aifbLessons }: { locale: string; aifbLessons: number }) {
   // locale z x-vv-locale hlavičky — useEduLang() ho inicializuje a nabízí t/lessonsUnit.
   void locale;
-  const { t, lang } = useEduLang();
+  const { t, lang, lessonsLabel } = useEduLang();
   const { setBreadcrumbs } = useEduBreadcrumbs();
 
   const [index, setIndex] = useState<CourseIndexMeta[] | null>(null);
@@ -161,13 +161,13 @@ export function EduHomePage({ locale }: { locale: string }) {
   const cats = useMemo(
     () => [
       { id: "programming", titleKey: "home.categories.programming", descKey: "home.categories.programmingDesc", icon: "Terminal", href: "/edu/programovani", color: "#00d084", count: PROGRAMMING_COURSES_COUNT, countLabel: t("home.courses"), disabled: false },
-      { id: "ai", titleKey: "home.categories.aiLiteracy", descKey: "home.categories.aiLiteracyDesc", icon: "Brain", href: "/edu/ai-gramotnost", color: "#8b5cf6", count: 0, countLabel: t("landing.comingSoon"), disabled: false },
+      { id: "ai", titleKey: "home.categories.aiLiteracy", descKey: "home.categories.aiLiteracyDesc", icon: "Brain", href: "/edu/ai-gramotnost", color: "#8b5cf6", count: 0, countLabel: lessonsLabel(aifbLessons), disabled: false },
       { id: "matematika", titleKey: "home.categories.math", descKey: "home.categories.mathDesc", icon: "Calculator", href: "#", color: "#facc15", count: 0, countLabel: t("landing.comingSoon"), disabled: true },
       { id: "fyzika", titleKey: "home.categories.physics", descKey: "home.categories.physicsDesc", icon: "Atom", href: "#", color: "#f97316", count: 0, countLabel: t("landing.comingSoon"), disabled: true },
       { id: "historie", titleKey: "home.categories.history", descKey: "home.categories.historyDesc", icon: "History", href: "/edu/historie", color: "#a78bfa", count: 0, countLabel: t("landing.comingSoon"), disabled: false },
       { id: "chemie", titleKey: "home.categories.chemistry", descKey: "home.categories.chemistryDesc", icon: "FlaskConical", href: "/edu/chemie", color: "#0ea5e9", count: 0, countLabel: t("landing.comingSoon"), disabled: false },
     ],
-    [t],
+    [t, lessonsLabel, aifbLessons],
   );
 
   // Filtr recently added — bez programovacích jazyků v titulu/kategorii.

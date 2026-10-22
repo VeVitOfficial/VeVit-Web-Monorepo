@@ -5,6 +5,7 @@ import "server-only";
 // nikdy se nepřepisuje ani nepřeformátovává (hardRule R6). Soubory jsou součástí bundlu
 // stejně jako obsah původního kurzu (serverless na Vercelu nepracuje s volnými soubory).
 
+import { notFound } from "next/navigation";
 import catalogJson from "@/content/aifb/aifb-catalog.json";
 import type { AifbContent, Catalog, CategoryId, Level, Lesson } from "./types.ts";
 import { isCategoryId } from "./types.ts";
@@ -45,4 +46,11 @@ export function findLevel(content: AifbContent, slug: string): Level | undefined
 export function findLesson(level: Level, slug: string): Lesson | undefined {
   const id = lessonIdFromSlug(level.id, slug);
   return level.lessons.find((lesson) => lesson.id === id);
+}
+
+/** Pro stránky: obsah kategorie, nebo 404 (neznámé id i „kurz", který nemá obsah AIFB). */
+export async function requireCategory(id: string): Promise<AifbContent> {
+  const pending = loadCategory(id);
+  if (!pending) notFound();
+  return pending;
 }

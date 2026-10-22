@@ -1,0 +1,93 @@
+/* AIFB (AI gramotnost): společné styly stránek, scoped pod .aifb (uvnitř .aigram, tokeny z ai-gramotnost.css).
+   Barvy jen z existujících tokenů (--primary, --bg-*, --text-*, --border-color) a z palety kurzů Edu. */
+.aifb { --aifb-accent: var(--primary); --aifb-focus: var(--primary); }
+html.light .aifb { --aifb-accent: #047857; --aifb-focus: #047857; }
+.aifb .aifb-main { max-width: 1180px; padding-top: 1.5rem; }
+.aifb a:focus-visible, .aifb button:focus-visible, .aifb summary:focus-visible, .aifb [tabindex="0"]:focus-visible {
+  outline: 3px solid var(--aifb-focus); outline-offset: 3px; border-radius: 8px;
+}
+.aifb-notice { margin: 0 0 1.25rem; padding: 0.7rem 1rem; border-radius: var(--radius-md); background: var(--bg-elevated); border: 1px solid var(--border-color); font-size: 0.9rem; }
+
+/* Drobečky */
+.aifb-crumbs { display: flex; flex-wrap: wrap; gap: 0.25rem 0.5rem; margin: 0 0 1.25rem; padding: 0; list-style: none; font-size: 0.88rem; color: var(--text-secondary); }
+.aifb-crumbs li + li::before { content: "›"; margin-right: 0.5rem; color: var(--text-muted); }
+.aifb-crumbs a { text-decoration: underline; text-underline-offset: 3px; }
+.aifb-crumbs a:hover { color: var(--aifb-accent); }
+.aifb-crumbs [aria-current="page"] { color: var(--text-primary); font-weight: 600; }
+
+/* Hlavičky stránek */
+.aifb-head { margin: 0 0 2rem; }
+.aifb-head h1, .aifb-main > h1 { margin: 0 0 0.5rem; font-family: "Bricolage Grotesque", var(--font); font-size: clamp(2rem, 4.6vw, 3.1rem); font-weight: 800; line-height: 1.08; letter-spacing: -0.025em; color: var(--text-primary); }
+.aifb-eyebrow { margin: 0 0 0.25rem; font-size: 0.85rem; font-weight: 700; color: var(--aifb-accent); }
+.aifb-lead { margin: 0 0 1rem; max-width: 46rem; font-size: 1.1rem; line-height: 1.6; color: var(--text-secondary); }
+.aifb-muted { margin: 0 0 1rem; max-width: 46rem; font-size: 0.92rem; line-height: 1.6; color: var(--text-secondary); }
+.aifb-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0 0 1rem; }
+.aifb-badge { display: inline-flex; align-items: center; padding: 0.2rem 0.75rem; border-radius: 999px; font-size: 0.8rem; font-weight: 600; color: var(--text-primary); background: var(--bg-elevated); border: 1px solid var(--border-color); }
+.aifb-badge--cert { border-style: dashed; color: var(--text-secondary); }
+.aifb a.aifb-textlink { color: var(--aifb-accent); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.aifb-section { margin: 0 0 3rem; }
+.aifb-link-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.6rem; }
+.aifb-link-list a { color: var(--aifb-accent); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+
+/* Hub */
+.aifb-card-list { list-style: none; padding: 0; margin: 0; }
+.aifb-card-link { display: block; height: 100%; border-radius: 1.4rem; }
+.aifb-card-meta { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.6rem; }
+.aifb-card-meta .eh-badge { margin: 0; }
+
+/* Seznam levelů (seznamový pohled; mapy téma doplňují) */
+.aifb-level-list { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: 0.9rem; grid-template-columns: 1fr; }
+@media (min-width: 760px) { .aifb-level-list { grid-template-columns: repeat(2, 1fr); } }
+.aifb-level-card a { display: flex; flex-direction: column; gap: 0.3rem; height: 100%; min-height: 44px; padding: 1.1rem 1.25rem; border-radius: var(--radius-lg); background: var(--bg-surface); border: 1.5px solid var(--border-color); transition: border-color 0.2s, transform 0.2s; }
+.aifb-level-card a:hover { border-color: var(--aifb-accent); transform: translateY(-2px); }
+.aifb-level-card__code { font-size: 0.82rem; font-weight: 700; color: var(--aifb-accent); }
+.aifb-level-card__title { font-family: "Bricolage Grotesque", var(--font); font-size: 1.25rem; font-weight: 700; color: var(--text-primary); }
+.aifb-level-card__sub { color: var(--text-secondary); }
+.aifb-level-card__meta { font-size: 0.85rem; color: var(--text-secondary); }
+.aifb-level-card__badges { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.3rem; }
+
+/* Lekce */
+.aifb-lesson-list { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: 0.6rem; }
+.aifb-lesson-row a { display: grid; grid-template-columns: minmax(6.5rem, auto) 1fr auto; align-items: center; gap: 0.5rem 1rem; min-height: 44px; padding: 0.8rem 1rem; border-radius: var(--radius-md); background: var(--bg-surface); border: 1.5px solid var(--border-color); }
+.aifb-lesson-row a:hover { border-color: var(--aifb-accent); }
+.aifb-lesson-row__kind { font-size: 0.82rem; font-weight: 700; color: var(--aifb-accent); }
+.aifb-lesson-row__title { font-weight: 600; color: var(--text-primary); }
+.aifb-lesson-row__meta { font-size: 0.82rem; color: var(--text-secondary); }
+@media (max-width: 560px) { .aifb-lesson-row a { grid-template-columns: 1fr; } }
+
+/* Obsah (proza, seznamy, tabulky, callouty) */
+.aifb-prose { max-width: 50rem; }
+.aifb-prose p { margin: 0 0 1rem; line-height: 1.7; color: var(--text-secondary); }
+.aifb-prose strong { color: var(--text-primary); }
+.aifb-h2 { margin: 2rem 0 0.75rem; font-family: "Bricolage Grotesque", var(--font); font-size: 1.5rem; font-weight: 700; color: var(--text-primary); }
+.aifb-h3 { margin: 1.6rem 0 0.6rem; font-size: 1.2rem; font-weight: 700; color: var(--text-primary); }
+.aifb-prose h3, .aifb-prose h4 { margin: 1.4rem 0 0.5rem; color: var(--text-primary); }
+.aifb-list { list-style: disc; margin: 0 0 1.2rem 1.25rem; padding: 0; color: var(--text-secondary); line-height: 1.65; }
+ol.aifb-list { list-style: decimal; }
+.aifb-list li { margin-bottom: 0.45rem; padding-left: 0.2rem; }
+.aifb-list-title { margin: 0 0 0.4rem; }
+.aifb a.aifb-ref { color: var(--aifb-accent); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.aifb-callout { margin: 1.25rem 0; padding: 1rem 1.25rem; border-radius: var(--radius-md); background: var(--bg-elevated); border: 1.5px solid var(--border-color); border-left: 5px solid var(--aifb-accent); }
+.aifb-callout__title { margin: 0 0 0.4rem; font-weight: 700; color: var(--text-primary); }
+.aifb-callout p:last-child { margin-bottom: 0; }
+.aifb-table-wrap { margin: 1rem 0 1.5rem; overflow-x: auto; border-radius: var(--radius-md); border: 1.5px solid var(--border-color); }
+.aifb-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+.aifb-table caption { padding: 0.6rem 0.9rem; text-align: left; font-weight: 700; color: var(--text-primary); }
+.aifb-table th, .aifb-table td { padding: 0.65rem 0.9rem; text-align: left; vertical-align: top; border-top: 1px solid var(--border-color); color: var(--text-secondary); }
+.aifb-table thead th { background: var(--bg-elevated); color: var(--text-primary); }
+.aifb-table tbody th { color: var(--text-primary); font-weight: 600; }
+.aifb-details { margin: 0 0 1rem; border: 1.5px solid var(--border-color); border-radius: var(--radius-md); background: var(--bg-surface); }
+.aifb-details > summary { display: flex; align-items: center; gap: 0.6rem; padding: 0.8rem 1rem; cursor: pointer; min-height: 44px; list-style: none; }
+.aifb-details > summary::-webkit-details-marker { display: none; }
+.aifb-details > summary::before { content: "▸"; color: var(--aifb-accent); transition: transform 0.15s; }
+.aifb-details[open] > summary::before { transform: rotate(90deg); }
+.aifb-details > summary h2 { margin: 0; font-size: 1.15rem; font-weight: 700; color: var(--text-primary); }
+.aifb-details > :not(summary) { margin-left: 1rem; margin-right: 1rem; }
+.aifb-details > :last-child { margin-bottom: 1rem; }
+.aifb-pager { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.75rem 1.5rem; margin: 2.5rem 0 0; padding-top: 1.25rem; border-top: 1px solid var(--border-color); }
+.aifb-pager a { min-height: 44px; display: inline-flex; align-items: center; color: var(--aifb-accent); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .aifb * { transition: none !important; scroll-behavior: auto !important; }
+  .aifb-level-card a:hover { transform: none; }
+}

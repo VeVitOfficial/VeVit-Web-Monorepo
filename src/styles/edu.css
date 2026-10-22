@@ -1116,3 +1116,4 @@ html.light .es-title span:nth-child(2) { color: var(--scl); }
   100% { transform: translate(178px, 142px); }
 }
 .es-quill { transform: translate(246px, 196px); }
+.eh-card > .eh-hexicon { align-self: flex-start; }

@@ -1,18 +1,23 @@
-// /edu/ai-gramotnost → "Již brzy" stránka s animovanou scénou.
+// /edu/ai-gramotnost → hub AIFB: výběr kategorie (1. stupeň ZŠ, 2. stupeň ZŠ, SŠ, online kurz).
 import { connection } from "next/server";
 import type { Metadata } from "next";
 import { readEduLocale } from "@/lib/edu/locale";
-import { EduRoot } from "@/components/edu/edu-root";
-import { EduSoonPage } from "@/components/edu/pages/soon-page";
+import { aifbT } from "@/lib/edu/aifb/i18n";
+import { getCatalog } from "@/lib/edu/aifb/content";
+import { AifbFrame } from "@/components/edu/aifb/frame";
+import { Hub } from "@/components/edu/aifb/hub";
 
-export const metadata: Metadata = { title: "AI gramotnost – již brzy" };
+export async function generateMetadata(): Promise<Metadata> {
+  const t = aifbT(await readEduLocale());
+  return { title: `${t("aifb.hub.title")} – VeVit Edu`, description: t("aifb.hub.lead") };
+}
 
-export default async function EduAiLiteracySoonRoute() {
+export default async function AifbHubRoute() {
   await connection();
   const locale = await readEduLocale();
   return (
-    <EduRoot locale={locale}>
-      <EduSoonPage locale={locale} topic="ai" />
-    </EduRoot>
+    <AifbFrame locale={locale}>
+      <Hub locale={locale} catalog={getCatalog()} />
+    </AifbFrame>
   );
 }
