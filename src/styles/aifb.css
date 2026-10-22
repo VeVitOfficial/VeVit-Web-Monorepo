@@ -95,9 +95,9 @@ ol.aifb-list { list-style: decimal; }
 /* Přepínač zobrazení */
 .aifb-overview { margin-top: 1rem; }
 .aifb-toggle { display: inline-flex; gap: 0.25rem; margin: 0 0 1.25rem; padding: 0.25rem; border-radius: 999px; background: var(--bg-elevated); border: 1.5px solid var(--border-color); }
-.aifb-toggle__btn { min-height: 44px; min-width: 44px; padding: 0 1.1rem; border: 0; border-radius: 999px; font: inherit; font-weight: 600; color: var(--text-secondary); background: transparent; cursor: pointer; }
-.aifb-toggle__btn:hover { color: var(--text-primary); }
-.aifb-toggle__btn[aria-pressed="true"] { color: var(--aifb-on-accent); background: var(--aifb-accent); }
+.aifb a.aifb-toggle__btn, .aifb button.aifb-toggle__btn { display: inline-flex; align-items: center; min-height: 44px; min-width: 44px; padding: 0 1.1rem; border: 0; border-radius: 999px; font: inherit; font-weight: 600; color: var(--text-secondary); background: transparent; cursor: pointer; }
+.aifb .aifb-toggle__btn:hover { color: var(--text-primary); }
+.aifb .aifb-toggle__btn[aria-pressed="true"], .aifb .aifb-toggle__btn[aria-current="true"] { color: var(--aifb-on-accent); background: var(--aifb-accent); }
 .aifb-sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 
 /* Ukazatel postupu */
@@ -174,6 +174,48 @@ ol.aifb-list { list-style: decimal; }
 /* Přehled SŠ (clean): tabulka */
 .aifb-table--levels th, .aifb-table--levels td { line-height: 1.5; }
 .aifb-table--levels tbody th a { color: var(--aifb-accent); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+
+/* Panel nástrojů lekce a odkazy v hlavičce */
+.aifb-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1rem; margin: 0 0 1.5rem; }
+.aifb-toolbar .aifb-toggle { margin: 0; }
+.aifb-links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; }
+
+/* Projekce (třída): velké písmo, čitelné ze zadní lavice; jen to, co se promítá žákům */
+body:has(.aifb-projection) #navbar { display: none; }
+.aifb-projection { max-width: 78rem; margin: 0 auto; padding: 0 0 3rem; font-size: clamp(1.75rem, 1.2rem + 1.6vw, 2.6rem); line-height: 1.5; }
+.aifb-proj__bar { position: sticky; top: 0; z-index: 5; display: grid; grid-template-columns: auto 1fr auto auto auto; align-items: center; gap: 0.6rem; padding: 0.6rem 0; font-size: 1rem; background: var(--bg-primary); }
+.aifb-proj__keys { font-size: 0.85rem; color: var(--text-secondary); }
+@media (max-width: 900px) { .aifb-proj__bar { grid-template-columns: 1fr 1fr; } .aifb-proj__keys { grid-column: 1 / -1; order: 5; } }
+.aifb-proj__kind { margin: 1.2em 0 0.1em; font-size: 0.55em; font-weight: 700; color: var(--aifb-accent); }
+.aifb-proj__title { margin: 0 0 0.6em; font-family: "Bricolage Grotesque", var(--font); font-size: 1.6em; font-weight: 800; line-height: 1.1; color: var(--text-primary); }
+.aifb-projection h2 { margin: 1.3em 0 0.35em; font-size: 0.9em; font-weight: 700; color: var(--aifb-accent); }
+.aifb-proj__list { margin: 0 0 0 1.3em; padding: 0; color: var(--text-primary); }
+.aifb-proj__list li { margin-bottom: 0.55em; padding-left: 0.2em; }
+.aifb-proj__text, .aifb-proj__text p { margin: 0 0 0.7em; color: var(--text-primary); }
+.aifb-proj__meta { margin: 0 0 0.5em; font-size: 0.7em; color: var(--text-secondary); }
+.aifb-proj__position { margin: 2em 0 0; font-size: 0.55em; color: var(--text-secondary); }
+
+/* Tisk (A4, černobíle čitelné): bez navigace, každá lekce levelu na nové straně */
+@media print {
+  @page { size: A4; margin: 15mm; }
+  html, html.dark, html.light { color-scheme: light !important; }
+  body:has(.aifb) #navbar, .aifb-noprint, .aifb-crumbs, .aifb-toolbar, .aifb-pager, .aifb-proj__bar, .aifb-notice, .aifb-toggle { display: none !important; }
+  html, body { background: Canvas !important; color: CanvasText !important; }
+  body:has(.aifb) * { background-color: transparent !important; box-shadow: none !important; }
+  .aifb, .aifb * { color: CanvasText !important; }
+  .aigram, .aifb-main { min-height: 0 !important; }
+  .aifb .aifb-main { max-width: none; padding: 0; animation: none; }
+  .aifb-prose { max-width: none; }
+  .aifb-prose p, .aifb-prose li { font-size: 11pt; line-height: 1.45; orphans: 3; widows: 3; }
+  .aifb-head h1 { font-size: 20pt; }
+  .aifb-h2 { margin-top: 14pt; font-size: 14pt; break-after: avoid; }
+  .aifb-h3 { break-after: avoid; }
+  .aifb-print-lesson { break-before: page; }
+  .aifb-table-wrap { overflow: visible; border: 1px solid CanvasText; }
+  .aifb-table th, .aifb-table td { border-top: 1px solid CanvasText; }
+  .aifb-callout, .aifb-badge { border: 1px solid CanvasText; }
+  .aifb a { text-decoration: underline; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .aifb-island:hover { transform: none; }

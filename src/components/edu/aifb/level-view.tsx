@@ -42,7 +42,10 @@ export function LevelView({ locale, content, level }: { locale: EduLocale; conte
           {isAdvanced(level, category.id) ? <span className="aifb-badge">{t("aifb.level.advanced")}</span> : null}
           <CertBadge certification={level.certification} t={t} />
         </p>
-        <p><Link href={guidePath(locale, category.id)} className="aifb-textlink">{t("aifb.category.guideLink")}</Link></p>
+        <p className="aifb-links">
+          <Link href={guidePath(locale, category.id)} className="aifb-textlink">{t("aifb.category.guideLink")}</Link>
+          <Link href={`${levelPath(locale, category.id, slug)}/tisk`} className="aifb-textlink">{t("aifb.print.level")}</Link>
+        </p>
       </header>
 
       <section className="aifb-section aifb-prose" aria-labelledby="aifb-about">
