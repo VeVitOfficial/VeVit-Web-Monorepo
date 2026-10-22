@@ -9,5 +9,5 @@
       "maxDuration": 30
     }
   },
-  "crons": [{ "path": "/api/jobs/run", "schedule": "*/15 * * * *" }]
+  "crons": [{ "path": "/api/jobs/run", "schedule": "0 4 * * *" }]
 }

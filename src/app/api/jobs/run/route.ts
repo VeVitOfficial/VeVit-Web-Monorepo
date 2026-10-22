@@ -6,7 +6,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 /**
- * Job runner for jobs queued after a verified payment. Vercel Cron calls it every 15 minutes with
+ * Job runner for jobs queued after a verified payment. Vercel Cron (Hobby plan: once a day) retries failed or stuck jobs with
  * "Authorization: Bearer <CRON_SECRET>"; the webhook also runs jobs itself right after a payment.
  * Without a configured secret nobody gets in.
  */
