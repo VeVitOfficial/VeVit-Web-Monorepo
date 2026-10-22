@@ -71,3 +71,13 @@ test("uložená ukázka pro hledání chyb obsahuje klíč nepřesností", () =>
   assert.equal(fact.plantedErrors.length, 2);
   assert.ok(fact.fallback.includes("1857"));
 });
+
+import { aiLessonAvailable } from "../../src/lib/edu/aifb/pupil.ts";
+
+test("AI endpoint obslouží jen schválenou vrstvu AiSandbox (návrh jen v náhledu)", () => {
+  assert.equal(aiLessonAvailable(undefined, true), false);
+  assert.equal(aiLessonAvailable({ status: "draft", component: "AiSandbox" }, false), false);
+  assert.equal(aiLessonAvailable({ status: "draft", component: "AiSandbox" }, true), true);
+  assert.equal(aiLessonAvailable({ status: "reviewed", component: "AiSandbox" }, false), true);
+  assert.equal(aiLessonAvailable({ status: "published", component: "CardSort" }, true), false);
+});

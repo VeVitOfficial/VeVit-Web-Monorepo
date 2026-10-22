@@ -260,3 +260,9 @@ Rozhodnutí z F4 a F7:
 - Upozornění na ochranu údajů se ukazuje u cvičení, kde se pracuje s nástrojem AI: 1. stupeň bloky C a D, 2. stupeň a SŠ všechna cvičení. Odkaz vede na oddíl 7.2 (1. stupeň) nebo 1.4 (2. stupeň, SŠ). Pravidlo je v `src/lib/edu/aifb/guide.ts`, ne uhodnuté z textu.
 - Soubory ke stažení řídí `src/content/aifb/downloads.json`; validace kontroluje existenci i velikost. V `public/assets/aifb/2026-10/` je zatím jen `AIFB_plan_cviceni_pro_skoly.docx` (kategorie SŠ, podle `category.source.document`). Chybí DOCX pro 1. a 2. stupeň a všechna PDF.
 - Žákovská vrstva: všude `pupil.status = todo`, text pro žáky nevznikl (F6).
+
+## 19. AI cvičení: bezpečnostní poznámky (F6)
+
+- Endpoint `/edu/api/aifb/complete` obslouží jen lekci se schválenou žákovskou vrstvou typu AiSandbox; návrh (draft) jen ve vývoji a náhledových nasazeních (`aiLessonAvailable`). Na produkci tedy nikdo nevolá model, dokud vlastník vrstvu neschválí.
+- Náklady: limit na IP (20 / 10 min) a globální strop (300 živých dotazů / hod); po jeho vyčerpání nebo při nedostupném úložišti limitů se vrací uložená odpověď. Bez nastaveného klíče se model nevolá vůbec.
+- **Souhlas zákonných zástupců na 2. stupni (R5) server ověřit neumí.** AIFB nemá přihlášení ani účty učitelů (mimo rozsah plánu), takže potvrzení je ovládací prvek v rozhraní. Skutečné vynucení by vyžadovalo účty učitelů, což je rozhodnutí vlastníka. Podepsaný token bez účtu by byl jen zdánlivá ochrana, proto není.

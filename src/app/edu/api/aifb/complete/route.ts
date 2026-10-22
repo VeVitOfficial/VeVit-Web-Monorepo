@@ -35,6 +35,8 @@ export async function POST(request: Request): Promise<Response> {
   } catch {
     return json({ ok: false, error: "bad_json" }, 400);
   }
-  const result = await completeLesson({ lessonId: data.lessonId, prompt: data.prompt, ip: clientIp(request) });
+  // Na Vercelu platforma sama nastavuje x-vercel-forwarded-for (klient ho podvrhnout nemůže).
+  const ip = request.headers.get("x-vercel-forwarded-for")?.split(",")[0]?.trim() || clientIp(request);
+  const result = await completeLesson({ lessonId: data.lessonId, prompt: data.prompt, ip });
   return json(result.body, result.status);
 }

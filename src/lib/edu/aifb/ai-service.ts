@@ -8,7 +8,9 @@ import "server-only";
 
 import { toolsRateLimit } from "@/lib/tools-rate-limit";
 import { AI_LESSONS, MAX_PROMPT_CHARS, MIN_PROMPT_CHARS, truncateWords, type AiLessonConfig } from "./ai-config";
+import { draftPreviewEnabled, getPupilLayer } from "./content";
 import { detectPersonalData } from "./pii";
+import { aiLessonAvailable } from "./pupil";
 
 export type AiResult =
   | { status: 200; body: { ok: true; source: "live" | "stored"; text: string; plantedErrors?: string[] } }
@@ -17,6 +19,10 @@ export type AiResult =
 const RATE_NAMESPACE = "aifb-ai";
 const RATE_WINDOW_SECONDS = 600;
 const RATE_MAX = 20;
+// Celkový strop živých dotazů nezávislý na IP (ochrana nákladů při obcházení limitu po IP).
+const GLOBAL_NAMESPACE = "aifb-ai-global";
+const GLOBAL_WINDOW_SECONDS = 3600;
+const GLOBAL_MAX = 300;
 
 function providerSettings() {
   const key = (process.env.AIFB_AI_API_KEY ?? process.env.EDU_AI_API_KEY ?? "").trim();
@@ -63,7 +69,9 @@ async function callProvider(config: AiLessonConfig, prompt: string): Promise<str
 export async function completeLesson(input: { lessonId: unknown; prompt: unknown; ip: string }): Promise<AiResult> {
   const lessonId = typeof input.lessonId === "string" ? input.lessonId : "";
   const config = AI_LESSONS[lessonId];
-  if (!config) return { status: 404, body: { ok: false, error: "unknown_lesson" } };
+  if (!config || !aiLessonAvailable(getPupilLayer(lessonId), draftPreviewEnabled())) {
+    return { status: 404, body: { ok: false, error: "unknown_lesson" } };
+  }
 
   let prompt: string;
   if (config.fixedPrompt) {
@@ -88,6 +96,10 @@ export async function completeLesson(input: { lessonId: unknown; prompt: unknown
   // Nedostupný limiter = žádný živý dotaz s náklady; žák dostane uloženou odpověď.
   if (!limit.available) return stored();
   if (!limit.allowed) return { status: 429, body: { ok: false, error: "rate_limited" } };
+
+  // Globální strop: po jeho vyčerpání (nebo při nedostupném úložišti) se model nevolá a vrací se uložená odpověď.
+  const budget = await toolsRateLimit("global", GLOBAL_NAMESPACE, GLOBAL_WINDOW_SECONDS, GLOBAL_MAX);
+  if (!budget.available || !budget.allowed) return stored();
 
   const text = await callProvider(config, prompt);
   return text ? { status: 200, body: { ok: true, source: "live", text } } : stored();

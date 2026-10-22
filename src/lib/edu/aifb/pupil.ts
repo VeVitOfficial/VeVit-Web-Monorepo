@@ -104,3 +104,12 @@ export function validatePupilLayer(lessonId: string, layer: PupilLayer): string[
   }
   return errors;
 }
+
+/**
+ * Serverová brána AI cvičení: endpoint obslouží jen lekci, jejíž žákovská vrstva existuje, je typu
+ * AiSandbox a je schválená (reviewed/published); návrh (draft) jen ve vývoji a náhledových nasazeních.
+ * Na produkci tak nikdo nevolá model dřív, než vlastník vrstvu schválí (pravidlo R7).
+ */
+export function aiLessonAvailable(layer: { status: string; component?: string } | undefined, previewEnabled: boolean): boolean {
+  return layer !== undefined && layer.component === "AiSandbox" && (layer.status !== "draft" || previewEnabled);
+}
