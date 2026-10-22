@@ -41,10 +41,10 @@ Neověřeno / otevřeno:
 - Validace obsahu: `npm run validate:aifb` (v `npm run build` a v CI). Změna id lekce, počtu lekcí, odkazu na oddíl nebo certifikace s jiným stavem než `planned` validaci shodí (pokryto testy).
 - Smoke: `npm run smoke:aifb`, 327 stránek (96 lekcí × 3 režimy, 16 levelů, 16 tisků, kategorie, průvodci, hub), všechny 200 s `<h1>`.
 - E2E: `npm run test:e2e:aifb` (playwright-core + node:test, bez nové závislosti). 16 testů: hub → kategorie → level → lekce pro každou kategorii, přímé otevření a obnovení, zpět/vpřed, seznamové zobrazení, klávesnice na mapě, projekce, tisk, průběh, soukromí, 360 px, produkční režim žáka.
-  Výsledek proti `next dev`: 15 z 15 spuštěných prošlo, 1 přeskočen (test pro produkční běh se spouští jen s `E2E_PRODUCTION=1`).
+  Výsledek proti `next dev` i proti produkčnímu `next start`: všechny spuštěné testy prošly; test pro produkční běh se spouští jen s `E2E_PRODUCTION=1`, test AI endpointu s návrhy jen ve vývoji.
   E2E odhalil skutečnou chybu: při návštěvě lekce označené jako hotová ji hydratace přepsala na „rozpracováno". Opraveno (`getProgressNow`).
 - CI: nový workflow `.github/workflows/aifb-e2e.yml` (validace, produkční build, `next start`, smoke, E2E). Zatím nespuštěn na GitHubu.
-- **Produkční build (`npm run build`) se mi lokálně nepodařilo dokončit** (proces byl ukončen kvůli nedostatku paměti vedle běžícího dev serveru). Typecheck a lint prošly, ale úplný `next build` je neověřený; ověří ho první běh workflow nebo Vercel.
+- **Produkční běh ověřen lokálně:** `npm run build` bez `.env.local` (jako v CI) skončil úspěšně, všechny trasy AIFB jsou v buildu. Proti `next start` prošlo 15 E2E testů (test jen pro vývoj se přeskakuje) a smoke 327/327. Produkční testy potvrdily, že návrhy žákovských textů se nezobrazují a AI endpoint vrací 404.
 
 ## 4. Soukromí (F8.3)
 
@@ -64,5 +64,5 @@ Požadavky prohlížeče na stránkách AIFB (hub, kategorie, lekce, průvodce) 
 | 2 | Chybí DOCX pro 1. a 2. stupeň a všechna PDF | Pro učitele ukazuje „Soubory ke stažení se připravují" | Dodá vlastník |
 | 3 | Texty pro žáky (pilotní lekce) jsou jen návrhy | Na produkci se nezobrazují | Čeká na schválení vlastníkem (R7); poznámky v `pupil-pilots.json` |
 | 4 | Souhlas zákonných zástupců na 2. stupni nelze ověřit na serveru | Ovládací prvek jen v rozhraní | AIFB nemá účty; viz RECON § 19 |
-| 5 | Ruční test čtečkou obrazovky, výkon na produkčním buildu | Nezměřeno | Doporučeno před vydáním |
+| 5 | Ruční test čtečkou obrazovky, měření výkonu (LCP, TBT) na produkčním buildu | Nezměřeno | Doporučeno před vydáním |
 | 6 | `vevit-tailwind.css` (tracked) se při buildu přegeneruje | Diff v repozitáři | Zahrnout do commitu, jinak třídy Tailwindu z novějších komponent (např. přepínač jazyka Wikipedie) v produkci chybí |
