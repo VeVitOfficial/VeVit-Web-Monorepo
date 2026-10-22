@@ -182,12 +182,12 @@ ol.aifb-list { list-style: decimal; }
 
 /* Projekce (třída): velké písmo, čitelné ze zadní lavice; jen to, co se promítá žákům */
 body:has(.aifb-projection) #navbar { display: none; }
-.aifb-projection { max-width: 78rem; margin: 0 auto; padding: 0 0 3rem; font-size: clamp(1.75rem, 1.2rem + 1.6vw, 2.6rem); line-height: 1.5; }
+.aifb-projection { max-width: 78rem; margin: 0 auto; padding: 0 0 3rem; font-size: clamp(1.2rem, 0.75rem + 1vw, 1.7rem); line-height: 1.55; }
 .aifb-proj__bar { position: sticky; top: 0; z-index: 5; display: grid; grid-template-columns: auto 1fr auto auto auto; align-items: center; gap: 0.6rem; padding: 0.6rem 0; font-size: 1rem; background: var(--bg-primary); }
 .aifb-proj__keys { font-size: 0.85rem; color: var(--text-secondary); }
 @media (max-width: 900px) { .aifb-proj__bar { grid-template-columns: 1fr 1fr; } .aifb-proj__keys { grid-column: 1 / -1; order: 5; } }
 .aifb-proj__kind { margin: 1.2em 0 0.1em; font-size: 0.55em; font-weight: 700; color: var(--aifb-accent); }
-.aifb-proj__title { margin: 0 0 0.6em; font-family: "Bricolage Grotesque", var(--font); font-size: 1.6em; font-weight: 800; line-height: 1.1; color: var(--text-primary); }
+.aifb-proj__title { margin: 0 0 0.6em; font-family: "Bricolage Grotesque", var(--font); font-size: 1.4em; font-weight: 800; line-height: 1.1; color: var(--text-primary); }
 .aifb-projection h2 { margin: 1.3em 0 0.35em; font-size: 0.9em; font-weight: 700; color: var(--aifb-accent); }
 .aifb-proj__list { margin: 0 0 0 1.3em; padding: 0; color: var(--text-primary); }
 .aifb-proj__list li { margin-bottom: 0.55em; padding-left: 0.2em; }

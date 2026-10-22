@@ -110,11 +110,11 @@ test("mapa je ovladatelná z klávesnice a cíle mají aspoň 64 px", async () =
   });
 });
 
-test("projekce: velké písmo a přepínání lekcí klávesami", async () => {
+test("projekce: čitelné písmo a přepínání lekcí klávesami", async () => {
   await withPage(async (page) => {
     await page.goto(`${root}/aifb/zs1/blok-a/cv1?rezim=projekce`);
     const size = await page.locator(".aifb-proj__text p").first().evaluate((el) => parseFloat(getComputedStyle(el).fontSize));
-    assert.ok(size >= 32, `písmo ${size}px`);
+    assert.ok(size >= 22 && size <= 30, `písmo ${size}px`);
     await press(page, "ArrowRight", /cv2\?rezim=projekce$/);
     await press(page, "ArrowLeft", /cv1\?rezim=projekce$/);
     await press(page, "Escape", /cv1$/);

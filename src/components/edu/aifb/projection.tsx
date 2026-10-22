@@ -1,5 +1,5 @@
 // Režim Projekce (třída): velké písmo, jen to, co se promítá žákům; poznámky pro učitele jsou skryté.
-// Teorie promítá opakovací otázky a diskuzní témata, cvičení zadání, očekávaný výstup, čas a formu.
+// Teorie promítá samotný text teorie, cvičení zadání, očekávaný výstup, čas a formu.
 // Navigaci Předchozí / Další a klávesy řeší ProjectionControls.
 
 import type { AifbT } from "@/lib/edu/aifb/i18n";
@@ -21,16 +21,7 @@ export function ProjectionView({
       <p className="aifb-proj__kind">{kind}</p>
       <h1 id="aifb-proj-title" className="aifb-proj__title">{lesson.title}</h1>
       {lesson.type === "theory" ? (
-        <>
-          <h2>{t("aifb.lesson.reviewQuestions")}</h2>
-          <ol className="aifb-proj__list">
-            {lesson.teacher.reviewQuestions.map((question, index) => <li key={index}><RichText text={question} ctx={ctx} /></li>)}
-          </ol>
-          <h2>{t("aifb.lesson.discussionTopics")}</h2>
-          <ul className="aifb-proj__list">
-            {lesson.teacher.discussionTopics.map((topic, index) => <li key={index}><RichText text={topic} ctx={ctx} /></li>)}
-          </ul>
-        </>
+        <div className="aifb-proj__text"><Paragraphs items={lesson.teacher.intro} ctx={ctx} /></div>
       ) : (
         <>
           <p className="aifb-proj__meta">{t("aifb.lesson.time")}: {lesson.teacher.time}</p>
