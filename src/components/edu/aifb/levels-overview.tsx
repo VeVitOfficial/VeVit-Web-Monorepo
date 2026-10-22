@@ -7,18 +7,23 @@
 import { useState } from "react";
 import { useEduLang } from "../i18n";
 import type { CategoryId, Theme } from "@/lib/edu/aifb/types";
-import { maxXpForLevel } from "@/lib/edu/aifb/xp";
+import { computeXp, levelProgress } from "@/lib/edu/aifb/progress";
+import { gemsFromXp, maxXpForLevel } from "@/lib/edu/aifb/xp";
 import { AdventureMap, type LevelProgress } from "./adventure-map";
 import { CleanOverview } from "./clean-overview";
 import { LevelCard, type LevelSummary } from "./level-card";
 import { ProgressBadge } from "./shared";
 import { TrailMap } from "./trail-map";
+import { useAifbProgress } from "./use-progress";
 import { ViewToggle } from "./view-toggle";
 
 export function LevelsOverview({
-  categoryId, theme, levels, progress, xp = 0,
-}: { categoryId: CategoryId; theme: Theme; levels: LevelSummary[]; progress?: LevelProgress; xp?: number }) {
+  categoryId, theme, levels,
+}: { categoryId: CategoryId; theme: Theme; levels: LevelSummary[] }) {
   const { t, lang } = useEduLang();
+  const stored = useAifbProgress();
+  const progress: LevelProgress = Object.fromEntries(levels.map((level) => [level.id, levelProgress(stored, level.lessonIds)]));
+  const xp = computeXp(stored, levels);
   const [view, setView] = useState<string>(theme === "clean" ? "cards" : "map");
   const visual = theme !== "clean";
   const options = visual
@@ -58,6 +63,7 @@ export function LevelsOverview({
   return (
     <div className={`aifb-overview aifb-overview--${theme}`}>
       <ViewToggle options={options} value={view} onChange={setView} label={t("aifb.view.label")} />
+      {theme === "pirate-map" ? <p className="aifb-gems" role="status">{t("aifb.progress.gems", { gems: gemsFromXp(xp) })}</p> : null}
       {body}
     </div>
   );

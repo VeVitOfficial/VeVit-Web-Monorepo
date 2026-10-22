@@ -10,6 +10,7 @@ import type { EduLocale } from "@/lib/edu/i18n-data";
 import { Paragraphs } from "./blocks";
 import { Crumbs } from "./crumbs";
 import { LessonBody } from "./lesson-body";
+import { LessonProgressControls } from "./lesson-progress";
 import { ModeSwitch } from "./mode-switch";
 import { PrintButton } from "./print-button";
 import { ProjectionView } from "./projection";
@@ -71,6 +72,7 @@ export function LessonView({
         <ModeSwitch path={here} mode={mode} t={t} />
         <PrintButton label={t("aifb.print.lesson")} />
       </div>
+      <LessonProgressControls lessonId={lesson.id} autoStart={mode === "ucitel"} />
       <article className="aifb-prose">
         <header className="aifb-head">
           <p className="aifb-eyebrow">{kind}</p>

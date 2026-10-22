@@ -9,6 +9,7 @@ import type { Catalog, CatalogCategory } from "@/lib/edu/aifb/types";
 import type { EduLocale } from "@/lib/edu/i18n-data";
 import { lessonsLabel } from "@/lib/edu/i18n-data";
 import { Crumbs } from "./crumbs";
+import { ProgressTransfer } from "./progress-transfer";
 
 // Barvy kategorií jsou tokeny z aifb.css (paleta kurzů Edu), v komponentě žádné pevné barvy.
 const CARD_STYLE: Record<string, { color: string; icon: string }> = {
@@ -83,6 +84,11 @@ export function Hub({ locale, catalog }: { locale: EduLocale; catalog: Catalog }
             <CategoryCard key={category.id} category={category} locale={locale} />
           ))}
         </ul>
+      </section>
+
+      <section aria-labelledby="aifb-progress-title" className="aifb-section">
+        <h2 className="eh-h2" id="aifb-progress-title"><span className="eh-bullet" aria-hidden="true" />{t("aifb.progress.title")}</h2>
+        <ProgressTransfer levels={teachable.flatMap((category) => category.levels.map((level) => ({ id: level.id, lessonCount: level.lessonCount })))} />
       </section>
 
       <section aria-labelledby="aifb-teachers-title" className="aifb-section">

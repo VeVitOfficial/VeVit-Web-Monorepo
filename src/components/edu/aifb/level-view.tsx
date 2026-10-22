@@ -10,6 +10,8 @@ import { DataTable, Paragraphs } from "./blocks";
 import { Crumbs } from "./crumbs";
 import { isAdvanced } from "./level-card";
 import { RichText, type RichTextContext } from "./rich-text";
+import { LessonStatusBadge } from "./lesson-progress";
+import { LevelProgressSummary } from "./level-progress";
 import { CertBadge, LessonRow, lessonKindLabel } from "./shared";
 
 export function LevelView({ locale, content, level }: { locale: EduLocale; content: AifbContent; level: Level }) {
@@ -63,6 +65,7 @@ export function LevelView({ locale, content, level }: { locale: EduLocale; conte
 
       <section className="aifb-section" aria-labelledby="aifb-lessons">
         <h2 className="eh-h2" id="aifb-lessons"><span className="eh-bullet" aria-hidden="true" />{t("aifb.level.lessons")}</h2>
+        <LevelProgressSummary lessonIds={level.lessons.map((lesson) => lesson.id)} />
         <ol className="aifb-lesson-list">
           {level.lessons.map((lesson) => (
             <LessonRow
@@ -71,6 +74,7 @@ export function LevelView({ locale, content, level }: { locale: EduLocale; conte
               kindLabel={lessonKindLabel(t, theme, lesson)}
               title={lesson.title}
               meta={lesson.type === "exercise" ? `${t("aifb.lesson.time")}: ${lesson.teacher.time}` : undefined}
+              status={<LessonStatusBadge lessonId={lesson.id} />}
             />
           ))}
         </ol>
