@@ -10,12 +10,12 @@ import type { EduLocale } from "@/lib/edu/i18n-data";
 import { lessonsLabel } from "@/lib/edu/i18n-data";
 import { Crumbs } from "./crumbs";
 
-// Barvy kategorií jsou barvy kurzů, které Edu už používá (home, Programování).
+// Barvy kategorií jsou tokeny z aifb.css (paleta kurzů Edu), v komponentě žádné pevné barvy.
 const CARD_STYLE: Record<string, { color: string; icon: string }> = {
-  zs1: { color: "#f59e0b", icon: "sparkles" },
-  zs2: { color: "#0ea5e9", icon: "workflow" },
-  ss: { color: "#8b5cf6", icon: "cpu" },
-  kurz: { color: "#64748b", icon: "book-open" },
+  zs1: { color: "var(--aifb-gold)", icon: "sparkles" },
+  zs2: { color: "var(--aifb-sky)", icon: "workflow" },
+  ss: { color: "var(--aifb-violet)", icon: "cpu" },
+  kurz: { color: "var(--aifb-slate)", icon: "book-open" },
 };
 
 function CategoryCard({ category, locale }: { category: CatalogCategory; locale: EduLocale }) {

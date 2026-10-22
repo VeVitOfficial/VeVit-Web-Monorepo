@@ -36,3 +36,24 @@ export function lessonKindLabel(t: AifbT, theme: string, lesson: { type: "theory
     ? t(`aifb.theme.${theme}.theory`)
     : t(`aifb.theme.${theme}.exercise`, { n: lesson.order });
 }
+
+/** Ukazatel postupu: číslo + tenký pruh (informace není jen barvou). */
+export function ProgressBadge({ done, total, label }: { done: number; total: number; label: string }) {
+  const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+  return (
+    <span className="aifb-progress" role="img" aria-label={`${label}: ${done} / ${total}`}>
+      <span className="aifb-progress__text">{done} / {total}</span>
+      <span className="aifb-progress__bar" aria-hidden="true"><span style={{ width: `${pct}%` }} /></span>
+    </span>
+  );
+}
+
+/** Upozornění / poznámka u sekce (např. ochrana údajů u lekcí s AI). */
+export function SectionCallout({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <aside className="aifb-callout" role="note" aria-label={title}>
+      <p className="aifb-callout__title">{title}</p>
+      {children}
+    </aside>
+  );
+}

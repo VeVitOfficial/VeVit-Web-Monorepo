@@ -6,7 +6,8 @@ import { categoryPath, guidePath, hubPath } from "@/lib/edu/aifb/routes";
 import type { AifbContent } from "@/lib/edu/aifb/types";
 import type { EduLocale } from "@/lib/edu/i18n-data";
 import { Crumbs } from "./crumbs";
-import { LevelCard, levelUnitCount } from "./level-card";
+import { levelUnitCount, toLevelSummary } from "./level-card";
+import { LevelsOverview } from "./levels-overview";
 
 export function CategoryView({ locale, content }: { locale: EduLocale; content: AifbContent }) {
   const t = aifbT(locale);
@@ -35,11 +36,7 @@ export function CategoryView({ locale, content }: { locale: EduLocale; content: 
       <section className="aifb-section" aria-labelledby="aifb-levels-title">
         <h2 className="eh-h2" id="aifb-levels-title"><span className="eh-bullet" aria-hidden="true" />{t("aifb.category.levels")}</h2>
         <p className="aifb-muted">{t("aifb.category.order", { unit: category.unit.toLowerCase() === "blok" ? "blok" : "level" })}</p>
-        <ol className="aifb-level-list">
-          {content.levels.map((level) => (
-            <LevelCard key={level.id} locale={locale} categoryId={category.id} level={level} />
-          ))}
-        </ol>
+        <LevelsOverview categoryId={category.id} theme={category.theme} levels={content.levels.map((level) => toLevelSummary(category.id, level))} />
       </section>
     </>
   );
