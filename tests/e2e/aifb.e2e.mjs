@@ -30,19 +30,11 @@ async function withPage(fn, options = {}) {
   }
 }
 
-/** Stiskne klávesu, dokud se adresa nezmění (posluchač klávesy se připojí až po hydrataci, v dev režimu trvá déle). */
-async function pressUntil(page, key, pattern, timeout = 20_000) {
-  const deadline = Date.now() + timeout;
-  while (Date.now() < deadline) {
-    await page.keyboard.press(key);
-    try {
-      await page.waitForURL(pattern, { timeout: 1500 });
-      return;
-    } catch {
-      // posluchač ještě není připojen, zkusíme znovu
-    }
-  }
-  assert.fail(`po stisku ${key} se adresa nezměnila na ${pattern}`);
+/** Počká na hydrataci ovládání projekce, stiskne klávesu jednou a čeká na změnu adresy (bez opakování, které by rušilo probíhající navigaci). */
+async function press(page, key, pattern) {
+  await page.locator('.aifb-proj__bar[data-ready="true"]').waitFor({ timeout: 30_000 });
+  await page.keyboard.press(key);
+  await page.waitForURL(pattern, { timeout: 30_000 });
 }
 
 const CATEGORIES = [
@@ -123,9 +115,9 @@ test("projekce: velké písmo a přepínání lekcí klávesami", async () => {
     await page.goto(`${root}/aifb/zs1/blok-a/cv1?rezim=projekce`);
     const size = await page.locator(".aifb-proj__text p").first().evaluate((el) => parseFloat(getComputedStyle(el).fontSize));
     assert.ok(size >= 32, `písmo ${size}px`);
-    await pressUntil(page, "ArrowRight", /cv2\?rezim=projekce$/);
-    await pressUntil(page, "ArrowLeft", /cv1\?rezim=projekce$/);
-    await pressUntil(page, "Escape", /cv1$/);
+    await press(page, "ArrowRight", /cv2\?rezim=projekce$/);
+    await press(page, "ArrowLeft", /cv1\?rezim=projekce$/);
+    await press(page, "Escape", /cv1$/);
   });
 });
 

@@ -5,7 +5,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 type Labels = { prev: string; next: string; exit: string; fullscreen: string; keys: string };
 
@@ -13,6 +13,8 @@ export function ProjectionControls({
   prevHref, nextHref, exitHref, labels,
 }: { prevHref: string | null; nextHref: string | null; exitHref: string; labels: Labels }) {
   const router = useRouter();
+  // Po hydrataci se na panel doplní data-ready (ovládání klávesami je připravené; využívají i testy).
+  const bar = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function onKey(event: KeyboardEvent) {
@@ -30,6 +32,7 @@ export function ProjectionControls({
       }
     }
     window.addEventListener("keydown", onKey);
+    bar.current?.setAttribute("data-ready", "true");
     return () => window.removeEventListener("keydown", onKey);
   }, [router, prevHref, nextHref, exitHref]);
 
@@ -39,7 +42,7 @@ export function ProjectionControls({
   }
 
   return (
-    <div className="aifb-proj__bar">
+    <div className="aifb-proj__bar" ref={bar}>
       <Link href={exitHref} className="btn btn-ghost">{labels.exit}</Link>
       <span className="aifb-proj__keys">{labels.keys}</span>
       <button type="button" className="btn btn-ghost" onClick={toggleFullscreen}>{labels.fullscreen}</button>
