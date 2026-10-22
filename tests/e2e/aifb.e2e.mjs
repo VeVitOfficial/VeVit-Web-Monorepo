@@ -30,6 +30,21 @@ async function withPage(fn, options = {}) {
   }
 }
 
+/** Stiskne klávesu, dokud se adresa nezmění (posluchač klávesy se připojí až po hydrataci, v dev režimu trvá déle). */
+async function pressUntil(page, key, pattern, timeout = 20_000) {
+  const deadline = Date.now() + timeout;
+  while (Date.now() < deadline) {
+    await page.keyboard.press(key);
+    try {
+      await page.waitForURL(pattern, { timeout: 1500 });
+      return;
+    } catch {
+      // posluchač ještě není připojen, zkusíme znovu
+    }
+  }
+  assert.fail(`po stisku ${key} se adresa nezměnila na ${pattern}`);
+}
+
 const CATEGORIES = [
   { id: "zs1", card: "1. stupeň ZŠ", level: "blok-a", lesson: "cv1", theme: "pirate-map" },
   { id: "zs2", card: "2. stupeň ZŠ", level: "level-1", lesson: "cv2", theme: "trail" },
@@ -108,13 +123,9 @@ test("projekce: velké písmo a přepínání lekcí klávesami", async () => {
     await page.goto(`${root}/aifb/zs1/blok-a/cv1?rezim=projekce`);
     const size = await page.locator(".aifb-proj__text p").first().evaluate((el) => parseFloat(getComputedStyle(el).fontSize));
     assert.ok(size >= 32, `písmo ${size}px`);
-    await page.waitForTimeout(1500);
-    await page.keyboard.press("ArrowRight");
-    await page.waitForURL(/cv2\?rezim=projekce$/);
-    await page.keyboard.press("ArrowLeft");
-    await page.waitForURL(/cv1\?rezim=projekce$/);
-    await page.keyboard.press("Escape");
-    await page.waitForURL(/cv1$/);
+    await pressUntil(page, "ArrowRight", /cv2\?rezim=projekce$/);
+    await pressUntil(page, "ArrowLeft", /cv1\?rezim=projekce$/);
+    await pressUntil(page, "Escape", /cv1$/);
   });
 });
 
