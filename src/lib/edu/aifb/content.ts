@@ -8,9 +8,11 @@ import "server-only";
 import { notFound } from "next/navigation";
 import catalogJson from "@/content/aifb/aifb-catalog.json";
 import downloadsJson from "@/content/aifb/downloads.json";
+import pupilPilotsJson from "@/content/aifb/pupil-pilots.json";
 import type { AifbContent, Catalog, CategoryId, Level, Lesson } from "./types.ts";
 import { isCategoryId } from "./types.ts";
 import { lessonIdFromSlug, levelIdFromSlug } from "./routes.ts";
+import type { PupilLayer, PupilOverlay } from "./pupil.ts";
 
 const catalog = catalogJson as unknown as Catalog;
 
@@ -61,4 +63,20 @@ export type DownloadFile = { category: string; path: string; file: string; forma
 /** Soubory ke stažení pro kategorii (jen ty, které jsou v downloads.json a existují v public/). */
 export function getDownloads(categoryId: string): DownloadFile[] {
   return (downloadsJson.files as DownloadFile[]).filter((item) => item.category === categoryId);
+}
+
+/** Pilotní žákovská vrstva lekce (návrh); originální obsah se nemění, vrstva je ve vlastním souboru. */
+export function getPupilLayer(lessonId: string): PupilLayer | undefined {
+  return (pupilPilotsJson as unknown as PupilOverlay).lessons[lessonId];
+}
+
+/**
+ * Návrhy (draft) textů pro žáky se ukazují jen mimo produkci (vývoj, náhledová nasazení) nebo po
+ * nastavení AIFB_PREVIEW_DRAFTS=1, s upozorněním. Na produkci zůstávají skryté (pravidlo R7).
+ */
+export function draftPreviewEnabled(): boolean {
+  if (process.env.AIFB_PREVIEW_DRAFTS === "1") return true;
+  // Produkční běh má vždy NODE_ENV=production, takže lokální `next dev` je bezpečně rozpoznatelný
+  // i s .env.local staženým z produkce (VERCEL_ENV=production).
+  return process.env.NODE_ENV === "development" || process.env.VERCEL_ENV === "preview";
 }

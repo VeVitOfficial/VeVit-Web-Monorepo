@@ -1,0 +1,313 @@
+{
+  "version": "2026-10",
+  "note": "Pilotní žákovská vrstva F6. Vše ve stavu draft (pravidlo R7): texty, karty a kvíz čeká na přečtení vlastníkem. Originální obsahové soubory aifb-content-*.json se nemění; tento soubor je přidává.",
+  "lessons": {
+    "zs1-blok-a-teorie": {
+      "status": "draft",
+      "component": "QuizCard",
+      "text": [
+        "Zkus si, co už víš. Vyber odpověď a přečti si vysvětlení."
+      ],
+      "config": {
+        "questions": [
+          {
+            "id": "q1",
+            "prompt": "Co udělá hlasová asistentka v telefonu, když se jí zeptáš, jaké bude počasí?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Podívá se z okna."
+              },
+              {
+                "id": "b",
+                "text": "Najde odpověď podle programu, který pro ni napsali lidé."
+              },
+              {
+                "id": "c",
+                "text": "Zeptá se kamaráda."
+              }
+            ],
+            "correct": "b",
+            "explanation": "Hlasová asistentka je program. Lidé ho vymysleli a naučili."
+          },
+          {
+            "id": "q2",
+            "prompt": "Je počítač živý?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Ano, má city."
+              },
+              {
+                "id": "b",
+                "text": "Ne, je to stroj."
+              },
+              {
+                "id": "c",
+                "text": "Jen když je zapnutý."
+              }
+            ],
+            "correct": "b",
+            "explanation": "Počítač je stroj. Nic ho nebolí, nechce spát a nemá rád. Dělá jen to, co ho lidé naučili."
+          },
+          {
+            "id": "q3",
+            "prompt": "Kdo vymyslel hru, kterou hraješ na tabletu?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Tablet sám."
+              },
+              {
+                "id": "b",
+                "text": "Lidé, kteří ji naprogramovali."
+              },
+              {
+                "id": "c",
+                "text": "Nikdo, objevila se sama."
+              }
+            ],
+            "correct": "b",
+            "explanation": "Každou hru vymysleli a napsali lidé."
+          },
+          {
+            "id": "q4",
+            "prompt": "Když se počítač splete, kdo to může poznat a opravit?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Člověk."
+              },
+              {
+                "id": "b",
+                "text": "Nikdo, počítač se nikdy nemýlí."
+              },
+              {
+                "id": "c",
+                "text": "Jen jiný počítač."
+              }
+            ],
+            "correct": "a",
+            "explanation": "Počítač se může splést. Proto se ptáme, ověřujeme a poradí nám člověk."
+          },
+          {
+            "id": "q5",
+            "prompt": "Co patří jen rodině a škole?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Jméno, adresa a fotografie."
+              },
+              {
+                "id": "b",
+                "text": "Oblíbená barva."
+              },
+              {
+                "id": "c",
+                "text": "Oblíbená hra."
+              }
+            ],
+            "correct": "a",
+            "explanation": "Jméno, adresa a fotografie jsou tajemství. Neříkáme je cizím lidem ani počítačům."
+          }
+        ]
+      },
+      "reviewNotes": [
+        "Návrh kvízu z opakovacích otázek (F6.3). Možnosti, správné odpovědi a vysvětlení jsem navrhl já; plán klíč odpovědí neobsahuje. Schválit vzor, teprve poté se rozšiřuje na další lekce."
+      ]
+    },
+    "zs1-blok-a-cv1": {
+      "status": "draft",
+      "component": "CardSort",
+      "text": [
+        "Roztřiď karty do tří hromádek. U karty, o které si nejsi jistý, řekni, proč jsi ji dal právě tam."
+      ],
+      "config": {
+        "piles": [
+          {
+            "id": "alive",
+            "label": "Živé bytosti"
+          },
+          {
+            "id": "set",
+            "label": "Stroje, které dělají jen to, co jim někdo nastavil"
+          },
+          {
+            "id": "smart",
+            "label": "Chytří pomocníci, kteří si poradí i s něčím novým"
+          }
+        ],
+        "cards": [
+          {
+            "id": "c1",
+            "label": "Hlasová asistentka"
+          },
+          {
+            "id": "c2",
+            "label": "Myčka nádobí"
+          },
+          {
+            "id": "c3",
+            "label": "Tablet s nabídkou videí"
+          },
+          {
+            "id": "c4",
+            "label": "Semafor na přechodu"
+          },
+          {
+            "id": "c5",
+            "label": "Pes"
+          },
+          {
+            "id": "c6",
+            "label": "Učitelka"
+          },
+          {
+            "id": "c7",
+            "label": "Fotoaparát, který najde tváře"
+          },
+          {
+            "id": "c8",
+            "label": "Samoobslužná pokladna"
+          }
+        ],
+        "hint": "Důležitější než správné zařazení je, jak to zdůvodníš."
+      },
+      "reviewNotes": [
+        "Karty a hromádky jsou z textu plánu. Plán výslovně říká, že u sporných karet (např. pokladna) je důležité zdůvodnění, proto komponenta nehodnotí správně/špatně (žádné expected)."
+      ]
+    },
+    "zs1-blok-a-cv4": {
+      "status": "draft",
+      "component": "TrafficLightCards",
+      "text": [
+        "Přečti si situaci. Zelená znamená, že to prozradit můžeš. Červená znamená tajemství."
+      ],
+      "config": {
+        "situations": [
+          {
+            "id": "s1",
+            "text": "Kamarád na internetu se ptá, kde bydlíš.",
+            "answer": "red",
+            "feedback": "Tajemství. Řekni to rodičům nebo učiteli."
+          },
+          {
+            "id": "s2",
+            "text": "Aplikace chce vědět, jak se jmenuje tvoje maminka.",
+            "answer": "red",
+            "feedback": "Tajemství. Jména rodiny patří jen rodině. Zeptej se rodičů nebo učitele."
+          },
+          {
+            "id": "s3",
+            "text": "Nová hra chce tvoje telefonní číslo.",
+            "answer": "red",
+            "feedback": "Tajemství. Telefonní číslo patří jen rodině a škole."
+          },
+          {
+            "id": "s4",
+            "text": "Oblíbená barva.",
+            "answer": "green",
+            "feedback": "To můžeš říct. Oblíbená barva není tajemství."
+          },
+          {
+            "id": "s5",
+            "text": "Jméno tvé kočky.",
+            "answer": "green",
+            "feedback": "To můžeš říct. Jméno zvířátka není tajemství."
+          },
+          {
+            "id": "s6",
+            "text": "Adresa školy.",
+            "answer": "red",
+            "feedback": "Adresa je tajemství. Řekni to učiteli."
+          },
+          {
+            "id": "s7",
+            "text": "Fotka z narozeninové oslavy.",
+            "answer": "red",
+            "feedback": "Fotky jsou tajemství. Nikomu cizímu je neposílej."
+          }
+        ]
+      },
+      "reviewNotes": [
+        "Situace jsou z textu plánu. Zařazení (zelená/červená) jsem odvodil z pravidla „jméno, adresa a fotografie patří jen rodině a škole“. Hraniční: jméno kočky (zelená) a adresa školy (červená); potvrdit."
+      ]
+    },
+    "zs2-level-2-cv1": {
+      "status": "draft",
+      "component": "AiSandbox",
+      "text": [
+        "Dostaneš pět nepřesných zadání. Každé přepiš tak, aby v něm byla role pro model, kontext, přesný úkol a popis výstupu (rozsah, struktura, tón).",
+        "Obě verze si vyzkoušej, porovnej odpovědi a do poznámky napiš, co se změnilo."
+      ],
+      "config": {
+        "mode": "prompt-rescue",
+        "vaguePrompts": [
+          "napiš něco o ekologii",
+          "udělej mi přehled knihy",
+          "pomoz mi s úkolem",
+          "řekni mi něco o zvířatech",
+          "napiš příběh"
+        ]
+      },
+      "reviewNotes": [
+        "Teacher text uvádí jen dvě vágní zadání (ekologie, přehled knihy). Zbylá tři (pomoz mi s úkolem, zvířata, příběh) jsem doplnil já; potvrdit nebo nahradit.",
+        "Stavba cvičení vychází z textu plánu (5 zadání, 3 sloupce tabulky). Prototyp aifb-cviceni-detektiv-halucinaci.html řeší příbuzný postup (5 stavebních kamenů, zpětná vazba trenéra); zde je z něj převzata kontrola osobních údajů a omezení délky odpovědi, ne celý průběh.",
+        "Živý model jen přes server (kontrola osobních údajů, limit, žádné ukládání). Bez nastavené služby se zobrazuje uložená ukázková odpověď."
+      ]
+    },
+    "ss-level-2-cv1": {
+      "status": "draft",
+      "component": "AiSandbox",
+      "text": [
+        "Dostaneš pět nepřesných zadání. Každé přepiš tak, aby v něm byla role pro model, kontext, přesný úkol a popis výstupu (rozsah, struktura, tón).",
+        "Obě verze si vyzkoušej, porovnej odpovědi a do poznámky napiš, co se změnilo."
+      ],
+      "config": {
+        "mode": "prompt-rescue",
+        "vaguePrompts": [
+          "napiš něco o ekologii",
+          "udělej mi přehled knihy",
+          "pomoz mi s úkolem",
+          "řekni mi něco o zvířatech",
+          "napiš příběh"
+        ]
+      },
+      "reviewNotes": [
+        "Teacher text uvádí jen dvě vágní zadání (ekologie, přehled knihy). Zbylá tři (pomoz mi s úkolem, zvířata, příběh) jsem doplnil já; potvrdit nebo nahradit.",
+        "Stavba cvičení vychází z textu plánu (5 zadání, 3 sloupce tabulky). Prototyp aifb-cviceni-detektiv-halucinaci.html řeší příbuzný postup (5 stavebních kamenů, zpětná vazba trenéra); zde je z něj převzata kontrola osobních údajů a omezení délky odpovědi, ne celý průběh.",
+        "Živý model jen přes server (kontrola osobních údajů, limit, žádné ukládání). Bez nastavené služby se zobrazuje uložená ukázková odpověď."
+      ]
+    },
+    "zs2-level-1-cv2": {
+      "status": "draft",
+      "component": "AiSandbox",
+      "text": [
+        "Model napíše krátký text. Najdi věty, kterým nevěříš, a ke každé napiš, jak bys ověřil(a), jestli je pravdivá."
+      ],
+      "config": {
+        "mode": "fact-check",
+        "topicLabel": "Karel IV."
+      },
+      "reviewNotes": [
+        "Plán říká, že sadu výstupů s chybami připraví učitel. Aplikace proto neobsahuje sadu chyb; nabízí jen jedno téma (Karel IV.) s uloženou ukázkou, do které jsem záměrně vložil dvě nepřesnosti (rok 1857 místo 1357 a vymyšlená kronika). Potvrdit fakta a téma.",
+        "Klíč nepřesností se ukáže jen u uložené ukázky; u živé odpovědi modelu klíč není."
+      ]
+    },
+    "ss-level-1-cv2": {
+      "status": "draft",
+      "component": "AiSandbox",
+      "text": [
+        "Model napíše krátký text. Najdi věty, kterým nevěříš, a ke každé napiš, jak bys ověřil(a), jestli je pravdivá."
+      ],
+      "config": {
+        "mode": "fact-check",
+        "topicLabel": "Karel IV."
+      },
+      "reviewNotes": [
+        "Plán říká, že sadu výstupů s chybami připraví učitel. Aplikace proto neobsahuje sadu chyb; nabízí jen jedno téma (Karel IV.) s uloženou ukázkou, do které jsem záměrně vložil dvě nepřesnosti (rok 1857 místo 1357 a vymyšlená kronika). Potvrdit fakta a téma.",
+        "Klíč nepřesností se ukáže jen u uložené ukázky; u živé odpovědi modelu klíč není."
+      ]
+    }
+  }
+}

@@ -257,3 +257,37 @@ body:has(.aifb-projection) #navbar { display: none; }
 .aifb-error { margin: 0 0 1rem; font-weight: 600; color: var(--error); }
 .aifb-lesson-row a { grid-template-columns: minmax(6.5rem, auto) 1fr auto auto; }
 @media (max-width: 560px) { .aifb-lesson-row a { grid-template-columns: 1fr; } }
+
+/* Žákovská vrstva (F6): třídění karet, semafor, kvíz, cvičení s AI */
+.aifb-pupil { max-width: 52rem; }
+.aifb-pupil .aifb-lead { margin-bottom: 1.25rem; }
+.aifb-sort__cards, .aifb-traffic__list, .aifb-ai__list { list-style: none; margin: 0 0 1rem; padding: 0; display: grid; gap: 0.75rem; }
+.aifb-sort__card, .aifb-traffic__item, .aifb-ai__item, .aifb-quiz__q { padding: 0.9rem 1rem; border-radius: var(--radius-md); background: var(--bg-surface); border: 1.5px solid var(--border-color); }
+.aifb-sort__label { display: block; margin-bottom: 0.6rem; font-weight: 700; color: var(--text-primary); }
+.aifb-sort__actions, .aifb-traffic__buttons { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.aifb-sort__actions .btn, .aifb-traffic__buttons .btn, .aifb-pupil .btn { min-height: 44px; }
+.aifb-sort__status { margin: 0.5rem 0 1rem; font-weight: 700; color: var(--text-primary); }
+.aifb-sort__piles { display: grid; gap: 0.9rem; grid-template-columns: 1fr; }
+@media (min-width: 760px) { .aifb-sort__piles { grid-template-columns: repeat(3, 1fr); } }
+.aifb-sort__pile { padding: 0.9rem 1rem; border-radius: var(--radius-md); background: var(--bg-elevated); border: 1.5px dashed var(--border-color); }
+.aifb-sort__pile h4 { margin: 0 0 0.5rem; font-size: 1rem; color: var(--text-primary); }
+.aifb-sort__pile ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+.aifb-sort__pile li { display: grid; gap: 0.35rem; color: var(--text-primary); }
+.aifb-traffic__text { margin: 0 0 0.6rem; font-weight: 600; color: var(--text-primary); }
+.aifb-light[aria-pressed="true"] { color: var(--aifb-on-accent); background: var(--aifb-accent); border-color: var(--aifb-accent); }
+.aifb-light--red[aria-pressed="true"] { background: var(--error); border-color: var(--error); color: #fff; }
+.aifb-traffic__feedback, .aifb-quiz__feedback { margin: 0.6rem 0 0; color: var(--text-primary); }
+.aifb-quiz { display: grid; gap: 1rem; }
+.aifb-quiz__q { margin: 0; }
+.aifb-quiz__q legend { padding: 0 0.4rem; font-weight: 700; color: var(--text-primary); }
+.aifb-quiz__option { display: flex; align-items: center; gap: 0.6rem; min-height: 44px; margin-bottom: 0.25rem; color: var(--text-primary); cursor: pointer; }
+.aifb-quiz__option input { width: 1.25rem; height: 1.25rem; accent-color: var(--aifb-accent); }
+.aifb-ai-wrap .aifb-callout { margin-top: 0; }
+.aifb-ai__field { display: grid; gap: 0.35rem; margin: 0.6rem 0; font-weight: 600; color: var(--text-primary); }
+.aifb-ai__field textarea { width: 100%; padding: 0.6rem 0.75rem; font: inherit; border-radius: var(--radius-md); color: var(--text-primary); background: var(--bg-primary); border: 1.5px solid var(--control-border); resize: vertical; }
+.aifb-ai__vague { margin: 0 0 0.5rem; color: var(--text-primary); }
+.aifb-ai__answer { margin: 0.75rem 0; padding: 0.75rem 1rem; border-radius: var(--radius-md); background: var(--bg-elevated); border: 1.5px dashed var(--border-color); }
+.aifb-ai__answer p { margin: 0 0 0.5rem; color: var(--text-primary); }
+.aifb-ai__label { margin: 0 0 0.5rem; font-size: 0.85rem; font-weight: 700; color: var(--text-secondary); }
+.aifb-ai__finding { white-space: pre-line; }
+@media print { .aifb-pupil .btn { display: none !important; } }

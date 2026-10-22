@@ -9,6 +9,8 @@
 import { existsSync, readFileSync, statSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import { AI_LESSONS } from "../src/lib/edu/aifb/ai-config.ts";
+import { validatePupilLayer } from "../src/lib/edu/aifb/pupil.ts";
 import { DATA_PROTECTION_ANCHOR, PRINTABLE_SECTIONS } from "../src/lib/edu/aifb/guide.ts";
 import { guideRefsIn } from "../src/lib/edu/aifb/markdown.ts";
 
@@ -227,6 +229,28 @@ export function validateAifb(dir = defaultDir, publicDir = join(repoRoot, "publi
     const onDisk = join(publicDir, String(item.path));
     if (!existsSync(onDisk)) errors.push(`downloads.json: soubor ${item.path} neexistuje v public/`);
     else if (statSync(onDisk).size !== item.bytes) errors.push(`downloads.json: ${item.file} má ${statSync(onDisk).size} B, v manifestu ${item.bytes} B`);
+  }
+
+  // Pilotní žákovská vrstva (F6): jen existující lekce, jen stav draft, platné konfigurace, AI jen mimo 1. stupeň.
+  const overlay = read("pupil-pilots.json");
+  const lessonIndex = new Map();
+  for (const [categoryId, fileName] of Object.entries(CATEGORY_FILES)) {
+    for (const level of read(fileName).levels) for (const lesson of level.lessons) lessonIndex.set(lesson.id, { categoryId, lesson });
+  }
+  for (const [lessonId, layer] of Object.entries(overlay.lessons ?? {})) {
+    const entry = lessonIndex.get(lessonId);
+    if (!entry) {
+      errors.push(`pupil-pilots: lekce "${lessonId}" neexistuje`);
+      continue;
+    }
+    errors.push(...validatePupilLayer(lessonId, layer));
+    if (layer.component === "AiSandbox") {
+      if (entry.categoryId === "zs1") errors.push(`pupil-pilots ${lessonId}: žáci 1. stupně AI nikdy nepíšou (R1)`);
+      if (!AI_LESSONS[lessonId]) errors.push(`pupil-pilots ${lessonId}: chybí serverová konfigurace a uložená odpověď v ai-config.ts`);
+    }
+  }
+  for (const lessonId of Object.keys(AI_LESSONS)) {
+    if (!overlay.lessons?.[lessonId]) errors.push(`ai-config: lekce "${lessonId}" nemá žákovskou vrstvu`);
   }
 
   const totals = catalog.totals ?? {};
