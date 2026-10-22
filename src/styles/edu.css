@@ -868,7 +868,9 @@ a.wiki-meaning:hover .wiki-meaning__arrow { color: #10b981; }
 .eh-card:not(.eh-card--off):hover { transform: translateY(-4px); border-color: var(--c); box-shadow: 0 16px 32px -18px var(--c); }
 .eh-card:not(.eh-card--off):hover .eh-hexicon { transform: rotate(12deg) scale(1.06); }
 .eh-cell:focus-visible { outline: 3px solid #10b981; outline-offset: 3px; }
-.eh-card--off { opacity: 0.6; border-style: dashed; background: var(--color-card-bg); cursor: not-allowed; }
+/* Neaktivní karta: bez průhlednosti (ta shazovala kontrast textu pod 4,5:1), tlumení řeší dashed okraj a sekundární barva. */
+.eh-card--off { border-style: dashed; background: var(--color-card-bg); cursor: not-allowed; }
+.eh-card--off h3, .eh-card--off p { color: var(--color-text-secondary); }
 .eh-hexicon {
   flex: none; width: 3.4rem; aspect-ratio: 1 / 1.1; display: grid; place-items: center;
   background: var(--c); color: #0b0f14; transition: transform 0.2s ease;
@@ -885,7 +887,7 @@ a.wiki-meaning:hover .wiki-meaning__arrow { color: #10b981; }
   align-self: flex-start; margin-top: 0.4rem; padding: 0.15rem 0.65rem; border-radius: 999px; font-size: 0.72rem; font-weight: 600;
   color: var(--color-text-primary); background: color-mix(in srgb, var(--c) 22%, transparent);
 }
-.eh-card--off .eh-badge { color: var(--color-text-muted); background: var(--color-input-bg); }
+.eh-card--off .eh-badge { color: var(--color-text-secondary); background: var(--color-input-bg); }
 @media (prefers-reduced-motion: reduce) {
   .eh-mascot { animation: none; }
   .eh-card, .eh-hexicon { transition: none; }
@@ -985,7 +987,7 @@ html.light .eh-title { color: #000; }
 html.light .eh-bullet { background: #059669; }
 html.light .eh-search-input { border-color: rgba(5, 150, 105, 0.6); }
 html.light .eh-card { background: color-mix(in srgb, var(--c) 13%, #fff); border-color: color-mix(in srgb, var(--c) 55%, transparent); }
-html.light .eh-card--off { background: #fff; opacity: 0.85; border-color: rgba(0, 0, 0, 0.25); }
+html.light .eh-card--off { background: #fff; border-color: rgba(0, 0, 0, 0.25); }
 html.light .eh-card--off h3 { color: var(--color-text-secondary); }
 html.light .eh-card--off .eh-badge { color: var(--color-text-secondary); background: rgba(0, 0, 0, 0.08); }
 html.light .eh-badge { color: #000; background: color-mix(in srgb, var(--c) 30%, #fff); }

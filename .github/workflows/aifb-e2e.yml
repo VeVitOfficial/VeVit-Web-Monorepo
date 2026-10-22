@@ -1,0 +1,38 @@
+name: AIFB E2E
+
+on:
+  push:
+    paths:
+      - "src/**"
+      - "tests/e2e/**"
+      - "scripts/aifb-*.mjs"
+      - "package.json"
+      - ".github/workflows/aifb-e2e.yml"
+  pull_request:
+
+jobs:
+  aifb-e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run validate:aifb
+      - run: npx playwright-core install --with-deps chromium
+      - name: Production build
+        run: npm run build
+      - name: Start the app
+        run: |
+          npm run start -- -p 3000 > server.log 2>&1 &
+          for i in $(seq 1 60); do curl -sf http://localhost:3000/cs/edu/ai-gramotnost >/dev/null && exit 0; sleep 2; done
+          cat server.log; exit 1
+      - name: AIFB smoke (all pages)
+        run: npm run smoke:aifb
+      - name: AIFB E2E
+        run: npm run test:e2e:aifb
+        env:
+          E2E_PRODUCTION: "1"

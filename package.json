@@ -13,7 +13,8 @@
     "build:tailwind": "tailwindcss -c tailwind.config.js -i src/styles/tailwind.input.css -o src/styles/vevit-tailwind.css --minify",
     "validate:aifb": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/aifb-validate.mjs && node scripts/aifb-gen-types.mjs --check",
     "gen:aifb-types": "node scripts/aifb-gen-types.mjs",
-    "smoke:aifb": "node scripts/aifb-smoke.mjs"
+    "smoke:aifb": "node scripts/aifb-smoke.mjs",
+    "test:e2e:aifb": "node --test tests/e2e/aifb.e2e.mjs"
   },
   "devDependencies": {
     "@tailwindcss/container-queries": "^0.1.1",

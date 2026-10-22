@@ -59,6 +59,11 @@ export function useAifbProgress(): AifbProgress {
   return useSyncExternalStore(subscribe, load, () => EMPTY);
 }
 
+/** Aktuální uložený průběh (čte přímo úložiště; po hydrataci je vždy aktuální, na rozdíl od hodnoty z renderu). */
+export function getProgressNow(): AifbProgress {
+  return load();
+}
+
 export function setStatus(lessonId: string, status: LessonStatus | null) {
   save(setLessonStatus(load(), lessonId, status));
 }

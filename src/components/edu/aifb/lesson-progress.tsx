@@ -6,7 +6,7 @@
 import { useEffect } from "react";
 import { useEduLang } from "../i18n";
 import { lessonStateOf, type LessonState } from "@/lib/edu/aifb/progress";
-import { setStatus, useAifbProgress } from "./use-progress";
+import { getProgressNow, setStatus, useAifbProgress } from "./use-progress";
 
 const STATE_KEY: Record<LessonState, string> = {
   todo: "aifb.status.todo",
@@ -25,9 +25,9 @@ export function LessonProgressControls({ lessonId, autoStart }: { lessonId: stri
   const state = lessonStateOf(useAifbProgress(), lessonId);
 
   useEffect(() => {
-    if (autoStart && state === "todo") setStatus(lessonId, "started");
-    // Jen při otevření lekce: pozdější změny stavu dělá uživatel tlačítkem.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // Čte se uložený stav, ne hodnota z renderu: při hydrataci je v renderu ještě „todo" a hotová
+    // lekce by se přepsala na „rozpracováno" (chybu odhalil E2E test).
+    if (autoStart && lessonStateOf(getProgressNow(), lessonId) === "todo") setStatus(lessonId, "started");
   }, [lessonId, autoStart]);
 
   return (
