@@ -1,0 +1,48 @@
+import "server-only";
+
+// Načítání obsahu AIFB. Katalog (8 kB) se importuje staticky, protože ho potřebuje hub;
+// obsah kategorie (70–90 kB) se načte až při vstupu do kategorie. JSON se jen čte,
+// nikdy se nepřepisuje ani nepřeformátovává (hardRule R6). Soubory jsou součástí bundlu
+// stejně jako obsah původního kurzu (serverless na Vercelu nepracuje s volnými soubory).
+
+import catalogJson from "@/content/aifb/aifb-catalog.json";
+import type { AifbContent, Catalog, CategoryId, Level, Lesson } from "./types.ts";
+import { isCategoryId } from "./types.ts";
+import { lessonIdFromSlug, levelIdFromSlug } from "./routes.ts";
+
+const catalog = catalogJson as unknown as Catalog;
+
+const loaders: Record<CategoryId, () => Promise<AifbContent>> = {
+  zs1: async () => (await import("@/content/aifb/aifb-content-zs1.json")).default as unknown as AifbContent,
+  zs2: async () => (await import("@/content/aifb/aifb-content-zs2.json")).default as unknown as AifbContent,
+  ss: async () => (await import("@/content/aifb/aifb-content-ss.json")).default as unknown as AifbContent,
+};
+
+const cache = new Map<CategoryId, Promise<AifbContent>>();
+
+export function getCatalog(): Catalog {
+  return catalog;
+}
+
+/** Obsah kategorie, nebo null pro neznámé / nevýukové id (např. „kurz"). */
+export function loadCategory(id: string): Promise<AifbContent> | null {
+  if (!isCategoryId(id)) return null;
+  let pending = cache.get(id);
+  if (!pending) {
+    pending = loaders[id]();
+    // Při selhání se chyba necachuje, další požadavek zkusí načtení znovu.
+    pending.catch(() => cache.delete(id));
+    cache.set(id, pending);
+  }
+  return pending;
+}
+
+export function findLevel(content: AifbContent, slug: string): Level | undefined {
+  const id = levelIdFromSlug(content.category.id, slug);
+  return content.levels.find((level) => level.id === id);
+}
+
+export function findLesson(level: Level, slug: string): Lesson | undefined {
+  const id = lessonIdFromSlug(level.id, slug);
+  return level.lessons.find((lesson) => lesson.id === id);
+}

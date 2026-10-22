@@ -216,6 +216,28 @@ Navržené veřejné trasy (vše s `/<locale>` prefixem):
 - **Q13 (F6).** Poskytovatel modelu a endpoint: navrhuji reuse env `EDU_AI_*` vzoru v nové route `src/app/edu/api/aifb/complete/route.ts`. Rozhodnutí před F6, do té doby jen uložené odpovědi.
 - **Q14 (stávající certifikát).** `certificate.php` stávajícího kurzu zůstává beze změny. AIFB štítky budou vždy „Připravuje se". Potvrdit.
 
-## 16. Další krok
+## 16. Změny po F0 (aktualizace 2026-10-22)
 
-Zastaveno po F0. Fázi 1 začnu až na výslovné „pokračuj Fází 1" a po odpovědích na Q1–Q6.
+Původní kurz AI gramotnosti byl na pokyn vlastníka z webu odstraněn (stránky `kurz`, `lekce`, `milnik`, `profil`, dashboard a komponenty). Zůstal obsah v `src/content/ai-gramotnost`, kvízová API a `certificate.php`. Důsledky:
+
+- Hub AIFB zabírá kořen `/edu/ai-gramotnost` (výchozí odpověď plánu Q1/A). Dřívější stránka „Již brzy" pro AI gramotnost je nahrazena hubem; komponenta `EduSoonPage` zůstává pro Chemii a Historii.
+- `#lesson/…` odkazy starého kurzu nemají kam vést. Redirect z dashboardu zanikl spolu s dashboardem.
+- Čtvrtá karta katalogu („Online kurz pro všechny", `status: existing`) se v hubu zobrazí jako neaktivní „Připravuje se", ne jako odkaz na neexistující stránku.
+
+## 17. Rozhodnutí a výchozí odpovědi (platí, dokud vlastník neřekne jinak)
+
+| Téma | Rozhodnutí |
+|---|---|
+| Hub (Q1) | Na `/edu/ai-gramotnost`, kategorie pod `/aifb/<kategorie>` |
+| Větve | Jedna větev na fázi, navazují po sobě (`feat/aifb-f1-obsah` → `feat/aifb-f2-…`); základ je `feat/platebni-brana` (tam je aktuální stav Edu). Push a PR jen po schválení |
+| Tokeny (Q3) | Scoped tokeny `.aigram` (smaragdová), světlý/tmavý režim přes `html.light` |
+| Analytika (Q4) | `AnalyticsGate` se pro `/edu/ai-gramotnost` nespouští (R3) |
+| Závislosti (Q5) | Bez nových závislostí: validace schématu a generátor typů jsou vlastní skripty (`scripts/aifb-validate.mjs`, `scripts/aifb-gen-types.mjs`) |
+| URL lekcí (Q6) | Krátké segmenty odvozené z id (`/zs1/blok-a/cv3`); mapování je jednoznačné a pokryté testy |
+| Průvodce | `/aifb/<kategorie>/pro-ucitele` (ne `/aifb/ucitele/<kategorie>`, kvůli kolizi s `:level`) |
+| Plán Q2, Q3, Q6 | Výchozí odpovědi: stezka pro 2. stupeň, názvy ostrovů z `visual`, texty pro žáky schvaluje vlastník |
+| XP | Pouze lokálně (`vevit.edu.aifb.progress.v1`); žádný zápis do účtu |
+| Soubory ke stažení | Jen existující `AIFB_plan_cviceni_pro_skoly.docx`; chybějící DOCX/PDF se nezobrazují, dokud je vlastník nedodá |
+| `public/` v `.gitignore` | Nové soubory pod `public/` je třeba přidávat `git add -f` (jinak se nedostanou na Vercel) |
+
+Pozn.: obsah průvodců zmiňuje názvy konkrétních AI služeb (např. ChatGPT, Gemini). Je to obsah plánu a nemění se; pravidlo R8 (bez značky modelu) platí pro rozhraní, které aplikace generuje.

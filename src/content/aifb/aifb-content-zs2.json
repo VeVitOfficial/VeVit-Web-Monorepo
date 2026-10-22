@@ -1,0 +1,1393 @@
+{
+ "schemaVersion": "1.0",
+ "version": "2026-10",
+ "language": "cs",
+ "category": {
+  "id": "zs2",
+  "title": "2. stupeň ZŠ",
+  "subtitle": "Šest úrovní pro 6. až 9. třídu",
+  "grades": "6.–9. třída",
+  "unit": "Level",
+  "theme": "trail",
+  "usageMode": "teacher-led-then-individual",
+  "audience": "Žáci 6.–9. třídy (cca 11–15 let). 6.–7. třída pracuje pod vedením učitele u společného zařízení; 8.–9. třída může po souhlasu zákonných zástupců pracovat individuálně.",
+  "source": {
+   "document": "AIFB_plan_cviceni_ZS_2_stupen.docx",
+   "note": "Strukturovaná verze metodického plánu pro učitele (říjen 2026). Text určený žákům v plánu není; pole pupil je zatím ve stavu todo."
+  }
+ },
+ "guide": [
+  {
+   "number": "1",
+   "id": "g1",
+   "title": "Úvod: jak s plánem pracovat",
+   "blocks": [],
+   "sections": [
+    {
+     "number": "1.1",
+     "id": "g1-1",
+     "title": "Účel a struktura plánu",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Tento dokument obsahuje plán cvičení pro výuku praktické gramotnosti v oblasti umělé inteligence podle systému AI Fluency Benchmark (AIFB), přizpůsobený žákům druhého stupně základní školy. Je určen především učitelům informatiky a počítačové vědy, využít ho však mohou i třídní učitelé, koordinátoři digitální výchovy a vedoucí zájmových kroužků. Plán pokrývá všech šest úrovní AIFB: úrovně 1 a 2 jsou určeny pro běžnou výuku v ročnících šestých až osmých, úroveň 3 pro osmou a devátou třídu a úrovně 4 až 6 jako nabídku pro hlouběji zainteresované žáky, nejčastěji ve formě kroužku nebo přípravy na střední školu. Žáci, kteří absolvovali plán prvního stupně, na něj plynule navazují; plán je však sestaven tak, aby fungoval i pro třídy, které z prvního stupně žádnou přípravu nemají."
+      },
+      {
+       "type": "p",
+       "text": "Každá kapitola věnovaná jedné úrovni má stejnou strukturu, aby se v dokumentu učitel snadno orientoval. Nejprve jsou uvedeny vzdělávací cíle, tedy dovednosti, které by žák po absolvování úrovně měl ovládat. Následuje časové rozvržení do bloků, teoretická příprava s opakovacími otázkami a diskuzními tématy, pět konkrétních cvičení se zadáním a očekávaným výstupem a nakonec stručné poznámky pro učitele. Cvičení jsou navržena tak, aby byla proveditelná s běžně dostupnými bezplatnými nástroji a aby jejich zadání bylo možné podle potřeby obměňovat."
+      },
+      {
+       "type": "p",
+       "text": "Plán zároveň záměrně neobsahuje kompletní výukové texty ani hotové podklady. Výklad teorie ke každému tématu, vzorové odpovědi k opakovacím otázkám, sady karet, ukázky chybných výstupů či hodnoticí rubriky se připravují jako součást výukových modulů AIFB na platformě VeVit a budou postupně zveřejňovány; v současné fázi pilotního provozu si je učitel sestavuje sám podle zadání uvedených v kapitolách. Teoretické přípravy v tomto dokumentu vymezují témata a poskytují otázky a diskuze; každé cvičení zároveň přináší návod, jak si potřebné podklady připravit. Dokud moduly nejsou zveřejněny, je tento plán samostatným a úplným podkladem pro výuku."
+      },
+      {
+       "type": "p",
+       "text": "Plán je metodickým podkladem, nikoli závaznou osnovou. Učitel může jednotlivé bloky zkrátit, prodloužit nebo přeskládat podle znalostí a vybavení konkrétní třídy. Důležité je zachovat návaznost úrovní: každá úroveň staví na dovednostech z úrovní předchozích, a proto se doporučuje absolvovat je v uvedeném pořadí. Žáci, kteří již mají zkušenosti s některými tématy, mohou odpovídající bloky zrychleně přeskočit na základě ústního nebo písemného vstupního testu."
+      }
+     ]
+    },
+    {
+     "number": "1.2",
+     "id": "g1-2",
+     "title": "Časová dotace a organizace výuky",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Orientační časová dotace se u jednotlivých úrovní liší podle náročnosti cvičení: úrovně 1 a 2 se pohybují v rozsahu sedmi až osmi hodin, úroveň 3 v rozsahu osmi až deseti hodin a úrovně 4 až 6 v rozsahu devíti až čtrnácti hodin. Na druhém stupni lze úrovně 1 a 2 začlenit do povinné výuky informatiky, kde při jedné hodině týdně odpovídá jedna úroveň zhruba dvouměsíčnímu bloku, který však není nutné umísťovat do souvislého období. Úroveň 3 se hodí do druhého pololetí osmé třídy nebo do deváté třídy a úrovně 4 až 6 nejlépe fungují v zájmovém kroužku, kde je možné pracovat v delších blocích a zadávat domácí přípravu."
+      },
+      {
+       "type": "table",
+       "caption": "Doporučené členění úrovně na výukové bloky (rámcově pro úrovně 1 a 2)",
+       "header": [
+        "Část výuky",
+        "Obsah",
+        "Podíl na dotaci"
+       ],
+       "rows": [
+        [
+         "Teoretická příprava",
+         "Vysvětlení pojmů, opakovací otázky, diskuze ve třídě.",
+         "cca 2 hodiny"
+        ],
+        [
+         "Cvičení 1 a 2",
+         "První dvě cvičení úrovně, samostatná nebo párová práce.",
+         "cca 2 hodiny"
+        ],
+        [
+         "Cvičení 3 a 4",
+         "Navazující cvičení, procvičování dovedností úrovně.",
+         "cca 2 hodiny"
+        ],
+        [
+         "Cvičení 5 a shrnutí",
+         "Závěrečné cvičení, společná reflexe a vyhodnocení.",
+         "1 až 2 hodiny"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Výuka většiny cvičení úrovní 1 a 2 probíhá u počítačů, proto je vhodné plánovat tyto úrovně do hodin v počítačové učebně; teoretickou přípravu lze naopak vést v běžné třídě, což pomůže v týdnech, kdy je učebna obsazená. Pokud škola vyučuje informatiku v blocích po dvou hodinách, doporučuje se spojit teoretickou přípravu s prvním cvičením a zbývající cvičení rozdělit do dalších bloků. Vždy platí, že poslední hodina úrovně by měla obsahovat společné shrnutí, ve kterém třída vyhodnotí, co se podařilo, a učitel odpoví na otevřené otázky."
+      }
+     ]
+    },
+    {
+     "number": "1.3",
+     "id": "g1-3",
+     "title": "Pomůcky, technické požadavky a věkové podmínky",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Požadavky na vybavení jsou u jednotlivých úrovní odlišné, protože se liší i zaměření a náročnost témat. Následující přehled slouží k časnému naplánování, aby technické překážky nezpomalily průběh výuky. U úrovní 1 až 3 se předpokládá počítač pro každého žáka nebo alespoň pro dvojici a funkční připojení k internetu; u úrovní 4 až 6 má navíc každý pracovní tým vlastní projektové prostředí."
+      },
+      {
+       "type": "list",
+       "ordered": false,
+       "items": [
+        "**Úrovně 1 a 2:** webový prohlížeč a přístup ke konverzačnímu nástroji. Věkové podmínky služeb jsou na druhém stupni klíčové: ChatGPT nesmí používat děti do 13 let a nezletilí do 18 let potřebují souhlas zákonného zástupce, Claude je určen až od 18 let a Gemini je přístupný mladším teenagerům s doplňkovými ochranami. Proto platí dvě varianty. V šestých a sedmých třídách, kde je část žáků mladší třinácti let, pracuje třída pod vedením učitele u společného zařízení s projekcí: žáci zadání navrhují a učitel je zapisuje; samostatná práce žáků je možná jen v prostředí, které poskytovatel pro daný věk výslovně dovoluje a které schválila škola. V osmých a devátých třídách lze po informovaném souhlasu zákonných zástupců využít individuální přístup ke zvolenému nástroji. Sdílení jednoho účtu více osobami podmínky některých služeb zakazují, proto upřednostněte vzdělávací nebo školní variantu nástroje, pokud ji poskytovatel nabízí. Nástroje, ke kterým žáci přístup nemají, učitel prezentuje z účtu vedeného školou.",
+        "**Úroveň 3:** stejné vybavení doplněné o školní účet v automatizačním nástroji (například n8n nebo Make) a přístup k jednomu veřejnému API s volnými požadavky. Obojí zakládá a spravuje učitel, protože podmínky těchto služeb bývají určeny plnoletým osobám; žáci pracují s klíči vydanými na dobu hodiny.",
+        "**Úrovně 4 a 5:** nainstalovaný Python ve verzi 3.10 nebo novější, editor kódu (například VS Code) a školní účet u poskytovatele API modelů s nastaveným limitem útraty. Celou úroveň 4 lze provozovat bez placených služeb: lokální model spuštěný v nástroji Ollama zpřístupňuje kompatibilní rozhraní API, na kterém lze absolvovat všechna cvičení bez poplatků. Pro úroveň 5 je vhodný počítač s alespoň 8 GB paměti pro spuštění lokálního modelu.",
+        "**Úroveň 6:** prostředí z úrovní 4 a 5 doplněné o knihovny pro multiagentní systémy (například CrewAI nebo LangGraph), vektorovou databázi (například Chroma) a prostor pro uložení dokumentů, nad kterými žáci budují vyhledávání. I zde lze využít lokální modely a obejít se tak bez placených služeb.",
+        "**Společné:** projektor nebo sdílená obrazovka pro ukázky, tabule pro schémata pracovních postupů a vytištěné podklady pro cvičení, která nevyžadují počítač. Všechny uvedené nástroje jsou příklady ve výuce ověřených služeb; můžete je nahradit ekvivalentem se stejnou funkcí."
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Součástí přípravy na každou úroveň je i seznámení se s aktuálním zněním podmínek užívání jednotlivých služeb, protože se mění častěji, než stihne aktualizovat jakákoli metodika. Stav podmínek popsaný v tomto dokumentu odpovídá říjnu 2026. U úrovní, ve kterých žáci pracují s vlastním přístupem, si předem rozmyslete, kdo přístup spravuje, jak se řeší zapomenutá hesla a co se s ním stane na konci školního roku; nejprostějším modelem bývá školní účet, který zůstává majetkem školy a žákovi je pouze přidělen. Takový účet ale obsahuje alespoň jméno žáka, takže jde o zpracování osobních údajů, které škola musí vyřešit (viz oddíl 1.4)."
+      }
+     ]
+    },
+    {
+     "number": "1.4",
+     "id": "g1-4",
+     "title": "Pravidla bezpečné a odpovědné práce",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Práce s nástroji umělé inteligence ve školním prostředí přináší specifické povinnosti, které je třeba s žáky probrat na začátku první úrovně a průběžně je připomínat. Základním pravidlem je, že do konverzačních nástrojů nikdy nezadávají osobní údaje, ať vlastní nebo svých spolužáků a učitelů. To se týká jména, adresy, data narození, fotografií, zdravotních informací i údajů, které by mohly vést k identifikaci konkrétní osoby. Stejně opatrně je třeba zacházet se školními dokumenty, které mohou obsahovat citlivé informace. Na rozdíl od prvního stupně zde žáci zejména v osmých a devátých třídách nástroje obsluhují sami, a proto pravidla nestačí vyvěsit: musí se procvičit na konkrétních situacích, které přináší cvičení 3 v úrovni 1."
+      },
+      {
+       "type": "p",
+       "text": "Druhým pilířem je odpovědnost za výstupy. Žáci se učí, že odpovědi modelů mohou být nepřesné nebo zcela vymyšlené, a proto se u každého vážného výsledku ověřuje zdroj. Výstupy AI se vždy označují jako takové, a to i v domácích úkolech a referátech. Škola si zároveň stanoví jasná pravidla, kdy je použití AI dovolené: v úrovních AIFB je AI předmětem výuky a proto i povoleným nástrojem, v jiných předmětech platí pokyny konkrétního učitele. Tato pravidla se doporučuje shrnout do krátké třídní dohody o používání AI, kterou třída na začátku kurzu projedná a přijme."
+      },
+      {
+       "type": "p",
+       "text": "Třetím pilířem je souhlas rodičů. Tam, kde žáci pracují s individuálními účty u konverzačních nástrojů, získáte před zahájením souhlas jejich zákonných zástupců, a to ideálně jednorázově pro celý školní rok s popisem toho, které nástroje budou ve výuce použity a jaká data se v nich zpracovávají. Tam, kde třída pracuje pod vedením učitele z jednoho zařízení a žádné údaje žáků se do služby nezadávají, bývá riziko menší; škola je však správcem údajů, a proto postup vždy ověřte se školním pověřencem. Individuální školní účty žáků obsahují alespoň jméno žáka, a je tedy třeba je řešit stejně jako účty osobní. V České republice může samostatný souhlas se službami informační společnosti dávat zpravidla až patnáctiletý žák, u mladších je souhlas zákonného zástupce nutný vždy. Informovaný dopis rodičům však má smysl v obou případech, protože doma se stejnými nástroji žáci setkávají denně a škola tak má příležitost nastavit společnou řeč."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "number": "2",
+   "id": "g2",
+   "title": "Přehled úrovní AIFB na druhém stupni",
+   "blocks": [
+    {
+     "type": "p",
+     "text": "Systém AI Fluency Benchmark definuje šest navazujících úrovní, které postupně rozvíjejí dovednosti od základního porozumění umělé inteligenci až po návrh komplexních AI systémů. Úrovně 1 a 2 tvoří jádro výuky na druhém stupni a pokrývají potřeby většiny žáků. Úroveň 3 představuje přirozený vrchol pro ročníky osmý a devátý a zároveň představuje nejvyšší úroveň, kterou lze realizovat v povinné výuce s rozumnými nároky na vybavení. Úrovně 4 až 6 jsou připravovány jako navazující etapa a na druhém stupni je zařazujte pouze hlouběji zainteresovaným žákům, nejlépe v zájmovém kroužku; jejich plnému rozvinutí lépe vyhovuje prostředí střední školy, proto je v tomto plánu najdete spíš jako výhled než jako povinnou součást trajektorie."
+    },
+    {
+     "type": "table",
+     "caption": "Přehled šesti úrovní AIFB na druhém stupni",
+     "header": [
+      "Úroveň",
+      "Certifikace AIFB",
+      "Hlavní témata",
+      "Doporučené zařazení"
+     ],
+     "rows": [
+      [
+       "1",
+       "Certified AI Associate",
+       "Základy AI, principy jazykových modelů, bezpečnost dat, etika, orientace v rozhraních.",
+       "6. až 7. třída"
+      ],
+      [
+       "2",
+       "Certified Prompt Specialist",
+       "Prompt engineering, role a kontext, ukázkové příklady, základy Markdownu a JSON.",
+       "7. až 8. třída"
+      ],
+      [
+       "3",
+       "Certified AI Automation Practitioner",
+       "Návrh pracovních postupů, jednoduchá automatizace, práce s API a JSON odpověďmi, multimodalita.",
+       "8. až 9. třída"
+      ],
+      [
+       "4",
+       "v přípravě",
+       "Programové volání modelů v Pythonu, správa kontextu, function calling, tokeny a ceny.",
+       "8. až 9. třída, kroužek programování"
+      ],
+      [
+       "5",
+       "v přípravě",
+       "Návrh a tvorba vlastní aplikace, vyhodnocování kvality modelů, lokální modely.",
+       "kroužek po úrovni 4, projektová výuka"
+      ],
+      [
+       "6",
+       "v přípravě",
+       "Multiagentní systémy, RAG a vektorové databáze, bezpečnost a řízení přístupu.",
+       "výjimečně, jako individuální projekt"
+      ]
+     ]
+    },
+    {
+     "type": "p",
+     "text": "Certifikace úrovní 1 až 3 se na druhém stupni předpokládá v juniorské variantě, která odpovídá zjednodušenému obsahu tohoto plánu; podrobnosti uvádí oddíl 9.2."
+    },
+    {
+     "type": "p",
+     "text": "Úrovně na sebe plynule navazují, ale nepředpokládají, že každý žák absolvuje všechny. Přirozenou průchozí trasou je absolvování úrovní 1 a 2 v rámci povinné výuky informatiky v průběhu šestého až osmého ročníku a úrovně 3 v osmé nebo deváté třídě, případně v projektové výuce. Tím žák získá dovednosti, které pokrývají potřeby běžného života i přípravu na střední školu, kde na ně navazují úrovně vyšší. Toto členění odpovídá i plánovanému certifikačnímu modelu, ve kterém po splnění stanovených podmínek úrovně žák získává certifikát s veřejně ověřitelnou platností."
+    },
+    {
+     "type": "p",
+     "text": "Pro žáky, kteří přišli na druhý stupeň bez přípravy z prvního stupně, je plán navržen tak, aby úroveň 1 začínala od úplných základů; žáci z prvního stupně pak tuto úroveň absolvují rychleji a s větším důrazem na praktická cvičení, protože pojmy už znají. Učitel může vstupní znalosti třídy ověřit krátkým úvodním testem na první hodině a podle jeho výsledků rozdělit třídu na žáky, kteří budou plnit vše, a žáky, kteří dostanou rozšířené úkoly. V obou případech platí, že počáteční rozdíly se v průběhu úrovní 1 a 2 vyrovnávají, protože cvičení stojí na společné práci a sdílení zkušeností."
+    }
+   ]
+  },
+  {
+   "number": "9",
+   "id": "g9",
+   "title": "Doporučený postup pro školy",
+   "blocks": [],
+   "sections": [
+    {
+     "number": "9.1",
+     "id": "g9-1",
+     "title": "Harmonogram zařazení úrovní do výuky",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Nejpřirozenější cestou je rozložit úrovně tak, aby povinná výuka informatiky pokryla úrovně 1 a 2 a volitelná výuka a kroužky zvládly úroveň 3 a případně vyšší. Následující tabulka ukazuje doporučené zařazení pro ročníky šestý až devátý; školy s jinou strukturou si sloupce přizpůsobí podle svých osnov. Důležitější než přesný ročník je zachovat pořadí úrovní a zajistit, aby mezi úrovní 2 a 3 neuplynul příliš dlouhý čas, protože dovednosti práce s modely se rychle zapomínají, pokud se nepoužívají."
+      },
+      {
+       "type": "table",
+       "caption": "Doporučené rozložení úrovní do ročníků",
+       "header": [
+        "Ročník",
+        "Úroveň AIFB",
+        "Forma zařazení"
+       ],
+       "rows": [
+        [
+         "6. třída",
+         "Level 1 – Foundation",
+         "Povinná výuka informatiky, podzimní půlrok; práce pod vedením učitele u společného zařízení."
+        ],
+        [
+         "7. třída",
+         "Level 2 – Intermediate",
+         "Povinná výuka informatiky, navazující půlrok."
+        ],
+        [
+         "8. třída",
+         "Level 3 – Advanced",
+         "Povinná výuka nebo projektová výuka, druhý půlrok."
+        ],
+        [
+         "8. až 9. třída",
+         "Level 4 – API Integration",
+         "Zájmový kroužek programování, bloková výuka (nejlépe od druhého pololetí osmé třídy)."
+        ],
+        [
+         "9. třída nebo SŠ",
+         "Level 5 – Custom AI Developer",
+         "Kroužek, celoroční projekt; většinou až po úrovni 4, případně na střední škole."
+        ],
+        [
+         "výjimečně",
+         "Level 6 – Systems Architect",
+         "Individuální projekt s konzultacemi, případně ve spolupráci se SŠ."
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "První etapa projektu AIFB se soustředí na úrovně 1 až 3, které se připravují k pilotnímu ověřování; jednou z možností je spolupráce s Gymnáziem Františka Palackého v Neratovicích, jejíž podmínky se teprve projednávají. Základní školy se mohou o pilotní provoz zajímat stejně jako školy střední a přístup k postupně doplňovaným výukovým modulům a certifikaci je pro zapojené školy plánován jako bezplatný. Úrovně 4 až 6 jsou připravovány jako navazující etapa podle výsledků pilotu, a proto je vhodné jejich zařazení do osnov plánovat s určitou rezervou a sledovat aktuální informace projektu."
+      }
+     ]
+    },
+    {
+     "number": "9.2",
+     "id": "g9-2",
+     "title": "Napojení na certifikaci AIFB",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Vzdělávací moduly a certifikační testy jsou navrženy jako samostatné, ale propojené části systému. Výuka podle tohoto plánu žáky připraví na obsah úrovní, přičemž samotný certifikát získají po splnění stanovených podmínek certifikačního testu na platformě. U úrovní 1 až 3 je přístup pro zapojené školy plánován jako bezplatný, konkrétní podmínky zapojení školy sjedná vedení s provozovatelem projektu. Každý vydaný certifikát má jedinečný identifikátor, QR kód a veřejnou stránku pro ověření platnosti, na které je uvedeno, jaké dovednosti certifikát potvrzuje."
+      },
+      {
+       "type": "p",
+       "text": "Obsah úrovní 1 až 3 je na druhém stupni oproti středoškolské verzi zjednodušen: u úrovně 2 žáci především pracují s hotovými strukturami JSON a u úrovně 3 automatizaci společně s žáky vede učitel. Proto se předpokládá juniorská varianta certifikačních testů, která odpovídá obsahu tohoto plánu; její označení a podmínky upřesní provozovatel projektu a certifikát bude výslovně uvádět, co potvrzuje. Dokud juniorská varianta nebude zveřejněna, jde o záměr, nikoli o hotovou nabídku. Veřejná ověřovací stránka by u držitelů mladších osmnácti let neměla zobrazovat celé jméno; její podobu upřesní provozovatel."
+      },
+      {
+       "type": "p",
+       "text": "Učitelům doporučujeme zavést pravidlo dvou oddělených okamžiků: nejprve společný nácvik podle cvičení v tomto plánu, a poté samostatné vykonání certifikačního testu v druhém termínu. Tím se oddělí proces učení od procesu ověřování a zlepší se vypovídací hodnota výsledku. Žáky je třeba předem seznámit s tím, co certifikát potvrzuje i co naopak nepotvrzuje, aby si od nesprávných očekávání nevybudovali přehnanou důvěru v jeho dosah. Získané certifikáty si žáci mohou uvést v motivačním dopise nebo v portfoliu; o veřejném sdílení rozhodují žáci spolu se zákonnými zástupci."
+      }
+     ]
+    },
+    {
+     "number": "9.3",
+     "id": "g9-3",
+     "title": "Návaznost na plány prvního stupně a střední školy",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Tento plán je prostředním článkem tří dokumentů. Na plán prvního stupně navazuje v úrovni 1, která začíná od úplných základů, a proto ji třídy bez předchozí přípravy zvládnou stejně dobře jako třídy, které prošly všemi čtyřmi bloky prvního stupně; ty druhé ji jen absolvují rychleji. Na středoškolský plán navazuje v úrovních 4 až 6, jejichž obsah je v obou verzích téměř totožný (u úrovně 4 se v kroužku používá kostra skriptu, kterou připraví učitel) a liší se hlavně doporučenou formou vedení. Žák, který na druhém stupni absolvoval úrovně 1 a 2, tak na střední škole pokračuje úrovní 3 bez ztráty času, a žák, který zvládl i kroužek s úrovněmi 4 a 5, má náskok, ke kterému může střední škola přihlédnout při vstupním testu a individuálním plánu; formální uznání se nepředpokládá."
+      },
+      {
+       "type": "p",
+       "text": "Propojení obou plánů má smysl aktivně udržovat na úrovni školy i spolupracujících škol. Základní škola, která ví, které střední školy její absolventi volí nejčastěji, může v devátých třídách nabídnout kroužek s úrovněmi 4 a 5 a ukázat tak žákům, co je na střední škole čeká. Střední škola naopak může s informacemi o certifikátech počítat při vstupním testu a individuálním plánu, pokud je žák nebo jeho zákonný zástupce škole sdělí. Uvedená spolupráce není podmínkou fungování plánu; předpokládáme, že právě přechod mezi stupni je okamžik, kdy se dovednosti ztrácejí nejsnáze, a proto stojí za pozornost. Toto očekávání teprve ověří pilotní provoz."
+      }
+     ]
+    },
+    {
+     "number": "9.4",
+     "id": "g9-4",
+     "title": "Vyhodnocování a zpětná vazba",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Každé dokončené úrovni věnujte krátkou reflexi, která má tři otázky: které cvičení bylo nejpřínosnější, které nejméně srozumitelné a co by žák ve výuce změnil. Odpovědi stačí sbírat anonymně na lístcích nebo v krátkém dotazníku a jejich zpracování nezabere více než čtvrt hodiny. Výsledky porovnávejte se svými vlastními pozorováními z hodin, protože se často liší: cvičení, které se ve třídě jevilo jako snadné, mohlo být pro žáky nejméně přínosné, a naopak."
+      },
+      {
+       "type": "p",
+       "text": "Sběrem zpětné vazby školního provozu se zavádění systému nekončí. Vhodné je vést si přehled, kolik žáků jednotlivé úrovně absolvovalo a jaká je úspěšnost u certifikačních testů, a tyto údaje spolu s poznatky z výuky předávat provozovateli projektu. Právě na zpětné vazbě ze škol je postavena úprava obtížnosti úloh, obměna zadání proti mechanickému opisování i rozpracování vyšších úrovní. Učitel, který se chce podílet na obsahu a kvalitě systému, se může zapojit do odborné spolupráce, kterou projekt postupně buduje s učiteli, odborníky z praxe a akademickými pracovišti."
+      },
+      {
+       "type": "p",
+       "text": "Zavedení úrovní do výuky na druhém stupni nevyžaduje, aby škola začala hned od všeho. Smysluplný první krok tvoří úrovně 1 a 2, které nepotřebují nic jiného než běžný počítač, sjednocený nástroj a pravidla, která si třída sama stanoví, a přitom žákům dají největší porci praktických dovedností pro každodenní práci s umělou inteligencí. Úroveň 3 lze přidat, jakmile má škola učitele, který si osvojí práci s jedním automatizačním nástrojem, a úrovně 4 až 6 pak představují nabídku pro žáky, kteří chtějí jít dál. Každý mezikrok je přínosem sám o sobě."
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "levels": [
+  {
+   "id": "zs2-level-1",
+   "order": 1,
+   "code": "Level 1",
+   "title": "AIFB Foundation",
+   "subtitle": "Základy a bezpečnost",
+   "intro": [
+    "První úroveň seznamuje žáky s tím, co dnešní nástroje umělé inteligence dovedou, kde jsou jejich limity a jak se s nimi pracuje bezpečně. Cílem není technický výklad, ale budování zdravého úsudku: žák by měl po absolvování úrovně chápat, že jazykový model generuje text na základě naučených vzorců, že jeho odpovědi nejsou vždy pravdivé a že za výsledek práce nese odpovědnost člověk. Úroveň je vhodná jako úvod do celého bloku výuky o AI a nevyžaduje žádné předchozí zkušenosti s programováním ani s konverzačními nástroji. Žáci, kteří prošli plánem prvního stupně, najdou v úrovni 1 opakování v nové hloubce: pracují samostatně, s reálnými rozhraními a s prvními systematickými srovnávacími úlohami."
+   ],
+   "goals": [
+    "Žák vysvětlí vlastními slovy, co je velký jazykový model a jak přibližně funguje.",
+    "Žák uvede alespoň tři typické limity současných AI nástrojů a k nim příklady chyb.",
+    "Žák rozpozná nepřesný nebo vymyšlený výstup modelu a ověří ho v nezávislém zdroji.",
+    "Žák rozřadí informace podle toho, zda je lze bezpečně zadat do AI nástroje.",
+    "Žák se orientuje v rozhraní konverzačního nástroje, ke kterému má třída schválený přístup, a sformuluje jasné zadání.",
+    "Žák popíše zásady bezpečného a etického používání AI ve škole i mimo ni."
+   ],
+   "hours": "7 až 8 hodin",
+   "schedule": {
+    "header": [
+     "Blok",
+     "Obsah výuky",
+     "Časová dotace"
+    ],
+    "rows": [
+     [
+      "Blok 1",
+      "Teoretická příprava: co je AI, principy jazykových modelů, bezpečnost a etika.",
+      "2 hodiny"
+     ],
+     [
+      "Blok 2",
+      "Cvičení 1 (První konverzace s AI) a cvičení 2 (Detektiv halucinací).",
+      "2 hodiny"
+     ],
+     [
+      "Blok 3",
+      "Cvičení 3 (Co sdílet a co ne) a cvičení 4 (Srovnávací test rozhraní).",
+      "2 hodiny"
+     ],
+     [
+      "Blok 4",
+      "Cvičení 5 (Případová studie etického dilematu) a společné shrnutí úrovně.",
+      "1 až 2 hodiny"
+     ]
+    ]
+   },
+   "scheduleNote": [
+    "Rozvržení předpokládá, že teoretická příprava proběhne formou řízené diskuze s ukázkami na projektoru a že žáci použijí přístup ke konverzačnímu nástroji, který pro třídu spravuje učitel, případně vlastní účty, pokud rodiče dali informovaný souhlas. Pokud část třídy nemá vlastní přístup, lze cvičení 1 provést ve dvojicích. Při práci pod vedením učitele se cvičení provádějí ve skupinách u jednoho sdíleného zařízení, kde učitel zadání zapisuje. Závěrečný blok je vhodné vést jako společnou besedu, protože etická dilemata fungují lépe ve skupinové diskuzi než v samostatné práci."
+   ],
+   "lessons": [
+    {
+     "id": "zs2-level-1-teorie",
+     "type": "theory",
+     "order": 0,
+     "title": "Teorie",
+     "teacher": {
+      "intro": [
+       "Teoretická část úrovně pokrývá stručnou historii umělé inteligence, princip fungování velkých jazykových modelů, možnosti a limity současných nástrojů a zásady bezpečného zacházení s daty. Opakovací otázky slouží k aktivaci pozornosti na začátku hodiny i k rychlé kontrole porozumění na konci. Diskuzní témata jsou určena pro práci ve skupinách a nemají jednu správnou odpověď; cílem je, aby žáci formulovali a obhájili vlastní stanovisko. Výklad k jednotlivým otázkám najdete ve výukových modulech AIFB na platformě VeVit, jakmile budou zveřejněny; do té doby vycházejte z teoretických příprav v tomto dokumentu."
+      ],
+      "reviewQuestions": [
+       "Co znamená zkratka LLM a co velký jazykový model vlastně dělá, když odpovídá na otázku?",
+       "Proč se výstup modelu někdy jeví jako sebejistý, i když informace jsou smyšlené?",
+       "Co je to halucinace modelu a uveďte příklad situace, kdy může být nebezpečná.",
+       "Která data byste nikdy neměli zadávat do veřejného konverzačního nástroje a proč?",
+       "Na co si dát pozor při práci s texty, obrázky nebo kódem vytvořenými umělou inteligencí z hlediska autorských práv?",
+       "Čím se od sebe liší nástroje jako ChatGPT, Claude nebo Gemini a v čem se naopak podobají?",
+       "Kdy má podle vás smysl AI použít a kdy je lepší práci odvést sami, bez její pomoci?"
+      ],
+      "discussionTopics": [
+       "Žák použil AI k napsání domácího úkolu, který měl trénovat jeho vlastní dovednost. Je to podvod, chytrá práce, nebo něco mezi?",
+       "Společnost vydává novinky psané modelem bez kontroly redaktora. Kdo nese odpovědnost za případnou chybu v informacích?",
+       "Kamarád vám poradil zadat do AI nástroje fotku spolužáka a vyzvat ho k vtipnému popisu. Co je na tom problém a jak byste zareagovali?"
+      ]
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs2-level-1-cv1",
+     "type": "exercise",
+     "order": 1,
+     "title": "První konverzace s AI",
+     "teacher": {
+      "description": [
+       "Žák otevře konverzační nástroj, ke kterému má třída schválený přístup, a postupně mu zadá pět jednoduchých úloh: ať vysvětlí pojem z jiného předmětu pro mladšího sourozence, shrne krátký text, který dostane vytištěný, navrhne tři nápady na školní projekt, vymyslí příklad k procvičení matematické látky a přeloží odstavec z cizojazyčného textu. U každé odpovědi si poznamená, zda byla užitečná a co by v zadání změnil, aby výsledek byl lepší."
+      ],
+      "expectedOutput": "Krátký přehled tří zjištění: která zadání fungovala dobře, kde odpověď selhala a jeden konkrétní tip pro lepší zadání.",
+      "form": "Samostatně, případně ve dvojicích při sdílení jednoho počítače.",
+      "time": "45 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs2-level-1-cv2",
+     "type": "exercise",
+     "order": 2,
+     "title": "Detektiv halucinací",
+     "teacher": {
+      "description": [
+       "Učitel si před hodinou připraví sadu výstupů modelu, ve kterých jsou záměrně nepřesnosti: špatně uvedené datum, smyšlený pramen, nesprávný vzorec nebo chybně citovaný autor. Žáci dostanou za úkol chyby najít, zaškrtnout je a ke každé chybě doplnit, jakým postupem ověřili, že jde o nepřesnost. Následně společně projdou, které typy chyb se objevovaly nejčastěji a které zdroje se při ověřování osvědčily. Sadu lze doplnit z výukových modulů AIFB na platformě VeVit, jakmile budou zveřejněny; do té doby si ji učitel vygeneruje sám podle zadání."
+      ],
+      "expectedOutput": "Označený dokument se seznamem nalezených nepřesností a postupem ověření u každé z nich.",
+      "form": "Samostatně, následuje společná kontrola ve třídě.",
+      "time": "45 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs2-level-1-cv3",
+     "type": "exercise",
+     "order": 3,
+     "title": "Co sdílet a co ne",
+     "teacher": {
+      "description": [
+       "Učitel si před hodinou připraví dvacet karet s různými informacemi, například jméno oblíbeného youtubera, rodné číslo, fotografii z oslavy, adresu školy, známky z pololetí, veřejné jméno autora knihy, zdravotní záznam nebo název oblíbené hry. Ve skupinách žáci karty roztřídí do tří kategorií: lze bez obav zadat do AI, zadat jen po úpravě a anonymizaci, nikdy nezadávat. Ke každé sporné kartě skupina napíše jednořádkové zdůvodnění. Na závěr skupiny porovnají výsledky a diskutují případy, kde se jejich hodnocení lišilo."
+      ],
+      "expectedOutput": "Roztříděné karty se zdůvodněními a společný seznam pravidel bezpečného zadávání dat.",
+      "form": "Skupinová práce se společným shrnutím.",
+      "time": "45 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs2-level-1-cv4",
+     "type": "exercise",
+     "order": 4,
+     "title": "Srovnávací test rozhraní",
+     "teacher": {
+      "description": [
+       "Žák zvolí tři rozmanité úlohy, například vysvětlení odborného pojmu, návrh plánu na víkend a opravu chybné věty. Stejné zadání pošle postupně do dvou nebo tří nástrojů, které třída používá, a odpovědi si uloží; nástroj, ke kterému žáci přístup nemají (například Claude určený od 18 let), učitel krátce předvede z účtu vedeného školou. Do tabulky s řádky podle nástrojů a sloupci podle úloh pak zaznamená, jak odpověď obstála z hlediska srozumitelnosti, přesnosti a použitelnosti. Závěrem odpoví na otázku, zda by pro daný typ úlohy některému nástroji dal přednost a proč."
+      ],
+      "expectedOutput": "Vyplněná srovnávací tabulka použitých nástrojů a tři závěrečné věty s doporučením.",
+      "form": "Samostatně.",
+      "time": "45 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs2-level-1-cv5",
+     "type": "exercise",
+     "order": 5,
+     "title": "Případová studie etického dilematu",
+     "teacher": {
+      "description": [
+       "Skupiny dostanou popis situace: žákyně si není jistá, zda smí použít AI při přípravě referátu, a učitel má vlastní, dosud nevyhlášená pravidla. Skupina nejdřív vyjmenuje zájmy všech zúčastněných, poté navrhne alespoň dvě možná řešení včetně jejich důsledků a zvolí jedno, které obhájí. Následuje prezentace stanovisek jednotlivých skupin a společná diskuze. Jako rozšíření může třída navrhnout vlastní pravidla používání AI pro svůj předmět či celou školu."
+      ],
+      "expectedOutput": "Stručně zdokumentované stanovisko skupiny s odůvodněním a návrh pravidel pro třídu.",
+      "form": "Skupinová práce s prezentací.",
+      "time": "45 až 90 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    }
+   ],
+   "teacherNotes": [
+    "Pro všechna cvičení úrovně 1 stačí bezplatné verze nástrojů; nepotřebujete placené předplatné ani pokročilé modely. U cvičení 2 si sadu chybných výstupů můžete předem vygenerovat sami a anonymizovat. Před zahájením úrovně si ověřte aktuální věkové podmínky služeb: ChatGPT nesmí používat děti do 13 let a u nezletilých do 18 let vyžaduje souhlas zákonného zástupce, Claude je určen až od 18 let, takže ho ve výuce ukazujete pouze z účtu vedeného školou, a Gemini je přístupný i mladším teenagerům s doplňkovými ochranami. V šestých a sedmých třídách pracujte pod vedením učitele u společného zařízení; v osmých a devátých třídách lze po informovaném souhlasu rodičů ponechat žákům individuální přístup. V obou případech se vyplatí jeden sjednocený nástroj pro celou třídu, aby výuka nezávisela na tom, které služby si kteří žáci založí."
+   ],
+   "certification": {
+    "name": "Certified AI Associate",
+    "status": "planned"
+   },
+   "themes": "Základy AI, principy jazykových modelů, bezpečnost dat, etika, orientace v rozhraních.",
+   "recommendedPlacement": "6. až 7. třída",
+   "unitLabel": "Level",
+   "status": "content-ready",
+   "lessonCount": 6
+  },
+  {
+   "id": "zs2-level-2",
+   "order": 2,
+   "code": "Level 2",
+   "title": "AIFB Intermediate",
+   "subtitle": "Prompting a datové struktury",
+   "intro": [
+    "Druhá úroveň rozvíjí dovednost, která odlišuje běžného uživatele od pokročilého: schopnost přesně zadávat úlohy a strukturovaně komunikovat s modelem. Žáci se učí pracovat s rolí a kontextem, předávat modelu ukázkové příklady požadovaného výstupu a výsledky zapisovat ve formátech Markdown a JSON, které jsou základem strojově zpracovatelné komunikace. Oproti středoškolské verzi úrovně je práce s datovými formáty pojata úsporněji: žák se seznámí se základy, které mu umožní rozumět struktuře, ale neprochází hlubšími nuancemi. Tyto dovednosti přímo navazují na úroveň 3, kde budou strukturované výstupy a přesná zadání potřebné pro sestavování jednoduchých automatizovaných postupů."
+   ],
+   "goals": [
+    "Žák složí prompt z role, kontextu, úkolu a požadované podoby výstupu.",
+    "Žák vysvětlí rozdíl mezi zadáním bez ukázky a se zadáním s ukázkovými příklady a uvede, kdy které použít.",
+    "Žák vytvoří jednoduchý dokument v Markdownu s nadpisy, seznamy a tabulkou.",
+    "Žák přečte hotovou strukturu JSON a doplní do ní správně hodnoty podle popisu.",
+    "Žák napíše znovupoužitelnou instrukci (tzv. AI skill), kterou lze do modelu vkládat opakovaně, pro konkrétní činnost.",
+    "Žák kriticky porovná výstupy modelu pro různě formulovaná zadání téže úlohy."
+   ],
+   "hours": "7 až 8 hodin",
+   "schedule": {
+    "header": [
+     "Blok",
+     "Obsah výuky",
+     "Časová dotace"
+    ],
+    "rows": [
+     [
+      "Blok 1",
+      "Teoretická příprava: prompting, role a kontext, ukázkové příklady, formáty Markdown a JSON.",
+      "2 hodiny"
+     ],
+     [
+      "Blok 2",
+      "Cvičení 1 (Záchranář promptů) a cvičení 2 (Ukázkové příklady v praxi).",
+      "2 hodiny"
+     ],
+     [
+      "Blok 3",
+      "Cvičení 3 (Markdown dokument) a cvičení 4 (JSON struktury).",
+      "2 hodiny"
+     ],
+     [
+      "Blok 4",
+      "Cvičení 5 (Vlastní AI skill) a společné shrnutí úrovně.",
+      "1 až 2 hodiny"
+     ]
+    ]
+   },
+   "scheduleNote": [
+    "Blok 1 je vhodné vést formou živých ukázek: učitel na projektoru postupně vylepšuje jeden prompt a třída komentuje, co se s výstupem děje. Při cvičení 3 a 4 se hodí dvojice, kde jeden žák diktuje strukturu a druhý ji zapisuje, protože se při práci s formáty rychle projeví chyby v domluvě. Závěrečné cvičení úrovně je nejrozsáhlejší a lze ho zadat i jako domácí práci, kterou třída zhodnotí v posledním bloku."
+   ],
+   "lessons": [
+    {
+     "id": "zs2-level-2-teorie",
+     "type": "theory",
+     "order": 0,
+     "title": "Teorie",
+     "teacher": {
+      "intro": [
+       "Teoretická část zavádí pojem prompt engineering jako disciplínu přesné komunikace s modelem. Žáci se seznámí se stavebními prvky dobrého zadání, s významem kontextu a rolí a s tím, kdy má smysl doplnit ukázkové příklady požadovaného výstupu. Druhým tématem jsou datové formáty: Markdown pro čitelné dokumenty a JSON pro přenos strukturovaných dat, u kterého žáci druhého stupně pracují spíš s hotovými strukturami, které čtou a doplňují, než aby je navrhovali od nuly. Opakovací otázky propojují obě témata, protože v praxi se prompt a formát výstupu kombinují."
+      ],
+      "reviewQuestions": [
+       "Jaké čtyři stavební prvky dobrého promptu jsme si uvedli a k čemu každý slouží?",
+       "Vysvětlete vlastními slovy rozdíl mezi zadáním bez ukázky a zadáním s ukázkovými příklady a uveďte příklad úlohy pro každý přístup.",
+       "Proč může nastat situace, že model při zadání s ukázkami napodobí i chybu z ukázkových příkladů?",
+       "Co znamená, že JSON je strojově čitelný formát, a proč je to pro automatizaci důležité?",
+       "Jak se v Markdownu zapíše nadpis druhé úrovně, odrážkový seznam a tabulka?",
+       "Kdy byste modelu předepisovali výstupní formát a kdy je lepší nechat výstup volný?",
+       "Co je to znovupoužitelná instrukce (tzv. AI skill) a čím se liší od jednorázového promptu?"
+      ],
+      "discussionTopics": [
+       "Kde končí poctivá pomoc modelu a kde začíná zadávání úkolu, který má rozvíjet samotného žáka?",
+       "Model odmítá odpovědět ve stylu, který žák požaduje, ačkoli jde o neškodný úkol. Jaké má žák možnosti?"
+      ]
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs2-level-2-cv1",
+     "type": "exercise",
+     "order": 1,
+     "title": "Záchranář promptů",
+     "teacher": {
+      "description": [
+       "Žáci dostanou pět vágních zadání, například „napiš něco o ekologii“ nebo „udělej mi přehled knihy“. Úkolem je každé zadání přepsat tak, aby obsahovalo roli pro model, kontext úlohy, přesně formulovaný úkol a popis požadovaného výstupu, například rozsah, strukturu a tón. Přepsané verze si žáci vyzkoušejí a do tabulky se třemi sloupci (původní zadání, nové zadání, poznámka o rozdílu) zaznamenají výsledky."
+      ],
+      "expectedOutput": "Tabulka s pěti páry zadání (původní a vylepšené) a poznámkou o rozdílu ve výstupu.",
+      "form": "Samostatně, následuje kontrola ve dvojicích.",
+      "time": "45 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs2-level-2-cv2",
+     "type": "exercise",
+     "order": 2,
+     "title": "Ukázkové příklady v praxi",
+     "teacher": {
+      "description": [
+       "Žák zvolí jednoduchou třídící úlohu ze školního prostředí, například řazení školních oznámení podle důležitosti nebo určování tónu recenze knížky. Nejprve zadá úlohu bez ukázek a výsledek uloží. Poté do promptu přidá tři až pět ukázkových příkladů se správnými odpověďmi a úlohu zopakuje. Nakonec porovná oba výstupy, vytvoří jednoduchou chybovou statistiku a napíše závěr, v jakých případech se ukázkové příklady vyplatily a kde naopak nepomohly."
+      ],
+      "expectedOutput": "Oba výstupy, srovnávací statistika a závěrečné hodnocení přínosu ukázkových příkladů v zadání.",
+      "form": "Samostatně.",
+      "time": "45 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs2-level-2-cv3",
+     "type": "exercise",
+     "order": 3,
+     "title": "Markdown dokument",
+     "teacher": {
+      "description": [
+       "Žák dostane nestrukturovaný text o jedné stránce, například výtah z encyklopedického hesla nebo pracovní poznámky. Jeho úkolem je vytvořit z textu přehledný dokument v Markdownu: s nadpisy, podnadpisy, odrážkovým seznamem a tabulkou. Model může využít pro doporučení struktury, ale finální úprava a kontrola syntaxe je na žákovi. Výsledek si zobrazí v náhledu a ověří, že se tabulka a seznamy vykreslily správně."
+      ],
+      "expectedOutput": "Soubor s dokumentem ve formátu Markdown a krátká reflexe, kde byla potřeba ruční korekce výstupu modelu.",
+      "form": "Samostatně nebo ve dvojicích.",
+      "time": "45 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs2-level-2-cv4",
+     "type": "exercise",
+     "order": 4,
+     "title": "JSON struktury",
+     "teacher": {
+      "description": [
+       "Žák dostane tři hotové struktury JSON, například seznam knih s autory, rozvrh dne a jednoduchý recept, a ke každé struktuře popis v běžném jazyce. Jeho úkolem je strukturu přečíst, vysvětlit, co která hodnota znamená, a doplnit do ní chybějící hodnoty podle popisu. Následně si nechá modelem vygenerovat datový soubor podle jednoho z popisů a porovná, do jaké míry se vygenerovaná data shodují s původní strukturou a kde model udělal chyby."
+      ],
+      "expectedOutput": "Tři vyplněné struktury JSON a porovnání vygenerovaných dat s původní strukturou.",
+      "form": "Samostatně.",
+      "time": "45 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs2-level-2-cv5",
+     "type": "exercise",
+     "order": 5,
+     "title": "Vlastní AI skill",
+     "teacher": {
+      "description": [
+       "Žák si zvolí opakovanou činnost, kterou by chtěl mít zjednodušenou, například přípravu krátkých kvízů z učiva, kontrolu textů v daném stylu nebo generování tréninkových plánů. Navrhne instrukci, kterou lze do modelu vložit opakovaně: popíše roli, vstup, pravidla výstupu a krajní případy, kdy má model odpovědět odmítnutím nebo dotazem na doplnění. Instrukci otestuje alespoň na třech různých vstupech, iterativně ji vylepší a prezentuje spolužákům ve zkrácené ukázce."
+      ],
+      "expectedOutput": "Finální instrukce, tři testovací vstupy s výstupy a shrnutí provedených úprav.",
+      "form": "Samostatně, závěrečná prezentace ve skupinách.",
+      "time": "45 až 90 minut (prezentaci lze vést ve skupinách souběžně)"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    }
+   ],
+   "teacherNotes": [
+    "Zadání cvičení průběžně obměňujte, protože přesně formulované úlohy tohoto typu si žáci snadno najdou vyřešené na internetu i v konverzačních nástrojích samotných. Stačí vyměnit konkrétní podklady, texty a činnosti, čímž zachováte vypovídací hodnotu práce i smysluplnost hodnocení. Práce s formáty Markdown a JSON je pro žáky druhého stupně nová, proto zařaďte krátkou ukázku syntaxe před cvičením 3 a neměřte její zvládnutí známkou; cílem je ztratit ostych, ne naučit se celou dokumentaci. Při hodnocení kombinujte automatické kontroly s předem vyhlášenými kritérii kvality promptu a vlastním posouzením."
+   ],
+   "certification": {
+    "name": "Certified Prompt Specialist",
+    "status": "planned"
+   },
+   "themes": "Prompt engineering, role a kontext, ukázkové příklady, základy Markdownu a JSON.",
+   "recommendedPlacement": "7. až 8. třída",
+   "unitLabel": "Level",
+   "status": "content-ready",
+   "lessonCount": 6
+  },
+  {
+   "id": "zs2-level-3",
+   "order": 3,
+   "code": "Level 3",
+   "title": "AIFB Advanced",
+   "subtitle": "Automatizace a práce s API",
+   "intro": [
+    "Třetí úroveň posouvá práci s umělou inteligencí od jednotlivých konverzací k propojeným pracovním postupům. Žáci se naučí popsat proces jako sled kroků, sestavit jednoduchou automatizaci v no-code nástroji a vyzkoušet si práci s veřejným rozhraním API, jehož odpověď ve formátu JSON zpracují. Důraz je kladen na pochopení principů, které jsou společné všem automatizačním nástrojům, nikoli na detailní ovládání konkrétního produktu. Úroveň tím připravuje půdu pro programovou integraci modelů v úrovni 4 a zároveň rozvíjí schopnost přemýšlet o práci s daty systematicky. Na druhém stupni je úroveň 3 vrcholem, který lze zvládnout v povinné výuce; třídy, kterým automatizace dá zabrat, mohou část cvičení nahradit rozšířenou prací s datovými strukturami."
+   ],
+   "goals": [
+    "Žák rozloží běžný proces na sled kroků a navrhne, které kroky lze automatizovat.",
+    "Žák sestaví a spustí jednoduchý postup v no-code nástroji vedený učitelem.",
+    "Žák vysvětlí, co je API klíč, k čemu slouží a jak se s ním bezpečně zachází.",
+    "Žák odešle požadavek na veřejné API se školním klíčem a odpověď ve formátu JSON interpretuje.",
+    "Žák využije obrazový nebo zvukový model v rámci konkrétní úlohy.",
+    "Žák posoudí rizika a náklady navržené automatizace a navrhne její zjednodušení."
+   ],
+   "hours": "8 až 10 hodin",
+   "schedule": {
+    "header": [
+     "Blok",
+     "Obsah výuky",
+     "Časová dotace"
+    ],
+    "rows": [
+     [
+      "Blok 1",
+      "Teoretická příprava: pracovní postupy, no-code automatizace, principy API a multimodality.",
+      "2 hodiny"
+     ],
+     [
+      "Blok 2",
+      "Cvičení 1 (Návrh postupu na papíře) a cvičení 2 (Společná první automatizace).",
+      "3 hodiny"
+     ],
+     [
+      "Blok 3",
+      "Cvičení 3 (Práce s API klíči a požadavky) a cvičení 4 (Zpracování JSON odpovědí).",
+      "2 až 3 hodiny"
+     ],
+     [
+      "Blok 4",
+      "Cvičení 5 (Multimodální úloha) a společné shrnutí úrovně.",
+      "1 až 2 hodiny"
+     ]
+    ]
+   },
+   "scheduleNote": [
+    "Cvičení 2 je nejnáročnější na čas i na technické zázemí, proto je v rozvržení vyhrazen prostor navíc a na druhém stupni se provádí jako společná práce celé třídy, při které učitel ovládá jeden projekt na projektoru a žáci mu diktují kroky. Pokud škola nechce provozovat n8n ani Make v cloudu, lze n8n spustit lokálně nebo použít zkušební verzi, ve které vystačí jednoduchý postup s několika málo kroky. Účet v automatizačním nástroji i u poskytovatele API zakládá a spravuje vždy učitel jménem školy, protože podmínky těchto služeb bývají určeny plnoletým osobám. U cvičení 3 volte takové API, které nevyžaduje platební kartu při registraci; vhodné jsou veřejné služby s volnými požadavky pro vzdělávací účely."
+   ],
+   "lessons": [
+    {
+     "id": "zs2-level-3-teorie",
+     "type": "theory",
+     "order": 0,
+     "title": "Teorie",
+     "teacher": {
+      "intro": [
+       "Teoretická část vysvětluje pojmy pracovní postup, spouštěč, akce a propojení služeb. Žáci se seznámí s tím, jak no-code nástroje jako n8n a Make propojují služby bez psaní kódu, a s principy API: co znamená koncový bod, požadavek, hlavička, přístupový klíč a stavový kód odpovědi. Závěrem je zařazena multimodalita, tedy využití modelů, které pracují s obrazy, zvukem nebo strukturovanými dokumenty. Opakovací otázky propojují teorii s praktickými situacemi ze školního prostředí, které žáci dobře znají."
+      ],
+      "reviewQuestions": [
+       "Co je to pracovní postup a jak spolu souvisejí pojmy spouštěč a akce?",
+       "Které kroky procesu se hodí automatizovat a které naopak ponechat člověku, a proč?",
+       "Co znamená zkratka API a k čemu rozhraní API slouží při propojování dvou služeb?",
+       "K čemu slouží API klíč a jaká rizika by nastala, pokud by se klíč dostal k neoprávněné osobě?",
+       "Co říká stavový kód 200 odpovědi a co naopak kód 404 nebo 429?",
+       "Proč API často vrací odpověď právě ve formátu JSON a ne v běžném textu?",
+       "Jaké úlohy řeší multimodální modely a uveďte jeden příklad využití ve škole."
+      ],
+      "discussionTopics": [
+       "Automatizace školního zpracování přihlášek na kroužky ušetří práci, ale jeden krok funguje chybně. Kdo by měl být odpovědný za kontrolu, člověk nebo systém, a v jaké podobě?",
+       "Služba zdarma mění podmínky a začíná účtovat za požadavky. Jak se proti tomu dá postupovat předem?"
+      ]
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs2-level-3-cv1",
+     "type": "exercise",
+     "order": 1,
+     "title": "Návrh pracovního postupu na papíře",
+     "teacher": {
+      "description": [
+       "Skupiny dostanou popis reálného procesu, například týdenní příprava školního zpravodaje: sběr příspěvků, kontrola textů, výběr fotografie, sazba a rozesílání. Jejich úkolem je proces nakreslit jako schéma s vyznačením vstupů, výstupů a rozhodovacích bodů. U každého kroku pak posoudí, zda by ho zvládl nástroj s AI, jinak automatizovaná služba, nebo zda vyžaduje lidské rozhodnutí. Závěrem skupiny prezentují schéma a obhájí rozdělení kroků."
+      ],
+      "expectedOutput": "Nakreslené schéma procesu s označením automatizovatelných kroků a krátkou obhajobou návrhu.",
+      "form": "Skupinová práce, prezentace schématu.",
+      "time": "45 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs2-level-3-cv2",
+     "type": "exercise",
+     "order": 2,
+     "title": "Společná první automatizace",
+     "teacher": {
+      "description": [
+       "Třída sestaví pod vedením učitele jednoduchý postup, který v pravidelném intervalu stáhne nové články z vybraného zdroje, nechá je jazykovým modelem shrnout do tří vět a výsledek odešle na školní e-mail nebo uloží do tabulky. Učitel ovládá prostředí na projektoru, žáci mu navrhují kroky a jednotlivé konfigurace, a při chybě třída společně hledá, kde se postup zasekl. Postup spustí, ověří, že dorazil očekávaný výsledek, a vyzkouší, co se stane při špatně zadaném zdroji nebo nedostupném modelu. Do společné dokumentace postupu zapíší, které chyby museli ošetřit a jak."
+      ],
+      "expectedOutput": "Spuštěný a doložený postup včetně stručné dokumentace ošetřených chyb.",
+      "form": "Společná práce vedená učitelem na projektoru.",
+      "time": "90 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs2-level-3-cv3",
+     "type": "exercise",
+     "order": 3,
+     "title": "Práce s API klíči a požadavky",
+     "teacher": {
+      "description": [
+       "Třída používá přístup k veřejnému API, který pro ni před hodinou zřídil učitel na školní účet, například ke službě poskytující údaje o počasí, kurzech měn nebo obsahu encyklopedie. Žák z dokumentace zjistí, jak vypadá správný požadavek, a odešle jej s klíčem, který mu učitel pro hodinu vydal, například v nástroji na testování API. Ověří odpověď ve formátu JSON, vysvětlí význam hlaviček a ke konci hodiny zaznamená, kolik volných požadavků denně má k dispozici a co se stane po jejich vyčerpání."
+      ],
+      "expectedOutput": "Funkční požadavek s odpovědí a krátký záznam o podmínkách využití vybraného API.",
+      "form": "Samostatně, se školním klíčem vydaným učitelem.",
+      "time": "45 až 90 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs2-level-3-cv4",
+     "type": "exercise",
+     "order": 4,
+     "title": "Zpracování JSON odpovědí",
+     "teacher": {
+      "description": [
+       "Žák dostane uložené odpovědi z API z předchozího cvičení nebo předem připravené vzorky. Jeho úkolem je z odpovědí vybrat požadované údaje, převést je do přehledné tabulky a navrhnout, jak by vypadal zjednodušený výstup, který by se hodil jako vstup do dalšího kroku postupu. Zaměří se na to, kde se v odpovědi nacházejí vnořené struktury a pole, a jak z nich získat konkrétní hodnotu. Výsledek porovná se spolužákem, který zpracovával jinou odpověď."
+      ],
+      "expectedOutput": "Přehledová tabulka vybraných údajů a návrh zjednodušené podoby výstupu pro další zpracování.",
+      "form": "Samostatně, porovnání ve dvojicích.",
+      "time": "45 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs2-level-3-cv5",
+     "type": "exercise",
+     "order": 5,
+     "title": "Multimodální úloha",
+     "teacher": {
+      "description": [
+       "Žák si vybere jednu ze tří variant: popis a analýza obrázku z exkurze pomocí obrazového modelu, přepis krátkého zvukového záznamu z hodiny nebo vygenerování ilustrace k vlastnímu textu. K vybranému vstupu sestaví zadání, nechá model odpovědět a výsledek kriticky posoudí: co model zachytil přesně, co interpretoval špatně a kde by byl lidský dohled nezbytný. Součástí úlohy je i úvaha o tom, jaká data lze do multimodálního modelu zadávat a jaká ne."
+      ],
+      "expectedOutput": "Zadání, výstup modelu a krátké kritické zhodnocení spolehlivosti včetně poznámky k bezpečnosti dat.",
+      "form": "Samostatně.",
+      "time": "45 až 90 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    }
+   ],
+   "teacherNotes": [
+    "Před hodinou si sami projděte registraci a první spuštění nástrojů, které ve výuce použijete, protože právě registrace bývá nejčastějším místem, kde se hodina zdrží; účty přitom zakládejte na školu a spravujte je vy, protože podmínky užívání většiny těchto služeb jsou určeny plnoletým. API klíče řešte jako školní tajemství: žáci si klíče neshromažďují ve sdílených dokumentech, nezadávají je do kódu, který bude veřejně sdílen, a po skončení hodiny se klíče vymění nebo zruší. U všech placených i bezplatných služeb nejprve ověřte aktuální podmínky užívání a limity, protože se mění častěji, než stačí aktualizovat metodiku. Výstupy cvičení 2 a 3 jsou vhodné položky do portfolia žáka, pokud plánujete propojit výuku s certifikací."
+   ],
+   "certification": {
+    "name": "Certified AI Automation Practitioner",
+    "status": "planned"
+   },
+   "themes": "Návrh pracovních postupů, jednoduchá automatizace, práce s API a JSON odpověďmi, multimodalita.",
+   "recommendedPlacement": "8. až 9. třída",
+   "unitLabel": "Level",
+   "status": "content-ready",
+   "lessonCount": 6
+  },
+  {
+   "id": "zs2-level-4",
+   "order": 4,
+   "code": "Level 4",
+   "title": "Advanced API Integration and Scripting",
+   "intro": [
+    "Čtvrtá úroveň je první, ve které žáci přecházejí od klikání ve webových rozhraních k programové práci s modely, a na druhém stupni proto patří do zájmového kroužku programování nebo přípravy na střední školu. Všechny úlohy lze řešit v Pythonu, který žáci z kroužku obvykle znají; stačí jim znalost proměnných, podmínek, cyklů a funkcí. Žáci se naučí model zavolat ze skriptu, vést vícekolovou konverzaci s pamětí, předat modelu volatelné funkce a odhadnout náklady na provoz. Úroveň je náročná, ale přináší největší přidanou hodnotu pro žáky, kteří uvažují o studiu informatiky, protože ukazuje, jak se AI používá v reálném vývoji."
+   ],
+   "goals": [
+    "Žák zavolá jazykový model ze skriptu v Pythonu pomocí připravené ukázky učitele.",
+    "Žák implementuje vícekolovou konverzaci s řízenou historií zpráv.",
+    "Žák připraví definice funkcí pro function calling a zpracuje volání modelu.",
+    "Žák spočítá spotřebu tokenů a odhadne náklady na konkrétní úlohu.",
+    "Žák ošetří běžné chyby integrace: překročení limitu, vypršení časového limitu a vadnou odpověď.",
+    "Žák porovná robustní a křehký skript a vysvětlí, kde se každý hodí."
+   ],
+   "hours": "10 až 11 hodin",
+   "schedule": {
+    "header": [
+     "Blok",
+     "Obsah výuky",
+     "Časová dotace"
+    ],
+    "rows": [
+     [
+      "Blok 1",
+      "Teoretická příprava: programové přístupy, zprávy a role, tokenizace a ceny, spolehlivost.",
+      "2 hodiny"
+     ],
+     [
+      "Blok 2",
+      "Cvičení 1 (První skript) a cvičení 2 (Správa kontextu).",
+      "4 hodiny"
+     ],
+     [
+      "Blok 3",
+      "Cvičení 3 (Function calling) a cvičení 4 (Tokeny a cena).",
+      "3 hodiny"
+     ],
+     [
+      "Blok 4",
+      "Cvičení 5 (Ošetření chyb) a společné shrnutí úrovně.",
+      "1 až 2 hodiny"
+     ]
+    ]
+   },
+   "scheduleNote": [
+    "Skripty z jednotlivých cvičení na sebe navazují, a proto je vhodné, aby každý žák pracoval celou úroveň v jednom projektu, který postupně rozšiřuje. V kroužku se osvědčuje práce v párech, kdy jeden žák hraje roli autora a druhý roli kontrolora, a po každém cvičení si role vymění. Vzhledem k nárokům na soustředění se doporučuje zařadit úroveň do bloků po dvou hodinách a mezi bloky nechat alespoň jeden den na zpracování. Pro žáky, kteří se v Pythonu neorientují, lze úroveň zkrátit na cvičení 1, 2 a 4 a zbytek ponechat jako výhled na střední školu."
+   ],
+   "lessons": [
+    {
+     "id": "zs2-level-4-teorie",
+     "type": "theory",
+     "order": 0,
+     "title": "Teorie",
+     "teacher": {
+      "intro": [
+       "Teoretická část zavádí pohled na jazykový model jako na programově dostupnou službu: skript posílá seznam zpráv s rolemi, služba vrací odpověď a účtuje podle počtu tokenů. Žáci se seznámí s tím, co je kontextové okno, proč dlouhá konverzace stojí víc a jak ji lze rozumně zkracovat. Dále je vysvětlen function calling, tedy mechanismus, kterým model může požádat o zavolání funkce, kterou skript definuje. Poslední téma věnované spolehlivosti ukazuje, proč jsou opakování, časové limity a záložní postupy v integracích nutností. Výklad je v kroužku vhodné doplnit živými ukázkami na projektoru, protože abstraktní popis žákům druhého stupně příliš neříká."
+      ],
+      "reviewQuestions": [
+       "Z jakých částí se skládá požadavek na model ve skriptu a jakou roli hraje systémová zpráva?",
+       "Co je kontextové okno a co se stane, když konverzace přesáhne jeho kapacitu?",
+       "Proč se cena požadavku počítá v tokenech a co ovlivňuje jejich počet ve vstupu i výstupu?",
+       "Jak funguje function calling a k čemu je modelovi užitečné, když sám funkci nespustí?",
+       "Které tři chyby integrace jsme uvedli jako nejčastější a jak se proti nim skript chrání?",
+       "Proč se u opakovaných úloh vyplatí výstup ukládat a nechat model volat znovu jen tehdy, když je to nutné?",
+       "Jaký je rozdíl mezi rychlou chybnou odpovědí a zdržením kvůli překročení limitu, a jak poznáte, který problém nastal?"
+      ],
+      "discussionTopics": [
+       "Skript má být levný, rychlý i přesný, ale každá volba zlepšující jednu vlastnost zhorší jinou. Co byste priorizovali u úlohy, která každý den shrnuje školní zpravodaj, a co u úlohy spouštěné na požádání?"
+      ]
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs2-level-4-cv1",
+     "type": "exercise",
+     "order": 1,
+     "title": "První skript volající model",
+     "teacher": {
+      "description": [
+       "Žák vezme připravenou kostru skriptu od učitele, doplní do ní svou zprávu a spustí ji s klíčem, který dostal na dobu kroužku. Skript modelu pošle jednu zprávu a vypíše odpověď. Poté skript rozšíří o parametry: teplotu, maximální délku odpovědi a název modelu, a vyzkouší, jak se změna parametrů projeví na výstupu. Zkontroluje, že klíč zůstává mimo sdílený kód i mimo verzovací systém."
+      ],
+      "expectedOutput": "Funkční skript s parametry a ukázka tří výstupů pro různá nastavení.",
+      "form": "Samostatně nebo v páru s výměnou rolí.",
+      "time": "90 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs2-level-4-cv2",
+     "type": "exercise",
+     "order": 2,
+     "title": "Správa konverzačního kontextu",
+     "teacher": {
+      "description": [
+       "Žák rozšíří skript o vedení konverzace: udržuje seznam zpráv, střídá roli uživatele a asistenta a umožní vést několik kol dialogu. Poté přidá jednoduchou správu délky: při překročení stanoveného počtu zpráv nahradí starší část shrnutím. Na závěr porovná chování modelu se zapnutou a vypnutou historií a do komentáře v kódu zapíše, kdy která strategie dává smysl."
+      ],
+      "expectedOutput": "Skript s pamětí konverzace, dvě ukázky chování a komentář srovnávající strategie zkracování.",
+      "form": "Samostatně.",
+      "time": "90 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs2-level-4-cv3",
+     "type": "exercise",
+     "order": 3,
+     "title": "Function calling v praxi",
+     "teacher": {
+      "description": [
+       "Žák definuje dvě jednoduché funkce, například převod jednotek a výpočet data v kalendáři, včetně popisů parametrů. Modelu předá jejich definice a vyzkouší dotazy, u kterých model rozhodne, zda funkci potřebuje. Skript volání zpracuje, funkci skutečně spustí a výsledek vrátí modelu k dokončení odpovědi. Žák k tomu přidá situaci, kdy model funkci zavolat nemá, a ověří, že se skript zachová předvídatelně. Pro cvičení volte model, který volání nástrojů spolehlivě podporuje; u malých lokálních modelů function calling často selhává."
+      ],
+      "expectedOutput": "Skript s definicemi funkcí a ukázky tří scénářů: volání funkce, opravené volání a odpověď bez funkce.",
+      "form": "Samostatně.",
+      "time": "90 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs2-level-4-cv4",
+     "type": "exercise",
+     "order": 4,
+     "title": "Tokeny a cena",
+     "teacher": {
+      "description": [
+       "Žák vezme tři vlastní prompty z předchozích cvičení a u každého spočítá počet tokenů vstupu a očekávaného výstupu. Z aktuálního ceníku vybraného modelu odvodí cenu jednoho volání, ceny při stovce volání denně a roční náklad. Následně prompt optimalizuje tak, aby zachoval kvalitu odpovědi při nižší ceně, a zdokumentuje, které úpravy vedly k úspornějšímu zadání. Výsledky porovná s tím, co by se stalo při přechodu na menší nebo levnější model."
+      ],
+      "expectedOutput": "Rozbor nákladů pro tři prompty s návrhem optimalizace a porovnáním dvou modelů.",
+      "form": "Samostatně.",
+      "time": "45 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs2-level-4-cv5",
+     "type": "exercise",
+     "order": 5,
+     "title": "Ošetření chyb a spolehlivost",
+     "teacher": {
+      "description": [
+       "Žák vezme skript z cvičení 2 nebo 3 a systematicky ho zpevní: přidá opakování s rostoucí prodlevou při překročení limitu, časový limit na požadavek, přepnutí na záložní model a slušné hlášení chyby uživateli. Následně vytvoří situace, které chyby vyvolají, například vadný klíč nebo nedostupnou službu, a ověří, že skript neskončí nevypsanou výjimkou. Závěrem napíše krátké pravidlo, kdy je takové zpevňování přiměřené a kdy jde o zbytečnou práci."
+      ],
+      "expectedOutput": "Zpevněný skript s doloženými testy chyb a krátké pravidlo pro přiměřenou míru zpevnění.",
+      "form": "Samostatně, závěrečná vzájemná kontrola v páru.",
+      "time": "45 až 90 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    }
+   ],
+   "teacherNotes": [
+    "Úroveň 4 patří do připravované navazující etapy AIFB, proto počítejte s tím, že se podoba zadání po pilotu může upravit; samotné dovednosti ale zůstávají stabilní a stojí za výuku už nyní. Cvičení 3 vyžaduje model, který volání nástrojů spolehlivě podporuje: u cloudových služeb je to dnes standard, ale malé lokální modely v Ollamě na function calling často nestačí – pokud cvičení řešíte lokálně, zvolte model s explicitní podporou nástrojů, případně převeďte cvičení na simulovaná volání. Pro práci v kroužku doporučujeme jeden školní API účet s nastaveným měsíčním limitem útraty a s klíči rozdanými pro skupiny, nikoli neomezené individuální účty. Chcete-li se vyhnout placeným službám úplně, lze všechna cvičení absolvovat proti lokálnímu modelu v nástroji Ollama, který zpřístupňuje kompatibilní rozhraní API; počítejte s pomalejšími odpověďmi a nižší kvalitou menších modelů, pro procvičení dovedností to však dostačuje. Nejčastější potíží bývá správa klíčů a cena, proto zařaďte cvičení 4 vždy, i když zbytku rozvržení musíte něco ušetřit."
+   ],
+   "certification": {
+    "name": null,
+    "status": "planned"
+   },
+   "themes": "Programové volání modelů v Pythonu, správa kontextu, function calling, tokeny a ceny.",
+   "recommendedPlacement": "8. až 9. třída, kroužek programování",
+   "unitLabel": "Level",
+   "status": "content-ready",
+   "lessonCount": 6
+  },
+  {
+   "id": "zs2-level-5",
+   "order": 5,
+   "code": "Level 5",
+   "title": "Custom AI Developer",
+   "intro": [
+    "Pátá úroveň mění roli žáka z uživatele v tvůrce. Cílem je navrhnout a naprogramovat malou vlastní aplikaci, která jazykový model smysluplně využívá, a naučit se její kvalitu měřit. K tomu patří seznámení s vyhodnocováním modelů, tedy s přípravou testovacích sad a hodnocením odpovědí, a s provozem modelů lokálně, který ukazuje, že cloud není jediná možnost. Tematicky uzavírá úroveň pohled na dolaďování modelů: žáci si neprovedou vlastní fine-tuning, ale naučí se rozpoznat, kdy má smysl a kdy jde o zbytečně drahou cestu. Na druhém stupni je úroveň určena pro nejhlouběji zainteresované žáky, kteří už mají za sebou úroveň 4 (nejlépe z kroužku v osmé nebo na začátku deváté třídy), a nejlépe funguje jako celoroční projekt s pravidelnými konzultacemi. Pro žáky, kteří se programování teprve učí, je k dispozici low-code cesta popsaná v poznámkách pro učitele."
+   ],
+   "goals": [
+    "Žák navrhne vlastní AI aplikaci včetně cílové skupiny, scénářů užití a hranic použití.",
+    "Žák naprogramuje a předvede jednoduchou aplikaci využívající jazykový model.",
+    "Žák sestaví testovací sadu a na ní vyhodnotí kvalitu odpovědí modelu.",
+    "Žák spustí lokální model v nástroji Ollama a porovná ho s cloudovým modelem.",
+    "Žák vysvětlí, co dolaďování modelu přináší a kdy je lepší zůstat u promptů a vyhledávání.",
+    "Žák dokumentuje svou práci tak, aby ji spolužák dokázal spustit a použít."
+   ],
+   "hours": "9 až 13 hodin",
+   "schedule": {
+    "header": [
+     "Blok",
+     "Obsah výuky",
+     "Časová dotace"
+    ],
+    "rows": [
+     [
+      "Blok 1",
+      "Teoretická příprava: návrh aplikace, vyhodnocování modelů, lokální provoz, dolaďování.",
+      "2 hodiny"
+     ],
+     [
+      "Blok 2",
+      "Cvičení 1 (Návrh aplikace) a začátek cvičení 2 (Vlastní aplikace).",
+      "3 až 5 hodin"
+     ],
+     [
+      "Blok 3",
+      "Dokončení cvičení 2 a cvičení 3 (Evals).",
+      "2 až 3 hodiny"
+     ],
+     [
+      "Blok 4",
+      "Cvičení 4 (Lokální model), cvičení 5 (Fine-tuning) a shrnutí.",
+      "2 až 3 hodiny"
+     ]
+    ]
+   },
+   "scheduleNote": [
+    "Cvičení 2 je jádrem úrovně a je záměrně rozděleno do dvou bloků, aby mezi nimi měl žák čas projekt nechat odležet a vrátit se k němu s odstupem. Rozsah aplikace je potřeba udržet malý: jednoznačně ohraničený nástroj pro jednu činnost je pro výuku cennější než rozměrný projekt, který se nepodaří dokončit. V celoroční podobě se jednotlivé bloky rozkládají do konzultací po několika týdnech a žáci pracují doma; tehdy je hlavní starostí učitele udržet tempo pomocí dílčích termínů, nikoli kontrolou každého kroku."
+   ],
+   "lessons": [
+    {
+     "id": "zs2-level-5-teorie",
+     "type": "theory",
+     "order": 0,
+     "title": "Teorie",
+     "teacher": {
+      "intro": [
+       "Teoretická část si klade za cíl přenést žáky od myšlenky „vylepším si ChatGPT“ ke konkrétní představě o aplikaci: koho řeší jaký problém, co model v aplikaci dělá a kde končí jeho role. Následuje vyhodnocování modelů, včetně pojmů testovací sada, referenční odpověď a metriky úspěšnosti. Třetím tématem je lokální provoz modelů a jeho rozměry: soukromí, náklady na hardware a omezená kvalita menších modelů. Závěrečné téma o dolaďování je pojato kriticky, protože jeho smysluplnost se posuzuje až po vyčerpání jednodušších cest, které žáci znají z úrovní 2 a 4."
+      ],
+      "reviewQuestions": [
+       "Z čeho se skládá návrh aplikace a k čemu slouží popis scénářů užití?",
+       "Co je testovací sada, jak se připravuje a co se z jejích výsledků dozvídáme o modelu?",
+       "Kdy se vyplatí ruční hodnocení odpovědí a kdy stačí automatická pravidla?",
+       "Jaká jsou hlavní pro a proti lokálního provozu modelu oproti cloudové službě?",
+       "Co přináší dolaďování modelu na vlastních datech a jaká rizika s sebou nese?",
+       "Proč se u malé aplikace často obejde jak fine-tuning, tak vektorové vyhledávání?",
+       "K čemu je při práci na aplikaci dokumentace a co by měla obsahovat, aby projekt mohl převzít někdo jiný?"
+      ],
+      "discussionTopics": [
+       "Aplikace pro přípravu ke zkouškám se má rozhodnout, které učivo žákovi doporučit. Kdo nese odpovědnost, pokud doporučení povede k propadnutí zkoušky?",
+       "Školní počítač zvládne jen malý lokální model, který odpovídá hůř než cloudová služba. Kdy je takový model přesto lepší volbou?"
+      ]
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs2-level-5-cv1",
+     "type": "exercise",
+     "order": 1,
+     "title": "Návrh vlastní aplikace",
+     "teacher": {
+      "description": [
+       "Žák vybere reálnou potřebu ze svého okolí, například generátor procvičovacích úloh z vlastních poznámek, asistent pro plánování skupinového projektu nebo nástroj pro přípravu stručných zpráv ze školních dokumentů. Do jednostránkového návrhu zapíše cílovou skupinu, popis problému, tři scénáře užití, roli modelu v aplikaci, vstupy a výstupy a alespoň jednu situaci, kterou aplikace záměrně neřeší. Návrh zkonzultuje se spolužákem a zapracuje jednu jeho připomínku."
+      ],
+      "expectedOutput": "Jednostránkový návrh aplikace s vyznačenou rolí modelu a hranicemi použití.",
+      "form": "Samostatně, konzultace ve dvojicích.",
+      "time": "45 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs2-level-5-cv2",
+     "type": "exercise",
+     "order": 2,
+     "title": "Jednoduchá aplikace s modelem",
+     "teacher": {
+      "description": [
+       "Žák naprogramuje aplikaci z návrhu v míře, jakou zvládne: minimálně konzolový nebo jednoduchý webový nástroj, který převezme vstup od uživatele, sestaví z něj prompt, zavolá model a výstup vypíše nebo uloží. Aplikace musí ošetřit alespoň jednu chybovou situaci a obsahovat krátký návod ke spuštění. V závěru aplikaci předvede spolužákovi, který se ji pokusí rozbít neobvyklým vstupem, a žák zapíše, co se podařilo opravit. Pokročilejší variantou je přidat ukládání historie nebo volbu ze dvou modelů."
+      ],
+      "expectedOutput": "Spustitelná aplikace s návodem a záznamem jedné opravy po testování spolužákem.",
+      "form": "Samostatně, závěrečné vzájemné testování.",
+      "time": "90 až 180 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs2-level-5-cv3",
+     "type": "exercise",
+     "order": 3,
+     "title": "Vyhodnocování kvality modelu",
+     "teacher": {
+      "description": [
+       "Žák připraví testovací sadu deseti až patnácti vstupů pro činnost své aplikace a ke každému vstupu navrhne, jak poznat dobrou odpověď: kontrolní kritéria, referenční odpověď nebo kontrolu formátu. Sadu spustí proti modelu, výsledky vyhodnotí a spočítá podíl úspěšných odpovědí. Poté provede jednu změnu, například v promptu nebo v nastavení modelu, a měření zopakuje. Do závěrečné zprávy zapíše obě měření a rozhodne, zda změna přinesla zisk."
+      ],
+      "expectedOutput": "Testovací sada, dvě měření a krátká zpráva o dopadu provedené změny.",
+      "form": "Samostatně.",
+      "time": "90 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs2-level-5-cv4",
+     "type": "exercise",
+     "order": 4,
+     "title": "Lokální model přes Ollamu",
+     "teacher": {
+      "description": [
+       "Žák nainstaluje nástroj Ollama, stáhne si jeden malý model a vyzkouší s ním stejnou sadu vstupů jako v předchozím cvičení. Zaměří se na rozdíly v kvalitě, rychlosti a chování při neobvyklých zadáních a zaznamená, jaké má jeho počítač s modelem potíže. Do porovnání zapíše i úvahu o soukromí: které úlohy by mu bylo příjemnější řešit lokálně a které naopak v cloudu. Pokud hardware model nezvládá, cvičení se řeší ukázkou na učitelově stroji."
+      ],
+      "expectedOutput": "Porovnání lokálního a cloudového modelu na stejné sadě vstupů včetně poznámky o hardwaru.",
+      "form": "Samostatně nebo společná ukázka.",
+      "time": "45 až 90 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs2-level-5-cv5",
+     "type": "exercise",
+     "order": 5,
+     "title": "Kdy (ne) dolaďovat model",
+     "teacher": {
+      "description": [
+       "Žák dostane tři popisy situací: třídění školních oznámení do pevných kategorií, odpovídání na otázky ke školnímu řádu a psaní kreativních textů v daném stylu. Pro každou situaci rozhodne, zda stačí prompt, prompt s vyhledáváním v dokumentech, nebo dolaďování modelu, a své rozhodnutí zdůvodní náklady, objemem dat a riziky. Výsledek zapíše do rozhodovací tabulky a v diskuzi porovná svůj postup s postupem spolužáků, kteří mohli dojít k jinému závěru."
+      ],
+      "expectedOutput": "Vyplněná rozhodovací tabulka se zdůvodněním a jedna věta o situaci, kde se názory ve třídě rozcházely.",
+      "form": "Samostatně, závěrečná diskuze.",
+      "time": "45 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    }
+   ],
+   "teacherNotes": [
+    "Úroveň 5 funguje nejlépe jako projektová výuka: přidejte jednu rezervní hodinu na doťahování aplikací, protože téměř vždy někdo narazí na problém, který stojí řešení. Počítače s osmi gigabajty paměti spustí malé lokální modely spolehlivě; slabší stroje zvládnou cvičení 4 jen jako diváky ukázky, což není na škodu. Při hodnocení aplikací oceněte především funkčnost, ošetření chyb a dokumentaci, nikoli rozsah. Žákům připomeňte, že aplikace z této úrovně se hodí jako ukázka zájmu a dovedností při motivačním pohovoru nebo na střední škole s technickým zaměřením; přijímací zkoušky však nenahrazují, a podejte jim k tomu zpětnou vazbu i v této souvislosti. Žákům, kteří Python teprve zvládají, lze úroveň zpřístupnit low-code cestou: aplikace vznikne v nástroji z úrovně 3, přičemž model je jedním z kroků postupu. Cvičení 1 až 3 lze řešit tímto způsobem; cvičení 4 a 5 jsou vhodnější pro žáky s programátorským základem."
+   ],
+   "certification": {
+    "name": null,
+    "status": "planned"
+   },
+   "themes": "Návrh a tvorba vlastní aplikace, vyhodnocování kvality modelů, lokální modely.",
+   "recommendedPlacement": "kroužek po úrovni 4, projektová výuka",
+   "unitLabel": "Level",
+   "status": "content-ready",
+   "lessonCount": 6
+  },
+  {
+   "id": "zs2-level-6",
+   "order": 6,
+   "code": "Level 6",
+   "title": "AI Systems Architect",
+   "intro": [
+    "Šestá, nejvyšší úroveň navazuje na všechny předchozí: žáci navrhují systémy, v nichž spolupracuje více komponent a více agentů, data se doplňují vyhledáváním ve vlastních dokumentech a celé řešení musí obstát v bezpečnostní kontrole. Na druhém stupni je tato úroveň výjimečná: překračuje rámec běžné výuky i kroužku a je určena pouze pro jednotlivce, kteří prošli úrovnemi 4 a 5 a hledají vrcholné výzvy. Nejlepší formou je individuální projekt vedený učitelem jako závěrečná práce kroužku, případně spolupráce s místní střední školou, kde žák najde prostředí i konzultanta. Učitel, který takového žáka má, ocení, že obsah úrovně zůstává stejný jako ve středoškolské verzi plánu; liší se pouze míra vedení a tempa."
+   ],
+   "goals": [
+    "Žák navrhne architekturu systému s více spolupracujícími agenty a popíše jejich role.",
+    "Žák vysvětlí princip RAG a sestaví základní postup s vyhledáváním ve vlastních dokumentech.",
+    "Žák pracuje s vektorovou databází a porovná sémantické a fulltextové vyhledávání.",
+    "Žák provede bezpečnostní kontrolu navrženého systému podle sestaveného seznamu rizik.",
+    "Žák obhájí architektonická rozhodnutí a popíše jejich kompromisy.",
+    "Žák dokumentuje systém tak, aby byl reprodukovatelný a předatelný."
+   ],
+   "hours": "11 až 14 hodin",
+   "hoursNote": "tvorba závěrečného projektu převážně mimo výuku",
+   "schedule": {
+    "header": [
+     "Blok",
+     "Obsah výuky",
+     "Časová dotace"
+    ],
+    "rows": [
+     [
+      "Blok 1",
+      "Teoretická příprava: multiagentní systémy, RAG, vektorové databáze, bezpečnost.",
+      "2 hodiny"
+     ],
+     [
+      "Blok 2",
+      "Cvičení 1 (Architektura systému) a cvičení 2 (RAG pipeline).",
+      "4 až 6 hodin"
+     ],
+     [
+      "Blok 3",
+      "Cvičení 3 (Sémantické vyhledávání) a cvičení 4 (Bezpečnostní audit).",
+      "4 hodiny"
+     ],
+     [
+      "Blok 4",
+      "Cvičení 5 (Závěrečný projekt): prezentace a obhajoba, společné shrnutí celé úrovně.",
+      "1 až 2 hodiny"
+     ]
+    ]
+   },
+   "scheduleNote": [
+    "Závěrečný projekt v cvičení 5 svým rozsahem přesahuje vyhrazený blok a je určen převážně k práci mimo výuku, podobně jako ročníková práce; v závěrečném bloku proběhne jeho prezentace a obhajoba. Bloky 1 až 3 proto fungují jako průprava, na které si žák vyzkouší každou dovednost samostatně v malém měřítku. Doporučujeme průběžně vést technický deník: zápisky z jednotlivých cvičení se stanou podkladem dokumentace závěrečného projektu a ušetří žákovi práci při jeho psaní. Obhajoba projektu se nejlépe řeší na závěrečném setkání kroužku, případně na dni otevřených dveří, kde si žák vyzkouší prezentovat technické téma laickému publiku."
+   ],
+   "lessons": [
+    {
+     "id": "zs2-level-6-teorie",
+     "type": "theory",
+     "order": 0,
+     "title": "Teorie",
+     "teacher": {
+      "intro": [
+       "Teoretická část zavádí pohled na systém jako na celek: role agentů, jejich vzájemnou komunikaci a dělení práce v multiagentních přístupech, pro které se v praxi používají například knihovny CrewAI a LangGraph. Druhým tématem je rozšíření znalostí modelu o vlastní data pomocí postupu RAG: rozdělení dokumentů, vytvoření vložených reprezentací, uložení do vektorové databáze a doplnění nalezených údajů do promptu. Třetím tématem je bezpečnost: řízení přístupu, ochrana dat, sledování akcí systému a pravidla pro odpovědné nasazení v organizaci. U individuálně vedeného projektu slouží teoretická část jako základ samostudia a učitel ji prochází se žákem v konzultacích."
+      ],
+      "reviewQuestions": [
+       "Co je multiagentní systém a v čem se liší od jediného modelu s jedním promptem?",
+       "Jaké role mohou agenti v systému zastávat a jak se mezi nimi dělí odpovědnost?",
+       "Popište kroky postupu RAG od dokumentu až po odpověď modelu.",
+       "K čemu slouží vektorová databáze a co se v ní ukládá?",
+       "V čem se liší sémantické vyhledávání od běžného vyhledávání podle klíčových slov?",
+       "Která rizika je nutné řešit u systému, který přistupuje k dokumentům školy?",
+       "Co by měl obsahovat bezpečnostní kontrolní seznam před nasazením AI systému v organizaci?"
+      ],
+      "discussionTopics": [
+       "Systém s více agenty se rozhodne špatně a rozhodnutí má nepříjemné následky. Jak se takovému selhání předchází a kdo nese odpovědnost?",
+       "Školní dokumenty obsahují osobní údaje. Za jakých podmínek je lze použít v RAG systému a co by měl systém dělat, když odpověď odhalí citlivý údaj?"
+      ]
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs2-level-6-cv1",
+     "type": "exercise",
+     "order": 1,
+     "title": "Architektura multiagentního systému",
+     "teacher": {
+      "description": [
+       "Žák navrhne systém pro zvolenou úlohu, například příprava týdenního přehledu dění ve škole ze zdrojů, které škola poskytuje. Navrhne alespoň tři agenty s jasně vymezenými rolemi, popíše, jaké informace si předávají, kde vznikají rozhodovací body a jak systém naloží s nejistotou. Architekturu nakreslí jako diagram a doplní tabulku rolí. Závěrem návrh kriticky prověří: vymyslí situaci, ve které by se agenti dostali do sporu, a navrhne, jak systém takovou situaci řeší."
+      ],
+      "expectedOutput": "Diagram architektury, tabulka rolí a popis jednoho řešeného konfliktu mezi agenty.",
+      "form": "Samostatná práce s konzultací.",
+      "time": "90 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs2-level-6-cv2",
+     "type": "exercise",
+     "order": 2,
+     "title": "Základní RAG pipeline",
+     "teacher": {
+      "description": [
+       "Žák sestaví zjednodušený postup nad malou sadou školních dokumentů: dokumenty rozdělí na části, vytvoří vložené reprezentace, uloží je do vektorové databáze a při dotazu doplní nalezené části do promptu modelu. Ověří, že systém odpovídá na otázky, na které model bez dokumentů odpovědět neumí, a že u otázek mimo dokumenty odpovídá poctivě, že informaci nemá. Zapíše, v kterých situacích vyhledávání selhalo a proč."
+      ],
+      "expectedOutput": "Funkční postup, ukázky tří dotazů a zápisy o dvou selháních vyhledávání s vysvětlením.",
+      "form": "Samostatně, s konzultacemi učitele.",
+      "time": "90 až 180 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs2-level-6-cv3",
+     "type": "exercise",
+     "order": 3,
+     "title": "Sémantické vyhledávání",
+     "teacher": {
+      "description": [
+       "Žák připraví sadu dvaceti dotazů, z nichž některé používají jiná slova než dokumenty, ale stejný význam. Spustí je proti vektorové databázi a proti obyčejnému vyhledávání podle klíčových slov a změří, kolik správných částí dokumentu každý přístup našel. Výsledky zaznamená do tabulky a najde skupiny dotazů, kde sémantické vyhledávání výrazně vede i prohrává. Závěrem navrhne, jak by oba přístupy zkombinoval v jednom systému."
+      ],
+      "expectedOutput": "Porovnávací tabulka dvou přístupů na dvaceti dotazech a návrh jejich kombinace.",
+      "form": "Samostatně.",
+      "time": "90 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs2-level-6-cv4",
+     "type": "exercise",
+     "order": 4,
+     "title": "Bezpečnostní audit",
+     "teacher": {
+      "description": [
+       "Žák sestaví kontrolní seznam rizik z těchto oblastí: přístupová práva, ukládání a šifrování dat, ochrana promptů, omezování četnosti požadavků, záznam akcí systému a postup při chybném výstupu. Aplikuje jej na systém z předchozích cvičení, každou položku ohodnotí a navrhne konkrétní opravu. Závěr shrne do krátké zprávy se třemi nejdůležitějšími doporučeními."
+      ],
+      "expectedOutput": "Vyplněný kontrolní seznam a zpráva se třemi doporučeními.",
+      "form": "Samostatně.",
+      "time": "90 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "zs2-level-6-cv5",
+     "type": "exercise",
+     "order": 5,
+     "title": "Závěrečný projekt",
+     "teacher": {
+      "description": [
+       "Žák navrhne a zpracuje komplexní řešení reálné potřeby školy: systém pro odpovídání na dotazy ke školním dokumentům, pomocník pro skupinové projekty nebo nástroj pro zpracování zpětné vazby od žáků. Projekt musí kombinovat alespoň dvě dovednosti úrovně, obsahovat bezpečnostní pohled a být dokumentovaný tak, aby ho bylo možné předat. Součástí je veřejná obhajoba: desetiminutová prezentace následovaná dotazy spolužáků a učitele, v nichž žák obhájí svá architektonická rozhodnutí."
+      ],
+      "expectedOutput": "Dokumentovaný a předvedený systém včetně prezentace a obhajoby architektonických rozhodnutí.",
+      "form": "Samostatný projekt s veřejnou obhajobou.",
+      "time": "180 minut a více, převážně mimo výuku"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    }
+   ],
+   "teacherNotes": [
+    "Úroveň 6 na druhém stupni vedejte jako individuální tutorství: pravidelné konzultace po dvou týdnech se osvědčují víc než týdenní dohled, protože žák potřebuje prostor samostatně experimentovat i selhávat. Cvičení 2 a 3 jsou technicky nejnáročnější; pokud se ukáže, že implementace celého postupu nestihne, lze postavit na kostře, kterou si učitel připraví předem, a žák doplní klíčové části. Závěrečný projekt hodnoťte kombinací technické kvality, bezpečnostního pohledu, dokumentace a obhajoby a stanovte kritéria předem. Připomeňte žákovi, že data pro projekty musí být buď veřejná, nebo důsledně anonymizovaná, a že výstupy systémů nesmí obsahovat osobní údaje spolužáků ani učitelů."
+   ],
+   "certification": {
+    "name": null,
+    "status": "planned"
+   },
+   "themes": "Multiagentní systémy, RAG a vektorové databáze, bezpečnost a řízení přístupu.",
+   "recommendedPlacement": "výjimečně, jako individuální projekt",
+   "unitLabel": "Level",
+   "status": "content-ready",
+   "lessonCount": 6
+  }
+ ]
+}

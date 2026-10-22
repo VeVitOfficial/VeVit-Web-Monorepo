@@ -1,7 +1,7 @@
 {
   "scripts": {
     "dev": "next dev",
-    "build": "npm run build:tailwind && next build",
+    "build": "npm run validate:aifb && npm run build:tailwind && next build",
     "start": "next start",
     "lint": "eslint src next.config.ts",
     "typecheck": "tsc --noEmit",
@@ -10,7 +10,9 @@
     "test:browser": "bash tests/xss-client-browser-test.sh && bash tests/tools-markdown-browser-test.sh",
     "test:smoke": "bash tests/production-smoke-test.sh",
     "secret-scan": "node scripts/secret-scan.mjs",
-    "build:tailwind": "tailwindcss -c tailwind.config.js -i src/styles/tailwind.input.css -o src/styles/vevit-tailwind.css --minify"
+    "build:tailwind": "tailwindcss -c tailwind.config.js -i src/styles/tailwind.input.css -o src/styles/vevit-tailwind.css --minify",
+    "validate:aifb": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/aifb-validate.mjs && node scripts/aifb-gen-types.mjs --check",
+    "gen:aifb-types": "node scripts/aifb-gen-types.mjs"
   },
   "devDependencies": {
     "@tailwindcss/container-queries": "^0.1.1",

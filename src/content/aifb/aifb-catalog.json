@@ -1,0 +1,318 @@
+{
+ "schemaVersion": "1.0",
+ "version": "2026-10",
+ "language": "cs",
+ "hub": {
+  "route": "/edu/ai-gramotnost/",
+  "title": "AI gramotnost",
+  "subtitle": "AI Fluency Benchmark (AIFB) – vyber, pro koho se učíš",
+  "note": "Hub se otevírá z existující karty „AI gramotnost“ v navigaci VeVit Edu. Pořadí karet: 1. stupeň ZŠ, 2. stupeň ZŠ, střední školy, online kurz."
+ },
+ "categories": [
+  {
+   "id": "zs1",
+   "title": "1. stupeň ZŠ",
+   "subtitle": "Hravé bloky pro 1. až 5. třídu",
+   "grades": "1.–5. třída",
+   "theme": "pirate-map",
+   "usageMode": "teacher-led",
+   "status": "content-ready",
+   "route": "/edu/ai-gramotnost/aifb/zs1",
+   "contentFile": "aifb-content-zs1.json",
+   "unit": "Blok",
+   "levels": [
+    {
+     "id": "zs1-blok-a",
+     "order": 1,
+     "code": "Blok A",
+     "title": "AI kolem nás",
+     "subtitle": null,
+     "grades": "1. až 2. třída",
+     "hours": "6 až 7 hodin",
+     "lessonCount": 6,
+     "certification": null,
+     "route": "/edu/ai-gramotnost/aifb/zs1/blok-a"
+    },
+    {
+     "id": "zs1-blok-b",
+     "order": 2,
+     "code": "Blok B",
+     "title": "Jak přemýšlí počítač",
+     "subtitle": null,
+     "grades": "3. až 4. třída",
+     "hours": "7 až 8 hodin",
+     "lessonCount": 6,
+     "certification": null,
+     "route": "/edu/ai-gramotnost/aifb/zs1/blok-b"
+    },
+    {
+     "id": "zs1-blok-c",
+     "order": 3,
+     "code": "Blok C",
+     "title": "Host AI ve třídě",
+     "subtitle": null,
+     "grades": "4. až 5. třída",
+     "hours": "7 až 8 hodin",
+     "lessonCount": 6,
+     "certification": null,
+     "route": "/edu/ai-gramotnost/aifb/zs1/blok-c"
+    },
+    {
+     "id": "zs1-blok-d",
+     "order": 4,
+     "code": "Blok D",
+     "title": "Přesná zadání a vlastní projekt",
+     "subtitle": null,
+     "grades": "5. třída",
+     "hours": "10 až 11 hodin",
+     "lessonCount": 6,
+     "certification": null,
+     "route": "/edu/ai-gramotnost/aifb/zs1/blok-d"
+    }
+   ],
+   "totals": {
+    "levels": 4,
+    "lessons": 24
+   }
+  },
+  {
+   "id": "zs2",
+   "title": "2. stupeň ZŠ",
+   "subtitle": "Šest úrovní pro 6. až 9. třídu",
+   "grades": "6.–9. třída",
+   "theme": "trail",
+   "usageMode": "teacher-led-then-individual",
+   "status": "content-ready",
+   "route": "/edu/ai-gramotnost/aifb/zs2",
+   "contentFile": "aifb-content-zs2.json",
+   "unit": "Level",
+   "levels": [
+    {
+     "id": "zs2-level-1",
+     "order": 1,
+     "code": "Level 1",
+     "title": "AIFB Foundation",
+     "subtitle": "Základy a bezpečnost",
+     "grades": "6. až 7. třída",
+     "hours": "7 až 8 hodin",
+     "lessonCount": 6,
+     "certification": {
+      "name": "Certified AI Associate",
+      "status": "planned"
+     },
+     "route": "/edu/ai-gramotnost/aifb/zs2/level-1"
+    },
+    {
+     "id": "zs2-level-2",
+     "order": 2,
+     "code": "Level 2",
+     "title": "AIFB Intermediate",
+     "subtitle": "Prompting a datové struktury",
+     "grades": "7. až 8. třída",
+     "hours": "7 až 8 hodin",
+     "lessonCount": 6,
+     "certification": {
+      "name": "Certified Prompt Specialist",
+      "status": "planned"
+     },
+     "route": "/edu/ai-gramotnost/aifb/zs2/level-2"
+    },
+    {
+     "id": "zs2-level-3",
+     "order": 3,
+     "code": "Level 3",
+     "title": "AIFB Advanced",
+     "subtitle": "Automatizace a práce s API",
+     "grades": "8. až 9. třída",
+     "hours": "8 až 10 hodin",
+     "lessonCount": 6,
+     "certification": {
+      "name": "Certified AI Automation Practitioner",
+      "status": "planned"
+     },
+     "route": "/edu/ai-gramotnost/aifb/zs2/level-3"
+    },
+    {
+     "id": "zs2-level-4",
+     "order": 4,
+     "code": "Level 4",
+     "title": "Advanced API Integration and Scripting",
+     "subtitle": null,
+     "grades": "8. až 9. třída, kroužek programování",
+     "hours": "10 až 11 hodin",
+     "lessonCount": 6,
+     "certification": {
+      "name": null,
+      "status": "planned"
+     },
+     "route": "/edu/ai-gramotnost/aifb/zs2/level-4"
+    },
+    {
+     "id": "zs2-level-5",
+     "order": 5,
+     "code": "Level 5",
+     "title": "Custom AI Developer",
+     "subtitle": null,
+     "grades": "kroužek po úrovni 4, projektová výuka",
+     "hours": "9 až 13 hodin",
+     "lessonCount": 6,
+     "certification": {
+      "name": null,
+      "status": "planned"
+     },
+     "route": "/edu/ai-gramotnost/aifb/zs2/level-5"
+    },
+    {
+     "id": "zs2-level-6",
+     "order": 6,
+     "code": "Level 6",
+     "title": "AI Systems Architect",
+     "subtitle": null,
+     "grades": "výjimečně, jako individuální projekt",
+     "hours": "11 až 14 hodin",
+     "lessonCount": 6,
+     "certification": {
+      "name": null,
+      "status": "planned"
+     },
+     "route": "/edu/ai-gramotnost/aifb/zs2/level-6"
+    }
+   ],
+   "totals": {
+    "levels": 6,
+    "lessons": 36
+   }
+  },
+  {
+   "id": "ss",
+   "title": "Střední školy a gymnázia",
+   "subtitle": "Šest úrovní AIFB pro 1. až 4. ročník",
+   "grades": "1.–4. ročník SŠ",
+   "theme": "clean",
+   "usageMode": "individual",
+   "status": "content-ready",
+   "route": "/edu/ai-gramotnost/aifb/ss",
+   "contentFile": "aifb-content-ss.json",
+   "unit": "Level",
+   "levels": [
+    {
+     "id": "ss-level-1",
+     "order": 1,
+     "code": "Level 1",
+     "title": "AIFB Foundation",
+     "subtitle": "Základy a bezpečnost",
+     "grades": "1. ročník SŠ",
+     "hours": "7 až 8 hodin",
+     "lessonCount": 6,
+     "certification": {
+      "name": "Certified AI Associate",
+      "status": "planned"
+     },
+     "route": "/edu/ai-gramotnost/aifb/ss/level-1"
+    },
+    {
+     "id": "ss-level-2",
+     "order": 2,
+     "code": "Level 2",
+     "title": "AIFB Intermediate",
+     "subtitle": "Prompting a datové struktury",
+     "grades": "1. až 2. ročník SŠ",
+     "hours": "7 až 8 hodin",
+     "lessonCount": 6,
+     "certification": {
+      "name": "Certified Prompt Specialist",
+      "status": "planned"
+     },
+     "route": "/edu/ai-gramotnost/aifb/ss/level-2"
+    },
+    {
+     "id": "ss-level-3",
+     "order": 3,
+     "code": "Level 3",
+     "title": "AIFB Advanced",
+     "subtitle": "Automatizace a práce s API",
+     "grades": "2. až 3. ročník SŠ",
+     "hours": "8 až 10 hodin",
+     "lessonCount": 6,
+     "certification": {
+      "name": "Certified AI Automation Practitioner",
+      "status": "planned"
+     },
+     "route": "/edu/ai-gramotnost/aifb/ss/level-3"
+    },
+    {
+     "id": "ss-level-4",
+     "order": 4,
+     "code": "Level 4",
+     "title": "Advanced API Integration and Scripting",
+     "subtitle": null,
+     "grades": "3. ročník, seminář informatiky",
+     "hours": "10 až 11 hodin",
+     "lessonCount": 6,
+     "certification": {
+      "name": null,
+      "status": "planned"
+     },
+     "route": "/edu/ai-gramotnost/aifb/ss/level-4"
+    },
+    {
+     "id": "ss-level-5",
+     "order": 5,
+     "code": "Level 5",
+     "title": "Custom AI Developer",
+     "subtitle": null,
+     "grades": "3. až 4. ročník, seminář",
+     "hours": "9 až 13 hodin",
+     "lessonCount": 6,
+     "certification": {
+      "name": null,
+      "status": "planned"
+     },
+     "route": "/edu/ai-gramotnost/aifb/ss/level-5"
+    },
+    {
+     "id": "ss-level-6",
+     "order": 6,
+     "code": "Level 6",
+     "title": "AI Systems Architect",
+     "subtitle": null,
+     "grades": "4. ročník, ročníkový projekt",
+     "hours": "11 až 14 hodin",
+     "lessonCount": 6,
+     "certification": {
+      "name": null,
+      "status": "planned"
+     },
+     "route": "/edu/ai-gramotnost/aifb/ss/level-6"
+    }
+   ],
+   "totals": {
+    "levels": 6,
+    "lessons": 36
+   }
+  },
+  {
+   "id": "kurz",
+   "title": "Online kurz pro všechny",
+   "subtitle": "Samostatný kurz AI gramotnosti pro děti i dospělé",
+   "grades": "bez omezení věku",
+   "theme": "clean",
+   "usageMode": "individual",
+   "status": "existing",
+   "route": "/edu/ai-gramotnost/kurz",
+   "contentFile": null,
+   "legacyCourse": true,
+   "note": "NÁVRH k potvrzení: stávající kurz „AI gramotnost“ (6 kapitol, 34 lekcí) zůstane beze změny a hub na něj jen odkáže. Staré odkazy typu #lesson/<slug> se nesmějí rozbít.",
+   "levels": [],
+   "totals": {
+    "levels": 6,
+    "lessons": 34
+   }
+  }
+ ],
+ "totals": {
+  "categoriesWithContent": 3,
+  "levels": 16,
+  "lessons": 96
+ }
+}

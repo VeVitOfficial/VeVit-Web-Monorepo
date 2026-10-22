@@ -18,3 +18,5 @@ jobs:
       - run: npm run typecheck
       - run: npm run lint
       - run: npm test
+      - run: npm run test:unit
+      - run: npm run validate:aifb
