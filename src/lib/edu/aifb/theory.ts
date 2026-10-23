@@ -10,6 +10,7 @@ export const FIGURE_IDS = [
   "context-window", "function-calling",
   "eval-loop",
   "rag", "agents",
+  "fair-data", "ai-made", "human-loop", "prompt-injection",
 ] as const;
 
 export type FigureId = (typeof FIGURE_IDS)[number];
