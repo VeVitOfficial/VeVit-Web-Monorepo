@@ -137,18 +137,7 @@ export default async function HomePage() {
                   </span>
                   <span>
                     <span className="dd-name">
-                      Edu{" "}
-                      <span
-                        className="dd-soon-tag"
-                        style={{
-                          background: "rgba(150,106,200,0.12)",
-                          color: "#966ac8",
-                          borderColor: "rgba(150,106,200,0.25)",
-                        }}
-                        data-ui-text="page.nav.badgeBeta"
-                      >
-                        Beta
-                      </span>
+                      Edu
                     </span>
                     <span className="dd-desc" data-ui-text="page.navItem.edu">
                       Lekce a kvízy
@@ -946,9 +935,6 @@ export default async function HomePage() {
                 href={`${L}/edu`}
                 data-track="bento:edu"
               >
-                <span className="ec-badge" data-ui-text="page.platforms.badgeBeta">
-                  Beta testing
-                </span>
                 <span className="ec-icon-wrap">
                   <Icon name="graduation-cap" size={22} />
                 </span>
