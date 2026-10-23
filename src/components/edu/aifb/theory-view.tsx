@@ -3,12 +3,14 @@
 // otázky, diskuzní témata) je na konci ve sbalené sekci.
 
 import Link from "next/link";
-import { draftPreviewEnabled, getPupilLayer } from "@/lib/edu/aifb/content";
+import { isStaff, lessonUnlocked, type AifbAccess } from "@/lib/edu/aifb/access";
+import { getPupilLayer } from "@/lib/edu/aifb/content";
 import { aifbT } from "@/lib/edu/aifb/i18n";
 import { categoryPath, hubPath, lessonPath, lessonSlug, levelPath, levelSlug } from "@/lib/edu/aifb/routes";
 import { readingMinutes, type ResolvedTheory } from "@/lib/edu/aifb/theory";
 import type { AifbContent, Level, TheoryLesson } from "@/lib/edu/aifb/types";
 import type { EduLocale } from "@/lib/edu/i18n-data";
+import { EditLink } from "./access-ui";
 import { Paragraphs } from "./blocks";
 import { Crumbs } from "./crumbs";
 import { PupilLayerView } from "./interactive/pupil-layer";
@@ -18,15 +20,19 @@ import { RichText, type RichTextContext } from "./rich-text";
 import { TheoryLayout } from "./theory-layout";
 
 export function TheoryView({
-  locale, content, level, lesson, theory,
-}: { locale: EduLocale; content: AifbContent; level: Level; lesson: TheoryLesson; theory: ResolvedTheory }) {
+  locale, content, level, lesson, theory, viewer, preview, topic,
+}: {
+  locale: EduLocale; content: AifbContent; level: Level; lesson: TheoryLesson; theory: ResolvedTheory;
+  viewer: AifbAccess; preview: boolean; topic: string | null;
+}) {
   const t = aifbT(locale);
   const { category } = content;
   const ctx: RichTextContext = { locale, categoryId: category.id };
   const lvl = levelSlug(category.id, level.id);
-  const firstLesson = level.lessons.find((item) => item.type === "exercise");
+  const first = level.lessons.find((item) => item.type === "exercise");
+  const firstLesson = first && lessonUnlocked(viewer, first.id) ? first : undefined;
   const layer = getPupilLayer(lesson.id);
-  const showLayer = layer !== undefined && (layer.status !== "draft" || draftPreviewEnabled());
+  const showLayer = layer !== undefined && (layer.status !== "draft" || preview);
 
   return (
     <>
@@ -41,7 +47,10 @@ export function TheoryView({
         ]}
       />
       <header className="aifb-head th-head">
-        <p className="aifb-eyebrow">{level.code} · {t("aifb.theory.title")}</p>
+        <p className="aifb-eyebrow">
+          {level.code} · {t("aifb.theory.title")}{" "}
+          {topic ? <EditLink role={viewer.role} locale={locale} doc="theory" path={`topics/${topic}`} t={t} /> : null}
+        </p>
         <h1>{level.title}</h1>
         <p className="th-lead"><RichText text={theory.lead} ctx={ctx} /></p>
         <p className="aifb-chips">
@@ -69,7 +78,7 @@ export function TheoryView({
           </p>
         ) : null}
 
-        <details className="aifb-details th-teacher">
+        {isStaff(viewer) ? <details className="aifb-details th-teacher">
           <summary><h2>{t("aifb.theory.teacher")}</h2></summary>
           <h3 className="aifb-h3">{t("aifb.theory.teacherHow")}</h3>
           <Paragraphs items={lesson.teacher.intro} ctx={ctx} />
@@ -77,7 +86,7 @@ export function TheoryView({
           <ol className="aifb-list">{lesson.teacher.reviewQuestions.map((q, i) => <li key={i}><RichText text={q} ctx={ctx} /></li>)}</ol>
           <h3 className="aifb-h3">{t("aifb.lesson.discussionTopics")}</h3>
           <ul className="aifb-list">{lesson.teacher.discussionTopics.map((q, i) => <li key={i}><RichText text={q} ctx={ctx} /></li>)}</ul>
-        </details>
+        </details> : null}
 
         {theory.status === "draft" ? <p className="aifb-muted th-draft">{t("aifb.theory.draftNote")}</p> : null}
       </TheoryLayout>

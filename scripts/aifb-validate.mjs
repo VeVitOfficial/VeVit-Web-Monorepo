@@ -15,107 +15,14 @@ import { validateTheory } from "../src/lib/edu/aifb/theory.ts";
 import { validateCourse } from "../src/lib/edu/aifb/course.ts";
 import { DATA_PROTECTION_ANCHOR, PRINTABLE_SECTIONS } from "../src/lib/edu/aifb/guide.ts";
 import { guideRefsIn } from "../src/lib/edu/aifb/markdown.ts";
+import { validateAgainstSchema } from "../src/lib/edu/aifb/schema-check.ts";
+
+export { validateAgainstSchema };
 
 const repoRoot = join(dirname(fileURLToPath(import.meta.url)), "..");
 const defaultDir = join(repoRoot, "src/content/aifb");
 const CATEGORY_FILES = { zs1: "aifb-content-zs1.json", zs2: "aifb-content-zs2.json", ss: "aifb-content-ss.json" };
 const EXPECTED = { categories: 3, levels: 16, lessons: 96 };
-
-// ── JSON Schema (jen použité klíčové slovo) ─────────────────────────────────
-
-function deepEqual(a, b) {
-  return JSON.stringify(a) === JSON.stringify(b);
-}
-
-function typeMatches(type, value) {
-  switch (type) {
-    case "string":
-      return typeof value === "string";
-    case "number":
-      return typeof value === "number";
-    case "integer":
-      return Number.isInteger(value);
-    case "boolean":
-      return typeof value === "boolean";
-    case "null":
-      return value === null;
-    case "array":
-      return Array.isArray(value);
-    case "object":
-      return typeof value === "object" && value !== null && !Array.isArray(value);
-    default:
-      return false;
-  }
-}
-
-function resolveRef(root, ref) {
-  return ref
-    .replace(/^#\//, "")
-    .split("/")
-    .reduce((node, key) => node?.[key], root);
-}
-
-function validateNode(root, schema, data, path, errors) {
-  if (schema.$ref) return validateNode(root, resolveRef(root, schema.$ref), data, path, errors);
-  if ("const" in schema && !deepEqual(schema.const, data)) {
-    errors.push(`${path}: očekává se ${JSON.stringify(schema.const)}`);
-    return;
-  }
-  if (schema.enum && !schema.enum.some((value) => deepEqual(value, data))) {
-    errors.push(`${path}: hodnota ${JSON.stringify(data)} není v ${JSON.stringify(schema.enum)}`);
-    return;
-  }
-  if (schema.type) {
-    const types = Array.isArray(schema.type) ? schema.type : [schema.type];
-    if (!types.some((type) => typeMatches(type, data))) {
-      errors.push(`${path}: očekává se typ ${types.join("|")}`);
-      return;
-    }
-  }
-  if (schema.oneOf) {
-    // Diskriminovaná unie podle `type`: zkontroluje jen odpovídající větev (srozumitelnější chyby).
-    const byType = schema.oneOf.find((branch) => {
-      const resolved = branch.$ref ? resolveRef(root, branch.$ref) : branch;
-      return resolved.properties?.type?.const !== undefined && resolved.properties.type.const === data?.type;
-    });
-    if (byType) return validateNode(root, byType, data, path, errors);
-    const matching = schema.oneOf.filter((branch) => {
-      const local = [];
-      validateNode(root, branch, data, path, local);
-      return local.length === 0;
-    });
-    if (matching.length !== 1) errors.push(`${path}: neodpovídá právě jedné variantě (oneOf), shod ${matching.length}`);
-    return;
-  }
-  if (typeof data === "string") {
-    if (schema.pattern && !new RegExp(schema.pattern).test(data)) errors.push(`${path}: nesplňuje vzor ${schema.pattern}`);
-    if (schema.minLength !== undefined && data.length < schema.minLength) errors.push(`${path}: příliš krátké`);
-  }
-  if (typeof data === "number") {
-    if (schema.minimum !== undefined && data < schema.minimum) errors.push(`${path}: menší než ${schema.minimum}`);
-    if (schema.maximum !== undefined && data > schema.maximum) errors.push(`${path}: větší než ${schema.maximum}`);
-  }
-  if (Array.isArray(data)) {
-    if (schema.minItems !== undefined && data.length < schema.minItems) errors.push(`${path}: méně než ${schema.minItems} položek`);
-    if (schema.maxItems !== undefined && data.length > schema.maxItems) errors.push(`${path}: více než ${schema.maxItems} položek`);
-    if (schema.items) data.forEach((item, index) => validateNode(root, schema.items, item, `${path}[${index}]`, errors));
-  }
-  if (typeof data === "object" && data !== null && !Array.isArray(data) && (schema.properties || schema.required)) {
-    for (const key of schema.required ?? []) {
-      if (!(key in data)) errors.push(`${path}: chybí povinné pole "${key}"`);
-    }
-    for (const [key, value] of Object.entries(data)) {
-      if (schema.properties?.[key]) validateNode(root, schema.properties[key], value, `${path}.${key}`, errors);
-      else if (schema.additionalProperties === false) errors.push(`${path}: nepovolené pole "${key}"`);
-    }
-  }
-}
-
-export function validateAgainstSchema(schema, data, label) {
-  const errors = [];
-  validateNode(schema, schema, data, label, errors);
-  return errors;
-}
 
 // ── Invarianty obsahu ───────────────────────────────────────────────────────
 

@@ -42,7 +42,7 @@ Kurz je pro všechny včetně dětí a nemá přihlášení, takže nelze ověř
 - Typy a funkce: `src/lib/edu/aifb/course.ts` (`Course`, `CourseModule`, `CourseLesson`, `findModule`, `moduleLessonIds`, `validateCourse`).
 - Stránky: `src/app/edu/ai-gramotnost/kurz/**`, komponenty v `src/components/edu/aifb/course-views.tsx`.
 - Id: modul `kurz-m1`, teorie `kurz-m1-teorie`, lekce `kurz-m1-cv1`. Stejný tvar jako lekce AIFB, takže funguje místní průběh, export / import a XP (teorie 25, lekce 40, bonus 60 za celý modul).
-- Viditelnost: `courseVisible()` – kurz ve stavu `draft` se ukáže jen ve vývoji, v náhledovém nasazení nebo s `AIFB_PREVIEW_DRAFTS=1`. Jinak trasy kurzu vrací 404 a karta na hubu ukazuje „Připravuje se“.
+- Viditelnost: `courseVisible(role)` – kurz ve stavu `draft` vidí admin, vývoj, náhledové nasazení a běh s `AIFB_PREVIEW_DRAFTS=1`. Ostatním přehled kurzu ukáže „Online kurz se připravuje“ a moduly a lekce vrací 404. Kurz je jediné, co vidí veřejnost (bez ranku): rozcestník ji sem rovnou přesměruje (kapitola 12).
 
 ## Tvar souboru
 

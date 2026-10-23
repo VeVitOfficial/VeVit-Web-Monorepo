@@ -15,9 +15,22 @@ export function CertBadge({ certification, t }: { certification: Certification; 
   return <span className="aifb-badge aifb-badge--cert">{label}</span>;
 }
 
+/** Zamčená lekce (student, učitel ji ještě neodemkl) není odkaz; `locked` je text stavu. */
 export function LessonRow({
-  href, kindLabel, title, meta, status,
-}: { href: string; kindLabel: string; title: string; meta?: string; status?: ReactNode }) {
+  href, kindLabel, title, meta, status, locked,
+}: { href: string; kindLabel: string; title: string; meta?: string; status?: ReactNode; locked?: string }) {
+  if (locked) {
+    return (
+      <li className="aifb-lesson-row aifb-lesson-row--locked">
+        <span className="aifb-lesson-row__body">
+          <span className="aifb-lesson-row__kind">{kindLabel}</span>
+          <span className="aifb-lesson-row__title">{title}</span>
+          {meta ? <span className="aifb-lesson-row__meta">{meta}</span> : null}
+          <span className="aifb-badge aifb-badge--lock">{locked}</span>
+        </span>
+      </li>
+    );
+  }
   return (
     <li className="aifb-lesson-row">
       <Link href={href}>

@@ -82,7 +82,7 @@ type Org = {
 
 type AuditEntry = { id: number; action: string; actor: string | null; target: string | null; detail: Record<string, unknown>; created_at: string };
 
-const GRANTABLE_RANKS = ["betatester", "partner", "moderator", "admin", "owner"];
+const GRANTABLE_RANKS = ["betatester", "partner", "student", "teacher", "moderator", "admin", "owner"];
 
 function fmtDate(value: string | null | undefined): string {
   if (!value) return "—";

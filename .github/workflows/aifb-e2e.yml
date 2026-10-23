@@ -26,6 +26,9 @@ jobs:
       - name: Production build
         run: npm run build
       - name: Start the app
+        # Testovací role (cookie aifb_test_role) jen pro tento běh mimo Vercel, viz src/lib/edu/aifb/viewer.ts.
+        env:
+          AIFB_TEST_ROLES: "1"
         run: |
           npm run start -- -p 3000 > server.log 2>&1 &
           for i in $(seq 1 60); do curl -sf http://localhost:3000/cs/edu/ai-gramotnost >/dev/null && exit 0; sleep 2; done

@@ -2,11 +2,14 @@
 // Cíle, časový rozvrh a poznámky pro učitele jsou níž ve sbalených sekcích.
 
 import Link from "next/link";
+import { isStaff, lessonUnlocked, type AifbAccess } from "@/lib/edu/aifb/access";
+import { levelEditPath } from "@/lib/edu/aifb/edits";
 import { aifbT } from "@/lib/edu/aifb/i18n";
 import { categoryPath, guidePath, hubPath, lessonPath, lessonSlug, levelPath, levelSlug } from "@/lib/edu/aifb/routes";
 import { readingMinutes, type ResolvedTheory } from "@/lib/edu/aifb/theory";
 import type { AifbContent, Level } from "@/lib/edu/aifb/types";
 import { lessonsLabel, type EduLocale } from "@/lib/edu/i18n-data";
+import { EditLink } from "./access-ui";
 import { DataTable, Paragraphs } from "./blocks";
 import { Crumbs } from "./crumbs";
 import { LessonStatusBadge } from "./lesson-progress";
@@ -14,7 +17,9 @@ import { LevelProgressSummary } from "./level-progress";
 import { RichText, type RichTextContext } from "./rich-text";
 import { CertBadge, LessonRow, lessonKindLabel } from "./shared";
 
-export function LevelView({ locale, content, level, theory }: { locale: EduLocale; content: AifbContent; level: Level; theory: ResolvedTheory | null }) {
+export function LevelView({
+  locale, content, level, theory, viewer,
+}: { locale: EduLocale; content: AifbContent; level: Level; theory: ResolvedTheory | null; viewer: AifbAccess }) {
   const t = aifbT(locale);
   const { category } = content;
   const ctx: RichTextContext = { locale, categoryId: category.id };
@@ -23,6 +28,9 @@ export function LevelView({ locale, content, level, theory }: { locale: EduLocal
   const exercises = level.lessons.filter((lesson) => lesson.type === "exercise");
   const hrefOf = (id: string) => lessonPath(locale, category.id, slug, lessonSlug(level.id, id));
   const advanced = category.id !== "zs1" && level.order >= 4;
+  // Student vidí jen lekce odemčené učitelem a nevidí metodiku pro učitele.
+  const lockedLabel = (id: string) => (lessonUnlocked(viewer, id) ? undefined : `${t("aifb.access.locked")} · ${t("aifb.access.lockedHint")}`);
+  const theoryLocked = theoryLesson ? lockedLabel(theoryLesson.id) : undefined;
 
   return (
     <>
@@ -36,7 +44,7 @@ export function LevelView({ locale, content, level, theory }: { locale: EduLocal
         ]}
       />
       <header className="aifb-head">
-        <p className="aifb-eyebrow">{level.code}</p>
+        <p className="aifb-eyebrow">{level.code} <EditLink role={viewer.role} locale={locale} doc={category.id} path={levelEditPath(level.id)} t={t} /></p>
         <h1>{level.title}</h1>
         {level.subtitle ? <p className="aifb-lead">{level.subtitle}</p> : null}
         <p className="aifb-chips">
@@ -52,15 +60,22 @@ export function LevelView({ locale, content, level, theory }: { locale: EduLocal
       {theoryLesson ? (
         <section className="aifb-section" aria-labelledby="aifb-theory">
           <h2 className="eh-h2" id="aifb-theory"><span className="aifb-step" aria-hidden="true">1</span>{t("aifb.theory.title")}</h2>
-          <Link href={hrefOf(theoryLesson.id)} className="aifb-theory-card">
-            <span className="aifb-theory-card__title">{t("aifb.theory.cardTitle", { title: level.title })}</span>
-            {theory ? <span className="aifb-theory-card__lead"><RichText text={theory.lead} ctx={ctx} /></span> : null}
-            <span className="aifb-theory-card__meta">
-              {theory ? <span className="aifb-badge">{t("aifb.theory.read", { n: readingMinutes(theory) })}</span> : null}
-              <LessonStatusBadge lessonId={theoryLesson.id} />
-              <span className="aifb-theory-card__cta">{t("aifb.theory.open")} →</span>
-            </span>
-          </Link>
+          {theoryLocked ? (
+            <div className="aifb-theory-card aifb-theory-card--locked">
+              <span className="aifb-theory-card__title">{t("aifb.theory.cardTitle", { title: level.title })}</span>
+              <span className="aifb-theory-card__meta"><span className="aifb-badge aifb-badge--lock">{theoryLocked}</span></span>
+            </div>
+          ) : (
+            <Link href={hrefOf(theoryLesson.id)} className="aifb-theory-card">
+              <span className="aifb-theory-card__title">{t("aifb.theory.cardTitle", { title: level.title })}</span>
+              {theory ? <span className="aifb-theory-card__lead"><RichText text={theory.lead} ctx={ctx} /></span> : null}
+              <span className="aifb-theory-card__meta">
+                {theory ? <span className="aifb-badge">{t("aifb.theory.read", { n: readingMinutes(theory) })}</span> : null}
+                <LessonStatusBadge lessonId={theoryLesson.id} />
+                <span className="aifb-theory-card__cta">{t("aifb.theory.open")} →</span>
+              </span>
+            </Link>
+          )}
         </section>
       ) : null}
 
@@ -75,6 +90,7 @@ export function LevelView({ locale, content, level, theory }: { locale: EduLocal
               title={lesson.title}
               meta={lesson.type === "exercise" ? `${t("aifb.lesson.time")}: ${lesson.teacher.time}` : undefined}
               status={<LessonStatusBadge lessonId={lesson.id} />}
+              locked={lockedLabel(lesson.id)}
             />
           ))}
         </ol>
@@ -88,7 +104,7 @@ export function LevelView({ locale, content, level, theory }: { locale: EduLocal
           <h3 className="aifb-h3">{t("aifb.level.goals")}</h3>
           <ul className="aifb-list">{level.goals.map((goal, index) => <li key={index}><RichText text={goal} ctx={ctx} /></li>)}</ul>
         </details>
-        <details className="aifb-details">
+        {isStaff(viewer) ? <details className="aifb-details">
           <summary><h2>{t("aifb.level.forTeachers")}</h2></summary>
           <h3 className="aifb-h3">{t("aifb.level.schedule")}</h3>
           <DataTable header={level.schedule.header} rows={level.schedule.rows} caption={t("aifb.level.schedule")} />
@@ -99,7 +115,7 @@ export function LevelView({ locale, content, level, theory }: { locale: EduLocal
             <Link href={guidePath(locale, category.id)} className="aifb-textlink">{t("aifb.category.guideLink")}</Link>
             <Link href={`${levelPath(locale, category.id, slug)}/tisk`} className="aifb-textlink">{t("aifb.print.level")}</Link>
           </p>
-        </details>
+        </details> : null}
       </section>
     </>
   );

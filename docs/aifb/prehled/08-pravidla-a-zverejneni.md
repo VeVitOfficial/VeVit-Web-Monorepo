@@ -16,6 +16,8 @@
 
 Další pravidla vlastníka: barvy jen z existujících tokenů, texty rozhraní jen v `aifb.*` (i18n), bez nových závislostí, nic s přihlašováním, platbami ani produkčními daty bez výslovného pokynu.
 
+Ranky student / učitel, třídy a úpravy obsahu vznikly na výslovný pokyn vlastníka (2026-10-24); viditelnost podle role popisuje kapitola 12. Tabulka níž platí pro učitele a pro přihlášené role; veřejnost vidí jen online kurz, admin navíc všechny návrhy i na produkci.
+
 ## Stavy textu
 
 | Stav | Význam |
@@ -39,7 +41,7 @@ Další pravidla vlastníka: barvy jen z existujících tokenů, texty rozhraní
 | Teorie (`aifb-theory.json`) | `draft` | ano, s poznámkou „čeká na odbornou kontrolu“ | **ano**, se stejnou poznámkou |
 | Pilotní cvičení (`pupil-pilots.json`) | `draft` | ano, s upozorněním „Návrh ke schválení“ | **ne** |
 | Cvičení s AI | `draft` | ano (bez klíče jen uložené odpovědi) | **ne**, endpoint vrací 404 |
-| Online kurz (`aifb-kurz.json`) | `draft` | ano, s poznámkou | **ne**, trasy vrací 404, karta „Připravuje se“ |
+| Online kurz (`aifb-kurz.json`) | `draft` | ano, s poznámkou | **ne** (admin ano): přehled ukáže „Online kurz se připravuje“, moduly a lekce 404 |
 | Knihovna komponent `/aifb/ukazky` | – | ano | ne (404) |
 
 Teorie se na produkci ukazuje, protože je to výklad pro třídu, kterou vede učitel. Online kurz a pilotní cvičení jsou texty přímo pro děti bez učitele, proto zůstávají skryté do schválení.
@@ -51,6 +53,7 @@ Pozor: lokální `.env.local` stažený z produkce obsahuje `VERCEL_ENV="product
 | Proměnná | Účel |
 |---|---|
 | `AIFB_PREVIEW_DRAFTS=1` | ukáže návrhy i v produkčním běhu (např. pro kontrolu na vlastní doméně) |
+| `AIFB_TEST_ROLES=1` | jen CI / lokální `next start` mimo Vercel: server čte testovací roli z cookie `aifb_test_role` (na Vercelu se ignoruje) |
 | `AIFB_AI_API_KEY` / `EDU_AI_API_KEY` | klíč k modelu pro AI cvičení |
 | `AIFB_AI_API_URL` / `EDU_AI_API_URL` | adresa služby (OpenAI-kompatibilní) |
 | `AIFB_AI_MODEL` / `EDU_AI_MODEL` | model (výchozí `gpt-4o-mini`) |
@@ -59,4 +62,4 @@ Limity AI cvičení používají stejné úložiště jako limity nástrojů VeV
 
 ## Vyhledávače
 
-Tiskové stránky a knihovna komponent mají `noindex`. Ostatní stránky se indexovat mohou.
+Tiskové stránky, knihovna komponent, Moje třídy a Úpravy obsahu mají `noindex`. Rozcestník a levely vyhledávač bez přihlášení stejně nevidí (přesměrování na kurz).

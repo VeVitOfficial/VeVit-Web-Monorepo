@@ -1,11 +1,15 @@
 import { clientIp } from "@/lib/account-auth";
+import { lessonUnlocked } from "@/lib/edu/aifb/access";
 import { completeLesson } from "@/lib/edu/aifb/ai-service";
+import { previewDrafts } from "@/lib/edu/aifb/content";
+import { prepareAifb } from "@/lib/edu/aifb/viewer";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 // POST /edu/api/aifb/complete  { lessonId, prompt }
-// Cvičení AIFB s modelem: kontrola osobních údajů, limit na IP, žádné ukládání obsahu, uložená odpověď
+// Cvičení AIFB s modelem: jen lekce, kterou návštěvník smí otevřít (učitel, admin, student s lekcí
+// odemčenou učitelem), kontrola osobních údajů, limit na IP, žádné ukládání obsahu, uložená odpověď
 // při výpadku nebo bez nastavené služby. Systémový prompt a klíč zůstávají na serveru.
 
 const HEADERS = { "Cache-Control": "no-store", "Content-Type": "application/json; charset=utf-8" } as const;
@@ -37,6 +41,13 @@ export async function POST(request: Request): Promise<Response> {
   }
   // Na Vercelu platforma sama nastavuje x-vercel-forwarded-for (klient ho podvrhnout nemůže).
   const ip = request.headers.get("x-vercel-forwarded-for")?.split(",")[0]?.trim() || clientIp(request);
-  const result = await completeLesson({ lessonId: data.lessonId, prompt: data.prompt, ip });
+  const viewer = await prepareAifb();
+  const result = await completeLesson({
+    lessonId: data.lessonId,
+    prompt: data.prompt,
+    ip,
+    canOpen: (lessonId) => lessonUnlocked(viewer, lessonId),
+    preview: previewDrafts(viewer),
+  });
   return json(result.body, result.status);
 }

@@ -7,7 +7,7 @@
 // neurčené (viz docs/edu-v2/copy-open-questions.md). Žádné RVP/GDPR
 // compliance tvrzení, jen "dbáme na to, aby obsah odpovídal potřebám škol".
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import { useEduLang } from "../i18n";
 import { useEduBreadcrumbs } from "../breadcrumbs";
 import { Icon as HomeIcon } from "./home-icons";
@@ -35,7 +35,8 @@ const EMPTY_TOUCHED: Touched = { name: false, school: false, email: false, messa
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-export function EduSkolyPage({ locale }: { locale: string }) {
+/** `join`: okno „Máš kód třídy?“ (připojení žáka ke třídě), vykreslené nad nabídkou. */
+export function EduSkolyPage({ locale, join }: { locale: string; join?: ReactNode }) {
   void locale;
   const { t } = useEduLang();
   const { setBreadcrumbs } = useEduBreadcrumbs();
@@ -52,6 +53,7 @@ export function EduSkolyPage({ locale }: { locale: string }) {
     <div className="min-h-screen bg-[var(--color-background)]">
       <Hero t={t} onCta={scrollToForm} />
       <main className="max-w-4xl mx-auto px-6 py-4">
+        {join}
         <OfferSection t={t} />
         <InterestForm t={t} />
         <FaqSection t={t} />

@@ -5,8 +5,8 @@
 | Příkaz | Co dělá | Potřebuje server |
 |---|---|---|
 | `npm run validate:aifb` | validace obsahu + kontrola, že `types.generated.ts` odpovídá schématu | ne |
-| `npm run test:unit` | jednotkové testy (`tests/unit/`, 139 testů, z toho AIFB 7 souborů) | ne |
-| `npm run smoke:aifb` | otevře 172 stránek a čeká 200 + `<h1>` | ano |
+| `npm run test:unit` | jednotkové testy (`tests/unit/`, 155 testů, z toho AIFB 9 souborů) | ne |
+| `npm run smoke:aifb` | 195 kontrol: všechny stránky v roli admina (200 + `<h1>`) a přesměrování podle role | ano |
 | `npm run test:e2e:aifb` | E2E v Chromiu (playwright-core + node:test) | ano |
 | `npm run docs:aifb` | přegeneruje přehledy v `docs/aifb/prehled/generovano/` | ne |
 | `npm run gen:aifb-types` | přegeneruje typy ze schématu | ne |
@@ -38,10 +38,12 @@ Server: `npm run dev` (vývoj, návrhy viditelné) nebo `npm run build && npm st
 | `aifb-pupil.test.mjs` | konfigurace cvičení, vyhodnocení, PII kontrola, brána AI endpointu |
 | `aifb-theory.test.mjs` | teorie pro všech 16 levelů, aspoň 5 sekcí a ilustrace, každá ilustrace použitá |
 | `aifb-course.test.mjs` | kurz je platný a návrh, bere ze všech kategorií, bez AI, adresy, průběh a XP, validace odhalí chyby |
+| `aifb-access.test.mjs` | role z oprávnění, co vidí veřejnost / student / učitel / admin, kódy tříd, id lekcí, testovací role, shoda s migrací 025 |
+| `aifb-edits.test.mjs` | cesty a jednotky úprav, skládání úprav (level + lekce), neměnná id, ochrana před `__proto__`, validace dokumentu po úpravě, schválení změnou stavu |
 
 ## Smoke test (`scripts/aifb-smoke.mjs`)
 
-172 stránek: hub, 3 kategorie, 3 průvodci, 16 bloků / levelů, 16 tisků, 16 teorií, 80 lekcí a 37 stránek kurzu (přehled, 6 modulů, 6 teorií, 24 lekcí). S `E2E_PRODUCTION=1` čeká u kurzu ve stavu návrhu 404 (ověřuje, že se na produkci neukáže).
+V roli admina (cookie `aifb_test_role=admin`) 176 stránek: hub, 3 kategorie, 3 průvodci, 16 bloků / levelů, 16 tisků, 16 teorií, 80 lekcí, 37 stránek kurzu, Moje třídy a 3 stránky úprav. Dál veřejnost: přehled kurzu, modul (s `E2E_PRODUCTION=1` a kurzem ve stavu návrhu 404), stránka pro školy a 8 přesměrování na kurz; student: odemčená a zamčená lekce a 5 přesměrování na rozcestník; učitel: úpravy → rozcestník.
 
 ## E2E (`tests/e2e/aifb.e2e.mjs`)
 
@@ -54,17 +56,24 @@ Server: `npm run dev` (vývoj, návrhy viditelné) nebo `npm run build && npm st
 - tisk: bez navigace, černá na bílé,
 - průběh přežije obnovení a neobsahuje osobní údaje,
 - soukromí: žádné požadavky mimo vlastní doménu,
-- 360 px bez vodorovného posunu (včetně stránek kurzu),
+- 360 px bez vodorovného posunu (včetně stránek kurzu, Moje třídy a Úpravy),
 - online kurz: hub → kurz → modul → teorie → lekce → cvičení → další lekce,
-- AI endpoint: osobní údaje a lekce 1. stupně se odmítnou (jen vývoj),
-- produkce (`E2E_PRODUCTION=1`): žádné návrhy, AI endpoint 404, online kurz 404 a karta bez odkazu.
+- AI endpoint: osobní údaje a lekce 1. stupně se odmítnou, veřejnost a zamčená lekce dostanou 404 (jen vývoj),
+- veřejnost: rozcestník, levely, průvodce, třídy i úpravy vedou na kurz, bez rozcestníku v navigaci,
+- student: jen kategorie třídy, zamčené lekce bez odkazu, stránka zamčené lekce, bez metodiky, přesměrování; student bez třídy: výzva k zadání kódu,
+- učitel: všechny kategorie, metodika, Moje třídy, bez úprav obsahu,
+- admin: odkaz Upravit → editor (texty i JSON), přehled úprav,
+- VeVit Edu pro školy: tlačítko na hlavním webu, okno s kódem a přihlášení s návratem,
+- produkce (`E2E_PRODUCTION=1`): veřejnost u kurzu ve stavu návrhu jen zprávu a moduly 404; učitel nevidí návrhy, AI endpoint 404.
 
-Poslední výsledek proti `next dev` (2026-10-23): 17 prošlo, 0 selhalo. Testy pro produkci se přeskakují; lokálně proti `next start` naposledy běžely před přidáním kurzu.
+Testy používají testovací roli z cookie; zápisy do databáze (založení třídy, připojení kódem, uložení úpravy) E2E netestuje, protože lokálně ani v CI není databáze s migrací 025. Databázová logika migrace je ověřená zvlášť v PGlite.
+
+Poslední výsledek proti `next dev` (2026-10-24): 23 prošlo, 0 selhalo, 2 přeskočené (jen produkce).
 
 ## CI (GitHub Actions)
 
 - `.github/workflows/security.yml`: mimo jiné `npm run test:unit` a `npm run validate:aifb`.
-- `.github/workflows/aifb-e2e.yml`: validace, instalace Chromia, produkční build, `next start`, smoke (s `E2E_PRODUCTION=1`), E2E (s `E2E_PRODUCTION=1`). Spouští se při změně `src/**`, testů, skriptů AIFB nebo `package.json`. Na GitHubu zatím neběžel (větve nejsou pushnuté).
+- `.github/workflows/aifb-e2e.yml`: validace, instalace Chromia, produkční build, `next start` s `AIFB_TEST_ROLES=1`, smoke (s `E2E_PRODUCTION=1`), E2E (s `E2E_PRODUCTION=1`). Spouští se při změně `src/**`, testů, skriptů AIFB nebo `package.json`. Na GitHubu zatím neběžel (větve nejsou pushnuté).
 
 ## Ruční kontroly (viz `QA.md`)
 

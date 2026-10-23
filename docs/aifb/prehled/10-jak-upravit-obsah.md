@@ -1,6 +1,11 @@
 # 10 · Jak upravit obsah
 
-Po každé změně obsahu spusť:
+Texty jde upravit dvěma způsoby:
+
+- **V aplikaci (admin):** odkaz **Upravit** u stránky nebo **Úpravy obsahu** v rozcestníku. Úprava se uloží do databáze, projeví se hned a jde vrátit. Popis v kapitole 12.
+- **V repozitáři:** změna JSON souborů níže. Trvalé, verzované v gitu, projeví se po nasazení.
+
+Po každé změně obsahu v repozitáři spusť:
 
 ```bash
 npm run validate:aifb   # musí projít, jinak neprojde ani build
@@ -18,6 +23,8 @@ Obecná pravidla pro text:
 - Nikdy neměň id (`zs1-blok-a-cv3`, `kurz-m2-cv1`, `#halucinace`): rozbily by se odkazy a uložený průběh.
 
 ## Schválit návrh (zveřejnit na produkci)
+
+Nejrychleji v aplikaci: Úpravy obsahu → Online kurz / Teorie → „Stav a poznámka“ (nebo pilotní cvičení) → pole Stav → `reviewed` → Uložit. Natrvalo v repozitáři:
 
 | Co | Kde | Změna |
 |---|---|---|

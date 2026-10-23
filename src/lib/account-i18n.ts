@@ -302,6 +302,8 @@ cs: {
   'rank.platinum': 'Platinum',
   'rank.betatester': 'Betatester',
   'rank.partner': 'Partner',
+  'rank.student': 'Student',
+  'rank.teacher': 'Učitel',
   'rank.moderator': 'Moderátor',
   'rank.admin': 'Admin',
   'rank.owner': 'Owner',

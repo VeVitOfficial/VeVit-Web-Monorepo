@@ -3,6 +3,8 @@
 // Prohlížeč: CHROMIUM_PATH (např. /usr/bin/chromium), jinak ten, který nainstaluje
 // `npx playwright-core install chromium`. E2E_PRODUCTION=1 značí běh proti `next start`
 // (návrhy žákovských textů se pak nesmí zobrazit a AI endpoint musí odpovídat 404).
+// Role (admin / teacher / student / veřejnost) se nastavují testovací cookie aifb_test_role, kterou
+// server čte jen v `next dev` nebo s AIFB_TEST_ROLES=1 mimo Vercel (viz src/lib/edu/aifb/viewer.ts).
 
 import test from "node:test";
 import assert from "node:assert/strict";
@@ -20,8 +22,12 @@ test.after(async () => {
   await browser?.close();
 });
 
-async function withPage(fn, options = {}) {
+const ROLE_COOKIE = "aifb_test_role";
+
+/** `role`: hodnota testovací cookie, null = veřejnost (bez cookie). Výchozí admin vidí vše jako dřív. */
+async function withPage(fn, options = {}, role = "admin") {
   const context = await browser.newContext({ viewport: { width: 1280, height: 900 }, ...options });
+  if (role) await context.addCookies([{ name: ROLE_COOKIE, value: role, url: base }]);
   const page = await context.newPage();
   try {
     await fn(page);
@@ -171,7 +177,7 @@ test("soukromí: žádné požadavky mimo vlastní doménu", async () => {
 
 test("žádný vodorovný posun na 360 px", async () => {
   await withPage(async (page) => {
-    const course = production ? [] : ["/kurz", "/kurz/m2", "/kurz/m6/teorie", "/kurz/m2/cv2"];
+    const course = ["/kurz", "/kurz/m2", "/kurz/m6/teorie", "/kurz/m2/cv2", "/ucitel", "/upravy"];
     for (const path of ["", "/aifb/zs1", "/aifb/zs2", "/aifb/ss", "/aifb/zs1/blok-a", "/aifb/zs1/blok-a/cv3", "/aifb/zs2/level-3/teorie", "/aifb/ss/level-6/teorie", ...course]) {
       await page.goto(`${root}${path}`);
       const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
@@ -180,7 +186,7 @@ test("žádný vodorovný posun na 360 px", async () => {
   }, { viewport: { width: 360, height: 800 } });
 });
 
-test("online kurz: hub → kurz → modul → teorie → lekce s cvičením → další lekce", { skip: production }, async () => {
+test("online kurz: hub → kurz → modul → teorie → lekce s cvičením → další lekce", async () => {
   await withPage(async (page) => {
     await page.goto(root);
     await page.getByRole("link", { name: /Online kurz pro všechny/ }).click();
@@ -204,16 +210,18 @@ test("online kurz: hub → kurz → modul → teorie → lekce s cvičením → 
   });
 });
 
-test("produkce: online kurz ve stavu návrhu není dostupný", { skip: !production }, async () => {
+test("produkce: veřejnost vidí u kurzu ve stavu návrhu jen zprávu, moduly 404", { skip: !production }, async () => {
   await withPage(async (page) => {
-    const response = await page.goto(`${root}/kurz`);
-    assert.equal(response.status(), 404);
     await page.goto(root);
-    assert.equal(await page.getByRole("link", { name: /Online kurz pro všechny/ }).count(), 0);
-  });
+    await page.waitForURL(/\/kurz$/);
+    assert.equal(await page.locator("h1").innerText(), "Online kurz se připravuje");
+    assert.equal(await page.locator('a[href$="/edu/skoly"]').count(), 1);
+    const response = await page.goto(`${root}/kurz/m1`);
+    assert.equal(response.status(), 404);
+  }, {}, null);
 });
 
-test("produkce: žádné návrhy žákovských cvičení a AI endpoint nedostupný", { skip: !production }, async () => {
+test("produkce: žádné návrhy žákovských cvičení a AI endpoint nedostupný (učitel)", { skip: !production }, async () => {
   await withPage(async (page) => {
     await page.goto(`${root}/aifb/zs2/level-2/cv1`);
     assert.equal(await page.getByText("Návrh ke schválení").count(), 0);
@@ -223,11 +231,105 @@ test("produkce: žádné návrhy žákovských cvičení a AI endpoint nedostupn
       return r.status;
     });
     assert.equal(result, 404);
+  }, {}, "teacher");
+});
+
+test("AI endpoint: osobní údaje a lekce 1. stupně se odmítnou, veřejnost ani zamčená lekce neprojde", { skip: production }, async () => {
+  const post = (body, role) => fetch(`${base}/edu/api/aifb/complete`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", ...(role ? { Cookie: `${ROLE_COOKIE}=${role}` } : {}) },
+    body: JSON.stringify(body),
+  });
+  assert.equal((await post({ lessonId: "zs2-level-2-cv1", prompt: "napiš na jan@example.com" }, "teacher")).status, 422);
+  assert.equal((await post({ lessonId: "zs1-blok-a-cv1", prompt: "ahoj" }, "teacher")).status, 404);
+  assert.equal((await post({ lessonId: "zs2-level-2-cv1", prompt: "napiš něco o AI" })).status, 404, "veřejnost");
+  assert.equal((await post({ lessonId: "zs2-level-2-cv1", prompt: "napiš něco o AI" }, "student:zs2:zs2-level-2-teorie")).status, 404, "zamčená lekce");
+});
+
+// ── Role a třídy ────────────────────────────────────────────────────────────
+
+const STUDENT = "student:zs1:zs1-blok-a-teorie,zs1-blok-a-cv1";
+
+test("veřejnost: rozcestník a lekce AIFB vedou rovnou na online kurz", async () => {
+  await withPage(async (page) => {
+    for (const path of ["", "/aifb/zs1", "/aifb/zs2/level-1/cv2", "/aifb/ss/pro-ucitele", "/ucitel", "/upravy"]) {
+      await page.goto(`${root}${path}`);
+      await page.waitForURL(/\/kurz$/);
+    }
+    assert.equal(await page.locator('a[href$="/aifb/zs1"]').count(), 0, "žádná karta kategorie");
+    assert.equal(await page.locator(".aifb-crumbs a", { hasText: "AI gramotnost" }).count(), 0, "bez rozcestníku v navigaci");
+  }, {}, null);
+});
+
+test("student: jen kategorie třídy, zamčené lekce bez odkazu a bez metodiky", async () => {
+  await withPage(async (page) => {
+    await page.goto(root);
+    assert.equal(await page.locator('a[href$="/aifb/zs1"]').count(), 1);
+    assert.equal(await page.locator('a[href$="/aifb/zs2"]').count(), 0);
+    assert.equal(await page.locator('a[href*="/pro-ucitele"]').count(), 0);
+    await page.goto(`${root}/aifb/zs1/blok-a`);
+    assert.equal(await page.locator(".aifb-lesson-row--locked").count(), 4, "odemčená jen lekce 1");
+    assert.equal(await page.locator('a[href$="/blok-a/cv2"]').count(), 0);
+    assert.equal(await page.locator('a[href$="/blok-a/cv1"]').count(), 1);
+    assert.equal(await page.locator("summary", { hasText: "Pro učitele" }).count(), 0);
+    await page.goto(`${root}/aifb/zs1/blok-a/cv2`);
+    assert.equal(await page.locator("h1").innerText(), "Lekce je zatím zamčená");
+    await page.goto(`${root}/aifb/zs1/blok-b`);
+    assert.equal(await page.locator(".aifb-theory-card--locked").count(), 1);
+    for (const path of ["/aifb/zs2", "/aifb/zs1/pro-ucitele", "/aifb/zs1/blok-a/tisk", "/ucitel", "/upravy"]) {
+      await page.goto(`${root}${path}`);
+      await page.waitForURL(/\/ai-gramotnost$/);
+    }
+  }, {}, STUDENT);
+});
+
+test("student bez třídy: výzva k zadání kódu", async () => {
+  await withPage(async (page) => {
+    await page.goto(root);
+    assert.equal(await page.getByText("Zatím nejsi v žádné třídě").count(), 1);
+    assert.equal(await page.locator('a[href$="/edu/skoly"]').count(), 1);
+  }, {}, "student");
+});
+
+test("učitel: všechny kategorie, metodika a Moje třídy, bez úprav obsahu", async () => {
+  await withPage(async (page) => {
+    await page.goto(root);
+    for (const id of ["zs1", "zs2", "ss"]) assert.equal(await page.locator(`a[href$="/aifb/${id}"]`).count(), 1, id);
+    await page.getByRole("link", { name: "Moje třídy a odemykání lekcí" }).click();
+    await page.waitForURL(/\/ucitel$/);
+    assert.equal(await page.locator("h1").innerText(), "Moje třídy");
+    await page.goto(`${root}/aifb/zs1/blok-a`);
+    assert.equal(await page.locator(".aifb-lesson-row--locked").count(), 0);
+    assert.equal(await page.locator("summary", { hasText: "Pro učitele" }).count(), 1);
+    assert.equal(await page.locator(".aifb-edit-link").count(), 0);
+    await page.goto(`${root}/upravy`);
+    await page.waitForURL(/\/ai-gramotnost$/);
+  }, {}, "teacher");
+});
+
+test("admin: odkazy Upravit a editor s texty i JSON", async () => {
+  await withPage(async (page) => {
+    await page.goto(`${root}/aifb/zs1/blok-a/cv1`);
+    await page.locator(".aifb-edit-link").first().click();
+    await page.waitForURL(/\/upravy\?doc=zs1&path=/);
+    assert.equal(await page.locator("h1").count(), 1);
+    assert.ok((await page.locator(".aifb-edit-fields textarea").count()) >= 3, "textová pole lekce");
+    await page.getByRole("button", { name: "JSON (pokročilé)" }).click();
+    const json = JSON.parse(await page.locator("textarea.aifb-edit-json").inputValue());
+    assert.equal(json.id, "zs1-blok-a-cv1");
+    await page.goto(`${root}/upravy`);
+    assert.equal(await page.locator("h1").innerText(), "Úpravy obsahu");
+    assert.ok((await page.locator(".aifb-edit-units a").count()) > 100);
   });
 });
 
-test("AI endpoint: osobní údaje a lekce 1. stupně se odmítnou", { skip: production }, async () => {
-  const post = (body) => fetch(`${base}/edu/api/aifb/complete`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
-  assert.equal((await post({ lessonId: "zs2-level-2-cv1", prompt: "napiš na jan@example.com" })).status, 422);
-  assert.equal((await post({ lessonId: "zs1-blok-a-cv1", prompt: "ahoj" })).status, 404);
+test("VeVit Edu pro školy: tlačítko na hlavním webu a zadání kódu", async () => {
+  await withPage(async (page) => {
+    await page.goto(`${base}/cs/home`);
+    assert.ok((await page.locator('a[href$="/edu/skoly#trida"]').count()) >= 1, "tlačítko VeVit Edu pro školy");
+    await page.goto(`${base}/cs/edu/skoly#trida`);
+    assert.equal(await page.getByRole("heading", { name: "Máš kód třídy?" }).count(), 1);
+    const login = page.getByRole("link", { name: "Přihlásit se" });
+    assert.match(await login.getAttribute("href"), /return_to=/);
+  }, {}, null);
 });

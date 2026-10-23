@@ -10,6 +10,7 @@ import { levelPath } from "@/lib/edu/aifb/routes";
 import type { CategoryId } from "@/lib/edu/aifb/types";
 import type { EduLocale } from "@/lib/edu/i18n-data";
 import type { LevelSummary } from "./level-card";
+import { LockBadge } from "./access-ui";
 import { ProgressBadge } from "./shared";
 
 export type LevelProgress = Record<string, { done: number; total: number }>;
@@ -105,7 +106,12 @@ export function AdventureMap({
               className="aifb-map__stop"
               style={{ "--x": `${points[index].x}%`, "--y": `${points[index].y}%` } as React.CSSProperties}
             >
-              <Link href={levelPath(locale, categoryId, level.slug)} className="aifb-island" data-state={isDone ? "done" : isCurrent ? "current" : "todo"}>
+              <Link
+                href={levelPath(locale, categoryId, level.slug)}
+                className="aifb-island"
+                data-state={isDone ? "done" : isCurrent ? "current" : "todo"}
+                data-locked={level.unlocked === 0 ? "true" : undefined}
+              >
                 <span className="aifb-island__art">
                   <IslandShape flip={index % 2 === 1} />
                   {level.visual?.icon ? <span className="aifb-island__icon" aria-hidden="true">{level.visual.icon}</span> : null}
@@ -116,6 +122,7 @@ export function AdventureMap({
                 <span className="aifb-island__sub">{level.code}: {level.title}</span>
                 {isCurrent ? <span className="aifb-island__tag">{t("aifb.map.current")}</span> : null}
                 {isDone ? <span className="aifb-island__tag">{doneLabel}</span> : null}
+                {level.unlocked !== undefined ? <LockBadge unlocked={level.unlocked} total={level.lessonCount} t={t} /> : null}
                 {p ? <ProgressBadge done={p.done} total={p.total} label={t("aifb.progress.label")} /> : null}
               </Link>
             </li>

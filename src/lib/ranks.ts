@@ -60,6 +60,9 @@ export const RANKS: Record<string, RankMeta> = Object.fromEntries(
     { key: "platinum", kind: "membership", color: "#e5e4e2" },
     { key: "betatester", kind: "program", color: "#2ec4b6" },
     { key: "partner", kind: "program", color: "#ff9f1c" },
+    // VeVit Edu pro školy (migrace 025); barvy převzaté z ranků učeň a tvůrce.
+    { key: "student", kind: "program", color: "#7cc4a4" },
+    { key: "teacher", kind: "program", color: "#7a8cf0" },
     { key: "moderator", kind: "staff", color: "#3a86ff" },
     { key: "admin", kind: "staff", color: "#e63946" },
     { key: "owner", kind: "staff", color: "#ffb703" },

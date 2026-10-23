@@ -155,6 +155,15 @@ export default async function HomePage() {
                     </span>
                   </span>
                 </a>
+                <a className="dd-item" href={`${L}/edu/skoly#trida`} role="menuitem">
+                  <span className="dd-icon">
+                    <Icon name="school" size={18} />
+                  </span>
+                  <span>
+                    <span className="dd-name">VeVit Edu pro školy</span>
+                    <span className="dd-desc">Připojení ke třídě kódem</span>
+                  </span>
+                </a>
                 <a className="dd-item" href={`${L}/services`} role="menuitem">
                   <span className="dd-icon">
                     <Icon name="layers" size={18} />
@@ -404,6 +413,9 @@ export default async function HomePage() {
             <a href={`${L}/edu`}>Edu</a>
           </li>
           <li>
+            <a href={`${L}/edu/skoly#trida`}>Edu pro školy</a>
+          </li>
+          <li>
             <a href={`${L}/services`}>Services</a>
           </li>
           <li>
@@ -484,6 +496,15 @@ export default async function HomePage() {
                     data-ui-text="page.hero.ctaExplore"
                   >
                     Prozkoumat ekosystém
+                  </a>
+                  {/* Žák zadá kód třídy od učitele (rank student, AI gramotnost) */}
+                  <a
+                    className="btn btn-ghost"
+                    href={`${L}/edu/skoly#trida`}
+                    data-track="hero:edu-schools"
+                  >
+                    <Icon name="school" size={16} />
+                    <span>VeVit Edu pro školy</span>
                   </a>
                 </div>
 
@@ -2074,6 +2095,9 @@ export default async function HomePage() {
                   <a href={`${L}/edu`} data-ui-text="page.footer.linkEdu">
                     Vzdělávání
                   </a>
+                </li>
+                <li>
+                  <a href={`${L}/edu/skoly#trida`}>VeVit Edu pro školy</a>
                 </li>
                 <li>
                   <a

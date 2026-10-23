@@ -1,14 +1,16 @@
 // Hub AIFB (/edu/ai-gramotnost): výběr kategorie. Data jen z katalogu, obsah se nenačítá.
 
 import Link from "next/link";
+import { isStaff, visibleCategories, type AifbAccess } from "@/lib/edu/aifb/access";
 import { Icon } from "../pages/home-icons";
 import { AiScene } from "../pages/soon-scenes";
 import { aifbT, countWord } from "@/lib/edu/aifb/i18n";
 import { courseTotals, moduleLessonIds, type Course } from "@/lib/edu/aifb/course";
-import { categoryPath, coursePath, guidePath, hubPath } from "@/lib/edu/aifb/routes";
+import { categoryPath, coursePath, editorPath, guidePath, hubPath, teacherPath } from "@/lib/edu/aifb/routes";
 import type { Catalog, CatalogCategory } from "@/lib/edu/aifb/types";
 import type { EduLocale } from "@/lib/edu/i18n-data";
 import { lessonsLabel } from "@/lib/edu/i18n-data";
+import { NoClassNotice } from "./access-ui";
 import { Crumbs } from "./crumbs";
 import { ProgressTransfer } from "./progress-transfer";
 
@@ -58,9 +60,13 @@ function CategoryCard({ category, locale, course }: { category: CatalogCategory;
   );
 }
 
-export function Hub({ locale, catalog, course }: { locale: EduLocale; catalog: Catalog; course: Course | null }) {
+export function Hub({ locale, catalog, course, viewer }: { locale: EduLocale; catalog: Catalog; course: Course | null; viewer: AifbAccess }) {
   const t = aifbT(locale);
-  const teachable = catalog.categories.filter((category) => category.status === "content-ready");
+  const staff = isStaff(viewer);
+  // Student vidí jen kategorie svých tříd; online kurz pro veřejnost vidí každý.
+  const visible = new Set<string>([...visibleCategories(viewer), "kurz"]);
+  const categories = catalog.categories.filter((category) => visible.has(category.id));
+  const teachable = categories.filter((category) => category.status === "content-ready");
   return (
     <>
       <Crumbs
@@ -83,10 +89,25 @@ export function Hub({ locale, catalog, course }: { locale: EduLocale; catalog: C
         </div>
       </section>
 
+      {viewer.role === "student" ? (
+        <section aria-labelledby="aifb-classes-title" className="aifb-section">
+          <h2 className="eh-h2" id="aifb-classes-title"><span className="eh-bullet" aria-hidden="true" />{t("aifb.access.myClasses")}</h2>
+          {viewer.classes.length > 0 ? (
+            <ul className="aifb-link-list">
+              {viewer.classes.map((item) => (
+                <li key={item.id}>{item.name} · {catalog.categories.find((category) => category.id === item.category)?.title ?? item.category}</li>
+              ))}
+            </ul>
+          ) : (
+            <NoClassNotice locale={locale} t={t} />
+          )}
+        </section>
+      ) : null}
+
       <section aria-labelledby="aifb-cards-title" className="aifb-section">
         <h2 className="eh-h2" id="aifb-cards-title"><span className="eh-bullet" aria-hidden="true" />{t("aifb.hub.cards")}</h2>
         <ul className="eh-cats aifb-card-list">
-          {catalog.categories.map((category) => (
+          {categories.map((category) => (
             <CategoryCard key={category.id} category={category} locale={locale} course={course} />
           ))}
         </ul>
@@ -102,17 +123,30 @@ export function Hub({ locale, catalog, course }: { locale: EduLocale; catalog: C
         />
       </section>
 
-      <section aria-labelledby="aifb-teachers-title" className="aifb-section">
-        <h2 className="eh-h2" id="aifb-teachers-title"><span className="eh-bullet" aria-hidden="true" />{t("aifb.hub.teachers.title")}</h2>
-        <p className="aifb-lead">{t("aifb.hub.teachers.lead")}</p>
-        <ul className="aifb-link-list">
-          {teachable.map((category) => (
-            <li key={category.id}>
-              <Link href={guidePath(locale, category.id)}>{t("aifb.hub.teachers.link", { category: category.title })}</Link>
-            </li>
-          ))}
-        </ul>
-      </section>
+      {staff ? (
+        <section aria-labelledby="aifb-teachers-title" className="aifb-section">
+          <h2 className="eh-h2" id="aifb-teachers-title"><span className="eh-bullet" aria-hidden="true" />{t("aifb.hub.teachers.title")}</h2>
+          <p className="aifb-lead">{t("aifb.hub.teachers.lead")}</p>
+          <ul className="aifb-link-list">
+            <li><Link href={teacherPath(locale)}>{t("aifb.hub.staff.classes")}</Link></li>
+            {teachable.map((category) => (
+              <li key={category.id}>
+                <Link href={guidePath(locale, category.id)}>{t("aifb.hub.teachers.link", { category: category.title })}</Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
+      {viewer.role === "admin" ? (
+        <section aria-labelledby="aifb-admin-title" className="aifb-section">
+          <h2 className="eh-h2" id="aifb-admin-title"><span className="eh-bullet" aria-hidden="true" />{t("aifb.hub.admin.title")}</h2>
+          <p className="aifb-lead">{t("aifb.hub.admin.lead")}</p>
+          <ul className="aifb-link-list">
+            <li><Link href={editorPath(locale)}>{t("aifb.hub.admin.edit")}</Link></li>
+          </ul>
+        </section>
+      ) : null}
     </>
   );
 }

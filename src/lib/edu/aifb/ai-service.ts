@@ -8,7 +8,7 @@ import "server-only";
 
 import { toolsRateLimit } from "@/lib/tools-rate-limit";
 import { AI_LESSONS, MAX_PROMPT_CHARS, MIN_PROMPT_CHARS, truncateWords, type AiLessonConfig } from "./ai-config";
-import { draftPreviewEnabled, getPupilLayer } from "./content";
+import { getPupilLayer } from "./content";
 import { detectPersonalData } from "./pii";
 import { aiLessonAvailable } from "./pupil";
 
@@ -66,10 +66,17 @@ async function callProvider(config: AiLessonConfig, prompt: string): Promise<str
   }
 }
 
-export async function completeLesson(input: { lessonId: unknown; prompt: unknown; ip: string }): Promise<AiResult> {
+/** `canOpen`: návštěvník smí lekci otevřít (role a odemčení učitelem); `preview`: smí vidět návrhy. */
+export async function completeLesson(input: {
+  lessonId: unknown;
+  prompt: unknown;
+  ip: string;
+  canOpen: (lessonId: string) => boolean;
+  preview: boolean;
+}): Promise<AiResult> {
   const lessonId = typeof input.lessonId === "string" ? input.lessonId : "";
   const config = AI_LESSONS[lessonId];
-  if (!config || !aiLessonAvailable(getPupilLayer(lessonId), draftPreviewEnabled())) {
+  if (!config || !input.canOpen(lessonId) || !aiLessonAvailable(getPupilLayer(lessonId), input.preview)) {
     return { status: 404, body: { ok: false, error: "unknown_lesson" } };
   }
 

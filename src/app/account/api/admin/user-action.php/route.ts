@@ -11,7 +11,7 @@ export const dynamic = "force-dynamic";
 // - block / unblock and ending sessions: any console user, never on an owner
 //   unless the actor is an owner, never on yourself.
 
-const GRANTABLE = new Set(["betatester", "partner", "moderator", "admin", "owner"]);
+const GRANTABLE = new Set(["betatester", "partner", "student", "teacher", "moderator", "admin", "owner"]);
 const OWNER_ONLY = new Set(["admin", "owner"]);
 const MANUAL_TIERS = new Set(["free", "bronze", "silver", "gold"]);
 

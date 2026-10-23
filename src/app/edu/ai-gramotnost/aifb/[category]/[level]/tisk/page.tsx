@@ -5,6 +5,8 @@ import type { Metadata } from "next";
 import { readEduLocale } from "@/lib/edu/locale";
 import { aifbT } from "@/lib/edu/aifb/i18n";
 import { findLevel, getTheory, requireCategory } from "@/lib/edu/aifb/content";
+import { gateStaff } from "@/lib/edu/aifb/gate";
+import { prepareAifb } from "@/lib/edu/aifb/viewer";
 import { AifbFrame } from "@/components/edu/aifb/frame";
 import { LevelPrintView } from "@/components/edu/aifb/level-print-view";
 
@@ -21,7 +23,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function AifbLevelPrintRoute({ params }: Props) {
   await connection();
   const { category, level: levelSlug } = await params;
-  const [locale, content] = await Promise.all([readEduLocale(), requireCategory(category)]);
+  const [locale, viewer] = await Promise.all([readEduLocale(), prepareAifb()]);
+  gateStaff(viewer, locale);
+  const content = await requireCategory(category);
   const level = findLevel(content, levelSlug);
   if (!level) notFound();
   return (

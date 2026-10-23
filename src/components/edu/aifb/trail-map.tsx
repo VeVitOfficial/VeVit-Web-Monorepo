@@ -10,6 +10,7 @@ import type { EduLocale } from "@/lib/edu/i18n-data";
 import type { LevelProgress } from "./adventure-map";
 import { lessonsLabel } from "@/lib/edu/i18n-data";
 import type { LevelSummary } from "./level-card";
+import { LockBadge } from "./access-ui";
 import { CertBadge, ProgressBadge } from "./shared";
 
 export function XpMeter({ label, value, max, unit }: { label: string; value: number; max: number; unit: string }) {
@@ -57,6 +58,7 @@ export function TrailMap({
                 <span className="aifb-level-card__badges">
                   {level.advanced ? <span className="aifb-badge">{t("aifb.level.advanced")}</span> : null}
                   <CertBadge certification={level.certification} t={t} />
+                  {level.unlocked !== undefined ? <LockBadge unlocked={level.unlocked} total={level.lessonCount} t={t} /> : null}
                 </span>
                 {p ? <ProgressBadge done={p.done} total={p.total} label={t("aifb.progress.label")} /> : null}
               </Link>

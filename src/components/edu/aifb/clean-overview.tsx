@@ -8,6 +8,7 @@ import type { CategoryId } from "@/lib/edu/aifb/types";
 import { lessonsLabel, type EduLocale } from "@/lib/edu/i18n-data";
 import type { LevelProgress } from "./adventure-map";
 import { LevelCard, type LevelSummary } from "./level-card";
+import { LockBadge } from "./access-ui";
 import { CertBadge, ProgressBadge } from "./shared";
 
 export function CleanOverview({
@@ -65,6 +66,7 @@ export function CleanOverview({
                 <td>{level.hours}</td>
                 <td>{level.grades ?? level.recommendedPlacement ?? ""}{level.advanced ? <><br /><span className="aifb-badge">{t("aifb.level.advanced")}</span></> : null}</td>
                 <td>
+                  {level.unlocked !== undefined ? <><LockBadge unlocked={level.unlocked} total={level.lessonCount} t={t} /><br /></> : null}
                   {statusOf(level)}
                   {p ? <ProgressBadge done={p.done} total={p.total} label={t("aifb.progress.label")} /> : null}
                 </td>

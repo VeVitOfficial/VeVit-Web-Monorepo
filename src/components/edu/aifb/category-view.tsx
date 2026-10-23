@@ -1,17 +1,26 @@
 // Přehled kategorie: výběr levelu. Téma (pirate-map / trail / clean) určuje vzhled přehledu.
 
 import Link from "next/link";
+import { isStaff, unlockedCount, type AifbAccess } from "@/lib/edu/aifb/access";
 import { aifbT } from "@/lib/edu/aifb/i18n";
 import { categoryPath, guidePath, hubPath } from "@/lib/edu/aifb/routes";
 import type { AifbContent } from "@/lib/edu/aifb/types";
 import type { EduLocale } from "@/lib/edu/i18n-data";
+import { EditLink } from "./access-ui";
 import { Crumbs } from "./crumbs";
 import { levelUnitCount, toLevelSummary } from "./level-card";
 import { LevelsOverview } from "./levels-overview";
 
-export function CategoryView({ locale, content }: { locale: EduLocale; content: AifbContent }) {
+export function CategoryView({ locale, content, viewer }: { locale: EduLocale; content: AifbContent; viewer: AifbAccess }) {
   const t = aifbT(locale);
   const { category } = content;
+  const staff = isStaff(viewer);
+  // Student: u každého levelu, kolik lekcí mu učitel odemkl.
+  const levels = content.levels.map((level) => {
+    const summary = toLevelSummary(category.id, level);
+    return staff ? summary : { ...summary, unlocked: unlockedCount(viewer, summary.lessonIds) };
+  });
+  const nothingUnlocked = !staff && levels.every((level) => level.unlocked === 0);
   return (
     <>
       <Crumbs
@@ -23,7 +32,7 @@ export function CategoryView({ locale, content }: { locale: EduLocale; content: 
         ]}
       />
       <header className="aifb-head">
-        <h1>{category.title}</h1>
+        <h1>{category.title} <EditLink role={viewer.role} locale={locale} doc={category.id} path="category" t={t} /></h1>
         <p className="aifb-lead">{category.subtitle}</p>
         <p className="aifb-chips">
           <span className="aifb-badge">{category.grades}</span>
@@ -31,12 +40,13 @@ export function CategoryView({ locale, content }: { locale: EduLocale; content: 
           <span className="aifb-badge">{t(`aifb.usage.${category.usageMode}`)}</span>
         </p>
         <p className="aifb-muted">{category.audience}</p>
-        <p><Link href={guidePath(locale, category.id)} className="aifb-textlink">{t("aifb.category.guideLink")}</Link></p>
+        {staff ? <p><Link href={guidePath(locale, category.id)} className="aifb-textlink">{t("aifb.category.guideLink")}</Link></p> : null}
+        {nothingUnlocked ? <p className="aifb-muted" role="status">{t("aifb.access.lockedBody")}</p> : null}
       </header>
       <section className="aifb-section" aria-labelledby="aifb-levels-title">
         <h2 className="eh-h2" id="aifb-levels-title"><span className="eh-bullet" aria-hidden="true" />{t("aifb.category.levels")}</h2>
         <p className="aifb-muted">{t("aifb.category.order", { unit: category.unit.toLowerCase() === "blok" ? "blok" : "level" })}</p>
-        <LevelsOverview categoryId={category.id} theme={category.theme} levels={content.levels.map((level) => toLevelSummary(category.id, level))} />
+        <LevelsOverview categoryId={category.id} theme={category.theme} levels={levels} />
       </section>
     </>
   );

@@ -4,6 +4,8 @@ import "server-only";
 // obsah kategorie (70–90 kB) se načte až při vstupu do kategorie. JSON se jen čte,
 // nikdy se nepřepisuje ani nepřeformátovává (hardRule R6). Soubory jsou součástí bundlu
 // stejně jako obsah původního kurzu (serverless na Vercelu nepracuje s volnými soubory).
+// Úpravy adminem se ukládají do databáze a skládají se přes obsah z repozitáře (edits.ts);
+// stránky před čtením zavolají refreshContentEdits() (dělá to prepareAifb() a requireCategory()).
 
 import { notFound } from "next/navigation";
 import catalogJson from "@/content/aifb/aifb-catalog.json";
@@ -17,6 +19,9 @@ import { lessonIdFromSlug, levelIdFromSlug } from "./routes.ts";
 import type { PupilLayer, PupilOverlay } from "./pupil.ts";
 import { resolveTheory, type ResolvedTheory, type TheoryFile } from "./theory.ts";
 import type { Course } from "./course.ts";
+import type { AifbAccess } from "./access.ts";
+import { applyEdits, type EditDoc } from "./edits.ts";
+import { editsFor, editsVersion, refreshContentEdits } from "./edits-store";
 
 const catalog = catalogJson as unknown as Catalog;
 
@@ -27,14 +32,31 @@ const loaders: Record<CategoryId, () => Promise<AifbContent>> = {
 };
 
 const cache = new Map<CategoryId, Promise<AifbContent>>();
+const edited = new Map<EditDoc, { version: number; base: unknown; data: unknown }>();
 
-export function getCatalog(): Catalog {
-  return catalog;
+/** Dokument s úpravami adminem (výsledek se drží, dokud se úpravy nezmění). */
+function withEdits<T>(doc: EditDoc, base: T): T {
+  const version = editsVersion();
+  const hit = edited.get(doc);
+  if (hit && hit.version === version && hit.base === base) return hit.data as T;
+  const data = applyEdits(doc, base, editsFor(doc));
+  edited.set(doc, { version, base, data });
+  return data;
 }
 
-/** Obsah kategorie, nebo null pro neznámé / nevýukové id (např. „kurz"). */
-export function loadCategory(id: string): Promise<AifbContent> | null {
-  if (!isCategoryId(id)) return null;
+/** Katalog; názvy a podtituly kategorií podle případné úpravy adminem. */
+export function getCatalog(): Catalog {
+  const categories = catalog.categories.map((category) => {
+    if (!isCategoryId(category.id)) return category;
+    const edit = editsFor(category.id).find((item) => item.path === "category")?.value as Partial<CatalogCategoryText> | undefined;
+    return edit ? { ...category, title: edit.title ?? category.title, subtitle: edit.subtitle ?? category.subtitle, grades: edit.grades ?? category.grades } : category;
+  });
+  return { ...catalog, categories };
+}
+
+type CatalogCategoryText = { title: string; subtitle: string; grades: string };
+
+function loadBase(id: CategoryId): Promise<AifbContent> {
   let pending = cache.get(id);
   if (!pending) {
     pending = loaders[id]();
@@ -43,6 +65,21 @@ export function loadCategory(id: string): Promise<AifbContent> | null {
     cache.set(id, pending);
   }
   return pending;
+}
+
+/** Obsah kategorie (s úpravami), nebo null pro neznámé / nevýukové id (např. „kurz"). */
+export function loadCategory(id: string): Promise<AifbContent> | null {
+  if (!isCategoryId(id)) return null;
+  return Promise.all([loadBase(id), refreshContentEdits()]).then(([base]) => withEdits(id, base));
+}
+
+/** Dokument pro editor: obsah z repozitáře a obsah s úpravami. */
+export async function editableDoc(doc: EditDoc): Promise<{ base: unknown; current: unknown }> {
+  await refreshContentEdits();
+  const base: unknown = isCategoryId(doc)
+    ? await loadBase(doc)
+    : doc === "theory" ? theoryJson : doc === "kurz" ? courseJson : pupilPilotsJson;
+  return { base, current: withEdits(doc, base) };
 }
 
 export function findLevel(content: AifbContent, slug: string): Level | undefined {
@@ -71,7 +108,7 @@ export function getDownloads(categoryId: string): DownloadFile[] {
 
 /** Pilotní žákovská vrstva lekce (návrh); originální obsah se nemění, vrstva je ve vlastním souboru. */
 export function getPupilLayer(lessonId: string): PupilLayer | undefined {
-  return (pupilPilotsJson as unknown as PupilOverlay).lessons[lessonId];
+  return withEdits("pilots", pupilPilotsJson as unknown as PupilOverlay).lessons[lessonId];
 }
 
 /**
@@ -85,17 +122,27 @@ export function draftPreviewEnabled(): boolean {
   return process.env.NODE_ENV === "development" || process.env.VERCEL_ENV === "preview";
 }
 
+/** Návrhy vidí i admin (vlastník je schvaluje), všude včetně produkce. */
+export function previewDrafts(access: Pick<AifbAccess, "role">): boolean {
+  return draftPreviewEnabled() || access.role === "admin";
+}
+
+/** Téma teorie levelu (klíč v aifb-theory.json → topics), pro odkaz na úpravu. */
+export function getTheoryTopic(levelId: string): string | null {
+  return withEdits("theory", theoryJson as unknown as TheoryFile).levels[levelId]?.topic ?? null;
+}
+
 /** Teorie levelu (text před lekcemi). */
 export function getTheory(levelId: string): ResolvedTheory | null {
-  return resolveTheory(theoryJson as unknown as TheoryFile, levelId);
+  return resolveTheory(withEdits("theory", theoryJson as unknown as TheoryFile), levelId);
 }
 
 /** Online kurz pro všechny (vlastní soubor, ne obsah AIFB). */
 export function getCourse(): Course {
-  return courseJson as unknown as Course;
+  return withEdits("kurz", courseJson as unknown as Course);
 }
 
-/** Kurz je celý text pro žáky: návrh se ukazuje jen ve vývoji a náhledu, na produkci až po schválení (R7). */
-export function courseVisible(): boolean {
-  return getCourse().status !== "draft" || draftPreviewEnabled();
+/** Kurz je celý text pro žáky: návrh vidí admin, vývoj a náhled, ostatní až po schválení (R7). */
+export function courseVisible(access: Pick<AifbAccess, "role">): boolean {
+  return getCourse().status !== "draft" || previewDrafts(access);
 }

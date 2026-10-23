@@ -20,7 +20,7 @@ Sekce má dvě části:
 
 ## Co uvidí návštěvník
 
-1. **Hub** (`/cs/edu/ai-gramotnost`) – úvod s animovaným robotem, čtyři karty kategorií (1. stupeň, 2. stupeň, SŠ, online kurz), sekce „Můj průběh“ (XP, export a import) a odkazy na průvodce pro učitele.
+1. **Hub** (`/cs/edu/ai-gramotnost`) – úvod s animovaným robotem, čtyři karty kategorií (1. stupeň, 2. stupeň, SŠ, online kurz), sekce „Můj průběh“ (XP, export a import) a odkazy na průvodce pro učitele. Co z toho kdo vidí, závisí na ranku (student, učitel, admin; bez ranku jen online kurz), viz kapitola 12.
 2. **Kategorie** (`/aifb/zs1`) – přehled bloků nebo levelů. Každá kategorie má vlastní vzhled:
    - 1. stupeň: **pirátská mapa** s ostrovy (`pirate-map`),
    - 2. stupeň: **stezka** (`trail`),

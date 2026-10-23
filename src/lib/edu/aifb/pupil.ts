@@ -52,11 +52,15 @@ export type PupilOverlay = {
 const isString = (value: unknown): value is string => typeof value === "string" && value.length > 0;
 const unique = (values: string[]) => new Set(values).size === values.length;
 
-/** Vrací seznam chyb konfigurace (prázdný = platné). */
-export function validatePupilLayer(lessonId: string, layer: PupilLayer): string[] {
+/**
+ * Vrací seznam chyb konfigurace (prázdný = platné). Soubor v repozitáři smí mít jen stav "draft";
+ * schválení (reviewed/published) ukládá admin úpravou v aplikaci (`allowApproved`).
+ */
+export function validatePupilLayer(lessonId: string, layer: PupilLayer, options: { allowApproved?: boolean } = {}): string[] {
   const errors: string[] = [];
   const where = `pupil-pilots ${lessonId}`;
-  if (layer.status !== "draft") errors.push(`${where}: stav musí být "draft" (reviewed/published nastavuje jen vlastník)`);
+  const statuses = options.allowApproved ? ["draft", "reviewed", "published"] : ["draft"];
+  if (!statuses.includes(layer.status)) errors.push(`${where}: stav musí být "draft" (reviewed/published nastavuje jen vlastník)`);
   if (layer.text !== undefined && !(Array.isArray(layer.text) && layer.text.every(isString))) errors.push(`${where}: text musí být pole řetězců`);
   if (layer.component === undefined) return errors;
   if (!PUPIL_COMPONENTS.includes(layer.component)) {

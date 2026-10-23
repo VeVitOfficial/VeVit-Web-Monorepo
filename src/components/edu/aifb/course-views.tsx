@@ -1,15 +1,19 @@
 // Online kurz pro všechny: přehled kurzu, stránka modulu (teorie, potom lekce), teorie modulu
 // a lekce. Stejné prvky jako levely AIFB (karta teorie, řádky lekcí, místní průběh), ale bez
-// metodiky pro učitele: kurz je pro samostatné studium.
+// metodiky pro učitele: kurz je pro samostatné studium. Veřejnost (bez ranku) nemá rozcestník
+// AIFB, proto u ní drobečková navigace vede z Edu rovnou na kurz.
 
 import Link from "next/link";
+import type { AifbRole } from "@/lib/edu/aifb/access";
 import { getCatalog } from "@/lib/edu/aifb/content";
+import { courseLessonEditPath, moduleEditPath, ROOT_PATH } from "@/lib/edu/aifb/edits";
 import { courseTotals, moduleLessonIds, moduleSlug, theoryIdOf, type Course, type CourseLesson, type CourseModule } from "@/lib/edu/aifb/course";
 import { aifbT, countWord, type AifbT } from "@/lib/edu/aifb/i18n";
 import type { PupilLayer } from "@/lib/edu/aifb/pupil";
-import { courseLessonPath, coursePath, hubPath, modulePath } from "@/lib/edu/aifb/routes";
+import { courseLessonPath, coursePath, hubPath, modulePath, schoolsPath } from "@/lib/edu/aifb/routes";
 import { readingMinutes } from "@/lib/edu/aifb/theory";
 import { lessonsLabel, type EduLocale } from "@/lib/edu/i18n-data";
+import { EditLink } from "./access-ui";
 import { Crumbs } from "./crumbs";
 import { PupilLayerView } from "./interactive/pupil-layer";
 import { LessonProgressControls, LessonStatusBadge } from "./lesson-progress";
@@ -26,17 +30,33 @@ function sourceTitles(module: CourseModule): string[] {
   return module.sources.map((id) => categories.find((category) => category.id === id)?.title ?? id);
 }
 
-function crumbs(t: AifbT, locale: EduLocale, tail: { label: string; href?: string }[]) {
+function crumbs(t: AifbT, locale: EduLocale, role: AifbRole, tail: { label: string; href?: string }[]) {
   return (
     <Crumbs
       label={t("aifb.crumbs.label")}
       items={[
         { label: t("aifb.crumbs.edu"), href: `/${locale}/edu` },
-        { label: t("aifb.crumbs.hub"), href: hubPath(locale) },
+        ...(role === "public" ? [] : [{ label: t("aifb.crumbs.hub"), href: hubPath(locale) }]),
         { label: t("aifb.course.crumb"), href: coursePath(locale) },
         ...tail,
       ]}
     />
+  );
+}
+
+/** Veřejnost, dokud kurz není schválený (R7): místo 404 krátká zpráva a cesta pro žáky s kódem třídy. */
+export function CourseSoon({ locale, role }: { locale: EduLocale; role: AifbRole }) {
+  const t = aifbT(locale);
+  return (
+    <>
+      {crumbs(t, locale, role, [])}
+      <section className="aifb-locked" aria-labelledby="course-soon-title">
+        <h1 id="course-soon-title">{t("aifb.course.soon.title")}</h1>
+        <p>{t("aifb.course.soon.body")}</p>
+        <p>{t("aifb.course.soon.school")}</p>
+        <p><a href={schoolsPath(locale)} className="btn btn-primary">{t("aifb.course.soon.schoolLink")}</a></p>
+      </section>
+    </>
   );
 }
 
@@ -47,15 +67,15 @@ function DraftNote({ course, t }: { course: Course; t: AifbT }) {
   return course.status === "draft" ? <p className="aifb-muted th-draft">{t("aifb.course.draftNote")}</p> : null;
 }
 
-export function CourseOverview({ locale, course }: { locale: EduLocale; course: Course }) {
+export function CourseOverview({ locale, course, role }: { locale: EduLocale; course: Course; role: AifbRole }) {
   const t = aifbT(locale);
   const ctx = ctxOf(locale);
   const totals = courseTotals(course);
   return (
     <>
-      {crumbs(t, locale, [])}
+      {crumbs(t, locale, role, [])}
       <header className="aifb-head">
-        <h1>{course.title}</h1>
+        <h1>{course.title} <EditLink role={role} locale={locale} doc="kurz" path={ROOT_PATH} t={t} /></h1>
         <p className="th-lead"><RichText text={course.lead} ctx={ctx} /></p>
         <p className="aifb-chips">
           <span className="aifb-badge">{countWord(t, "aifb.unit.Modul", totals.modules)}</span>
@@ -101,7 +121,7 @@ export function CourseOverview({ locale, course }: { locale: EduLocale; course: 
   );
 }
 
-export function CourseModuleView({ locale, course, module }: { locale: EduLocale; course: Course; module: CourseModule }) {
+export function CourseModuleView({ locale, course, module, role }: { locale: EduLocale; course: Course; module: CourseModule; role: AifbRole }) {
   const t = aifbT(locale);
   const ctx = ctxOf(locale);
   const index = course.modules.indexOf(module);
@@ -109,9 +129,9 @@ export function CourseModuleView({ locale, course, module }: { locale: EduLocale
   const next = course.modules[index + 1];
   return (
     <>
-      {crumbs(t, locale, [{ label: `${module.code}: ${module.title}` }])}
+      {crumbs(t, locale, role, [{ label: `${module.code}: ${module.title}` }])}
       <header className="aifb-head">
-        <p className="aifb-eyebrow">{module.code}</p>
+        <p className="aifb-eyebrow">{module.code} <EditLink role={role} locale={locale} doc="kurz" path={moduleEditPath(module.id)} t={t} /></p>
         <h1>{module.title}</h1>
         <p className="aifb-lead">{module.subtitle}</p>
         <p className="aifb-chips">
@@ -167,15 +187,18 @@ export function CourseModuleView({ locale, course, module }: { locale: EduLocale
   );
 }
 
-export function CourseTheoryView({ locale, course, module }: { locale: EduLocale; course: Course; module: CourseModule }) {
+export function CourseTheoryView({ locale, course, module, role }: { locale: EduLocale; course: Course; module: CourseModule; role: AifbRole }) {
   const t = aifbT(locale);
   const ctx = ctxOf(locale);
   const first = module.lessons[0];
   return (
     <>
-      {crumbs(t, locale, [{ label: `${module.code}: ${module.title}`, href: modulePath(locale, moduleSlug(module.id)) }, { label: t("aifb.theory.title") }])}
+      {crumbs(t, locale, role, [{ label: `${module.code}: ${module.title}`, href: modulePath(locale, moduleSlug(module.id)) }, { label: t("aifb.theory.title") }])}
       <header className="aifb-head th-head">
-        <p className="aifb-eyebrow">{module.code} · {t("aifb.theory.title")}</p>
+        <p className="aifb-eyebrow">
+          {module.code} · {t("aifb.theory.title")}{" "}
+          <EditLink role={role} locale={locale} doc="kurz" path={moduleEditPath(module.id)} t={t} />
+        </p>
         <h1>{module.title}</h1>
         <p className="th-lead"><RichText text={module.theory.lead} ctx={ctx} /></p>
         <p className="aifb-chips">
@@ -198,7 +221,9 @@ export function CourseTheoryView({ locale, course, module }: { locale: EduLocale
   );
 }
 
-export function CourseLessonView({ locale, course, module, lesson }: { locale: EduLocale; course: Course; module: CourseModule; lesson: CourseLesson }) {
+export function CourseLessonView({
+  locale, course, module, lesson, role,
+}: { locale: EduLocale; course: Course; module: CourseModule; lesson: CourseLesson; role: AifbRole }) {
   const t = aifbT(locale);
   const ctx = ctxOf(locale);
   const kind = t("aifb.lesson.exercise", { n: lesson.order });
@@ -219,10 +244,13 @@ export function CourseLessonView({ locale, course, module, lesson }: { locale: E
 
   return (
     <>
-      {crumbs(t, locale, [{ label: `${module.code}: ${module.title}`, href: modulePath(locale, moduleSlug(module.id)) }, { label: `${kind}: ${lesson.title}` }])}
+      {crumbs(t, locale, role, [{ label: `${module.code}: ${module.title}`, href: modulePath(locale, moduleSlug(module.id)) }, { label: `${kind}: ${lesson.title}` }])}
       <article className="aifb-prose">
         <header className="aifb-head">
-          <p className="aifb-eyebrow">{module.code} · {kind}</p>
+          <p className="aifb-eyebrow">
+            {module.code} · {kind}{" "}
+            <EditLink role={role} locale={locale} doc="kurz" path={courseLessonEditPath(module.id, lesson.id)} t={t} />
+          </p>
           <h1>{lesson.title}</h1>
           <p className="aifb-chips">
             <span className="aifb-badge">{t("aifb.course.minutes", { n: lesson.minutes })}</span>

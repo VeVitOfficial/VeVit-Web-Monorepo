@@ -8,6 +8,7 @@ import { aifbT, countWord } from "@/lib/edu/aifb/i18n";
 import { levelPath, levelSlug } from "@/lib/edu/aifb/routes";
 import type { Certification, CategoryId, Level, Visual } from "@/lib/edu/aifb/types";
 import { lessonsLabel, type EduLocale } from "@/lib/edu/i18n-data";
+import { LockBadge } from "./access-ui";
 import { CertBadge } from "./shared";
 
 /** Co o levelu potřebují přehledy (karty, mapy, tabulka); posílá se do klientských komponent. */
@@ -27,6 +28,8 @@ export type LevelSummary = {
   advanced: boolean;
   /** Id lekcí levelu (pro lokální průběh). */
   lessonIds: string[];
+  /** Jen student: počet lekcí, které mu učitel odemkl (ostatní role vidí vše). */
+  unlocked?: number;
 };
 
 /** Levely 4–6 (2. stupeň, SŠ) jsou určené pokročilým / kroužkům (recommendedPlacement). */
@@ -73,6 +76,7 @@ export function LevelCard({
         <span className="aifb-level-card__badges">
           {level.advanced ? <span className="aifb-badge">{t("aifb.level.advanced")}</span> : null}
           <CertBadge certification={level.certification} t={t} />
+          {level.unlocked !== undefined ? <LockBadge unlocked={level.unlocked} total={level.lessonCount} t={t} /> : null}
         </span>
         {progress}
       </Link>
