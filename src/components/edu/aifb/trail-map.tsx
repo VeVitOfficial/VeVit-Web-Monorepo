@@ -52,7 +52,7 @@ export function TrailMap({
                 <span className="aifb-level-card__title">{level.title}</span>
                 {level.subtitle ? <span className="aifb-level-card__sub">{level.subtitle}</span> : null}
                 <span className="aifb-level-card__meta">
-                  {level.grades ?? level.recommendedPlacement ?? ""}{" · "}{level.hours}{" · "}{lessonsLabel(level.lessonCount, locale)}
+                  {level.grades ?? level.recommendedPlacement ?? ""}{" · "}{level.hours}{" · "}{t("aifb.level.structure", { lessons: lessonsLabel(level.lessonCount - 1, locale) })}
                 </span>
                 <span className="aifb-level-card__badges">
                   {level.advanced ? <span className="aifb-badge">{t("aifb.level.advanced")}</span> : null}

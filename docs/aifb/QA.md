@@ -11,14 +11,14 @@ Lighthouse, kategorie Accessibility:
 |---|---|---|---|
 | Hub `/edu/ai-gramotnost` | desktop | 96 → **100** | nález: 2 uzly s kontrastem pod 4,5:1 (neaktivní karta „Online kurz", průhlednost 0,6). Opraveno: karta už nepoužívá průhlednost, text má sekundární barvu a čárkovaný okraj |
 | Kategorie 1. stupně (mapa) | mobil | **100** | |
-| Lekce SŠ, režim Žák (cvičení s AI) | desktop | **100** | |
+| Lekce SŠ (cvičení s AI) | desktop | **100** | měřeno před zrušením režimů |
 
 Další kontroly (E2E, `tests/e2e/aifb.e2e.mjs`):
 
 - Mapa ostrovů je ovladatelná klávesnicí (Tab, Enter) a každý ostrov má cíl alespoň 64 × 64 px.
 - Seznamové zobrazení všech tří témat existuje a je ve stejném počtu položek jako mapa (4 / 6 / 6).
 - Tabulka levelů pro SŠ má záhlaví sloupců (`th scope="col"`) i řádků a skrytý popisek.
-- Projekce se ovládá šipkami, PageUp/PageDown a Esc; velikost textu je ≥ 32 px (naměřeno ≈ 40 px při 1280 px).
+- Teorie má běžnou velikost písma (17 px) a čitelnou délku řádku; režim Projekce byl na pokyn vlastníka zrušen.
 - Žádný vodorovný posun na šířce 360 px (hub, kategorie, level, lekce).
 - Stav lekce je vždy text („Nezačato", „Rozpracováno", „Hotovo"), ne jen barva. Cíle v tlačítkách interaktivních cvičení mají min-height 44 px.
 - `prefers-reduced-motion`: animace a přechody AIFB se vypínají; animace maskota a scén „Již brzy" mají vlastní pravidlo.
@@ -37,10 +37,10 @@ Neověřeno / otevřeno:
 
 ## 3. Testy a CI (F8.2)
 
-- Jednotkové: `npm run test:unit` (129 testů; markdown renderer s U+00A0, validace obsahu a jeho porušení, režimy, průběh, PII kontrola, žákovská vrstva, brána AI endpointu). Spouští se nově i v `security.yml`.
+- Jednotkové: `npm run test:unit` (132 testů; markdown renderer s U+00A0, validace obsahu a jeho porušení, teorie, průběh, PII kontrola, žákovská vrstva, brána AI endpointu). Spouští se nově i v `security.yml`.
 - Validace obsahu: `npm run validate:aifb` (v `npm run build` a v CI). Změna id lekce, počtu lekcí, odkazu na oddíl nebo certifikace s jiným stavem než `planned` validaci shodí (pokryto testy).
-- Smoke: `npm run smoke:aifb`, 327 stránek (96 lekcí × 3 režimy, 16 levelů, 16 tisků, kategorie, průvodci, hub), všechny 200 s `<h1>`.
-- E2E: `npm run test:e2e:aifb` (playwright-core + node:test, bez nové závislosti). 16 testů: hub → kategorie → level → lekce pro každou kategorii, přímé otevření a obnovení, zpět/vpřed, seznamové zobrazení, klávesnice na mapě, projekce, tisk, průběh, soukromí, 360 px, produkční režim žáka.
+- Smoke: `npm run smoke:aifb`, 135 stránek (16 teorií, 80 lekcí, 16 bloků/levelů, 16 tisků, kategorie, průvodci, hub), všechny 200 s `<h1>`. Po přestavbě zatím nespuštěno.
+- E2E: `npm run test:e2e:aifb` (playwright-core + node:test, bez nové závislosti). 16 testů: hub → kategorie → level → lekce pro každou kategorii, přímé otevření a obnovení, zpět/vpřed, seznamové zobrazení, klávesnice na mapě, pořadí teorie a lekcí, stránka teorie, tisk, průběh, soukromí, 360 px, produkce bez návrhů. Po přestavbě zatím nespuštěno (dev server zastaven kvůli paměti).
   Výsledek proti `next dev` i proti produkčnímu `next start`: všechny spuštěné testy prošly; test pro produkční běh se spouští jen s `E2E_PRODUCTION=1`, test AI endpointu s návrhy jen ve vývoji.
   E2E odhalil skutečnou chybu: při návštěvě lekce označené jako hotová ji hydratace přepsala na „rozpracováno". Opraveno (`getProgressNow`).
 - CI: nový workflow `.github/workflows/aifb-e2e.yml` (validace, produkční build, `next start`, smoke, E2E). Zatím nespuštěn na GitHubu.

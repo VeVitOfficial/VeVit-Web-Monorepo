@@ -15,7 +15,7 @@ export default async function EduHomePageRoute() {
   const locale = await readEduLocale();
   return (
     <EduRoot locale={locale}>
-      <EduHomePage locale={locale} aifbLessons={getCatalog().totals.lessons} />
+      <EduHomePage locale={locale} aifbLessons={getCatalog().totals.lessons - getCatalog().totals.levels} />
     </EduRoot>
   );
 }

@@ -113,3 +113,8 @@ export function validatePupilLayer(lessonId: string, layer: PupilLayer): string[
 export function aiLessonAvailable(layer: { status: string; component?: string } | undefined, previewEnabled: boolean): boolean {
   return layer !== undefined && layer.component === "AiSandbox" && (layer.status !== "draft" || previewEnabled);
 }
+
+/** Text pro žáky z originálního obsahu (pupil.text) se zobrazí, jen když ho vlastník schválil (R7). */
+export function pupilVisible(pupil: { status: string; text?: string[] }): boolean {
+  return (pupil.status === "reviewed" || pupil.status === "published") && Array.isArray(pupil.text) && pupil.text.length > 0;
+}

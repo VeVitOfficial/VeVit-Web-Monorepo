@@ -60,7 +60,7 @@ export function CleanOverview({
                 <td>
                   <strong>{level.title}</strong>
                   {level.subtitle ? <><br />{level.subtitle}</> : null}
-                  <br />{lessonsLabel(level.lessonCount, locale)}
+                  <br />{t("aifb.level.structure", { lessons: lessonsLabel(level.lessonCount - 1, locale) })}
                 </td>
                 <td>{level.hours}</td>
                 <td>{level.grades ?? level.recommendedPlacement ?? ""}{level.advanced ? <><br /><span className="aifb-badge">{t("aifb.level.advanced")}</span></> : null}</td>

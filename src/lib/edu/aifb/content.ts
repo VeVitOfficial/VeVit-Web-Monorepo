@@ -9,10 +9,12 @@ import { notFound } from "next/navigation";
 import catalogJson from "@/content/aifb/aifb-catalog.json";
 import downloadsJson from "@/content/aifb/downloads.json";
 import pupilPilotsJson from "@/content/aifb/pupil-pilots.json";
+import theoryJson from "@/content/aifb/aifb-theory.json";
 import type { AifbContent, Catalog, CategoryId, Level, Lesson } from "./types.ts";
 import { isCategoryId } from "./types.ts";
 import { lessonIdFromSlug, levelIdFromSlug } from "./routes.ts";
 import type { PupilLayer, PupilOverlay } from "./pupil.ts";
+import { resolveTheory, type ResolvedTheory, type TheoryFile } from "./theory.ts";
 
 const catalog = catalogJson as unknown as Catalog;
 
@@ -79,4 +81,9 @@ export function draftPreviewEnabled(): boolean {
   // Produkční běh má vždy NODE_ENV=production, takže lokální `next dev` je bezpečně rozpoznatelný
   // i s .env.local staženým z produkce (VERCEL_ENV=production).
   return process.env.NODE_ENV === "development" || process.env.VERCEL_ENV === "preview";
+}
+
+/** Teorie levelu (text před lekcemi). */
+export function getTheory(levelId: string): ResolvedTheory | null {
+  return resolveTheory(theoryJson as unknown as TheoryFile, levelId);
 }

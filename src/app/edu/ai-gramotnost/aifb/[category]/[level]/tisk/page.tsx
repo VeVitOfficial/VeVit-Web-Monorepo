@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { readEduLocale } from "@/lib/edu/locale";
 import { aifbT } from "@/lib/edu/aifb/i18n";
-import { findLevel, requireCategory } from "@/lib/edu/aifb/content";
+import { findLevel, getTheory, requireCategory } from "@/lib/edu/aifb/content";
 import { AifbFrame } from "@/components/edu/aifb/frame";
 import { LevelPrintView } from "@/components/edu/aifb/level-print-view";
 
@@ -26,7 +26,7 @@ export default async function AifbLevelPrintRoute({ params }: Props) {
   if (!level) notFound();
   return (
     <AifbFrame locale={locale} theme={content.category.theme}>
-      <LevelPrintView locale={locale} content={content} level={level} />
+      <LevelPrintView locale={locale} content={content} level={level} theory={getTheory(level.id)} />
     </AifbFrame>
   );
 }

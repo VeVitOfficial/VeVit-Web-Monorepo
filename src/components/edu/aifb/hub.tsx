@@ -34,7 +34,7 @@ function CategoryCard({ category, locale }: { category: CatalogCategory; locale:
           <p className="aifb-card-meta">
             <span className="eh-badge">{category.grades}</span>{" "}
             <span className="eh-badge">{countWord(t, `aifb.unit.${category.unit}`, category.totals.levels)}</span>{" "}
-            <span className="eh-badge">{lessonsLabel(category.totals.lessons, locale)}</span>
+            <span className="eh-badge">{lessonsLabel(category.totals.lessons - category.totals.levels, locale)}</span>
           </p>
         ) : (
           <span className="eh-badge">{t("aifb.comingSoon")}</span>

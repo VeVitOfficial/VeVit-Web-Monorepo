@@ -1,4 +1,4 @@
-// Smoke test běžícího serveru: hub, 3 kategorie, 16 levelů (+ tisk), 96 lekcí (učitel i projekce)
+// Smoke test běžícího serveru: hub, 3 kategorie, 16 levelů (+ tisk), 16 teorií a 80 lekcí
 // a průvodce. Každá stránka musí vrátit 200 a obsahovat <h1>. Spuštění: `npm run smoke:aifb`
 // (server na BASE_URL, výchozí http://localhost:3000; potřebuje `npm run dev` nebo `npm start`).
 
@@ -18,7 +18,7 @@ for (const category of ["zs1", "zs2", "ss"]) {
     urls.push(`${prefix}/aifb/${category}/${levelSlug}`, `${prefix}/aifb/${category}/${levelSlug}/tisk`);
     for (const lesson of level.lessons) {
       const slug = lesson.id.slice(level.id.length + 1);
-      urls.push(`${prefix}/aifb/${category}/${levelSlug}/${slug}`, `${prefix}/aifb/${category}/${levelSlug}/${slug}?rezim=projekce`, `${prefix}/aifb/${category}/${levelSlug}/${slug}?rezim=zak`);
+      urls.push(`${prefix}/aifb/${category}/${levelSlug}/${slug}`);
     }
   }
 }

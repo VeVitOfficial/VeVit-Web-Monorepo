@@ -30,13 +30,6 @@ async function withPage(fn, options = {}) {
   }
 }
 
-/** Počká na hydrataci ovládání projekce, stiskne klávesu jednou a čeká na změnu adresy (bez opakování, které by rušilo probíhající navigaci). */
-async function press(page, key, pattern) {
-  await page.locator('.aifb-proj__bar[data-ready="true"]').waitFor({ timeout: 30_000 });
-  await page.keyboard.press(key);
-  await page.waitForURL(pattern, { timeout: 30_000 });
-}
-
 const CATEGORIES = [
   { id: "zs1", card: "1. stupeň ZŠ", level: "blok-a", lesson: "cv1", theme: "pirate-map" },
   { id: "zs2", card: "2. stupeň ZŠ", level: "level-1", lesson: "cv2", theme: "trail" },
@@ -110,14 +103,29 @@ test("mapa je ovladatelná z klávesnice a cíle mají aspoň 64 px", async () =
   });
 });
 
-test("projekce: čitelné písmo a přepínání lekcí klávesami", async () => {
+test("blok: nejdřív teorie, potom lekce 1–5 (teorie mezi lekce nepatří)", async () => {
   await withPage(async (page) => {
-    await page.goto(`${root}/aifb/zs1/blok-a/cv1?rezim=projekce`);
-    const size = await page.locator(".aifb-proj__text p").first().evaluate((el) => parseFloat(getComputedStyle(el).fontSize));
-    assert.ok(size >= 22 && size <= 30, `písmo ${size}px`);
-    await press(page, "ArrowRight", /cv2\?rezim=projekce$/);
-    await press(page, "ArrowLeft", /cv1\?rezim=projekce$/);
-    await press(page, "Escape", /cv1$/);
+    await page.goto(`${root}/aifb/zs1/blok-a`);
+    const theoryTop = await page.locator(".aifb-theory-card").boundingBox();
+    const lessonsTop = await page.locator(".aifb-lesson-list").boundingBox();
+    assert.ok(theoryTop && lessonsTop && theoryTop.y < lessonsTop.y, "teorie je nad lekcemi");
+    assert.equal(await page.locator(".aifb-lesson-row").count(), 5);
+    assert.equal(await page.locator(".aifb-lesson-row", { hasText: "Teorie" }).count(), 0);
+    assert.equal(await page.getByRole("link", { name: "Projekce" }).count(), 0, "žádný přepínač režimů");
+  });
+});
+
+test("teorie: běžná velikost písma, obsah, ilustrace a shrnutí", async () => {
+  await withPage(async (page) => {
+    await page.goto(`${root}/aifb/zs2/level-1/teorie`);
+    assert.ok((await page.locator(".th-section h2").count()) >= 5);
+    assert.ok((await page.locator(".th-figure svg").count()) >= 2);
+    assert.ok(await page.locator("#shrnuti").isVisible());
+    const size = await page.locator(".th-article p").first().evaluate((el) => parseFloat(getComputedStyle(el).fontSize));
+    assert.ok(size >= 15 && size <= 19, `písmo ${size}px`);
+    assert.equal(await page.locator(".th-teacher[open]").count(), 0, "metodika pro učitele je sbalená");
+    await page.getByRole("link", { name: /Pokračovat: Lekce 1/ }).click();
+    await page.waitForURL(/level-1\/cv1$/);
   });
 });
 
@@ -163,7 +171,7 @@ test("soukromí: žádné požadavky mimo vlastní doménu", async () => {
 
 test("žádný vodorovný posun na 360 px", async () => {
   await withPage(async (page) => {
-    for (const path of ["", "/aifb/zs1", "/aifb/zs2", "/aifb/ss", "/aifb/zs1/blok-a", "/aifb/zs1/blok-a/cv3"]) {
+    for (const path of ["", "/aifb/zs1", "/aifb/zs2", "/aifb/ss", "/aifb/zs1/blok-a", "/aifb/zs1/blok-a/cv3", "/aifb/zs2/level-3/teorie", "/aifb/ss/level-6/teorie"]) {
       await page.goto(`${root}${path}`);
       const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
       assert.ok(overflow <= 1, `${path || "hub"}: přesah ${overflow}px`);
@@ -171,11 +179,11 @@ test("žádný vodorovný posun na 360 px", async () => {
   }, { viewport: { width: 360, height: 800 } });
 });
 
-test("režim Žák: na produkci žádné návrhy a AI endpoint nedostupný", { skip: !production }, async () => {
+test("produkce: žádné návrhy žákovských cvičení a AI endpoint nedostupný", { skip: !production }, async () => {
   await withPage(async (page) => {
-    await page.goto(`${root}/aifb/zs2/level-2/cv1?rezim=zak`);
-    assert.ok(await page.getByText("Žákovská verze se připravuje").isVisible());
+    await page.goto(`${root}/aifb/zs2/level-2/cv1`);
     assert.equal(await page.getByText("Návrh ke schválení").count(), 0);
+    assert.equal(await page.getByRole("heading", { name: "Vyzkoušej si" }).count(), 0);
     const result = await page.evaluate(async () => {
       const r = await fetch("/edu/api/aifb/complete", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ lessonId: "zs2-level-2-cv1", prompt: "napiš něco" }) });
       return r.status;

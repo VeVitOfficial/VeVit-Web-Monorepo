@@ -11,6 +11,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { AI_LESSONS } from "../src/lib/edu/aifb/ai-config.ts";
 import { validatePupilLayer } from "../src/lib/edu/aifb/pupil.ts";
+import { validateTheory } from "../src/lib/edu/aifb/theory.ts";
 import { DATA_PROTECTION_ANCHOR, PRINTABLE_SECTIONS } from "../src/lib/edu/aifb/guide.ts";
 import { guideRefsIn } from "../src/lib/edu/aifb/markdown.ts";
 
@@ -252,6 +253,10 @@ export function validateAifb(dir = defaultDir, publicDir = join(repoRoot, "publi
   for (const lessonId of Object.keys(AI_LESSONS)) {
     if (!overlay.lessons?.[lessonId]) errors.push(`ai-config: lekce "${lessonId}" nemá žákovskou vrstvu`);
   }
+
+  // Teorie: každý level má vlastní text před lekcemi (aifb-theory.json).
+  const allLevelIds = [...lessonIndex.values()].map((entry) => entry.lesson.id.replace(/-(?:teorie|cv[1-5])$/, ""));
+  errors.push(...validateTheory(read("aifb-theory.json"), [...new Set(allLevelIds)]));
 
   const totals = catalog.totals ?? {};
   if (totals.categoriesWithContent !== catalogWithContent.length) errors.push("katalog: totals.categoriesWithContent neodpovídá počtu kategorií s obsahem");

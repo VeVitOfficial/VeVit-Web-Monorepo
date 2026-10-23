@@ -266,3 +266,10 @@ Rozhodnutí z F4 a F7:
 - Endpoint `/edu/api/aifb/complete` obslouží jen lekci se schválenou žákovskou vrstvou typu AiSandbox; návrh (draft) jen ve vývoji a náhledových nasazeních (`aiLessonAvailable`). Na produkci tedy nikdo nevolá model, dokud vlastník vrstvu neschválí.
 - Náklady: limit na IP (20 / 10 min) a globální strop (300 živých dotazů / hod); po jeho vyčerpání nebo při nedostupném úložišti limitů se vrací uložená odpověď. Bez nastaveného klíče se model nevolá vůbec.
 - **Souhlas zákonných zástupců na 2. stupni (R5) server ověřit neumí.** AIFB nemá přihlášení ani účty učitelů (mimo rozsah plánu), takže potvrzení je ovládací prvek v rozhraní. Skutečné vynucení by vyžadovalo účty učitelů, což je rozhodnutí vlastníka. Podepsaný token bez účtu by byl jen zdánlivá ochrana, proto není.
+
+## 20. Přestavba podle vlastníka (2026-10-23)
+
+- **Teorie je samostatná stránka před lekcemi.** Každý blok / level má nejdřív teorii (`/<kategorie>/<level>/teorie`), potom **Lekce 1–5** (= cvičení z plánu). Teorie se do lekcí nepočítá: hub, karty a mapy ukazují „Teorie + 5 lekcí“, celkem 80 lekcí.
+- **Text teorie** je nový obsah v `src/content/aifb/aifb-theory.json` (10 témat pro 16 bloků a levelů, SŠ má sekce navíc; 17 ilustrací v `theory-figures.tsx`, část animovaná). Vychází z témat, cílů a teoretické části plánů. Stav `draft`: na stránce je drobná poznámka, že čeká na odbornou kontrolu. Po kontrole změnit `status` na `reviewed`.
+- **Přepínač Pro učitele / Projekce / Žák je zrušen.** Lekce má jedno zobrazení (zadání, co má vzniknout, forma, čas). Metodika pro učitele (jak teorii vést, opakovací otázky, témata k diskuzi, rozvrh, poznámky) je ve sbalených sekcích „Pro učitele“.
+- Pilotní interaktivní cvičení se ukazují v sekci „Vyzkoušej si“ u lekce (u teorie bloku A kvíz), jako návrh jen ve vývoji a náhledu (R7).

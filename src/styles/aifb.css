@@ -180,26 +180,13 @@ ol.aifb-list { list-style: decimal; }
 .aifb-toolbar .aifb-toggle { margin: 0; }
 .aifb-links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; }
 
-/* Projekce (třída): velké písmo, čitelné ze zadní lavice; jen to, co se promítá žákům */
-body:has(.aifb-projection) #navbar { display: none; }
-.aifb-projection { max-width: 78rem; margin: 0 auto; padding: 0 0 3rem; font-size: clamp(1.2rem, 0.75rem + 1vw, 1.7rem); line-height: 1.55; }
-.aifb-proj__bar { position: sticky; top: 0; z-index: 5; display: grid; grid-template-columns: auto 1fr auto auto auto; align-items: center; gap: 0.6rem; padding: 0.6rem 0; font-size: 1rem; background: var(--bg-primary); }
-.aifb-proj__keys { font-size: 0.85rem; color: var(--text-secondary); }
-@media (max-width: 900px) { .aifb-proj__bar { grid-template-columns: 1fr 1fr; } .aifb-proj__keys { grid-column: 1 / -1; order: 5; } }
-.aifb-proj__kind { margin: 1.2em 0 0.1em; font-size: 0.55em; font-weight: 700; color: var(--aifb-accent); }
-.aifb-proj__title { margin: 0 0 0.6em; font-family: "Bricolage Grotesque", var(--font); font-size: 1.4em; font-weight: 800; line-height: 1.1; color: var(--text-primary); }
-.aifb-projection h2 { margin: 1.3em 0 0.35em; font-size: 0.9em; font-weight: 700; color: var(--aifb-accent); }
-.aifb-proj__list { margin: 0 0 0 1.3em; padding: 0; color: var(--text-primary); }
-.aifb-proj__list li { margin-bottom: 0.55em; padding-left: 0.2em; }
-.aifb-proj__text, .aifb-proj__text p { margin: 0 0 0.7em; color: var(--text-primary); }
-.aifb-proj__meta { margin: 0 0 0.5em; font-size: 0.7em; color: var(--text-secondary); }
-.aifb-proj__position { margin: 2em 0 0; font-size: 0.55em; color: var(--text-secondary); }
-
 /* Tisk (A4, černobíle čitelné): bez navigace, každá lekce levelu na nové straně */
 @media print {
   @page { size: A4; margin: 15mm; }
   html, html.dark, html.light { color-scheme: light !important; }
-  body:has(.aifb) #navbar, .aifb-noprint, .aifb-crumbs, .aifb-toolbar, .aifb-pager, .aifb-proj__bar, .aifb-notice, .aifb-toggle { display: none !important; }
+  body:has(.aifb) #navbar, .aifb-noprint, .aifb-crumbs, .aifb-toolbar, .aifb-pager, .aifb-notice, .aifb-toggle, .th-toc, .aifb-lesson-progress, .th-next { display: none !important; }
+  .th-layout { display: block !important; }
+  .th-figure { break-inside: avoid; }
   html, body { background: Canvas !important; color: CanvasText !important; }
   body:has(.aifb) * { background-color: transparent !important; box-shadow: none !important; }
   .aifb, .aifb * { color: CanvasText !important; }
@@ -291,3 +278,141 @@ body:has(.aifb-projection) #navbar { display: none; }
 .aifb-ai__label { margin: 0 0 0.5rem; font-size: 0.85rem; font-weight: 700; color: var(--text-secondary); }
 .aifb-ai__finding { white-space: pre-line; }
 @media print { .aifb-pupil .btn { display: none !important; } }
+
+
+/* ─── Teorie (th-) a ilustrace (af-) ───
+   Běžná velikost písma (17 px), čitelná délka řádku, obsah vlevo na širokém displeji. */
+.aifb-step { display: inline-grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%; font-size: 1rem; font-weight: 800; color: var(--aifb-on-accent); background: var(--aifb-accent); }
+.aifb-theory-card { display: grid; gap: 0.6rem; padding: 1.4rem 1.5rem; border-radius: var(--radius-lg); background: color-mix(in srgb, var(--aifb-accent) 9%, var(--bg-surface)); border: 1.5px solid color-mix(in srgb, var(--aifb-accent) 45%, transparent); transition: border-color 0.2s, transform 0.2s; }
+.aifb .aifb-theory-card:hover { border-color: var(--aifb-accent); transform: translateY(-2px); }
+.aifb-theory-card__title { font-family: "Bricolage Grotesque", var(--font); font-size: 1.35rem; font-weight: 800; color: var(--text-primary); }
+.aifb-theory-card__lead { max-width: 48rem; line-height: 1.6; color: var(--text-secondary); }
+.aifb-theory-card__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1rem; }
+.aifb-theory-card__cta { margin-left: auto; font-weight: 700; color: var(--aifb-accent); }
+
+.th-head h1 { margin-bottom: 0.75rem; }
+.th-lead { max-width: 46rem; margin: 0 0 1rem; font-size: 1.15rem; line-height: 1.6; color: var(--text-secondary); }
+.th-layout { display: grid; gap: 2rem; grid-template-columns: 1fr; }
+@media (min-width: 1000px) {
+  .th-layout { grid-template-columns: 15rem minmax(0, 1fr); align-items: start; }
+  .th-toc { position: sticky; top: 5rem; }
+}
+.th-article { max-width: 46rem; min-width: 0; font-size: 1.0625rem; line-height: 1.7; color: var(--text-secondary); }
+.th-article p { margin: 0 0 1rem; }
+.th-article strong { color: var(--text-primary); }
+.th-section { margin: 0 0 2.5rem; scroll-margin-top: 5rem; }
+.th-section h2, .th-summary h2 { margin: 0 0 0.9rem; font-family: "Bricolage Grotesque", var(--font); font-size: 1.55rem; font-weight: 800; line-height: 1.2; color: var(--text-primary); }
+.th-list__title { margin: 0 0 0.35rem; font-weight: 700; color: var(--text-primary); }
+.th-terms { display: grid; gap: 0.75rem; margin: 0 0 1.25rem; }
+.th-terms__item { padding: 0.8rem 1rem; border-radius: var(--radius-md); background: var(--bg-surface); border: 1.5px solid var(--border-color); }
+.th-terms dt { margin: 0 0 0.2rem; font-weight: 800; color: var(--text-primary); }
+.th-terms dd { margin: 0; }
+.th-callout { margin: 0 0 1.25rem; padding: 0.9rem 1.1rem; border-radius: var(--radius-md); border: 1.5px solid var(--border-color); border-left-width: 5px; background: var(--bg-surface); }
+.th-callout--tip { border-left-color: var(--aifb-accent); }
+.th-callout--warning { border-left-color: var(--aifb-gold); }
+.th-callout--info { border-left-color: var(--aifb-sky); }
+.th-callout__title { margin: 0 0 0.3rem !important; font-weight: 800; color: var(--text-primary); }
+.th-callout p:last-child { margin-bottom: 0; }
+.th-example { margin: 0 0 1.25rem; border-radius: var(--radius-md); border: 1.5px dashed var(--border-color); background: var(--bg-elevated); }
+.th-example__title { margin: 0 !important; padding: 0.55rem 1rem 0; font-size: 0.85rem; font-weight: 800; color: var(--text-secondary); }
+.th-example pre { margin: 0; padding: 0.5rem 1rem 0.9rem; overflow-x: auto; white-space: pre-wrap; font: 0.95rem/1.6 "Geist Mono", ui-monospace, monospace; color: var(--text-primary); }
+.th-figure { margin: 0.5rem 0 1.5rem; padding: 1rem; border-radius: var(--radius-lg); background: var(--bg-elevated); border: 1.5px solid var(--border-color); }
+.th-figure figcaption { margin-top: 0.6rem; font-size: 0.92rem; line-height: 1.5; color: var(--text-secondary); text-align: center; }
+.th-summary { margin: 0 0 2rem; padding: 1.2rem 1.4rem; border-radius: var(--radius-lg); background: color-mix(in srgb, var(--aifb-accent) 8%, var(--bg-surface)); border: 1.5px solid color-mix(in srgb, var(--aifb-accent) 40%, transparent); }
+.th-summary .aifb-list { margin-bottom: 0; }
+.th-next { margin: 1rem 0 2rem; }
+.th-teacher { margin-top: 1rem; }
+.th-draft { margin-top: 1.5rem; font-size: 0.85rem; }
+
+/* Ilustrace */
+.af { display: block; width: 100%; height: auto; overflow: visible; }
+.af-t { fill: var(--text-primary); font-family: var(--font); font-weight: 600; }
+.af-t--s { font-size: 15px; font-weight: 500; }
+.af-t--m { font-size: 18px; }
+.af-t--l { font-size: 22px; font-weight: 800; }
+.af-t--muted { fill: var(--text-secondary); }
+.af-t--dark { fill: #0b0f14; }
+.af-t--accent { fill: var(--aifb-accent); }
+.af-t--red { fill: var(--error); }
+.af-card { fill: var(--bg-surface); stroke: var(--border-color); stroke-width: 2; }
+.af-card--accent { fill: color-mix(in srgb, var(--aifb-accent) 14%, var(--bg-surface)); stroke: var(--aifb-accent); }
+.af-card--warn { fill: color-mix(in srgb, var(--aifb-gold) 10%, var(--bg-surface)); stroke: var(--aifb-gold); }
+.af-card--ok { fill: color-mix(in srgb, var(--aifb-accent) 10%, var(--bg-surface)); stroke: var(--aifb-accent); }
+.af-card--paper { fill: var(--bg-surface); stroke: var(--text-secondary); }
+.af-device { fill: var(--bg-elevated); stroke: var(--text-primary); stroke-width: 3; }
+.af-outline { stroke: var(--text-primary); stroke-width: 2; }
+.af-ink { stroke: var(--text-secondary); stroke-width: 3; stroke-linecap: round; fill: none; }
+.af-ink--thick { stroke-width: 6; stroke: var(--text-primary); }
+.af-fill-accent { fill: var(--aifb-accent); }
+.af-fill-sky { fill: var(--aifb-sky); }
+.af-fill-gold { fill: var(--aifb-gold); }
+.af-fill-violet { fill: var(--aifb-violet); }
+.af-fill-ink { fill: var(--text-primary); }
+.af-fill-red { fill: var(--error); }
+.af-mark { stroke: #fff; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+.af-mark--accent { stroke: var(--aifb-accent); }
+.af-lens { fill: var(--bg-surface); stroke: var(--text-primary); stroke-width: 3; }
+.af-face { fill: none; stroke: var(--aifb-accent); stroke-width: 3; stroke-dasharray: 6 4; }
+.af-wave { fill: none; stroke: var(--aifb-accent); stroke-width: 3; stroke-linecap: round; }
+.af-route { fill: none; stroke: var(--aifb-sky); stroke-width: 4; stroke-dasharray: 2 9; stroke-linecap: round; }
+.af-chip { fill: var(--bg-elevated); stroke: var(--text-primary); stroke-width: 3; }
+.af-arrow line { stroke: var(--text-secondary); stroke-width: 3; }
+.af-arrow polygon { fill: var(--text-secondary); }
+.af-line { fill: none; stroke: var(--text-secondary); stroke-width: 3; }
+.af-diamond { fill: color-mix(in srgb, var(--aifb-gold) 14%, var(--bg-surface)); stroke: var(--aifb-gold); }
+.af-slot { fill: none; stroke: var(--aifb-accent); stroke-width: 3; stroke-dasharray: 6 4; }
+.af-track { fill: var(--bg-surface); stroke: var(--border-color); }
+.af-window { fill: color-mix(in srgb, var(--aifb-sky) 8%, var(--bg-surface)); stroke: var(--aifb-sky); stroke-width: 3; }
+.af-dot { fill: var(--text-secondary); opacity: 0.55; }
+.af-dot--hit { fill: var(--aifb-accent); opacity: 1; }
+.af-code { margin: 0; white-space: pre; font: 14px/1.55 "Geist Mono", ui-monospace, monospace; color: var(--text-primary); }
+.af-fo { margin: 0; font-size: 15px; line-height: 1.35; text-align: center; color: var(--text-secondary); }
+.af * { transform-box: fill-box; transform-origin: center; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .af-wave--1 { animation: af-pulse 1.6s ease-in-out infinite; }
+  .af-wave--2 { animation: af-pulse 1.6s ease-in-out 0.3s infinite; }
+  .af-pulse { animation: af-pulse 2s ease-in-out infinite; }
+  .af-face { animation: af-blink 2.4s steps(2) infinite; }
+  .af-bounce { animation: af-bounce 1.8s ease-in-out infinite; }
+  .af-slide { animation: af-slide 6s ease-in-out infinite; }
+  .af-slide--2 { animation-delay: 0.3s; } .af-slide--3 { animation-delay: 0.6s; } .af-slide--4 { animation-delay: 0.9s; }
+  .af-reveal { animation: af-reveal 6s ease-in-out infinite; }
+  .af-step { animation: af-focus 6s ease-in-out infinite; }
+  .af-step--2 { animation-delay: 1.5s; } .af-step--3 { animation-delay: 3s; } .af-step--4 { animation-delay: 4.5s; }
+  .af-magnifier { animation: af-wiggle 3s ease-in-out infinite; }
+  .af-check { animation: af-check 6s ease-in-out infinite; }
+  .af-check--2 { animation-delay: 0.6s; } .af-check--3 { animation-delay: 1.2s; } .af-check--4 { animation-delay: 1.8s; }
+  .af-bar { transform-origin: 0 50%; animation: af-grow 6s ease-out infinite; }
+  .af-bar--2 { animation-delay: 0.2s; } .af-bar--3 { animation-delay: 0.4s; }
+  .af-chosen { animation: af-reveal 6s ease-in-out infinite; }
+  .af-stamp { animation: af-stamp 4s ease-in-out infinite; }
+  .af-drop { animation: af-drop 7s ease-out infinite; }
+  .af-drop--2 { animation-delay: 0.4s; } .af-drop--3 { animation-delay: 0.8s; } .af-drop--4 { animation-delay: 1.2s; }
+  .af-runner { animation: af-run 4s ease-in-out infinite; }
+  .af-packet--out { animation: af-out 3s ease-in-out infinite; }
+  .af-packet--back { animation: af-back 3s ease-in-out 1.5s infinite; }
+  .af-msg { animation: af-msg 8s ease-out infinite; }
+  .af-msg--2 { animation-delay: 0.6s; } .af-msg--3 { animation-delay: 1.2s; } .af-msg--4 { animation-delay: 1.8s; } .af-msg--5 { animation-delay: 2.4s; } .af-msg--6 { animation-delay: 3s; }
+  .af-tick { animation: af-reveal 6s ease-in-out infinite; }
+  .af-tick--2 { animation-delay: 0.4s; } .af-tick--3 { animation-delay: 0.8s; } .af-tick--4 { animation-delay: 1.2s; }
+  .af-dot--hit { animation: af-pulse 1.6s ease-in-out infinite; }
+  .af-flowline { stroke-dasharray: 8 8; animation: af-dash 1.5s linear infinite; }
+}
+@keyframes af-pulse { 50% { opacity: 0.35; } }
+@keyframes af-blink { 50% { opacity: 0; } }
+@keyframes af-bounce { 50% { transform: translateY(-6px); } }
+@keyframes af-slide { 0%, 10% { transform: translateX(0); opacity: 1; } 35% { transform: translateX(40px); opacity: 0.4; } 45%, 100% { transform: translateX(0); opacity: 1; } }
+@keyframes af-reveal { 0%, 35% { opacity: 0; } 50%, 90% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes af-focus { 0%, 100% { opacity: 0.55; } 10%, 30% { opacity: 1; } 40% { opacity: 0.55; } }
+@keyframes af-wiggle { 50% { transform: rotate(-12deg) translateX(-4px); } }
+@keyframes af-check { 0%, 15% { opacity: 0.35; } 30%, 85% { opacity: 1; } 100% { opacity: 0.35; } }
+@keyframes af-grow { 0% { transform: scaleX(0); } 30%, 90% { transform: scaleX(1); } 100% { transform: scaleX(0); } }
+@keyframes af-stamp { 0%, 20% { transform: scale(1); } 30% { transform: scale(1.15); } 40%, 100% { transform: scale(1); } }
+@keyframes af-drop { 0% { transform: translateY(-30px); opacity: 0; } 15%, 85% { transform: translateY(0); opacity: 1; } 100% { opacity: 0; } }
+@keyframes af-run { 0% { transform: translateX(0); } 70%, 100% { transform: translateX(245px); } }
+@keyframes af-out { 0% { transform: translateX(0); opacity: 1; } 80% { transform: translateX(180px); opacity: 1; } 100% { transform: translateX(190px); opacity: 0; } }
+@keyframes af-back { 0% { transform: translateX(0); opacity: 1; } 80% { transform: translateX(-180px); opacity: 1; } 100% { transform: translateX(-190px); opacity: 0; } }
+@keyframes af-msg { 0% { opacity: 0; transform: translateY(8px); } 10%, 80% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; } }
+@keyframes af-dash { to { stroke-dashoffset: -16; } }
+@media (max-width: 520px) { .th-figure { padding: 0.6rem; } }

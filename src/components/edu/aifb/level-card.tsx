@@ -68,7 +68,7 @@ export function LevelCard({
           {" · "}
           {level.hours}
           {" · "}
-          {lessonsLabel(level.lessonCount, locale)}
+          {t("aifb.level.structure", { lessons: lessonsLabel(level.lessonCount - 1, locale) })}
         </span>
         <span className="aifb-level-card__badges">
           {level.advanced ? <span className="aifb-badge">{t("aifb.level.advanced")}</span> : null}

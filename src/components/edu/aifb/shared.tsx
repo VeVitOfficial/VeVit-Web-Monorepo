@@ -30,11 +30,9 @@ export function LessonRow({
   );
 }
 
-/** Štítek typu lekce podle tématu: „Povídání u mapy" / „Úkol 3" / „Teorie" / „Cvičení 3". */
-export function lessonKindLabel(t: AifbT, theme: string, lesson: { type: "theory" | "exercise"; order: number }): string {
-  return lesson.type === "theory"
-    ? t(`aifb.theme.${theme}.theory`)
-    : t(`aifb.theme.${theme}.exercise`, { n: lesson.order });
+/** Štítek: „Teorie“, nebo „Lekce 3“ (lekce = cvičení 1–5; teorie mezi lekce nepatří). */
+export function lessonKindLabel(t: AifbT, lesson: { type: "theory" | "exercise"; order: number }): string {
+  return lesson.type === "theory" ? t("aifb.lesson.theory") : t("aifb.lesson.exercise", { n: lesson.order });
 }
 
 /** Ukazatel postupu: číslo + tenký pruh (informace není jen barvou). */
