@@ -1,0 +1,1012 @@
+{
+  "generated": "scripts/aifb-docs.mjs",
+  "version": "2026-10",
+  "categories": [
+    {
+      "id": "zs1",
+      "title": "1. stupeň ZŠ",
+      "route": "/edu/ai-gramotnost/aifb/zs1",
+      "levels": [
+        {
+          "id": "zs1-blok-a",
+          "code": "Blok A",
+          "title": "AI kolem nás",
+          "theoryTopic": "zs1-a",
+          "lessons": [
+            {
+              "id": "zs1-blok-a-teorie",
+              "type": "theory",
+              "title": "Teorie",
+              "pilot": "QuizCard"
+            },
+            {
+              "id": "zs1-blok-a-cv1",
+              "type": "exercise",
+              "title": "Hledačka AI kolem nás",
+              "pilot": "CardSort"
+            },
+            {
+              "id": "zs1-blok-a-cv2",
+              "type": "exercise",
+              "title": "Hra na robota",
+              "pilot": null
+            },
+            {
+              "id": "zs1-blok-a-cv3",
+              "type": "exercise",
+              "title": "Skutečné, nebo vymyšlené",
+              "pilot": null
+            },
+            {
+              "id": "zs1-blok-a-cv4",
+              "type": "exercise",
+              "title": "Naše tajemství",
+              "pilot": "TrafficLightCards"
+            },
+            {
+              "id": "zs1-blok-a-cv5",
+              "type": "exercise",
+              "title": "Malý vynálezce",
+              "pilot": null
+            }
+          ]
+        },
+        {
+          "id": "zs1-blok-b",
+          "code": "Blok B",
+          "title": "Jak přemýšlí počítač",
+          "theoryTopic": "zs1-b",
+          "lessons": [
+            {
+              "id": "zs1-blok-b-teorie",
+              "type": "theory",
+              "title": "Teorie",
+              "pilot": null
+            },
+            {
+              "id": "zs1-blok-b-cv1",
+              "type": "exercise",
+              "title": "Hra na učení",
+              "pilot": null
+            },
+            {
+              "id": "zs1-blok-b-cv2",
+              "type": "exercise",
+              "title": "Detektiv chyb",
+              "pilot": null
+            },
+            {
+              "id": "zs1-blok-b-cv3",
+              "type": "exercise",
+              "title": "Tipovačka slov",
+              "pilot": null
+            },
+            {
+              "id": "zs1-blok-b-cv4",
+              "type": "exercise",
+              "title": "Člověk versus počítač",
+              "pilot": null
+            },
+            {
+              "id": "zs1-blok-b-cv5",
+              "type": "exercise",
+              "title": "Třídní pravidla k umělé inteligenci",
+              "pilot": null
+            }
+          ]
+        },
+        {
+          "id": "zs1-blok-c",
+          "code": "Blok C",
+          "title": "Host AI ve třídě",
+          "theoryTopic": "zs1-c",
+          "lessons": [
+            {
+              "id": "zs1-blok-c-teorie",
+              "type": "theory",
+              "title": "Teorie",
+              "pilot": null
+            },
+            {
+              "id": "zs1-blok-c-cv1",
+              "type": "exercise",
+              "title": "Společný rozhovor",
+              "pilot": null
+            },
+            {
+              "id": "zs1-blok-c-cv2",
+              "type": "exercise",
+              "title": "Vypravěč",
+              "pilot": null
+            },
+            {
+              "id": "zs1-blok-c-cv3",
+              "type": "exercise",
+              "title": "Učitel na zkoušku",
+              "pilot": null
+            },
+            {
+              "id": "zs1-blok-c-cv4",
+              "type": "exercise",
+              "title": "Pravda, nebo výmysl",
+              "pilot": null
+            },
+            {
+              "id": "zs1-blok-c-cv5",
+              "type": "exercise",
+              "title": "Návrh, prosím",
+              "pilot": null
+            }
+          ]
+        },
+        {
+          "id": "zs1-blok-d",
+          "code": "Blok D",
+          "title": "Přesná zadání a vlastní projekt",
+          "theoryTopic": "zs1-d",
+          "lessons": [
+            {
+              "id": "zs1-blok-d-teorie",
+              "type": "theory",
+              "title": "Teorie",
+              "pilot": null
+            },
+            {
+              "id": "zs1-blok-d-cv1",
+              "type": "exercise",
+              "title": "Tři podoby jedné odpovědi",
+              "pilot": null
+            },
+            {
+              "id": "zs1-blok-d-cv2",
+              "type": "exercise",
+              "title": "Ukaž mi příklad",
+              "pilot": null
+            },
+            {
+              "id": "zs1-blok-d-cv3",
+              "type": "exercise",
+              "title": "Kvíz podle pravidel",
+              "pilot": null
+            },
+            {
+              "id": "zs1-blok-d-cv4",
+              "type": "exercise",
+              "title": "Opravář zadání",
+              "pilot": null
+            },
+            {
+              "id": "zs1-blok-d-cv5",
+              "type": "exercise",
+              "title": "Měsíční projekt",
+              "pilot": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "zs2",
+      "title": "2. stupeň ZŠ",
+      "route": "/edu/ai-gramotnost/aifb/zs2",
+      "levels": [
+        {
+          "id": "zs2-level-1",
+          "code": "Level 1",
+          "title": "AIFB Foundation",
+          "theoryTopic": "foundation",
+          "lessons": [
+            {
+              "id": "zs2-level-1-teorie",
+              "type": "theory",
+              "title": "Teorie",
+              "pilot": null
+            },
+            {
+              "id": "zs2-level-1-cv1",
+              "type": "exercise",
+              "title": "První konverzace s AI",
+              "pilot": null
+            },
+            {
+              "id": "zs2-level-1-cv2",
+              "type": "exercise",
+              "title": "Detektiv halucinací",
+              "pilot": "AiSandbox"
+            },
+            {
+              "id": "zs2-level-1-cv3",
+              "type": "exercise",
+              "title": "Co sdílet a co ne",
+              "pilot": null
+            },
+            {
+              "id": "zs2-level-1-cv4",
+              "type": "exercise",
+              "title": "Srovnávací test rozhraní",
+              "pilot": null
+            },
+            {
+              "id": "zs2-level-1-cv5",
+              "type": "exercise",
+              "title": "Případová studie etického dilematu",
+              "pilot": null
+            }
+          ]
+        },
+        {
+          "id": "zs2-level-2",
+          "code": "Level 2",
+          "title": "AIFB Intermediate",
+          "theoryTopic": "prompting",
+          "lessons": [
+            {
+              "id": "zs2-level-2-teorie",
+              "type": "theory",
+              "title": "Teorie",
+              "pilot": null
+            },
+            {
+              "id": "zs2-level-2-cv1",
+              "type": "exercise",
+              "title": "Záchranář promptů",
+              "pilot": "AiSandbox"
+            },
+            {
+              "id": "zs2-level-2-cv2",
+              "type": "exercise",
+              "title": "Ukázkové příklady v praxi",
+              "pilot": null
+            },
+            {
+              "id": "zs2-level-2-cv3",
+              "type": "exercise",
+              "title": "Markdown dokument",
+              "pilot": null
+            },
+            {
+              "id": "zs2-level-2-cv4",
+              "type": "exercise",
+              "title": "JSON struktury",
+              "pilot": null
+            },
+            {
+              "id": "zs2-level-2-cv5",
+              "type": "exercise",
+              "title": "Vlastní AI skill",
+              "pilot": null
+            }
+          ]
+        },
+        {
+          "id": "zs2-level-3",
+          "code": "Level 3",
+          "title": "AIFB Advanced",
+          "theoryTopic": "automation",
+          "lessons": [
+            {
+              "id": "zs2-level-3-teorie",
+              "type": "theory",
+              "title": "Teorie",
+              "pilot": null
+            },
+            {
+              "id": "zs2-level-3-cv1",
+              "type": "exercise",
+              "title": "Návrh pracovního postupu na papíře",
+              "pilot": null
+            },
+            {
+              "id": "zs2-level-3-cv2",
+              "type": "exercise",
+              "title": "Společná první automatizace",
+              "pilot": null
+            },
+            {
+              "id": "zs2-level-3-cv3",
+              "type": "exercise",
+              "title": "Práce s API klíči a požadavky",
+              "pilot": null
+            },
+            {
+              "id": "zs2-level-3-cv4",
+              "type": "exercise",
+              "title": "Zpracování JSON odpovědí",
+              "pilot": null
+            },
+            {
+              "id": "zs2-level-3-cv5",
+              "type": "exercise",
+              "title": "Multimodální úloha",
+              "pilot": null
+            }
+          ]
+        },
+        {
+          "id": "zs2-level-4",
+          "code": "Level 4",
+          "title": "Advanced API Integration and Scripting",
+          "theoryTopic": "scripting",
+          "lessons": [
+            {
+              "id": "zs2-level-4-teorie",
+              "type": "theory",
+              "title": "Teorie",
+              "pilot": null
+            },
+            {
+              "id": "zs2-level-4-cv1",
+              "type": "exercise",
+              "title": "První skript volající model",
+              "pilot": null
+            },
+            {
+              "id": "zs2-level-4-cv2",
+              "type": "exercise",
+              "title": "Správa konverzačního kontextu",
+              "pilot": null
+            },
+            {
+              "id": "zs2-level-4-cv3",
+              "type": "exercise",
+              "title": "Function calling v praxi",
+              "pilot": null
+            },
+            {
+              "id": "zs2-level-4-cv4",
+              "type": "exercise",
+              "title": "Tokeny a cena",
+              "pilot": null
+            },
+            {
+              "id": "zs2-level-4-cv5",
+              "type": "exercise",
+              "title": "Ošetření chyb a spolehlivost",
+              "pilot": null
+            }
+          ]
+        },
+        {
+          "id": "zs2-level-5",
+          "code": "Level 5",
+          "title": "Custom AI Developer",
+          "theoryTopic": "developer",
+          "lessons": [
+            {
+              "id": "zs2-level-5-teorie",
+              "type": "theory",
+              "title": "Teorie",
+              "pilot": null
+            },
+            {
+              "id": "zs2-level-5-cv1",
+              "type": "exercise",
+              "title": "Návrh vlastní aplikace",
+              "pilot": null
+            },
+            {
+              "id": "zs2-level-5-cv2",
+              "type": "exercise",
+              "title": "Jednoduchá aplikace s modelem",
+              "pilot": null
+            },
+            {
+              "id": "zs2-level-5-cv3",
+              "type": "exercise",
+              "title": "Vyhodnocování kvality modelu",
+              "pilot": null
+            },
+            {
+              "id": "zs2-level-5-cv4",
+              "type": "exercise",
+              "title": "Lokální model přes Ollamu",
+              "pilot": null
+            },
+            {
+              "id": "zs2-level-5-cv5",
+              "type": "exercise",
+              "title": "Kdy (ne) dolaďovat model",
+              "pilot": null
+            }
+          ]
+        },
+        {
+          "id": "zs2-level-6",
+          "code": "Level 6",
+          "title": "AI Systems Architect",
+          "theoryTopic": "architect",
+          "lessons": [
+            {
+              "id": "zs2-level-6-teorie",
+              "type": "theory",
+              "title": "Teorie",
+              "pilot": null
+            },
+            {
+              "id": "zs2-level-6-cv1",
+              "type": "exercise",
+              "title": "Architektura multiagentního systému",
+              "pilot": null
+            },
+            {
+              "id": "zs2-level-6-cv2",
+              "type": "exercise",
+              "title": "Základní RAG pipeline",
+              "pilot": null
+            },
+            {
+              "id": "zs2-level-6-cv3",
+              "type": "exercise",
+              "title": "Sémantické vyhledávání",
+              "pilot": null
+            },
+            {
+              "id": "zs2-level-6-cv4",
+              "type": "exercise",
+              "title": "Bezpečnostní audit",
+              "pilot": null
+            },
+            {
+              "id": "zs2-level-6-cv5",
+              "type": "exercise",
+              "title": "Závěrečný projekt",
+              "pilot": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ss",
+      "title": "Střední školy a gymnázia",
+      "route": "/edu/ai-gramotnost/aifb/ss",
+      "levels": [
+        {
+          "id": "ss-level-1",
+          "code": "Level 1",
+          "title": "AIFB Foundation",
+          "theoryTopic": "foundation",
+          "lessons": [
+            {
+              "id": "ss-level-1-teorie",
+              "type": "theory",
+              "title": "Teorie",
+              "pilot": null
+            },
+            {
+              "id": "ss-level-1-cv1",
+              "type": "exercise",
+              "title": "První konverzace s AI",
+              "pilot": null
+            },
+            {
+              "id": "ss-level-1-cv2",
+              "type": "exercise",
+              "title": "Detektiv halucinací",
+              "pilot": "AiSandbox"
+            },
+            {
+              "id": "ss-level-1-cv3",
+              "type": "exercise",
+              "title": "Co sdílet a co ne",
+              "pilot": null
+            },
+            {
+              "id": "ss-level-1-cv4",
+              "type": "exercise",
+              "title": "Srovnávací test rozhraní",
+              "pilot": null
+            },
+            {
+              "id": "ss-level-1-cv5",
+              "type": "exercise",
+              "title": "Případová studie etického dilematu",
+              "pilot": null
+            }
+          ]
+        },
+        {
+          "id": "ss-level-2",
+          "code": "Level 2",
+          "title": "AIFB Intermediate",
+          "theoryTopic": "prompting",
+          "lessons": [
+            {
+              "id": "ss-level-2-teorie",
+              "type": "theory",
+              "title": "Teorie",
+              "pilot": null
+            },
+            {
+              "id": "ss-level-2-cv1",
+              "type": "exercise",
+              "title": "Záchranář promptů",
+              "pilot": "AiSandbox"
+            },
+            {
+              "id": "ss-level-2-cv2",
+              "type": "exercise",
+              "title": "Few-shot v praxi",
+              "pilot": null
+            },
+            {
+              "id": "ss-level-2-cv3",
+              "type": "exercise",
+              "title": "Markdown dokument",
+              "pilot": null
+            },
+            {
+              "id": "ss-level-2-cv4",
+              "type": "exercise",
+              "title": "JSON struktury",
+              "pilot": null
+            },
+            {
+              "id": "ss-level-2-cv5",
+              "type": "exercise",
+              "title": "Vlastní AI skill",
+              "pilot": null
+            }
+          ]
+        },
+        {
+          "id": "ss-level-3",
+          "code": "Level 3",
+          "title": "AIFB Advanced",
+          "theoryTopic": "automation",
+          "lessons": [
+            {
+              "id": "ss-level-3-teorie",
+              "type": "theory",
+              "title": "Teorie",
+              "pilot": null
+            },
+            {
+              "id": "ss-level-3-cv1",
+              "type": "exercise",
+              "title": "Návrh pracovního postupu na papíře",
+              "pilot": null
+            },
+            {
+              "id": "ss-level-3-cv2",
+              "type": "exercise",
+              "title": "První automatizace v n8n nebo Make",
+              "pilot": null
+            },
+            {
+              "id": "ss-level-3-cv3",
+              "type": "exercise",
+              "title": "Práce s API klíči a požadavky",
+              "pilot": null
+            },
+            {
+              "id": "ss-level-3-cv4",
+              "type": "exercise",
+              "title": "Zpracování JSON odpovědí",
+              "pilot": null
+            },
+            {
+              "id": "ss-level-3-cv5",
+              "type": "exercise",
+              "title": "Multimodální úloha",
+              "pilot": null
+            }
+          ]
+        },
+        {
+          "id": "ss-level-4",
+          "code": "Level 4",
+          "title": "Advanced API Integration and Scripting",
+          "theoryTopic": "scripting",
+          "lessons": [
+            {
+              "id": "ss-level-4-teorie",
+              "type": "theory",
+              "title": "Teorie",
+              "pilot": null
+            },
+            {
+              "id": "ss-level-4-cv1",
+              "type": "exercise",
+              "title": "První skript volající model",
+              "pilot": null
+            },
+            {
+              "id": "ss-level-4-cv2",
+              "type": "exercise",
+              "title": "Správa konverzačního kontextu",
+              "pilot": null
+            },
+            {
+              "id": "ss-level-4-cv3",
+              "type": "exercise",
+              "title": "Function calling v praxi",
+              "pilot": null
+            },
+            {
+              "id": "ss-level-4-cv4",
+              "type": "exercise",
+              "title": "Tokeny a cena",
+              "pilot": null
+            },
+            {
+              "id": "ss-level-4-cv5",
+              "type": "exercise",
+              "title": "Ošetření chyb a spolehlivost",
+              "pilot": null
+            }
+          ]
+        },
+        {
+          "id": "ss-level-5",
+          "code": "Level 5",
+          "title": "Custom AI Developer",
+          "theoryTopic": "developer",
+          "lessons": [
+            {
+              "id": "ss-level-5-teorie",
+              "type": "theory",
+              "title": "Teorie",
+              "pilot": null
+            },
+            {
+              "id": "ss-level-5-cv1",
+              "type": "exercise",
+              "title": "Návrh vlastní aplikace",
+              "pilot": null
+            },
+            {
+              "id": "ss-level-5-cv2",
+              "type": "exercise",
+              "title": "Jednoduchá aplikace s modelem",
+              "pilot": null
+            },
+            {
+              "id": "ss-level-5-cv3",
+              "type": "exercise",
+              "title": "Vyhodnocování kvality modelu",
+              "pilot": null
+            },
+            {
+              "id": "ss-level-5-cv4",
+              "type": "exercise",
+              "title": "Lokální model přes Ollamu",
+              "pilot": null
+            },
+            {
+              "id": "ss-level-5-cv5",
+              "type": "exercise",
+              "title": "Kdy (ne) dolaďovat model",
+              "pilot": null
+            }
+          ]
+        },
+        {
+          "id": "ss-level-6",
+          "code": "Level 6",
+          "title": "AI Systems Architect",
+          "theoryTopic": "architect",
+          "lessons": [
+            {
+              "id": "ss-level-6-teorie",
+              "type": "theory",
+              "title": "Teorie",
+              "pilot": null
+            },
+            {
+              "id": "ss-level-6-cv1",
+              "type": "exercise",
+              "title": "Architektura multiagentního systému",
+              "pilot": null
+            },
+            {
+              "id": "ss-level-6-cv2",
+              "type": "exercise",
+              "title": "Základní RAG pipeline",
+              "pilot": null
+            },
+            {
+              "id": "ss-level-6-cv3",
+              "type": "exercise",
+              "title": "Sémantické vyhledávání",
+              "pilot": null
+            },
+            {
+              "id": "ss-level-6-cv4",
+              "type": "exercise",
+              "title": "Bezpečnostní audit",
+              "pilot": null
+            },
+            {
+              "id": "ss-level-6-cv5",
+              "type": "exercise",
+              "title": "Závěrečný projekt",
+              "pilot": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "course": {
+    "status": "draft",
+    "route": "/edu/ai-gramotnost/kurz",
+    "modules": [
+      {
+        "id": "kurz-m1",
+        "title": "Co je umělá inteligence",
+        "minutes": 45,
+        "sources": [
+          "zs1",
+          "ss"
+        ],
+        "theorySections": [
+          "Program, který se učil z příkladů",
+          "Krátce z historie",
+          "Kde ji potkáváme",
+          "Jak se program učí",
+          "Jak „píše“ konverzační nástroj",
+          "Co umí dobře a co ne",
+          "Proč AI rozumět, i když ji neprogramuješ"
+        ],
+        "lessons": [
+          {
+            "id": "kurz-m1-cv1",
+            "title": "Najdi AI kolem sebe",
+            "minutes": 10,
+            "activity": "CardSort"
+          },
+          {
+            "id": "kurz-m1-cv2",
+            "title": "Jak se program učí poznávat",
+            "minutes": 10,
+            "activity": "QuizCard"
+          },
+          {
+            "id": "kurz-m1-cv3",
+            "title": "Hádej další slovo",
+            "minutes": 15,
+            "activity": null
+          },
+          {
+            "id": "kurz-m1-cv4",
+            "title": "Kvíz: co AI umí a co ne",
+            "minutes": 10,
+            "activity": "QuizCard"
+          }
+        ]
+      },
+      {
+        "id": "kurz-m2",
+        "title": "Jak se AI ptát",
+        "minutes": 50,
+        "sources": [
+          "zs1",
+          "zs2"
+        ],
+        "theorySections": [
+          "Co je zadání (prompt)",
+          "Recept na dobré zadání",
+          "Pro koho a jak dlouhé",
+          "Ukaž příklad",
+          "Zadání se ladí",
+          "Nejčastější chyby",
+          "Kdy začít nový rozhovor",
+          "Učit se s AI, ne místo sebe"
+        ],
+        "lessons": [
+          {
+            "id": "kurz-m2-cv1",
+            "title": "Poznej dobré zadání",
+            "minutes": 10,
+            "activity": "QuizCard"
+          },
+          {
+            "id": "kurz-m2-cv2",
+            "title": "Recept na zadání",
+            "minutes": 10,
+            "activity": "CardSort"
+          },
+          {
+            "id": "kurz-m2-cv3",
+            "title": "Vylepši zadání",
+            "minutes": 15,
+            "activity": null
+          },
+          {
+            "id": "kurz-m2-cv4",
+            "title": "Pomáhá, nebo dělá za mě?",
+            "minutes": 10,
+            "activity": "TrafficLightCards"
+          }
+        ]
+      },
+      {
+        "id": "kurz-m3",
+        "title": "Pravda, nebo výmysl?",
+        "minutes": 50,
+        "sources": [
+          "zs1",
+          "zs2",
+          "ss"
+        ],
+        "theorySections": [
+          "Proč si model vymýšlí",
+          "Proč máme sklon věřit",
+          "Jak ověřovat",
+          "Který zdroj je důvěryhodný",
+          "Zkreslené odpovědi",
+          "Vyrobené obrázky, hlasy a videa",
+          "Co dělat, když narazíš na chybu"
+        ],
+        "lessons": [
+          {
+            "id": "kurz-m3-cv1",
+            "title": "Detektiv halucinací",
+            "minutes": 10,
+            "activity": "TrafficLightCards"
+          },
+          {
+            "id": "kurz-m3-cv2",
+            "title": "Tři zdroje",
+            "minutes": 15,
+            "activity": null
+          },
+          {
+            "id": "kurz-m3-cv3",
+            "title": "Fotka, nebo podvrh?",
+            "minutes": 10,
+            "activity": "QuizCard"
+          },
+          {
+            "id": "kurz-m3-cv4",
+            "title": "Moje pravidla ověřování",
+            "minutes": 10,
+            "activity": null
+          }
+        ]
+      },
+      {
+        "id": "kurz-m4",
+        "title": "Soukromí a bezpečnost",
+        "minutes": 45,
+        "sources": [
+          "zs1",
+          "zs2",
+          "ss"
+        ],
+        "theorySections": [
+          "Kam putují data",
+          "Co do AI nepatří",
+          "Fotky a hlasy druhých lidí",
+          "Jak text upravit",
+          "Věkové podmínky a souhlas",
+          "Triky, na které si dát pozor",
+          "Silné heslo a dvoufázové ověření"
+        ],
+        "lessons": [
+          {
+            "id": "kurz-m4-cv1",
+            "title": "Můžu to napsat do AI?",
+            "minutes": 10,
+            "activity": "TrafficLightCards"
+          },
+          {
+            "id": "kurz-m4-cv2",
+            "title": "Rozřaď údaje",
+            "minutes": 10,
+            "activity": "CardSort"
+          },
+          {
+            "id": "kurz-m4-cv3",
+            "title": "Anonymizuj text",
+            "minutes": 15,
+            "activity": null
+          },
+          {
+            "id": "kurz-m4-cv4",
+            "title": "Kvíz: bezpečně online",
+            "minutes": 10,
+            "activity": "QuizCard"
+          }
+        ]
+      },
+      {
+        "id": "kurz-m5",
+        "title": "AI jako pomocník",
+        "minutes": 50,
+        "sources": [
+          "zs2",
+          "ss"
+        ],
+        "theorySections": [
+          "AI jako studijní parťák",
+          "Výstup v použitelné podobě",
+          "Text, obrázek, zvuk",
+          "Z opakované práce pracovní postup",
+          "Kde rozhoduje člověk",
+          "Poctivě přiznat pomoc"
+        ],
+        "lessons": [
+          {
+            "id": "kurz-m5-cv1",
+            "title": "Plán na opakování",
+            "minutes": 15,
+            "activity": null
+          },
+          {
+            "id": "kurz-m5-cv2",
+            "title": "Správný formát",
+            "minutes": 10,
+            "activity": "QuizCard"
+          },
+          {
+            "id": "kurz-m5-cv3",
+            "title": "Navrhni pracovní postup",
+            "minutes": 15,
+            "activity": null
+          },
+          {
+            "id": "kurz-m5-cv4",
+            "title": "Kdo má rozhodnout?",
+            "minutes": 10,
+            "activity": "TrafficLightCards"
+          }
+        ]
+      },
+      {
+        "id": "kurz-m6",
+        "title": "Jak AI funguje uvnitř",
+        "minutes": 55,
+        "sources": [
+          "ss"
+        ],
+        "theorySections": [
+          "Kontextové okno: krátkodobá paměť",
+          "Tokeny, rychlost a cena",
+          "Model a nástroje",
+          "Odpovědi z vlastních dokumentů (RAG)",
+          "Agenti: AI, která jedná",
+          "Jak se pozná, že systém funguje dobře",
+          "V cloudu, nebo v počítači",
+          "Kam dál"
+        ],
+        "lessons": [
+          {
+            "id": "kurz-m6-cv1",
+            "title": "Co si model pamatuje",
+            "minutes": 10,
+            "activity": "QuizCard"
+          },
+          {
+            "id": "kurz-m6-cv2",
+            "title": "AI s vlastní knihovnou",
+            "minutes": 10,
+            "activity": "CardSort"
+          },
+          {
+            "id": "kurz-m6-cv3",
+            "title": "Agent na výletě",
+            "minutes": 15,
+            "activity": null
+          },
+          {
+            "id": "kurz-m6-cv4",
+            "title": "Závěrečný test kurzu",
+            "minutes": 15,
+            "activity": "QuizCard"
+          }
+        ]
+      }
+    ]
+  },
+  "totals": {
+    "levels": 16,
+    "theoryPages": 16,
+    "exercises": 80,
+    "courseModules": 6,
+    "courseLessons": 24,
+    "theoryWords": 8331,
+    "courseWords": 7925
+  }
+}
