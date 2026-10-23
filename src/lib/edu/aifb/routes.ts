@@ -28,5 +28,8 @@ export const categoryPath = (locale: string, categoryId: string) => `${hubPath(l
 export const levelPath = (locale: string, categoryId: string, level: string) => `${categoryPath(locale, categoryId)}/${level}`;
 export const lessonPath = (locale: string, categoryId: string, level: string, lesson: string) =>
   `${levelPath(locale, categoryId, level)}/${lesson}`;
+export const coursePath = (locale: string) => `${hubPath(locale)}/kurz`;
+export const modulePath = (locale: string, module: string) => `${coursePath(locale)}/${module}`;
+export const courseLessonPath = (locale: string, module: string, lesson: string) => `${modulePath(locale, module)}/${lesson}`;
 export const guidePath = (locale: string, categoryId: string, anchor?: string) =>
   `${categoryPath(locale, categoryId)}/${GUIDE_SEGMENT}${anchor ? `#${anchor}` : ""}`;

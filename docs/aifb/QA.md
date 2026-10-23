@@ -39,7 +39,7 @@ Neověřeno / otevřeno:
 
 - Jednotkové: `npm run test:unit` (132 testů; markdown renderer s U+00A0, validace obsahu a jeho porušení, teorie, průběh, PII kontrola, žákovská vrstva, brána AI endpointu). Spouští se nově i v `security.yml`.
 - Validace obsahu: `npm run validate:aifb` (v `npm run build` a v CI). Změna id lekce, počtu lekcí, odkazu na oddíl nebo certifikace s jiným stavem než `planned` validaci shodí (pokryto testy).
-- Smoke: `npm run smoke:aifb`, 135 stránek (16 teorií, 80 lekcí, 16 bloků/levelů, 16 tisků, kategorie, průvodci, hub), všechny 200 s `<h1>`. Po přestavbě zatím nespuštěno.
+- Smoke: `npm run smoke:aifb`, 172 stránek (16 teorií, 80 lekcí, 16 bloků/levelů, 16 tisků, kategorie, průvodci, hub, 37 stránek online kurzu), všechny 200 s `<h1>`.
 - E2E: `npm run test:e2e:aifb` (playwright-core + node:test, bez nové závislosti). 16 testů: hub → kategorie → level → lekce pro každou kategorii, přímé otevření a obnovení, zpět/vpřed, seznamové zobrazení, klávesnice na mapě, pořadí teorie a lekcí, stránka teorie, tisk, průběh, soukromí, 360 px, produkce bez návrhů. Po přestavbě zatím nespuštěno (dev server zastaven kvůli paměti).
   Výsledek proti `next dev` i proti produkčnímu `next start`: všechny spuštěné testy prošly; test pro produkční běh se spouští jen s `E2E_PRODUCTION=1`, test AI endpointu s návrhy jen ve vývoji.
   E2E odhalil skutečnou chybu: při návštěvě lekce označené jako hotová ji hydratace přepsala na „rozpracováno". Opraveno (`getProgressNow`).

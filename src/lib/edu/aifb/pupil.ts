@@ -15,6 +15,8 @@ export type CardSortConfig = {
 };
 
 export type TrafficLightConfig = {
+  /** Vlastní popisky tlačítek (výchozí: „můžu říct" / „tajemství"). */
+  labels?: { green: string; red: string };
   situations: { id: string; text: string; answer?: "green" | "red"; feedback?: string }[];
 };
 
@@ -83,6 +85,7 @@ export function validatePupilLayer(lessonId: string, layer: PupilLayer): string[
     if (!Array.isArray(c.situations) || c.situations.length < 2 || !c.situations.every((s) => isString(s.id) && isString(s.text) && (s.answer === undefined || s.answer === "green" || s.answer === "red"))) {
       errors.push(`${where}: situations`);
     } else if (!unique(c.situations.map((s) => s.id))) errors.push(`${where}: duplicitní id situací`);
+    if (c.labels !== undefined && !(isString(c.labels.green) && isString(c.labels.red))) errors.push(`${where}: labels`);
   } else if (layer.component === "QuizCard") {
     const c = config as unknown as QuizConfig;
     if (!Array.isArray(c.questions) || c.questions.length === 0) errors.push(`${where}: questions`);

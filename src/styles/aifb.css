@@ -261,8 +261,8 @@ ol.aifb-list { list-style: decimal; }
 .aifb-sort__pile ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
 .aifb-sort__pile li { display: grid; gap: 0.35rem; color: var(--text-primary); }
 .aifb-traffic__text { margin: 0 0 0.6rem; font-weight: 600; color: var(--text-primary); }
-.aifb-light[aria-pressed="true"] { color: var(--aifb-on-accent); background: var(--aifb-accent); border-color: var(--aifb-accent); }
-.aifb-light--red[aria-pressed="true"] { background: var(--error); border-color: var(--error); color: #fff; }
+.aifb .aifb-light[aria-pressed="true"] { color: var(--aifb-on-accent); background: var(--aifb-accent); border-color: var(--aifb-accent); }
+.aifb .aifb-light--red[aria-pressed="true"] { background: var(--error); border-color: var(--error); color: #fff; }
 .aifb-traffic__feedback, .aifb-quiz__feedback { margin: 0.6rem 0 0; color: var(--text-primary); }
 .aifb-quiz { display: grid; gap: 1rem; }
 .aifb-quiz__q { margin: 0; }
@@ -289,6 +289,14 @@ ol.aifb-list { list-style: decimal; }
 .aifb-theory-card__lead { max-width: 48rem; line-height: 1.6; color: var(--text-secondary); }
 .aifb-theory-card__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1rem; }
 .aifb-theory-card__cta { margin-left: auto; font-weight: 700; color: var(--aifb-accent); }
+
+/* Online kurz: seznam modulů (pořadí je doporučené, proto čísla) */
+.aifb-course-modules { display: grid; gap: 1rem; margin: 0; padding: 0; list-style: none; }
+.aifb-course-module { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.5rem 1rem; align-items: start; padding: 1.2rem 1.4rem; border-radius: var(--radius-lg); background: var(--bg-surface); border: 1.5px solid var(--border-color); color: inherit; text-decoration: none; transition: border-color 0.2s, transform 0.2s; }
+.aifb .aifb-course-module:hover { border-color: var(--aifb-accent); transform: translateY(-2px); }
+.aifb-course-module__body { display: grid; gap: 0.45rem; min-width: 0; }
+.aifb-course-module__code { font-size: 0.85rem; font-weight: 700; color: var(--text-secondary); }
+.aifb-course-module > .aifb-progress { grid-column: 2; }
 
 .th-head h1 { margin-bottom: 0.75rem; }
 .th-lead { max-width: 46rem; margin: 0 0 1rem; font-size: 1.15rem; line-height: 1.6; color: var(--text-secondary); }

@@ -4,7 +4,8 @@ import Link from "next/link";
 import { Icon } from "../pages/home-icons";
 import { AiScene } from "../pages/soon-scenes";
 import { aifbT, countWord } from "@/lib/edu/aifb/i18n";
-import { categoryPath, guidePath, hubPath } from "@/lib/edu/aifb/routes";
+import { courseTotals, moduleLessonIds, type Course } from "@/lib/edu/aifb/course";
+import { categoryPath, coursePath, guidePath, hubPath } from "@/lib/edu/aifb/routes";
 import type { Catalog, CatalogCategory } from "@/lib/edu/aifb/types";
 import type { EduLocale } from "@/lib/edu/i18n-data";
 import { lessonsLabel } from "@/lib/edu/i18n-data";
@@ -19,22 +20,27 @@ const CARD_STYLE: Record<string, { color: string; icon: string }> = {
   kurz: { color: "var(--aifb-slate)", icon: "book-open" },
 };
 
-function CategoryCard({ category, locale }: { category: CatalogCategory; locale: EduLocale }) {
+function CategoryCard({ category, locale, course }: { category: CatalogCategory; locale: EduLocale; course: Course | null }) {
   const t = aifbT(locale);
   const style = CARD_STYLE[category.id] ?? CARD_STYLE.kurz;
   const css = { "--c": style.color } as React.CSSProperties;
-  const available = category.status === "content-ready";
+  // Online kurz nemá obsah AIFB v katalogu; počty a dostupnost bere z vlastního souboru kurzu.
+  const isCourse = category.id === "kurz";
+  const available = isCourse ? course !== null : category.status === "content-ready";
+  const totals = isCourse && course
+    ? { unit: countWord(t, "aifb.unit.Modul", course.modules.length), lessons: courseTotals(course).lessons, subtitle: course.subtitle }
+    : { unit: countWord(t, `aifb.unit.${category.unit}`, category.totals.levels), lessons: category.totals.lessons - category.totals.levels, subtitle: category.subtitle };
   const body = (
     <div className={`eh-card eh-card--big${available ? "" : " eh-card--off"}`} style={css}>
       <span className="eh-hexicon"><Icon name={style.icon} /></span>
       <div className="eh-card__body">
         <h3>{category.title}</h3>
-        <p>{available ? category.subtitle : t("aifb.hub.legacyCourse")}</p>
+        <p>{available ? totals.subtitle : t("aifb.hub.legacyCourse")}</p>
         {available ? (
           <p className="aifb-card-meta">
             <span className="eh-badge">{category.grades}</span>{" "}
-            <span className="eh-badge">{countWord(t, `aifb.unit.${category.unit}`, category.totals.levels)}</span>{" "}
-            <span className="eh-badge">{lessonsLabel(category.totals.lessons - category.totals.levels, locale)}</span>
+            <span className="eh-badge">{totals.unit}</span>{" "}
+            <span className="eh-badge">{lessonsLabel(totals.lessons, locale)}</span>
           </p>
         ) : (
           <span className="eh-badge">{t("aifb.comingSoon")}</span>
@@ -47,12 +53,12 @@ function CategoryCard({ category, locale }: { category: CatalogCategory; locale:
   }
   return (
     <li className="eh-cell eh-cell--big">
-      <Link href={categoryPath(locale, category.id)} className="aifb-card-link">{body}</Link>
+      <Link href={isCourse ? coursePath(locale) : categoryPath(locale, category.id)} className="aifb-card-link">{body}</Link>
     </li>
   );
 }
 
-export function Hub({ locale, catalog }: { locale: EduLocale; catalog: Catalog }) {
+export function Hub({ locale, catalog, course }: { locale: EduLocale; catalog: Catalog; course: Course | null }) {
   const t = aifbT(locale);
   const teachable = catalog.categories.filter((category) => category.status === "content-ready");
   return (
@@ -81,14 +87,19 @@ export function Hub({ locale, catalog }: { locale: EduLocale; catalog: Catalog }
         <h2 className="eh-h2" id="aifb-cards-title"><span className="eh-bullet" aria-hidden="true" />{t("aifb.hub.cards")}</h2>
         <ul className="eh-cats aifb-card-list">
           {catalog.categories.map((category) => (
-            <CategoryCard key={category.id} category={category} locale={locale} />
+            <CategoryCard key={category.id} category={category} locale={locale} course={course} />
           ))}
         </ul>
       </section>
 
       <section aria-labelledby="aifb-progress-title" className="aifb-section">
         <h2 className="eh-h2" id="aifb-progress-title"><span className="eh-bullet" aria-hidden="true" />{t("aifb.progress.title")}</h2>
-        <ProgressTransfer levels={teachable.flatMap((category) => category.levels.map((level) => ({ id: level.id, lessonCount: level.lessonCount })))} />
+        <ProgressTransfer
+          levels={[
+            ...teachable.flatMap((category) => category.levels.map((level) => ({ id: level.id, lessonCount: level.lessonCount }))),
+            ...(course?.modules ?? []).map((module) => ({ id: module.id, lessonCount: moduleLessonIds(module).length })),
+          ]}
+        />
       </section>
 
       <section aria-labelledby="aifb-teachers-title" className="aifb-section">

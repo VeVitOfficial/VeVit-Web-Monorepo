@@ -1,6 +1,6 @@
 "use client";
 
-// TrafficLightCards: zelená (můžu říct) / červená (tajemství) u každé situace. Odpověď je vždy i text,
+// TrafficLightCards: zelená (můžu říct) / červená (tajemství), nebo vlastní popisky, u každé situace. Odpověď je vždy i text,
 // ne jen barva; zpětná vazba se ukáže hned po odpovědi.
 
 import { useState } from "react";
@@ -13,7 +13,7 @@ export function TrafficLightCards({ config }: { config: TrafficLightConfig }) {
   const [answers, setAnswers] = useState<Record<string, Light>>({});
   const result = trafficCorrect(config, answers);
   const answeredAll = Object.keys(answers).length === config.situations.length;
-  const labelOf = (light: Light) => t(light === "green" ? "aifb.traffic.green" : "aifb.traffic.red");
+  const labelOf = (light: Light) => config.labels?.[light] ?? t(light === "green" ? "aifb.traffic.green" : "aifb.traffic.red");
 
   return (
     <div className="aifb-traffic">

@@ -15,8 +15,8 @@ export type AifbProgress = {
   lessons: Record<string, { status: LessonStatus; at: string }>;
 };
 
-/** Id lekce: <kategorie>-<level...>-teorie | -cv1..cv5. Cokoli jiného se při importu zahodí. */
-const LESSON_ID = /^(?:zs1|zs2|ss)-[a-z0-9]+(?:-[a-z0-9]+)*-(?:teorie|cv[1-5])$/;
+/** Id lekce: <kategorie nebo kurz>-<level...>-teorie | -cv1..cv5. Cokoli jiného se při importu zahodí. */
+const LESSON_ID = /^(?:zs1|zs2|ss|kurz)-[a-z0-9]+(?:-[a-z0-9]+)*-(?:teorie|cv[1-5])$/;
 
 export function emptyProgress(): AifbProgress {
   return { version: 1, lessons: {} };

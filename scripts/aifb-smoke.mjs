@@ -1,6 +1,7 @@
-// Smoke test běžícího serveru: hub, 3 kategorie, 16 levelů (+ tisk), 16 teorií a 80 lekcí
-// a průvodce. Každá stránka musí vrátit 200 a obsahovat <h1>. Spuštění: `npm run smoke:aifb`
+// Smoke test běžícího serveru: hub, 3 kategorie, 16 levelů (+ tisk), 16 teorií a 80 lekcí,
+// průvodce a online kurz. Každá stránka musí vrátit 200 a obsahovat <h1>. Spuštění: `npm run smoke:aifb`
 // (server na BASE_URL, výchozí http://localhost:3000; potřebuje `npm run dev` nebo `npm start`).
+// S E2E_PRODUCTION=1 se u kurzu ve stavu návrhu naopak čeká 404 (na produkci se návrh neukazuje).
 
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
@@ -23,6 +24,16 @@ for (const category of ["zs1", "zs2", "ss"]) {
   }
 }
 
+const course = JSON.parse(readFileSync(join(dir, "aifb-kurz.json"), "utf8"));
+const courseStatus = course.status === "draft" && process.env.E2E_PRODUCTION === "1" ? 404 : 200;
+const courseUrls = [`${prefix}/kurz`];
+for (const mod of course.modules) {
+  const moduleUrl = `${prefix}/kurz/${mod.id.slice("kurz-".length)}`;
+  courseUrls.push(moduleUrl, `${moduleUrl}/teorie`, ...mod.lessons.map((lesson) => `${moduleUrl}/${lesson.id.slice(mod.id.length + 1)}`));
+}
+const expected = new Map(courseUrls.map((url) => [url, courseStatus]));
+urls.push(...courseUrls);
+
 let failures = 0;
 const pool = 6;
 let next = 0;
@@ -32,7 +43,8 @@ async function worker() {
     try {
       const res = await fetch(url);
       const html = await res.text();
-      if (res.status !== 200 || !/<h1[\s>]/.test(html)) {
+      const want = expected.get(url) ?? 200;
+      if (res.status !== want || (want === 200 && !/<h1[\s>]/.test(html))) {
         failures += 1;
         console.error(`FAIL ${res.status} ${url}${res.status === 200 ? " (chybí <h1>)" : ""}`);
       }

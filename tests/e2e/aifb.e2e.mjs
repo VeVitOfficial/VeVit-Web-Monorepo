@@ -171,12 +171,46 @@ test("soukromí: žádné požadavky mimo vlastní doménu", async () => {
 
 test("žádný vodorovný posun na 360 px", async () => {
   await withPage(async (page) => {
-    for (const path of ["", "/aifb/zs1", "/aifb/zs2", "/aifb/ss", "/aifb/zs1/blok-a", "/aifb/zs1/blok-a/cv3", "/aifb/zs2/level-3/teorie", "/aifb/ss/level-6/teorie"]) {
+    const course = production ? [] : ["/kurz", "/kurz/m2", "/kurz/m6/teorie", "/kurz/m2/cv2"];
+    for (const path of ["", "/aifb/zs1", "/aifb/zs2", "/aifb/ss", "/aifb/zs1/blok-a", "/aifb/zs1/blok-a/cv3", "/aifb/zs2/level-3/teorie", "/aifb/ss/level-6/teorie", ...course]) {
       await page.goto(`${root}${path}`);
       const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
       assert.ok(overflow <= 1, `${path || "hub"}: přesah ${overflow}px`);
     }
   }, { viewport: { width: 360, height: 800 } });
+});
+
+test("online kurz: hub → kurz → modul → teorie → lekce s cvičením → další lekce", { skip: production }, async () => {
+  await withPage(async (page) => {
+    await page.goto(root);
+    await page.getByRole("link", { name: /Online kurz pro všechny/ }).click();
+    await page.waitForURL(/\/kurz$/);
+    assert.equal(await page.locator(".aifb-course-module").count(), 6);
+    await page.locator(".aifb-course-module", { hasText: "Soukromí a bezpečnost" }).click();
+    await page.waitForURL(/\/kurz\/m4$/);
+    const theoryTop = await page.locator(".aifb-theory-card").boundingBox();
+    const lessonsTop = await page.locator(".aifb-lesson-list").boundingBox();
+    assert.ok(theoryTop && lessonsTop && theoryTop.y < lessonsTop.y, "teorie je nad lekcemi");
+    await page.locator(".aifb-theory-card").click();
+    await page.waitForURL(/\/kurz\/m4\/teorie$/);
+    assert.ok(await page.locator(".th-figure").count() >= 1, "teorie má ilustraci");
+    await page.getByRole("link", { name: /Pokračovat: Lekce 1/ }).click();
+    await page.waitForURL(/\/kurz\/m4\/cv1$/);
+    const item = page.locator(".aifb-traffic__item").nth(1);
+    await item.getByRole("button", { name: "Nepatří do AI" }).click();
+    await assert.doesNotReject(item.getByRole("status").waitFor());
+    await page.getByRole("link", { name: /Lekce 2: Rozřaď údaje/ }).click();
+    await page.waitForURL(/\/kurz\/m4\/cv2$/);
+  });
+});
+
+test("produkce: online kurz ve stavu návrhu není dostupný", { skip: !production }, async () => {
+  await withPage(async (page) => {
+    const response = await page.goto(`${root}/kurz`);
+    assert.equal(response.status(), 404);
+    await page.goto(root);
+    assert.equal(await page.getByRole("link", { name: /Online kurz pro všechny/ }).count(), 0);
+  });
 });
 
 test("produkce: žádné návrhy žákovských cvičení a AI endpoint nedostupný", { skip: !production }, async () => {

@@ -273,3 +273,12 @@ Rozhodnutí z F4 a F7:
 - **Text teorie** je nový obsah v `src/content/aifb/aifb-theory.json` (10 témat pro 16 bloků a levelů, SŠ má sekce navíc; 17 ilustrací v `theory-figures.tsx`, část animovaná). Vychází z témat, cílů a teoretické části plánů. Stav `draft`: na stránce je drobná poznámka, že čeká na odbornou kontrolu. Po kontrole změnit `status` na `reviewed`.
 - **Přepínač Pro učitele / Projekce / Žák je zrušen.** Lekce má jedno zobrazení (zadání, co má vzniknout, forma, čas). Metodika pro učitele (jak teorii vést, opakovací otázky, témata k diskuzi, rozvrh, poznámky) je ve sbalených sekcích „Pro učitele“.
 - Pilotní interaktivní cvičení se ukazují v sekci „Vyzkoušej si“ u lekce (u teorie bloku A kvíz), jako návrh jen ve vývoji a náhledu (R7).
+
+## 21. Online kurz pro všechny a delší teorie (2026-10-23)
+
+- **Kurz:** `src/content/aifb/aifb-kurz.json` (vlastní soubor, katalog ani obsahové soubory se nemění). Šest modulů, každý má teorii (stejné bloky a ilustrace jako teorie levelů) a čtyři lekce: postup, cvičení na stránce (kvíz, třídění karet, semafor), tip a „Co si odneseš“. Moduly berou z 1. stupně (AI kolem nás, učení z příkladů, tajemství), z 2. stupně (zadání, ověřování, pracovní postupy) i ze SŠ (kontext, nástroje, RAG, agenti, prompt injection).
+- **Trasy:** `/edu/ai-gramotnost/kurz`, `/kurz/m1`, `/kurz/m1/teorie`, `/kurz/m1/cv1`. Id lekcí `kurz-m1-teorie`, `kurz-m1-cv1` mají stejný tvar jako AIFB, takže funguje místní průběh, export/import i XP.
+- **Bez AI a bez účtu:** kurz nepoužívá cvičení s AI (validace to hlídá), protože je pro všechny věkové skupiny.
+- **Návrh (R7):** `status: "draft"`. Kurz se ukazuje jen ve vývoji, v náhledových nasazeních a s `AIFB_PREVIEW_DRAFTS=1`; na produkci vrací 404 a karta v hubu zůstává „Připravuje se“. Po schválení stačí změnit stav na `"reviewed"`.
+- **Delší teorie:** každé z 10 témat má dvě nové sekce (6 200 → 8 300 slov), nové ilustrace `fair-data`, `ai-made`, `human-loop`, `prompt-injection`. Text je dál návrh.
+- **Kontroly:** `validate:aifb` ověřuje kurz (`validateCourse`), smoke 172 stránek (s `E2E_PRODUCTION=1` čeká u kurzu 404), E2E projde kurz od hubu po lekci.

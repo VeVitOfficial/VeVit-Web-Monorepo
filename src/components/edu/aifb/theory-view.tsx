@@ -15,7 +15,7 @@ import { PupilLayerView } from "./interactive/pupil-layer";
 import { LessonProgressControls } from "./lesson-progress";
 import { PrintButton } from "./print-button";
 import { RichText, type RichTextContext } from "./rich-text";
-import { TheoryBlocks } from "./theory-blocks";
+import { TheoryLayout } from "./theory-layout";
 
 export function TheoryView({
   locale, content, level, lesson, theory,
@@ -50,61 +50,37 @@ export function TheoryView({
         </p>
       </header>
 
-      <div className="th-layout">
-        <nav className="aifb-toc th-toc aifb-noprint" aria-label={t("aifb.theory.contents")}>
-          <p className="aifb-toc__title">{t("aifb.theory.contents")}</p>
-          <ol>
-            {theory.sections.map((section) => <li key={section.id}><a href={`#${section.id}`}>{section.heading}</a></li>)}
-            <li><a href="#shrnuti">{t("aifb.theory.summary")}</a></li>
-          </ol>
-        </nav>
-
-        <article className="th-article">
-          {theory.sections.map((section) => (
-            <section key={section.id} id={section.id} className="th-section" aria-labelledby={`${section.id}-h`}>
-              <h2 id={`${section.id}-h`}>{section.heading}</h2>
-              <TheoryBlocks blocks={section.blocks} ctx={ctx} />
-            </section>
-          ))}
-
-          <section id="shrnuti" className="th-summary" aria-labelledby="shrnuti-h">
-            <h2 id="shrnuti-h">{t("aifb.theory.summary")}</h2>
-            <ul className="aifb-list">
-              {theory.summary.map((item, index) => <li key={index}><RichText text={item} ctx={ctx} /></li>)}
-            </ul>
+      <TheoryLayout theory={theory} ctx={ctx} t={t}>
+        {showLayer && layer ? (
+          <section className="th-section" aria-labelledby="th-try">
+            <h2 id="th-try">{t("aifb.theory.tryIt")}</h2>
+            {layer.status === "draft" ? <p className="aifb-muted">{t("aifb.pupil.draftBanner")}</p> : null}
+            <PupilLayerView lessonId={lesson.id} categoryId={category.id} layer={layer} ctx={ctx} />
           </section>
+        ) : null}
 
-          {showLayer && layer ? (
-            <section className="th-section" aria-labelledby="th-try">
-              <h2 id="th-try">{t("aifb.theory.tryIt")}</h2>
-              {layer.status === "draft" ? <p className="aifb-muted">{t("aifb.pupil.draftBanner")}</p> : null}
-              <PupilLayerView lessonId={lesson.id} categoryId={category.id} layer={layer} ctx={ctx} />
-            </section>
-          ) : null}
+        <LessonProgressControls lessonId={lesson.id} autoStart />
 
-          <LessonProgressControls lessonId={lesson.id} autoStart />
+        {firstLesson ? (
+          <p className="th-next aifb-noprint">
+            <Link className="btn btn-primary" href={lessonPath(locale, category.id, lvl, lessonSlug(level.id, firstLesson.id))}>
+              {t("aifb.theory.next", { lesson: `${t("aifb.lesson.exercise", { n: firstLesson.order })}: ${firstLesson.title}` })}
+            </Link>
+          </p>
+        ) : null}
 
-          {firstLesson ? (
-            <p className="th-next aifb-noprint">
-              <Link className="btn btn-primary" href={lessonPath(locale, category.id, lvl, lessonSlug(level.id, firstLesson.id))}>
-                {t("aifb.theory.next", { lesson: `${t("aifb.lesson.exercise", { n: firstLesson.order })}: ${firstLesson.title}` })}
-              </Link>
-            </p>
-          ) : null}
+        <details className="aifb-details th-teacher">
+          <summary><h2>{t("aifb.theory.teacher")}</h2></summary>
+          <h3 className="aifb-h3">{t("aifb.theory.teacherHow")}</h3>
+          <Paragraphs items={lesson.teacher.intro} ctx={ctx} />
+          <h3 className="aifb-h3">{t("aifb.lesson.reviewQuestions")}</h3>
+          <ol className="aifb-list">{lesson.teacher.reviewQuestions.map((q, i) => <li key={i}><RichText text={q} ctx={ctx} /></li>)}</ol>
+          <h3 className="aifb-h3">{t("aifb.lesson.discussionTopics")}</h3>
+          <ul className="aifb-list">{lesson.teacher.discussionTopics.map((q, i) => <li key={i}><RichText text={q} ctx={ctx} /></li>)}</ul>
+        </details>
 
-          <details className="aifb-details th-teacher">
-            <summary><h2>{t("aifb.theory.teacher")}</h2></summary>
-            <h3 className="aifb-h3">{t("aifb.theory.teacherHow")}</h3>
-            <Paragraphs items={lesson.teacher.intro} ctx={ctx} />
-            <h3 className="aifb-h3">{t("aifb.lesson.reviewQuestions")}</h3>
-            <ol className="aifb-list">{lesson.teacher.reviewQuestions.map((q, i) => <li key={i}><RichText text={q} ctx={ctx} /></li>)}</ol>
-            <h3 className="aifb-h3">{t("aifb.lesson.discussionTopics")}</h3>
-            <ul className="aifb-list">{lesson.teacher.discussionTopics.map((q, i) => <li key={i}><RichText text={q} ctx={ctx} /></li>)}</ul>
-          </details>
-
-          {theory.status === "draft" ? <p className="aifb-muted th-draft">{t("aifb.theory.draftNote")}</p> : null}
-        </article>
-      </div>
+        {theory.status === "draft" ? <p className="aifb-muted th-draft">{t("aifb.theory.draftNote")}</p> : null}
+      </TheoryLayout>
     </>
   );
 }

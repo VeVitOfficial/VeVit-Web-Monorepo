@@ -10,11 +10,13 @@ import catalogJson from "@/content/aifb/aifb-catalog.json";
 import downloadsJson from "@/content/aifb/downloads.json";
 import pupilPilotsJson from "@/content/aifb/pupil-pilots.json";
 import theoryJson from "@/content/aifb/aifb-theory.json";
+import courseJson from "@/content/aifb/aifb-kurz.json";
 import type { AifbContent, Catalog, CategoryId, Level, Lesson } from "./types.ts";
 import { isCategoryId } from "./types.ts";
 import { lessonIdFromSlug, levelIdFromSlug } from "./routes.ts";
 import type { PupilLayer, PupilOverlay } from "./pupil.ts";
 import { resolveTheory, type ResolvedTheory, type TheoryFile } from "./theory.ts";
+import type { Course } from "./course.ts";
 
 const catalog = catalogJson as unknown as Catalog;
 
@@ -86,4 +88,14 @@ export function draftPreviewEnabled(): boolean {
 /** Teorie levelu (text před lekcemi). */
 export function getTheory(levelId: string): ResolvedTheory | null {
   return resolveTheory(theoryJson as unknown as TheoryFile, levelId);
+}
+
+/** Online kurz pro všechny (vlastní soubor, ne obsah AIFB). */
+export function getCourse(): Course {
+  return courseJson as unknown as Course;
+}
+
+/** Kurz je celý text pro žáky: návrh se ukazuje jen ve vývoji a náhledu, na produkci až po schválení (R7). */
+export function courseVisible(): boolean {
+  return getCourse().status !== "draft" || draftPreviewEnabled();
 }

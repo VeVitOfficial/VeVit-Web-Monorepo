@@ -32,6 +32,8 @@ jobs:
           cat server.log; exit 1
       - name: AIFB smoke (all pages)
         run: npm run smoke:aifb
+        env:
+          E2E_PRODUCTION: "1"
       - name: AIFB E2E
         run: npm run test:e2e:aifb
         env:
