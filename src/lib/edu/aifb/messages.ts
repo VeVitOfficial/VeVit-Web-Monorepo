@@ -284,6 +284,9 @@ const cs: Messages = {
   "aifb.class.archive": "Zrušit třídu",
   "aifb.class.archiveConfirm": "Zrušit třídu {{name}}? Žáci z ní budou odebráni a kód přestane platit.",
 
+  "aifb.schools.title": "VeVit Edu pro školy",
+  "aifb.schools.body": "Máš od učitele kód třídy? Zadej ho a uvidíš lekce AI gramotnosti, které ti učitel odemkne.",
+  "aifb.schools.cta": "Zadat kód třídy",
   "aifb.join.title": "Máš kód třídy?",
   "aifb.join.lead": "Zadej kód, který ti dal učitel. Připojíš se ke třídě a uvidíš lekce AI gramotnosti, které ti učitel odemkne.",
   "aifb.join.label": "Kód třídy",

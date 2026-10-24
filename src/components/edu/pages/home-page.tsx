@@ -217,6 +217,27 @@ export function EduHomePage({ locale, aifbLessons }: { locale: string; aifbLesso
           lead={t("landing.lead")}
         />
 
+        <section className="mb-16" aria-labelledby="edu-schools-title">
+          <div className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-6">
+            <div className="flex items-center gap-4">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-500">
+                <Icon name="book-open" className="h-6 w-6" />
+              </span>
+              <div>
+                <h2 id="edu-schools-title" className="text-lg font-semibold text-[var(--color-text-primary)]">{t("aifb.schools.title")}</h2>
+                <p className="text-sm text-[var(--color-text-secondary)]">{t("aifb.schools.body")}</p>
+              </div>
+            </div>
+            <Link
+              href={`/${lang}/edu/skoly#trida`}
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-emerald-500 px-6 py-3 font-semibold text-black transition-colors hover:bg-emerald-400"
+            >
+              {t("aifb.schools.cta")}
+              <Icon name="arrow-right" className="h-4 w-4" />
+            </Link>
+          </div>
+        </section>
+
         {continueItems.length > 0 ? (
           <section className="mb-16">
             <h2 className="eh-h2">
