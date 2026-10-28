@@ -78,9 +78,9 @@ function fmtAcc(a: Acc): string {
 
 export default function IbanConverter({ locale }: ToolComponentProps) {
   const [mode, setMode] = useState<"to" | "from">("to");
-  const [out, setOut] = useState("—");
+  const [out, setOut] = useState(", ");
   const [outK, setOutK] = useState(S.outIban);
-  const [det, setDet] = useState("—");
+  const [det, setDet] = useState(", ");
   const [showDet, setShowDet] = useState(false);
   const [err, setErr] = useState<string | null>(null);
   const [acc, setAcc] = useState("");
@@ -110,12 +110,12 @@ export default function IbanConverter({ locale }: ToolComponentProps) {
   const switchMode = (m: "to" | "from") => {
     setMode(m);
     setErr(null);
-    setOut("—");
+    setOut(", ");
     setShowDet(false);
   };
 
   const doCopy = () => {
-    if (out && out !== "—") copyText(out, locale);
+    if (out && out !== ", ") copyText(out, locale);
   };
 
   return (

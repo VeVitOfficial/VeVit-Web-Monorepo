@@ -43,7 +43,7 @@ export default function MarkdownEditor({ locale }: ToolComponentProps) {
     try {
       const saved = localStorage.getItem(KEY);
       if (saved) Promise.resolve().then(() => setInput(saved));
-    } catch { /* localStorage nedostupné — ignoruj */ }
+    } catch { /* localStorage nedostupné, ignoruj */ }
   }, []);
 
   // Vykresli náhled přes VeVitMarkdown.renderInto (DOMPurify sanitize).
@@ -203,7 +203,7 @@ export default function MarkdownEditor({ locale }: ToolComponentProps) {
         </div>
       </div>
 
-      <p className="muted" style={{ fontSize: "0.8rem" }}>Text se automaticky ukládá do prohlížeče. Zpracování běží lokálně — nic se neodesílá.</p>
+      <p className="muted" style={{ fontSize: "0.8rem" }}>Text se automaticky ukládá do prohlížeče. Zpracování běží lokálně, nic se neodesílá.</p>
     </div>
   );
 }

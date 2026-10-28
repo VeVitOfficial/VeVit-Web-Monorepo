@@ -142,7 +142,7 @@ export default function PdfPassword({ locale }: ToolComponentProps) {
       toastSuccess(mode === "set" ? "Heslo bylo nastaveno" : "Heslo bylo odstraněno");
     } catch (e) {
       setRunning(false);
-      const msg = (e as Error)?.message || (mode === "set" ? "Šifrování selhalo." : "Zkontrolujte heslo — odstranění se nezdařilo.");
+      const msg = (e as Error)?.message || (mode === "set" ? "Šifrování selhalo." : "Zkontrolujte heslo, odstranění se nezdařilo.");
       setError(msg);
       setState("error", msg);
     }
@@ -196,7 +196,7 @@ export default function PdfPassword({ locale }: ToolComponentProps) {
                 <input id="pp-user-pw" type="password" className="input" value={userPassword} onChange={(e) => setUserPassword(e.target.value)} autoComplete="new-password" />
               </div>
               <div className="stack-sm">
-                <label className="field-label" htmlFor="pp-owner-pw">Vlastnické heslo (volitelné — pro úpravy/tisk; jinak stejné jako výše)</label>
+                <label className="field-label" htmlFor="pp-owner-pw">Vlastnické heslo (volitelné, pro úpravy/tisk; jinak stejné jako výše)</label>
                 <input id="pp-owner-pw" type="password" className="input" value={ownerPassword} onChange={(e) => setOwnerPassword(e.target.value)} autoComplete="new-password" />
               </div>
             </div>

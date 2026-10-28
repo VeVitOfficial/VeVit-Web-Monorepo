@@ -1,4 +1,4 @@
-.vv-app-brand { display:inline-flex; align-items:baseline; font-family:'Sora',sans-serif; font-size:1.25rem; letter-spacing:-.01em; white-space:nowrap; }
+.vv-app-brand { display:inline-flex; align-items:baseline; font-family:var(--font-plex-sans),sans-serif; font-size:1.25rem; letter-spacing:-.01em; white-space:nowrap; }
 .vv-app-brand a { text-decoration:none; }
 .vv-app-brand a:first-child { color:#10b981; font-weight:700; }
 .vv-app-brand a + a { margin-left:6px; color:var(--text,#f8fafc); opacity:.85; font-weight:400; }
@@ -19,7 +19,7 @@
   border:1px solid var(--vv-menu-border); border-radius:1rem;
   background:var(--vv-menu-bg); color:var(--vv-menu-text);
   box-shadow:0 1.25rem 3rem rgb(0 0 0 / .45),0 0 0 1px rgb(255 255 255 / .02) inset;
-  font-family:Geist,Inter,system-ui,sans-serif; text-align:left;
+  font-family:var(--font-plex-sans),system-ui,sans-serif; text-align:left;
   transform-origin:top right; animation:vv-app-menu-in 160ms cubic-bezier(.2,.8,.3,1);
 }
 .vv-app-switcher__menu[hidden] { display:none; }

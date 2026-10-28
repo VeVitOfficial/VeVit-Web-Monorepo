@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useCart } from "@/components/store/use-cart";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { Icon } from "@/components/store/icon";
 
 const NAV_ITEMS = [
   { href: "/store", label: "Domů", key: "home", icon: "home" },
@@ -24,14 +26,10 @@ const BOTTOM_ITEMS = [
   { href: "/store/cart", icon: "shopping_bag", label: "Košík" },
 ];
 
-function Icon({ name, className }: { name: string; className?: string }) {
-  return <span className={`material-symbols-outlined ${className ?? ""}`} aria-hidden="true">{name}</span>;
-}
-
 function CartBadge({ count }: { count: number }) {
   if (count === 0) return null;
   return (
-    <span className="nav-cart-badge absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] px-1 bg-primary-container text-on-primary-fixed text-[10px] font-bold rounded-full flex items-center justify-center" aria-label="položky v košíku">
+    <span className="nav-cart-badge absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] px-1 bg-primary-container text-on-primary-fixed text-xs font-bold rounded-lg flex items-center justify-center" aria-label="položky v košíku">
       {count}
     </span>
   );
@@ -51,7 +49,7 @@ export function StoreHeader() {
         <span>Doprava zdarma u objednávek nad 1&nbsp;000&nbsp;Kč<span className="announcement-bar__extra"> · Digitální produkty ihned po platbě</span></span>
       </div>
 
-      <header className="sticky top-0 z-50 bg-background/90 backdrop-blur-md border-b border-outline-variant">
+      <header className="sticky top-0 z-50 bg-background/90  border-b border-outline-variant">
         <nav className="hidden md:flex items-center justify-between w-full max-w-store mx-auto px-margin py-3" aria-label="Hlavní navigace">
           <span className="vv-app-brand" aria-label="VeVit Store">
             <Link href="/">VeVit</Link>
@@ -80,10 +78,11 @@ export function StoreHeader() {
                 type="search"
                 placeholder="Hledat produkty…"
                 autoComplete="off"
-                className="bg-surface-container border border-outline-variant rounded-full pl-10 pr-4 py-2 text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary w-48 lg:w-60 transition-all duration-200 placeholder:text-on-surface-variant/50"
+                className="bg-surface-container border border-outline-variant rounded-xl pl-10 pr-4 py-2 text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary w-48 lg:w-60 transition-all duration-200 placeholder:text-on-surface-variant/50"
               />
             </form>
 
+            <ThemeToggle />
             <Link href="/store/cart" aria-label="Košík" className="relative p-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors duration-150">
               <Icon name="shopping_bag" className="text-[22px]" />
               <CartBadge count={itemCount} />
@@ -112,13 +111,15 @@ export function StoreHeader() {
             <Link href="/store">Store</Link>
           </span>
 
-          <Link href="/store/cart" aria-label="Košík" className="relative p-2 rounded-lg text-on-surface-variant hover:text-primary transition-colors duration-150">
-            <Icon name="shopping_bag" className="text-[22px]" />
-            <CartBadge count={itemCount} />
-          </Link>
+          <div className="flex items-center gap-1">
+            <ThemeToggle />
+            <Link href="/store/cart" aria-label="Košík" className="relative p-2 rounded-lg text-on-surface-variant hover:text-primary transition-colors duration-150">
+              <Icon name="shopping_bag" className="text-[22px]" />
+              <CartBadge count={itemCount} />
+            </Link>
+          </div>
         </nav>
       </header>
-
       <div
         id="mobileDrawer"
         className={`mobile-drawer${drawerOpen ? " open" : ""}`}
@@ -138,7 +139,7 @@ export function StoreHeader() {
               type="button"
               aria-label="Zavřít menu"
               onClick={() => setDrawerOpen(false)}
-              className="p-2 rounded-lg text-on-surface-variant hover:text-error hover:bg-surface-container-high transition-colors"
+              className="p-2 rounded-lg text-on-surface-variant hover:text-danger-text hover:bg-surface-container-high transition-colors"
             >
               <Icon name="close" className="text-[22px]" />
             </button>
@@ -178,7 +179,7 @@ export function StoreHeader() {
                     name="search"
                     type="search"
                     placeholder="Hledat produkty…"
-                    className="w-full bg-surface border border-outline-variant rounded-full pl-10 pr-4 py-2.5 text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary placeholder:text-on-surface-variant/50"
+                    className="w-full bg-surface border border-outline-variant rounded-xl pl-10 pr-4 py-2.5 text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary placeholder:text-on-surface-variant/50"
                   />
                 </div>
               </form>
@@ -191,7 +192,7 @@ export function StoreHeader() {
         </div>
       </div>
 
-      <nav className="fixed bottom-0 left-0 w-full z-40 md:hidden bg-surface-container/95 backdrop-blur-md border-t border-outline-variant" aria-label="Rychlá navigace">
+      <nav className="fixed bottom-0 left-0 w-full z-40 md:hidden bg-surface-container/95  border-t border-outline-variant" aria-label="Rychlá navigace">
         <div className="flex items-stretch h-16">
           {BOTTOM_ITEMS.map((item) => (
             <Link
@@ -200,7 +201,7 @@ export function StoreHeader() {
               className="flex-1 flex flex-col items-center justify-center gap-0.5 transition-colors duration-150 relative text-on-surface-variant hover:text-on-surface"
             >
               <Icon name={item.icon} />
-              <span className="font-caption text-[10px] font-semibold tracking-wide uppercase">{item.label}</span>
+              <span className="font-caption text-xs font-semibold tracking-wide uppercase">{item.label}</span>
             </Link>
           ))}
           <span className="flex-1" data-store-bottom-session>
@@ -233,7 +234,7 @@ function StoreSessionStatus({ compact = false }: { compact?: boolean }) {
       <Link href="/account" className={compact
         ? "flex-1 flex flex-col items-center justify-center gap-0.5 text-on-surface-variant relative"
         : "px-3 py-2 rounded-md font-body-md font-semibold transition-colors duration-150 text-on-surface-variant hover:text-primary hover:bg-surface-container-high"}>
-        {compact ? <><Icon name="account_circle" className="text-[22px]" /><span className="font-caption text-[10px] font-semibold tracking-wide uppercase">Účet</span></> : "Přihlásit se"}
+        {compact ? <><Icon name="account_circle" className="text-[22px]" /><span className="font-caption text-xs font-semibold tracking-wide uppercase">Účet</span></> : "Přihlásit se"}
       </Link>
     );
   }
@@ -241,7 +242,7 @@ function StoreSessionStatus({ compact = false }: { compact?: boolean }) {
     <Link href="/store/orders" className={compact
       ? "flex-1 flex flex-col items-center justify-center gap-0.5 text-primary relative"
       : "px-3 py-2 rounded-md font-body-md font-semibold transition-colors duration-150 text-primary bg-primary/10"}>
-      {compact ? <><Icon name="account_circle" className="text-[22px] icon-filled" /><span className="font-caption text-[10px] font-semibold tracking-wide uppercase">Objednávky</span></> : user}
+      {compact ? <><Icon name="account_circle" className="text-[22px] icon-filled" /><span className="font-caption text-xs font-semibold tracking-wide uppercase">Objednávky</span></> : user}
     </Link>
   );
 }

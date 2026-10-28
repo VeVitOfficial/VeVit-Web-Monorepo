@@ -27,13 +27,13 @@ export function XPBadge({
 }) {
   const isSmall = size === "sm";
   const sizeCls = isSmall
-    ? "text-[10px] px-1.5 py-0.5 rounded-md"
+    ? "text-xs px-1.5 py-0.5 rounded-md"
     : "text-xs px-2 py-1 rounded-lg";
   const iconCls = isSmall ? "h-2.5 w-2.5" : "h-3 w-3";
   return (
     <span
-      className={`inline-flex items-center gap-1 font-medium border border-amber-500/20 whitespace-nowrap ${sizeCls} ${extraClass}`}
-      style={{ color: "#f0ad4e", backgroundColor: "rgba(240,173,78,0.1)" }}
+      className={`inline-flex items-center gap-1 font-medium border border-warning/20 whitespace-nowrap ${sizeCls} ${extraClass}`}
+      style={{ color: "var(--vv-warn-text)", backgroundColor: "rgba(var(--vv-warning-rgb), 0.1)" }}
     >
       <svg
         className={iconCls}
@@ -59,7 +59,7 @@ export function CircularProgress({
   percent = 0,
   size = 90,
   stroke = 7,
-  color = "#00d084",
+  color = "var(--vv-green)",
   trackColor = "var(--color-input-bg)",
   showLabel = true,
   label = null,
@@ -97,7 +97,7 @@ export function CircularProgress({
         cy={size / 2}
         r={radius}
         fill="none"
-        stroke={color}
+        style={{ stroke: color }}
         strokeWidth={stroke}
         strokeLinecap="round"
         strokeDasharray={circumference}

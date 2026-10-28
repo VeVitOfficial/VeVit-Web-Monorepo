@@ -11,10 +11,10 @@ import { normalizeClassCode } from "@/lib/edu/aifb/access";
 import { postAifb } from "../aifb/api-client";
 
 const INPUT_CLS =
-  "w-full rounded-lg bg-[var(--color-input-bg)] border border-[var(--color-border-subtle)] px-3 py-2.5 text-sm text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/20 transition-colors";
+  "w-full rounded-lg bg-[var(--color-input-bg)] border border-[var(--color-border-subtle)] px-3 py-2.5 text-sm text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:border-vv-green/50 focus:ring-1 focus:ring-vv-green/20 transition-colors";
 const PRIMARY_CLS =
-  "inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold bg-emerald-500 text-black hover:bg-emerald-400 disabled:opacity-60 disabled:cursor-not-allowed transition-colors";
-const LINK_CLS = "text-sm font-semibold text-emerald-500 hover:text-emerald-400";
+  "inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold bg-vv-green text-black hover:bg-vv-green-dim disabled:opacity-60 disabled:cursor-not-allowed transition-colors";
+const LINK_CLS = "text-sm font-semibold text-vv-green hover:text-vv-green-hi";
 
 export type JoinedClass = { id: string; name: string; categoryTitle: string };
 
@@ -79,7 +79,7 @@ export function JoinClass({
 
   return (
     <section id="trida" className="py-14 scroll-mt-24" aria-labelledby="skoly-join-title">
-      <div className="max-w-lg mx-auto rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-6 md:p-8">
+      <div className="max-w-lg mx-auto rounded-xl border border-vv-green/30 bg-vv-green/10 p-6 md:p-8">
         <h2 id="skoly-join-title" className="text-lg font-semibold mb-1.5 text-[var(--color-text-primary)]">{t("aifb.join.title")}</h2>
         <p className="text-sm mb-6 text-[var(--color-text-secondary)]">{t("aifb.join.lead")}</p>
 
@@ -109,7 +109,7 @@ export function JoinClass({
                 aria-describedby={error ? "skoly-class-error" : undefined}
               />
             </div>
-            {error ? <p id="skoly-class-error" className="mt-1 text-xs text-red-400" role="alert">{error}</p> : null}
+            {error ? <p id="skoly-class-error" className="mt-1 text-xs text-danger-text" role="alert">{error}</p> : null}
             <button type="submit" className={`w-full ${PRIMARY_CLS}`} disabled={busy || code.trim() === ""}>{t("aifb.join.submit")}</button>
           </form>
         )}

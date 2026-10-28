@@ -59,7 +59,7 @@ function defaultBlock(type: string): BlockState {
 }
 
 const INPUT_CLS =
-  "w-full rounded-lg bg-[var(--color-input-bg)] border border-[var(--color-border-subtle)] px-3 py-2 text-sm text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/20 transition-colors";
+  "w-full rounded-lg bg-[var(--color-input-bg)] border border-[var(--color-border-subtle)] px-3 py-2 text-sm text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:border-vv-green/50 focus:ring-1 focus:ring-vv-green/20 transition-colors";
 
 function lines(t: string): string[] {
   return t.split("\n").map((s) => s.trim()).filter(Boolean);
@@ -226,14 +226,14 @@ export function EduCreatePage({ locale }: { locale: string }) {
         <button
           type="button"
           onClick={() => router.push(`/${lang}/edu/dashboard/`)}
-          className="bg-[var(--color-card-bg)] border border-[var(--color-border-subtle)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] shadow-lg backdrop-blur rounded-md px-3 py-1.5 text-sm"
+          className="bg-[var(--color-card-bg)] border border-[var(--color-border-subtle)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] shadow-lg  rounded-md px-3 py-1.5 text-sm"
         >
           Zrušit
         </button>
         <button
           type="button"
           onClick={handleSave}
-          className="bg-emerald-500 text-black font-semibold hover:bg-emerald-400 shadow-lg rounded-md px-4 py-1.5 text-sm gap-1.5 inline-flex items-center"
+          className="bg-vv-green text-black font-semibold hover:bg-vv-green-dim shadow-lg rounded-md px-4 py-1.5 text-sm gap-1.5 inline-flex items-center"
         >
           <Icon name="save" className="h-4 w-4" />
           Uložit lekci
@@ -246,7 +246,7 @@ export function EduCreatePage({ locale }: { locale: string }) {
             <button
               type="button"
               onClick={() => router.push(`/${lang}/edu/dashboard/`)}
-              className="inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-emerald-500 transition-colors mb-6"
+              className="inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-vv-green transition-colors mb-6"
             >
               <Icon name="arrow-left" className="h-4 w-4" />
               Zpět na přehled
@@ -257,8 +257,8 @@ export function EduCreatePage({ locale }: { locale: string }) {
             <div
               className={`mb-6 rounded-xl border p-4 flex items-center gap-3 text-sm font-medium ${
                 msg.type === "success"
-                  ? "border-emerald-500/20 bg-emerald-500/10 text-emerald-600"
-                  : "border-red-500/20 bg-red-500/10 text-red-600"
+                  ? "border-vv-green/20 bg-vv-green/10 text-vv-green-dim"
+                  : "border-danger/20 bg-danger/10 text-danger-text"
               }`}
             >
               <Icon name={msg.type === "success" ? "check-circle" : "alert-triangle"} className="h-5 w-5 shrink-0" />
@@ -266,7 +266,7 @@ export function EduCreatePage({ locale }: { locale: string }) {
             </div>
           ) : null}
 
-          <div className="mb-4 text-[11px] text-[var(--color-text-muted)] text-right">{autosaveInfo}</div>
+          <div className="mb-4 text-xs text-[var(--color-text-muted)] text-right">{autosaveInfo}</div>
 
           <div className="mb-4">
             <input
@@ -312,7 +312,7 @@ export function EduCreatePage({ locale }: { locale: string }) {
                 key={b.type}
                 type="button"
                 onClick={() => addBlock(b.type)}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-card-bg)] px-3 py-1.5 text-sm text-[var(--color-text-secondary)] hover:border-emerald-500/30 hover:text-emerald-500 transition-colors"
+                className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-card-bg)] px-3 py-1.5 text-sm text-[var(--color-text-secondary)] hover:border-vv-green/30 hover:text-vv-green transition-colors"
               >
                 <Icon name={b.icon} className="h-4 w-4" />
                 {b.label}
@@ -323,7 +323,7 @@ export function EduCreatePage({ locale }: { locale: string }) {
           <div className="rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-card-bg)] p-5">
             <div className="flex items-center gap-2 mb-4">
               <span className="text-sm font-semibold text-[var(--color-text-primary)]">Doložka</span>
-              <span className="text-[10px] font-medium px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">Povinné</span>
+              <span className="text-xs font-medium px-1.5 py-0.5 rounded bg-vv-green/10 text-vv-green border border-vv-green/20">Povinné</span>
             </div>
             <div className="space-y-4">
               <div>
@@ -379,7 +379,7 @@ function BlockCard({ b, idx, total, onUpdate, onUp, onDown, onDelete }: BlockCar
             type="button"
             onClick={onUp}
             disabled={idx === 0}
-            className="p-1.5 rounded-md text-[var(--color-text-muted)] hover:text-emerald-500 disabled:opacity-30"
+            className="p-1.5 rounded-md text-[var(--color-text-muted)] hover:text-vv-green disabled:opacity-30"
             title="Nahoru"
           >
             <Icon name="chevron-up" className="h-4 w-4" />
@@ -388,7 +388,7 @@ function BlockCard({ b, idx, total, onUpdate, onUp, onDown, onDelete }: BlockCar
             type="button"
             onClick={onDown}
             disabled={idx === total - 1}
-            className="p-1.5 rounded-md text-[var(--color-text-muted)] hover:text-emerald-500 disabled:opacity-30"
+            className="p-1.5 rounded-md text-[var(--color-text-muted)] hover:text-vv-green disabled:opacity-30"
             title="Dolů"
           >
             <Icon name="chevron-down" className="h-4 w-4" />
@@ -396,7 +396,7 @@ function BlockCard({ b, idx, total, onUpdate, onUp, onDown, onDelete }: BlockCar
           <button
             type="button"
             onClick={onDelete}
-            className="p-1.5 rounded-md text-[var(--color-text-muted)] hover:text-red-500"
+            className="p-1.5 rounded-md text-[var(--color-text-muted)] hover:text-danger-text"
             title="Smazat blok"
           >
             <Icon name="trash-2" className="h-4 w-4" />
@@ -478,7 +478,7 @@ function BlockBody({ b, onUpdate }: BlockBodyProps) {
               type="checkbox"
               checked={!!b.ordered}
               onChange={(e) => onUpdate("ordered", e.target.checked)}
-              className="accent-emerald-500"
+              className="accent-vv-green"
             />
             Číslovaný
           </label>

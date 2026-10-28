@@ -5,7 +5,7 @@ import { agendaActorForOrder } from "@/lib/store-order-access";
 import { ClaimCreateForm, AgendaMessageForm } from "@/components/store/agenda-forms";
 import { AgendaPage, AgendaUnavailable, AgendaTimeline } from "@/components/store/agenda-shell";
 
-export const metadata = { title: "Reklamace — VeVit Store", robots: { index: false } };
+export const metadata = { title: "Reklamace. VeVit Store", robots: { index: false } };
 export const dynamic = "force-dynamic";
 
 type Props = { searchParams: Promise<Record<string, string | string[] | undefined>> };

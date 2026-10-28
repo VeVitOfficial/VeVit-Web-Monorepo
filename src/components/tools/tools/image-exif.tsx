@@ -148,7 +148,7 @@ export default function ImageExif({ locale }: ToolComponentProps) {
             {!loading && rows.length > 0 ? rows.map((r, i) => (
               <div key={i} className="kv"><span className="k">{r.k}</span><span className="v mono">{r.v}</span></div>
             )) : null}
-            {gpsWarn ? <p className="error-text" style={{ color: "#fbbf24" }}>⚠ Tato fotografie obsahuje GPS souřadnice — metadata mohou prozrazovat vaši polohu.</p> : null}
+            {gpsWarn ? <p className="error-text" style={{ color: "var(--vv-warn-text)" }}>⚠ Tato fotografie obsahuje GPS souřadnice, metadata mohou prozrazovat vaši polohu.</p> : null}
           </div>
           <div className="row" style={{ flexWrap: "wrap", gap: "0.5rem", marginTop: "0.75rem" }}>
             <button className="btn btn-secondary" id="ex-remove" type="button" disabled={!canRemove} onClick={remove}>
@@ -159,7 +159,7 @@ export default function ImageExif({ locale }: ToolComponentProps) {
       ) : null}
 
       {error ? <p className="error-text" id="ex-error" role="alert">{error}</p> : null}
-      <p className="muted" style={{ fontSize: "0.8rem" }}>Čtení přes exifr (lazy-load). Odstranění = překódování přes canvas, čímž se vymažou všechna metadata. Běží lokálně — data neopustí prohlížeč.</p>
+      <p className="muted" style={{ fontSize: "0.8rem" }}>Čtení přes exifr (lazy-load). Odstranění = překódování přes canvas, čímž se vymažou všechna metadata. Běží lokálně, data neopustí prohlížeč.</p>
     </div>
   );
 }

@@ -99,7 +99,7 @@ export default function VideoThumbnail({ locale }: ToolComponentProps) {
           </svg>
         </span>
         <span className="dz-title">Přetáhněte video</span>
-        <span className="dz-hint">MP4, WebM, OGG — náhled přes &lt;video&gt; + canvas (bez ffmpeg)</span>
+        <span className="dz-hint">MP4, WebM, OGG, náhled přes &lt;video&gt; + canvas (bez ffmpeg)</span>
       </Dropzone>
 
       {file ? <FileList files={[{ name: file.name, size: file.size }]} onRemove={() => reset()} locale={locale} /> : null}
@@ -141,7 +141,7 @@ export default function VideoThumbnail({ locale }: ToolComponentProps) {
       {error ? <p className="error-text" role="alert">{error}</p> : null}
 
       <p className="muted" style={{ fontSize: "0.8rem" }}>
-        Bez ffmpeg — používá nativní dekodér prohlížeče přes element &lt;video&gt; a canvas. Běží lokálně.
+        Bez ffmpeg, používá nativní dekodér prohlížeče přes element &lt;video&gt; a canvas. Běží lokálně.
       </p>
     </div>
   );

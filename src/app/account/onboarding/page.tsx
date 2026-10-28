@@ -7,7 +7,7 @@ import { OnboardingForm } from "./onboarding-form";
 import "../../../../public/assets/fonts/vevit-fonts.css";
 import "@/styles/account.css";
 
-export const metadata = { title: "Dokončit profil — VEVIT" };
+export const metadata = { title: "Dokončit profil. VEVIT" };
 
 const SUPPORTED: readonly string[] = ["cs", "en", "de", "es", "uk", "fr", "sk"];
 

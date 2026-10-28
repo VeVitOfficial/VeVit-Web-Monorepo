@@ -89,7 +89,7 @@ export function EduMyLessonPage({ locale, query }: { locale: string; query: stri
         <button
           type="button"
           onClick={() => router.push(`/${lang}/edu/dashboard/`)}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500 text-black font-semibold hover:bg-emerald-400 transition"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-vv-green text-black font-semibold hover:bg-vv-green-dim transition"
         >
           Zpět domů
         </button>
@@ -106,7 +106,7 @@ export function EduMyLessonPage({ locale, query }: { locale: string; query: stri
           <button
             type="button"
             onClick={() => router.push(`/${lang}/edu/dashboard/`)}
-            className="inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-emerald-500 transition-colors mb-4"
+            className="inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-vv-green transition-colors mb-4"
           >
             <Icon name="arrow-left" className="h-4 w-4" />
             Zpět na přehled
@@ -114,9 +114,9 @@ export function EduMyLessonPage({ locale, query }: { locale: string; query: stri
           <div className="flex items-start justify-between gap-4">
             <div>
               <div className="flex items-center gap-2 mb-2">
-                <span className="text-[10px] uppercase tracking-wider text-emerald-500 font-semibold">{(lesson.category as string) || "Ostatní"}</span>
+                <span className="text-xs uppercase tracking-wider text-vv-green font-semibold">{(lesson.category as string) || "Ostatní"}</span>
                 <span className="text-[var(--color-text-muted)]">•</span>
-                <span className="flex items-center gap-1 text-[11px] text-[var(--color-text-muted)]">
+                <span className="flex items-center gap-1 text-xs text-[var(--color-text-muted)]">
                   <Icon name="calendar" className="h-3 w-3" />
                   {formatDate(lesson.createdAt)}
                 </span>
@@ -129,7 +129,7 @@ export function EduMyLessonPage({ locale, query }: { locale: string; query: stri
             <button
               type="button"
               onClick={handleDelete}
-              className="text-[var(--color-text-muted)] hover:text-red-500 hover:bg-red-500/10 h-8 w-8 rounded-md flex items-center justify-center shrink-0"
+              className="text-[var(--color-text-muted)] hover:text-danger-text hover:bg-danger/10 h-8 w-8 rounded-md flex items-center justify-center shrink-0"
               title="Smazat lekci"
             >
               <Icon name="trash-2" className="h-4 w-4" />

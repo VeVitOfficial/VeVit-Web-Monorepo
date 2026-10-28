@@ -1,8 +1,8 @@
 .methods { display: flex; flex-direction: column; gap: 10px; margin: 0 0 20px; padding: 0; border: 0; }
 .method { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border: 1.5px solid var(--vv-line, #2a3340); border-radius: 12px; cursor: pointer; background: var(--vv-panel, #11161d); }
-.method.selected { border-color: #10b981; box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15); }
+.method.selected { border-color: var(--vv-green); box-shadow: 0 4px 16px rgba(0,0,0,.2); }
 .method.unavailable { opacity: 0.5; cursor: not-allowed; }
-.method input { accent-color: #10b981; flex: none; }
+.method input { accent-color: var(--vv-green); flex: none; }
 /* Fixed icon column so the method titles start at the same x. */
 .icons { flex: none; width: 132px; display: flex; gap: 6px; align-items: center; }
 .icons span { display: inline-flex; align-items: center; height: 26px; padding: 3px 6px; border-radius: 6px; background: #fff; }
@@ -18,4 +18,4 @@
 .captcha { margin: 0 0 14px; }
 @media (max-width: 520px) { .icons { width: 96px; } .icons span { padding: 3px 4px; } }
 .change { margin: -8px 0 16px; font-size: 13px; }
-.change a { color: #10b981; }
+.change a { color: var(--vv-green); }

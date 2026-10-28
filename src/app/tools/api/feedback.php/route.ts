@@ -27,7 +27,7 @@ function fbFail(code: number, message: string): Response {
 async function sendFeedbackEmail(text: string): Promise<void> {
   const apiKey = process.env.RESEND_API_KEY?.trim();
   if (!apiKey) {
-    console.error("[tools-feedback] RESEND_API_KEY is not configured — feedback NOT sent");
+    console.error("[tools-feedback] RESEND_API_KEY is not configured, feedback NOT sent");
     return;
   }
   const res = await fetch("https://api.resend.com/emails", {

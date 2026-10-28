@@ -165,7 +165,7 @@ export function HubApp({ locale, initialSearchParams, strings }: Props) {
             <div className="hub-hero-copy">
               <span className="eyebrow hub-eyebrow">{strings.hero_eyebrow.replace("{count}", String(TOOLS.length))}</span>
               <h1>
-                Nástroje pro <span className="g-emerald">{strings.hero_title_a}</span>
+                Nástroje pro <span className="g-brand">{strings.hero_title_a}</span>
                 <span className="g-white">{strings.hero_title_b}</span>
                 <span className="g-sky">{strings.hero_title_c}</span>
               </h1>
@@ -327,7 +327,7 @@ export function HubApp({ locale, initialSearchParams, strings }: Props) {
         /* ── Sekce kategorií ────────────────────────────────────────── */
         <div id="sections-view">
           <div className="sections" style={{ paddingTop: 0 }}>
-            <CategorySection id="nove" title={strings.section_newest_title} desc={strings.section_newest_desc} color="var(--color-emerald)" tools={sectionTools(TOOLS, state, "nove")} locale={locale} strings={strings} query={state.q} />
+            <CategorySection id="nove" title={strings.section_newest_title} desc={strings.section_newest_desc} color="var(--color-brand)" tools={sectionTools(TOOLS, state, "nove")} locale={locale} strings={strings} query={state.q} />
             {CATEGORY_ORDER.map((c) => (
               <CategorySection
                 key={c}
@@ -372,7 +372,7 @@ function ToolCard({ tool, locale, strings, query, active }: { tool: Tool; locale
         <ToolIcon name="Star" size={14} fill={fav ? "currentColor" : "none"} />
       </button>
       <div className="top">
-        <span className="icon-box" style={{ background: `${color}15`, color }}><ToolIcon name={tool.icon} size={20} /></span>
+        <span className="icon-box" style={{ background: `color-mix(in srgb, ${color} 8%, transparent)`, color }}><ToolIcon name={tool.icon} size={20} /></span>
         <span className="hub-card-badges">
           <span className={`badge ${PROCESSING_BADGE_CLASS[tool.processing_location]}`} title={loc.title}>{loc.label}</span>
           {tool.new ? <span className="badge badge-new">{strings.badge_new}</span> : null}
@@ -462,7 +462,7 @@ function RecentRail({ locale, strings }: { locale: Locale; strings: HubI18n }) {
           const color = CATEGORY_COLORS[t.category];
           return (
             <a key={t.slug} href={`/${locale}/tools/${t.slug}`}>
-              <span className="ic" style={{ background: `${color}15`, color }}><ToolIcon name={t.icon} size={15} /></span>
+              <span className="ic" style={{ background: `color-mix(in srgb, ${color} 8%, transparent)`, color }}><ToolIcon name={t.icon} size={15} /></span>
               {t.name}
             </a>
           );

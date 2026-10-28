@@ -164,7 +164,7 @@ export default function VideoTrim({ locale }: ToolComponentProps) {
           </svg>
         </span>
         <span className="dz-title">Přetáhněte video k oříznutí</span>
-        <span className="dz-hint">ffmpeg.wasm — výběr časového úseku</span>
+        <span className="dz-hint">ffmpeg.wasm, výběr časového úseku</span>
       </Dropzone>
 
       {file ? <FileList files={[{ name: file.name, size: file.size }]} onRemove={() => reset()} locale={locale} /> : null}

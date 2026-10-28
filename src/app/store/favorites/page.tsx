@@ -5,7 +5,7 @@ import { getStoreUser } from "@/lib/store-config";
 import { FavoriteRemoveButton } from "@/components/store/agenda-forms";
 import { AgendaPage, AgendaUnavailable } from "@/components/store/agenda-shell";
 
-export const metadata = { title: "Oblíbené produkty — VeVit Store", robots: { index: false } };
+export const metadata = { title: "Oblíbené produkty. VeVit Store", robots: { index: false } };
 export const dynamic = "force-dynamic";
 
 /** Port of store/favorites.php. */

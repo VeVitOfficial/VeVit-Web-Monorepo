@@ -1,8 +1,8 @@
 /* Verify-2fa — inline <style> z account/verify-2fa.html přenesený 1:1 (standalonový design). */
 :root { --bg:#070908; --card:#101311; --line:#273029; --text:#f4f7f4; --muted:#a2aba4; --green:#39e079; --red:#ff6b6b; }
 * { box-sizing:border-box; }
-body { margin:0; min-height:100vh; background:var(--bg); color:var(--text); font-family:Inter,system-ui,sans-serif; display:grid; place-items:center; padding:24px; }
-.card { width:min(100%,440px); padding:32px; border:1px solid var(--line); border-radius:20px; background:var(--card); }
+body { margin:0; min-height:100vh; background:var(--bg); color:var(--text); font-family:var(--font-plex-sans),system-ui,sans-serif; display:grid; place-items:center; padding:24px; }
+.card { width:min(100%,440px); padding:32px; border:1px solid var(--line); border-radius:16px; background:var(--card); }
 .card h1 { margin:0 0 10px; }
 .card p { color:var(--muted); }
 .card label { display:block; margin:22px 0 8px; }

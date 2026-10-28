@@ -98,14 +98,14 @@ export function Quiz({ questions }: QuizProps) {
     const percentage = total > 0 ? Math.round((score / total) * 100) : 0;
     return (
       <div className="flex flex-col items-center justify-center py-8 text-center">
-        <div className="h-16 w-16 rounded-full bg-emerald-500/10 flex items-center justify-center mb-4">
-          <Icon name="trophy" className="h-8 w-8 text-emerald-500" />
+        <div className="h-16 w-16 rounded-full bg-vv-green/10 flex items-center justify-center mb-4">
+          <Icon name="trophy" className="h-8 w-8 text-vv-green" />
         </div>
         <h3 className="text-xl font-semibold mb-2 text-[var(--color-text-primary)]">{t("quiz.results")}!</h3>
         <p className="text-sm text-[var(--color-muted)] mb-1">
           {t("quiz.score")}: {score} {t("quiz.of")} {total}
         </p>
-        <p className="text-3xl font-bold text-emerald-500 mb-4">{percentage}%</p>
+        <p className="text-3xl font-bold text-vv-green mb-4">{percentage}%</p>
         <p className="text-sm text-[var(--color-text-secondary)] mb-6 max-w-xs">{resultMessage(lang, percentage)}</p>
         <button
           type="button"
@@ -127,7 +127,7 @@ export function Quiz({ questions }: QuizProps) {
       <div className="p-6 pb-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Icon name="brain" className="h-4 w-4 text-emerald-500" />
+            <Icon name="brain" className="h-4 w-4 text-vv-green" />
             <h3 className="text-sm font-medium text-[var(--color-text-primary)]">{t("lesson.quiz")}</h3>
           </div>
           <span className="text-xs text-[var(--color-muted)]">
@@ -135,7 +135,7 @@ export function Quiz({ questions }: QuizProps) {
           </span>
         </div>
         <div className="mt-3 h-1.5 w-full bg-[var(--color-input-bg)] rounded-full overflow-hidden">
-          <div className="h-full bg-emerald-500 transition-all duration-500 ease-out rounded-full" style={{ width: `${progress}%` }} />
+          <div className="h-full bg-vv-green transition-all duration-500 ease-out rounded-full" style={{ width: `${progress}%` }} />
         </div>
       </div>
       <div className="px-6 pb-6">
@@ -147,16 +147,16 @@ export function Quiz({ questions }: QuizProps) {
               const isCorrect = answered && i === q.correctIndex;
               const isWrong = answered && isSelected && i !== q.correctIndex;
               let stateCls: string;
-              if (isCorrect) stateCls = "border-emerald-500/50 bg-emerald-500/10 text-emerald-500";
-              else if (isWrong) stateCls = "border-red-500/50 bg-red-500/10 text-red-500";
-              else if (isSelected) stateCls = "border-emerald-500/50 bg-emerald-500/10 text-emerald-500";
+              if (isCorrect) stateCls = "border-vv-green/50 bg-vv-green/10 text-vv-green";
+              else if (isWrong) stateCls = "border-danger/50 bg-danger/10 text-danger-text";
+              else if (isSelected) stateCls = "border-vv-green/50 bg-vv-green/10 text-vv-green";
               else stateCls = "border-[var(--color-border-subtle)] bg-[var(--color-input-bg)] text-[var(--color-text-secondary)] hover:bg-[var(--color-glass-highlight)] hover:border-[var(--color-glass-highlight)]";
               const dim = answered && !isSelected && i !== q.correctIndex ? "opacity-50 cursor-not-allowed" : "";
 
               let badgeCls: string;
-              if (isCorrect) badgeCls = "bg-emerald-500/20 border-emerald-500/30 text-emerald-500";
-              else if (isWrong) badgeCls = "bg-red-500/20 border-red-500/30 text-red-500";
-              else if (isSelected) badgeCls = "bg-emerald-500/20 border-emerald-500/30 text-emerald-500";
+              if (isCorrect) badgeCls = "bg-vv-green/20 border-vv-green/30 text-vv-green";
+              else if (isWrong) badgeCls = "bg-danger/20 border-danger/30 text-danger-text";
+              else if (isSelected) badgeCls = "bg-vv-green/20 border-vv-green/30 text-vv-green";
               else badgeCls = "bg-[var(--color-input-bg)] border-[var(--color-border-subtle)]";
 
               return (
@@ -179,8 +179,8 @@ export function Quiz({ questions }: QuizProps) {
             })}
           </div>
           {answered ? (
-            <div className="rounded-lg border border-emerald-500/20 bg-emerald-500/5 p-4 mt-4">
-              <p className="text-sm text-emerald-500 font-medium mb-1">{t("quiz.explanation")}:</p>
+            <div className="rounded-lg border border-vv-green/20 bg-vv-green/5 p-4 mt-4">
+              <p className="text-sm text-vv-green font-medium mb-1">{t("quiz.explanation")}:</p>
               <p className="text-sm text-[var(--color-text-secondary)] leading-6">{q.explanation || ""}</p>
             </div>
           ) : null}
@@ -196,7 +196,7 @@ export function Quiz({ questions }: QuizProps) {
                 if (selected === q.correctIndex) setScore((s) => s + 1);
                 setAnswered(true);
               }}
-              className="gap-2 inline-flex items-center rounded-md px-4 py-2 text-sm font-medium bg-emerald-500 text-white hover:bg-emerald-600 disabled:opacity-50 disabled:pointer-events-none transition-colors"
+              className="gap-2 inline-flex items-center rounded-md px-4 py-2 text-sm font-medium bg-vv-green text-white hover:bg-vv-green-dim disabled:opacity-50 disabled:pointer-events-none transition-colors"
             >
               <Icon name="check-circle-2" className="h-4 w-4" />
               {t("quiz.submit")}
@@ -212,7 +212,7 @@ export function Quiz({ questions }: QuizProps) {
                   setAnswered(false);
                 }
               }}
-              className="gap-2 inline-flex items-center rounded-md px-4 py-2 text-sm font-medium bg-emerald-500 text-white hover:bg-emerald-600 transition-colors"
+              className="gap-2 inline-flex items-center rounded-md px-4 py-2 text-sm font-medium bg-vv-green text-white hover:bg-vv-green-dim transition-colors"
             >
               {isLast ? t("quiz.finish") : t("quiz.next")}
               <Icon name="arrow-right" className="h-4 w-4" />

@@ -185,7 +185,7 @@ export default function ImageCollage({ locale }: ToolComponentProps) {
         onDrop={onDrop} onDragOver={onDragOver} onDragEnter={onDragOver} onDragLeave={onDragLeave}>
         <span className="dz-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" /><rect x="14" y="14" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" /></svg></span>
         <span className="dz-title">Přetáhněte obrázky (2–9)</span>
-        <span className="dz-hint">PNG, JPG, WebP, GIF, BMP — více souborů najednou</span>
+        <span className="dz-hint">PNG, JPG, WebP, GIF, BMP, více souborů najednou</span>
         <input ref={inputRef} type="file" className="hidden" accept={ACCEPT.join(",")} multiple onChange={(e) => { pick(e.target.files, true); e.target.value = ""; }} aria-hidden="true" />
       </div>
 
@@ -226,7 +226,7 @@ export default function ImageCollage({ locale }: ToolComponentProps) {
       ) : null}
 
       {error ? <p className="error-text" id="cl-error" role="alert">{error}</p> : null}
-      <p className="muted" style={{ fontSize: "0.8rem" }}>Collage přes canvas, živý náhled. Běží lokálně — data neopustí prohlížeč.</p>
+      <p className="muted" style={{ fontSize: "0.8rem" }}>Collage přes canvas, živý náhled. Běží lokálně, data neopustí prohlížeč.</p>
     </div>
   );
 }

@@ -33,35 +33,35 @@ export default function JwtDecoder({ locale }: ToolComponentProps) {
   void locale;
   const [token, setToken] = useState("");
   const [secret, setSecret] = useState("");
-  const [alg, setAlg] = useState("—");
-  const [status, setStatus] = useState("—");
+  const [alg, setAlg] = useState(", ");
+  const [status, setStatus] = useState(", ");
   const [statusColor, setStatusColor] = useState<string | undefined>(undefined);
-  const [header, setHeader] = useState("—");
-  const [payload, setPayload] = useState("—");
+  const [header, setHeader] = useState(", ");
+  const [payload, setPayload] = useState(", ");
   const [err, setErr] = useState<string | null>(null);
 
   const decode = useCallback(() => {
     setErr(null);
     const raw = token.trim();
-    if (!raw) { setAlg("—"); setStatus("—"); setStatusColor(undefined); setHeader("—"); setPayload("—"); return; }
+    if (!raw) { setAlg(", "); setStatus(", "); setStatusColor(undefined); setHeader(", "); setPayload(", "); return; }
     const parts = raw.split(".");
     if (parts.length < 2) { setErr("JWT musí mít alespoň 2 části oddělené tečkou (header.payload)."); return; }
     try {
       const h = JSON.parse(b64urlStr(parts[0]));
       const p = JSON.parse(b64urlStr(parts[1]));
-      setAlg(h.alg || "—");
+      setAlg(h.alg || ", ");
       setHeader(pretty(JSON.stringify(h)));
       setPayload(pretty(JSON.stringify(p)));
       const now = Math.floor(Date.now() / 1000);
       const st: string[] = [];
-      let col: string | undefined = "var(--color-emerald)";
+      let col: string | undefined = "var(--color-brand)";
       if (p.exp) { if (now >= p.exp) { st.push("vypršel " + new Date(p.exp * 1000).toLocaleString("cs-CZ")); col = "var(--color-red)"; } else st.push("platný do " + new Date(p.exp * 1000).toLocaleString("cs-CZ")); }
       else st.push("bez exp");
       if (p.nbf && now < p.nbf) { st.push("ještě neplatný"); col = "var(--color-amber)"; }
       setStatus(st.join(" · "));
       setStatusColor(col);
     } catch {
-      setErr("Nelze dekódovat — neplatný JWT (špatný base64url).");
+      setErr("Nelze dekódovat, neplatný JWT (špatný base64url).");
     }
   }, [token]);
 
@@ -74,7 +74,7 @@ export default function JwtDecoder({ locale }: ToolComponentProps) {
       const h = JSON.parse(b64urlStr(parts[0]));
       if (h.alg !== "HS256") { setErr("Ověření podporováno jen pro HS256 (token používá " + (h.alg || "?") + ")."); return; }
       const ok = await verifyHs256(parts[0] + "." + parts[1], parts[2], secret);
-      if (ok) { toastSuccess("Podpis je platný"); setStatus("Podpis platný ✓"); setStatusColor("var(--color-emerald)"); }
+      if (ok) { toastSuccess("Podpis je platný"); setStatus("Podpis platný ✓"); setStatusColor("var(--color-brand)"); }
       else { toastError("Podpis NEPLATNÝ"); setStatus("Podpis NEPLATNÝ ✗"); setStatusColor("var(--color-red)"); }
     } catch (e) {
       setErr("Ověření selhalo: " + ((e as Error).message || e));

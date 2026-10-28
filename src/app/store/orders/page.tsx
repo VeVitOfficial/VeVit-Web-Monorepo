@@ -3,7 +3,7 @@ import { connection } from "next/server";
 import { accountOrdersList, type AccountOrderRow } from "@/lib/store-order-page";
 import { AgendaPage, AgendaUnavailable } from "@/components/store/agenda-shell";
 
-export const metadata = { title: "Moje objednávky — VeVit Store", robots: { index: false } };
+export const metadata = { title: "Moje objednávky. VeVit Store", robots: { index: false } };
 export const dynamic = "force-dynamic";
 
 /** Port of store/orders.php. */

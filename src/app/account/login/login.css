@@ -6,7 +6,7 @@ html, body { overflow-x:hidden; }
 .auth-title { font-size:20px; font-weight:700; margin:0 0 4px; }
 .auth-sub { font-size:13px; color:var(--text-3); margin:0; }
 .step { display:flex; flex-direction:column; gap:14px; }
-.auth-error { background:#f9731620; border:1px solid #f9731660; border-radius:var(--r-control); padding:10px 14px; font-size:13px; color:#f97316; display:flex; align-items:center; gap:8px; }
+.auth-error { background:rgba(224, 134, 58, 0.13); border:1px solid rgba(224, 134, 58, 0.38); border-radius:var(--r-control); padding:10px 14px; font-size:13px; color:var(--vv-warn-text); display:flex; align-items:center; gap:8px; }
 .auth-error[hidden] { display:none; }
 .auth-hint { font-size:13px; color:var(--text-3); text-align:center; }
 .auth-hint a { color:var(--primary); font-weight:500; }

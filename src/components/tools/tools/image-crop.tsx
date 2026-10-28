@@ -52,7 +52,7 @@ export default function ImageCrop({ locale }: ToolComponentProps) {
       ctx.fillRect(0, sel.y + sel.h, canvas.width, canvas.height - sel.y - sel.h);
       ctx.fillRect(0, sel.y, sel.x, sel.h);
       ctx.fillRect(sel.x + sel.w, sel.y, canvas.width - sel.x - sel.w, sel.h);
-      ctx.strokeStyle = "#60a5fa"; ctx.lineWidth = 2;
+      ctx.strokeStyle = "var(--vv-info)"; ctx.lineWidth = 2;
       ctx.strokeRect(sel.x, sel.y, sel.w, sel.h);
     }
   }, []);

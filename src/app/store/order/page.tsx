@@ -3,7 +3,7 @@ import { connection } from "next/server";
 import { orderPageData } from "@/lib/store-order-page";
 import { AgendaPage, AgendaUnavailable } from "@/components/store/agenda-shell";
 
-export const metadata = { title: "Detail objednávky — VeVit Store", robots: { index: false } };
+export const metadata = { title: "Detail objednávky. VeVit Store", robots: { index: false } };
 export const dynamic = "force-dynamic";
 
 type Props = { searchParams: Promise<Record<string, string | string[] | undefined>> };
@@ -87,8 +87,8 @@ async function loadOrder(id: string) {
       orderNumber: detail.order_number,
       status: detail.status ?? "",
       currency: (detail.currency ?? "").toUpperCase(),
-      paymentStatus: detail.payment_status ?? detail.status ?? "—",
-      fulfillmentStatus: detail.fulfillment_status ?? "—",
+      paymentStatus: detail.payment_status ?? detail.status ?? ", ",
+      fulfillmentStatus: detail.fulfillment_status ?? ", ",
       items: items.map((item) => ({
         key: String(item.id),
         name: typeof item.product_name === "string" ? item.product_name : "",
@@ -98,8 +98,8 @@ async function loadOrder(id: string) {
       deliveries: (deliveries as unknown as DeliveryLike[]).map((delivery) => ({
         key: String(delivery.public_id ?? ""),
         status: typeof delivery.status === "string" ? delivery.status : "",
-        estimate: typeof delivery.estimated_delivery_at === "string" ? delivery.estimated_delivery_at : "—",
-        delivered: typeof delivery.delivered_at === "string" ? delivery.delivered_at : "—",
+        estimate: typeof delivery.estimated_delivery_at === "string" ? delivery.estimated_delivery_at : ", ",
+        delivered: typeof delivery.delivered_at === "string" ? delivery.delivered_at : ", ",
         trackingUrl: typeof delivery.tracking_url === "string" && delivery.tracking_url !== "" ? delivery.tracking_url : null,
         trackingNumber: typeof delivery.tracking_number === "string" && delivery.tracking_number !== "" ? delivery.tracking_number : null,
       })),

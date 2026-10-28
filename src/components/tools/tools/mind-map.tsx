@@ -16,7 +16,7 @@ interface MmNode {
 }
 
 const NS = "http://www.w3.org/2000/svg";
-const COLORS = ["#60a5fa", "#34d399", "#fbbf24", "#f87171", "#a78bfa", "#22d3ee", "#fb7185", "#4ade80"];
+const COLORS = ["var(--vv-info)", "var(--vv-green-hi)", "var(--vv-warning)", "var(--vv-danger)", "var(--vv-violet)", "var(--vv-info)", "var(--vv-danger)", "var(--vv-green)"];
 
 const DEFAULT_TREE = "Projekt\n  Analýza\n    Požadavky\n    Konkurence\n  Vývoj\n    Backend\n    Frontend\n  Testování\n  Deployment\n    Staging\n    Produkce";
 const SAMPLE = "Plán roku\n  Cíle\n    Osobní\n    Pracovní\n  Finance\n    Příjmy\n    Úspory\n    Investice\n  Zdraví\n    Sport\n    Jídelníček\n    Spánek";
@@ -185,7 +185,7 @@ export default function MindMap({ locale }: ToolComponentProps) {
         </button>
         <button className="btn btn-ghost" id="mm-sample" type="button" onClick={onSample}>Vzor</button>
       </div>
-      <p className="muted" style={{ fontSize: "0.8rem" }}>Vizualizace běží lokálně (SVG). Strukturu zadáváte textem — nic se neodesílá.</p>
+      <p className="muted" style={{ fontSize: "0.8rem" }}>Vizualizace běží lokálně (SVG). Strukturu zadáváte textem, nic se neodesílá.</p>
     </div>
   );
 }

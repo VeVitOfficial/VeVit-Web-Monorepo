@@ -31,9 +31,9 @@ function eduPath(lang: string, rest: string): string {
 
 function diffStyle(d?: string): CSSProperties {
   const map: Record<string, [string, string, string]> = {
-    beginner: ["#00d084", "rgba(0,208,132,0.12)", "rgba(0,208,132,0.15)"],
-    advanced: ["#f0ad4e", "rgba(240,173,78,0.12)", "rgba(240,173,78,0.15)"],
-    expert: ["#d73a49", "rgba(215,58,73,0.12)", "rgba(215,58,73,0.15)"],
+    beginner: ["var(--vv-green)", "rgba(var(--vv-green-rgb), 0.12)", "rgba(var(--vv-green-rgb), 0.15)"],
+    advanced: ["var(--vv-warning)", "rgba(var(--vv-warning-rgb), 0.12)", "rgba(var(--vv-warning-rgb), 0.15)"],
+    expert: ["var(--vv-danger)", "rgba(var(--vv-danger-rgb), 0.12)", "rgba(var(--vv-danger-rgb), 0.15)"],
   };
   const m = map[d || ""] || map.beginner;
   return { color: m[0], backgroundColor: m[1], borderColor: m[2] };
@@ -94,7 +94,7 @@ export function EduLessonPage({ locale, id }: { locale: string; id: string }) {
       <div className="max-w-xl mx-auto p-16 text-center">
         <div className="text-6xl font-bold gradient-text mb-4">404</div>
         <p className="text-muted mb-6" dangerouslySetInnerHTML={{ __html: `Lekce „${escapeHtml(id)}" nebyla nalezena.` }} />
-        <Link href={eduPath(lang, "dashboard/")} className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500 text-black font-semibold hover:bg-emerald-400 transition">
+        <Link href={eduPath(lang, "dashboard/")} className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-vv-green text-black font-semibold hover:bg-vv-green-dim transition">
           Zpět domů
         </Link>
       </div>
@@ -144,10 +144,10 @@ export function EduLessonPage({ locale, id }: { locale: string; id: string }) {
     <div className="flex flex-col lg:flex-row min-h-full">
       <div className="flex-1 min-w-0">
         {/* Sticky hlavička s breadcrumb linkem a číslem lekce */}
-        <div className="sticky top-14 z-20 bg-[var(--color-background)]/80 backdrop-blur-md border-b border-[var(--color-border-subtle)]">
+        <div className="sticky top-14 z-20 bg-[var(--color-background)]/80  border-b border-[var(--color-border-subtle)]">
           <div className="max-w-3xl mx-auto px-6 py-3 flex items-center justify-between gap-4">
             <div className="flex items-center gap-2 text-xs text-[var(--color-text-muted)] overflow-hidden">
-              <Link href={eduPath(lang, `kurzy/${course.slug}/`)} className="hover:text-emerald-500 transition-colors shrink-0">
+              <Link href={eduPath(lang, `kurzy/${course.slug}/`)} className="hover:text-vv-green transition-colors shrink-0">
                 {course.title}
               </Link>
               <Icon name="chevron-right" className="h-3 w-3 shrink-0" />
@@ -159,7 +159,7 @@ export function EduLessonPage({ locale, id }: { locale: string; id: string }) {
               </span>
               <Link
                 href={eduPath(lang, `kurzy/${course.slug}/`)}
-                className="p-1.5 rounded-md text-[var(--color-text-muted)] hover:text-emerald-500 hover:bg-emerald-500/10 transition-colors"
+                className="p-1.5 rounded-md text-[var(--color-text-muted)] hover:text-vv-green hover:bg-vv-green/10 transition-colors"
                 title={t("lesson.close")}
               >
                 <Icon name="x" className="h-4 w-4" />
@@ -169,7 +169,7 @@ export function EduLessonPage({ locale, id }: { locale: string; id: string }) {
         </div>
 
         <div className="max-w-3xl mx-auto px-6 pt-8 pb-4">
-          <h1 className="text-2xl md:text-3xl font-bold tracking-tight bg-gradient-to-r from-[var(--color-hero-gradient-from)] to-emerald-500 bg-clip-text text-transparent mb-3">
+          <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-[var(--color-text-primary)] mb-3">
             {lesson.title}
           </h1>
           <div className="flex items-center gap-3 flex-wrap text-[13px] text-[var(--color-text-muted)]">
@@ -179,12 +179,12 @@ export function EduLessonPage({ locale, id }: { locale: string; id: string }) {
             </span>
             {xp > 0 ? <XPBadge xp={xp} size="sm" /> : null}
             {course.difficulty ? (
-              <span className="text-[10px] px-2 py-0.5 rounded-full font-medium border" style={diffStyle(course.difficulty)}>
+              <span className="text-xs px-2 py-0.5 rounded-lg font-medium border" style={diffStyle(course.difficulty)}>
                 {diffLabel(course.difficulty)}
               </span>
             ) : null}
             {isCompleted ? (
-              <span className="inline-flex items-center gap-1 text-emerald-500 text-xs font-medium">
+              <span className="inline-flex items-center gap-1 text-vv-green text-xs font-medium">
                 <Icon name="check-circle-2" className="h-3.5 w-3.5" />
                 {t("lesson.completed")}
               </span>
@@ -216,11 +216,11 @@ export function EduLessonPage({ locale, id }: { locale: string; id: string }) {
             <button
               type="button"
               onClick={handleComplete}
-              className="w-full py-3 rounded-lg bg-emerald-500 text-white font-medium hover:bg-emerald-600 transition-colors flex items-center justify-center gap-2"
+              className="w-full py-3 rounded-lg bg-vv-green text-white font-medium hover:bg-vv-green-dim transition-colors flex items-center justify-center gap-2"
             >
               <Icon name="list-checks" className="h-4 w-4" />
               {t("lesson.complete")}
-              {xp > 0 ? <span className="text-emerald-100 text-sm">(+{xp} XP)</span> : null}
+              {xp > 0 ? <span className="text-vv-green-hi text-sm">(+{xp} XP)</span> : null}
             </button>
           </div>
         ) : null}
@@ -247,7 +247,7 @@ export function EduLessonPage({ locale, id }: { locale: string; id: string }) {
               <h3 className="text-sm font-semibold text-[var(--color-text-primary)] mb-3">{course.title}</h3>
               <div className="mb-2">
                 <div className="h-2 rounded-full bg-[var(--color-input-bg)] overflow-hidden">
-                  <div className="h-full rounded-full bg-emerald-500 transition-all" style={{ width: `${coursePercent}%` }} />
+                  <div className="h-full rounded-full bg-vv-green transition-all" style={{ width: `${coursePercent}%` }} />
                 </div>
               </div>
               <p className="text-xs text-[var(--color-text-muted)]">
@@ -260,7 +260,7 @@ export function EduLessonPage({ locale, id }: { locale: string; id: string }) {
                 <h4 className="text-sm font-semibold text-[var(--color-text-primary)] mb-3">Obsah lekce</h4>
                 <div className="space-y-1">
                   {outline.map((h, i) => (
-                    <div key={i} className="text-xs text-[var(--color-text-muted)] hover:text-emerald-500 transition-colors cursor-default truncate">
+                    <div key={i} className="text-xs text-[var(--color-text-muted)] hover:text-vv-green transition-colors cursor-default truncate">
                       {h}
                     </div>
                   ))}
@@ -285,14 +285,14 @@ function PrevNextCard({ l, isPrev, lang, t }: PrevNextCardProps) {
   return (
     <Link
       href={`/${lang}/edu/lekce/${l.slug}/`}
-      className={`group flex items-center ${isPrev ? "" : "justify-end"} gap-3 p-4 rounded-lg bg-[var(--color-input-bg)] border border-[var(--color-border-subtle)] hover:border-emerald-500/30 transition-colors ${isPrev ? "" : "text-right"}`}
+      className={`group flex items-center ${isPrev ? "" : "justify-end"} gap-3 p-4 rounded-lg bg-[var(--color-input-bg)] border border-[var(--color-border-subtle)] hover:border-vv-green/30 transition-colors ${isPrev ? "" : "text-right"}`}
     >
-      {isPrev ? <Icon name="chevron-left" className="h-4 w-4 text-[var(--color-text-muted)] group-hover:text-emerald-500 transition-colors shrink-0" /> : null}
+      {isPrev ? <Icon name="chevron-left" className="h-4 w-4 text-[var(--color-text-muted)] group-hover:text-vv-green transition-colors shrink-0" /> : null}
       <div className="min-w-0">
-        <p className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-wider">{isPrev ? t("lesson.prev") : t("lesson.next")}</p>
-        <p className="text-sm font-medium text-[var(--color-text-primary)] truncate group-hover:text-emerald-500 transition-colors">{l.title}</p>
+        <p className="text-xs text-[var(--color-text-muted)] uppercase tracking-wider">{isPrev ? t("lesson.prev") : t("lesson.next")}</p>
+        <p className="text-sm font-medium text-[var(--color-text-primary)] truncate group-hover:text-vv-green transition-colors">{l.title}</p>
       </div>
-      {!isPrev ? <Icon name="chevron-right" className="h-4 w-4 text-[var(--color-text-muted)] group-hover:text-emerald-500 transition-colors shrink-0" /> : null}
+      {!isPrev ? <Icon name="chevron-right" className="h-4 w-4 text-[var(--color-text-muted)] group-hover:text-vv-green transition-colors shrink-0" /> : null}
     </Link>
   );
 }
@@ -321,11 +321,11 @@ function ChapterListCard({ currentChapter, chapterIndex, slug, completed, lang }
           let cls: string;
           let nodeIcon: React.ReactNode;
           if (lCurrent) {
-            cls = "bg-emerald-500/10 border border-emerald-500/20 text-emerald-500";
-            nodeIcon = <Icon name="circle" className="h-3.5 w-3.5 text-emerald-500 fill-emerald-500/20" />;
+            cls = "bg-vv-green/10 border border-vv-green/20 text-vv-green";
+            nodeIcon = <Icon name="circle" className="h-3.5 w-3.5 text-vv-green fill-vv-green/20" />;
           } else if (lCompleted) {
             cls = "text-[var(--color-text-secondary)] hover:bg-[var(--color-input-bg)]";
-            nodeIcon = <Icon name="check-circle-2" className="h-3.5 w-3.5 text-emerald-500" />;
+            nodeIcon = <Icon name="check-circle-2" className="h-3.5 w-3.5 text-vv-green" />;
           } else {
             cls = "text-[var(--color-text-muted)] hover:bg-[var(--color-input-bg)]";
             nodeIcon = <Icon name="circle" className="h-3.5 w-3.5 text-[var(--color-border-subtle)]" />;

@@ -15,7 +15,7 @@ import { Icon as BlockIcon } from "../blocks/icon";
 import { TurnstileField, captchaToken, resetCaptcha } from "@/components/account/auth/captcha";
 
 const INPUT_CLS =
-  "w-full rounded-lg bg-[var(--color-input-bg)] border border-[var(--color-border-subtle)] px-3 py-2.5 text-sm text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/20 transition-colors";
+  "w-full rounded-lg bg-[var(--color-input-bg)] border border-[var(--color-border-subtle)] px-3 py-2.5 text-sm text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:border-vv-green/50 focus:ring-1 focus:ring-vv-green/20 transition-colors";
 
 const OFFER_ITEMS = [
   { icon: "book-open", key: "item1" },
@@ -69,7 +69,7 @@ function Hero({ t, onCta }: { t: (key: string) => string; onCta: () => void }) {
   return (
     <section className="relative overflow-hidden border-b border-[var(--color-border-subtle)]">
       <div className="relative max-w-4xl mx-auto px-6 pt-16 pb-14 md:pt-24 md:pb-20 text-center">
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium border border-emerald-500/30 bg-emerald-500/10 text-emerald-500 mb-6">
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-medium border border-vv-green/30 bg-vv-green/10 text-vv-green mb-6">
           <BlockIcon name="graduation-cap" className="h-3.5 w-3.5" />
           {t("skoly.hero.badge")}
         </span>
@@ -82,7 +82,7 @@ function Hero({ t, onCta }: { t: (key: string) => string; onCta: () => void }) {
         <button
           type="button"
           onClick={onCta}
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold bg-emerald-500 text-black hover:bg-emerald-400 transition-colors"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold bg-vv-green text-black hover:bg-vv-green-dim transition-colors"
         >
           {t("skoly.hero.cta")}
           <HomeIcon name="arrow-right" className="h-4 w-4" />
@@ -106,7 +106,7 @@ function OfferSection({ t }: { t: (key: string) => string }) {
             key={key}
             className="rounded-xl p-5 border border-[var(--color-border-subtle)] bg-[var(--color-card-bg)]"
           >
-            <div className="h-10 w-10 rounded-xl flex items-center justify-center mb-3 bg-emerald-500/10 text-emerald-500">
+            <div className="h-10 w-10 rounded-xl flex items-center justify-center mb-3 bg-vv-green/10 text-vv-green">
               <HomeIcon name={icon} className="h-5 w-5" />
             </div>
             <h3 className="text-sm font-semibold mb-1.5 text-[var(--color-text-primary)]">
@@ -198,8 +198,8 @@ function InterestForm({ t }: { t: (key: string) => string }) {
   if (success) {
     return (
       <section id="skoly-form" className="py-14 scroll-mt-24">
-        <div className="max-w-lg mx-auto rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-8 text-center" role="status" aria-live="polite">
-          <div className="h-12 w-12 rounded-full mx-auto mb-4 flex items-center justify-center bg-emerald-500/20 text-emerald-500">
+        <div className="max-w-lg mx-auto rounded-xl border border-vv-green/30 bg-vv-green/10 p-8 text-center" role="status" aria-live="polite">
+          <div className="h-12 w-12 rounded-full mx-auto mb-4 flex items-center justify-center bg-vv-green/20 text-vv-green">
             <BlockIcon name="check-circle" className="h-6 w-6" />
           </div>
           <p className="text-base font-semibold text-[var(--color-text-primary)]">{t("skoly.form.success")}</p>
@@ -215,7 +215,7 @@ function InterestForm({ t }: { t: (key: string) => string }) {
         <p className="text-sm mb-6 text-[var(--color-text-secondary)]">{t("skoly.form.subtitle")}</p>
 
         {error ? (
-          <p className="mb-4 rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-sm text-red-400" role="alert">
+          <p className="mb-4 rounded-lg border border-danger/30 bg-danger/10 px-3 py-2 text-sm text-danger-text" role="alert">
             {error}
           </p>
         ) : null}
@@ -239,7 +239,7 @@ function InterestForm({ t }: { t: (key: string) => string }) {
               onChange={(e) => handleChange("name", e.target.value)}
               onBlur={() => handleBlur("name")}
             />
-            {touched.name && errors.name ? <p className="mt-1 text-xs text-red-400">{errors.name}</p> : null}
+            {touched.name && errors.name ? <p className="mt-1 text-xs text-danger-text">{errors.name}</p> : null}
           </div>
 
           <div>
@@ -260,7 +260,7 @@ function InterestForm({ t }: { t: (key: string) => string }) {
               onChange={(e) => handleChange("school", e.target.value)}
               onBlur={() => handleBlur("school")}
             />
-            {touched.school && errors.school ? <p className="mt-1 text-xs text-red-400">{errors.school}</p> : null}
+            {touched.school && errors.school ? <p className="mt-1 text-xs text-danger-text">{errors.school}</p> : null}
           </div>
 
           <div>
@@ -282,7 +282,7 @@ function InterestForm({ t }: { t: (key: string) => string }) {
               onChange={(e) => handleChange("email", e.target.value)}
               onBlur={() => handleBlur("email")}
             />
-            {touched.email && errors.email ? <p className="mt-1 text-xs text-red-400">{errors.email}</p> : null}
+            {touched.email && errors.email ? <p className="mt-1 text-xs text-danger-text">{errors.email}</p> : null}
           </div>
 
           <div>
@@ -306,7 +306,7 @@ function InterestForm({ t }: { t: (key: string) => string }) {
             type="submit"
             disabled={submitting}
             aria-busy={submitting}
-            className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold bg-emerald-500 text-black hover:bg-emerald-400 disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
+            className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold bg-vv-green text-black hover:bg-vv-green-dim disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
           >
             {submitting ? <span className="ai-spinner" aria-hidden="true" /> : null}
             {submitting ? t("skoly.form.submitting") : t("skoly.form.submit")}
@@ -331,7 +331,7 @@ function FaqSection({ t }: { t: (key: string) => string }) {
             key={key}
             className="group rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-card-bg)] px-5 py-4 [&_summary::-webkit-details-marker]:hidden"
           >
-            <summary className="flex items-center justify-between gap-3 cursor-pointer list-none font-medium text-sm text-[var(--color-text-primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40 rounded-md">
+            <summary className="flex items-center justify-between gap-3 cursor-pointer list-none font-medium text-sm text-[var(--color-text-primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vv-green/40 rounded-md">
               {t(`skoly.faq.${key}`)}
               <HomeIcon
                 name="arrow-right"

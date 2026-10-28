@@ -4,7 +4,7 @@
 .auth-card { width:100%; max-width:480px; background:var(--card); border:1px solid var(--card-border); border-radius:var(--r-card); padding:32px; display:flex; flex-direction:column; gap:20px; }
 .auth-title { font-size:20px; font-weight:700; margin:0 0 4px; }
 .auth-sub { font-size:13px; color:var(--text-3); margin:0; }
-.auth-error { background:#f9731620; border:1px solid #f9731660; border-radius:var(--r-control); padding:10px 14px; font-size:13px; color:#f97316; }
+.auth-error { background:rgba(224, 134, 58, 0.13); border:1px solid rgba(224, 134, 58, 0.38); border-radius:var(--r-control); padding:10px 14px; font-size:13px; color:var(--vv-warn-text); }
 .auth-error[hidden] { display:none; }
-.auth-ok { background:#10b98120; border:1px solid #10b98160; border-radius:var(--r-control); padding:10px 14px; font-size:13px; color:#10b981; }
+.auth-ok { background:rgba(var(--vv-green-rgb), 0.13); border:1px solid rgba(var(--vv-green-rgb), 0.38); border-radius:var(--r-control); padding:10px 14px; font-size:13px; color:var(--vv-green); }
 .auth-ok[hidden] { display:none; }

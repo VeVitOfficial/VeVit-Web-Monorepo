@@ -89,7 +89,7 @@ const MAX = 8 * 1024 * 1024;
 const TXT = {
   model: "Model: llava (vyžaduje `ollama pull llava`)",
   dzTitle: "Přetáhněte obrázek",
-  dzHint: "PNG / JPG / WEBP — analýza přes vision model",
+  dzHint: "PNG / JPG / WEBP, analýza přes vision model",
   run: "Analyzovat",
   stop: "Zastavit",
   copy: "Kopírovat",

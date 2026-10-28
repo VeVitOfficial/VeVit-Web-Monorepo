@@ -4,9 +4,9 @@
    používají jen tyto proměnné, nikoli pevné barvy. */
 .aifb {
   --aifb-accent: var(--primary); --aifb-focus: var(--primary); --aifb-on-accent: #04130d;
-  --aifb-gold: var(--warning); --aifb-sky: #0ea5e9; --aifb-violet: #8b5cf6; --aifb-slate: #64748b;
+  --aifb-gold: var(--warning); --aifb-sky: var(--vv-info); --aifb-violet: var(--vv-violet); --aifb-slate: #64748b;
 }
-html.light .aifb { --aifb-accent: #047857; --aifb-focus: #047857; --aifb-on-accent: #ffffff; }
+html.light .aifb { --aifb-accent: #1d7a55; --aifb-focus: #1d7a55; --aifb-on-accent: #ffffff; }
 .aifb .aifb-main { max-width: 1180px; padding-top: 1.5rem; }
 .aifb a:focus-visible, .aifb button:focus-visible, .aifb summary:focus-visible, .aifb [tabindex="0"]:focus-visible {
   outline: 3px solid var(--aifb-focus); outline-offset: 3px; border-radius: 8px;
@@ -22,12 +22,12 @@ html.light .aifb { --aifb-accent: #047857; --aifb-focus: #047857; --aifb-on-acce
 
 /* Hlavičky stránek */
 .aifb-head { margin: 0 0 2rem; }
-.aifb-head h1, .aifb-main > h1 { margin: 0 0 0.5rem; font-family: "Bricolage Grotesque", var(--font); font-size: clamp(2rem, 4.6vw, 3.1rem); font-weight: 800; line-height: 1.08; letter-spacing: -0.025em; color: var(--text-primary); }
+.aifb-head h1, .aifb-main > h1 { margin: 0 0 0.5rem; font-family: var(--font-plex-sans), var(--font-sans); font-size: clamp(2rem, 4.6vw, 3.1rem); font-weight: 800; line-height: 1.08; letter-spacing: -0.025em; color: var(--text-primary); }
 .aifb-eyebrow { margin: 0 0 0.25rem; font-size: 0.85rem; font-weight: 700; color: var(--aifb-accent); }
 .aifb-lead { margin: 0 0 1rem; max-width: 46rem; font-size: 1.1rem; line-height: 1.6; color: var(--text-secondary); }
 .aifb-muted { margin: 0 0 1rem; max-width: 46rem; font-size: 0.92rem; line-height: 1.6; color: var(--text-secondary); }
 .aifb-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0 0 1rem; }
-.aifb-badge { display: inline-flex; align-items: center; padding: 0.2rem 0.75rem; border-radius: 999px; font-size: 0.8rem; font-weight: 600; color: var(--text-primary); background: var(--bg-elevated); border: 1px solid var(--border-color); }
+.aifb-badge { display: inline-flex; align-items: center; padding: 0.2rem 0.75rem; border-radius: 8px; font-size: 0.8rem; font-weight: 600; color: var(--text-primary); background: var(--bg-elevated); border: 1px solid var(--border-color); }
 .aifb-badge--cert { border-style: dashed; color: var(--text-secondary); }
 .aifb a.aifb-textlink { color: var(--aifb-accent); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
 .aifb-section { margin: 0 0 3rem; }
@@ -46,7 +46,7 @@ html.light .aifb { --aifb-accent: #047857; --aifb-focus: #047857; --aifb-on-acce
 .aifb-level-card a, .aifb-stop__card { display: flex; flex-direction: column; gap: 0.3rem; height: 100%; min-height: 44px; padding: 1.1rem 1.25rem; border-radius: var(--radius-lg); background: var(--bg-surface); border: 1.5px solid var(--border-color); transition: border-color 0.2s, transform 0.2s; }
 .aifb-level-card a:hover, .aifb-stop__card:hover { border-color: var(--aifb-accent); transform: translateY(-2px); }
 .aifb-level-card__code { font-size: 0.82rem; font-weight: 700; color: var(--aifb-accent); }
-.aifb-level-card__title { font-family: "Bricolage Grotesque", var(--font); font-size: 1.25rem; font-weight: 700; color: var(--text-primary); }
+.aifb-level-card__title { font-family: var(--font-plex-sans), var(--font-sans); font-size: 1.25rem; font-weight: 700; color: var(--text-primary); }
 .aifb-level-card__sub { color: var(--text-secondary); }
 .aifb-level-card__meta { font-size: 0.85rem; color: var(--text-secondary); }
 .aifb-level-card__badges { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.3rem; }
@@ -64,7 +64,7 @@ html.light .aifb { --aifb-accent: #047857; --aifb-focus: #047857; --aifb-on-acce
 .aifb-prose { max-width: 50rem; }
 .aifb-prose p { margin: 0 0 1rem; line-height: 1.7; color: var(--text-secondary); }
 .aifb-prose strong { color: var(--text-primary); }
-.aifb-h2 { margin: 2rem 0 0.75rem; font-family: "Bricolage Grotesque", var(--font); font-size: 1.5rem; font-weight: 700; color: var(--text-primary); }
+.aifb-h2 { margin: 2rem 0 0.75rem; font-family: var(--font-plex-sans), var(--font-sans); font-size: 1.5rem; font-weight: 700; color: var(--text-primary); }
 .aifb-h3 { margin: 1.6rem 0 0.6rem; font-size: 1.2rem; font-weight: 700; color: var(--text-primary); }
 .aifb-prose h3, .aifb-prose h4 { margin: 1.4rem 0 0.5rem; color: var(--text-primary); }
 .aifb-list { list-style: disc; margin: 0 0 1.2rem 1.25rem; padding: 0; color: var(--text-secondary); line-height: 1.65; }
@@ -94,8 +94,8 @@ ol.aifb-list { list-style: decimal; }
 
 /* Přepínač zobrazení */
 .aifb-overview { margin-top: 1rem; }
-.aifb-toggle { display: inline-flex; gap: 0.25rem; margin: 0 0 1.25rem; padding: 0.25rem; border-radius: 999px; background: var(--bg-elevated); border: 1.5px solid var(--border-color); }
-.aifb a.aifb-toggle__btn, .aifb button.aifb-toggle__btn { display: inline-flex; align-items: center; min-height: 44px; min-width: 44px; padding: 0 1.1rem; border: 0; border-radius: 999px; font: inherit; font-weight: 600; color: var(--text-secondary); background: transparent; cursor: pointer; }
+.aifb-toggle { display: inline-flex; gap: 0.25rem; margin: 0 0 1.25rem; padding: 0.25rem; border-radius: 12px; background: var(--bg-elevated); border: 1.5px solid var(--border-color); }
+.aifb a.aifb-toggle__btn, .aifb button.aifb-toggle__btn { display: inline-flex; align-items: center; min-height: 44px; min-width: 44px; padding: 0 1.1rem; border: 0; border-radius: 12px; font: inherit; font-weight: 600; color: var(--text-secondary); background: transparent; cursor: pointer; }
 .aifb .aifb-toggle__btn:hover { color: var(--text-primary); }
 .aifb .aifb-toggle__btn[aria-pressed="true"], .aifb .aifb-toggle__btn[aria-current="true"] { color: var(--aifb-on-accent); background: var(--aifb-accent); }
 .aifb-sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
@@ -118,7 +118,7 @@ ol.aifb-list { list-style: decimal; }
 .aifb-map__compass circle, .aifb-map__compass path { stroke: var(--aifb-sea-line); stroke-width: 2; fill: color-mix(in srgb, var(--aifb-sky) 18%, transparent); }
 .aifb-map__islands { list-style: none; margin: 0; padding: 0; }
 .aifb-island { position: relative; display: flex; flex-direction: column; align-items: center; gap: 0.25rem; min-width: 64px; min-height: 64px; max-width: 12rem; padding: 0.4rem; border-radius: 1.2rem; text-align: center; color: var(--text-primary); transition: transform 0.2s ease; }
-.aifb-island:hover { transform: scale(1.05); }
+.aifb-island:hover { transform: scale(1.03); }
 .aifb-island__art { position: relative; display: block; width: 9.5rem; }
 .aifb-island__shape { display: block; width: 100%; height: auto; overflow: visible; }
 .aifb-island__sand { fill: color-mix(in srgb, var(--aifb-gold) 62%, var(--bg-surface)); stroke: color-mix(in srgb, var(--aifb-gold) 80%, var(--text-primary)); stroke-width: 3; }
@@ -132,10 +132,10 @@ ol.aifb-list { list-style: decimal; }
 .aifb-island__chest { position: absolute; right: 0.4rem; bottom: -0.4rem; width: 2.6rem; height: 2.1rem; }
 .aifb-chest__lid, .aifb-chest__body { fill: var(--aifb-gold); stroke: var(--text-primary); stroke-width: 2; }
 .aifb-chest__gem { fill: var(--aifb-violet); stroke: var(--text-primary); stroke-width: 1.5; }
-.aifb-island__name { padding: 0.15rem 0.7rem; border-radius: 999px; font-family: "Bricolage Grotesque", var(--font); font-size: 1.05rem; font-weight: 700; background: var(--bg-surface); border: 1.5px solid var(--border-color); }
+.aifb-island__name { padding: 0.15rem 0.7rem; border-radius: 8px; font-family: var(--font-plex-sans), var(--font-sans); font-size: 1.05rem; font-weight: 700; background: var(--bg-surface); border: 1.5px solid var(--border-color); }
 .aifb-island:hover .aifb-island__name, .aifb-island:focus-visible .aifb-island__name { border-color: var(--aifb-accent); }
 .aifb-island__sub { font-size: 0.84rem; color: var(--text-secondary); text-shadow: none; padding: 0 0.3rem; background: color-mix(in srgb, var(--bg-surface) 80%, transparent); border-radius: 6px; }
-.aifb-island__tag { padding: 0.1rem 0.6rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; color: var(--aifb-on-accent); background: var(--aifb-accent); }
+.aifb-island__tag { padding: 0.1rem 0.6rem; border-radius: 8px; font-size: 0.78rem; font-weight: 700; color: var(--aifb-on-accent); background: var(--aifb-accent); }
 @media (min-width: 900px) {
   .aifb-map { aspect-ratio: 1000 / 600; }
   .aifb-map__islands { position: absolute; inset: 0; }
@@ -232,7 +232,7 @@ ol.aifb-list { list-style: decimal; }
 }
 
 /* Místní průběh: stav lekce, drahokamy, přenos souboru */
-.aifb-state { display: inline-flex; align-items: center; padding: 0.15rem 0.7rem; border-radius: 999px; font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); border: 1.5px dashed var(--border-color); }
+.aifb-state { display: inline-flex; align-items: center; padding: 0.15rem 0.7rem; border-radius: 8px; font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); border: 1.5px dashed var(--border-color); }
 .aifb-state[data-state="started"] { color: var(--text-primary); border-style: solid; }
 .aifb-state[data-state="done"] { color: var(--aifb-on-accent); background: var(--aifb-accent); border-color: var(--aifb-accent); border-style: solid; }
 .aifb-lesson-progress { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1rem; margin: 0 0 1.5rem; }
@@ -285,7 +285,7 @@ ol.aifb-list { list-style: decimal; }
 .aifb-step { display: inline-grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%; font-size: 1rem; font-weight: 800; color: var(--aifb-on-accent); background: var(--aifb-accent); }
 .aifb-theory-card { display: grid; gap: 0.6rem; padding: 1.4rem 1.5rem; border-radius: var(--radius-lg); background: color-mix(in srgb, var(--aifb-accent) 9%, var(--bg-surface)); border: 1.5px solid color-mix(in srgb, var(--aifb-accent) 45%, transparent); transition: border-color 0.2s, transform 0.2s; }
 .aifb .aifb-theory-card:hover { border-color: var(--aifb-accent); transform: translateY(-2px); }
-.aifb-theory-card__title { font-family: "Bricolage Grotesque", var(--font); font-size: 1.35rem; font-weight: 800; color: var(--text-primary); }
+.aifb-theory-card__title { font-family: var(--font-plex-sans), var(--font-sans); font-size: 1.35rem; font-weight: 800; color: var(--text-primary); }
 .aifb-theory-card__lead { max-width: 48rem; line-height: 1.6; color: var(--text-secondary); }
 .aifb-theory-card__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1rem; }
 .aifb-theory-card__cta { margin-left: auto; font-weight: 700; color: var(--aifb-accent); }
@@ -309,7 +309,7 @@ ol.aifb-list { list-style: decimal; }
 .th-article p { margin: 0 0 1rem; }
 .th-article strong { color: var(--text-primary); }
 .th-section { margin: 0 0 2.5rem; scroll-margin-top: 5rem; }
-.th-section h2, .th-summary h2 { margin: 0 0 0.9rem; font-family: "Bricolage Grotesque", var(--font); font-size: 1.55rem; font-weight: 800; line-height: 1.2; color: var(--text-primary); }
+.th-section h2, .th-summary h2 { margin: 0 0 0.9rem; font-family: var(--font-plex-sans), var(--font-sans); font-size: 1.55rem; font-weight: 800; line-height: 1.2; color: var(--text-primary); }
 .th-list__title { margin: 0 0 0.35rem; font-weight: 700; color: var(--text-primary); }
 .th-terms { display: grid; gap: 0.75rem; margin: 0 0 1.25rem; }
 .th-terms__item { padding: 0.8rem 1rem; border-radius: var(--radius-md); background: var(--bg-surface); border: 1.5px solid var(--border-color); }
@@ -323,7 +323,7 @@ ol.aifb-list { list-style: decimal; }
 .th-callout p:last-child { margin-bottom: 0; }
 .th-example { margin: 0 0 1.25rem; border-radius: var(--radius-md); border: 1.5px dashed var(--border-color); background: var(--bg-elevated); }
 .th-example__title { margin: 0 !important; padding: 0.55rem 1rem 0; font-size: 0.85rem; font-weight: 800; color: var(--text-secondary); }
-.th-example pre { margin: 0; padding: 0.5rem 1rem 0.9rem; overflow-x: auto; white-space: pre-wrap; font: 0.95rem/1.6 "Geist Mono", ui-monospace, monospace; color: var(--text-primary); }
+.th-example pre { margin: 0; padding: 0.5rem 1rem 0.9rem; overflow-x: auto; white-space: pre-wrap; font: 0.95rem/1.6 var(--font-plex-mono), ui-monospace, monospace; color: var(--text-primary); }
 .th-figure { margin: 0.5rem 0 1.5rem; padding: 1rem; border-radius: var(--radius-lg); background: var(--bg-elevated); border: 1.5px solid var(--border-color); }
 .th-figure figcaption { margin-top: 0.6rem; font-size: 0.92rem; line-height: 1.5; color: var(--text-secondary); text-align: center; }
 .th-summary { margin: 0 0 2rem; padding: 1.2rem 1.4rem; border-radius: var(--radius-lg); background: color-mix(in srgb, var(--aifb-accent) 8%, var(--bg-surface)); border: 1.5px solid color-mix(in srgb, var(--aifb-accent) 40%, transparent); }
@@ -334,7 +334,7 @@ ol.aifb-list { list-style: decimal; }
 
 /* Ilustrace */
 .af { display: block; width: 100%; height: auto; overflow: visible; }
-.af-t { fill: var(--text-primary); font-family: var(--font); font-weight: 600; }
+.af-t { fill: var(--text-primary); font-family: var(--font-sans); font-weight: 600; }
 .af-t--s { font-size: 15px; font-weight: 500; }
 .af-t--m { font-size: 18px; }
 .af-t--l { font-size: 22px; font-weight: 800; }
@@ -373,7 +373,7 @@ ol.aifb-list { list-style: decimal; }
 .af-window { fill: color-mix(in srgb, var(--aifb-sky) 8%, var(--bg-surface)); stroke: var(--aifb-sky); stroke-width: 3; }
 .af-dot { fill: var(--text-secondary); opacity: 0.55; }
 .af-dot--hit { fill: var(--aifb-accent); opacity: 1; }
-.af-code { margin: 0; white-space: pre; font: 14px/1.55 "Geist Mono", ui-monospace, monospace; color: var(--text-primary); }
+.af-code { margin: 0; white-space: pre; font: 14px/1.55 var(--font-plex-mono), ui-monospace, monospace; color: var(--text-primary); }
 .af-fo { margin: 0; font-size: 15px; line-height: 1.35; text-align: center; color: var(--text-secondary); }
 .af * { transform-box: fill-box; transform-origin: center; }
 
@@ -416,7 +416,7 @@ ol.aifb-list { list-style: decimal; }
 @keyframes af-wiggle { 50% { transform: rotate(-12deg) translateX(-4px); } }
 @keyframes af-check { 0%, 15% { opacity: 0.35; } 30%, 85% { opacity: 1; } 100% { opacity: 0.35; } }
 @keyframes af-grow { 0% { transform: scaleX(0); } 30%, 90% { transform: scaleX(1); } 100% { transform: scaleX(0); } }
-@keyframes af-stamp { 0%, 20% { transform: scale(1); } 30% { transform: scale(1.15); } 40%, 100% { transform: scale(1); } }
+@keyframes af-stamp { 0%, 20% { transform: scale(1); } 30% { transform: scale(1.03); } 40%, 100% { transform: scale(1); } }
 @keyframes af-drop { 0% { transform: translateY(-30px); opacity: 0; } 15%, 85% { transform: translateY(0); opacity: 1; } 100% { opacity: 0; } }
 @keyframes af-run { 0% { transform: translateX(0); } 70%, 100% { transform: translateX(245px); } }
 @keyframes af-out { 0% { transform: translateX(0); opacity: 1; } 80% { transform: translateX(180px); opacity: 1; } 100% { transform: translateX(190px); opacity: 0; } }
@@ -432,7 +432,7 @@ ol.aifb-list { list-style: decimal; }
 @media (max-width: 560px) { .aifb-lesson-row__body { grid-template-columns: 1fr; } }
 .aifb-theory-card--locked { border-style: dashed; cursor: default; }
 .aifb-island[data-locked="true"] .aifb-island__art { opacity: 0.55; }
-.aifb-edit-link { margin-left: 0.5rem; font-family: var(--font); font-size: 0.8rem; letter-spacing: normal; vertical-align: middle; font-weight: 600; color: var(--aifb-accent); text-decoration: underline; text-underline-offset: 2px; }
+.aifb-edit-link { margin-left: 0.5rem; font-family: var(--font-sans); font-size: 0.8rem; letter-spacing: normal; vertical-align: middle; font-weight: 600; color: var(--aifb-accent); text-decoration: underline; text-underline-offset: 2px; }
 .aifb-locked { max-width: 40rem; margin: 3rem auto; text-align: center; }
 .aifb-locked p { color: var(--text-secondary); }
 .aifb-status { min-height: 1.4em; font-weight: 600; color: var(--text-primary); }

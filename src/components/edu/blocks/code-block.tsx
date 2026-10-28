@@ -30,7 +30,7 @@ export function CodeBlock({ code, language }: CodeBlockProps) {
   return (
     <div className="code-block relative group my-6 rounded-lg overflow-hidden border border-[var(--color-border-subtle)] bg-[var(--color-katex-bg)]">
       <div className="flex items-center justify-between px-3 py-2 bg-[var(--color-input-bg)] border-b border-[var(--color-border-subtle)]">
-        <span className="text-[10px] uppercase tracking-wider text-[var(--color-muted)] font-mono">
+        <span className="text-xs uppercase tracking-wider text-[var(--color-muted)] font-mono">
           {lang}
         </span>
         <button

@@ -385,7 +385,7 @@ export default function AudioConvert({ locale }: ToolComponentProps) {
           </svg>
         </span>
         <span className="dz-title">Přetáhněte audio</span>
-        <span className="dz-hint">MP3, WAV, OGG, M4A, FLAC — převod přes ffmpeg.wasm</span>
+        <span className="dz-hint">MP3, WAV, OGG, M4A, FLAC, převod přes ffmpeg.wasm</span>
       </Dropzone>
 
       {file ? (

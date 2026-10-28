@@ -5,9 +5,10 @@ import { RequestDownloadButtons } from "@/components/store/request-download";
 import { PaymentStatusPoller } from "@/components/store/payment-status-poller";
 import { CheckoutSteps } from "@/components/store/checkout/checkout-steps";
 import { ClearCheckout } from "@/components/store/checkout/clear-checkout";
+import { Icon } from "@/components/store/icon";
 import { PAYMENT_LABELS } from "@/lib/checkout/payment-labels";
 
-export const metadata = { title: "Stav objednávky — VeVit Store", robots: { index: false } };
+export const metadata = { title: "Stav objednávky. VeVit Store", robots: { index: false } };
 export const dynamic = "force-dynamic";
 
 type Props = { searchParams: Promise<Record<string, string | string[] | undefined>> };
@@ -54,8 +55,8 @@ export default async function SuccessPage({ searchParams }: Props) {
   const sc = STATUS[order.status] ?? DEFAULT_STATUS;
   const typeClass = sc.type === "success" ? "text-success"
     : sc.type === "review" ? "text-primary"
-    : sc.type === "error" ? "text-error"
-    : "text-warning";
+    : sc.type === "error" ? "text-danger-text"
+    : "text-warn-text";
 
   return (
     <main id="main-content" className="flex-1 w-full max-w-[680px] mx-auto px-margin py-12 flex flex-col gap-6">
@@ -81,7 +82,7 @@ export default async function SuccessPage({ searchParams }: Props) {
           <PaymentStatusPoller orderId={publicId} />
         ) : null}
         {["pending", "pending_checkout", "awaiting_payment"].includes(order.status) ? (
-          <div className="flex items-center gap-2 bg-warning/10 border border-warning/30 text-warning rounded-xl px-5 py-3 text-sm">
+          <div className="flex items-center gap-2 bg-warning/10 border border-warning/30 text-warn-text rounded-xl px-5 py-3 text-sm">
             <Icon name="info" className="text-[18px] icon-filled flex-shrink-0" />
             Platba se ověřuje. Tuto stránku ještě nezavírejte.
           </div>
@@ -163,10 +164,6 @@ export default async function SuccessPage({ searchParams }: Props) {
       </div>
     </main>
   );
-}
-
-function Icon({ name, className }: { name: string; className?: string }) {
-  return <span className={`material-symbols-outlined ${className ?? ""}`} aria-hidden="true">{name}</span>;
 }
 
 function deliveryLabelFor(method: string | null, point: { name?: string; street?: string; kind?: string } | null): string | null {

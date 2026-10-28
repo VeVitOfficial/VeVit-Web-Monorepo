@@ -40,7 +40,7 @@ export default function ContrastChecker({ locale }: ToolComponentProps) {
     return { ratio: r, fgHex: toHex(f), bgHex: toHex(b) };
   }, [fgText, bgText]);
 
-  const ratioText = res && "ratio" in res ? res.ratio!.toFixed(2) + " : 1" : "—";
+  const ratioText = res && "ratio" in res ? res.ratio!.toFixed(2) + " : 1" : ", ";
   const badges = res && "ratio" in res
     ? { aa: res.ratio! >= 4.5, aaL: res.ratio! >= 3, aaa: res.ratio! >= 7, aaaL: res.ratio! >= 4.5 }
     : null;

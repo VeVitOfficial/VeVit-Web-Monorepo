@@ -5,7 +5,7 @@
 
 import type { ReactNode } from "react";
 
-// Fonty (Vercel Geist) + fallback.
+// Fonty z next/font + fallback.
 import "../../../public/assets/fonts/vevit-fonts.css";
 // Tailwind Play CDN build + design tokeny (reprodukce globals.css).
 import "@/styles/vevit-tailwind.css";

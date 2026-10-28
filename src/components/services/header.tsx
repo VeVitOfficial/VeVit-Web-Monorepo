@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { SvcIcon } from "./icons";
 
+import { ThemeToggle } from "@/components/theme-toggle";
 // Sdílené moduly (jazyk, přepínač aplikací, účet) — stejné jako v Tools a Edu.
 const MODULE_SCRIPTS = [
   "/assets/shared/app-switcher.js?v=20260928b",
@@ -55,6 +56,7 @@ export function ServicesHeader({ locale, unread = 0 }: { locale: string; unread?
           <SvcIcon name="plus" size={15} /> Zadat poptávku
         </a>
         <div className="svc-actions vv-app-actions">
+          <ThemeToggle />
           <span data-vevit-language />
           <span data-vevit-app-switcher data-vevit-app="Services" />
           <span data-vevit-session>

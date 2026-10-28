@@ -135,7 +135,7 @@ export function useAiSingle(tool: string, locale: Locale, idleMsg: string, empty
     const txt = mdRef.current?.innerText || mdRef.current?.textContent || "";
     if (txt) {
       try { await navigator.clipboard.writeText(txt); }
-      catch { /* useCopy flash nepotřebujeme zde — legacy volá ToolUI.copyText */ }
+      catch { /* useCopy flash nepotřebujeme zde, legacy volá ToolUI.copyText */ }
     }
   }, []);
 

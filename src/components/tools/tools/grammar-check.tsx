@@ -107,7 +107,7 @@ export default function GrammarCheck({ locale }: ToolComponentProps) {
           </div>
         </div>
       ) : null}
-      <p className="muted" style={{ fontSize: "0.8rem" }}>Kontrola pravopisu/gramatiky přes Ollamu, lokálně. Vraťte opravený text — vstup max 20 000 znaků.</p>
+      <p className="muted" style={{ fontSize: "0.8rem" }}>Kontrola pravopisu/gramatiky přes Ollamu, lokálně. Vraťte opravený text, vstup max 20 000 znaků.</p>
     </div>
   );
 }

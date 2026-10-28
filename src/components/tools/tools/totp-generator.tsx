@@ -58,7 +58,7 @@ export default function TotpGenerator({ locale }: ToolComponentProps) {
   const [account, setAccount] = useState("account");
   const [code, setCode] = useState("------");
   const [fill, setFill] = useState(0);
-  const [timer, setTimer] = useState("—");
+  const [timer, setTimer] = useState(", ");
   const [error, setError] = useState("");
   const [qrUrl, setQrUrl] = useState<string | null>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -71,7 +71,7 @@ export default function TotpGenerator({ locale }: ToolComponentProps) {
 
   async function tick() {
     const key = base32Decode(secret);
-    if (!key.length) { setCode("------"); setFill(0); setTimer("—"); return; }
+    if (!key.length) { setCode("------"); setFill(0); setTimer(", "); return; }
     const now = Math.floor(Date.now() / 1000);
     const counter = Math.floor(now / STEP);
     const remain = STEP - (now % STEP);

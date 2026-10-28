@@ -43,7 +43,7 @@ function liveCompute(locale: string) {
   if (!f || !t) {
     ids.forEach((id) => {
       const el = document.getElementById(id);
-      if (el) el.textContent = "—";
+      if (el) el.textContent = ", ";
     });
     return;
   }

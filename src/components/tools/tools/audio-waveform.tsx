@@ -27,7 +27,7 @@ function computePeaks(ch: Float32Array, n: number): number[] {
 
 export default function AudioWaveform({ locale }: ToolComponentProps) {
   const [file, setFile] = useState<File | null>(null);
-  const [color, setColor] = useState("#22d3ee");
+  const [color, setColor] = useState("var(--vv-info)");
   const [bg, setBg] = useState("#0b1220");
   const [bars, setBars] = useState(200);
   const [ready, setReady] = useState(false);
@@ -123,7 +123,7 @@ export default function AudioWaveform({ locale }: ToolComponentProps) {
           </svg>
         </span>
         <span className="dz-title">Přetáhněte audio</span>
-        <span className="dz-hint">MP3, WAV, OGG, M4A — křivka přes Web Audio API</span>
+        <span className="dz-hint">MP3, WAV, OGG, M4A, křivka přes Web Audio API</span>
       </Dropzone>
 
       {file ? <FileList files={[{ name: file.name, size: file.size }]} onRemove={() => reset()} locale={locale} /> : null}
@@ -165,7 +165,7 @@ export default function AudioWaveform({ locale }: ToolComponentProps) {
       {error ? <p className="error-text" role="alert">{error}</p> : null}
 
       <p className="muted" style={{ fontSize: "0.8rem" }}>
-        Dekódování přes Web Audio API (AudioContext.decodeAudioData). Běží lokálně — audio neopustí prohlížeč.
+        Dekódování přes Web Audio API (AudioContext.decodeAudioData). Běží lokálně, audio neopustí prohlížeč.
       </p>
     </div>
   );

@@ -17,6 +17,7 @@ import { useEffect, useRef, useState } from "react";
 import { CATEGORY_COLORS, CATEGORY_ORDER, type Category, type Locale } from "@/components/tools/registry/data";
 import { categoryLabel } from "@/components/tools/registry/data";
 
+import { ThemeToggle } from "@/components/theme-toggle";
 interface Props {
   locale: Locale;
   strings: { categories: string; newest: string; login: string; login_title: string; brand_name: string; brand_suffix: string };
@@ -105,7 +106,7 @@ export function SiteHeader({ locale, strings }: Props) {
             </button>
             <div className={`cat-dropdown glass-strong${open ? "" : " hidden"}`} id="cat-menu" role="menu">
               <a href={`${base}#nove`} role="menuitem" onClick={() => setOpen(false)}>
-                <span className="dot" style={{ background: "var(--color-emerald)" }}></span> {strings.newest}
+                <span className="dot" style={{ background: "var(--color-brand)" }}></span> {strings.newest}
               </a>
               <div className="sep"></div>
               {CATEGORY_ORDER.map((cat) => (
@@ -118,6 +119,7 @@ export function SiteHeader({ locale, strings }: Props) {
           </div>
         </div>
         <div className="header-right vv-app-actions">
+          <ThemeToggle />
           <span data-vevit-language></span>
           <span data-vevit-app-switcher data-vevit-app="Tools"></span>
           {/* session.js replaces the fallback with the account menu once signed in. */}

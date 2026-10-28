@@ -34,7 +34,7 @@ export default function VideoConvert({ locale }: ToolComponentProps) {
     const f = arr[0];
     setError(null);
     if (f.size > MAX) {
-      setError("Video je příliš velké (max " + fmtSize(MAX) + " — limit ffmpeg.wasm).");
+      setError("Video je příliš velké (max " + fmtSize(MAX) + ", limit ffmpeg.wasm).");
       setToolState("error");
       return;
     }
@@ -87,7 +87,7 @@ export default function VideoConvert({ locale }: ToolComponentProps) {
           </svg>
         </span>
         <span className="dz-title">Přetáhněte video</span>
-        <span className="dz-hint">MP4, WebM, MOV, MKV… — převod přes ffmpeg.wasm</span>
+        <span className="dz-hint">MP4, WebM, MOV, MKV…, převod přes ffmpeg.wasm</span>
       </Dropzone>
 
       {file ? <FileList files={[{ name: file.name, size: file.size }]} onRemove={() => reset()} locale={locale} /> : null}

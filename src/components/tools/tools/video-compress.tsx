@@ -79,7 +79,7 @@ export default function VideoCompress({ locale }: ToolComponentProps) {
           </svg>
         </span>
         <span className="dz-title">Přetáhněte video ke kompresi</span>
-        <span className="dz-hint">ffmpeg.wasm — snížení bitrate + volitelné rozlišení</span>
+        <span className="dz-hint">ffmpeg.wasm, snížení bitrate + volitelné rozlišení</span>
       </Dropzone>
 
       {file ? <FileList files={[{ name: file.name, size: file.size }]} onRemove={() => reset()} locale={locale} /> : null}
@@ -116,7 +116,7 @@ export default function VideoCompress({ locale }: ToolComponentProps) {
       <ResultArea blob={result?.blob ?? null} filename={result?.filename ?? ""} onReset={reset} locale={locale} />
 
       <p className="muted" style={{ fontSize: "0.8rem" }}>
-        Komprese přes ffmpeg.wasm. WASM je pomalé — u velkých souborů limit ~100 MB. Běží lokálně.
+        Komprese přes ffmpeg.wasm. WASM je pomalé, u velkých souborů limit ~100 MB. Běží lokálně.
       </p>
     </div>
   );

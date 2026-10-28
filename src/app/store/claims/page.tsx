@@ -4,7 +4,7 @@ import { claimAccountList } from "@/lib/store-claims";
 import { getStoreUser } from "@/lib/store-config";
 import { AgendaPage, AgendaUnavailable } from "@/components/store/agenda-shell";
 
-export const metadata = { title: "Moje reklamace — VeVit Store", robots: { index: false } };
+export const metadata = { title: "Moje reklamace. VeVit Store", robots: { index: false } };
 export const dynamic = "force-dynamic";
 
 interface ClaimRow { public_id: unknown; reason_code: unknown; status: unknown }

@@ -26,7 +26,7 @@ export interface LessonBlock {
 }
 
 const headingClasses: Record<number, string> = {
-  1: "text-3xl md:text-4xl font-bold mb-6 mt-2 tracking-tight bg-gradient-to-r from-[var(--color-hero-gradient-from)] to-[var(--color-hero-gradient-to)] bg-clip-text text-transparent",
+  1: "text-3xl md:text-4xl font-bold mb-6 mt-2 tracking-tight text-[var(--color-text-primary)]",
   2: "text-xl md:text-2xl font-semibold mb-4 mt-10 tracking-tight text-[var(--color-text-primary)]",
   3: "text-lg font-semibold mb-3 mt-6 text-[var(--color-text-primary)]",
 };
@@ -38,20 +38,20 @@ const calloutIcons: Record<string, string> = {
   xp: "zap",
 };
 const calloutStyles: Record<string, { border: string; bg: string; text: string }> = {
-  info: { border: "border-sky-500/50", bg: "bg-sky-500/[0.03]", text: "text-sky-500" },
-  warning: { border: "border-amber-500/50", bg: "bg-amber-500/[0.03]", text: "text-amber-500" },
-  tip: { border: "border-emerald-500/50", bg: "bg-emerald-500/[0.03]", text: "text-emerald-500" },
-  xp: { border: "border-emerald-500/50", bg: "bg-emerald-500/[0.05]", text: "text-emerald-500" },
+  info: { border: "border-info/50", bg: "bg-info/[0.03]", text: "text-info-text" },
+  warning: { border: "border-warning/50", bg: "bg-warning/[0.03]", text: "text-warn-text" },
+  tip: { border: "border-vv-green/50", bg: "bg-vv-green/[0.03]", text: "text-vv-green" },
+  xp: { border: "border-vv-green/50", bg: "bg-vv-green/[0.05]", text: "text-vv-green" },
 };
 
 function isTimelineList(items: string[]): boolean {
   if (items.length < 2) return false;
-  const yearPattern = /^\d{3,4}\s*[–—\-\s]/;
+  const yearPattern = /^\d{3,4}\s*[–, \-\s]/;
   return items.every((item) => yearPattern.test(item.trim()));
 }
 
 function parseTimelineItem(item: string): { year: string; text: string } {
-  const match = item.trim().match(/^(\d{3,4})\s*[–—\-\s]\s*(.*)$/);
+  const match = item.trim().match(/^(\d{3,4})\s*[–, \-\s]\s*(.*)$/);
   if (match) return { year: match[1], text: match[2] };
   return { year: "", text: item.trim() };
 }
@@ -76,7 +76,7 @@ function renderMath(latex: string, display: boolean): { html: string; error: boo
 function MathBlock({ latex, display }: { latex: string; display: boolean }) {
   const { html, error } = renderMath(latex, display);
   if (error) {
-    return <span className="text-error">{latex}</span>;
+    return <span className="text-danger-text">{latex}</span>;
   }
   return <span dangerouslySetInnerHTML={{ __html: html }} />;
 }
@@ -92,10 +92,10 @@ function ListBlock({ items, ordered }: { items: string[]; ordered?: boolean }) {
               const { year, text } = parseTimelineItem(item);
               return (
                 <div key={i} className="relative">
-                  <div className="absolute -left-6 top-1 h-3 w-3 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.4)] ring-2 ring-[var(--color-background)]" />
+                  <div className="absolute -left-6 top-1 h-3 w-3 rounded-full bg-vv-green shadow-[0_0_8px_rgba(var(--vv-green-rgb),0.06)] ring-2 ring-[var(--color-background)]" />
                   <div className="flex items-start gap-3">
                     {year ? (
-                      <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 text-xs font-mono font-semibold flex-shrink-0 mt-0.5">
+                      <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-vv-green/10 border border-vv-green/20 text-vv-green text-xs font-mono font-semibold flex-shrink-0 mt-0.5">
                         {year}
                       </span>
                     ) : null}

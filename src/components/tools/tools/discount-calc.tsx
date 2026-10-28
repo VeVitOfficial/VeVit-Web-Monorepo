@@ -8,7 +8,7 @@ import type { ToolComponentProps } from "@/components/tools/registry/data";
 const S = {
   price: "Původní cena (Kč)",
   d1: "Sleva 1 (%)",
-  d2: "Sleva 2 (%) — volitelné",
+  d2: "Sleva 2 (%), volitelné",
   final: "Cena po slevě",
   saved: "Ušetříte",
   total: "Celková sleva",
@@ -21,7 +21,7 @@ function kc(n: number, locale: string) {
 
 // Výpočet 1:1 s legacy discount-calc.js.
 function compute(p: number | null, d1: number | null, d2: number | null, locale: string) {
-  if (p == null) return { final: "—", saved: "—", total: "—" };
+  if (p == null) return { final: ", ", saved: ", ", total: ", " };
   const a = d1 == null ? 0 : Math.max(0, Math.min(100, d1));
   const b = d2 == null ? 0 : Math.max(0, Math.min(100, d2));
   const after1 = p * (1 - a / 100);

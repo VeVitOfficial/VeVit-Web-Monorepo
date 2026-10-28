@@ -84,7 +84,7 @@ export default function CronBuilder({ locale }: ToolComponentProps) {
     try {
       return { desc: describe(expr), errVal: null as string | null };
     } catch (e) {
-      return { desc: "—", errVal: (e as Error).message };
+      return { desc: ", ", errVal: (e as Error).message };
     }
   }, [expr]);
 

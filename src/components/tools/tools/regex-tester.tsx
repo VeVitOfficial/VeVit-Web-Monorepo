@@ -20,7 +20,7 @@ export default function RegexTester({ locale }: ToolComponentProps) {
     try {
       const m = text.matchAll(regex);
       for (const it of m) matches.push(it);
-    } catch { /* matchAll vyžaduje flag g — fallback */ }
+    } catch { /* matchAll vyžaduje flag g, fallback */ }
     const highlighted = text.replace(regex, (match) => "⦅" + match + "⦆");
     return { highlighted, count: matches.length };
   }, [pattern, flags, text]);

@@ -11,7 +11,7 @@ type Mode = "chars" | "words";
 // Síla hesla — labely transkribované z legacy (cs-only zůstává cs, ostatní fallback cs).
 const STRENGTH_CS = ["Velmi slabé", "Slabé", "Střední", "Silné", "Velmi silné"];
 const STRENGTH_EN = ["Very weak", "Weak", "Medium", "Strong", "Very strong"];
-const COLORS = ["#ef4444", "#f97316", "#eab308", "#10b981", "#34d399"];
+const COLORS = ["var(--vv-danger)", "var(--vv-warning)", "var(--vv-warning)", "var(--vv-green)", "var(--vv-green-hi)"];
 
 const WORDS = ["amber", "apple", "atlas", "bamboo", "beacon", "birch", "breeze", "cedar", "cloud", "comet", "coral", "delta", "ember", "falcon", "fern", "forest", "harbor", "hazel", "island", "juniper", "lantern", "maple", "meadow", "meteor", "mint", "ocean", "olive", "orchid", "pebble", "pine", "planet", "river", "robin", "silver", "solar", "spruce", "stone", "sunset", "timber", "violet", "willow"];
 

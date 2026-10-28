@@ -159,7 +159,7 @@ export default function GifMaker({ locale }: ToolComponentProps) {
         onDrop={onDrop} onDragOver={onDragOver} onDragEnter={onDragOver} onDragLeave={onDragLeave}>
         <span className="dz-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2" /><path d="M17 3h2a2 2 0 0 1 2 2v2" /><path d="M21 17v2a2 2 0 0 1-2 2h-2" /><path d="M7 21H5a2 2 0 0 1-2-2v-2" /><path d="m7 12 3-3 3 3" /><path d="M10 9v6" /><path d="M14 18h4" /></svg></span>
         <span className="dz-title">Přetáhněte obrázky (min. 2, max 15 MB každý)</span>
-        <span className="dz-hint">PNG, JPG, WebP, BMP — více souborů najednou</span>
+        <span className="dz-hint">PNG, JPG, WebP, BMP, více souborů najednou</span>
         <input ref={inputRef} type="file" className="hidden" accept={ACCEPT.join(",")} multiple onChange={(e) => { pick(e.target.files); e.target.value = ""; }} aria-hidden="true" />
       </div>
 
@@ -205,7 +205,7 @@ export default function GifMaker({ locale }: ToolComponentProps) {
       ) : null}
 
       {error ? <p className="error-text" id="gm-error" role="alert">{error}</p> : null}
-      <p className="muted" style={{ fontSize: "0.8rem" }}>Kódování přes gifenc (lazy-load). Běží lokálně — nic se neodesílá na server.</p>
+      <p className="muted" style={{ fontSize: "0.8rem" }}>Kódování přes gifenc (lazy-load). Běží lokálně, nic se neodesílá na server.</p>
     </div>
   );
 }

@@ -237,19 +237,19 @@ export function EduSearchPage({ locale, query, wikiLang }: { locale: string; que
 
   return (
     <div className="min-h-screen bg-[var(--color-background)]">
-      <div className="sticky top-14 z-30 bg-[var(--color-background)]/90 backdrop-blur-md border-b border-[var(--color-border-subtle)]">
+      <div className="sticky top-14 z-30 bg-[var(--color-background)]/90  border-b border-[var(--color-border-subtle)]">
         <div className="max-w-7xl mx-auto px-4 py-2.5 flex items-center gap-2">
           {showArticle && (
             <button
               type="button"
               onClick={() => setDrawerOpen((v) => !v)}
-              className="lg:hidden h-10 w-10 shrink-0 rounded-md flex items-center justify-center text-[var(--color-text-secondary)] hover:text-emerald-500 hover:bg-[var(--color-glass-highlight)] transition-colors"
+              className="lg:hidden h-10 w-10 shrink-0 rounded-md flex items-center justify-center text-[var(--color-text-secondary)] hover:text-vv-green hover:bg-[var(--color-glass-highlight)] transition-colors"
               aria-label="Obsah článku"
             >
               <Icon name="menu" className="h-5 w-5" />
             </button>
           )}
-          <Link href="/edu/dashboard" className="hidden sm:inline-flex items-center gap-1.5 text-sm text-[var(--color-text-muted)] hover:text-emerald-500 transition-colors shrink-0 px-1">
+          <Link href="/edu/dashboard" className="hidden sm:inline-flex items-center gap-1.5 text-sm text-[var(--color-text-muted)] hover:text-vv-green transition-colors shrink-0 px-1">
             <Icon name="arrow-left" className="h-4 w-4" />Zpět
           </Link>
           <div className="flex-1 min-w-0">
@@ -263,7 +263,7 @@ export function EduSearchPage({ locale, query, wikiLang }: { locale: string; que
               autoFocus={!searchQuery}
               showButton
               placeholder="Hledat kurzy, lekce a články z Wikipedie… (otazník na konci = AI režim)"
-              inputClassName="w-full h-10 px-3 rounded-lg bg-[var(--color-card-bg)] border border-[var(--color-border-subtle)] text-sm text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:border-emerald-500"
+              inputClassName="w-full h-10 px-3 rounded-lg bg-[var(--color-card-bg)] border border-[var(--color-border-subtle)] text-sm text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:border-vv-green"
             />
           </div>
         </div>
@@ -272,7 +272,7 @@ export function EduSearchPage({ locale, query, wikiLang }: { locale: string; que
 
       {phase === "empty" && (
         <div className="max-w-2xl mx-auto px-4 py-24 text-center text-[var(--color-text-muted)]">
-          Zadej hledaný výraz do pole nahoře. Tip: ukonči dotaz otazníkem <span className="text-emerald-500">?</span> pro AI režim.
+          Zadej hledaný výraz do pole nahoře. Tip: ukonči dotaz otazníkem <span className="text-vv-green">?</span> pro AI režim.
         </div>
       )}
       {phase === "loading" && <WikiSkeleton label={info || "Načítám článek z Wikipedie…"} />}
@@ -282,7 +282,7 @@ export function EduSearchPage({ locale, query, wikiLang }: { locale: string; que
           <p className="text-[var(--color-text-secondary)] mb-2">
             Pro „{info}“ nebyl na Wikipedii nalezen žádný článek.
           </p>
-          <Link href="/edu/dashboard" className="inline-flex items-center gap-2 mt-4 px-4 py-2 rounded-lg bg-emerald-500 text-black font-semibold hover:bg-emerald-400 transition">
+          <Link href="/edu/dashboard" className="inline-flex items-center gap-2 mt-4 px-4 py-2 rounded-lg bg-vv-green text-black font-semibold hover:bg-vv-green-dim transition">
             Zpět domů
           </Link>
         </div>
@@ -349,10 +349,10 @@ export function EduSearchPage({ locale, query, wikiLang }: { locale: string; que
 
 function AIBanner({ ai }: { ai: AIState }) {
   const styles = {
-    loading: { cls: "border-[var(--color-border-subtle)] bg-[var(--color-card-bg)]", icon: "sparkles", ic: "text-emerald-500", qcls: "" },
-    ok: { cls: "border-emerald-500/30 bg-emerald-500/10", icon: "sparkles", ic: "text-emerald-500", qcls: "border-emerald-500/20 bg-emerald-500/5" },
-    warn: { cls: "border-amber-500/30 bg-amber-500/10", icon: "alert-triangle", ic: "text-amber-500", qcls: "" },
-    error: { cls: "border-red-500/30 bg-red-500/10", icon: "alert-triangle", ic: "text-red-500", qcls: "" },
+    loading: { cls: "border-[var(--color-border-subtle)] bg-[var(--color-card-bg)]", icon: "sparkles", ic: "text-vv-green", qcls: "" },
+    ok: { cls: "border-vv-green/30 bg-vv-green/10", icon: "sparkles", ic: "text-vv-green", qcls: "border-vv-green/20 bg-vv-green/5" },
+    warn: { cls: "border-warning/30 bg-warning/10", icon: "alert-triangle", ic: "text-warn-text", qcls: "" },
+    error: { cls: "border-danger/30 bg-danger/10", icon: "alert-triangle", ic: "text-danger-text", qcls: "" },
   }[ai.kind];
   return (
     <div className={`rounded-xl border ${styles.cls} p-4 flex gap-3 fade-in`}>
@@ -365,7 +365,7 @@ function AIBanner({ ai }: { ai: AIState }) {
         <div className="text-sm text-[var(--color-text-primary)] leading-6">{ai.text}</div>
         {ai.quote ? (
           <div className={`mt-2 rounded-lg border ${styles.qcls} p-3 text-sm text-[var(--color-text-secondary)] italic leading-6`}>
-            <Icon name="quote" className="inline h-3.5 w-3.5 mr-1 text-emerald-500/60" />„{ai.quote}&quot;
+            <Icon name="quote" className="inline h-3.5 w-3.5 mr-1 text-vv-green/60" />„{ai.quote}&quot;
           </div>
         ) : null}
       </div>

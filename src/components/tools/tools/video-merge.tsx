@@ -36,7 +36,7 @@ export default function VideoMerge({ locale }: ToolComponentProps) {
     setError(null);
     for (const f of arr) {
       if (f.size > MAX) {
-        setError("Soubor „" + f.name + "\" je příliš velký (max " + fmtSize(MAX) + " — limit ffmpeg.wasm).");
+        setError("Soubor „" + f.name + "\" je příliš velký (max " + fmtSize(MAX) + ", limit ffmpeg.wasm).");
         setToolState("error");
         return;
       }
@@ -84,7 +84,7 @@ export default function VideoMerge({ locale }: ToolComponentProps) {
         toastSuccess(locale === "en" ? "Videos merged" : "Videa spojena");
       });
     } catch (e) {
-      const msg = e instanceof Error ? e.message : "Spojení selhalo — pravděpodobně videa nemají shodný kodek/rozlišení. Zkuste stejný formát nebo převeďte každé zvlášť.";
+      const msg = e instanceof Error ? e.message : "Spojení selhalo, pravděpodobně videa nemají shodný kodek/rozlišení. Zkuste stejný formát nebo převeďte každé zvlášť.";
       Promise.resolve().then(() => { setProgress(null); setRunning(false); setError(msg); setToolState("error"); });
     }
   };
@@ -138,7 +138,7 @@ export default function VideoMerge({ locale }: ToolComponentProps) {
       <ResultArea blob={result?.blob ?? null} filename={result?.filename ?? ""} onReset={reset} locale={locale} />
 
       <p className="muted" style={{ fontSize: "0.8rem" }}>
-        Spojení přes concat demuxer (-c copy). Všechna videa musí mít shodný kodek a rozlišení, jinak výstup selže — v takovém případě použijte stejný formát nebo převeďte každé zvlášť. Limit ~100 MB na soubor. Běží lokálně.
+        Spojení přes concat demuxer (-c copy). Všechna videa musí mít shodný kodek a rozlišení, jinak výstup selže, v takovém případě použijte stejný formát nebo převeďte každé zvlášť. Limit ~100 MB na soubor. Běží lokálně.
       </p>
     </div>
   );

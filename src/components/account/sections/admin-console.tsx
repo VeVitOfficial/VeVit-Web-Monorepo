@@ -85,9 +85,9 @@ type AuditEntry = { id: number; action: string; actor: string | null; target: st
 const GRANTABLE_RANKS = ["betatester", "partner", "student", "teacher", "moderator", "admin", "owner"];
 
 function fmtDate(value: string | null | undefined): string {
-  if (!value) return "—";
+  if (!value) return ", ";
   const date = new Date(value);
-  return Number.isNaN(date.getTime()) ? "—" : date.toLocaleString("cs-CZ", { dateStyle: "short", timeStyle: "short" });
+  return Number.isNaN(date.getTime()) ? ", " : date.toLocaleString("cs-CZ", { dateStyle: "short", timeStyle: "short" });
 }
 
 function RankChip({ rank }: { rank: string }) {
@@ -195,7 +195,7 @@ function UserDetailPanel({ id, actor, onChanged }: { id: string; actor: Actor; o
     <div className="admin-detail">
       <div className="admin-detail__head">
         <div>
-          <strong>{u.nickname ?? "(bez přezdívky)"}</strong> · {u.full_name ?? "—"}
+          <strong>{u.nickname ?? "(bez přezdívky)"}</strong> · {u.full_name ?? ", "}
           <div className="metric-label">{u.email ?? "bez e-mailu"} · {u.id}</div>
         </div>
         <div className="rank-chips">{u.ranks.map((r) => <RankChip key={r} rank={r} />)}</div>
@@ -320,7 +320,7 @@ function UsersTab({ actor }: { actor: Actor }) {
             {users.length === 0 && <tr><td colSpan={5}>Nic nenalezeno.</td></tr>}
             {users.map((u) => (
               <tr key={u.id} className={selected === u.id ? "is-selected" : ""} onClick={() => setSelected(selected === u.id ? null : u.id)}>
-                <td><strong>{u.nickname ?? "—"}</strong><div className="metric-label">{u.email ?? u.id}</div></td>
+                <td><strong>{u.nickname ?? ", "}</strong><div className="metric-label">{u.email ?? u.id}</div></td>
                 <td>{u.status}</td>
                 <td>{u.level} <span className="metric-label">({u.xp} XP)</span></td>
                 <td>{u.tier}</td>
@@ -474,8 +474,8 @@ function TierRow({ tier, monthly, yearly, stripe, disabled, onSave }: {
       <td><input className="input input--narrow" type="number" value={bonus} disabled={disabled} onChange={(e) => setBonus(e.target.value)} /></td>
       <td><input className="input input--narrow" type="number" placeholder="bez limitu" value={ai} disabled={disabled} onChange={(e) => setAi(e.target.value)} /></td>
       <td><input className="input input--narrow" type="number" value={discount} disabled={disabled} onChange={(e) => setDiscount(e.target.value)} /></td>
-      <td>{priced ? <><input className="input input--narrow" type="number" value={m} disabled={disabled} onChange={(e) => setM(e.target.value)} />{stripe.monthly && <span className="metric-label"> Stripe ✓</span>}</> : "—"}</td>
-      <td>{priced ? <><input className="input input--narrow" type="number" value={y} disabled={disabled} onChange={(e) => setY(e.target.value)} />{stripe.yearly && <span className="metric-label"> Stripe ✓</span>}</> : "—"}</td>
+      <td>{priced ? <><input className="input input--narrow" type="number" value={m} disabled={disabled} onChange={(e) => setM(e.target.value)} />{stripe.monthly && <span className="metric-label"> Stripe ✓</span>}</> : ", "}</td>
+      <td>{priced ? <><input className="input input--narrow" type="number" value={y} disabled={disabled} onChange={(e) => setY(e.target.value)} />{stripe.yearly && <span className="metric-label"> Stripe ✓</span>}</> : ", "}</td>
       <td>
         <button className="btn btn--ghost btn--sm" type="button" disabled={disabled}
           onClick={() => onSave({
@@ -592,7 +592,7 @@ function AuditTab() {
         {data.entries.length === 0 && <tr><td colSpan={5}>Zatím žádné akce.</td></tr>}
         {data.entries.map((e) => (
           <tr key={e.id}>
-            <td>{fmtDate(e.created_at)}</td><td>{e.actor ?? "—"}</td><td>{e.action}</td><td>{e.target ?? ""}</td>
+            <td>{fmtDate(e.created_at)}</td><td>{e.actor ?? ", "}</td><td>{e.action}</td><td>{e.target ?? ""}</td>
             <td className="admin-mono">{JSON.stringify(e.detail)}</td>
           </tr>
         ))}

@@ -42,7 +42,7 @@ export default function GradeAverageCalc({ locale }: ToolComponentProps) {
     const n = rows.length;
     return {
       count: String(n),
-      avg: n === 0 || wsum === 0 ? "—" : (sum / wsum).toLocaleString(locale, { maximumFractionDigits: 3 }),
+      avg: n === 0 || wsum === 0 ? ", " : (sum / wsum).toLocaleString(locale, { maximumFractionDigits: 3 }),
     };
   }, [rows, locale]);
 

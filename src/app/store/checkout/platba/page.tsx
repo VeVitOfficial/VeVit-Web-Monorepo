@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { PaymentPage } from "@/components/store/payment-page";
 
-export const metadata = { title: "Platba — VeVit Store", robots: { index: false } };
+export const metadata = { title: "Platba. VeVit Store", robots: { index: false } };
 
 export default function StorePaymentRoute() {
   return (

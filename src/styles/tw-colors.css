@@ -1,0 +1,97 @@
+/* Tailwind barvy (M3 paleta) jako CSS proměnné: výchozí tmavé hodnoty, světlé podle systému. Generováno z tailwind.config.js. */
+:root {
+  --tw-c-base: 13 13 13;
+  --tw-c-surface: 19 19 19;
+  --tw-c-surface-dim: 15 17 23;
+  --tw-c-surface-bright: 58 57 57;
+  --tw-c-surface-elevated: 30 30 30;
+  --tw-c-surface-container-lowest: 14 14 14;
+  --tw-c-surface-container-low: 26 26 26;
+  --tw-c-surface-container: 32 31 31;
+  --tw-c-surface-container-high: 42 42 42;
+  --tw-c-surface-container-highest: 53 53 52;
+  --tw-c-surface-variant: 53 53 52;
+  --tw-c-on-surface: 229 226 225;
+  --tw-c-on-surface-variant: 187 202 191;
+  --tw-c-outline: 134 148 138;
+  --tw-c-outline-variant: 60 74 66;
+  --tw-c-on-primary: 0 56 36;
+  --tw-c-on-primary-container: 0 66 43;
+  --tw-c-on-primary-fixed: 0 33 19;
+  --tw-c-on-primary-fixed-variant: 0 82 54;
+  --tw-c-secondary: 189 199 217;
+  --tw-c-on-secondary: 39 49 63;
+  --tw-c-secondary-container: 64 74 89;
+  --tw-c-on-secondary-container: 175 185 203;
+  --tw-c-tertiary: 198 198 199;
+  --tw-c-on-tertiary: 47 49 49;
+  --tw-c-tertiary-container: 162 163 163;
+  --tw-c-on-error: 105 0 5;
+  --tw-c-error-container: 147 0 10;
+  --tw-c-warning-container: 67 26 0;
+  --tw-c-background: 19 19 19;
+  --tw-c-on-background: 229 226 225;
+}
+
+@media (prefers-color-scheme: light) {
+html:not([data-theme]) {
+    --tw-c-base: 243 245 244;
+    --tw-c-surface: 247 249 248;
+    --tw-c-surface-dim: 238 242 240;
+    --tw-c-surface-bright: 255 255 255;
+    --tw-c-surface-elevated: 255 255 255;
+    --tw-c-surface-container-lowest: 255 255 255;
+    --tw-c-surface-container-low: 245 248 247;
+    --tw-c-surface-container: 237 241 239;
+    --tw-c-surface-container-high: 229 234 232;
+    --tw-c-surface-container-highest: 220 227 224;
+    --tw-c-surface-variant: 220 227 224;
+    --tw-c-on-surface: 12 20 28;
+    --tw-c-on-surface-variant: 67 80 93;
+    --tw-c-outline: 95 110 105;
+    --tw-c-outline-variant: 196 205 202;
+    --tw-c-background: 243 245 244;
+    --tw-c-on-background: 12 20 28;
+    --tw-c-on-primary: 255 255 255;
+    --tw-c-on-primary-container: 255 255 255;
+    --tw-c-on-primary-fixed: 255 255 255;
+    --tw-c-secondary: 67 80 93;
+    --tw-c-on-secondary: 255 255 255;
+    --tw-c-secondary-container: 223 229 227;
+    --tw-c-on-secondary-container: 39 49 63;
+    --tw-c-tertiary: 67 80 93;
+    --tw-c-tertiary-container: 223 229 227;
+    --tw-c-on-tertiary: 255 255 255;
+  }
+}
+/* ruční volba tématu */
+html[data-theme="light"] {
+    --tw-c-base: 243 245 244;
+    --tw-c-surface: 247 249 248;
+    --tw-c-surface-dim: 238 242 240;
+    --tw-c-surface-bright: 255 255 255;
+    --tw-c-surface-elevated: 255 255 255;
+    --tw-c-surface-container-lowest: 255 255 255;
+    --tw-c-surface-container-low: 245 248 247;
+    --tw-c-surface-container: 237 241 239;
+    --tw-c-surface-container-high: 229 234 232;
+    --tw-c-surface-container-highest: 220 227 224;
+    --tw-c-surface-variant: 220 227 224;
+    --tw-c-on-surface: 12 20 28;
+    --tw-c-on-surface-variant: 67 80 93;
+    --tw-c-outline: 95 110 105;
+    --tw-c-outline-variant: 196 205 202;
+    --tw-c-background: 243 245 244;
+    --tw-c-on-background: 12 20 28;
+    --tw-c-on-primary: 255 255 255;
+    --tw-c-on-primary-container: 255 255 255;
+    --tw-c-on-primary-fixed: 255 255 255;
+    --tw-c-secondary: 67 80 93;
+    --tw-c-on-secondary: 255 255 255;
+    --tw-c-secondary-container: 223 229 227;
+    --tw-c-on-secondary-container: 39 49 63;
+    --tw-c-tertiary: 67 80 93;
+    --tw-c-tertiary-container: 223 229 227;
+    --tw-c-on-tertiary: 255 255 255;
+  }
+

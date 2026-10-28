@@ -173,7 +173,7 @@ export default function BgRemover({ locale }: ToolComponentProps) {
         onDrop={onDrop} onDragOver={onDragOver} onDragEnter={onDragOver} onDragLeave={onDragLeave}>
         <span className="dz-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/></svg></span>
         <span className="dz-title">Přetáhněte obrázek</span>
-        <span className="dz-hint">PNG, JPG, WebP, BMP — jedno fotka / postava</span>
+        <span className="dz-hint">PNG, JPG, WebP, BMP, jedno fotka / postava</span>
         <input ref={inputRef} type="file" className="hidden" accept={ACCEPT.join(",")} onChange={(e) => { pick(e.target.files); e.target.value = ""; }} aria-hidden="true" />
       </div>
 
@@ -216,7 +216,7 @@ export default function BgRemover({ locale }: ToolComponentProps) {
       ) : null}
 
       {error ? <p className="error-text" id="bg-error" role="alert">{error}</p> : null}
-      <p className="muted" style={{ fontSize: "0.8rem" }}>Lokální AI model MODNet (ONNX Runtime Web, ~26 MB). První spuštění stahuje model a WASM — další už z mezipaměti prohlížeče. Nic se neodesílá na server.</p>
+      <p className="muted" style={{ fontSize: "0.8rem" }}>Lokální AI model MODNet (ONNX Runtime Web, ~26 MB). První spuštění stahuje model a WASM, další už z mezipaměti prohlížeče. Nic se neodesílá na server.</p>
     </div>
   );
 }

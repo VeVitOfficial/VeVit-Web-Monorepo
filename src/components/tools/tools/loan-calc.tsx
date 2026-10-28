@@ -37,7 +37,7 @@ function num(v: string): number | null {
 }
 
 function kc(n: number | null, locale: string): string {
-  if (n == null || isNaN(n)) return "—";
+  if (n == null || isNaN(n)) return ", ";
   return new Intl.NumberFormat(locale, { style: "currency", currency: "CZK", maximumFractionDigits: 0 }).format(n);
 }
 
@@ -59,7 +59,7 @@ function compute(locale: string) {
 
   if (P == null || P <= 0 || y == null || y <= 0 || r == null || r < 0) {
     if (root) root.setAttribute("data-tool-state", "error");
-    return { payment: "—", total: "—", interest: "—", count: "—", rows: [] as RowData[], principalPct: "—", interestPct: "—" };
+    return { payment: ", ", total: ", ", interest: ", ", count: ", ", rows: [] as RowData[], principalPct: ", ", interestPct: ", " };
   }
 
   const n = Math.round(y * f);
@@ -79,7 +79,7 @@ function compute(locale: string) {
     actualTotal += actualPayment;
     rows.push({ cells: [k, actualPayment, interest, principal, balance] });
   }
-  if (n > cap) rows.push({ cells: ["…", "—", "—", "—", "—"] });
+  if (n > cap) rows.push({ cells: ["…", ", ", ", ", ", ", ", "] });
 
   const principalShare = actualTotal ? (P / actualTotal) * 100 : 100;
   const interestShare = 100 - principalShare;
@@ -122,7 +122,7 @@ export default function LoanCalc({ locale }: ToolComponentProps) {
       actualTotal += actualPayment;
       rows.push({ cells: [k, actualPayment, interest, principal, balance] });
     }
-    if (n > cap) rows.push({ cells: ["…", "—", "—", "—", "—"] });
+    if (n > cap) rows.push({ cells: ["…", ", ", ", ", ", ", ", "] });
     const principalShare = actualTotal ? (P / actualTotal) * 100 : 100;
     const interestShare = 100 - principalShare;
     return {
@@ -206,7 +206,7 @@ export default function LoanCalc({ locale }: ToolComponentProps) {
                 {cur.rows.map((row, idx) => (
                   <tr key={idx}>
                     {row.cells.map((val, ci) => (
-                      <td key={ci}>{ci === 0 ? val : val === "—" ? "—" : kc(val as number, locale)}</td>
+                      <td key={ci}>{ci === 0 ? val : val === ", " ? ", " : kc(val as number, locale)}</td>
                     ))}
                   </tr>
                 ))}

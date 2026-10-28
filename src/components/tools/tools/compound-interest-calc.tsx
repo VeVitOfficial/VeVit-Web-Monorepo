@@ -25,7 +25,7 @@ function kc(n: number, locale: string) {
 
 // Výpočet 1:1 s legacy compound-interest-calc.js.
 function compute(P: number, PMT: number, r: number, yrs: number | null, n: number, locale: string) {
-  if (yrs == null || yrs <= 0) return { invested: "—", gain: "—", total: "—" };
+  if (yrs == null || yrs <= 0) return { invested: ", ", gain: ", ", total: ", " };
   const periods = n * yrs;
   const i = r / n;
   const FVp = i === 0 ? P : P * Math.pow(1 + i, periods);

@@ -119,7 +119,7 @@ export default function PdfOrganize({ locale }: ToolComponentProps) {
       const P = pdfLib();
       const src = await P.PDFDocument.load(buf, { ignoreEncryption: true });
       const kept = order.filter((p) => !removed.has(p));
-      if (!kept.length) throw new Error("Nezůstala žádná strana — přidejte alespoň jednu.");
+      if (!kept.length) throw new Error("Nezůstala žádná strana, přidejte alespoň jednu.");
       setProgress({ pct: 60, label: `Skládám ${kept.length} stran…` });
       const out = await P.PDFDocument.create();
       // copyPages očekává indexy v původním dokumentu (0-based); mapujeme 1-based číslo strany.
@@ -182,7 +182,7 @@ export default function PdfOrganize({ locale }: ToolComponentProps) {
       {loading && <p className="muted" aria-live="polite">Načítám náhledy stran…</p>}
 
       {visible.length > 0 && (
-        <div className="pdf-page-grid pdf-page-grid-organize" id="po-list" ref={gridRef} role="list" aria-label="Strany PDF — přetáhněte pro změnu pořadí">
+        <div className="pdf-page-grid pdf-page-grid-organize" id="po-list" ref={gridRef} role="list" aria-label="Strany PDF, přetáhněte pro změnu pořadí">
           {visible.map((page, idx) => (
             <div className="pdf-thumb pdf-thumb-organize" key={page} role="listitem" draggable onDragStart={(e) => onGridDragStart(e, idx)} onDragOver={(e) => onGridDragOver(e)} onDrop={(e) => onGridDrop(e, idx)}>
               <ThumbCanvas page={page} thumbsRef={thumbsRef} />

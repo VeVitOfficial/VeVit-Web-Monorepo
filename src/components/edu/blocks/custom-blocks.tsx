@@ -53,7 +53,7 @@ export interface CustomLessonLike {
 }
 
 const headingClasses: Record<number, string> = {
-  1: "text-3xl md:text-4xl font-bold mb-6 mt-2 tracking-tight bg-gradient-to-r from-[var(--color-hero-gradient-from)] to-[var(--color-hero-gradient-to)] bg-clip-text text-transparent",
+  1: "text-3xl md:text-4xl font-bold mb-6 mt-2 tracking-tight text-[var(--color-text-primary)]",
   2: "text-xl md:text-2xl font-semibold mb-4 mt-10 tracking-tight text-[var(--color-text-primary)]",
   3: "text-lg font-semibold mb-3 mt-6 text-[var(--color-text-primary)]",
 };
@@ -86,8 +86,8 @@ function StaticBlock({ block }: { block: CustomBlock }) {
     case "callout": {
       const ic = calloutIcons[block.variant || ""] || calloutIcons.tip;
       return (
-        <div className="my-6 rounded-lg border-l-4 border-emerald-500/50 bg-emerald-500/[0.03] p-4 flex gap-3">
-          <Icon name={ic} className="h-5 w-5 flex-shrink-0 mt-0.5 text-emerald-500" />
+        <div className="my-6 rounded-lg border-l-4 border-vv-green/50 bg-vv-green/[0.03] p-4 flex gap-3">
+          <Icon name={ic} className="h-5 w-5 flex-shrink-0 mt-0.5 text-vv-green" />
           <p className="text-sm leading-6 text-[var(--color-text-secondary)]">{block.text || ""}</p>
         </div>
       );
@@ -97,8 +97,8 @@ function StaticBlock({ block }: { block: CustomBlock }) {
         <div className="my-6 relative pl-6 border-l-2 border-[var(--color-border-subtle)]">
           {((block.items as unknown as { year?: string; description?: string }[]) || []).map((item, i) => (
             <div key={i} className="relative mb-6 last:mb-0">
-              <span className="absolute -left-[31px] top-0 h-5 w-5 rounded-full bg-emerald-500 border-4 border-[var(--color-background)]" />
-              <div className="text-sm font-semibold text-emerald-500 mb-1">{item.year || ""}</div>
+              <span className="absolute -left-[31px] top-0 h-5 w-5 rounded-full bg-vv-green border-4 border-[var(--color-background)]" />
+              <div className="text-sm font-semibold text-vv-green mb-1">{item.year || ""}</div>
               <p className="text-sm leading-6 text-[var(--color-text-secondary)]">{item.description || ""}</p>
             </div>
           ))}
@@ -120,7 +120,7 @@ function QuizBlock({ block }: { block: CustomBlock }) {
   return (
     <div className="rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-card-bg)] p-5 my-6">
       <div className="flex items-center gap-2 mb-4">
-        <Icon name="check-square" className="h-4 w-4 text-emerald-500" />
+        <Icon name="check-square" className="h-4 w-4 text-vv-green" />
         <span className="text-sm font-medium text-[var(--color-text-primary)]">Kvíz</span>
       </div>
       <h3 className="text-base font-medium leading-7 text-[var(--color-text-primary)] mb-4">{block.question || ""}</h3>
@@ -132,9 +132,9 @@ function QuizBlock({ block }: { block: CustomBlock }) {
           let cls: string;
           let badge: string;
           let badgeInner: React.ReactNode;
-          if (isCorrect) { cls = "border-emerald-500/50 bg-emerald-500/10 text-emerald-500"; badge = "bg-emerald-500/20 border-emerald-500/30 text-emerald-500"; badgeInner = <Icon name="check" className="h-3.5 w-3.5" />; }
-          else if (isWrong) { cls = "border-red-500/50 bg-red-500/10 text-red-500"; badge = "bg-red-500/20 border-red-500/30 text-red-500"; badgeInner = <Icon name="x" className="h-3.5 w-3.5" />; }
-          else if (isSelected) { cls = "border-emerald-500/50 bg-emerald-500/10 text-emerald-500"; badge = "bg-[var(--color-input-bg)] border-[var(--color-border-subtle)]"; badgeInner = LETTERS[i] || i + 1; }
+          if (isCorrect) { cls = "border-vv-green/50 bg-vv-green/10 text-vv-green"; badge = "bg-vv-green/20 border-vv-green/30 text-vv-green"; badgeInner = <Icon name="check" className="h-3.5 w-3.5" />; }
+          else if (isWrong) { cls = "border-danger/50 bg-danger/10 text-danger-text"; badge = "bg-danger/20 border-danger/30 text-danger-text"; badgeInner = <Icon name="x" className="h-3.5 w-3.5" />; }
+          else if (isSelected) { cls = "border-vv-green/50 bg-vv-green/10 text-vv-green"; badge = "bg-[var(--color-input-bg)] border-[var(--color-border-subtle)]"; badgeInner = LETTERS[i] || i + 1; }
           else { cls = "border-[var(--color-border-subtle)] bg-[var(--color-input-bg)] text-[var(--color-text-secondary)] hover:bg-[var(--color-glass-highlight)]"; badge = "bg-[var(--color-input-bg)] border-[var(--color-border-subtle)]"; badgeInner = LETTERS[i] || i + 1; }
           const dim = answered && selected !== i && i !== correctIndex ? "opacity-50" : "";
           return (
@@ -157,8 +157,8 @@ function QuizBlock({ block }: { block: CustomBlock }) {
       </div>
       {answered ? (
         <>
-          <div className="rounded-lg border border-emerald-500/20 bg-emerald-500/5 p-4 mt-4">
-            <p className="text-sm text-emerald-500 font-medium mb-1">Vysvětlení:</p>
+          <div className="rounded-lg border border-vv-green/20 bg-vv-green/5 p-4 mt-4">
+            <p className="text-sm text-vv-green font-medium mb-1">Vysvětlení:</p>
             <p className="text-sm text-[var(--color-text-secondary)] leading-6">{block.explanation || ""}</p>
           </div>
           <div className="mt-4">
@@ -196,7 +196,7 @@ function MultipleBlock({ block }: { block: CustomBlock }) {
   return (
     <div className="rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-card-bg)] p-5 my-6">
       <div className="flex items-center gap-2 mb-4">
-        <Icon name="check-square" className="h-4 w-4 text-emerald-500" />
+        <Icon name="check-square" className="h-4 w-4 text-vv-green" />
         <span className="text-sm font-medium text-[var(--color-text-primary)]">Více správných odpovědí</span>
       </div>
       <h3 className="text-base font-medium leading-7 text-[var(--color-text-primary)] mb-4">{block.question || ""}</h3>
@@ -208,9 +208,9 @@ function MultipleBlock({ block }: { block: CustomBlock }) {
           const showWrong = answered && chosen && !shouldBe;
           let cls: string;
           let badge: string;
-          if (showCorrect) { cls = "border-emerald-500/50 bg-emerald-500/10 text-emerald-500"; badge = "bg-emerald-500/20 border-emerald-500/30 text-emerald-500"; }
-          else if (showWrong) { cls = "border-red-500/50 bg-red-500/10 text-red-500"; badge = "bg-red-500/20 border-red-500/30 text-red-500"; }
-          else if (chosen) { cls = "border-emerald-500/50 bg-emerald-500/10 text-emerald-500"; badge = "bg-emerald-500/20 border-emerald-500/30 text-emerald-500"; }
+          if (showCorrect) { cls = "border-vv-green/50 bg-vv-green/10 text-vv-green"; badge = "bg-vv-green/20 border-vv-green/30 text-vv-green"; }
+          else if (showWrong) { cls = "border-danger/50 bg-danger/10 text-danger-text"; badge = "bg-danger/20 border-danger/30 text-danger-text"; }
+          else if (chosen) { cls = "border-vv-green/50 bg-vv-green/10 text-vv-green"; badge = "bg-vv-green/20 border-vv-green/30 text-vv-green"; }
           else { cls = "border-[var(--color-border-subtle)] bg-[var(--color-input-bg)] text-[var(--color-text-secondary)] hover:bg-[var(--color-glass-highlight)]"; badge = "bg-[var(--color-input-bg)] border-[var(--color-border-subtle)]"; }
           const dim = answered && !chosen && !shouldBe ? "opacity-50" : "";
           return (
@@ -231,7 +231,7 @@ function MultipleBlock({ block }: { block: CustomBlock }) {
       </div>
       {answered ? (
         <div className="mt-4">
-          <div className={`rounded-lg border p-3 text-sm leading-6 ${allCorrect ? "border-emerald-500/20 bg-emerald-500/5 text-emerald-600" : "border-amber-500/20 bg-amber-500/5 text-amber-600"}`}>
+          <div className={`rounded-lg border p-3 text-sm leading-6 ${allCorrect ? "border-vv-green/20 bg-vv-green/5 text-vv-green-dim" : "border-warning/20 bg-warning/5 text-warn-text"}`}>
             {allCorrect ? (
               <><Icon name="check" className="inline h-4 w-4 mr-1 mb-0.5" />Správně! Všechny odpovědi jsou v pořádku.</>
             ) : (
@@ -239,8 +239,8 @@ function MultipleBlock({ block }: { block: CustomBlock }) {
             )}
           </div>
           {block.explanation ? (
-            <div className="mt-3 rounded-lg border border-emerald-500/20 bg-emerald-500/5 p-4">
-              <p className="text-sm text-emerald-500 font-medium mb-1">Vysvětlení:</p>
+            <div className="mt-3 rounded-lg border border-vv-green/20 bg-vv-green/5 p-4">
+              <p className="text-sm text-vv-green font-medium mb-1">Vysvětlení:</p>
               <p className="text-sm text-[var(--color-text-secondary)] leading-6">{block.explanation}</p>
             </div>
           ) : null}
@@ -260,7 +260,7 @@ function MultipleBlock({ block }: { block: CustomBlock }) {
             type="button"
             disabled={selected.size === 0}
             onClick={() => setAnswered(true)}
-            className="gap-2 inline-flex items-center rounded-md px-4 py-2 text-sm font-medium bg-emerald-500 text-white hover:bg-emerald-600 disabled:opacity-50 disabled:pointer-events-none transition-colors"
+            className="gap-2 inline-flex items-center rounded-md px-4 py-2 text-sm font-medium bg-vv-green text-white hover:bg-vv-green-dim disabled:opacity-50 disabled:pointer-events-none transition-colors"
           >
             <Icon name="check-circle-2" className="h-4 w-4" />Potvrdit
           </button>
@@ -289,7 +289,7 @@ function MatchBlock({ block }: { block: CustomBlock }) {
   return (
     <div className="rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-card-bg)] p-5 my-6">
       <div className="flex items-center gap-2 mb-4">
-        <Icon name="link" className="h-4 w-4 text-emerald-500" />
+        <Icon name="link" className="h-4 w-4 text-vv-green" />
         <span className="text-sm font-medium text-[var(--color-text-primary)]">Spojovačka</span>
       </div>
       <h3 className="text-base font-medium leading-7 text-[var(--color-text-primary)] mb-4">{block.question || ""}</h3>
@@ -299,8 +299,8 @@ function MatchBlock({ block }: { block: CustomBlock }) {
             const matchedEntry = [...matches.entries()].find(([, r]) => shuffledRight[r] === i);
             const matched = matchedEntry ? matchedEntry[0] : null;
             let cls: string;
-            if (selectedLeft === i && matched === null) cls = "border-emerald-500/50 bg-emerald-500/10 text-emerald-500";
-            else if (matched !== null) cls = "border-emerald-500/30 bg-emerald-500/5 text-emerald-600";
+            if (selectedLeft === i && matched === null) cls = "border-vv-green/50 bg-vv-green/10 text-vv-green";
+            else if (matched !== null) cls = "border-vv-green/30 bg-vv-green/5 text-vv-green-dim";
             else cls = "border-[var(--color-border-subtle)] bg-[var(--color-input-bg)] text-[var(--color-text-secondary)] hover:bg-[var(--color-glass-highlight)]";
             return (
               <button
@@ -322,7 +322,7 @@ function MatchBlock({ block }: { block: CustomBlock }) {
                 className={`text-left px-3 py-2.5 rounded-lg border text-sm transition-all ${cls}`}
               >
                 <span className="font-medium">{pair.left}</span>
-                {matched !== null ? <span className="ml-2 text-xs text-emerald-500">↔ {pairs[matched].right}</span> : null}
+                {matched !== null ? <span className="ml-2 text-xs text-vv-green">↔ {pairs[matched].right}</span> : null}
               </button>
             );
           })}
@@ -343,7 +343,7 @@ function MatchBlock({ block }: { block: CustomBlock }) {
                   setSelectedLeft(null);
                   if (n.size === pairs.length) setAnswered(true);
                 }}
-                className={`text-left px-3 py-2.5 rounded-lg border text-sm transition-all ${used ? "border-emerald-500/30 bg-emerald-500/5 text-emerald-600 opacity-60" : "border-[var(--color-border-subtle)] bg-[var(--color-input-bg)] text-[var(--color-text-secondary)] hover:bg-[var(--color-glass-highlight)]"}`}
+                className={`text-left px-3 py-2.5 rounded-lg border text-sm transition-all ${used ? "border-vv-green/30 bg-vv-green/5 text-vv-green-dim opacity-60" : "border-[var(--color-border-subtle)] bg-[var(--color-input-bg)] text-[var(--color-text-secondary)] hover:bg-[var(--color-glass-highlight)]"}`}
               >
                 {pairs[origIdx].right}
               </button>
@@ -353,7 +353,7 @@ function MatchBlock({ block }: { block: CustomBlock }) {
       </div>
       {answered ? (
         <>
-          <div className="mt-4 rounded-lg border border-emerald-500/20 bg-emerald-500/5 p-4 text-sm text-emerald-600">
+          <div className="mt-4 rounded-lg border border-vv-green/20 bg-vv-green/5 p-4 text-sm text-vv-green-dim">
             <Icon name="check" className="inline h-4 w-4 mr-1 mb-0.5" />Hotovo! Spojovačka je vyřešena.
           </div>
           <div className="mt-2">
@@ -392,7 +392,7 @@ function OrderBlock({ block }: { block: CustomBlock }) {
   return (
     <div className="rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-card-bg)] p-5 my-6">
       <div className="flex items-center gap-2 mb-4">
-        <Icon name="arrow-up-down" className="h-4 w-4 text-emerald-500" />
+        <Icon name="arrow-up-down" className="h-4 w-4 text-vv-green" />
         <span className="text-sm font-medium text-[var(--color-text-primary)]">Seřazovačka</span>
       </div>
       <h3 className="text-base font-medium leading-7 text-[var(--color-text-primary)] mb-4">{block.question || ""}</h3>
@@ -401,8 +401,8 @@ function OrderBlock({ block }: { block: CustomBlock }) {
           const correct = answered && item.original === correctOrder[i];
           const cls = answered
             ? correct
-              ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-600"
-              : "border-red-500/30 bg-red-500/10 text-red-600"
+              ? "border-vv-green/30 bg-vv-green/10 text-vv-green-dim"
+              : "border-danger/30 bg-danger/10 text-danger-text"
             : "border-[var(--color-border-subtle)] bg-[var(--color-input-bg)] text-[var(--color-text-secondary)]";
           return (
             <div key={i} className={`flex items-center gap-2 rounded-lg border px-3 py-2.5 text-sm transition-all ${cls}`}>
@@ -410,8 +410,8 @@ function OrderBlock({ block }: { block: CustomBlock }) {
               <span className="flex-1">{item.text}</span>
               {!answered ? (
                 <div className="flex items-center gap-1 shrink-0">
-                  <button type="button" disabled={i === 0} onClick={() => swap(i, i - 1)} className="p-1 rounded text-[var(--color-text-muted)] hover:text-emerald-500 disabled:opacity-30">▲</button>
-                  <button type="button" disabled={i === items.length - 1} onClick={() => swap(i, i + 1)} className="p-1 rounded text-[var(--color-text-muted)] hover:text-emerald-500 disabled:opacity-30">▼</button>
+                  <button type="button" disabled={i === 0} onClick={() => swap(i, i - 1)} className="p-1 rounded text-[var(--color-text-muted)] hover:text-vv-green disabled:opacity-30">▲</button>
+                  <button type="button" disabled={i === items.length - 1} onClick={() => swap(i, i + 1)} className="p-1 rounded text-[var(--color-text-muted)] hover:text-vv-green disabled:opacity-30">▼</button>
                 </div>
               ) : null}
             </div>
@@ -420,7 +420,7 @@ function OrderBlock({ block }: { block: CustomBlock }) {
       </div>
       {answered ? (
         <div className="mt-4">
-          <div className={`rounded-lg border p-3 text-sm leading-6 ${isCorrect ? "border-emerald-500/20 bg-emerald-500/5 text-emerald-600" : "border-amber-500/20 bg-amber-500/5 text-amber-600"}`}>
+          <div className={`rounded-lg border p-3 text-sm leading-6 ${isCorrect ? "border-vv-green/20 bg-vv-green/5 text-vv-green-dim" : "border-warning/20 bg-warning/5 text-warn-text"}`}>
             {isCorrect ? (
               <><Icon name="check" className="inline h-4 w-4 mr-1 mb-0.5" />Správně! Pořadí je v pořádku.</>
             ) : (
@@ -428,8 +428,8 @@ function OrderBlock({ block }: { block: CustomBlock }) {
             )}
           </div>
           {block.explanation ? (
-            <div className="mt-3 rounded-lg border border-emerald-500/20 bg-emerald-500/5 p-4">
-              <p className="text-sm text-emerald-500 font-medium mb-1">Vysvětlení:</p>
+            <div className="mt-3 rounded-lg border border-vv-green/20 bg-vv-green/5 p-4">
+              <p className="text-sm text-vv-green font-medium mb-1">Vysvětlení:</p>
               <p className="text-sm text-[var(--color-text-secondary)] leading-6">{block.explanation}</p>
             </div>
           ) : null}
@@ -451,7 +451,7 @@ function OrderBlock({ block }: { block: CustomBlock }) {
           <button
             type="button"
             onClick={() => setAnswered(true)}
-            className="gap-2 inline-flex items-center rounded-md px-4 py-2 text-sm font-medium bg-emerald-500 text-white hover:bg-emerald-600 transition-colors"
+            className="gap-2 inline-flex items-center rounded-md px-4 py-2 text-sm font-medium bg-vv-green text-white hover:bg-vv-green-dim transition-colors"
           >
             <Icon name="check-circle-2" className="h-4 w-4" />Ověřit pořadí
           </button>
@@ -515,7 +515,7 @@ export function Attribution({ lesson }: { lesson: CustomLessonLike }) {
       <div className="space-y-3">
         {lesson.author ? (
           <div className="flex items-center gap-2 text-sm text-[var(--color-text-secondary)]">
-            <Icon name="user" className="h-4 w-4 text-emerald-500 shrink-0" />
+            <Icon name="user" className="h-4 w-4 text-vv-green shrink-0" />
             <span>
               <span className="text-[var(--color-text-muted)]">Autor: </span>
               {lesson.author}
@@ -529,7 +529,7 @@ export function Attribution({ lesson }: { lesson: CustomLessonLike }) {
               <div key={i} className="flex items-center gap-2 text-sm text-[var(--color-text-secondary)]">
                 <Icon name="external-link" className="h-3.5 w-3.5 text-[var(--color-text-muted)] shrink-0" />
                 {isUrl(src) ? (
-                  <a href={src} target="_blank" rel="noopener noreferrer" className="text-emerald-500 hover:text-emerald-400 hover:underline transition-colors break-all">
+                  <a href={src} target="_blank" rel="noopener noreferrer" className="text-vv-green hover:text-vv-green-hi hover:underline transition-colors break-all">
                     {src}
                   </a>
                 ) : (

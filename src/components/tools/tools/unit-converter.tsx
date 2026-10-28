@@ -46,7 +46,7 @@ function fromC(c: number, u: string) { return u === "C" ? c : u === "F" ? c * 9 
 
 // fmt 1:1 s legacy unit-converter.js.
 function fmt(n: number, locale: string): string {
-  if (n == null || isNaN(n) || !isFinite(n)) return "—";
+  if (n == null || isNaN(n) || !isFinite(n)) return ", ";
   const abs = Math.abs(n);
   if (abs === 0) return "0";
   const s = abs >= 1e6 || abs < 1e-4 ? n.toExponential(4) : (Math.round(n * 1e6) / 1e6).toString();
@@ -77,7 +77,7 @@ export default function UnitConverter({ locale }: ToolComponentProps) {
 
   const result = useMemo(() => {
     const v = parseFloat(value);
-    if (isNaN(v)) return { text: "—", k: S.result };
+    if (isNaN(v)) return { text: ", ", k: S.result };
     let out: number;
     if (cat === "temp") out = fromC(toC(v, fromU), toU);
     else {

@@ -49,7 +49,7 @@ function emailTemplate(fullName: unknown, link: string): { subject: string; text
 async function sendResetEmail(to: string, fullName: unknown, link: string): Promise<void> {
   const apiKey = process.env.RESEND_API_KEY?.trim();
   if (!apiKey) {
-    console.error("[forgot-password] RESEND_API_KEY is not configured — reset e-mail NOT sent");
+    console.error("[forgot-password] RESEND_API_KEY is not configured, reset e-mail NOT sent");
     return;
   }
   const { subject, text } = emailTemplate(fullName, link);

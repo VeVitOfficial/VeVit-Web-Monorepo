@@ -32,7 +32,7 @@ function kc(n: number, locale: string) {
 
 // Výpočet 1:1 s legacy net-salary-calc.js.
 function compute(g: number | null, childN: number, useDiscount: boolean, locale: string) {
-  if (g == null) return { levy: "—", tax: "—", net: "—", eff: "—" };
+  if (g == null) return { levy: ", ", tax: ", ", net: ", ", eff: ", " };
   const odvody = g * 0.11;
   const superGross = g * 1.34;
   const zaklad = superGross - odvody;
@@ -46,7 +46,7 @@ function compute(g: number | null, childN: number, useDiscount: boolean, locale:
     levy: kc(odvody, locale),
     tax: kc(zaloha, locale),
     net: kc(net, locale),
-    eff: g > 0 ? ((1 - net / g) * 100).toLocaleString(locale, { maximumFractionDigits: 1 }) + " %" : "—",
+    eff: g > 0 ? ((1 - net / g) * 100).toLocaleString(locale, { maximumFractionDigits: 1 }) + " %" : ", ",
   };
 }
 

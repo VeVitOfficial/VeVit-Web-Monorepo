@@ -50,13 +50,13 @@ function compute(mode: Mode) {
   if (!result) return;
   if (mode === "dur") {
     const a = parseT(val("tc-a")), b = parseT(val("tc-b"));
-    if (a == null || b == null) { result.textContent = "—"; return; }
+    if (a == null || b == null) { result.textContent = ", "; return; }
     const op = val("tc-op");
     const r = op === "-" ? a - b : a + b;
     result.textContent = fmtT(r);
   } else {
     const c = parseT(val("tc-c")), d = parseT(val("tc-d"));
-    if (c == null || d == null) { result.textContent = "—"; return; }
+    if (c == null || d == null) { result.textContent = ", "; return; }
     let r = (c + d) % 86400;
     if (r < 0) r += 86400;
     result.textContent = fmtT(r);
@@ -101,7 +101,7 @@ export default function TimeCalc({ locale }: ToolComponentProps) {
       </div>
 
       <div className="glass" style={{ borderRadius: "0.75rem", padding: "0.5rem 1rem" }} role="status" aria-live="polite">
-        <div className="kv"><span className="k">{S.result}</span><span className="v accent mono" id="tc-result">—</span></div>
+        <div className="kv"><span className="k">{S.result}</span><span className="v accent mono" id="tc-result">, </span></div>
       </div>
 
       <p className="muted" style={{ fontSize: "0.8rem" }}>{S.note}</p>

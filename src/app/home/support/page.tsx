@@ -12,6 +12,7 @@ import "@/styles/home/support.css";
 import "../../../../public/assets/shared/session.css";
 import "../../../../public/assets/shared/app-switcher.css";
 
+import { ThemeToggle } from "@/components/theme-toggle";
 const SUPPORTED: readonly string[] = ["cs", "en", "de", "es", "uk", "fr", "sk"];
 
 async function readLocale(): Promise<string> {
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
   title: "Podpora a FAQ",
   description: "Nápověda, časté otázky a kontakt na podporu VeVit.",
   icons: {
-    icon: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230d0d0d'/><path d='M8 10l4 12h2L18 10h-3l-2 8-2-8H8zm14 0v12h2v-5h3v-2h-3v-3h4v-2h-6z' fill='%2310b981'/></svg>",
+    icon: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230d0d0d'/><path d='M8 10l4 12h2L18 10h-3l-2 8-2-8H8zm14 0v12h2v-5h3v-2h-3v-3h4v-2h-6z' fill='%233fd496'/></svg>",
   },
 };
 
@@ -62,6 +63,7 @@ export default async function SupportPage() {
             className="support-account-actions vv-app-actions"
             aria-live="polite"
           >
+            <ThemeToggle />
             <span data-vevit-app-switcher data-vevit-app="Home" />
             <span data-vevit-session>
               <span className="account-session-status">Ověřuji účet…</span>

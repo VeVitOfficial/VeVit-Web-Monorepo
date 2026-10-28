@@ -17,7 +17,7 @@ const S = {
   age: "Věk",
   valid: "Platné",
   invalid: "Neplatné",
-  note: "Ověřuje se formát a kontrolní součet (mod 11). Zpracování probíhá výhradně ve vašem prohlížeči — rodné číslo se nikam neukládá ani neodesílá.",
+  note: "Ověřuje se formát a kontrolní součet (mod 11). Zpracování probíhá výhradně ve vašem prohlížeči, rodné číslo se nikam neukládá ani neodesílá.",
 };
 
 interface Result {
@@ -74,7 +74,7 @@ function validate(raw: string): Result {
     valid: true,
     dob: d.toLocaleDateString("cs-CZ"),
     sex: isFemale ? "Žena" : "Muž",
-    age: ageY < 0 ? "—" : ageY + " let",
+    age: ageY < 0 ? ", " : ageY + " let",
   };
 }
 
@@ -115,9 +115,9 @@ export default function BirthNumberValidator({ locale }: ToolComponentProps) {
           <span
             className="v accent"
             id="bn-status"
-            style={{ color: r == null ? undefined : r.valid ? "var(--color-emerald)" : "var(--color-red)" }}
+            style={{ color: r == null ? undefined : r.valid ? "var(--color-brand)" : "var(--color-red)" }}
           >
-            {r == null ? "—" : r.valid ? S.valid : S.invalid}
+            {r == null ? ", " : r.valid ? S.valid : S.invalid}
           </span>
         </div>
         {r && r.valid ? (

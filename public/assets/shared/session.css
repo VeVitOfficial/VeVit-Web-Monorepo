@@ -4,7 +4,7 @@
 .vv-session--anonymous { padding:.5rem .75rem; border:1px solid currentColor; color:inherit; }
 .vv-session__avatar { display:grid; width:2.25rem; height:2.25rem; place-items:center; border-radius:50%; background:color-mix(in srgb, currentColor 15%, transparent); font-size:.72em; font-weight:700; }
 .vv-session__avatar img { width:100%; height:100%; object-fit:cover; border-radius:inherit; }
-.vv-session__meta { min-width:0; display:flex; flex-direction:column; gap:.1875rem; }.vv-session__name,.vv-session__email { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }.vv-session__name { font-size:.75rem; font-weight:600; }.vv-session__email { font-family:'JetBrains Mono',ui-monospace,monospace; font-size:.5625rem; opacity:.65; }.vv-session__chevron { color:inherit; opacity:.55; font-size:1rem; }
+.vv-session__meta { min-width:0; display:flex; flex-direction:column; gap:.1875rem; }.vv-session__name,.vv-session__email { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }.vv-session__name { font-size:.75rem; font-weight:600; }.vv-session__email { font-family:var(--font-plex-mono),ui-monospace,monospace; font-size:.5625rem; opacity:.65; }.vv-session__chevron { color:inherit; opacity:.55; font-size:1rem; }
 .vv-session--loading,.vv-session--unavailable { font-size:.8125rem; color:inherit; opacity:.8; }
 @media (max-width:640px) { .vv-session--authenticated { min-width:0; grid-template-columns:2.25rem 1rem; }.vv-session__meta { display:none; } }
 
@@ -16,7 +16,7 @@
 .vv-session-menu[hidden] { display:none; }
 .vv-session-menu__head { display:flex; flex-direction:column; gap:.25rem; padding:.625rem .625rem .75rem; border-bottom:1px solid #232323; margin-bottom:.25rem; }
 .vv-session-menu__head strong { font-size:.8125rem; }
-.vv-session-menu__head small { font-size:.6875rem; color:#9ca3af; font-family:'JetBrains Mono',ui-monospace,monospace; }
+.vv-session-menu__head small { font-size:.6875rem; color:#9ca3af; font-family:var(--font-plex-mono),ui-monospace,monospace; }
 .vv-session-menu__ranks { display:flex; flex-wrap:wrap; gap:.25rem; margin-top:.25rem; }
 .vv-session-menu__ranks span { font-size:.625rem; font-weight:600; padding:.125rem .5rem; border-radius:999px; background:#10b98122; color:#34d399; }
 .vv-session-menu__item { display:flex; flex-direction:column; gap:.125rem; width:100%; padding:.5rem .625rem; border:0; border-radius:.5rem; background:transparent; color:inherit; font:inherit; font-size:.8125rem; text-align:left; text-decoration:none; cursor:pointer; }

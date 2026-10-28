@@ -64,7 +64,7 @@ async function handler(request: Request): Promise<Response> {
     validTo: parsed.validTo,
     daysLeft,
     serialNumber: parsed.serialNumber,
-    version: parsed.version ?? "—",
+    version: parsed.version ?? ", ",
     signatureType: parsed.signatureType,
     san: parsed.san,
   });

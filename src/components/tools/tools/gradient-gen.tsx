@@ -9,7 +9,7 @@ import { useCopy, Icon, toastSuccess } from "@/components/tools/tool-runtime";
 type GType = "linear" | "radial" | "conic";
 interface Stop { id: number; color: string; pos: number; }
 
-const PALETTE = ["#6366f1", "#ec4899", "#f59e0b"];
+const PALETTE = ["#6366f1", "var(--vv-violet)", "var(--vv-warning)"];
 
 function clampP(v: number): number { return Math.max(0, Math.min(100, isNaN(v) ? 0 : v)); }
 
@@ -20,7 +20,7 @@ export default function GradientGen({ locale }: ToolComponentProps) {
   const [angle, setAngle] = useState(90);
   const [stops, setStops] = useState<Stop[]>([
     { id: 1, color: "#6366f1", pos: 0 },
-    { id: 2, color: "#ec4899", pos: 100 },
+    { id: 2, color: "var(--vv-violet)", pos: 100 },
   ]);
   const seqRef = useRef(2);
 

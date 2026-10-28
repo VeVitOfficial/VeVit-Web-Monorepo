@@ -102,7 +102,7 @@ export default function FaviconGenerator({ locale }: ToolComponentProps) {
     const url = URL.createObjectURL(f);
     const img = new Image();
     img.onload = () => {
-      if (imgRef.current) { /* previous img — url revoked below */ }
+      if (imgRef.current) { /* previous img, url revoked below */ }
       imgRef.current = img;
       URL.revokeObjectURL(url);
       Promise.resolve().then(() => setHasFile(true));

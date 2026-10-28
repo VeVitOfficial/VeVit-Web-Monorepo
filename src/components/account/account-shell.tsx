@@ -11,6 +11,7 @@ import { LanguagePill } from "./language-pill";
 import { useAccountLocale } from "./use-account-locale";
 import { Avatar } from "./ui";
 
+import { ThemeToggle } from "@/components/theme-toggle";
 /**
  * Port of the account/index.html shell: topbar (brand + language pill + app
  * switcher + user menu), settings sidebar, mobile section picker and the
@@ -157,13 +158,13 @@ export function AccountShell({ children, showConsole = false }: { children: Reac
             <a href="/account">Account</a>
           </span>
           <div className="vv-app-actions">
+            <ThemeToggle />
             <LanguagePill baseLanguage={user.language === "en" ? "cs" : user.language} currentUrl={pathname} locale={locale} />
             <AppSwitcher locale={locale} currentApp="Account" />
             <UserMenu user={user} locale={locale} />
           </div>
         </div>
       </header>
-
       <div className="account-shell">
         <aside className="settings-sidebar">
           <div className="settings-sidebar__heading">

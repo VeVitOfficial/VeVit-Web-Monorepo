@@ -15,7 +15,7 @@ const S = {
   act: "Aktivita",
   bmr: "BMR (klidový metabolismus)",
   tdee: "Denní spotřeba (TDEE)",
-  note: "Vzorec Mifflin-St Jeor. Orientační odhad — skutečná spotřeba se liší podle tělesné konstituce. Výpočet běží živě v prohlížeči.",
+  note: "Vzorec Mifflin-St Jeor. Orientační odhad, skutečná spotřeba se liší podle tělesné konstituce. Výpočet běží živě v prohlížeči.",
 };
 
 const ACTS = [
@@ -48,8 +48,8 @@ function liveCompute(locale: string) {
   const w = num("bmr-weight");
   const act = actEl ? parseFloat(actEl.value) || 1.2 : 1.2;
   if (age == null || h == null || w == null || age <= 0 || h <= 0 || w <= 0) {
-    bmrEl.textContent = "—";
-    tdeeEl.textContent = "—";
+    bmrEl.textContent = ", ";
+    tdeeEl.textContent = ", ";
     return;
   }
   const sex = sexEl ? sexEl.value : "m";

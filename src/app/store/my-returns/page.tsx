@@ -4,7 +4,7 @@ import { returnAccountList } from "@/lib/store-returns";
 import { getStoreUser } from "@/lib/store-config";
 import { AgendaPage, AgendaUnavailable } from "@/components/store/agenda-shell";
 
-export const metadata = { title: "Moje vrácení — VeVit Store", robots: { index: false } };
+export const metadata = { title: "Moje vrácení. VeVit Store", robots: { index: false } };
 export const dynamic = "force-dynamic";
 
 interface ReturnRow { public_id: unknown; reason_code: unknown; status: unknown; refund_status: unknown }

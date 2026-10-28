@@ -80,10 +80,10 @@ export function OpenCard({
       <div className="p-6 pb-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-500/15 text-emerald-500 text-xs font-semibold">{index}</span>
+            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-vv-green/15 text-vv-green text-xs font-semibold">{index}</span>
             <h4 className="text-sm font-medium text-[var(--color-text-primary)]">{exercise.title}</h4>
           </div>
-          {done ? <Icon name="check-circle-2" className="h-4 w-4 text-emerald-500" /> : null}
+          {done ? <Icon name="check-circle-2" className="h-4 w-4 text-vv-green" /> : null}
         </div>
       </div>
       <div className="px-6 pb-6 space-y-4">
@@ -97,7 +97,7 @@ export function OpenCard({
               rows={4}
               value={answer}
               onChange={(e) => setAnswer(e.target.value)}
-              className="w-full rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-input-bg)] px-3 py-2 text-sm text-[var(--color-foreground)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 resize-y"
+              className="w-full rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-input-bg)] px-3 py-2 text-sm text-[var(--color-foreground)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-vv-green/50 resize-y"
               placeholder={t("exercise.typeAnswer")}
             />
             <div className="flex items-center gap-2">
@@ -108,7 +108,7 @@ export function OpenCard({
                   setChecked(true);
                   onComplete?.();
                 }}
-                className="gap-2 inline-flex items-center rounded-md px-4 py-2 text-sm font-medium bg-emerald-500 text-white hover:bg-emerald-600 disabled:opacity-50 disabled:pointer-events-none transition-colors"
+                className="gap-2 inline-flex items-center rounded-md px-4 py-2 text-sm font-medium bg-vv-green text-white hover:bg-vv-green-dim disabled:opacity-50 disabled:pointer-events-none transition-colors"
               >
                 <Icon name="check-circle-2" className="h-4 w-4" />
                 {t("exercise.check")}
@@ -125,7 +125,7 @@ export function OpenCard({
               ) : null}
             </div>
             {showHint && exercise.hint ? (
-              <div className="rounded-lg border border-emerald-500/20 bg-emerald-500/5 p-3 text-sm text-emerald-600 leading-6">
+              <div className="rounded-lg border border-vv-green/20 bg-vv-green/5 p-3 text-sm text-vv-green-dim leading-6">
                 <Icon name="lightbulb" className="inline h-4 w-4 mr-1 mb-0.5" />
                 {exercise.hint}
               </div>
@@ -133,7 +133,7 @@ export function OpenCard({
           </div>
         ) : (
           <div className="space-y-4">
-            <div className={`rounded-lg border p-3 text-sm leading-6 ${isGoodMatch || !hasKeywords ? "border-emerald-500/20 bg-emerald-500/5 text-emerald-600" : "border-amber-500/20 bg-amber-500/5 text-amber-600"}`}>
+            <div className={`rounded-lg border p-3 text-sm leading-6 ${isGoodMatch || !hasKeywords ? "border-vv-green/20 bg-vv-green/5 text-vv-green-dim" : "border-warning/20 bg-warning/5 text-warn-text"}`}>
               {isGoodMatch ? (
                 <>
                   <Icon name="check-circle-2" className="inline h-4 w-4 mr-1 mb-0.5" />
@@ -246,12 +246,12 @@ function CodeCard({
       <div className="px-5 py-4 border-b border-[var(--color-border-subtle)]">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-500/15 text-emerald-500 text-xs font-semibold">{index}</span>
+            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-vv-green/15 text-vv-green text-xs font-semibold">{index}</span>
             <h4 className="text-sm font-medium text-[var(--color-text-primary)]">{exercise.title}</h4>
           </div>
           <div className="flex items-center gap-2">
             {exercise.xp && exercise.xp > 0 ? <XPBadge xp={xpEarned()} size="sm" /> : null}
-            {completed ? <Icon name="check-circle-2" className="h-4 w-4 text-emerald-500" /> : null}
+            {completed ? <Icon name="check-circle-2" className="h-4 w-4 text-vv-green" /> : null}
           </div>
         </div>
       </div>
@@ -288,10 +288,10 @@ function CodeCard({
                     {exercise.testCases.map((tc, i) => (
                       <tr key={i} className="border-b border-[var(--color-border-subtle)] last:border-0">
                         <td className="px-4 py-2 font-mono text-[var(--color-text-secondary)]">
-                          <code className="text-[11px] bg-[var(--color-input-bg)] px-1.5 py-0.5 rounded">{tc.input}</code>
+                          <code className="text-xs bg-[var(--color-input-bg)] px-1.5 py-0.5 rounded">{tc.input}</code>
                         </td>
-                        <td className="px-4 py-2 font-mono text-emerald-500">
-                          <code className="text-[11px] bg-emerald-500/5 px-1.5 py-0.5 rounded">{tc.expectedOutput}</code>
+                        <td className="px-4 py-2 font-mono text-vv-green">
+                          <code className="text-xs bg-vv-green/5 px-1.5 py-0.5 rounded">{tc.expectedOutput}</code>
                         </td>
                         <td className="px-4 py-2 text-[var(--color-text-muted)]">{tc.description}</td>
                       </tr>
@@ -307,7 +307,7 @@ function CodeCard({
           <>
             <div className="rounded-lg overflow-hidden border border-[var(--color-border-subtle)]">
               <div className="flex items-center justify-between px-3 py-2 bg-[#0d1117] border-b border-[#30363d]">
-                <span className="text-[10px] uppercase tracking-wider text-[#8b949e] font-mono">{langLabel(language)}</span>
+                <span className="text-xs uppercase tracking-wider text-[#8b949e] font-mono">{langLabel(language)}</span>
                 <button
                   type="button"
                   onClick={copy}
@@ -330,7 +330,7 @@ function CodeCard({
                 type="button"
                 disabled={isRunning || code.trim().length === 0}
                 onClick={run}
-                className="gap-2 inline-flex items-center rounded-md px-4 py-2 text-sm font-medium bg-emerald-500 text-white hover:bg-emerald-600 disabled:opacity-50 disabled:pointer-events-none transition-colors"
+                className="gap-2 inline-flex items-center rounded-md px-4 py-2 text-sm font-medium bg-vv-green text-white hover:bg-vv-green-dim disabled:opacity-50 disabled:pointer-events-none transition-colors"
               >
                 <Icon name="play" className="h-4 w-4" />
                 {isRunning ? "Běží..." : "Spustit"}
@@ -339,7 +339,7 @@ function CodeCard({
                 <button
                   type="button"
                   onClick={() => onComplete?.()}
-                  className="gap-2 inline-flex items-center rounded-md px-4 py-2 text-sm font-medium border border-emerald-500/30 text-emerald-500 hover:bg-emerald-500/10 transition-colors"
+                  className="gap-2 inline-flex items-center rounded-md px-4 py-2 text-sm font-medium border border-vv-green/30 text-vv-green hover:bg-vv-green/10 transition-colors"
                 >
                   <Icon name="check-circle-2" className="h-4 w-4" />
                   {t("lesson.complete")}
@@ -352,11 +352,11 @@ function CodeCard({
                     if (!showHint) setHintPenalty((p) => p + 5);
                     setShowHint((v) => !v);
                   }}
-                  className="gap-1 inline-flex items-center rounded-md px-3 py-1.5 text-sm text-[var(--color-muted)] hover:text-amber-500 transition-colors"
+                  className="gap-1 inline-flex items-center rounded-md px-3 py-1.5 text-sm text-[var(--color-muted)] hover:text-warn-text transition-colors"
                 >
                   <Icon name="lightbulb" className="h-4 w-4" />
                   {showHint ? t("exercise.hideHint") : t("exercise.hint")}
-                  {showHint && hintPenalty > 0 ? <span className="text-amber-500 text-[10px]">(-{hintPenalty} XP)</span> : null}
+                  {showHint && hintPenalty > 0 ? <span className="text-warn-text text-xs">(-{hintPenalty} XP)</span> : null}
                 </button>
               ) : null}
             </div>
@@ -369,7 +369,7 @@ function CodeCard({
                 <div className="bg-[#0d1117] p-3 min-h-[60px] max-h-[200px] overflow-y-auto">
                   {isRunning && output.length === 0 ? <p className="text-xs text-[#8b949e] font-mono animate-pulse">Spouštění...</p> : null}
                   {output.map((line, i) => (
-                    <pre key={i} className={`text-xs font-mono leading-5 ${line.startsWith("[ERROR]") ? "text-red-400" : line.startsWith("[WARN]") ? "text-amber-400" : "text-[#e6edf3]"}`}>
+                    <pre key={i} className={`text-xs font-mono leading-5 ${line.startsWith("[ERROR]") ? "text-danger-text" : line.startsWith("[WARN]") ? "text-warn-text" : "text-[#e6edf3]"}`}>
                       {line}
                     </pre>
                   ))}
@@ -394,7 +394,7 @@ function CodeCard({
                 <button
                   type="button"
                   onClick={() => onComplete?.()}
-                  className="gap-2 inline-flex items-center rounded-md px-4 py-2 text-sm font-medium bg-emerald-500 text-white hover:bg-emerald-600 transition-colors"
+                  className="gap-2 inline-flex items-center rounded-md px-4 py-2 text-sm font-medium bg-vv-green text-white hover:bg-vv-green-dim transition-colors"
                 >
                   <Icon name="check-circle-2" className="h-4 w-4" />
                   {t("lesson.complete")}
@@ -405,11 +405,11 @@ function CodeCard({
         )}
 
         {showHint && exercise.hint ? (
-          <div className="rounded-lg border border-amber-500/20 bg-amber-500/[0.05] p-4 flex gap-3">
-            <Icon name="lightbulb" className="h-5 w-5 flex-shrink-0 mt-0.5 text-amber-500" />
+          <div className="rounded-lg border border-warning/20 bg-warning/[0.05] p-4 flex gap-3">
+            <Icon name="lightbulb" className="h-5 w-5 flex-shrink-0 mt-0.5 text-warn-text" />
             <div>
               <p className="text-sm leading-6 text-[var(--color-text-secondary)]">{exercise.hint}</p>
-              <p className="text-[11px] text-amber-500 mt-1">Nápověda: -{hintPenalty} XP z celkové odměny</p>
+              <p className="text-xs text-warn-text mt-1">Nápověda: -{hintPenalty} XP z celkové odměny</p>
             </div>
           </div>
         ) : null}
@@ -431,7 +431,7 @@ export function ExerciseList({
   return (
     <div className="mt-8 space-y-6 max-w-3xl mx-auto px-6">
       <div className="flex items-center gap-2 mb-2">
-        <Icon name="dumbbell" className="h-4 w-4 text-emerald-500" />
+        <Icon name="dumbbell" className="h-4 w-4 text-vv-green" />
         <h3 className="text-sm font-medium text-[var(--color-text-primary)]">{t("lesson.exercises")}</h3>
         <span className="text-xs text-[var(--color-muted)]">
           {completedIds.length}/{exercises.length} {t("exercise.completed").toLowerCase()}

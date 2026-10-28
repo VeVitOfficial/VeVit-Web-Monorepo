@@ -129,7 +129,7 @@ export default function InvoiceGen({ locale }: ToolComponentProps) {
       drawBlock([sup.name, sup.addr, `IČO: ${sup.ico}`, sup.dic ? `DIČ: ${sup.dic}` : ""], 40);
       const yCus = y;
       y = yCus;
-      drawBlock([cus.name || "—", cus.addr || "—", cus.ico ? `IČO: ${cus.ico}` : ""], 320);
+      drawBlock([cus.name || ", ", cus.addr || ", ", cus.ico ? `IČO: ${cus.ico}` : ""], 320);
       y -= 20;
       // Položky — tabulka
       const tableY = y;
@@ -144,7 +144,7 @@ export default function InvoiceGen({ locale }: ToolComponentProps) {
       rows.forEach((r) => {
         const rowTotal = r.qty * r.price;
         page.drawText(String(r.qty), { x: colX[0], y, size: 10, font, color: black });
-        const descLines = wrapText(r.desc || "—", colX[2] - colX[1] - 10, 10);
+        const descLines = wrapText(r.desc || ", ", colX[2] - colX[1] - 10, 10);
         descLines.slice(0, 2).forEach((ln, i) => page.drawText(ln, { x: colX[1], y: y - i * 12, size: 10, font, color: black }));
         page.drawText(fmtN(r.price), { x: colX[2], y, size: 10, font, color: black });
         page.drawText(fmtN(rowTotal), { x: colX[3], y, size: 10, font, color: black });

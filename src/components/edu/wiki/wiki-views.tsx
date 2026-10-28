@@ -99,7 +99,7 @@ export function WikiArticleHeader({
             if (q) onAsk(q);
           }}
         >
-          <Icon name="sparkles" className="h-4 w-4 text-emerald-500 shrink-0" />
+          <Icon name="sparkles" className="h-4 w-4 text-vv-green shrink-0" />
           <label className="sr-only" htmlFor="wiki-ask-input">Zeptat se AI na tento článek</label>
           <input
             id="wiki-ask-input"
@@ -158,7 +158,7 @@ export function WikiHatnotes({ notes }: { notes: WikiHatnote[] }) {
     <div className="wiki-hatnotes">
       {notes.map((note, i) => (
         <p key={i} className="wiki-hatnote">
-          <SignpostIcon className="h-4 w-4 shrink-0 mt-0.5 text-emerald-500" />
+          <SignpostIcon className="h-4 w-4 shrink-0 mt-0.5 text-vv-green" />
           <span><TextWithLinks note={note} /></span>
         </p>
       ))}

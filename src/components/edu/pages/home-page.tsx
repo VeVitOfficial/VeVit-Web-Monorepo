@@ -129,7 +129,7 @@ export function EduHomePage({ locale, aifbLessons }: { locale: string; aifbLesso
       items.push({
         title: t("home.categories.programming"),
         description: t("home.categories.programmingDesc"),
-        color: "#00d084",
+        color: "var(--vv-green)",
         icon: "Terminal",
         completed: progCompleted,
         total: PROGRAMMING_TOTAL_LESSONS,
@@ -146,7 +146,7 @@ export function EduHomePage({ locale, aifbLessons }: { locale: string; aifbLesso
         items.push({
           title: course.title,
           description: course.description,
-          color: course.color || "#00d084",
+          color: course.color || "var(--vv-green)",
           icon: course.icon || "BookOpen",
           completed: done,
           total,
@@ -160,12 +160,12 @@ export function EduHomePage({ locale, aifbLessons }: { locale: string; aifbLesso
 
   const cats = useMemo(
     () => [
-      { id: "programming", titleKey: "home.categories.programming", descKey: "home.categories.programmingDesc", icon: "Terminal", href: "/edu/programovani", color: "#00d084", count: PROGRAMMING_COURSES_COUNT, countLabel: t("home.courses"), disabled: false },
-      { id: "ai", titleKey: "home.categories.aiLiteracy", descKey: "home.categories.aiLiteracyDesc", icon: "Brain", href: "/edu/ai-gramotnost", color: "#8b5cf6", count: 0, countLabel: lessonsLabel(aifbLessons), disabled: false },
-      { id: "matematika", titleKey: "home.categories.math", descKey: "home.categories.mathDesc", icon: "Calculator", href: "#", color: "#facc15", count: 0, countLabel: t("landing.comingSoon"), disabled: true },
-      { id: "fyzika", titleKey: "home.categories.physics", descKey: "home.categories.physicsDesc", icon: "Atom", href: "#", color: "#f97316", count: 0, countLabel: t("landing.comingSoon"), disabled: true },
-      { id: "historie", titleKey: "home.categories.history", descKey: "home.categories.historyDesc", icon: "History", href: "/edu/historie", color: "#a78bfa", count: 0, countLabel: t("landing.comingSoon"), disabled: false },
-      { id: "chemie", titleKey: "home.categories.chemistry", descKey: "home.categories.chemistryDesc", icon: "FlaskConical", href: "/edu/chemie", color: "#0ea5e9", count: 0, countLabel: t("landing.comingSoon"), disabled: false },
+      { id: "programming", titleKey: "home.categories.programming", descKey: "home.categories.programmingDesc", icon: "Terminal", href: "/edu/programovani", color: "var(--vv-green)", count: PROGRAMMING_COURSES_COUNT, countLabel: t("home.courses"), disabled: false },
+      { id: "ai", titleKey: "home.categories.aiLiteracy", descKey: "home.categories.aiLiteracyDesc", icon: "Brain", href: "/edu/ai-gramotnost", color: "var(--vv-violet)", count: 0, countLabel: lessonsLabel(aifbLessons), disabled: false },
+      { id: "matematika", titleKey: "home.categories.math", descKey: "home.categories.mathDesc", icon: "Calculator", href: "#", color: "var(--vv-warning)", count: 0, countLabel: t("landing.comingSoon"), disabled: true },
+      { id: "fyzika", titleKey: "home.categories.physics", descKey: "home.categories.physicsDesc", icon: "Atom", href: "#", color: "var(--vv-warning)", count: 0, countLabel: t("landing.comingSoon"), disabled: true },
+      { id: "historie", titleKey: "home.categories.history", descKey: "home.categories.historyDesc", icon: "History", href: "/edu/historie", color: "var(--vv-violet)", count: 0, countLabel: t("landing.comingSoon"), disabled: false },
+      { id: "chemie", titleKey: "home.categories.chemistry", descKey: "home.categories.chemistryDesc", icon: "FlaskConical", href: "/edu/chemie", color: "var(--vv-info)", count: 0, countLabel: t("landing.comingSoon"), disabled: false },
     ],
     [t, lessonsLabel, aifbLessons],
   );
@@ -218,9 +218,9 @@ export function EduHomePage({ locale, aifbLessons }: { locale: string; aifbLesso
         />
 
         <section className="mb-16" aria-labelledby="edu-schools-title">
-          <div className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-6">
+          <div className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-vv-green/30 bg-vv-green/10 p-6">
             <div className="flex items-center gap-4">
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-500">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-vv-green/10 text-vv-green">
                 <Icon name="book-open" className="h-6 w-6" />
               </span>
               <div>
@@ -230,7 +230,7 @@ export function EduHomePage({ locale, aifbLessons }: { locale: string; aifbLesso
             </div>
             <Link
               href={`/${lang}/edu/skoly#trida`}
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-emerald-500 px-6 py-3 font-semibold text-black transition-colors hover:bg-emerald-400"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-vv-green px-6 py-3 font-semibold text-black transition-colors hover:bg-vv-green-dim"
             >
               {t("aifb.schools.cta")}
               <Icon name="arrow-right" className="h-4 w-4" />
@@ -277,7 +277,7 @@ export function EduHomePage({ locale, aifbLessons }: { locale: string; aifbLesso
             </div>
             <Link
               href="/edu/lekce/vytvorit"
-              className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-card-bg)] px-3 py-1.5 text-sm font-medium text-[var(--color-text-primary)] hover:border-emerald-500/30 hover:text-emerald-500 transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-card-bg)] px-3 py-1.5 text-sm font-medium text-[var(--color-text-primary)] hover:border-vv-green/30 hover:text-vv-green transition-colors"
             >
               <Icon name="plus" className="h-4 w-4" />
               Vytvořit vlastní
@@ -337,8 +337,8 @@ function HeroSearch({
             inputClassName="eh-search-input"
           />
           <p className="eh-search-hint">
-            <span className="inline-flex items-center gap-1 align-middle text-emerald-500"><EduCapIcon className="h-3.5 w-3.5" /></span> kurzy a lekce VeVit Edu,{" "}
-            <span className="inline-flex items-center gap-1 align-middle"><WikiIcon className="h-3.5 w-3.5" /></span> články z Wikipedie. Dotaz ukončený <span className="text-emerald-500 font-medium">?</span> zapne odpověď AI nad článkem.
+            <span className="inline-flex items-center gap-1 align-middle text-vv-green"><EduCapIcon className="h-3.5 w-3.5" /></span> kurzy a lekce VeVit Edu,{" "}
+            <span className="inline-flex items-center gap-1 align-middle"><WikiIcon className="h-3.5 w-3.5" /></span> články z Wikipedie. Dotaz ukončený <span className="text-vv-green font-medium">?</span> zapne odpověď AI nad článkem.
           </p>
         </div>
       </div>
@@ -367,23 +367,23 @@ function ContinueCard({ item }: { item: ContinueItem }) {
   return (
     <Link
       href={item.href}
-      className="group block rounded-xl bg-[var(--color-card-bg)] hover:bg-[var(--color-glass-highlight)] backdrop-blur-md border border-[var(--color-border-subtle)] p-5 transition-all duration-300 hover:border-emerald-500/30 shadow-sm"
+      className="group block rounded-xl bg-[var(--color-card-bg)] hover:bg-[var(--color-glass-highlight)]  border border-[var(--color-border-subtle)] p-5 transition-all duration-300 hover:border-vv-green/30 shadow-sm"
     >
       <div className="flex items-start gap-4">
         <div
           className="h-10 w-10 rounded-xl flex items-center justify-center shrink-0"
-          style={{ backgroundColor: `${item.color}15`, color: item.color }}
+          style={{ backgroundColor: `color-mix(in srgb, ${item.color} 8%, transparent)`, color: item.color }}
         >
           <Icon name={iconName} className="h-5 w-5" />
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="text-sm font-semibold text-[var(--color-text-primary)] group-hover:text-emerald-500 transition-colors truncate">{item.title}</h3>
+          <h3 className="text-sm font-semibold text-[var(--color-text-primary)] group-hover:text-vv-green transition-colors truncate">{item.title}</h3>
           <p className="text-xs text-[var(--color-text-secondary)] mt-1">{item.completed}/{item.total} ({item.percent}%)</p>
           <div className="mt-2 h-1.5 rounded-full bg-[var(--color-input-bg)] overflow-hidden">
-            <div className="h-full rounded-full bg-emerald-500 transition-all" style={{ width: `${item.percent}%` }} />
+            <div className="h-full rounded-full bg-vv-green transition-all" style={{ width: `${item.percent}%` }} />
           </div>
         </div>
-        <Icon name="arrow-right" className="h-4 w-4 text-[var(--color-text-muted)] group-hover:text-emerald-500 transition-colors mt-2 shrink-0" />
+        <Icon name="arrow-right" className="h-4 w-4 text-[var(--color-text-muted)] group-hover:text-vv-green transition-colors mt-2 shrink-0" />
       </div>
     </Link>
   );
@@ -431,20 +431,20 @@ function CategoryCard({ cat, t }: { cat: CategoryDef; t: (key: string) => string
 
 function RecentCard({ item }: { item: { id: string; category: string; title: string; date: string; duration: string } }) {
   return (
-    <div className="flex items-center gap-4 rounded-xl bg-[var(--color-card-bg)] hover:bg-[var(--color-glass-highlight)] backdrop-blur-md border border-[var(--color-border-subtle)] p-4 transition-all duration-300 hover:border-[var(--color-glass-border)] cursor-pointer group shadow-sm">
-      <div className="h-12 w-12 rounded-xl bg-[var(--color-input-bg)] flex items-center justify-center text-emerald-500 shrink-0">
+    <div className="flex items-center gap-4 rounded-xl bg-[var(--color-card-bg)] hover:bg-[var(--color-glass-highlight)]  border border-[var(--color-border-subtle)] p-4 transition-all duration-300 hover:border-[var(--color-glass-border)] cursor-pointer group shadow-sm">
+      <div className="h-12 w-12 rounded-xl bg-[var(--color-input-bg)] flex items-center justify-center text-vv-green shrink-0">
         <Icon name={categoryIconMap[item.category] || "book-open"} className="h-5 w-5" />
       </div>
       <div className="flex-1 min-w-0">
-        <p className="text-[10px] uppercase tracking-wider text-emerald-500 font-semibold mb-0.5">{item.category}</p>
-        <h3 className="text-sm font-bold text-[var(--color-text-primary)] group-hover:text-emerald-500 transition-colors truncate">{item.title}</h3>
-        <div className="flex items-center gap-2 mt-1 text-[11px] text-[var(--color-text-muted)]">
+        <p className="text-xs uppercase tracking-wider text-vv-green font-semibold mb-0.5">{item.category}</p>
+        <h3 className="text-sm font-bold text-[var(--color-text-primary)] group-hover:text-vv-green transition-colors truncate">{item.title}</h3>
+        <div className="flex items-center gap-2 mt-1 text-xs text-[var(--color-text-muted)]">
           <span className="flex items-center gap-1"><Icon name="calendar" className="h-3 w-3" />{item.date}</span>
           <span className="text-[var(--color-text-muted)]">•</span>
           <span className="flex items-center gap-1"><Icon name="clock" className="h-3 w-3" />{item.duration}</span>
         </div>
       </div>
-      <Icon name="arrow-right" className="h-4 w-4 text-[var(--color-text-muted)] group-hover:text-emerald-500 transition-colors shrink-0" />
+      <Icon name="arrow-right" className="h-4 w-4 text-[var(--color-text-muted)] group-hover:text-vv-green transition-colors shrink-0" />
     </div>
   );
 }
@@ -472,23 +472,23 @@ function CustomLessonsGrid({
         const category = String(lesson.category || "Ostatní");
         const preview = String(lesson.description || getFirstTextPreview(lesson.blocks as unknown[] | undefined));
         return (
-          <div key={id} className="group relative rounded-xl bg-[var(--color-card-bg)] hover:bg-[var(--color-glass-highlight)] backdrop-blur-md border border-[var(--color-border-subtle)] p-5 transition-all duration-300 hover:border-emerald-500/20 shadow-sm">
+          <div key={id} className="group relative rounded-xl bg-[var(--color-card-bg)] hover:bg-[var(--color-glass-highlight)]  border border-[var(--color-border-subtle)] p-5 transition-all duration-300 hover:border-vv-green/20 shadow-sm">
             <Link href={`/edu/lekce/moje/detail?slug=${encodeURIComponent(String(lesson.slug))}`} className="block">
               <div className="flex items-start gap-4">
-                <div className="h-11 w-11 rounded-xl bg-emerald-500/15 flex items-center justify-center text-emerald-500 shrink-0">
+                <div className="h-11 w-11 rounded-xl bg-vv-green/15 flex items-center justify-center text-vv-green shrink-0">
                   <Icon name={categoryIconMap[category] || "book-open"} className="h-5 w-5" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-sm font-semibold text-[var(--color-text-primary)] group-hover:text-emerald-500 transition-colors truncate">{lesson.title}</h3>
+                  <h3 className="text-sm font-semibold text-[var(--color-text-primary)] group-hover:text-vv-green transition-colors truncate">{lesson.title}</h3>
                   <p className="text-xs text-[var(--color-text-muted)] mt-1 line-clamp-2">{preview}</p>
-                  <p className="text-[10px] text-[var(--color-text-muted)] mt-2">{category}</p>
+                  <p className="text-xs text-[var(--color-text-muted)] mt-2">{category}</p>
                 </div>
               </div>
             </Link>
             <button
               type="button"
               onClick={() => onDelete(lesson)}
-              className="absolute top-3 right-3 p-1.5 rounded-md text-[var(--color-text-muted)] hover:text-red-500 hover:bg-red-500/10 opacity-0 group-hover:opacity-100 transition-all"
+              className="absolute top-3 right-3 p-1.5 rounded-md text-[var(--color-text-muted)] hover:text-danger-text hover:bg-danger/10 opacity-0 group-hover:opacity-100 transition-all"
               title="Smazat lekci"
               aria-label="Smazat lekci"
             >

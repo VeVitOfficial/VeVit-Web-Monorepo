@@ -4,6 +4,8 @@ import { headers } from "next/headers";
 import { Icon } from "@/components/home/icon";
 import { HomeBehaviors } from "@/components/home/home-behaviors";
 import { PremiumBehaviors } from "@/components/home/premium-behaviors";
+import { FreeMediaBanner } from "@/components/free-media-banner";
+import { AtomTilt } from "@/components/home/atom-tilt";
 
 // Legacy CSS — importujeme z public/ (jako account stránky importují
 // src/styles/account.css), aby styl zůstal jediný zdroj.
@@ -14,6 +16,7 @@ import "../../../public/assets/shared/session.css";
 import "../../../public/assets/shared/app-switcher.css";
 import "@/styles/home/premium.css";
 
+import { ThemeToggle } from "@/components/theme-toggle";
 const SUPPORTED: readonly string[] = ["cs", "en", "de", "es", "uk", "fr", "sk"];
 
 async function readLocale(): Promise<string> {
@@ -33,7 +36,7 @@ export const metadata: Metadata = {
   },
   twitter: { card: "summary_large_image" },
   icons: {
-    icon: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230d0d0d'/><path d='M8 10l4 12h2L18 10h-3l-2 8-2-8H8zm14 0v12h2v-5h3v-2h-3v-3h4v-2h-6z' fill='%2310b981'/></svg>",
+    icon: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230d0d0d'/><path d='M8 10l4 12h2L18 10h-3l-2 8-2-8H8zm14 0v12h2v-5h3v-2h-3v-3h4v-2h-6z' fill='%233fd496'/></svg>",
   },
 };
 
@@ -41,9 +44,6 @@ export const viewport: Viewport = {
   themeColor: "#0d0d0d",
 };
 
-// CSS custom properties (--n, --c, …) nejsou v CSSProperties typovaný,
-// proto je přetypujeme přes Record<string, string>.
-const cssVar = (obj: Record<string, string>): CSSProperties => obj as CSSProperties;
 
 export default async function HomePage() {
   const locale = await readLocale();
@@ -172,9 +172,9 @@ export default async function HomePage() {
                       <span
                         className="dd-soon-tag"
                         style={{
-                          background: "rgba(16,185,129,0.12)",
-                          color: "#10b981",
-                          borderColor: "rgba(16,185,129,0.25)",
+                          background: "rgba(var(--vv-green-rgb), 0.12)",
+                          color: "var(--vv-green)",
+                          borderColor: "rgba(var(--vv-green-rgb), 0.25)",
                         }}
                         data-ui-text="landing.roadmap.account.status"
                       >
@@ -346,6 +346,7 @@ export default async function HomePage() {
           </nav>
 
           <div className="nav-cta vv-app-actions" aria-live="polite">
+            <ThemeToggle />
             <span data-vevit-language />
             <span data-vevit-app-switcher data-vevit-app="Home" />
             <span data-vevit-session>
@@ -438,6 +439,8 @@ export default async function HomePage() {
         </div>
       </aside>
 
+      <FreeMediaBanner />
+
       <main>
         {/* ============ HERO (EPIC) ============ */}
         <section className="hero-epic" aria-labelledby="hero-h1">
@@ -480,7 +483,7 @@ export default async function HomePage() {
                   </a>
                   <a
                     className="btn btn-ghost"
-                    href="#platforms"
+                    href="#roadmap"
                     data-track="hero:explore"
                     data-ui-text="page.hero.ctaExplore"
                   >
@@ -518,7 +521,7 @@ export default async function HomePage() {
                 </div>
               </div>
 
-              <div className="orbit rise rise-2">
+              <div className="atom rise rise-2" data-atom>
                 <a className="orbit-tag tag-1" href={`${L}/tools`}>vevit.cz/tools</a>
                 <a className="orbit-tag tag-2" href="https://www.vevit.fun">www.vevit.fun</a>
                 <a className="orbit-tag tag-3" href={`${L}/edu`}>vevit.cz/edu</a>
@@ -526,104 +529,85 @@ export default async function HomePage() {
                 <a className="orbit-tag tag-5" href="https://www.vevit.space">Software Studio</a>
                 <a className="orbit-tag tag-6" href="https://vevit.art">VeVit Art</a>
 
-                <div className="orbit-ring" aria-hidden="true" />
-                <div className="orbit-ring r2" aria-hidden="true" />
-                <div className="orbit-ring r3" aria-hidden="true" />
-                <div className="orbit-ring r4" aria-hidden="true" />
+                <div className="atom-scene" aria-hidden="true">
+                  <div className="atom-halo" />
 
-                <div className="orbit-core" aria-hidden="true">
-                  {/* eslint-disable-next-line @next/next/no-img-element -- dekorativní orbit logo */}
-                  <img
-                    className="orbit-core-logo"
-                    src="/home/images/logo_text.webp"
-                    alt=""
-                  />
-                </div>
+                  <div className="atom-ring ring-a">
+                    <div className="atom-track" style={{ "--d": "30s", "--ph": "0" } as CSSProperties}>
+                      <div className="atom-electron">
+                        <div className="atom-bb">
+                          <span className="atom-chip" style={{ "--n": "var(--c-tools)" } as CSSProperties}>
+                            <Icon name="wrench" size={22} />
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="atom-track" style={{ "--d": "30s", "--ph": "0.5" } as CSSProperties}>
+                      <div className="atom-electron">
+                        <div className="atom-bb">
+                          <span className="atom-chip" style={{ "--n": "var(--c-games)" } as CSSProperties}>
+                            <Icon name="gamepad-2" size={22} />
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="atom-ring ring-b">
+                    <div className="atom-track" style={{ "--d": "38s", "--ph": "0.15" } as CSSProperties}>
+                      <div className="atom-electron">
+                        <div className="atom-bb">
+                          <span className="atom-chip" style={{ "--n": "var(--c-edu)" } as CSSProperties}>
+                            <Icon name="graduation-cap" size={22} />
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="atom-track" style={{ "--d": "38s", "--ph": "0.65" } as CSSProperties}>
+                      <div className="atom-electron">
+                        <div className="atom-bb">
+                          <span className="atom-chip" style={{ "--n": "var(--c-services)" } as CSSProperties}>
+                            <Icon name="layers" size={22} />
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="atom-ring ring-c">
+                    <div className="atom-track" style={{ "--d": "46s", "--ph": "0.3" } as CSSProperties}>
+                      <div className="atom-electron">
+                        <div className="atom-bb">
+                          <span className="atom-chip" style={{ "--n": "var(--c-account)" } as CSSProperties}>
+                            <Icon name="user" size={22} />
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="atom-track" style={{ "--d": "46s", "--ph": "0.8" } as CSSProperties}>
+                      <div className="atom-electron">
+                        <div className="atom-bb">
+                          <span className="atom-chip" style={{ "--n": "var(--c-search)" } as CSSProperties}>
+                            <Icon name="search" size={20} />
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
-                {/* Outer ring, fast, 4 nodes */}
-                <div className="orbit-track t-fast" aria-hidden="true">
-                  <span
-                    className="orbit-node n-pos-1"
-                    style={cssVar({ "--n": "var(--c-tools)" })}
-                  >
-                    <span className="orbit-node-inner">
-                      <Icon
-                        name="wrench"
-                        size={22}
-                        style={{ color: "var(--c-tools)" }}
-                      />
-                    </span>
-                  </span>
-                  <span
-                    className="orbit-node n-pos-2"
-                    style={cssVar({ "--n": "var(--c-games)" })}
-                  >
-                    <span className="orbit-node-inner">
-                      <Icon
-                        name="gamepad-2"
-                        size={22}
-                        style={{ color: "var(--c-games)" }}
-                      />
-                    </span>
-                  </span>
-                  <span
-                    className="orbit-node n-pos-3"
-                    style={cssVar({ "--n": "var(--c-edu)" })}
-                  >
-                    <span className="orbit-node-inner">
-                      <Icon
-                        name="graduation-cap"
-                        size={22}
-                        style={{ color: "var(--c-edu)" }}
-                      />
-                    </span>
-                  </span>
-                  <span
-                    className="orbit-node n-pos-4"
-                    style={cssVar({ "--n": "var(--c-services)" })}
-                  >
-                    <span className="orbit-node-inner">
-                      <Icon
-                        name="layers"
-                        size={22}
-                        style={{ color: "var(--c-services)" }}
-                      />
-                    </span>
-                  </span>
-                </div>
+                  <div className="atom-ring ring-core">
+                    <div className="atom-track" style={{ "--d": "9s", "--ph": "0" } as CSSProperties}><span className="atom-proton" style={{ "--n": "var(--c-tools)" } as CSSProperties} /></div>
+                    <div className="atom-track" style={{ "--d": "9s", "--ph": "0.33" } as CSSProperties}><span className="atom-proton" style={{ "--n": "var(--c-edu)" } as CSSProperties} /></div>
+                    <div className="atom-track" style={{ "--d": "9s", "--ph": "0.66" } as CSSProperties}><span className="atom-proton" style={{ "--n": "var(--c-games)" } as CSSProperties} /></div>
+                  </div>
 
-                {/* Mid ring, slow reverse */}
-                <div className="orbit-track t-rev" style={{ inset: "18%" }} aria-hidden="true">
-                  <span
-                    className="orbit-node n-pos-5"
-                    style={cssVar({
-                      "--n": "var(--c-account)",
-                      width: "42px",
-                    })}
-                  >
-                    <span className="orbit-node-inner">
-                      <Icon
-                        name="user"
-                        size={18}
-                        style={{ color: "var(--c-account)" }}
-                      />
-                    </span>
-                  </span>
-                  <span
-                    className="orbit-node n-pos-6"
-                    style={cssVar({
-                      "--n": "var(--c-search)",
-                      width: "42px",
-                    })}
-                  >
-                    <span className="orbit-node-inner">
-                      <Icon
-                        name="search"
-                        size={18}
-                        style={{ color: "var(--c-search)" }}
-                      />
-                    </span>
-                  </span>
+                  <div className="atom-core">
+                    <span className="atom-core-sphere" />
+                    {/* eslint-disable-next-line @next/next/no-img-element -- dekorativní logo v jádru */}
+                    <img className="atom-core-logo" src="/home/images/logo_text.webp" alt="" />
+                  </div>
+
+                  <div className="atom-cube cube-1" style={{ "--n": "var(--c-tools)" } as CSSProperties}><i /><i /><i /><i /><i /><i /></div>
+                  <div className="atom-cube cube-2" style={{ "--n": "var(--c-edu)" } as CSSProperties}><i /><i /><i /><i /><i /><i /></div>
+                  <div className="atom-cube cube-3" style={{ "--n": "var(--c-games)" } as CSSProperties}><i /><i /><i /><i /><i /><i /></div>
                 </div>
               </div>
             </div>
@@ -642,425 +626,88 @@ export default async function HomePage() {
                 O projektu
               </span>
               <p data-ui-text="page.soloNote.text">
-                VeVit ve volném čase vyvíjí jeden člověk — Vít. Tools, Edu a
-                Account běží v betě, zbytek ekosystému postupně přibývá.
+                VeVit ve volném čase vyvíjí jeden člověk, Vít. Account je spuštěný, Tools a Edu
+                běží v betě, zbytek ekosystému postupně přibývá.
               </p>
             </div>
           </div>
         </section>
 
-        {/* Marquee stat strip */}
-        <div className="marquee" aria-hidden="true">
-          <div className="marquee-track">
-            <span>
-              <span className="dot" />
-              <span data-ui-text="landing.counts.toolsMarquee" />
-            </span>
-            <span>
-              <span className="dot" />
-              <span data-ui-text="page.marquee.games">28 HER</span>
-            </span>
-            <span>
-              <span className="dot" />
-              <span data-ui-text="page.marquee.lessons">300+ LEKCÍ</span>
-            </span>
-            <span>
-              <span className="dot" />
-              <span data-ui-text="page.marquee.noAds">BEZ REKLAM</span>
-            </span>
-            <span>
-              <span className="dot" />
-              <span data-ui-text="page.marquee.local">
-                VŠE LOKÁLNĚ V PROHLÍŽEČI
-              </span>
-            </span>
-            <span>
-              <span className="dot" />
-              <span data-ui-text="page.marquee.cz">POSTAVENO V ČR</span>
-            </span>
-            {/* duplicate for loop */}
-            <span>
-              <span className="dot" />
-              <span data-ui-text="landing.counts.toolsMarquee" />
-            </span>
-            <span>
-              <span className="dot" />
-              <span data-ui-text="page.marquee.games">28 HER</span>
-            </span>
-            <span>
-              <span className="dot" />
-              <span data-ui-text="page.marquee.lessons">300+ LEKCÍ</span>
-            </span>
-            <span>
-              <span className="dot" />
-              <span data-ui-text="page.marquee.noAds">BEZ REKLAM</span>
-            </span>
-            <span>
-              <span className="dot" />
-              <span data-ui-text="page.marquee.local">
-                VŠE LOKÁLNĚ V PROHLÍŽEČI
-              </span>
-            </span>
-            <span>
-              <span className="dot" />
-              <span data-ui-text="page.marquee.cz">POSTAVENO V ČR</span>
-            </span>
-          </div>
-        </div>
-
-        {/* ============ PROZKOUMEJTE DALŠÍ ČASTI VEVIT ============ */}
-        <section
-          className="section explore-section"
-          id="explore"
-          aria-labelledby="explore-h2"
-        >
+        {/* ============ EKOSYSTÉM ============ */}
+        <section className="section eco-section" id="platforms" aria-labelledby="platforms-h2">
+          <span id="explore" aria-hidden="true" />
           <div className="container">
             <header className="section-head-c">
-              <span className="eyebrow">
-                <Icon name="compass" size={12} />{" "}
-                <span data-ui-text="page.explore.eyebrow">Více než web</span>
-              </span>
-              <h2
-                id="explore-h2"
-                className="t-2xl"
-                style={{ margin: "12px 0 12px" }}
-                data-ui-text="page.explore.title"
-              >
-                Další projekty VeVit
-              </h2>
-              <p data-ui-text="page.explore.subtitle">
-                Vedle webových aplikací vyvíjíme software na míru a připravujeme
-                platformu pro umělce.
-              </p>
-            </header>
-
-            <div className="explore-grid">
-              <a
-                className="explore-card"
-                href="https://www.vevit.space"
-                data-track="explore:studios"
-              >
-                <div className="explore-icon">
-                  <Icon name="code-2" size={28} />
-                </div>
-                <h3>VeVit Software Studios</h3>
-                <p data-ui-text="page.explore.studiosDesc">
-                  Vyvíjíme webové aplikace, interní systémy a integrace na míru
-                  firmám i jednotlivcům.
-                </p>
-                <span className="explore-tag" data-ui-text="page.explore.studiosTag">
-                  Software na míru
-                </span>
-                <span className="explore-cta">
-                  vevit.space <Icon name="arrow-up-right" size={16} />
-                </span>
-              </a>
-
-              <a
-                className="explore-card"
-                href="https://vevit.art"
-                data-track="explore:art"
-              >
-                <div className="explore-icon">
-                  <Icon name="palette" size={28} />
-                </div>
-                <h3>VeVit Art</h3>
-                <p data-ui-text="page.explore.artDesc">
-                  VeVit Art připravujeme pro začínající umělce, kteří chtějí
-                  sdílet svou tvorbu.
-                </p>
-                <span className="explore-tag" data-ui-text="page.explore.artTag">
-                  Platforma pro umělce
-                </span>
-                <span className="explore-cta">
-                  vevit.art <Icon name="arrow-up-right" size={16} />
-                </span>
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* ============ APPS / EPIC BENTO ============ */}
-        <section className="section" id="platforms" aria-labelledby="platforms-h2">
-          <div className="container">
-            <header className="section-head">
               <span className="eyebrow">
                 <Icon name="grid-3x3" size={12} />{" "}
                 <span data-ui-text="page.platforms.eyebrow">Ekosystém</span>
               </span>
-              <h2
-                id="platforms-h2"
-                className="t-3xl"
-                style={{ margin: "8px 0 8px" }}
-                data-ui-text="page.platforms.title"
-              >
+              <h2 id="platforms-h2" className="t-2xl" data-ui-text="page.platforms.title">
                 Webové aplikace
               </h2>
               <p data-ui-text="page.platforms.subtitle">
-                Každá aplikace má vlastní zaměření. VeVit účet je postupně
-                propojuje.
+                Každá aplikace má vlastní zaměření. VeVit účet je postupně propojuje.
               </p>
             </header>
-
-            <div className="bento-epic">
-              {/* TOOLS HERO CARD */}
-              <a
-                className="ec ec-tools"
-                href={`${L}/tools`}
-                data-track="bento:tools"
-              >
-                <span className="ec-badge" data-ui-text="page.platforms.badgeBeta">
-                  Beta testing
-                </span>
-
-                <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-                  <span className="ec-icon-wrap">
-                    <Icon name="wrench" size={22} />
-                  </span>
-                  <span className="eyebrow" style={{ color: "var(--c-tools)" }}>
-                    vevit.cz/tools
-                  </span>
-                </div>
-
-                <div className="ec-tools-num" data-ui-text="landing.counts.tools" />
-                <h3 className="ec-title">Tools</h3>
-                <p
-                  className="ec-desc"
-                  style={{ maxWidth: "420px" }}
-                  data-ui-text="page.platforms.toolsDesc"
-                >
-                  Kalkulačky, konvertory, generátory, PDF nástroje, AI pomocníci
-                  a dev utility. Nástroje běží lokálně v prohlížeči. Soubory
-                  nemusíš nahrávat na server.
-                </p>
-
-                <div className="toolkit-grid" aria-hidden="true">
-                  <span className="toolkit-tile hot">
-                    <Icon name="calculator" size={18} />
-                  </span>
-                  <span className="toolkit-tile">
-                    <Icon name="palette" size={18} />
-                  </span>
-                  <span className="toolkit-tile hot">
-                    <Icon name="file-text" size={18} />
-                  </span>
-                  <span className="toolkit-tile">
-                    <Icon name="qr-code" size={18} />
-                  </span>
-                  <span className="toolkit-tile">
-                    <Icon name="ruler" size={18} />
-                  </span>
-                  <span className="toolkit-tile hot">
-                    <Icon name="key-round" size={18} />
-                  </span>
-                  <span className="toolkit-tile">
-                    <Icon name="scissors" size={18} />
-                  </span>
-                  <span className="toolkit-tile">
-                    <Icon name="image" size={18} />
-                  </span>
-                  <span className="toolkit-tile">
-                    <Icon name="hash" size={18} />
-                  </span>
-                  <span className="toolkit-tile hot">
-                    <Icon name="braces" size={18} />
-                  </span>
-                  <span className="toolkit-tile">
-                    <Icon name="timer" size={18} />
-                  </span>
-                  <span className="toolkit-tile">
-                    <Icon name="link" size={18} />
-                  </span>
-                  <span className="toolkit-tile">
-                    <Icon name="percent" size={18} />
-                  </span>
-                  <span className="toolkit-tile">
-                    <Icon name="type" size={18} />
-                  </span>
-                  <span className="toolkit-tile dim">
-                    <Icon name="more-horizontal" size={18} />
-                  </span>
-                  <span className="toolkit-tile dim" />
-                </div>
-
-                <span className="ec-arrow">
-                  <Icon name="arrow-up-right" size={16} />
-                </span>
+            <div className="eco-grid">
+              <a className="eco-tile" style={{ "--c": "var(--c-tools)" } as CSSProperties} href={`${L}/tools`} data-track="eco:tools">
+                <span className="eco-top"><span className="eco-ico"><Icon name="wrench" size={24} /></span><span className="eco-status" data-ui-text="landing.roadmap.tools.status" /></span>
+                <h3 className="eco-name">Tools</h3>
+                <p className="eco-desc" data-ui-text="page.platforms.toolsDesc">Kalkulačky, konvertory, generátory, PDF nástroje, AI pomocníci a dev utility. Nástroje běží lokálně v prohlížeči. Soubory nemusíš nahrávat na server.</p>
+                <span className="eco-foot"><span className="eco-url">vevit.cz/tools</span><Icon name="arrow-up-right" size={18} /></span>
               </a>
-
-              {/* GAMES */}
-              <a
-                className="ec ec-games"
-                href="https://www.vevit.fun"
-                data-track="bento:games"
-              >
-                <span className="ec-badge" style={{ background: "rgba(208,102,57,0.12)", color: "#d06639", borderColor: "rgba(208,102,57,0.25)" }}>
-                  Hraj teď
-                </span>
-                <span className="ec-icon-wrap">
-                  <Icon name="gamepad-2" size={22} />
-                </span>
-                <h3 className="ec-title">Games</h3>
-                <p className="ec-desc" data-ui-text="page.platforms.gamesDesc">
-                  28 her k vyzkoušení, včetně Snake, Tetrisu, Pac-Mana a 2048.
-                </p>
-                <div className="ec-meta">
-                  <span className="ec-count" style={{ fontSize: "24px" }}>
-                    28
-                  </span>
-                  <span data-ui-text="page.platforms.gamesMeta">her na výběr</span>
-                </div>
-                <div className="pixel-row" aria-hidden="true">
-                  <span className="pixel-cell on" />
-                  <span className="pixel-cell on" />
-                  <span className="pixel-cell" />
-                  <span className="pixel-cell on" />
-                  <span className="pixel-cell on" />
-                  <span className="pixel-cell" />
-                  <span className="pixel-cell on" />
-                  <span className="pixel-cell on" />
-                  <span className="pixel-cell on" />
-                  <span className="pixel-cell" />
-                  <span className="pixel-cell on" />
-                  <span className="pixel-cell on" />
-                </div>
-                <span className="ec-arrow">
-                  <Icon name="arrow-up-right" size={16} />
-                </span>
+              <a className="eco-tile" style={{ "--c": "var(--c-games)" } as CSSProperties} href="https://www.vevit.fun" data-track="eco:games">
+                <span className="eco-top"><span className="eco-ico"><Icon name="gamepad-2" size={24} /></span><span className="eco-status" data-ui-text="landing.roadmap.games.status" /></span>
+                <h3 className="eco-name">Games</h3>
+                <p className="eco-desc" data-ui-text="page.platforms.gamesDesc">28 her k vyzkoušení, včetně Snake, Tetrisu, Pac-Mana a 2048.</p>
+                <span className="eco-foot"><span className="eco-url">www.vevit.fun</span><Icon name="arrow-up-right" size={18} /></span>
               </a>
-
-              {/* EDU */}
-              <a
-                className="ec ec-edu"
-                href={`${L}/edu`}
-                data-track="bento:edu"
-              >
-                <span className="ec-icon-wrap">
-                  <Icon name="graduation-cap" size={22} />
-                </span>
-                <h3 className="ec-title">Edu</h3>
-                <p className="ec-desc" data-ui-text="page.platforms.eduDesc">
-                  300+ lekcí, kvízů a článků. Programování, matematika, jazyky.
-                </p>
-                <div className="ec-meta">
-                  <span className="ec-count" style={{ fontSize: "24px" }}>
-                    300<sup style={{ fontSize: "0.5em" }}>+</sup>
-                  </span>
-                  <span data-ui-text="page.platforms.eduMeta">lekcí zdarma</span>
-                </div>
-                <div className="lesson-bars" aria-hidden="true">
-                  <span style={{ height: "40%" }} />
-                  <span style={{ height: "65%" }} />
-                  <span style={{ height: "50%" }} />
-                  <span style={{ height: "80%" }} />
-                  <span style={{ height: "60%" }} />
-                  <span style={{ height: "95%" }} />
-                  <span style={{ height: "70%" }} />
-                  <span style={{ height: "85%" }} />
-                  <span style={{ height: "55%" }} />
-                  <span style={{ height: "78%" }} />
-                  <span style={{ height: "90%" }} />
-                  <span style={{ height: "62%" }} />
-                </div>
-                <span className="ec-arrow">
-                  <Icon name="arrow-up-right" size={16} />
-                </span>
+              <a className="eco-tile" style={{ "--c": "var(--c-edu)" } as CSSProperties} href={`${L}/edu`} data-track="eco:edu">
+                <span className="eco-top"><span className="eco-ico"><Icon name="graduation-cap" size={24} /></span><span className="eco-status" data-ui-text="landing.roadmap.edu.status" /></span>
+                <h3 className="eco-name">Edu</h3>
+                <p className="eco-desc" data-ui-text="page.platforms.eduDesc">300+ lekcí, kvízů a článků. Programování, matematika, jazyky.</p>
+                <span className="eco-foot"><span className="eco-url">vevit.cz/edu</span><Icon name="arrow-up-right" size={18} /></span>
               </a>
-
-              {/* SERVICES */}
-              <a
-                className="ec ec-services"
-                href={`${L}/services`}
-                data-track="bento:services"
-              >
-                <span className="ec-badge" data-ui-text="page.platforms.badgeBeta">
-                  Beta testing
-                </span>
-                <span className="ec-icon-wrap">
-                  <Icon name="layers" size={22} />
-                </span>
-                <h3 className="ec-title">Services</h3>
-                <p className="ec-desc" data-ui-text="landing.services.card" />
-                <div className="ec-meta">
-                  <span data-ui-text="landing.services.meta" />
-                  <span style={{ color: "var(--c-services)" }}>→</span>
-                </div>
-                <span className="ec-arrow">
-                  <Icon name="arrow-up-right" size={16} />
-                </span>
+              <a className="eco-tile" style={{ "--c": "var(--c-services)" } as CSSProperties} href={`${L}/services`} data-track="eco:services">
+                <span className="eco-top"><span className="eco-ico"><Icon name="layers" size={24} /></span><span className="eco-status" data-ui-text="landing.roadmap.services.status" /></span>
+                <h3 className="eco-name">Services</h3>
+                <p className="eco-desc" data-ui-text="landing.services.roadmap" />
+                <span className="eco-foot"><span className="eco-url">vevit.cz/services</span><Icon name="arrow-up-right" size={18} /></span>
               </a>
-
-              {/* ACCOUNT */}
-              <a
-                className="ec ec-account"
-                href={`${L}/account`}
-                data-track="bento:account"
-              >
-                <span
-                  className="ec-badge"
-                  data-ui-text="landing.roadmap.account.status"
-                >
-                  Spuštěno
-                </span>
-                <span className="ec-icon-wrap">
-                  <Icon name="user-round" size={22} />
-                </span>
-                <h3 className="ec-title">Account</h3>
-                <p className="ec-desc" data-ui-text="landing.account.card" />
-                <div className="xp-bar" aria-hidden="true" hidden>
-                  <div className="xp-bar-track">
-                    <div className="xp-bar-fill" />
-                  </div>
-                  <div className="xp-bar-meta">
-                    <span data-xp-level>LVL 1 · NOVICE</span>
-                    <span data-xp-value>0 / 10 000 XP</span>
-                  </div>
-                </div>
-                <span className="ec-arrow">
-                  <Icon name="arrow-up-right" size={16} />
-                </span>
+              <a className="eco-tile" style={{ "--c": "var(--c-account)" } as CSSProperties} href={`${L}/account`} data-track="eco:account">
+                <span className="eco-top"><span className="eco-ico"><Icon name="user" size={24} /></span><span className="eco-status" data-ui-text="landing.roadmap.account.status" /></span>
+                <h3 className="eco-name">Account</h3>
+                <p className="eco-desc" data-ui-text="landing.account.roadmap" />
+                <span className="eco-foot"><span className="eco-url">vevit.cz/account</span><Icon name="arrow-up-right" size={18} /></span>
               </a>
-
-              {/* SEARCH (Soon) */}
-              <div className="ec ec-search" aria-disabled="true">
-                <span className="ec-badge muted">
-                  <Icon name="lock" size={10} />{" "}
-                  <span data-ui-text="hub.preparing">Připravuje se</span>
-                </span>
-                <span className="ec-icon-wrap">
-                  <Icon name="search" size={22} />
-                </span>
-                <h3 className="ec-title">Search</h3>
-                <p className="ec-desc" data-ui-text="page.platforms.searchDesc">
-                  Univerzální vyhledávač přes celý VeVit ekosystém.
-                </p>
-                <div className="ec-meta">
-                  <span>search.vevit.cz</span>
-                </div>
+              <a className="eco-tile" style={{ "--c": "var(--c-store)" } as CSSProperties} href={`${L}/store`} data-track="eco:store">
+                <span className="eco-top"><span className="eco-ico"><Icon name="shopping-bag" size={24} /></span><span className="eco-status" data-ui-text="landing.roadmap.store.status" /></span>
+                <h3 className="eco-name">Store</h3>
+                <p className="eco-desc" data-ui-text="page.platforms.storeDesc">Merch, digitální produkty a Premium plány.</p>
+                <span className="eco-foot"><span className="eco-url">vevit.cz/store</span><Icon name="arrow-up-right" size={18} /></span>
+              </a>
+              <div className="eco-tile eco-tile--off" style={{ "--c": "var(--c-search)" } as CSSProperties}>
+                <span className="eco-top"><span className="eco-ico"><Icon name="search" size={24} /></span><span className="eco-status" data-ui-text="landing.roadmap.search.status" /></span>
+                <h3 className="eco-name">Search</h3>
+                <p className="eco-desc" data-ui-text="page.platforms.searchDesc">Univerzální vyhledávač přes celý VeVit ekosystém.</p>
+                <span className="eco-foot"><span className="eco-url">search.vevit.cz</span><Icon name="lock" size={16} /></span>
               </div>
-
-              {/* STORE (Soon) */}
-              <div className="ec ec-store" aria-disabled="true">
-                <span className="ec-badge muted">
-                  <Icon name="lock" size={10} />{" "}
-                  <span data-ui-text="hub.preparing">Připravuje se</span>
-                </span>
-                <span className="ec-icon-wrap">
-                  <Icon name="shopping-bag" size={22} />
-                </span>
-                <h3 className="ec-title">Store</h3>
-                <p className="ec-desc" data-ui-text="page.platforms.storeDesc">
-                  Oficiální merch, digitální produkty a Premium plány.
-                </p>
-                <div className="ec-meta">
-                  <span>vevit.cz/store</span>
-                </div>
-              </div>
+              <a className="eco-tile" style={{ "--c": "var(--c-services)" } as CSSProperties} href="https://www.vevit.space" data-track="eco:software-studio">
+                <span className="eco-top"><span className="eco-ico"><Icon name="code-2" size={24} /></span><span className="eco-status" data-ui-text="page.explore.studiosTag">Software na míru</span></span>
+                <h3 className="eco-name">Software Studio</h3>
+                <p className="eco-desc" data-ui-text="page.explore.studiosDesc">Vyvíjíme webové aplikace, interní systémy a integrace na míru firmám i jednotlivcům.</p>
+                <span className="eco-foot"><span className="eco-url">vevit.space</span><Icon name="arrow-up-right" size={18} /></span>
+              </a>
+              <a className="eco-tile" style={{ "--c": "var(--c-store)" } as CSSProperties} href="https://vevit.art" data-track="eco:vevit-art">
+                <span className="eco-top"><span className="eco-ico"><Icon name="palette" size={24} /></span><span className="eco-status" data-ui-text="page.explore.artTag">Platforma pro umělce</span></span>
+                <h3 className="eco-name">VeVit Art</h3>
+                <p className="eco-desc" data-ui-text="page.explore.artDesc">VeVit Art připravujeme pro začínající umělce, kteří chtějí sdílet svou tvorbu.</p>
+                <span className="eco-foot"><span className="eco-url">vevit.art</span><Icon name="arrow-up-right" size={18} /></span>
+              </a>
             </div>
           </div>
         </section>
 
-        {/* ============ TOOLS SHOWCASE ============ */}
         <section className="section" id="tools" aria-labelledby="tools-h2">
           <div className="container">
             <header className="section-head-c">
@@ -1692,9 +1339,6 @@ export default async function HomePage() {
 
               <div className="tier-grid tier-grid--four">
                 <article className="tier-card tier-bronze" data-tier="bronze">
-                  <div className="coin coin-bronze">
-                    <Icon name="medal" size={24} />
-                  </div>
                   <div className="tier-avatar-wrap">
                     <div className="tier-avatar">B</div>
                     <div className="tier-frame" />
@@ -1737,9 +1381,6 @@ export default async function HomePage() {
                   </a>
                 </article>
                 <article className="tier-card tier-silver" data-tier="silver">
-                  <div className="coin coin-silver">
-                    <Icon name="medal" size={24} />
-                  </div>
                   <div className="tier-avatar-wrap">
                     <div className="tier-avatar">S</div>
                     <div className="tier-frame" />
@@ -1784,9 +1425,6 @@ export default async function HomePage() {
                 </article>
                 <article className="tier-card tier-gold" data-tier="gold">
                   <span className="tier-pin tier-pin-gold">Nejvíc výhod</span>
-                  <div className="coin coin-gold">
-                    <Icon name="crown" size={24} />
-                  </div>
                   <div className="tier-avatar-wrap">
                     <div className="tier-avatar">G</div>
                     <div className="tier-frame" />
@@ -1836,9 +1474,6 @@ export default async function HomePage() {
                   data-business="true"
                 >
                   <span className="tier-pin tier-pin-business">Školy a firmy</span>
-                  <div className="coin coin-platinum">
-                    <Icon name="diamond" size={24} />
-                  </div>
                   <div className="tier-avatar-wrap">
                     <div className="tier-avatar">P</div>
                     <div className="tier-frame" />
@@ -2156,7 +1791,7 @@ export default async function HomePage() {
 
           <div className="footer-base">
             <p className="footer-copy">
-              © 2025 - <span data-current-year>2026</span> VeVit.{" "}
+              © 2025–<span data-current-year>2026</span> VeVit.{" "}
               <span data-ui-text="page.footer.copy">Dělá Vít Vedral,</span>{" "}
               <span data-ui-text="page.footer.madeIn">Česko.</span>
             </p>
@@ -2195,6 +1830,7 @@ export default async function HomePage() {
       </footer>
 
       <HomeBehaviors />
+      <AtomTilt />
       <PremiumBehaviors />
     </>
   );

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Icon } from "@/components/store/icon";
 
 const SHOP_LINKS = [
   { href: "/store/catalog", label: "Všechny produkty" },
@@ -66,7 +67,7 @@ export function StoreFooter() {
           <div>
             <FooterColumn heading="Právní" links={LEGAL_LINKS} />
             <div className="mt-6 flex items-center gap-2 text-on-surface-variant">
-              <span className="material-symbols-outlined text-[18px] text-primary icon-filled" aria-hidden="true">lock</span>
+              <Icon name="lock" className="text-[18px] text-primary icon-filled" />
               <span className="font-caption text-caption">Zabezpečeno přes Stripe</span>
             </div>
           </div>
@@ -75,7 +76,7 @@ export function StoreFooter() {
         <div className="border-t border-outline-variant pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="font-caption text-caption text-on-surface-variant">© {new Date().getFullYear()} VeVit Store. Všechna práva vyhrazena.</p>
           <div className="flex items-center gap-1 text-on-surface-variant">
-            <span className="material-symbols-outlined text-[14px] text-primary icon-filled" aria-hidden="true">favorite</span>
+            <Icon name="favorite" className="text-[14px] text-primary icon-filled" />
             <span className="font-caption text-caption">Vyrobeno s péčí</span>
           </div>
         </div>

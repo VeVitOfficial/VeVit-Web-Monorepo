@@ -15,13 +15,13 @@ const SETS: Set[] = [
 ];
 
 const LBL: Record<Locale, { local: string; label: string; ph: string; show: string; entropy: string; length: string; sets: string; crack: string; none: string; note: string }> = {
-  cs: { local: "Lokální", label: "Heslo k analýze", ph: "Zadejte heslo…", show: "Zobrazit/skrýt", entropy: "Entropie", length: "Délka", sets: "Sady znaků", crack: "Odhad doby prolomení", none: "žádné rozpoznané sady", note: "Odhad je orientační (předpoklad 10^10 pokusů/s pro offline útok na hash). Skutečná odolnost závisí na typu úložiště. Heslo se nikam neodesílá — výpočet běží lokálně." },
-  en: { local: "Local", label: "Password to analyze", ph: "Enter password…", show: "Show/hide", entropy: "Entropy", length: "Length", sets: "Character sets", crack: "Estimated crack time", none: "no recognized sets", note: "The estimate is indicative (assumes 10^10 guesses/s for an offline hash attack). Real resistance depends on storage type. The password is never sent — calculation runs locally." },
-  de: { local: "Lokal", label: "Zu analysierendes Passwort", ph: "Passwort eingeben…", show: "Anzeigen/Verbergen", entropy: "Entropie", length: "Länge", sets: "Zeichensätze", crack: "Geschätzte Knackzeit", none: "keine erkannten Sätze", note: "Schätzung ist Richtwert (10^10 Versuche/s für Offline-Hash-Angriff). Tatsächlicher Widerstand hängt vom Speichertyp ab. Passwort wird nie gesendet — Berechnung läuft lokal." },
-  es: { local: "Local", label: "Contraseña a analizar", ph: "Introduzca contraseña…", show: "Mostrar/ocultar", entropy: "Entropía", length: "Longitud", sets: "Juegos de caracteres", crack: "Tiempo estimado de ruptura", none: "sin conjuntos reconocidos", note: "Estimación orientativa (10^10 intentos/s para ataque offline a hash). La resistencia real depende del tipo de almacenamiento. La contraseña no se envía — cálculo local." },
-  uk: { local: "Локально", label: "Пароль для аналізу", ph: "Введіть пароль…", show: "Показати/приховати", entropy: "Ентропія", length: "Довжина", sets: "Набори символів", crack: "Оцінка часу зламу", none: "немає розпізнаних наборів", note: "Оцінка орієнтовна (10^10 спроб/с для офлайн-атаки на хеш). Реальна стійкість залежить від типу сховища. Пароль нікуди не надсилається — розрахунок локально." },
-  fr: { local: "Local", label: "Mot de passe à analyser", ph: "Saisissez le mot de passe…", show: "Afficher/masquer", entropy: "Entropie", length: "Longueur", sets: "Jeux de caractères", crack: "Temps de cassage estimé", none: "aucun ensemble reconnu", note: "Estimation indicative (10^10 essais/s pour attaque offline sur hash). La résistance réelle dépend du type de stockage. Le mot de passe n'est jamais envoyé — calcul local." },
-  sk: { local: "Lokálne", label: "Heslo na analýzu", ph: "Zadajte heslo…", show: "Zobraziť/skryť", entropy: "Entropia", length: "Dĺžka", sets: "Sady znakov", crack: "Odhad doby prelomenia", none: "žiadne rozpoznané sady", note: "Odhad je orientačný (10^10 pokusov/s pre offline útok na hash). Skutočná odolnosť závisí od typu úložiska. Heslo sa nikam neodosiela — výpočet beží lokálne." },
+  cs: { local: "Lokální", label: "Heslo k analýze", ph: "Zadejte heslo…", show: "Zobrazit/skrýt", entropy: "Entropie", length: "Délka", sets: "Sady znaků", crack: "Odhad doby prolomení", none: "žádné rozpoznané sady", note: "Odhad je orientační (předpoklad 10^10 pokusů/s pro offline útok na hash). Skutečná odolnost závisí na typu úložiště. Heslo se nikam neodesílá, výpočet běží lokálně." },
+  en: { local: "Local", label: "Password to analyze", ph: "Enter password…", show: "Show/hide", entropy: "Entropy", length: "Length", sets: "Character sets", crack: "Estimated crack time", none: "no recognized sets", note: "The estimate is indicative (assumes 10^10 guesses/s for an offline hash attack). Real resistance depends on storage type. The password is never sent, calculation runs locally." },
+  de: { local: "Lokal", label: "Zu analysierendes Passwort", ph: "Passwort eingeben…", show: "Anzeigen/Verbergen", entropy: "Entropie", length: "Länge", sets: "Zeichensätze", crack: "Geschätzte Knackzeit", none: "keine erkannten Sätze", note: "Schätzung ist Richtwert (10^10 Versuche/s für Offline-Hash-Angriff). Tatsächlicher Widerstand hängt vom Speichertyp ab. Passwort wird nie gesendet. Berechnung läuft lokal." },
+  es: { local: "Local", label: "Contraseña a analizar", ph: "Introduzca contraseña…", show: "Mostrar/ocultar", entropy: "Entropía", length: "Longitud", sets: "Juegos de caracteres", crack: "Tiempo estimado de ruptura", none: "sin conjuntos reconocidos", note: "Estimación orientativa (10^10 intentos/s para ataque offline a hash). La resistencia real depende del tipo de almacenamiento. La contraseña no se envía, cálculo local." },
+  uk: { local: "Локально", label: "Пароль для аналізу", ph: "Введіть пароль…", show: "Показати/приховати", entropy: "Ентропія", length: "Довжина", sets: "Набори символів", crack: "Оцінка часу зламу", none: "немає розпізнаних наборів", note: "Оцінка орієнтовна (10^10 спроб/с для офлайн-атаки на хеш). Реальна стійкість залежить від типу сховища. Пароль нікуди не надсилається, розрахунок локально." },
+  fr: { local: "Local", label: "Mot de passe à analyser", ph: "Saisissez le mot de passe…", show: "Afficher/masquer", entropy: "Entropie", length: "Longueur", sets: "Jeux de caractères", crack: "Temps de cassage estimé", none: "aucun ensemble reconnu", note: "Estimation indicative (10^10 essais/s pour attaque offline sur hash). La résistance réelle dépend du type de stockage. Le mot de passe n'est jamais envoyé, calcul local." },
+  sk: { local: "Lokálne", label: "Heslo na analýzu", ph: "Zadajte heslo…", show: "Zobraziť/skryť", entropy: "Entropia", length: "Dĺžka", sets: "Sady znakov", crack: "Odhad doby prelomenia", none: "žiadne rozpoznané sady", note: "Odhad je orientačný (10^10 pokusov/s pre offline útok na hash). Skutočná odolnosť závisí od typu úložiska. Heslo sa nikam neodosiela, výpočet beží lokálne." },
 };
 
 // české tvary (cs-only zůstává cs — ostatní fallback cs)
@@ -59,7 +59,7 @@ function analyze(pw: string, L: typeof LBL.cs, locale: Locale): Analysis | null 
   const pct = Math.min(100, Math.round(entropy / 1.28));
   const toneIdx = entropy < 28 ? 0 : entropy < 36 ? 1 : entropy < 60 ? 2 : entropy < 80 ? 3 : 4;
   const toneList = locale === "en" ? TONE_EN : TONE_CS;
-  const color = entropy < 28 ? "#ef4444" : entropy < 36 ? "#f59e0b" : entropy < 60 ? "#eab308" : entropy < 80 ? "#22c55e" : "#16a34a";
+  const color = entropy < 28 ? "var(--vv-danger)" : entropy < 36 ? "var(--vv-warning)" : entropy < 60 ? "var(--vv-warning)" : entropy < 80 ? "var(--vv-green)" : "var(--vv-green)";
   return {
     entropy: `${entropy.toFixed(1).replace(".", ",")} bitů`,
     len: String(pw.length),
@@ -91,12 +91,12 @@ export default function PasswordStrength({ locale }: ToolComponentProps) {
         </div>
       </div>
       <div className="progress-track" id="ps-bar"><div className="progress-fill" id="ps-fill" style={{ width: `${a?.pct ?? 0}%`, background: a?.color ?? "transparent" }} /></div>
-      <p className="muted" id="ps-label" style={{ fontSize: "0.85rem" }}>{a?.tone ?? "—"}</p>
+      <p className="muted" id="ps-label" style={{ fontSize: "0.85rem" }}>{a?.tone ?? ", "}</p>
       <div className="glass" style={{ borderRadius: "0.75rem", padding: "0.75rem 1rem" }} id="ps-detail">
-        <div className="kv"><span className="k">{L.entropy}</span><span className="v mono" id="ps-entropy">{a?.entropy ?? "—"}</span></div>
-        <div className="kv"><span className="k">{L.length}</span><span className="v mono" id="ps-len">{a?.len ?? "—"}</span></div>
-        <div className="kv"><span className="k">{L.sets}</span><span className="v" id="ps-sets">{a?.setsText ?? "—"}</span></div>
-        <div className="kv"><span className="k">{L.crack}</span><span className="v mono" id="ps-crack">{a?.crack ?? "—"}</span></div>
+        <div className="kv"><span className="k">{L.entropy}</span><span className="v mono" id="ps-entropy">{a?.entropy ?? ", "}</span></div>
+        <div className="kv"><span className="k">{L.length}</span><span className="v mono" id="ps-len">{a?.len ?? ", "}</span></div>
+        <div className="kv"><span className="k">{L.sets}</span><span className="v" id="ps-sets">{a?.setsText ?? ", "}</span></div>
+        <div className="kv"><span className="k">{L.crack}</span><span className="v mono" id="ps-crack">{a?.crack ?? ", "}</span></div>
       </div>
       <p className="muted" style={{ fontSize: "0.78rem" }}>{L.note}</p>
     </div>

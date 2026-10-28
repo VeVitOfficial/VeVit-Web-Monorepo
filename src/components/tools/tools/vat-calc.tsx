@@ -10,8 +10,8 @@ const S = {
   segRem: "Odebrat DPH (s → bez)",
   amount: "Částka (Kč)",
   rate: "Sazba DPH",
-  rate21: "21 % — základní",
-  rate12: "12 % — snížená",
+  rate21: "21 %, základní",
+  rate12: "12 %, snížená",
   rate0: "0 %",
   rateCustom: "vlastní…",
   custom: "Vlastní sazba (%)",
@@ -52,7 +52,7 @@ function compute(mode: Mode, locale: string) {
   const grossEl = document.getElementById("vat-gross");
   if (!netEl || !vatEl || !grossEl) return;
   const amt = num("vat-amount");
-  if (amt == null) { netEl.textContent = "—"; vatEl.textContent = "—"; grossEl.textContent = "—"; return; }
+  if (amt == null) { netEl.textContent = ", "; vatEl.textContent = ", "; grossEl.textContent = ", "; return; }
   const r = rateVal();
   let n: number, v: number, g: number;
   if (mode === "add") { n = amt; v = (amt * r) / 100; g = amt + v; }
@@ -97,9 +97,9 @@ export default function VatCalc({ locale }: ToolComponentProps) {
       </div>
 
       <div className="glass" style={{ borderRadius: "0.75rem", padding: "0.5rem 1rem" }} role="status" aria-live="polite">
-        <div className="kv"><span className="k">{S.net}</span><span className="v" id="vat-net">—</span></div>
-        <div className="kv"><span className="k">{S.vat}</span><span className="v accent" id="vat-vat">—</span></div>
-        <div className="kv"><span className="k">{S.gross}</span><span className="v" id="vat-gross">—</span></div>
+        <div className="kv"><span className="k">{S.net}</span><span className="v" id="vat-net">, </span></div>
+        <div className="kv"><span className="k">{S.vat}</span><span className="v accent" id="vat-vat">, </span></div>
+        <div className="kv"><span className="k">{S.gross}</span><span className="v" id="vat-gross">, </span></div>
       </div>
 
       <p className="muted" style={{ fontSize: "0.8rem" }}>{S.note}</p>

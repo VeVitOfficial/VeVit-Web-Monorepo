@@ -290,7 +290,7 @@ export function SearchSuggest({
         onClick={toggleWikiLang}
         aria-label={wikiLang === "cs" ? "Wikipedie: čeština. Přepnout na anglickou Wikipedii" : "Wikipedia: English. Switch to Czech Wikipedia"}
         title={wikiLang === "cs" ? "Česká Wikipedie (klikni pro anglickou)" : "English Wikipedia (click for Czech)"}
-        className="shrink-0 inline-flex items-center gap-1.5 px-3 rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-card-bg)] text-sm font-semibold text-[var(--color-text-primary)] hover:border-emerald-500 hover:text-emerald-500 transition-colors"
+        className="shrink-0 inline-flex items-center gap-1.5 px-3 rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-card-bg)] text-sm font-semibold text-[var(--color-text-primary)] hover:border-vv-green hover:text-vv-green transition-colors"
       >
         <WikiIcon className="h-4 w-4" />
         {wikiLang.toUpperCase()}
@@ -300,7 +300,7 @@ export function SearchSuggest({
           type="button"
           onClick={submit}
           disabled={!value.trim()}
-          className="h-10 px-4 rounded-lg bg-emerald-500 text-black text-sm font-semibold hover:bg-emerald-400 transition disabled:opacity-50"
+          className="h-10 px-4 rounded-lg bg-vv-green text-black text-sm font-semibold hover:bg-vv-green-dim transition disabled:opacity-50"
         >
           Hledat
         </button>

@@ -15,11 +15,11 @@ import { getProgress } from "@/lib/edu/progress";
 import { Icon } from "./home-icons";
 import type { CourseIndexMeta, Progress } from "@/lib/edu/config";
 
-// Štítky obtížnosti (emerald/amber/red – stejné jako success/warning/error).
+// Štítky obtížnosti (green/amber/red – stejné jako success/warning/error).
 const DIFF: Record<string, { color: string; labelKey: string }> = {
-  beginner: { color: "#10b981", labelKey: "programming.difficulty.beginner" },
-  advanced: { color: "#f59e0b", labelKey: "programming.difficulty.advanced" },
-  expert: { color: "#ef4444", labelKey: "programming.difficulty.expert" },
+  beginner: { color: "var(--vv-green)", labelKey: "programming.difficulty.beginner" },
+  advanced: { color: "var(--vv-warn-text)", labelKey: "programming.difficulty.advanced" },
+  expert: { color: "var(--vv-danger-text)", labelKey: "programming.difficulty.expert" },
 };
 
 // Kategorie kurzů podle slugu (legacy CAT).
@@ -151,7 +151,7 @@ export function EduProgramovaniPage({ locale }: { locale: string }) {
             <div className="eh-hex eh-hex--core" />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img className="eh-mascot" src="/edu/assets/img/maskot-v1.webp" alt="" width={860} height={1290} decoding="async" />
-            <span className="eh-tile eh-tile--a" style={{ "--c": "#facc15" } as React.CSSProperties}><LangLogo slug="python" size={28} /></span>
+            <span className="eh-tile eh-tile--a" style={{ "--c": "var(--vv-warning)" } as React.CSSProperties}><LangLogo slug="python" size={28} /></span>
             <span className="eh-tile eh-tile--b" style={{ "--c": "#3178c6" } as React.CSSProperties}><LangLogo slug="typescript" size={28} /></span>
             <span className="eh-tile eh-tile--c" style={{ "--c": "#2496ed" } as React.CSSProperties}><LangLogo slug="docker" size={28} /></span>
             <span className="eh-tile eh-tile--d" style={{ "--c": "#f05032" } as React.CSSProperties}><LangLogo slug="git-github" size={28} /></span>
@@ -185,7 +185,7 @@ function ResumePanel({ resume }: { resume: ResumeData }) {
   if (!resume) {
     return (
       <div className="eh-resume">
-        <span className="eh-hexicon" style={{ "--c": "#10b981" } as React.CSSProperties}><Icon name="trophy" /></span>
+        <span className="eh-hexicon" style={{ "--c": "var(--vv-green)" } as React.CSSProperties}><Icon name="trophy" /></span>
         <div className="eh-resume__text">
           <p className="eh-resume__title">Všechny lekce dokončeny!</p>
           <p className="eh-resume__sub">Skvělá práce. Vrať se kdykoliv k repete.</p>
@@ -201,7 +201,7 @@ function ResumePanel({ resume }: { resume: ResumeData }) {
   const [label, btn] = labels[resume.mode] ?? labels.start;
   return (
     <Link href={`/edu/lekce/${encodeURIComponent(resume.slug)}`} className="eh-resume">
-      <span className="eh-hexicon" style={{ "--c": "#10b981" } as React.CSSProperties}><Icon name="play" /></span>
+      <span className="eh-hexicon" style={{ "--c": "var(--vv-green)" } as React.CSSProperties}><Icon name="play" /></span>
       <div className="eh-resume__text">
         <p className="eh-resume__label">{label}</p>
         <h3 className="eh-resume__title">{resume.lesson.title}</h3>
@@ -295,7 +295,7 @@ function CourseCard({
   const xp = course.totalXP || 0;
   const diff = DIFF[course.difficulty || "beginner"] || DIFF.beginner;
   const dc = diff.color;
-  const color = course.color || "#10b981";
+  const color = course.color || "var(--vv-green)";
   return (
     <Link href={`/edu/kurzy/${course.slug}`} className="eh-cell">
       <div className="eh-card eh-card--course" style={{ "--c": color } as React.CSSProperties}>
@@ -307,7 +307,7 @@ function CourseCard({
           ) : (
             <span className="eh-hexicon"><Icon name={course.icon || "code-2"} /></span>
           )}
-          <span className="eh-badge eh-badge--diff" style={{ color: dc, background: `${dc}1F`, margin: 0 }}>{t(diff.labelKey)}</span>
+          <span className="eh-badge eh-badge--diff" style={{ color: dc, background: `color-mix(in srgb, ${dc} 12%, transparent)`, margin: 0 }}>{t(diff.labelKey)}</span>
         </div>
         <h3>{course.title}</h3>
         <p>{course.description}</p>
@@ -348,9 +348,9 @@ function Gamification({ t }: { t: (key: string) => string }) {
 
 function WhySection({ t }: { t: (key: string) => string }) {
   const cards = [
-    { ic: "globe", k: "programming.why.future", c: "#00d084" },
-    { ic: "lock", k: "programming.why.logic", c: "#8b5cf6" },
-    { ic: "star", k: "programming.why.create", c: "#f97316" },
+    { ic: "globe", k: "programming.why.future", c: "var(--vv-green)" },
+    { ic: "lock", k: "programming.why.logic", c: "var(--vv-violet)" },
+    { ic: "star", k: "programming.why.create", c: "var(--vv-warning)" },
   ];
   return (
     <section className="mt-20">

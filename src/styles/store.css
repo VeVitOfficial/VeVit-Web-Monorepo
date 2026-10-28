@@ -8,11 +8,11 @@
    ------------------------------------------------------------ */
 :root {
   /* Primary palette */
-  --clr-primary:        #10b981;
-  --clr-primary-hover:  #059669;
-  --clr-primary-soft:   rgba(16, 185, 129, 0.12);
-  --clr-primary-light:  #4edea3;
-  --clr-primary-glow:   rgba(16, 185, 129, 0.25);
+  --clr-primary:        var(--vv-green);
+  --clr-primary-hover:  var(--vv-green-dim);
+  --clr-primary-soft:   rgba(var(--vv-green-rgb), 0.12);
+  --clr-primary-light:  var(--vv-green);
+  --clr-primary-glow:   rgba(var(--vv-green-rgb), 0.25);
 
   /* Surface hierarchy */
   --clr-bg:             #0f1117;
@@ -29,16 +29,16 @@
   --clr-text-dim:       #86948a;
 
   /* Semantic */
-  --clr-danger:         #f87171;
-  --clr-danger-soft:    rgba(248, 113, 113, 0.12);
-  --clr-warning:        #fb923c;
+  --clr-danger:         var(--vv-danger);
+  --clr-danger-soft:    rgba(244, 114, 114, 0.12);
+  --clr-warning:        var(--vv-warning);
   --clr-warning-soft:   rgba(251, 146, 60, 0.12);
-  --clr-success:        #4ade80;
+  --clr-success:        var(--vv-green);
   --clr-success-soft:   rgba(74, 222, 128, 0.12);
 
   /* Borders */
   --clr-border:         #3c4a42;
-  --clr-border-focus:   #10b981;
+  --clr-border-focus:   var(--vv-green);
 
   /* Shadows */
   --shadow-xs:  0 1px 2px rgba(0,0,0,0.4);
@@ -48,9 +48,9 @@
   --shadow-xl:  0 16px 48px rgba(0,0,0,0.65);
 
   /* Neo-brutalist primary shadow */
-  --neo-shadow-primary: 4px 4px 0px 0px #10b981;
-  --neo-shadow-primary-hover: 6px 6px 0px 0px #10b981;
-  --neo-shadow-primary-active: 2px 2px 0px 0px #10b981;
+  --neo-shadow-primary: 4px 4px 0px 0px rgba(0, 0, 0, 0.28);
+  --neo-shadow-primary-hover: 6px 6px 0px 0px rgba(0, 0, 0, 0.28);
+  --neo-shadow-primary-active: 2px 2px 0px 0px rgba(0, 0, 0, 0.28);
 
   /* Border radius */
   --radius-xs:  4px;
@@ -79,8 +79,8 @@
   --container-padding: 32px;
 
   /* Typography */
-  --font-sans: 'Bricolage Grotesque', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Mono', monospace;
+  --font-sans: var(--font-plex-sans), system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, 'Cascadia Mono', monospace;
 
   /* Transitions */
   --t-fast:   120ms ease;
@@ -94,7 +94,7 @@
   --h-input:  44px;
 
   /* Focus ring */
-  --focus-ring: 0 0 0 3px rgba(16, 185, 129, 0.35);
+  --focus-ring: 0 0 0 3px rgba(var(--vv-green-rgb), 0.35);
 }
 
 /* ------------------------------------------------------------
@@ -152,7 +152,7 @@ html, body {
   height: auto;
   padding: 12px 24px;
   background: var(--clr-primary);
-  color: #002113;
+  color: var(--clr-on-primary, #002113);
   font-family: var(--font-mono);
   font-size: 14px;
   font-weight: 600;
@@ -247,9 +247,9 @@ html, body {
   pointer-events: none;
 }
 .btn-primary {
-  background: #10b981;
-  color: #00422b;
-  border-color: #00422b;
+  background: var(--vv-green);
+  color: var(--clr-on-primary-container, #00422b);
+  border-color: var(--clr-on-primary-container, #00422b);
   box-shadow: var(--neo-shadow-primary);
 }
 .btn-primary:hover {
@@ -292,7 +292,7 @@ html, body {
 .btn-icon {
   width: var(--h-btn-md);
   padding: 0;
-  border-radius: var(--radius-full);
+  border-radius: 8px;
 }
 .btn-icon.btn-sm { width: var(--h-btn-sm); }
 
@@ -316,7 +316,7 @@ html, body {
   transition: border-color var(--t-normal), box-shadow var(--t-normal);
 }
 .product-card:hover {
-  border-color: rgba(16, 185, 129, 0.4);
+  border-color: rgba(var(--vv-green-rgb), 0.4);
   box-shadow: var(--shadow-md);
 }
 
@@ -328,7 +328,7 @@ html, body {
   align-items: center;
   gap: var(--sp-1);
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -353,21 +353,21 @@ html, body {
   font-weight: 500;
   letter-spacing: 0.03em;
   padding: 4px 10px;
-  border-radius: var(--radius-full);
+  border-radius: 8px;
   border: 1px solid var(--clr-primary);
   background: var(--clr-primary-soft);
   color: var(--clr-primary);
   text-decoration: none;
   transition: background var(--t-fast);
 }
-.filter-chip:hover { background: rgba(16, 185, 129, 0.2); }
+.filter-chip:hover { background: rgba(var(--vv-green-rgb), 0.2); }
 .filter-chip .chip-remove {
   width: 14px;
   height: 14px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius-full);
+  border-radius: 8px;
   font-size: 14px;
   opacity: 0.7;
   cursor: pointer;
@@ -450,10 +450,10 @@ html, body {
 /* ------------------------------------------------------------
    9. Category Gradient Swatches
    ------------------------------------------------------------ */
-.cat-bg-merch       { background-image: linear-gradient(135deg, #064e3b, #065f46); }
-.cat-bg-digital     { background-image: linear-gradient(135deg, #134e4a, #115e59); }
-.cat-bg-electronics { background-image: linear-gradient(135deg, #0f766e, #166534); }
-.cat-bg-default     { background-image: linear-gradient(135deg, #1a2e1e, #14532d); }
+.cat-bg-merch       { background-color: var(--vv-green-soft); }
+.cat-bg-digital     { background-color: var(--vv-green-soft); }
+.cat-bg-electronics { background-color: var(--vv-green-soft); }
+.cat-bg-default     { background-color: var(--vv-green-soft); }
 
 /* ------------------------------------------------------------
    10. Toast Notifications
@@ -514,7 +514,7 @@ html, body {
   position: absolute;
   inset: 0;
   background: var(--clr-overlay);
-  backdrop-filter: blur(4px);
+  
   opacity: 0;
   transition: opacity var(--t-slow);
 }
@@ -574,14 +574,10 @@ html, body {
   background: var(--clr-primary-soft);
   border-left-color: var(--clr-primary);
 }
-.mobile-drawer__link .material-symbols-outlined {
-  font-size: 20px;
-  flex-shrink: 0;
-}
 
 .mobile-drawer__section-title {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -602,10 +598,10 @@ body.drawer-open { overflow: hidden; }
    12. Announcement Bar
    ------------------------------------------------------------ */
 .announcement-bar {
-  background: linear-gradient(90deg, #10b981, #4edea3 50%, #10b981);
+  background: var(--vv-green);
   background-size: 200% 100%;
   animation: announcementShimmer 8s linear infinite;
-  color: #002113;
+  color: var(--clr-on-primary, #002113);
   font-family: var(--font-mono);
   font-size: 13px;
   font-weight: 600;
@@ -625,7 +621,7 @@ body.drawer-open { overflow: hidden; }
   .announcement-bar { animation: none; }
 }
 .announcement-bar a {
-  color: #002113;
+  color: var(--clr-on-primary, #002113);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
@@ -714,8 +710,8 @@ body.drawer-open { overflow: hidden; }
 }
 .step-dot.active {
   border-color: var(--clr-primary);
-  background: #10b981;
-  color: #002113;
+  background: var(--vv-green);
+  color: var(--clr-on-primary, #002113);
   box-shadow: var(--neo-shadow-primary);
 }
 .step-dot.done {
@@ -814,17 +810,8 @@ details.vv-accordion summary .accordion-icon {
 details.vv-accordion[open] summary .accordion-icon { transform: rotate(180deg); }
 
 /* ------------------------------------------------------------
-   19. Material Icons
+   19. Ikony (inline SVG, viz components/store/icon.tsx)
    ------------------------------------------------------------ */
-.icon-filled { font-variation-settings: 'FILL' 1; }
-.material-symbols-outlined {
-  /* Prevent icon from being selectable */
-  user-select: none;
-  pointer-events: none;
-}
-/* Allow pointer events for buttons wrapping icons */
-button .material-symbols-outlined,
-a .material-symbols-outlined { pointer-events: none; }
 
 /* ------------------------------------------------------------
    20. Utility Classes
@@ -866,3 +853,78 @@ a .material-symbols-outlined { pointer-events: none; }
   border-left: 1px solid var(--clr-border);
   border-right: 1px solid var(--clr-border);
 }
+
+
+/* ===== Světlý režim podle systému ===== */
+@media (prefers-color-scheme: light) {
+html:not([data-theme]) {
+    color-scheme: light;
+    --clr-primary:        #0a7d54;
+    --clr-primary-hover:  #075a37;
+    --clr-primary-soft:   rgba(10, 125, 84, 0.1);
+    --clr-primary-light:  #0a7d54;
+    --clr-primary-glow:   rgba(10, 125, 84, 0.18);
+    --clr-on-primary:     #ffffff;
+    --clr-on-primary-container: #ffffff;
+
+    --clr-bg:             #f3f5f4;
+    --clr-surface:        #f7f9f8;
+    --clr-surface-raised: #ffffff;
+    --clr-surface-card:   #ffffff;
+    --clr-surface-high:   #e8edeb;
+    --clr-surface-highest:#dfe5e3;
+    --clr-overlay:        rgba(12, 20, 28, 0.45);
+
+    --clr-text:           #0c141c;
+    --clr-text-muted:     #43505d;
+    --clr-text-dim:       #5a6775;
+    --clr-border:         #c9d2cf;
+
+    --shadow-xs:  0 1px 2px rgba(12,20,28,0.12);
+    --shadow-sm:  0 2px 6px rgba(12,20,28,0.12);
+    --shadow-md:  0 4px 16px rgba(12,20,28,0.14);
+    --shadow-lg:  0 8px 32px rgba(12,20,28,0.16);
+    --shadow-xl:  0 16px 48px rgba(12,20,28,0.2);
+    --neo-shadow-primary: 4px 4px 0px 0px rgba(12, 20, 28, 0.2);
+    --neo-shadow-primary-hover: 6px 6px 0px 0px rgba(12, 20, 28, 0.2);
+    --neo-shadow-primary-active: 2px 2px 0px 0px rgba(12, 20, 28, 0.2);
+  }
+html:not([data-theme]) .vv-app-brand a:first-child { color: #0a7d54; }
+html:not([data-theme]) .vv-app-brand a + a { color: #0c141c; }
+}
+/* ruční volba tématu */
+html[data-theme="light"] {
+    color-scheme: light;
+    --clr-primary:        #0a7d54;
+    --clr-primary-hover:  #075a37;
+    --clr-primary-soft:   rgba(10, 125, 84, 0.1);
+    --clr-primary-light:  #0a7d54;
+    --clr-primary-glow:   rgba(10, 125, 84, 0.18);
+    --clr-on-primary:     #ffffff;
+    --clr-on-primary-container: #ffffff;
+
+    --clr-bg:             #f3f5f4;
+    --clr-surface:        #f7f9f8;
+    --clr-surface-raised: #ffffff;
+    --clr-surface-card:   #ffffff;
+    --clr-surface-high:   #e8edeb;
+    --clr-surface-highest:#dfe5e3;
+    --clr-overlay:        rgba(12, 20, 28, 0.45);
+
+    --clr-text:           #0c141c;
+    --clr-text-muted:     #43505d;
+    --clr-text-dim:       #5a6775;
+    --clr-border:         #c9d2cf;
+
+    --shadow-xs:  0 1px 2px rgba(12,20,28,0.12);
+    --shadow-sm:  0 2px 6px rgba(12,20,28,0.12);
+    --shadow-md:  0 4px 16px rgba(12,20,28,0.14);
+    --shadow-lg:  0 8px 32px rgba(12,20,28,0.16);
+    --shadow-xl:  0 16px 48px rgba(12,20,28,0.2);
+    --neo-shadow-primary: 4px 4px 0px 0px rgba(12, 20, 28, 0.2);
+    --neo-shadow-primary-hover: 6px 6px 0px 0px rgba(12, 20, 28, 0.2);
+    --neo-shadow-primary-active: 2px 2px 0px 0px rgba(12, 20, 28, 0.2);
+  }
+html[data-theme="light"] .vv-app-brand a:first-child { color: #0a7d54; }
+html[data-theme="light"] .vv-app-brand a + a { color: #0c141c; }
+

@@ -16,11 +16,11 @@ export type DifficultyKey = keyof typeof DIFFICULTY_COLOR;
 
 // Kategorie → ikona + barva pro dashboard
 export const CATEGORIES = {
-  programovani: { icon: "Code2", color: "#10b981" },
+  programovani: { icon: "Code2", color: "var(--vv-green)" },
   ai: { icon: "Brain", color: "#a855f7" },
-  prirodni: { icon: "Atom", color: "#06b6d4" },
-  humanitni: { icon: "ScrollText", color: "#f59e0b" },
-  technicke: { icon: "Cog", color: "#8b5cf6" },
+  prirodni: { icon: "Atom", color: "var(--vv-info)" },
+  humanitni: { icon: "ScrollText", color: "var(--vv-warning)" },
+  technicke: { icon: "Cog", color: "var(--vv-violet)" },
 } as const;
 
 export type CategoryKey = keyof typeof CATEGORIES;

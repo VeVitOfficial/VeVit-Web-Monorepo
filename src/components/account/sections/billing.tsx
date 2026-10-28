@@ -173,7 +173,7 @@ export function BillingSection() {
                   {isCurrent && <span className="badge badge--ok">{t("billing.current", locale)}</span>}
                 </div>
                 <div className="plan-price">
-                  {price === null ? "—" : price.toLocaleString(locale)}{" "}
+                  {price === null ? ", " : price.toLocaleString(locale)}{" "}
                   <span>{t(cycle === "monthly" ? "billing.perMonth" : "billing.perYear", locale)}</span>
                 </div>
                 <ul className="plan-benefits">

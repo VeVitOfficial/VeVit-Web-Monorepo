@@ -78,7 +78,7 @@ export default function CodeDiff({ locale }: ToolComponentProps) {
                 return (
                   <div key={`${pi}-${li}`} style={{ display: "grid", gridTemplateColumns: "1fr 1fr", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
                     {kind === "rem" ? <div style={{ padding: "0.1rem 0.75rem", fontFamily: "ui-monospace,monospace", whiteSpace: "pre-wrap", wordBreak: "break-word", color: "#fca5a5", background: "rgba(239,68,68,0.15)" }}>{line}</div> : <div style={{ padding: "0.1rem 0.75rem", fontFamily: "ui-monospace,monospace", whiteSpace: "pre-wrap", wordBreak: "break-word", color: "var(--muted,#9ca3af)", background: "transparent" }}>{kind === "same" ? line : ""}</div>}
-                    {kind === "add" ? <div style={{ padding: "0.1rem 0.75rem", fontFamily: "ui-monospace,monospace", whiteSpace: "pre-wrap", wordBreak: "break-word", color: "#86efac", background: "rgba(34,197,94,0.15)" }}>{line}</div> : <div style={{ padding: "0.1rem 0.75rem", fontFamily: "ui-monospace,monospace", whiteSpace: "pre-wrap", wordBreak: "break-word", color: "var(--muted,#9ca3af)", background: "transparent" }}>{kind === "same" ? line : ""}</div>}
+                    {kind === "add" ? <div style={{ padding: "0.1rem 0.75rem", fontFamily: "ui-monospace,monospace", whiteSpace: "pre-wrap", wordBreak: "break-word", color: "var(--vv-green)", background: "rgba(34,197,94,0.15)" }}>{line}</div> : <div style={{ padding: "0.1rem 0.75rem", fontFamily: "ui-monospace,monospace", whiteSpace: "pre-wrap", wordBreak: "break-word", color: "var(--muted,#9ca3af)", background: "transparent" }}>{kind === "same" ? line : ""}</div>}
                   </div>
                 );
               });

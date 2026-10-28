@@ -38,7 +38,7 @@ function pdfjs(): PdfjsLib { return (window as unknown as { pdfjsLib: PdfjsLib }
 
 const ACCEPT = ".pdf,application/pdf";
 const HINTS: Record<string, string> = {
-  lossless: "Přeuloží PDF beze ztráty — text zůstává výběratelný. Redukce je obvykle malá.",
+  lossless: "Přeuloží PDF beze ztráty, text zůstává výběratelný. Redukce je obvykle malá.",
   raster: "Strany se vyrenderují jako JPEG v daném rozlišení. Větší redukce, ale text přestane být výběratelný.",
 };
 
@@ -80,7 +80,7 @@ export default function PdfCompress({ locale }: ToolComponentProps) {
   const onDrop = (e: React.DragEvent) => { e.preventDefault(); e.stopPropagation(); setDragOver(false); dragDepth.current = 0; if (e.dataTransfer.files) addFile(Array.from(e.dataTransfer.files)); };
   const clearAll = () => { setFile(null); setError(""); setResult(null); setProgress(null); setShowPreview(false); if (blobUrlRef.current) { URL.revokeObjectURL(blobUrlRef.current); blobUrlRef.current = ""; } setState("idle"); };
 
-  const pct = (o: number, n: number) => { if (o <= 0) return "—"; const d = Math.round((1 - n / o) * 100); return d >= 0 ? `−${d} %` : `+${-d} %`; };
+  const pct = (o: number, n: number) => { if (o <= 0) return ", "; const d = Math.round((1 - n / o) * 100); return d >= 0 ? `−${d} %` : `+${-d} %`; };
 
   const appendThumb = (frame: HTMLDivElement, canvas: HTMLCanvasElement) => {
     while (frame.firstChild) frame.removeChild(frame.firstChild);
@@ -206,7 +206,7 @@ export default function PdfCompress({ locale }: ToolComponentProps) {
                 <label className="field-label">Kvalita JPEG: <span id="pc-q-val" className="mono">{q.toLocaleString(document.documentElement.lang || "cs")}</span></label>
                 <div className="range-row"><input type="range" id="pc-q" min={0.4} max={0.95} step={0.01} value={q} onChange={(e) => setQ(+e.target.value)} /><span className="range-val">0,4–0,95</span></div>
               </div>
-              <p className="muted" style={{ fontSize: "0.78rem" }}>Strany se vyrenderují jako obrázky v daném DPI a uloží se jako JPEG. Text přestane být výběratelný — vhodné pro skeny a grafiku, ne pro dokumenty k editaci.</p>
+              <p className="muted" style={{ fontSize: "0.78rem" }}>Strany se vyrenderují jako obrázky v daném DPI a uloží se jako JPEG. Text přestane být výběratelný, vhodné pro skeny a grafiku, ne pro dokumenty k editaci.</p>
             </div>
           </div>
         </details>

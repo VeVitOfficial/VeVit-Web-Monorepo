@@ -8,13 +8,13 @@ import type { ToolComponentProps } from "@/components/tools/registry/data";
 import type { Locale } from "@/components/tools/registry/data";
 
 const LABELS: Record<Locale, { weight: string; height: string; bmi: string; category: string; ideal: string; note: string; cats: [string, string, string, string] }> = {
-  cs: { weight: "Váha (kg)", height: "Výška (cm)", bmi: "BMI", category: "Kategorie", ideal: "Ideální váha", note: "Výpočet běží živě v prohlížeči. BMI je orientační ukazatel — nebere v úvahu svalovou hmotu ani stavbu těla.", cats: ["Podváha", "Normální váha", "Nadváha", "Obezita"] },
-  en: { weight: "Weight (kg)", height: "Height (cm)", bmi: "BMI", category: "Category", ideal: "Ideal weight", note: "Calculation runs live in the browser. BMI is an indicative measure — it does not account for muscle mass or body build.", cats: ["Underweight", "Normal weight", "Overweight", "Obesity"] },
-  de: { weight: "Gewicht (kg)", height: "Größe (cm)", bmi: "BMI", category: "Kategorie", ideal: "Idealgewicht", note: "Die Berechnung läuft live im Browser. BMI ist ein Richtwert — er berücksichtigt weder Muskelmasse noch Körperbau.", cats: ["Untergewicht", "Normalgewicht", "Übergewicht", "Adipositas"] },
-  es: { weight: "Peso (kg)", height: "Altura (cm)", bmi: "IMC", category: "Categoría", ideal: "Peso ideal", note: "El cálculo se ejecuta en vivo en el navegador. El IMC es orientativo — no tiene en cuenta la masa muscular ni la complexión.", cats: ["Bajo peso", "Peso normal", "Sobrepeso", "Obesidad"] },
-  uk: { weight: "Вага (кг)", height: "Зріст (см)", bmi: "ІМТ", category: "Категорія", ideal: "Ідеальна вага", note: "Розрахунок виконується в браузері. ІМТ — орієнтовний показник, він не враховує м'язову масу та статуру.", cats: ["Недостатня вага", "Нормальна вага", "Надлишкова вага", "Ожиріння"] },
-  fr: { weight: "Poids (kg)", height: "Taille (cm)", bmi: "IMC", category: "Catégorie", ideal: "Poids idéal", note: "Le calcul s'exécute en direct dans le navigateur. L'IMC est indicatif — il ne tient compte ni de la masse musculaire ni de la corpulence.", cats: ["Insuffisant", "Normal", "Surpoids", "Obésité"] },
-  sk: { weight: "Váha (kg)", height: "Výška (cm)", bmi: "BMI", category: "Kategória", ideal: "Ideálna váha", note: "Výpočet beží živo v prehliadači. BMI je orientačný ukazovateľ — nezohľadňuje svalovú hmotu ani stavbu tela.", cats: ["Podváha", "Normálna váha", "Nadváha", "Obezita"] },
+  cs: { weight: "Váha (kg)", height: "Výška (cm)", bmi: "BMI", category: "Kategorie", ideal: "Ideální váha", note: "Výpočet běží živě v prohlížeči. BMI je orientační ukazatel, nebere v úvahu svalovou hmotu ani stavbu těla.", cats: ["Podváha", "Normální váha", "Nadváha", "Obezita"] },
+  en: { weight: "Weight (kg)", height: "Height (cm)", bmi: "BMI", category: "Category", ideal: "Ideal weight", note: "Calculation runs live in the browser. BMI is an indicative measure, it does not account for muscle mass or body build.", cats: ["Underweight", "Normal weight", "Overweight", "Obesity"] },
+  de: { weight: "Gewicht (kg)", height: "Größe (cm)", bmi: "BMI", category: "Kategorie", ideal: "Idealgewicht", note: "Die Berechnung läuft live im Browser. BMI ist ein Richtwert, er berücksichtigt weder Muskelmasse noch Körperbau.", cats: ["Untergewicht", "Normalgewicht", "Übergewicht", "Adipositas"] },
+  es: { weight: "Peso (kg)", height: "Altura (cm)", bmi: "IMC", category: "Categoría", ideal: "Peso ideal", note: "El cálculo se ejecuta en vivo en el navegador. El IMC es orientativo, no tiene en cuenta la masa muscular ni la complexión.", cats: ["Bajo peso", "Peso normal", "Sobrepeso", "Obesidad"] },
+  uk: { weight: "Вага (кг)", height: "Зріст (см)", bmi: "ІМТ", category: "Категорія", ideal: "Ідеальна вага", note: "Розрахунок виконується в браузері. ІМТ, орієнтовний показник, він не враховує м'язову масу та статуру.", cats: ["Недостатня вага", "Нормальна вага", "Надлишкова вага", "Ожиріння"] },
+  fr: { weight: "Poids (kg)", height: "Taille (cm)", bmi: "IMC", category: "Catégorie", ideal: "Poids idéal", note: "Le calcul s'exécute en direct dans le navigateur. L'IMC est indicatif, il ne tient compte ni de la masse musculaire ni de la corpulence.", cats: ["Insuffisant", "Normal", "Surpoids", "Obésité"] },
+  sk: { weight: "Váha (kg)", height: "Výška (cm)", bmi: "BMI", category: "Kategória", ideal: "Ideálna váha", note: "Výpočet beží živo v prehliadači. BMI je orientačný ukazovateľ, nezohľadňuje svalovú hmotu ani stavbu tela.", cats: ["Podváha", "Normálna váha", "Nadváha", "Obezita"] },
 };
 
 const LOCALE_TAG: Record<Locale, string> = { cs: "cs-CZ", en: "en-US", de: "de-DE", es: "es-ES", uk: "uk-UA", fr: "fr-FR", sk: "sk-SK" };
@@ -61,7 +61,7 @@ export default function BmiCalc({ locale }: ToolComponentProps) {
 
 // Výpočet izolovaný do funkce — volán z useMemo i z live input handleru.
 function compute(W: number, H: number, cats: [string, string, string, string], locTag: string) {
-  if (!W || !H || H <= 0) return { bmiText: "—", catText: "—", idealText: "—", showIdeal: false };
+  if (!W || !H || H <= 0) return { bmiText: ", ", catText: ", ", idealText: ", ", showIdeal: false };
   const m = H / 100;
   const bmi = W / (m * m);
   const lo = 18.5 * m * m;

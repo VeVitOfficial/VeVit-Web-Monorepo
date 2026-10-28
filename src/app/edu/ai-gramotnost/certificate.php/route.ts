@@ -14,8 +14,8 @@ export const dynamic = "force-dynamic";
 // Styl certifikátu (dříve sdílený styles.css vanilla aplikace).
 const CERTIFICATE_CSS = "body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0a0a0f;color:#f9fafb;font-family:system-ui,-apple-system,sans-serif;line-height:1.6}"
   + ".card{max-width:900px;margin:3rem auto;padding:2.5rem;text-align:center;background:#101014;border:1px solid rgba(255,255,255,.08);border-radius:16px}"
-  + "h1{font-size:clamp(1.8rem,4vw,2.6rem);margin:.5rem 0}h2{color:#10b981;margin:.75rem 0}p{color:rgba(255,255,255,.7)}"
-  + ".btn{display:inline-block;margin-top:1rem;padding:.6rem 1.1rem;border-radius:12px;background:#10b981;color:#04130d;font-weight:600;text-decoration:none}";
+  + "h1{font-size:clamp(1.8rem,4vw,2.6rem);margin:.5rem 0}h2{color:var(--vv-green);margin:.75rem 0}p{color:rgba(255,255,255,.7)}"
+  + ".btn{display:inline-block;margin-top:1rem;padding:.6rem 1.1rem;border-radius:12px;background:var(--vv-green);color:#04130d;font-weight:600;text-decoration:none}";
 
 function htmlEscape(value: string): string {
   return value

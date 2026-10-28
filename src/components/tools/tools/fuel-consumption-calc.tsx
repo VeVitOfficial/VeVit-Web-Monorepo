@@ -30,8 +30,8 @@ function compute(mode: "l" | "mpg", locale: string) {
   if (!inp || !out || !outK || !out2Row || !out2 || !out2K) return;
   const x = inp.value === "" || inp.value == null ? null : parseFloat(inp.value);
   if (x == null || isNaN(x) || x <= 0) {
-    out.textContent = "—";
-    out2.textContent = "—";
+    out.textContent = ", ";
+    out2.textContent = ", ";
     return;
   }
   if (mode === "l") {

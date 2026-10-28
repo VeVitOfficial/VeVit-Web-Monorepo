@@ -37,7 +37,7 @@ function rgbToHsl(r: number, g: number, b: number) {
 }
 
 export default function ColorConverter({ locale }: ToolComponentProps) {
-  const [hex, setHex] = useState("#10b981");
+  const [hex, setHex] = useState("var(--vv-green)");
   const [rgb, setRgb] = useState("16, 185, 129");
   const [hsl, setHsl] = useState("153, 84%, 40%");
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
@@ -61,8 +61,8 @@ export default function ColorConverter({ locale }: ToolComponentProps) {
   };
 
   const parsed = parseHex(hex);
-  const swatchBg = parsed ? hex : "#10b981";
-  const display = parsed ? hex.toUpperCase() : "#10B981";
+  const swatchBg = parsed ? hex : "var(--vv-green)";
+  const display = parsed ? hex.toUpperCase() : "var(--vv-green)";
 
   return (
     <div className="stack" style={{ maxWidth: "36rem", margin: "0 auto" }}>

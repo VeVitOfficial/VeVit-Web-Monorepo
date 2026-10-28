@@ -29,7 +29,7 @@ const LBL: Record<Locale, { domain: string; run: string; help: string; ok: strin
   sk: { domain: "Doména", run: "Skontrolovať", help: "Spracovanie prebieha na serveri cez overené TLS spojenie priamo s verejnou IP. Doména sa použije len na jednorázovú kontrolu a nič sa neukladá.", ok: "✓ Certifikát je overený dôveryhodným reťazcom", okSoon: "⚠ Certifikát je overený, ale platnosť čoskoro vyprší", issuer: "Vydal", subject: "Pre", from: "Platný od", to: "Platný do", days: "Zostáva", serial: "Sériové číslo", sig: "Podpis", san: "SAN (alternatívne názvy)", errDomain: "Zadajte doménu.", errFail: "Kontrolu sa nepodarilo dokončiť.", errNet: "Sieťová chyba pri kontrole certifikátu. Skúste to znova.", progConnect: "Pripájam sa k {d}:443…", progDone: "Hotovo" },
 };
 
-function dash(v: unknown): string { return v == null ? "—" : String(v); }
+function dash(v: unknown): string { return v == null ? ", " : String(v); }
 
 export default function CertificateInfo({ locale }: ToolComponentProps) {
   const L = LBL[locale] ?? LBL.cs;
@@ -82,14 +82,14 @@ export default function CertificateInfo({ locale }: ToolComponentProps) {
       <div className={result ? "" : " hidden"} id="ci-result">
         <div className="glass" style={{ borderRadius: "0.75rem", padding: "0.5rem 1rem" }}>
           <p id="ci-status" className={`certificate-status certificate-status-${b?.status ?? ""}`} style={{ fontSize: "1.05rem", margin: "0.25rem 0" }} aria-live="polite">{statusText}</p>
-          <div className="kv"><span className="k">{L.issuer}</span><span className="v" id="ci-issuer">{b ? dash((b.issuer.O && b.issuer.O !== "—" ? b.issuer.O : b.issuer.CN) + (b.issuer.CN && b.issuer.O && b.issuer.CN !== b.issuer.O ? ` (${b.issuer.CN})` : "")) : "—"}</span></div>
-          <div className="kv"><span className="k">{L.subject}</span><span className="v" id="ci-subject">{b ? dash((b.subject.O && b.subject.O !== "—" ? `${b.subject.O} — ` : "") + b.subject.CN) : "—"}</span></div>
-          <div className="kv"><span className="k">{L.from}</span><span className="v mono" id="ci-from">{b ? dash(b.validFrom) : "—"}</span></div>
-          <div className="kv"><span className="k">{L.to}</span><span className="v mono" id="ci-to">{b ? dash(b.validTo) : "—"}</span></div>
-          <div className="kv"><span className="k">{L.days}</span><span className="v mono" id="ci-days">{b ? (b.daysLeft == null ? "—" : `${b.daysLeft} ${locale === "en" ? "days" : "dní"}`) : "—"}</span></div>
-          <div className="kv"><span className="k">{L.serial}</span><span className="v mono" id="ci-serial">{b ? dash(b.serialNumber) : "—"}</span></div>
-          <div className="kv"><span className="k">{L.sig}</span><span className="v" id="ci-sig">{b ? dash(b.signatureType) : "—"}</span></div>
-          <div className="kv"><span className="k">{L.san}</span><span className="v" id="ci-san">{b ? (b.san && b.san.length ? b.san.join(", ") : "—") : "—"}</span></div>
+          <div className="kv"><span className="k">{L.issuer}</span><span className="v" id="ci-issuer">{b ? dash((b.issuer.O && b.issuer.O !== ", " ? b.issuer.O : b.issuer.CN) + (b.issuer.CN && b.issuer.O && b.issuer.CN !== b.issuer.O ? ` (${b.issuer.CN})` : "")) : ", "}</span></div>
+          <div className="kv"><span className="k">{L.subject}</span><span className="v" id="ci-subject">{b ? dash((b.subject.O && b.subject.O !== ", " ? `${b.subject.O}, ` : "") + b.subject.CN) : ", "}</span></div>
+          <div className="kv"><span className="k">{L.from}</span><span className="v mono" id="ci-from">{b ? dash(b.validFrom) : ", "}</span></div>
+          <div className="kv"><span className="k">{L.to}</span><span className="v mono" id="ci-to">{b ? dash(b.validTo) : ", "}</span></div>
+          <div className="kv"><span className="k">{L.days}</span><span className="v mono" id="ci-days">{b ? (b.daysLeft == null ? ", " : `${b.daysLeft} ${locale === "en" ? "days" : "dní"}`) : ", "}</span></div>
+          <div className="kv"><span className="k">{L.serial}</span><span className="v mono" id="ci-serial">{b ? dash(b.serialNumber) : ", "}</span></div>
+          <div className="kv"><span className="k">{L.sig}</span><span className="v" id="ci-sig">{b ? dash(b.signatureType) : ", "}</span></div>
+          <div className="kv"><span className="k">{L.san}</span><span className="v" id="ci-san">{b ? (b.san && b.san.length ? b.san.join(", ") : ", ") : ", "}</span></div>
         </div>
       </div>
 

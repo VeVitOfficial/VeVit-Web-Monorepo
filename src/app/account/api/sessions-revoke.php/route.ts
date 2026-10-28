@@ -65,7 +65,7 @@ export async function POST(request: Request) {
     if (s.user_id !== session.user.id) return Response.json({ error: "Forbidden" }, { status: 403 });
     if (s.revoked_at !== null) return Response.json({ error: "Relace již byla odvolána." }, { status: 409 });
     if (currentHash !== "" && currentHash === String(s.token_hash ?? "")) {
-      return Response.json({ error: "Nemůžete zrušit aktuální relaci — použijte odhlášení." }, { status: 422 });
+      return Response.json({ error: "Nemůžete zrušit aktuální relaci, použijte odhlášení." }, { status: 422 });
     }
 
     const { error } = await accountSupabase()

@@ -97,7 +97,7 @@ export default async function ToolPage({ params }: Props) {
           <h1>{L.name}</h1>
           <span
             className="loc-tag"
-            style={{ borderColor: `${color}30`, color, background: `${color}10` }}
+            style={{ borderColor: `color-mix(in srgb, ${color} 19%, transparent)`, color, background: `color-mix(in srgb, ${color} 6%, transparent)` }}
             title={loc.title}
           >{loc.label}</span>
           <span className={`loc-tag ${STATUS_BADGE_CLASS[tool.status]}`}>{statusLabel(tool.status, locale)}</span>

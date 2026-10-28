@@ -148,7 +148,7 @@ export default function TextToSpeech({ locale }: ToolComponentProps) {
         <button className="btn btn-ghost" id="ts-stop" type="button" onClick={onStop}>Zastavit</button>
       </div>
       {hasError ? <p className="error-text" id="ts-error" role="alert">{error}</p> : null}
-      <p className="muted" style={{ fontSize: "0.8rem" }}>Používá Web Speech API prohlížeče. Český hlas nemusí být dostupný — záleží na systému/OS. Nic se neodesílá na server (vyjma hlasů, jež dodává prohlížeč/OS).</p>
+      <p className="muted" style={{ fontSize: "0.8rem" }}>Používá Web Speech API prohlížeče. Český hlas nemusí být dostupný, záleží na systému/OS. Nic se neodesílá na server (vyjma hlasů, jež dodává prohlížeč/OS).</p>
     </div>
   );
 }
