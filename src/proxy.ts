@@ -90,7 +90,8 @@ export function proxy(request: NextRequest) {
     return NextResponse.rewrite(url, { request: { headers: requestHeaders } });
   }
   if (section === "home") {
-    const page = suffix === "support" || suffix === "support.html" ? "support" : "";
+    const soon = /^soon\/(mail|office|services|search|store)$/.exec(suffix);
+    const page = soon ? soon[0] : suffix === "support" || suffix === "support.html" ? "support" : "";
     const url = request.nextUrl.clone();
     url.pathname = `/home${page ? `/${page}` : ""}`;
     const requestHeaders = new Headers(request.headers);
