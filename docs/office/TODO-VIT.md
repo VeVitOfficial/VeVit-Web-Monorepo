@@ -17,3 +17,5 @@
 | In the vevit-office repository: `device_client_id` setting (today one `client_id` serves both flows) | `crates/auth` | the Office server must send `client_id=vevit-office-device` on the device endpoints; the provider refuses `vevit-office` there |
 
 Not verified here: a live run of the Rust client (`crates/auth`) against this provider (no deployment); the Rust mock's behaviour was matched by reading `crates/auth/src/oidc.rs` and the tests of this repo reproduce its flows (state, nonce, PKCE, JWKS rotation, device polling).
+
+- Run `VeVit-office/tools/integration-vevit.sh` once against a real Supabase branch (migrations 026-028 applied) with a real DNS adapter and mail sender; until then SQL, Next routing and the pages are covered only by their own tests.

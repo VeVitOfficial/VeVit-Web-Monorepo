@@ -23,3 +23,5 @@
 21. The daily `office_purge_expired()` runs from `pg_cron` inside Supabase (no public endpoint, no `CRON_SECRET`); Vercel Cron was rejected because it would need both.
 22. The legal text on the consent screen is a placeholder linking to `/office/legal`; the real wording is yours (TODO-VIT.md).
 23. The Office pages import `account/assets/styles.css` because that is where `master` keeps the account stylesheet; `feat/aifb-teorie` moved it to `src/styles/account.css`, so the six imports in `src/app/office/*/page.tsx` must be switched when the two branches meet.
+
+- The integration harness reuses the production handlers over `MemoryStore` rather than a local Supabase: no Docker or Supabase binaries are available here and the base schema is not in this repository.

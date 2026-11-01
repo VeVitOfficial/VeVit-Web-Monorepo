@@ -40,3 +40,7 @@ Emergency (key leaked): set a new `OFFICE_OIDC_KEY_ACTIVE` and delete `OFFICE_OI
 - Mark an address verified by hand: `update public.users set email_verified_at = now() where id = '<users.id>';` (changing the e-mail clears it again).
 - Daily purge: `028_office_purge_cron.sql` schedules `office_purge_expired()` with `pg_cron`; check with `select * from cron.job;`.
 - Nothing here is deployed by this change; the migration and the variables are yours to apply.
+
+## Cross-repository integration test
+
+`tests/integration/office-harness.mjs` serves the real handlers of `src/lib/office/*` (the functions the route files call) on a loopback port over an in-memory store, with a DNS adapter that writes ACME TXT records to Pebble's challenge server and a mock mailer. The Office repository drives it from `tools/integration-vevit.sh` (pairing, DNS-01 certificate, relay, sign-in with a verified and an unverified account, consent, e-mail verification, desktop device flow, revoking a server). It never touches Supabase, a network service or production. Not covered: SQL migrations 026-028 on Postgres, Next.js routing and the pages, real DNS.
