@@ -5,6 +5,7 @@
     "start": "next start",
     "lint": "eslint src next.config.ts",
     "typecheck": "tsc --noEmit",
+    "test:unit": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test tests/unit/",
     "prepare:vercel": "node scripts/prepare-vercel-assets.mjs",
     "export:legacy-tools": "php scripts/export-vercel-tools.php",
     "build:tailwind": "tailwindcss -c tailwind.config.js -i build/tailwind.input.css -o assets/css/vevit-tailwind.css --minify"
