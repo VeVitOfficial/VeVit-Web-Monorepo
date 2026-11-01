@@ -44,3 +44,9 @@ Emergency (key leaked): set a new `OFFICE_OIDC_KEY_ACTIVE` and delete `OFFICE_OI
 ## Cross-repository integration test
 
 `tests/integration/office-harness.mjs` serves the real handlers of `src/lib/office/*` (the functions the route files call) on a loopback port over an in-memory store, with a DNS adapter that writes ACME TXT records to Pebble's challenge server and a mock mailer. The Office repository drives it from `tools/integration-vevit.sh` (pairing, DNS-01 certificate, relay, sign-in with a verified and an unverified account, consent, e-mail verification, desktop device flow, revoking a server). It never touches Supabase, a network service or production. Not covered: SQL migrations 026-028 on Postgres, Next.js routing and the pages, real DNS.
+
+## Verification of the branch (2026-11-01)
+
+- `npm ci`, then `npx tsc --noEmit`: one error remains, in `src/app/account/api/admin/config.php/route.ts` (`Cannot find module '@/lib/admin'`). That directory is git-ignored (the `**/config.php` rule in `.gitignore` matches the folder name) and is not in this branch or on master; it is a local leftover, so a clean checkout does not have it. tsc over the tracked sources (that directory excluded) reports 0 errors.
+- Earlier `mysql2` errors came from a stale `node_modules` and are gone after `npm ci`; `mysql2` serves the edu course API (`src/app/edu/legacy/api`, `src/app/edu/ai-gramotnost/api`), which is still in use and unrelated to Office.
+- `npm run test:unit`: 38 passed, 0 failed.
