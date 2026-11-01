@@ -1,5 +1,7 @@
 # Vevit account as OIDC provider: contract with VeVit Office
 
+Source of truth: `docs/OIDC-SPEC.md` in the vevit-office repository. The vevit.cz monorepo keeps an unchanged copy in `docs/office/OIDC-SPEC.md`; change it in vevit-office first and copy it over.
+
 Implemented in `src/lib/office/` (logic), `src/app/account/oidc`, `src/app/account/.well-known` and `src/app/api/office` (routes), `src/app/office` (pages), migration `supabase/sql/account/026_office_oidc.sql`. The client is VeVit Office (online and cloud modes): a public OIDC client, PKCE required, no client secret. Mock used by the Office tests: `crates/auth/src/mock.rs` in the vevit-office repository.
 
 ## Issuer and discovery
@@ -11,7 +13,7 @@ JWKS: EC P-256 public keys with `kid` (first 16 hex digits of the SHA-256 of the
 |---|---|---|
 | `vevit-office` | public, PKCE S256 | exactly `https://<name>.office.vevit.cz/api/oidc/callback` where `<name>` is a paired, not unlinked device (checked on every request); plus the Cloud addresses from `OFFICE_CLOUD_REDIRECT_URIS` (exact match, first-party, no consent screen) |
 | `vevit-office-device` | public, device flow | none |
-Both client ids are accepted on the device endpoints, because the Office server presently uses a single `client_id` for both flows; a device code is bound to the client that asked for it.
+The device endpoints serve only `vevit-office-device`; asking with `vevit-office` is refused (`invalid_client`). The Office client uses `vevit-office` for the code flow and `vevit-office-device` for the device flow.
 
 ## Authorization code flow
 1. `GET /account/oidc/authorize?response_type=code&client_id&redirect_uri&scope=openid profile email&state&nonce&code_challenge&code_challenge_method=S256`. `nonce` and PKCE S256 are mandatory. Errors about the client or the redirect URI are answered on the page (400), never redirected; other errors are redirected back with `error` and `state`. Not signed in: redirect to the Vevit login (`/cs/account/login?return_to=…`) and back.
@@ -20,7 +22,7 @@ Both client ids are accepted on the device endpoints, because the Office server 
 4. `POST /account/oidc/token` (form): `grant_type=authorization_code, code, redirect_uri, client_id, code_verifier`. `redirect_uri` must be byte-identical to the one the code was issued for. Answer `{token_type:"Bearer", expires_in:300, id_token}`; errors `{error}` with 400 (`invalid_grant`, `invalid_request`, `unsupported_grant_type`) or 401 (`invalid_client`). A failed verifier burns the code.
 
 ## ID token
-ES256, `kid` header. Claims: `iss`, `sub` (= `public.users.id`, stable, never reused), `aud` (client_id), `iat`, `exp` (5 minutes), `nonce` (code flow), `email`, `email_verified`, `name`, `preferred_username`. `email_verified` is true only when `users.email_verified_at` is set (no flow sets it yet, see TODO-VIT.md).
+ES256, `kid` header. Claims: `iss`, `sub` (= `public.users.id`, stable, never reused), `aud` (client_id), `iat`, `exp` (5 minutes), `nonce` (code flow), `email`, `email_verified`, `name`, `preferred_username`. `email_verified` is true only when `users.email_verified_at` is set: by the one-time link sent to the address (`/office/verify-email`, valid 24 hours, only its hash stored) and cleared again when the address changes. The consent screen offers the verification to a person without a verified address.
 
 ## Device flow (RFC 8628)
 `POST /account/oidc/device` (form: `client_id`, `scope`) → `{device_code, user_code "XXXX-XXXX", verification_uri "https://vevit.cz/office/device", verification_uri_complete, expires_in 600, interval 5}`. The person enters the code at `/office/device` and allows or denies. `POST /account/oidc/token` with `grant_type=urn:ietf:params:oauth:grant-type:device_code`: `authorization_pending`, `slow_down` (polling faster than the interval; the interval grows by 5 s), `access_denied`, `expired_token`, `invalid_grant` (unknown or already used), or the `id_token` once (without `nonce`).
