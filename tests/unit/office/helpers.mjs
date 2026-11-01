@@ -1,6 +1,7 @@
 import { generateKeyPairSync, createHash, randomBytes } from "node:crypto";
 import { MemoryStore } from "../../../src/lib/office/memory-store.ts";
 import { MockDns } from "../../../src/lib/office/dns.ts";
+import { MockMail } from "../../../src/lib/office/mail.ts";
 import { loadOfficeKeys } from "../../../src/lib/office/jwt.ts";
 import { pkceChallenge } from "../../../src/lib/office/crypto.ts";
 
@@ -21,9 +22,11 @@ export function makeDeps(overrides = {}) {
   const { env } = keyEnv();
   const clock = { t: Date.parse("2026-11-01T10:00:00Z") };
   const counts = new Map();
+  store.now = () => clock.t;
   const deps = {
     store,
     dns: new MockDns(),
+    mail: new MockMail(),
     keys: loadOfficeKeys(env),
     now: () => clock.t,
     issuer: ISSUER,
@@ -32,7 +35,14 @@ export function makeDeps(overrides = {}) {
     ipSecret: "test-secret",
     // Tests authenticate with "x-test-user: u1"; the CSRF token of a session is "csrf-<id>".
     session: async (req) => { const u = req.headers.get("x-test-user"); return u ? { userId: u, csrf: `csrf-${u}` } : null; },
-    rateLimit: async (key, ns, _w, max) => { const k = `${ns}|${key}`; const n = (counts.get(k) ?? 0) + 1; counts.set(k, n); return n > max ? "limited" : "ok"; },
+    // Fixed window like office_rate_consume: the counter restarts once the (fake) clock passes the window end.
+    rateLimit: async (key, ns, w, max) => {
+      const k = `${ns}|${key}`;
+      let c = counts.get(k);
+      if (!c || clock.t >= c.end) { c = { n: 0, end: clock.t + w * 1000 }; counts.set(k, c); }
+      c.n += 1;
+      return c.n > max ? "limited" : "ok";
+    },
     clientIp: (req) => req.headers.get("x-forwarded-for") ?? "203.0.113.7",
     stripe: null,
     ...overrides,

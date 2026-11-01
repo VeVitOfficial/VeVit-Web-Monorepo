@@ -133,7 +133,9 @@ export async function consentInfo(d: OfficeDeps, req: Request): Promise<Response
   const device = await d.store.getDevice(p.deviceId);
   const owner = device ? await d.store.getUser(device.ownerId) : null;
   if (!device || device.revokedAt) return json(404, { error: "not_found" });
-  return json(200, { server: device.displayName, host: deviceHost(device.name), owner: owner?.name ?? "", shares: ["name", "email"] });
+  const me = await d.store.getUser(session.userId);
+  // email_verified lets the screen offer verification: a server only trusts an address that is verified.
+  return json(200, { server: device.displayName, host: deviceHost(device.name), owner: owner?.name ?? "", shares: ["name", "email"], email_verified: Boolean(me?.emailVerified) });
 }
 
 /** POST /account/oidc/consent {req, decision} */
@@ -230,8 +232,10 @@ async function deviceGrant(d: OfficeDeps, f: URLSearchParams): Promise<Response>
   await d.store.updateDeviceCode(hash, { lastPollAt: iso(d.now()) });
   if (row.status === "denied") return oauthError(400, "access_denied");
   if (row.status === "pending" || !row.userId) return oauthError(400, "authorization_pending");
-  await d.store.updateDeviceCode(hash, { status: "consumed" });
-  const user = await d.store.getUser(row.userId);
+  // Atomic: of two parallel polls with the same device_code only one receives a token.
+  const taken = await d.store.consumeApprovedDeviceCode(hash);
+  if (!taken?.userId) return oauthError(400, "invalid_grant");
+  const user = await d.store.getUser(taken.userId);
   if (!user) return oauthError(400, "invalid_grant");
   await d.store.audit({ kind: "oidc_device_login", userId: user.id });
   return json(200, { token_type: "Bearer", expires_in: ID_TOKEN_TTL_S, id_token: await idTokenFor(d, user, clientId, null) });

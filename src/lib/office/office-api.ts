@@ -11,7 +11,7 @@ export const MAX_DEVICES_PER_USER = 10;
 
 const iso = (ms: number) => new Date(ms).toISOString();
 
-async function limit(d: OfficeDeps, key: string, ns: string, windowS: number, max: number): Promise<Response | null> {
+export async function limit(d: OfficeDeps, key: string, ns: string, windowS: number, max: number): Promise<Response | null> {
   const r = await d.rateLimit(key, ns, windowS, max);
   if (r === "limited") return json(429, { error: "too_many_requests" }, { "retry-after": String(windowS) });
   if (r === "unavailable") return json(503, { error: "temporarily_unavailable" });
@@ -20,7 +20,7 @@ async function limit(d: OfficeDeps, key: string, ns: string, windowS: number, ma
 
 type UserSession = { error: Response; session?: undefined } | { error?: undefined; session: { userId: string; csrf: string } };
 
-async function userSession(d: OfficeDeps, req: Request, write: boolean): Promise<UserSession> {
+export async function userSession(d: OfficeDeps, req: Request, write: boolean): Promise<UserSession> {
   const s = await d.session(req);
   if (!s) return { error: json(401, { error: "unauthorized" }) };
   if (write && !safeEqual(req.headers.get("x-csrf-token") ?? "", s.csrf)) return { error: json(403, { error: "csrf" }) };
@@ -150,7 +150,8 @@ function publicDevice(x: Device) {
 export async function devicesList(d: OfficeDeps, req: Request): Promise<Response> {
   const u = await userSession(d, req, false);
   if (u.error) return u.error;
-  return json(200, { devices: (await d.store.listDevices(u.session.userId)).map(publicDevice) });
+  const me = await d.store.getUser(u.session.userId);
+  return json(200, { devices: (await d.store.listDevices(u.session.userId)).map(publicDevice), email_verified: Boolean(me?.emailVerified) });
 }
 
 /** PATCH /api/office/devices/{id} {display_name} */

@@ -118,6 +118,7 @@ function UserMenu({ user, locale }: { user: AccountUser; locale: string }) {
             <span>{email}</span>
           </div>
           <Link href="/account" role="menuitem" onClick={() => setOpen(false)}>{accountT("menu.myAccount", locale)}</Link>
+          <a href="/office/devices" role="menuitem">{accountT("menu.officeServers", locale)}</a>
           <a href="https://vevit.cz/home" role="menuitem">{accountT("menu.backToApp", locale)}</a>
           <div className="user-menu__divider" role="separator" />
           <button type="button" role="menuitem" onClick={signOut}>{accountT("menu.signOut", locale)}</button>

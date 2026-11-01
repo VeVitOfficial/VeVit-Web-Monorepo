@@ -15,7 +15,10 @@ export class MemoryStore implements OfficeStore {
   plans = new Map<string, { bytesPerMonth: number; maxStreams: number }>([["free", { bytesPerMonth: 10_000_000_000, maxStreams: 8 }], ["pro", { bytesPerMonth: 500_000_000_000, maxStreams: 64 }]]);
   stripeCustomers = new Map<string, string>();
   dns = new Map<string, string>();
+  emailVerifications = new Map<string, { id: string; userId: string; email: string; expiresAt: string; usedAt: string | null }>();
   auditLog: AuditEvent[] = [];
+  /** The tests drive this with their fake clock; the database uses now(). */
+  now: () => number = () => Date.now();
   private seq = 0;
   private id(): string {
     this.seq += 1;
@@ -23,6 +26,29 @@ export class MemoryStore implements OfficeStore {
   }
 
   async getUser(id: string) { return this.users.get(id) ?? null; }
+
+  /** Mirrors the users.email trigger of migration 027: a new address is unverified and pending links die. */
+  changeEmail(id: string, email: string) {
+    const u = this.users.get(id);
+    if (!u || u.email.toLowerCase() === email.toLowerCase()) return;
+    u.email = email;
+    u.emailVerified = false;
+    for (const [h, v] of this.emailVerifications) if (v.userId === id) this.emailVerifications.delete(h);
+  }
+  async createEmailVerification(v: { id: string; userId: string; email: string; tokenHash: string; expiresAt: string }) {
+    for (const [h, x] of this.emailVerifications) if (x.userId === v.userId && !x.usedAt) this.emailVerifications.delete(h);
+    this.emailVerifications.set(v.tokenHash, { id: v.id, userId: v.userId, email: v.email, expiresAt: v.expiresAt, usedAt: null });
+  }
+  async consumeEmailVerification(tokenHash: string) {
+    const v = this.emailVerifications.get(tokenHash);
+    if (!v || v.usedAt || Date.parse(v.expiresAt) <= this.now()) return null;
+    v.usedAt = new Date(this.now()).toISOString();
+    const u = this.users.get(v.userId);
+    if (!u || u.email.toLowerCase() !== v.email.toLowerCase()) return null;
+    u.emailVerified = true;
+    return { userId: v.userId, email: v.email };
+  }
+  async deleteEmailVerification(tokenHash: string) { this.emailVerifications.delete(tokenHash); }
 
   async createDevice(d: Omit<Device, "createdAt" | "lastSeenAt" | "revokedAt">) {
     // The name stays taken even after the device is unlinked: it is never given to a different owner.
@@ -112,6 +138,12 @@ export class MemoryStore implements OfficeStore {
   async getDeviceCode(h: string) { return this.deviceCodes.get(h) ?? null; }
   async getDeviceCodeByUserCode(h: string) { return [...this.deviceCodes.values()].find((c) => c.userCodeHash === h) ?? null; }
   async updateDeviceCode(h: string, patch: Partial<DeviceCode>) { const c = this.deviceCodes.get(h); if (c) Object.assign(c, patch); }
+  async consumeApprovedDeviceCode(h: string) {
+    const c = this.deviceCodes.get(h);
+    if (!c || c.status !== "approved") return null;
+    c.status = "consumed";
+    return { ...c };
+  }
 
   async getSubscription(userId: string): Promise<Subscription> {
     return this.subscriptions.get(userId) ?? { plan: "none", active: false, bytesPerMonth: 0, maxStreams: 0 };

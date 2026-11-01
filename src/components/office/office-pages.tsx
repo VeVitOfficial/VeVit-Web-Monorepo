@@ -16,6 +16,10 @@ const TEXT = {
     allow: "Povolit", deny: "Zamítnout", consentGone: "Žádost vypršela. Vraťte se do aplikace a zkuste přihlášení znovu.",
     deviceTitle: "Přihlásit zařízení", deviceIntro: "Zadejte kód, který vidíte v aplikaci nebo na zařízení.", deviceDone: "Hotovo. Můžete se vrátit do aplikace.", deviceDenied: "Přihlášení zamítnuto.", deviceBad: "Kód neexistuje nebo vypršel.",
     devicesTitle: "Moje servery VeVit Office", none: "Zatím nemáte žádný spárovaný server.", rename: "Přejmenovat", unlink: "Odpojit", unlinkAsk: "Odpojit server? Zruší se jeho přístup i všechny souhlasy.",
+    verifyNotice: "Váš e-mail není ověřený. Servery Office mu nebudou důvěřovat, dokud ho neověříte.", verifySend: "Poslat ověřovací e-mail", verifySent: "Ověřovací e-mail je na cestě. Odkaz platí 24 hodin.",
+    verifyMailFail: "E-mail se nepodařilo odeslat. Zkuste to později.", verifyTitle: "Ověření e-mailu", verifyIntro: "Potvrďte, že tento e-mail patří vám.", verifyConfirm: "Potvrdit e-mail",
+    verifyDone: "Hotovo. E-mail je ověřený.", verifyBad: "Odkaz je neplatný nebo vypršel. Nechte si poslat nový na stránce Moje servery Office.", verifyDevices: "Moje servery Office",
+    legalNote: "Přihlášením souhlasíte s podmínkami zpracování osobních údajů.", legalLink: "Právní informace",
     last: "naposledy aktivní", never: "zatím nikdy", consentsTitle: "Servery, na které jste se přihlásili", consentsNone: "Žádné souhlasy.", revoke: "Odvolat souhlas", ownerLabel: "vlastník", save: "Uložit", back: "Zpět na účet",
   },
   en: {
@@ -28,6 +32,10 @@ const TEXT = {
     allow: "Allow", deny: "Deny", consentGone: "The request has expired. Go back to the app and sign in again.",
     deviceTitle: "Sign in a device", deviceIntro: "Enter the code shown in the app or on the device.", deviceDone: "Done. You can return to the app.", deviceDenied: "Sign-in denied.", deviceBad: "The code does not exist or has expired.",
     devicesTitle: "My VeVit Office servers", none: "You have no linked servers yet.", rename: "Rename", unlink: "Unlink", unlinkAsk: "Unlink this server? Its access and all consents are revoked.",
+    verifyNotice: "Your e-mail address is not verified. Office servers will not trust it until you verify it.", verifySend: "Send verification e-mail", verifySent: "The verification e-mail is on its way. The link is valid for 24 hours.",
+    verifyMailFail: "The e-mail could not be sent. Please try again later.", verifyTitle: "E-mail verification", verifyIntro: "Confirm that this e-mail address is yours.", verifyConfirm: "Confirm e-mail",
+    verifyDone: "Done. Your e-mail address is verified.", verifyBad: "The link is invalid or has expired. Request a new one on the My Office servers page.", verifyDevices: "My Office servers",
+    legalNote: "By signing in you agree to the terms of personal data processing.", legalLink: "Legal information",
     last: "last active", never: "never", consentsTitle: "Servers you signed in to", consentsNone: "No consents.", revoke: "Revoke consent", ownerLabel: "owner", save: "Save", back: "Back to account",
   },
 };
@@ -74,6 +82,24 @@ function Shell({ title, children }: { title: string; children: React.ReactNode }
         {children}
       </div>
     </main>
+  );
+}
+
+/** Offered where an unverified address matters: the consent screen and the server list. */
+function EmailNotice({ t, csrf }: { t: Dict; csrf: string }) {
+  const [msg, setMsg] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
+  return (
+    <div role="status" style={{ border: "1px solid #5a4a1a", borderRadius: 8, padding: 12, margin: "12px 0" }}>
+      <p style={{ margin: 0 }}>{t.verifyNotice}</p>
+      <button className="btn" style={{ marginTop: 8 }} disabled={busy} onClick={async () => {
+        setBusy(true);
+        const { status } = await call("POST", "/api/office/email/verify/send", csrf);
+        setMsg(status === 200 ? t.verifySent : status === 429 ? t.tooMany : status === 503 ? t.verifyMailFail : t.error);
+        setBusy(false);
+      }}>{t.verifySend}</button>
+      {msg && <p role="alert" style={{ marginBottom: 0 }}>{msg}</p>}
+    </div>
   );
 }
 
@@ -126,7 +152,7 @@ export function ConsentPage() {
   const t = useT();
   const csrf = useCsrf();
   const [req] = useState(() => (typeof window === "undefined" ? "" : new URLSearchParams(window.location.search).get("req") ?? ""));
-  const [info, setInfo] = useState<{ server: string; host: string; owner: string } | "gone" | null>(null);
+  const [info, setInfo] = useState<{ server: string; host: string; owner: string; email_verified?: boolean } | "gone" | null>(null);
   const [busy, setBusy] = useState(false);
   useEffect(() => {
     if (!csrf && csrf !== "") return;
@@ -148,6 +174,9 @@ export function ConsentPage() {
     <Shell title={t.consentTitle}>
       <p>{t.consentLead} <strong>{info.server}</strong> ({info.host}){info.owner ? <> {t.ownedBy} <strong>{info.owner}</strong></> : null}.</p>
       <p>{t.share}</p>
+      {info.email_verified === false && csrf ? <EmailNotice t={t} csrf={csrf} /> : null}
+      {/* Placeholder for the legal text; the real wording is tracked in docs/office/TODO-VIT.md. */}
+      <p><small>{t.legalNote} <a href="/office/legal">{t.legalLink}</a></small></p>
       <div style={{ display: "flex", gap: 12 }}>
         <button className="btn" disabled={busy} onClick={() => decide("allow")}>{t.allow}</button>
         <button className="btn" disabled={busy} onClick={() => decide("deny")}>{t.deny}</button>
@@ -192,9 +221,11 @@ export function DevicesPage() {
   const csrf = useCsrf();
   const [devices, setDevices] = useState<Dev[] | null>(null);
   const [consents, setConsents] = useState<Cons[] | null>(null);
+  const [verified, setVerified] = useState(true);
   const reload = useCallback(async (c: string) => {
     const [d, k] = await Promise.all([call("GET", "/api/office/devices", c), call("GET", "/api/office/consents", c)]);
     setDevices((d.data as { devices?: Dev[] } | null)?.devices ?? []);
+    setVerified((d.data as { email_verified?: boolean } | null)?.email_verified !== false);
     setConsents((k.data as { consents?: Cons[] } | null)?.consents ?? []);
   }, []);
   // eslint-disable-next-line react-hooks/set-state-in-effect -- loads the lists once the session is known
@@ -202,6 +233,7 @@ export function DevicesPage() {
   if (csrf === null || devices === null || consents === null) return <Shell title={t.devicesTitle}><p>{t.loading}</p></Shell>;
   return (
     <Shell title={t.devicesTitle}>
+      {!verified && csrf ? <EmailNotice t={t} csrf={csrf} /> : null}
       {devices.length === 0 && <p>{t.none}</p>}
       {devices.map((d) => (
         <div key={d.id} style={{ borderTop: "1px solid #232323", padding: "12px 0" }}>
@@ -226,6 +258,38 @@ export function DevicesPage() {
           <div style={{ marginTop: 8 }}><button className="btn" onClick={async () => { await call("DELETE", `/api/office/consents/${c.id}`, csrf); await reload(csrf); }}>{t.revoke}</button></div>
         </div>
       ))}
+    </Shell>
+  );
+}
+
+/** Target of the link in the verification e-mail. A button posts the token, so mail scanners that open links change nothing. */
+export function VerifyEmailPage() {
+  const t = useT();
+  const [token] = useState(() => (typeof window === "undefined" ? "" : new URLSearchParams(window.location.search).get("token") ?? ""));
+  const [state, setState] = useState<"ask" | "done" | "bad">("ask");
+  const [busy, setBusy] = useState(false);
+  if (state === "done") return <Shell title={t.verifyTitle}><p>{t.verifyDone}</p><p><a href="/office/devices">{t.verifyDevices}</a></p></Shell>;
+  if (state === "bad") return <Shell title={t.verifyTitle}><p role="alert">{t.verifyBad}</p><p><a href="/office/devices">{t.verifyDevices}</a></p></Shell>;
+  return (
+    <Shell title={t.verifyTitle}>
+      <p>{t.verifyIntro}</p>
+      <button className="btn" disabled={busy || !token} onClick={async () => {
+        setBusy(true);
+        const { status } = await call("POST", "/api/office/email/verify/confirm", "", { token });
+        setState(status === 200 ? "done" : "bad");
+        setBusy(false);
+      }}>{t.verifyConfirm}</button>
+    </Shell>
+  );
+}
+
+/** Placeholder: the legal wording for the sign-in screen is supplied by the owner (docs/office/TODO-VIT.md). */
+export function LegalPage() {
+  const t = useT();
+  return (
+    <Shell title={t.legalLink}>
+      <p>Zástupný text. Zde bude doplněna informace o zpracování osobních údajů při přihlášení na servery VeVit Office.</p>
+      <p lang="en">Placeholder. Information about the processing of personal data when signing in to VeVit Office servers will be added here.</p>
     </Shell>
   );
 }

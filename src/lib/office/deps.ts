@@ -1,4 +1,5 @@
 import type { DnsAdapter } from "./dns.ts";
+import type { MailSender } from "./mail.ts";
 import type { OfficeKey } from "./jwt.ts";
 import type { OfficeStore } from "./store.ts";
 
@@ -7,6 +8,7 @@ export type RateResult = "ok" | "limited" | "unavailable";
 export type OfficeDeps = {
   store: OfficeStore;
   dns: DnsAdapter;
+  mail: MailSender;
   /** null until OFFICE_OIDC_KEY_ACTIVE is set: the provider endpoints then answer 503. */
   keys: { active: OfficeKey; published: OfficeKey[] } | null;
   now: () => number;
@@ -25,8 +27,8 @@ export type OfficeDeps = {
 
 export const CLIENT_OFFICE = "vevit-office";
 export const CLIENT_DEVICE = "vevit-office-device";
-/** Clients allowed on the device endpoints. `vevit-office` is accepted too: the Office server uses one client_id for both flows today. */
-export const DEVICE_CLIENTS = [CLIENT_DEVICE, CLIENT_OFFICE];
+/** The device endpoints (RFC 8628) serve only this client; the code-flow client `vevit-office` is refused there. */
+export const DEVICE_CLIENTS = [CLIENT_DEVICE];
 export const CODE_TTL_MS = 60_000;
 export const ID_TOKEN_TTL_S = 300;
 export const DEVICE_CODE_TTL_S = 600;

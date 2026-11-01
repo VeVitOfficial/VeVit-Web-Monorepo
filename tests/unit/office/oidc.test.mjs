@@ -220,9 +220,24 @@ test("device flow (RFC 8628): pending, slow_down, approval, single use, denial, 
   assert.equal(await err(await poll(d3.device_code)), "expired_token");
   assert.equal((await approve(authed("u1"), d3.user_code)).status, 404);
   assert.equal((await oidc.deviceAuthorization(deps, req("POST", `${ISSUER}/oidc/device`, { form: { client_id: "someone-else" } }))).status, 400, "unknown clients are refused");
-  // The Office server uses one client_id for both flows today: it may use vevit-office on the device endpoints, and the code is bound to it.
-  const d4 = await oidc.deviceAuthorization(deps, req("POST", `${ISSUER}/oidc/device`, { form: { client_id: "vevit-office" } })).then((r) => r.json());
-  assert.equal((await poll(d4.device_code, "vevit-office-device")).status, 400, "a device code only works for the client that asked for it");
+  // The code-flow client has no business on the device endpoints.
+  assert.equal((await oidc.deviceAuthorization(deps, req("POST", `${ISSUER}/oidc/device`, { form: { client_id: "vevit-office" } }))).status, 400);
+  assert.equal(await err(await poll(d.device_code, "vevit-office")), "invalid_client");
+});
+
+test("device flow: parallel polls of an approved code yield exactly one token", async () => {
+  const { deps, clock } = makeDeps();
+  const d = await oidc.deviceAuthorization(deps, req("POST", `${ISSUER}/oidc/device`, { form: { client_id: "vevit-office-device" } })).then((r) => r.json());
+  const ok = await oidc.deviceApprove(deps, req("POST", "https://vevit.cz/account/oidc/device/approve", { headers: authed("u2"), json: { user_code: d.user_code, decision: "allow" } }));
+  assert.equal(ok.status, 200);
+  clock.t += 11_000;
+  const poll = () => oidc.token(deps, req("POST", `${ISSUER}/oidc/token`, { form: { grant_type: "urn:ietf:params:oauth:grant-type:device_code", device_code: d.device_code, client_id: "vevit-office-device" } }));
+  const results = await Promise.all([poll(), poll(), poll()]);
+  // Concurrent polls beyond the first also trip slow_down; whichever pass the interval check race for the single consume.
+  assert.ok(results.filter((r) => r.status === 200).length <= 1, "never more than one token");
+  clock.t += 11_000;
+  const again = await poll();
+  assert.equal(again.status, 400, "and none afterwards");
 });
 
 test("guessing user codes is rate limited per person", async () => {

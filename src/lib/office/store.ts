@@ -106,6 +106,8 @@ export interface OfficeStore {
   getDeviceCode(deviceCodeHash: string): Promise<DeviceCode | null>;
   getDeviceCodeByUserCode(userCodeHash: string): Promise<DeviceCode | null>;
   updateDeviceCode(deviceCodeHash: string, patch: Partial<Pick<DeviceCode, "status" | "userId" | "lastPollAt" | "intervalSeconds">>): Promise<void>;
+  /** Atomically flips `approved` to `consumed`; the row is returned to exactly one caller, null to everybody else. */
+  consumeApprovedDeviceCode(deviceCodeHash: string): Promise<DeviceCode | null>;
 
   /** The plan from `office_subscriptions` with the limits from `office_plans`; inactive with zero limits when there is none. */
   getSubscription(userId: string): Promise<Subscription>;
@@ -113,5 +115,11 @@ export interface OfficeStore {
   /** The user with this Stripe customer id (set by an earlier checkout), or null. */
   userByStripeCustomer(customerId: string): Promise<string | null>;
   saveDnsRecord(deviceId: string, name: string, value: string | null): Promise<void>;
+  /** Replaces the person's unused verification links with this one. Only the token hash is stored. */
+  createEmailVerification(v: { id: string; userId: string; email: string; tokenHash: string; expiresAt: string }): Promise<void>;
+  /** Atomic: spends the token and marks the address verified, or answers null (unknown, used, expired, address changed). */
+  consumeEmailVerification(tokenHash: string): Promise<{ userId: string; email: string } | null>;
+  deleteEmailVerification(tokenHash: string): Promise<void>;
+
   audit(e: AuditEvent): Promise<void>;
 }

@@ -190,6 +190,32 @@ export class SupabaseOfficeStore implements OfficeStore {
     const { error } = await this.db.from("office_device_codes").update(row).eq("device_code_hash", hash);
     if (error) fail("updateDeviceCode", error);
   }
+  async consumeApprovedDeviceCode(hash: string) {
+    // One conditional UPDATE: only the caller that flips approved -> consumed gets the row back.
+    const { data, error } = await this.db.from("office_device_codes").update({ status: "consumed" })
+      .eq("device_code_hash", hash).eq("status", "approved").select("*").maybeSingle();
+    if (error) fail("consumeApprovedDeviceCode", error);
+    return data ? toDeviceCode(data) : null;
+  }
+
+  async createEmailVerification(v: { id: string; userId: string; email: string; tokenHash: string; expiresAt: string }) {
+    const del = await this.db.from("office_email_verifications").delete().eq("user_id", v.userId).is("used_at", null);
+    if (del.error) fail("createEmailVerification", del.error);
+    const { error } = await this.db.from("office_email_verifications").insert({
+      id: v.id, user_id: v.userId, email: v.email, token_hash: v.tokenHash, expires_at: v.expiresAt,
+    });
+    if (error) fail("createEmailVerification", error);
+  }
+  async consumeEmailVerification(tokenHash: string) {
+    const { data, error } = await this.db.rpc("office_verify_email", { p_hash: tokenHash });
+    if (error) fail("consumeEmailVerification", error);
+    const row = (Array.isArray(data) ? data[0] : data) as Row | undefined;
+    return row && row.o_outcome === "ok" ? { userId: String(row.o_user_id), email: String(row.o_email) } : null;
+  }
+  async deleteEmailVerification(tokenHash: string) {
+    const { error } = await this.db.from("office_email_verifications").delete().eq("token_hash", tokenHash);
+    if (error) fail("deleteEmailVerification", error);
+  }
 
   async getSubscription(userId: string): Promise<Subscription> {
     const none = { plan: "none", active: false, bytesPerMonth: 0, maxStreams: 0 };

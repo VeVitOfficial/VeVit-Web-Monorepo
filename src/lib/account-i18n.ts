@@ -43,6 +43,7 @@ cs: {
 
   // User menu
   'menu.myAccount': 'Můj účet',
+  'menu.officeServers': 'Moje servery Office',
   'menu.backToApp': 'Zpět do aplikace',
   'menu.signOut': 'Odhlásit se',
 
@@ -320,6 +321,7 @@ en: {
   'boot.gotoLogin': 'Go to sign in',
 
   'menu.myAccount': 'My account',
+  'menu.officeServers': 'My Office servers',
   'menu.backToApp': 'Back to app',
   'menu.signOut': 'Sign out',
 
@@ -578,6 +580,7 @@ de: {
   'boot.gotoLogin': 'Zur Anmeldung',
 
   'menu.myAccount': 'Mein Konto',
+  'menu.officeServers': 'Meine Office-Server',
   'menu.backToApp': 'Zurück zur App',
   'menu.signOut': 'Abmelden',
 
@@ -836,6 +839,7 @@ es: {
   'boot.gotoLogin': 'Ir a iniciar sesión',
 
   'menu.myAccount': 'Mi cuenta',
+  'menu.officeServers': 'Mis servidores de Office',
   'menu.backToApp': 'Volver a la app',
   'menu.signOut': 'Cerrar sesión',
 
@@ -1094,6 +1098,7 @@ uk: {
   'boot.gotoLogin': 'Перейти до входу',
 
   'menu.myAccount': 'Мій обліковий запис',
+  'menu.officeServers': 'Мої сервери Office',
   'menu.backToApp': 'Повернутися до застосунку',
   'menu.signOut': 'Вийти',
 
@@ -1352,6 +1357,7 @@ fr: {
   'boot.gotoLogin': 'Aller à la connexion',
 
   'menu.myAccount': 'Mon compte',
+  'menu.officeServers': 'Mes serveurs Office',
   'menu.backToApp': "Retour à l'application",
   'menu.signOut': 'Se déconnecter',
 
@@ -1610,6 +1616,7 @@ sk: {
   'boot.gotoLogin': 'Prejsť na prihlásenie',
 
   'menu.myAccount': 'Môj účet',
+  'menu.officeServers': 'Moje servery Office',
   'menu.backToApp': 'Späť do aplikácie',
   'menu.signOut': 'Odhlásiť sa',
 

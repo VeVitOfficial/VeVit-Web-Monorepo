@@ -6,6 +6,7 @@ import { sha256Hex } from "./crypto.ts";
 import type { OfficeDeps } from "./deps.ts";
 import { dnsFromEnv } from "./dns.ts";
 import { loadOfficeKeys } from "./jwt.ts";
+import { mailFromEnv } from "./mail.ts";
 import { SupabaseOfficeStore } from "./supabase-store.ts";
 
 const COOKIE = "__Host-vvsession";
@@ -35,6 +36,7 @@ export function officeDeps(): OfficeDeps {
     // Created on first use, so discovery and the JWKS work without database access.
     get store() { return (storeInstance ??= new SupabaseOfficeStore()); },
     dns: dnsFromEnv(env),
+    mail: mailFromEnv(env),
     keys,
     now: () => Date.now(),
     issuer: env.OFFICE_OIDC_ISSUER?.trim() || "https://vevit.cz/account",
