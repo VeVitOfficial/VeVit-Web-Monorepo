@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { isOidcProtocolPath } from "@/lib/office/paths";
 
 /**
  * Host-based redirects for marketing subdomains.
@@ -48,6 +49,9 @@ export function proxy(request: NextRequest) {
     return NextResponse.redirect(new URL(target), { status: 301 });
   }
 
+  // OIDC provider for VeVit Office: protocol endpoints live at fixed, locale-less URLs under the issuer
+  // (https://vevit.cz/account). A locale redirect here would break discovery and token requests.
+  if (isOidcProtocolPath(pathname)) return NextResponse.next();
   if (pathname.startsWith("/_next/") || pathname.startsWith("/assets/")) return NextResponse.next();
   if (pathname === "/robots.txt" || pathname === "/sitemap.xml" || publicFile.test(pathname) || publicHtml.has(pathname)) return NextResponse.next();
 
