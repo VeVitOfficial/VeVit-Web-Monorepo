@@ -39,6 +39,17 @@ function matchesAccept(file: File, accept: string[]): boolean {
   });
 }
 
+interface PdfjsViewport { width: number; height: number; }
+interface PdfjsRenderTask { promise: Promise<void>; }
+interface PdfjsPage { getViewport(opts: { scale: number }): PdfjsViewport; render(opts: { canvasContext: CanvasRenderingContext2D; viewport: PdfjsViewport }): PdfjsRenderTask; }
+interface PdfjsDoc { numPages: number; getPage(n: number): Promise<PdfjsPage>; }
+interface PdfjsLib { GlobalWorkerOptions: { workerSrc: string }; getDocument(opts: { data: Uint8Array }): { promise: Promise<PdfjsDoc> }; }
+function pdfjs(): PdfjsLib { return (window as unknown as { pdfjsLib: PdfjsLib }).pdfjsLib; }
+
+/** Metadata souboru pro náhled — klíč je identita souboru (ne index, ten se mění při přesunu). */
+interface FileMeta { pages: number; thumb?: string; }
+const fileKey = (f: File) => `${f.name}|${f.size}|${f.lastModified}`;
+
 export default function PdfMerge({ locale }: ToolComponentProps) {
   const { t } = useToolUi(locale);
   const { setState: setToolState, rootRef } = useToolState("idle");
@@ -46,12 +57,49 @@ export default function PdfMerge({ locale }: ToolComponentProps) {
   const [progress, setProgress] = useState<{ pct: number; label: string } | null>(null);
   const [error, setError] = useState<string>("");
   const [result, setResult] = useState<{ name: string; sub: string } | null>(null);
+  /** počty stran + miniatura první strany každého souboru */
+  const [meta, setMeta] = useState<Record<string, FileMeta>>({});
   const blobUrlRef = useRef<string>("");
   const inputRef = useRef<HTMLInputElement>(null);
   const dragDepth = useRef(0);
   const [dragOver, setDragOver] = useState(false);
 
   useEffect(() => { rootRef.current = document.getElementById("tool-root") as HTMLDivElement | null; return () => { if (blobUrlRef.current) URL.revokeObjectURL(blobUrlRef.current); }; }, [rootRef]);
+
+  // Počty stran + miniatura první strany každého přidaného souboru (pdf.js).
+  // Běží v pozadí; chyba je tichá — náhled je doplňkový informace.
+  useEffect(() => {
+    let cancelled = false;
+    const ensurePdfjs = async () => {
+      if ((window as unknown as { pdfjsLib?: unknown }).pdfjsLib) return;
+      await loadScript("/tools/assets/js/lib/pdf.min.js");
+      pdfjs().GlobalWorkerOptions.workerSrc = "/tools/assets/js/lib/pdf.worker.min.js";
+    };
+    (async () => {
+      try {
+        await ensurePdfjs();
+        for (const f of files) {
+          const key = fileKey(f);
+          if (meta[key]) continue;
+          const buf = await f.arrayBuffer();
+          const doc = await pdfjs().getDocument({ data: new Uint8Array(buf) }).promise;
+          const pages = doc.numPages;
+          let thumb: string | undefined;
+          try {
+            const page = await doc.getPage(1);
+            const vp = page.getViewport({ scale: 0.25 });
+            const canvas = document.createElement("canvas");
+            canvas.width = Math.ceil(vp.width); canvas.height = Math.ceil(vp.height);
+            await page.render({ canvasContext: canvas.getContext("2d")!, viewport: vp }).promise;
+            thumb = canvas.toDataURL("image/jpeg", 0.6);
+          } catch { /* miniatura volitelná */ }
+          if (cancelled) return;
+          setMeta((prev) => ({ ...prev, [key]: { pages, thumb } }));
+        }
+      } catch { /* náhledy jsou doplňkové */ }
+    })();
+    return () => { cancelled = true; };
+  }, [files]);
 
   const announce = useCallback((msg: string) => {
     const live = document.getElementById("tool-live-status");
@@ -166,29 +214,34 @@ export default function PdfMerge({ locale }: ToolComponentProps) {
         <span className="dz-title">{dzTitle}</span>
         <span className="dz-hint">nebo klikněte pro výběr</span>
         <span className="dz-accept">Pouze .pdf · více souborů · pořadí lze měnit</span>
-        <input ref={inputRef} type="file" className="hidden" accept={ACCEPT} multiple aria-hidden="true" onChange={onInputChange} />
+        <input ref={inputRef} type="file" className="hidden" accept=".pdf,application/pdf" multiple aria-hidden="true" onChange={onInputChange} />
       </div>
 
       {files.length > 0 && (
         <div className="file-list" aria-label="Vybrané soubory">
-          {files.map((f, i) => (
-            <div className="file-item" key={`${f.name}-${i}`}>
-              <span className="fi-ico"><Icon name="File" size={18} /></span>
-              <span className="fi-meta">
-                <span className="fi-name">{f.name}</span>
-                <span className="fi-size">{fmtSize(f.size)}</span>
-              </span>
-              <button type="button" className="btn btn-ghost btn-icon-sm fi-move" aria-label={t("move_up", { name: f.name })} disabled={i === 0} onClick={() => move(i, -1)}>
-                <span style={{ display: "inline-flex" }}><Icon name="Upload" size={16} /></span>
-              </button>
-              <button type="button" className="btn btn-ghost btn-icon-sm fi-move" aria-label={t("move_down", { name: f.name })} disabled={i === files.length - 1} onClick={() => move(i, 1)}>
-                <span style={{ display: "inline-flex", transform: "rotate(180deg)" }}><Icon name="Upload" size={16} /></span>
-              </button>
-              <button type="button" className="btn btn-ghost btn-icon-sm fi-remove" aria-label={t("remove_file", { name: f.name })} onClick={() => removeAt(i)}>
-                <Icon name="X" size={16} />
-              </button>
-            </div>
-          ))}
+          {files.map((f, i) => {
+            const m = meta[fileKey(f)];
+            return (
+              <div className="file-item" key={`${f.name}-${i}`}>
+                <span className="fi-ico fi-ico-thumb">
+                  {m?.thumb ? <img src={m.thumb} alt="" style={{ width: "2.25rem", height: "2.25rem", objectFit: "cover", borderRadius: ".375rem" }} /> : <Icon name="File" size={18} />}
+                </span>
+                <span className="fi-meta">
+                  <span className="fi-name">{f.name}</span>
+                  <span className="fi-size">{fmtSize(f.size)}{m ? ` · ${m.pages} ${m.pages === 1 ? "strana" : m.pages < 5 ? "strany" : "stran"}` : ""}</span>
+                </span>
+                <button type="button" className="btn btn-ghost btn-icon-sm fi-move" aria-label={t("move_up", { name: f.name })} disabled={i === 0} onClick={() => move(i, -1)}>
+                  <span style={{ display: "inline-flex" }}><Icon name="Upload" size={16} /></span>
+                </button>
+                <button type="button" className="btn btn-ghost btn-icon-sm fi-move" aria-label={t("move_down", { name: f.name })} disabled={i === files.length - 1} onClick={() => move(i, 1)}>
+                  <span style={{ display: "inline-flex", transform: "rotate(180deg)" }}><Icon name="Upload" size={16} /></span>
+                </button>
+                <button type="button" className="btn btn-ghost btn-icon-sm fi-remove" aria-label={t("remove_file", { name: f.name })} onClick={() => removeAt(i)}>
+                  <Icon name="X" size={16} />
+                </button>
+              </div>
+            );
+          })}
         </div>
       )}
 

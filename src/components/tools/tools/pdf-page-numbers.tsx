@@ -17,8 +17,14 @@ interface PdfDoc {
 }
 interface PdfLib { PDFDocument: PdfDocCtor; rgb: (r: number, g: number, b: number) => unknown; StandardFonts: { Helvetica: unknown }; }
 interface PdfDocCtor { load(data: Uint8Array | ArrayBuffer, opts?: { ignoreEncryption?: boolean }): Promise<PdfDoc>; }
+interface PdfjsViewport { width: number; height: number; }
+interface PdfjsRenderTask { promise: Promise<void>; }
+interface PdfjsPage { getViewport(opts: { scale: number }): PdfjsViewport; render(opts: { canvasContext: CanvasRenderingContext2D; viewport: PdfjsViewport }): PdfjsRenderTask; }
+interface PdfjsDoc { getPage(n: number): Promise<PdfjsPage>; }
+interface PdfjsLib { GlobalWorkerOptions: { workerSrc: string }; getDocument(opts: { data: Uint8Array }): { promise: Promise<PdfjsDoc> }; }
 
 function pdfLib(): PdfLib { return (window as unknown as { PDFLib: PdfLib }).PDFLib; }
+function pdfjs(): PdfjsLib { return (window as unknown as { pdfjsLib: PdfjsLib }).pdfjsLib; }
 
 const ACCEPT = ".pdf,application/pdf";
 type Pos = "bl" | "bc" | "br" | "tl" | "tc" | "tr";
@@ -35,6 +41,9 @@ export default function PdfPageNumbers({ locale }: ToolComponentProps) {
   const [error, setError] = useState<string>("");
   const [done, setDone] = useState(false);
   const [blobUrl, setBlobUrl] = useState("");
+  /** canvas náhledu 1. strany (pdf.js) — základ pro živý overlay čísla */
+  const page1Ref = useRef<HTMLCanvasElement | null>(null);
+  const [previewReady, setPreviewReady] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const dragDepth = useRef(0);
   const [dragOver, setDragOver] = useState(false);
@@ -46,11 +55,31 @@ export default function PdfPageNumbers({ locale }: ToolComponentProps) {
   const addFile = (arr: File[]) => {
     const f = arr.find((x) => x.name.toLowerCase().endsWith(".pdf") || x.type === "application/pdf");
     if (!f) { setError(t("invalid_type")); return; }
-    setFile(f); setError(""); setDone(false); setBlobUrl(""); setState("ready");
+    setFile(f); setError(""); setDone(false); setBlobUrl(""); setPreviewReady(false); setState("ready");
+    Promise.resolve().then(() => { void renderPreview(f); });
   };
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => { if (e.target.files) addFile(Array.from(e.target.files)); e.target.value = ""; };
   const onDrop = (e: React.DragEvent) => { e.preventDefault(); e.stopPropagation(); setDragOver(false); dragDepth.current = 0; if (e.dataTransfer.files) addFile(Array.from(e.dataTransfer.files)); };
-  const clearAll = () => { setFile(null); setError(""); setProgress(null); setDone(false); setBlobUrl(""); setState("idle"); };
+  const clearAll = () => { setFile(null); setError(""); setProgress(null); setDone(false); setBlobUrl(""); setPreviewReady(false); setState("idle"); };
+
+  // Náhled 1. strany přes pdf.js (živý náhled pozice čísla)
+  const renderPreview = async (f: File) => {
+    try {
+      if (!(window as unknown as { pdfjsLib?: unknown }).pdfjsLib) {
+        await loadScript("/tools/assets/js/lib/pdf.min.js");
+        pdfjs().GlobalWorkerOptions.workerSrc = "/tools/assets/js/lib/pdf.worker.min.js";
+      }
+      const buf = await f.arrayBuffer();
+      const doc = await pdfjs().getDocument({ data: new Uint8Array(buf) }).promise;
+      const page = await doc.getPage(1);
+      const vp = page.getViewport({ scale: 0.55 });
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.ceil(vp.width); canvas.height = Math.ceil(vp.height);
+      await page.render({ canvasContext: canvas.getContext("2d")!, viewport: vp }).promise;
+      page1Ref.current = canvas;
+      setPreviewReady(true);
+    } catch { /* náhled je doplňkový */ }
+  };
 
   const formatLabel = (n: number, total: number) => fmt.replace(/\{n\}/g, String(n)).replace(/\{t\}/g, String(total));
 
@@ -162,6 +191,13 @@ export default function PdfPageNumbers({ locale }: ToolComponentProps) {
         </button>
       </div>
 
+      {previewReady && (
+        <div className="stack-sm">
+          <span className="field-label">Náhled pozice čísla (strana 1)</span>
+          <NumberPreview pos={pos} start={start} fmt={fmt} size={size} base={page1Ref} />
+        </div>
+      )}
+
       {progress && (<><div className="progress-track" role="progressbar" aria-valuenow={progress.pct} aria-valuemin={0} aria-valuemax={100}><div className="progress-fill" style={{ width: `${progress.pct}%` }} /></div><p className="progress-label">{progress.label}</p></>)}
       {error && <p className="error-text" role="alert">{error}</p>}
 
@@ -174,6 +210,41 @@ export default function PdfPageNumbers({ locale }: ToolComponentProps) {
       )}
 
       <div className="privacy-note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m9 12 2 2 4-4" /></svg> Číslování běží lokálně přes pdf-lib.</div>
+    </div>
+  );
+}
+// Živý náhled čísla strany — základní canvas 1. strany + overlay textu.
+// Pozice/count odpovídají logice run() (stejná matematika, škálovaná na náhled).
+function NumberPreview({ pos, start, fmt, size, base }: {
+  pos: Pos; start: number; fmt: string; size: number; base: React.MutableRefObject<HTMLCanvasElement | null>;
+}) {
+  const ref = useRef<HTMLCanvasElement | null>(null);
+  const [, force] = useState(0);
+  useEffect(() => { force((n) => n + 1); }, [base.current]);
+
+  useEffect(() => {
+    const c = ref.current; const b = base.current;
+    if (!c || !b) return;
+    const ctx = c.getContext("2d")!;
+    c.width = b.width; c.height = b.height;
+    ctx.drawImage(b, 0, 0);
+    const scale = c.width / 595.28; // A4 šířka → náhled; funguje i pro jiné formáty
+    const label = fmt.replace(/\{n\}/g, String(start)).replace(/\{t\}/g, "…");
+    const fontSize = size * scale;
+    const margin = size * 1.2 * scale;
+    ctx.font = `${fontSize}px Helvetica, Arial, sans-serif`;
+    ctx.fillStyle = "rgba(0,0,0,0.85)";
+    const tw = ctx.measureText(label).width;
+    let x = (c.width - tw) / 2;
+    let y = margin + fontSize;
+    if (pos.startsWith("t")) y = c.height - margin;
+    if (pos.endsWith("l")) x = margin;
+    else if (pos.endsWith("r")) x = c.width - margin - tw;
+    ctx.fillText(label, x, y);
+  }, [pos, start, fmt, size, base.current?.width]);
+  return (
+    <div className="pdf-preview-frame">
+      <canvas ref={ref} aria-label="Náhled číslování strany" style={{ maxWidth: "100%", boxShadow: "0 3px 12px rgba(0,0,0,.28)" }} />
     </div>
   );
 }

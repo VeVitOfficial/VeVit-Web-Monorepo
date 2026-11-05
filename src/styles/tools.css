@@ -917,6 +917,14 @@ details.accordion > .acc-body { padding: 0 1rem 1rem; font-size: 0.875rem; color
 .preview { border-radius: 0.5rem; border: 1px solid var(--border); background: var(--panel-weak); padding: 1rem; overflow-y: auto; }
 .editor-meta { align-self: flex-end; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.75rem; color: var(--muted-foreground); font-variant-numeric: tabular-nums; }
 .pdf-page-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr)); gap: .75rem; max-height: 31rem; overflow: auto; padding: .25rem; }
+/* Náhledy stran (pdf-organize, pdf-rotate) — .pdf-thumb dřív nemělo žádný styl */
+.pdf-thumb { display: flex; flex-direction: column; align-items: center; gap: .4rem; min-width: 0; padding: .5rem; border: 1px solid var(--border); border-radius: .625rem; background: var(--panel-strong); color: var(--muted-foreground); font: inherit; font-size: 0.75rem; transition: border-color .15s, background .15s; }
+button.pdf-thumb { cursor: pointer; text-align: center; }
+.pdf-thumb-canvas { display: grid; place-items: center; max-width: 100%; min-height: 5rem; }
+.pdf-thumb-canvas canvas { width: auto; height: 8rem; max-width: 100%; object-fit: contain; background: #fff; box-shadow: 0 3px 12px rgba(0,0,0,.28); }
+.pdf-thumb-num { font-weight: 600; white-space: nowrap; }
+.pdf-thumb-rotate:hover { border-color: rgba(var(--vv-green-rgb), .42); background: rgba(var(--vv-green-rgb), .065); color: var(--foreground); }
+.pdf-thumb-rotate.rotated { border-color: rgba(var(--vv-green-rgb), .42); color: var(--foreground); }
 .pdf-page-card { display: flex; flex-direction: column; align-items: center; gap: .45rem; min-width: 0; padding: .5rem; border: 1px solid var(--border); border-radius: .625rem; background: var(--panel-strong); color: var(--muted-foreground); font: inherit; font-size: 0.75rem; transition: border-color .15s, background .15s, transform .15s; }
 button.pdf-page-card { cursor: pointer; }
 .pdf-page-card.is-selected { border-color: rgba(var(--vv-green-rgb), .42); background: rgba(var(--vv-green-rgb), .065); color: var(--foreground); }

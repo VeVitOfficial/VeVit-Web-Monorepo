@@ -41,9 +41,17 @@ export default function ImagesToPdf({ locale }: ToolComponentProps) {
   const [error, setError] = useState<string>("");
   const [done, setDone] = useState(false);
   const [blobUrl, setBlobUrl] = useState("");
+  /** object URL náhledů pro seznam souborů (uvolňované při změně) */
+  const [thumbUrls, setThumbUrls] = useState<string[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
   const dragDepth = useRef(0);
   const [dragOver, setDragOver] = useState(false);
+
+  useEffect(() => {
+    const urls = files.map((f) => URL.createObjectURL(f));
+    setThumbUrls(urls);
+    return () => urls.forEach((u) => URL.revokeObjectURL(u));
+  }, [files]);
 
   useEffect(() => { rootRef.current = document.getElementById("tool-root") as HTMLDivElement | null; return () => { if (blobUrl) URL.revokeObjectURL(blobUrl); }; }, [rootRef, blobUrl]);
   const announce = useCallback((msg: string) => { const live = document.getElementById("tool-live-status"); if (!live) return; live.textContent = ""; window.setTimeout(() => { live.textContent = msg; }, 20); }, []);
@@ -141,7 +149,9 @@ export default function ImagesToPdf({ locale }: ToolComponentProps) {
         <div className="file-list" id="ip-list" aria-label="Vybrané obrázky">
           {files.map((f, idx) => (
             <div className="file-item" key={`${f.name}-${idx}`}>
-              <span className="fi-ico"><Icon name="File" size={18} /></span>
+              <span className="fi-ico fi-ico-thumb">
+                {thumbUrls[idx] ? <img src={thumbUrls[idx]} alt="" style={{ width: "2.25rem", height: "2.25rem", objectFit: "cover", borderRadius: ".375rem" }} /> : <Icon name="File" size={18} />}
+              </span>
               <span className="fi-meta"><span className="fi-name">{f.name}</span><span className="fi-size">{fmtSize(f.size)}</span></span>
               <span className="fi-move">
                 <button type="button" className="btn btn-ghost btn-icon-sm" aria-label={t("move_up", { name: f.name })} disabled={idx === 0} onClick={() => move(idx, idx - 1)}><Icon name="Upload" size={14} /></button>
