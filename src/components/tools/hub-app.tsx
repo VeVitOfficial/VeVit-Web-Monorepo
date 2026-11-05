@@ -157,7 +157,10 @@ export function HubApp({ locale, initialSearchParams, strings }: Props) {
   };
 
   return (
-    <main>
+    // suppressHydrationWarning: rozšíření prohlížeče (ProtonPass, LastPass…) vkládají
+    // do <main> atributy (data-protonpass-form apod.) před hydratací — potlačí jen
+    // warning atributů tohoto elementu, ne chyby v dětech.
+    <main suppressHydrationWarning>
       {/* ── Hero (redesign dle referenčního designu — viz .tools-hub ve style.css) */}
       <section className="hero">
         <div className="hero-glow"></div>

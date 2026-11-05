@@ -77,7 +77,8 @@ export default async function ToolPage({ params }: Props) {
         }}
       />
       {/* Stejná obálka jako legacy tools.php (main.main > .tool-page): okraje a max šířka. */}
-      <main className="main tool-page">
+      {/* suppressHydrationWarning: rozšíření prohlížeče vkládají atributy do <main> před hydratací. */}
+      <main className="main tool-page" suppressHydrationWarning>
         <nav className="breadcrumb">
           <a href={`/${locale}/tools/`}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
