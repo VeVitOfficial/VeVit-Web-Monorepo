@@ -33,12 +33,13 @@ const STATUS_BADGE_CLASS: Record<ToolStatus, string> = {
 };
 
 const STATUSES: readonly ToolStatus[] = ["working", "limited", "experimental", "coming_soon", "broken"];
-const PROCESSINGS: readonly ProcessingLocation[] = ["client", "vevit_server", "external_ai"];
+const PROCESSINGS: readonly ProcessingLocation[] = ["client", "vevit_server", "external_ai", "external"];
 
 const PROCESSING_BADGE_CLASS: Record<ProcessingLocation, string> = {
   client: "badge-loc-local",
   vevit_server: "badge-loc-server",
   external_ai: "badge-loc-ai",
+  external: "badge-loc-other",
 };
 
 // Karta je ztlumená a neklikatelná pro nástroje, které opravdu nejdou otevřít
@@ -507,7 +508,7 @@ function RecentRail({ locale, strings }: { locale: Locale; strings: HubI18n }) {
 // ── Pásmo o soukromí (Fáze 2, bod 5) ─────────────────────────────────────
 
 function PrivacyBand({ locale, strings }: { locale: Locale; strings: HubI18n }) {
-  const locations: ProcessingLocation[] = ["client", "vevit_server", "external_ai"];
+  const locations: ProcessingLocation[] = ["client", "vevit_server", "external_ai", "external"];
   return (
     <section className="sections" aria-label={strings.privacy_band_title}>
       <div className="section-head" style={{ marginBottom: "1rem" }}>

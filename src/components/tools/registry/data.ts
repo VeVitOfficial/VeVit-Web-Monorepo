@@ -15,7 +15,7 @@ import type { ComponentType } from "react";
 // ── Typy ────────────────────────────────────────────────────────────────
 
 export type Category = "pdf" | "image" | "media" | "text" | "ai" | "dev" | "security" | "calc";
-export type ProcessingLocation = "client" | "vevit_server" | "external_ai";
+export type ProcessingLocation = "client" | "vevit_server" | "external_ai" | "external";
 export type ToolStatus = "working" | "limited" | "experimental" | "coming_soon" | "broken";
 export type Locale = "cs" | "en" | "de" | "es" | "uk" | "fr" | "sk";
 
@@ -90,13 +90,14 @@ export const LOCATION_META: Record<ProcessingLocation, LocationMeta> = {
   client: { label: "Lokálně", icon: "ShieldCheck", tone: "local", title: "Soubor se zpracovává ve vašem prohlížeči a neopustí tento počítač." },
   vevit_server: { label: "Na serveru", icon: "Server", tone: "server", title: "Soubor se zpracuje na serveru a po dokončení se smaže." },
   external_ai: { label: "Přes AI", icon: "Sparkles", tone: "ai", title: "Zpracování probíhá přes AI model." },
+  external: { label: "Třetí strana", icon: "Globe", tone: "server", title: "Nástroj komunikuje přímo s vybranou externí službou (např. kontrola úniku hesla jen s 5znakovým prefixem hashe)." },
 };
 
 // ── Raw TOOLS pole (z registry.php TOOLS) ───────────────────────────────
 // Tuple: [slug, name, desc, cat, loc, icon, new, note?]
 // loc: 'client' | 'server' | 'ai' (z registry.php, před kanonizací).
 
-type RawLoc = "client" | "server" | "ai";
+type RawLoc = "client" | "server" | "ai" | "external";
 type RawTool = [string, string, string, Category, RawLoc, string, boolean, string?];
 
 const FFMPEG_TOOLS = new Set([
@@ -205,7 +206,7 @@ const RAW_TOOLS: RawTool[] = [
   ["certificate-info", "SSL certifikát info", "Zkontrolujte platnost a detaily SSL certifikátu.", "security", "server", "GlobeLock", true],
   ["password-strength", "Síla hesla", "Odhadněte entropii a dobu prolomení hesla.", "security", "client", "ShieldCheck", true],
   ["totp-generator", "TOTP generátor", "Vygenerujte 2FA TOTP kódy (RFC 6238) z tajemství.", "security", "client", "Timer", true],
-  ["password-breach-check", "Kontrola úniku hesla", "Ověří, jestli heslo uniklo (HIBP k-anonymity).", "security", "client", "Fingerprint", true],
+  ["password-breach-check", "Kontrola úniku hesla", "Ověří, jestli heslo uniklo (HIBP k-anonymity).", "security", "external", "Fingerprint", true],
   ["file-encryption", "Šifrování souborů", "Zašifruje/dešifruje soubor AES-256-GCM (Web Crypto).", "security", "client", "FileKey", true],
   ["token-generator", "Token generátor", "Generuje náhodné tokeny (délka, znaková sada).", "security", "client", "Zap", true],
 
@@ -234,7 +235,7 @@ const RAW_TOOLS: RawTool[] = [
 function canonicalize(raw: RawTool): Tool {
   const [slug, name, description, category, loc, icon, isNew, note] = raw;
   const processing_location: ProcessingLocation =
-    loc === "server" ? "vevit_server" : loc === "ai" ? "external_ai" : "client";
+    loc === "server" ? "vevit_server" : loc === "ai" ? "external_ai" : loc === "external" ? "external" : "client";
 
   let status: ToolStatus = loc === "ai" ? "limited" : "working";
   if (FFMPEG_TOOLS.has(slug)) status = "limited";
@@ -438,7 +439,7 @@ export interface HubI18n {
 
 const HUB_CS: HubI18n = {
   statuses: { limited: "Omezeně dostupný", experimental: "Experimentální", coming_soon: "Připravujeme", broken: "Dočasně nefunkční" },
-  loc: { client: "Lokálně", external_ai: "Přes AI", vevit_server: "Na serveru" },
+  loc: { client: "Lokálně", external_ai: "Přes AI", vevit_server: "Na serveru", external: "Třetí strana" },
   card_open: "Otevřít →",
   hero_eyebrow: "{count} nástrojů, zdarma, bez registrace",
   search_cta: "Hledat",
@@ -501,7 +502,7 @@ const HUB_CS: HubI18n = {
 
 const HUB_EN: HubI18n = {
   statuses: { limited: "Limited availability", experimental: "Experimental", coming_soon: "Coming soon", broken: "Temporarily broken" },
-  loc: { client: "Local", external_ai: "Via AI", vevit_server: "On server" },
+  loc: { client: "Local", external_ai: "Via AI", vevit_server: "On server", external: "Third party" },
   card_open: "Open →",
   hero_eyebrow: "{count} tools, free, no sign-up",
   search_cta: "Search",
@@ -679,6 +680,7 @@ export function locationMeta(loc: ProcessingLocation, locale: Locale): LocationM
       client: { label: "Local", icon: "ShieldCheck", tone: "local", title: "The file is processed in your browser and never leaves this computer." },
       vevit_server: { label: "On server", icon: "Server", tone: "server", title: "The file is processed on the server and deleted after completion." },
       external_ai: { label: "Via AI", icon: "Sparkles", tone: "ai", title: "Processing runs through an AI model." },
+      external: { label: "Third party", icon: "Globe", tone: "server", title: "The tool talks directly to a selected external service (e.g. breach check sends only a 5-character hash prefix)." },
     };
     return en[loc];
   }
