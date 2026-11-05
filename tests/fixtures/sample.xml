@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<katalog>
+  <polozka id="1"><nazev>Klavesnice</nazev><cena>850</cena></polozka>
+  <polozka id="2"><nazev>Mys</nazev><cena>420</cena></polozka>
+  <polozka id="3"><nazev>Monitor</nazev><cena>4800</cena></polozka>
+</katalog>
