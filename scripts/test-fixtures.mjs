@@ -168,8 +168,60 @@ async function smallSampleFiles() {
   });
   files.push({ name: "sample.txt", data: Buffer.from("Dobrý den,\n\ntoto je ukázkový textový soubor s diakritikou.\n", "utf8") });
   files.push({ name: "sample.wav", data: makeWav(1.5, 440) });
+  // Nové formáty pro nástroje z iLovePDF/TinyWow sady
+  files.push({ name: "sample.docx", data: await makeDocx() });
+  files.push({ name: "sample.xlsx", data: await makeXlsx() });
+  files.push({ name: "sample.pptx", data: await makePptx() });
+  files.push({ name: "sample.xml", data: Buffer.from(
+    '<?xml version="1.0" encoding="UTF-8"?>\n<katalog>\n  <polozka id="1"><nazev>Klavesnice</nazev><cena>850</cena></polozka>\n  <polozka id="2"><nazev>Mys</nazev><cena>420</cena></polozka>\n  <polozka id="3"><nazev>Monitor</nazev><cena>4800</cena></polozka>\n</katalog>\n', "utf8") });
   // Minimální validní MP4 pro video/audio nástroje se ffmpeg.wasm vygeneruje samostatně v browser testu.
   return files;
+}
+
+// Jednoduchý .docx (OOXML) — 2 odstavce textu, vytvořený čistě přes zip (stejně jako pdf-to-word výstup).
+async function makeDocx() {
+  const JSZipLib = require(path.join(repoRoot, "public/tools/assets/js/lib/jszip.min.js"));
+  const zip = new JSZipLib();
+  const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  const paras = [
+    "Nadpis: Testovací dokument",
+    "Toto je první odstavec testovacího dokumentu Word, který slouží jako vstup pro převod Word → PDF.",
+    "Druhý odstavec obsahuje českou diakritiku: ěščřžýáíé.",
+  ];
+  const body = paras.map((p) => `<w:p><w:r><w:t xml:space="preserve">${esc(p)}</w:t></w:r></w:p>`).join("");
+  zip.file("[Content_Types].xml", `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/></Types>`);
+  zip.file("_rels/.rels", `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>`);
+  zip.file("word/document.xml", `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>${body}<w:sectPr><w:pgSz w:w="11906" w:h="16838"/></w:sectPr></w:body></w:document>`);
+  zip.file("word/_rels/document.xml.rels", `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"></Relationships>`);
+  return zip.generateAsync({ type: "nodebuffer" });
+}
+
+// .xlsx přes SheetJS (vendored UMD)
+function makeXlsx() {
+  const XLSX = require(path.join(repoRoot, "public/tools/assets/js/lib/xlsx.full.min.js"));
+  const aoa = [
+    ["Produkt", "Cena", "Kusů"],
+    ["Klávesnice", 850, 12],
+    ["Myš", 420, 30],
+    ["Monitor", 4800, 5],
+    ["SSD disk", 2100, 8],
+  ];
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(aoa), "Sklad");
+  return XLSX.write(wb, { type: "buffer", bookType: "xlsx" });
+}
+
+// Minimální .pptx — jeden slide s textem (PPTX = zip s slide XML)
+function makePptx() {
+  const JSZipLib = require(path.join(repoRoot, "public/tools/assets/js/lib/jszip.min.js"));
+  const zip = new JSZipLib();
+  zip.file("[Content_Types].xml", `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/ppt/presentation.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.presentation.main+xml"/><Override PartName="/ppt/slides/slide1.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.slide+xml"/></Types>`);
+  zip.file("_rels/.rels", `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="ppt/presentation.xml"/></Relationships>`);
+  zip.file("ppt/presentation.xml", `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><p:presentation xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main"><p:sldIdLst><p:sldId id="256" r:id="rId2"/></p:sldIdLst></p:presentation>`);
+  zip.file("ppt/_rels/presentation.xml.rels", `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/slide" Target="slides/slide1.xml"/></Relationships>`);
+  // slide s dvěma textovými odstavci (a:t elementy s diakritikou)
+  zip.file("ppt/slides/slide1.xml", `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><p:sld xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"><p:cSld><p:spTree><p:nvGrpSpPr/><p:grpSpPr/><p:sp><p:txBody><a:p><a:r><a:t>Testovací prezentace</a:t></a:r></a:p><a:p><a:r><a:t>Druhý řádek s diakritikou ěščřž</a:t></a:r></a:p></p:txBody></p:sp></p:spTree></p:cSld></p:sld>`);
+  return zip.generateAsync({ type: "nodebuffer" });
 }
 
 // Minimální 16-bit PCM WAV (sine), mono — stačí pro ořez/konverzi přes ffmpeg.wasm
@@ -208,7 +260,8 @@ fixtures.push(...(await smallSampleFiles()));
 
 for (const f of fixtures) {
   const p = path.join(outDir, f.name);
-  const buf = Buffer.isBuffer(f.data) ? f.data : Buffer.from(f.bytes);
+  const raw = f.data ?? f.bytes;
+  const buf = Buffer.isBuffer(raw) ? raw : Buffer.from(raw);
   fs.writeFileSync(p, buf);
   console.log("✓", p, `${buf.length} B`);
 }

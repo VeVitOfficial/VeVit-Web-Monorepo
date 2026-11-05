@@ -458,6 +458,53 @@ export function blocksToPlainText(pages: PageBlocks[]): string {
   return out.join("\n");
 }
 
+// ── Markdown výstup (pdf-to-markdown) ──────────────────────────────────────
+
+function mdEscapeCell(s: string): string {
+  return s.replace(/\|/g, "\\|").replace(/\n/g, " ");
+}
+
+/**
+ * Bloky stránek → Markdown. Nadpisy dle poměru velikosti fontu k tělu
+ * (vyžaduje bodySize — pokud není dáno, odvodí se mediánem z odstavců),
+ * tabulky jako pipe tabulky, stránky oddělené horizontal rule.
+ */
+export function blocksToMarkdown(pages: PageBlocks[], bodySize?: number): string {
+  // odhad velikosti těla z odstavců všech stránek
+  const sizes = pages
+    .flatMap((p) => p.blocks)
+    .filter((b) => b.kind === "paragraph" || b.kind === "heading")
+    .map((b) => b.fontSize)
+    .sort((a, b) => a - b);
+  const body = bodySize ?? sizes[Math.floor(sizes.length / 2)] ?? 11;
+
+  const out: string[] = [];
+  pages.forEach((page, idx) => {
+    if (idx > 0) out.push("", "---", "");
+    for (const b of page.blocks) {
+      if (b.kind === "table") {
+        if (b.rows.length === 0) continue;
+        const cols = Math.max(...b.rows.map((r) => r.length));
+        const row = (cells: string[], header: boolean) =>
+          "| " + Array.from({ length: cols }, (_, i) => mdEscapeCell(cells[i] ?? "")).join(" | ") + " |" + (header ? "" : "");
+        out.push(row(b.rows[0], true));
+        out.push("|" + Array.from({ length: cols }, () => " --- ").join("|") + "|");
+        for (let r = 1; r < b.rows.length; r++) out.push(row(b.rows[r], false));
+        out.push("");
+      } else if (b.kind === "heading") {
+        const ratio = b.fontSize / body;
+        const level = ratio >= 1.7 ? 1 : ratio >= 1.4 ? 2 : 3;
+        out.push("#".repeat(level) + " " + b.text.replace(/\n/g, " "));
+        out.push("");
+      } else {
+        out.push(b.text);
+        out.push("");
+      }
+    }
+  });
+  return out.join("\n").replace(/\n{3,}/g, "\n\n").trim();
+}
+
 // ── OOXML (.docx) ──────────────────────────────────────────────────────────
 
 export function escXml(s: string): string {

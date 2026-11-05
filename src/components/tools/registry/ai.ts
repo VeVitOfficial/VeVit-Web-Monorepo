@@ -21,6 +21,11 @@ const AI: Record<string, ToolComponent | undefined> = {
   "ai-text-qa": AiTextQa,
   // ai-image-gen: coming_soon — bez komponenty (placeholder dodává shell).
   "ai-image-gen": undefined,
+  // coming_soon — specializované modely nejsou zatím hostované
+  "ai-restore-photo": undefined,
+  "ai-colorize": undefined,
+  "ai-remove-object": undefined,
+
 };
 
 export default AI;

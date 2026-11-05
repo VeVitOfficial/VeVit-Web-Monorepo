@@ -18,6 +18,11 @@ import VideoThumbnail from "@/components/tools/tools/video-thumbnail";
 import VideoToGif from "@/components/tools/tools/video-to-gif";
 import VideoTrim from "@/components/tools/tools/video-trim";
 
+
+import VideoResize from "@/components/tools/tools/video-resize";
+import VideoMute from "@/components/tools/tools/video-mute";
+import VideoToWebp from "@/components/tools/tools/video-to-webp";
+
 const MEDIA: Record<string, ToolComponent | undefined> = {
   "audio-convert": AudioConvert,
   "audio-trim-normalize": AudioTrimNormalize,
@@ -30,6 +35,12 @@ const MEDIA: Record<string, ToolComponent | undefined> = {
   "video-thumbnail": VideoThumbnail,
   "video-to-gif": VideoToGif,
   "video-trim": VideoTrim,
+  "video-resize": VideoResize,
+  "video-mute": VideoMute,
+  "video-to-webp": VideoToWebp,
+  // coming_soon — bez komponenty (plánovaný Amazon Transcribe)
+  "audio-to-text": undefined,
+
 };
 
 export default MEDIA;

@@ -207,3 +207,22 @@ test("blocksToPlainText: tabulka = řádky s tabulátory", () => {
   assert.ok(txt.includes("a\tb"));
   assert.ok(txt.includes("c\td"));
 });
+
+test("blocksToMarkdown: nadpisy dle poměru fontu, tabulka jako pipe table, stránky odděleny ---", async () => {
+  const { blocksToMarkdown } = await import("../../src/lib/pdf-text-layout.ts");
+  const md = blocksToMarkdown([
+    { blocks: [
+      { kind: "heading", text: "Faktura", align: "left", fontSize: 19 },
+      { kind: "paragraph", text: "Dodavatel: VeVit", align: "left", fontSize: 10 },
+      { kind: "table", rows: [["Popis", "Cena"], ["Hosting", "2 400 Kč"]] },
+    ] },
+    { blocks: [{ kind: "paragraph", text: "Patička", align: "left", fontSize: 10 }] },
+  ]);
+  assert.ok(md.includes("# Faktura"), "velký font → h1");
+  assert.ok(md.includes("Dodavatel"), "odstavec");
+  assert.ok(md.includes("| Popis | Cena |"), "hlavička tabulky");
+  assert.ok(md.includes("| --- | --- |"), "separator");
+  assert.ok(md.includes("| Hosting | 2 400 Kč |"), "řádek tabulky");
+  assert.ok(md.includes("---"), "oddělovač stránek");
+  assert.ok(md.includes("Patička"));
+});

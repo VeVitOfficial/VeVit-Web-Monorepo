@@ -24,6 +24,17 @@ import UrlEncoder from "@/components/tools/tools/url-encoder";
 import UuidGen from "@/components/tools/tools/uuid-gen";
 import YamlJsonConverter from "@/components/tools/tools/yaml-json-converter";
 
+
+import CreateZip from "@/components/tools/tools/create-zip";
+import SplitCsv from "@/components/tools/tools/split-csv";
+import SplitExcel from "@/components/tools/tools/split-excel";
+import CsvToExcel from "@/components/tools/tools/csv-to-excel";
+import ExcelToCsv from "@/components/tools/tools/excel-to-csv";
+import ExcelToXml from "@/components/tools/tools/excel-to-xml";
+import XmlToExcel from "@/components/tools/tools/xml-to-excel";
+import XmlToJson from "@/components/tools/tools/xml-to-json";
+import JsonToXml from "@/components/tools/tools/json-to-xml";
+
 const DEV: Record<string, ToolComponent | undefined> = {
   "ai-code-explainer": AiCodeExplainer,
   "ai-commit-message": AiCommitMessage,
@@ -48,6 +59,16 @@ const DEV: Record<string, ToolComponent | undefined> = {
   "url-encoder": UrlEncoder,
   "uuid-gen": UuidGen,
   "yaml-json-converter": YamlJsonConverter,
+  "create-zip": CreateZip,
+  "split-csv": SplitCsv,
+  "split-excel": SplitExcel,
+  "csv-to-excel": CsvToExcel,
+  "excel-to-csv": ExcelToCsv,
+  "excel-to-xml": ExcelToXml,
+  "xml-to-excel": XmlToExcel,
+  "xml-to-json": XmlToJson,
+  "json-to-xml": JsonToXml,
+
 };
 
 export default DEV;

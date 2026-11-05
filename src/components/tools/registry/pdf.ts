@@ -27,6 +27,26 @@ import ImagesToPdf from "@/components/tools/tools/images-to-pdf";
 import HtmlToPdf from "@/components/tools/tools/html-to-pdf";
 import InvoiceGen from "@/components/tools/tools/invoice-gen";
 
+
+import PdfRemovePages from "@/components/tools/tools/pdf-remove-pages";
+import PdfExtractPages from "@/components/tools/tools/pdf-extract-pages";
+import PdfCrop from "@/components/tools/tools/pdf-crop";
+import PdfRedact from "@/components/tools/tools/pdf-redact";
+import PdfSign from "@/components/tools/tools/pdf-sign";
+import PdfForms from "@/components/tools/tools/pdf-forms";
+import PdfRepair from "@/components/tools/tools/pdf-repair";
+import ScanToPdf from "@/components/tools/tools/scan-to-pdf";
+import PdfCompare from "@/components/tools/tools/pdf-compare";
+import PdfToMarkdown from "@/components/tools/tools/pdf-to-markdown";
+import WordToPdf from "@/components/tools/tools/word-to-pdf";
+import ExcelToPdf from "@/components/tools/tools/excel-to-pdf";
+import PdfToExcel from "@/components/tools/tools/pdf-to-excel";
+import PptxToPdf from "@/components/tools/tools/pptx-to-pdf";
+import PdfToPptx from "@/components/tools/tools/pdf-to-pptx";
+import TranslatePdf from "@/components/tools/tools/translate-pdf";
+import OcrPdf from "@/components/tools/tools/ocr-pdf";
+import PdfEdit from "@/components/tools/tools/pdf-edit";
+
 const PDF: Record<string, ToolComponent | undefined> = {
   "pdf-merge": PdfMerge,
   "pdf-split": PdfSplit,
@@ -42,6 +62,29 @@ const PDF: Record<string, ToolComponent | undefined> = {
   "html-to-pdf": HtmlToPdf,
   "invoice-gen": InvoiceGen,
   "pdf-password": PdfPassword,
+  "pdf-remove-pages": PdfRemovePages,
+  "pdf-extract-pages": PdfExtractPages,
+  "pdf-crop": PdfCrop,
+  "pdf-redact": PdfRedact,
+  "pdf-sign": PdfSign,
+  "pdf-forms": PdfForms,
+  "pdf-repair": PdfRepair,
+  "scan-to-pdf": ScanToPdf,
+  "pdf-compare": PdfCompare,
+  "pdf-to-markdown": PdfToMarkdown,
+  "word-to-pdf": WordToPdf,
+  "excel-to-pdf": ExcelToPdf,
+  "pdf-to-excel": PdfToExcel,
+  "pptx-to-pdf": PptxToPdf,
+  "pdf-to-pptx": PdfToPptx,
+  "translate-pdf": TranslatePdf,
+  "ocr-pdf": OcrPdf,
+  "pdf-edit": PdfEdit,
+  // coming_soon — bez komponenty (placeholder dodává shell)
+  "pdf-to-pdfa": undefined,
+  "epub-to-mobi": undefined,
+  "epub-to-azw3": undefined,
+
 };
 
 export default PDF;
