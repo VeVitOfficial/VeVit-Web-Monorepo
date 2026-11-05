@@ -46,6 +46,9 @@ export interface BedrockRequest {
   system: string | null;
   /** base64 (bez data: prefixu) obrázky — jen vision */
   images: string[];
+  /** volitelná override model ID (např. vision model pro ai-vision);
+   * default = AWS_BEDROCK_MODEL_ID */
+  modelId?: string;
 }
 
 /**
@@ -55,7 +58,7 @@ export interface BedrockRequest {
  */
 export function bedrockStream(req: BedrockRequest): Promise<ReadableStream<Uint8Array>> {
   const region = process.env.AWS_REGION!.trim();
-  const modelId = process.env.AWS_BEDROCK_MODEL_ID!.trim();
+  const modelId = (req.modelId ?? process.env.AWS_BEDROCK_MODEL_ID!).trim();
   const client = bedrockClient(region);
 
   const content: Message["content"] = [{ text: req.prompt }];

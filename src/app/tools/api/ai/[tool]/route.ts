@@ -112,7 +112,11 @@ async function handler(request: Request, context: Context): Promise<Response> {
   // ── AWS Bedrock (primární, když je nakonfigurovaný) ─────────────────────
   if (bedrockConfigured()) {
     try {
-      const stream2 = await bedrockStream({ prompt, system, images });
+      // ai-vision potřebuje model s obrázkovým vstupem — volitelný samostatný
+      // vision model (AWS_BEDROCK_VISION_MODEL_ID), jinak hlavní model.
+      const visionModel = process.env.AWS_BEDROCK_VISION_MODEL_ID?.trim();
+      const modelId = tool === "ai-vision" && visionModel ? visionModel : undefined;
+      const stream2 = await bedrockStream({ prompt, system, images, modelId });
       return new Response(stream2, {
         status: 200,
         headers: {

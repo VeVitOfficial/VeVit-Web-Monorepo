@@ -18,17 +18,14 @@ proměnných.
    **eu-north-1** (Stockholm) — oba podporují Claude a rozdíl latence
    je ~20 ms. Důležitá je jen shoda prefixu v model ID: evropské regiony
    používají `eu.` (např. `eu.anthropic.…`).
-3. **První spuštění modelu (use case u Anthropic)**: stránka Model access
-   byla zrušena — modely se dnes aktivují automaticky při prvním zavolání.
-   Pro Anthropic (Claude) ale účet poprvé požádá o krátký dotazník o
-   zamýšleném použití. Nejjednodušší ho odbýt předem v konzoli:
-   Bedrock → **Playground → Chat** → tlačítko **„Select model"** → vyber
-   **Claude Haiku 5.5** (eu-central-1) → když se zobrazí formulář „use case details", vyplň
-   (2-3 věty: interní AI nástroje pro web — překlady, korektury,
-   generování textu pro koncové uživatele) → **Submit** → napiš do
-   playgroundu testovací zprávu a ověř, že Claude odpovídá.
-   (Bez tohoto kroku první volání z Vercelu vrátí AccessDenied s výzvou
-   k odeslání use case.)
+3. **Use case formulář — jen u Anthropic**: stránka Model access byla
+   zrušena — modely se dnes aktivují automaticky při prvním zavolání.
+   **Qwen3 a Nova žádný formulář nepotřebují** — fungují hned, můžeš tenhle
+   krok přeskočit. Dotazník vyplňuješ jen pokud zvolíš Claude:
+   Bedrock → **Playground → Chat** → „Select model" → **Claude Haiku 5.5**
+   → vyplň 2-3 věty o použití (překlady, korektury, generování textu pro
+   web) → **Submit** → testovací zpráva v playgroundu. (Bez něj první
+   volání vrátí AccessDenied s výzvou k odeslání use case.)
 4. **IAM uživatel** (nikdy root klíče!):
    https://console.aws.amazon.com/iam/home#/users → **Create user** →
    jméno `vevit-tools-ai` → ✅ „Provide user access to the AWS Management
@@ -64,10 +61,15 @@ proměnných.
 
    | Name | Value |
    |---|---|
-   | `AWS_REGION` | `eu-central-1` nebo `eu-north-1` (tvůj region z konzole) |
-   | `AWS_BEDROCK_MODEL_ID` | `eu.anthropic.claude-haiku-5-5` |
+   | `AWS_REGION` | `eu-north-1` |
+   | `AWS_BEDROCK_MODEL_ID` | `qwen.qwen3-235b-a22b-2507-v1:0` |
+   | `AWS_BEDROCK_VISION_MODEL_ID` | `amazon.nova-lite-v1:0` |
    | `AWS_ACCESS_KEY_ID` | `AKIA…` (z kroku A6) |
    | `AWS_SECRET_ACCESS_KEY` | secret z kroku A6 |
+
+   (Levná kombinace: Qwen3 pro text + Nova Lite pro ai-vision, oba in-region
+   v Stockholm, žádný use case formulář. Kvalitnější alternativa:
+   `eu.anthropic.claude-haiku-5-5` pro oba — vyžaduje krok 3.)
 
    Pozor: klíče NIKDY nezkoušej přes `NEXT_PUBLIC_*` a nikam je necommituj
    (repo má i `npm run secret-scan`).
@@ -88,16 +90,18 @@ proměnných.
 Do `.env.local` přidej tytéž 4 proměnné a restartuj `npm run dev`.
 Bedrock se pak používá i lokálně (platí se tvé tokeny).
 
-## Ceny (orientačně, Claude Haiku 5.5)
+## Ceny (orientačně, 2026-11)
 
-| | cena za 1M tokenů |
-|---|---|
-| vstup | ~$1 (kontroluj aws.amazon.com/bedrock/pricing) |
-| výstup | ~$5 |
+| Model | vstup / 1M | výstup / 1M | obrázky | poznámka |
+|---|---|---|---|---|
+| **Qwen3 235B** (text) | ~$0.15–0.30 | ~$1.1–1.5 | ne | default — in-region Stockholm, žádný formulář |
+| **Nova Lite** (vision) | ~$0.06 | ~$0.24 | ano | pro ai-vision, velmi levný |
+| Claude Haiku 5.5 | ~$1 | ~$5 | ano | kvalita, dražší, use case formulář |
+| DeepSeek V3.2 | ~$0.74 | ~$2 | ne | ověř dostupnost v Model catalog |
 
-Typický dotaz nástroje (~500 vstupních + 300 výstupních tokenů) ≈ **$0.002**
-— tisíc dotazů ≈ $2. Přesné sazby závisí na aktuálním ceníku AWS. Pro jistotu si v AWS Billing → Budgets nastav
-alarm (např. $10/měsíc).
+Typický dotaz nástroje (~500 vstupních + 300 výstupních tokenů) na Qwen3
+≈ **$0.0005** — tisíc dotazů ≈ **$0.5**. Přesné sazby: aws.amazon.com/bedrock/pricing.
+Pro jistotu si v AWS Billing → Budgets nastav alarm (např. $10/měsíc).
 
 Ochrana už od začátku: rate limit 30 dotazů/min/IP (fail-closed), prompt
 max 20 kB, obrázky jen ai-vision (4×8 MB), systémové prompty server-side.
@@ -130,7 +134,7 @@ klient (AI nástroj) ──POST /tools/api/ai/<tool>──▶ Next.js route (ser
 ## Nastavení na Vercelu
 
 1. **Env proměnné** (Project → Settings → Environment Variables):
-   - `AWS_REGION` — např. `eu-central-1`
+   - `AWS_REGION` — např. `eu-north-1`
    - `AWS_BEDROCK_MODEL_ID` — např. `eu.anthropic.claude-haiku-5-5`
      (region prefix v ID musí odpovídat regionu, jinak model nenajdete)
    - Credentials — jedna z možností:
@@ -164,20 +168,29 @@ klient (AI nástroj) ──POST /tools/api/ai/<tool>──▶ Next.js route (ser
   ```
 - S AWS env v `.env.local`: Bedrock se použije i lokálně (platí se tokeny).
 
-## Modely (stav 2026-11)
+## Modely (stav 2026-11, region eu-north-1 Stockholm)
 
-Starší Claude 3.5 modely AWS vyřadil — aktuální rodina je Claude 5.5.
+Starší Claude 3.5 AWS vyřadil. Náš kód používá Converse API — funguje se
+VŠEMI Bedrock modely, ne jen Anthropic. Model ID je čistě env volba.
 
-| Model ID | Poznámka |
-|---|---|
-| `eu.anthropic.claude-haiku-5-5` | rychlý, levný — doporučený default (1M kontext, obrázky ano) |
-| `eu.anthropic.claude-sonnet-5` | kvalitnější, dražší (dle dostupnosti v catalogu) |
-| `eu.anthropic.claude-opus-5-5` | nejsilnější, nejdražší |
+| Model ID | cena tier | obrázky | poznámka |
+|---|---|---|---|
+| `qwen.qwen3-235b-a22b-2507-v1:0` | € | ne | **default** — 256K kontext, in-region Stockholm, dobrá čeština |
+| `amazon.nova-lite-v1:0` | € | ano | vision pro ai-vision (AWS_BEDROCK_VISION_MODEL_ID) |
+| `eu.anthropic.claude-haiku-5-5` | €€€ | ano | přes EU geo profil; use case formulář |
+| DeepSeek V3.2 | €€ | ne | ověř přesný ID v Model catalog |
 
-Kompletní dostupnost: Bedrock docs → „Regional availability by models".
-Prefix `eu.` = geo inference profil (data zůstávají v EU regionech).
-Vision (ai-vision): Haiku 5.5 umí obrázky. Llava zůstává pro Ollama fallback —
-Bedrock cesta posílá obrázky jako image content blocks automaticky.
+Kompletní dostupnost per region: Bedrock docs → „Regional availability by
+models" nebo v konzoli Model catalog (filtr podle regionu).
+
+### Vision routing
+
+- `AWS_BEDROCK_MODEL_ID` = model pro všech 30 AI nástrojů (text).
+- `AWS_BEDROCK_VISION_MODEL_ID` = volitelný model POUZE pro ai-vision
+  (obrázky). Není-li nastaven, jde ai-vision na hlavní model — u text-only
+  modelu (Qwen3) by volání selhalo, proto ho u text-only defaultu nastav.
+- Llava fallback zůstává pro Ollama (lokální vývoj); Bedrock cesta posílá
+  obrázky jako image content blocks automaticky.
 
 ## Řešení problémů
 
