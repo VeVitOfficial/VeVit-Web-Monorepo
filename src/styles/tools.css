@@ -1181,3 +1181,89 @@ button.pdf-page-card { cursor: pointer; }
   .site-header .vv-theme-toggle { width: 2.25rem; height: 2.25rem; }
   .site-header .header-right { gap: 0.4rem; }
 }
+
+/* ══ Mobilní vylepšení (iLovePDF/TinyWow sada + celý hub) ════════════════
+   Cíl: pohodlné použití na 360-410px telefonech — 2sloupkové filtry,
+   větší dlaždice kategorií, kompaktní konvertorové karty, zalamování
+   řádků s tlačítky, bezpečné okraje nástrojových stran. */
+
+/* Filtry zůstanou 2×2 i na úzkých telefonech (dřív při ≤380px spadly na
+   1 sloupec = 4 vysoké řádky); reset tlačítko přes celou šířku. */
+@media (max-width: 380px) {
+  .hub-control-grid { grid-template-columns: 1fr 1fr; }
+  .hub-control-grid .btn,
+  .hub-control-grid #hub-filters-reset { grid-column: 1 / -1; }
+}
+
+/* Kategorie: na telefonu 2 sloupce místo 3 úzkých (popisky se nezalamují). */
+@media (max-width: 640px) {
+  .hub-cat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); padding-left: 1rem; padding-right: 1rem; }
+  .hub-cat-tile { flex-direction: row; justify-content: flex-start; text-align: left; gap: 0.6rem; padding: 0.7rem 0.8rem; }
+  .hub-cat-tile-icon { width: 1.75rem; height: 1.75rem; flex: 0 0 auto; }
+  .hub-cat-tile-icon svg { width: 16px; height: 16px; }
+  .hub-cat-tile-name, .hub-cat-tile-count { font-size: 0.8rem; }
+  .hub-cat-tile-count { margin-left: auto; padding: 0.1rem 0.45rem; }
+}
+
+/* Konvertorové karty: menší ikona, tělo se neodřezává. */
+@media (max-width: 640px) {
+  .hub-conv-card { padding: 0.9rem 1rem; gap: 0.7rem; }
+  .hub-conv-icon { width: 2.5rem; height: 2.5rem; }
+  .hub-conv-icon svg { width: 22px; height: 22px; }
+  .hub-conv-open { display: none; } /* šipka zabírá místo, karta sama je cíl */
+}
+
+/* Řádky s tlačítky: na telefonu se zalamují (flex-wrap), tlačítka se
+   neroztahují přes okraj. */
+@media (max-width: 640px) {
+  .row { flex-wrap: wrap; }
+  .tool-page { padding: 1.25rem 1rem 2.5rem; }
+  .tool-header { flex-wrap: wrap; row-gap: 0.4rem; }
+  .tool-header h1 { font-size: 1.45rem; }
+  .tool-shell { padding: 1rem; border-radius: 0.625rem; }
+  .tool-desc { font-size: 0.875rem; }
+  .tool-trust { font-size: 0.8rem; padding: 0.9rem 1rem; }
+  .breadcrumb { font-size: 0.8rem; margin-bottom: 1rem; }
+  .progress-label { font-size: 0.8rem; }
+}
+
+/* Seznamy souborů: posunovací/odstraňovací tlačítka se neztratí. */
+@media (max-width: 640px) {
+  .file-item { flex-wrap: wrap; row-gap: 0.4rem; padding: 0.6rem 0.65rem; }
+  .fi-meta { min-width: 0; flex: 1 1 10rem; }
+  .fi-name { overflow-wrap: anywhere; }
+  .fi-move { display: flex; gap: 0.25rem; }
+}
+
+/* Výsledkové karty a velké prvky: plná šířka, tlačítko pod textem. */
+@media (max-width: 640px) {
+  .result-card { flex-wrap: wrap; gap: 0.6rem; }
+  .result-card .btn { width: 100%; }
+  .rc-meta { flex: 1 1 100%; min-width: 0; }
+  .rc-title { overflow-wrap: anywhere; }
+  .ai-head { flex-wrap: wrap; }
+  .dropzone { padding: 1.4rem 1rem; }
+  .dz-title { font-size: 0.95rem; }
+  .pdf-page-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem; }
+  .pdf-thumb-canvas canvas { height: 6.5rem; }
+  .seg { width: 100%; }
+  .seg button { flex: 1; }
+}
+
+/* Pásmo soukromí a sekce na telefonu. */
+@media (max-width: 640px) {
+  .privacy-band { grid-template-columns: 1fr; gap: 0.75rem; }
+  .hub-hero-stats { gap: 0.75rem; }
+  .hub-stat .n { font-size: 1.4rem; }
+  .hub-stat .l { font-size: 0.7rem; }
+  .hub-suggestions { gap: 0.4rem; }
+  .hub-suggestion-chip { font-size: 0.7rem; padding: 0.35rem 0.6rem; }
+  .hub-search-btn { padding: 0.7rem 1rem; }
+  .section-head h2 { font-size: 1.15rem; }
+  .rail { flex-wrap: wrap; gap: 0.4rem; }
+  .rail a { font-size: 0.8rem; }
+}
+
+/* Lepenie akční lišty (tool-action-bar) přidá spodní safe-area pro iPhony
+   s Home indicátorem. */
+.tool-action-bar { padding-bottom: calc(0.625rem + env(safe-area-inset-bottom, 0px)); }
