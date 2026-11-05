@@ -16,7 +16,7 @@ interface JsPdf {
 interface JsPdfCtor { new (opts: unknown): JsPdf; }
 interface Sanitizer { sanitize(html: string): string; srcdoc(html: string): string; sandbox: string; maxInputChars: number; }
 
-function jsPdfCtor(): JsPdfCtor { return (window as unknown as { jsPDF: JsPdfCtor }).jsPDF; }
+function jsPdfCtor(): JsPdfCtor { return ((window as unknown as { jspdf?: { jsPDF: JsPdfCtor } }).jspdf?.jsPDF ?? (window as unknown as { jsPDF?: JsPdfCtor }).jsPDF!); }
 function sanitizer(): Sanitizer { return (window as unknown as { VeVitHtmlPdfSanitizer: Sanitizer }).VeVitHtmlPdfSanitizer; }
 
 const DEFAULT_HTML = `<h1>Ahoj</h1>

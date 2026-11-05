@@ -23,7 +23,7 @@ interface JsPdf {
 interface JsPdfCtor { new (opts: unknown): JsPdf; }
 
 function mammoth(): MammothLib { return (window as unknown as { mammoth: MammothLib }).mammoth; }
-function jsPdfCtor(): JsPdfCtor { return (window as unknown as { jsPDF: JsPdfCtor }).jsPDF; }
+function jsPdfCtor(): JsPdfCtor { return ((window as unknown as { jspdf?: { jsPDF: JsPdfCtor } }).jspdf?.jsPDF ?? (window as unknown as { jsPDF?: JsPdfCtor }).jsPDF!); }
 
 const ACCEPT = ".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document";
 const PAGE_W = 595.28; // A4 na výšku (pt)

@@ -26,7 +26,7 @@ interface JsPdf {
 interface JsPdfCtor { new (opts: unknown): JsPdf; }
 
 function xlsx(): XlsxLib { return (window as unknown as { XLSX: XlsxLib }).XLSX; }
-function jsPdfCtor(): JsPdfCtor { return (window as unknown as { jsPDF: JsPdfCtor }).jsPDF; }
+function jsPdfCtor(): JsPdfCtor { return ((window as unknown as { jspdf?: { jsPDF: JsPdfCtor } }).jspdf?.jsPDF ?? (window as unknown as { jsPDF?: JsPdfCtor }).jsPDF!); }
 
 const ACCEPT = ".xlsx,.xls,.csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,text/csv";
 const A4_W = 595.28;

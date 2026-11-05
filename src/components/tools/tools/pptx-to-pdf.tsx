@@ -27,7 +27,7 @@ interface JsPdf {
 interface JsPdfCtor { new (opts: unknown): JsPdf; }
 
 function jszipCtor(): JszipCtor { return (window as unknown as { JSZip: JszipCtor }).JSZip; }
-function jsPdfCtor(): JsPdfCtor { return (window as unknown as { jsPDF: JsPdfCtor }).jsPDF; }
+function jsPdfCtor(): JsPdfCtor { return ((window as unknown as { jspdf?: { jsPDF: JsPdfCtor } }).jspdf?.jsPDF ?? (window as unknown as { jsPDF?: JsPdfCtor }).jsPDF!); }
 
 const ACCEPT = ".pptx,application/vnd.openxmlformats-officedocument.presentationml.presentation";
 const SLIDE_W = 13.33 * 72; // 959,76 pt

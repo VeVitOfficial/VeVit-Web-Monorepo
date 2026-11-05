@@ -2,29 +2,47 @@
 
 // XML → JSON převodník, čistě client-side, bez externích knihoven
 // (parsování přes nativní DOMParser). Vlastní rekurzivní serializace:
-//   element → { tag, attrs: { "@attr": hodnota }, children: [...] | text: "..." }
+//   element → { "tag": { "@attr": hodnota, "dite": ..., "#text": ... } } (tag jako klíč,
+//   opakované elementy jako pole — kompatibilní s json-to-xml pro zpětný převod)
 //   textový element bez atributů → obyčejný string.
 // Vstup lze vložit do textarea nebo nahrát soubor .xml (naplní textarea).
 import { useRef, useState } from "react";
 import type { ToolComponentProps } from "@/components/tools/registry/data";
 import { useCopy, Icon, toastSuccess } from "@/components/tools/tool-runtime";
 
-/** Element → JS hodnota podle pravidel výše. */
+/**
+ * Element → JS objekt ve formátu "tag jako klíč" (kompatibilní s json-to-xml
+ * i fast-xml-parser): atributy jako "@attr", text jako "#text" (jen když se
+ * míchá s elementy), opakované elementy jako pole. Čistě textový element
+ * bez atributů → jen string.
+ */
 function elToJson(el: Element): unknown {
-  const attrs: Record<string, string> = {};
+  const out: Record<string, unknown> = {};
   for (let i = 0; i < el.attributes.length; i++) {
     const a = el.attributes[i];
-    attrs["@" + a.name] = a.value;
+    out["@" + a.name] = a.value;
   }
   const elemChildren = Array.from(el.children);
-  const text = (el.textContent ?? "").trim();
-  // Listový element bez atributů → jen text jako string.
-  if (!elemChildren.length && !Object.keys(attrs).length) return text;
-  const out: Record<string, unknown> = { tag: el.tagName };
-  if (Object.keys(attrs).length) out.attrs = attrs;
-  if (elemChildren.length) out.children = elemChildren.map(elToJson);
-  else if (text) out.text = text;
+  if (!elemChildren.length) {
+    const text = (el.textContent ?? "").trim();
+    if (!Object.keys(out).length) return text; // list bez atributů → string
+    if (text) out["#text"] = text;
+    return out;
+  }
+  // děti: shodné názvy tagů → pole
+  for (const child of elemChildren) {
+    const val = elToJson(child);
+    const existing = out[child.tagName];
+    if (existing === undefined) out[child.tagName] = val;
+    else if (Array.isArray(existing)) existing.push(val);
+    else out[child.tagName] = [existing, val];
+  }
   return out;
+}
+
+/** Kořenový element zabalí výsledek pod jeho tagName: { katalog: {...} }. */
+function documentToJson(root: Element): unknown {
+  return { [root.tagName]: elToJson(root) };
 }
 
 export default function XmlToJson({ locale }: ToolComponentProps) {
@@ -43,7 +61,7 @@ export default function XmlToJson({ locale }: ToolComponentProps) {
         throw new Error("XML není well-formed — zkontrolujte uzavřené tagy a entity.");
       }
       if (!doc.documentElement) throw new Error("XML nemá kořenový element.");
-      setOutput(JSON.stringify(elToJson(doc.documentElement), null, 2));
+      setOutput(JSON.stringify(documentToJson(doc.documentElement), null, 2));
     } catch (e) {
       setOutput("");
       setErr("Neplatné XML: " + (e as Error).message);
