@@ -18,12 +18,17 @@ proměnných.
    **eu-north-1** (Stockholm) — oba podporují Claude a rozdíl latence
    je ~20 ms. Důležitá je jen shoda prefixu v model ID: evropské regiony
    používají `eu.` (např. `eu.anthropic.…`).
-3. **Model access**: otevři
-   https://console.aws.amazon.com/bedrock/home?region=eu-central-1#/modelaccess
-   → najdi **Claude 3.5 Haiku** → „Manage" → ponech **User profile type:
-   All users in this account** → **Save changes** → stav se do pár minut
-   změní na „Access granted".
-   (Volitelně stejně povol i Claude 3.5 Sonnet pro kvalitnější odpovědi.)
+3. **První spuštění modelu (use case u Anthropic)**: stránka Model access
+   byla zrušena — modely se dnes aktivují automaticky při prvním zavolání.
+   Pro Anthropic (Claude) ale účet poprvé požádá o krátký dotazník o
+   zamýšleném použití. Nejjednodušší ho odbýt předem v konzoli:
+   Bedrock → **Playground → Chat** → vlevo model **Claude 3.5 Haiku**
+   (eu-central-1) → když se zobrazí formulář „use case details", vyplň
+   (2-3 věty: interní AI nástroje pro web — překlady, korektury,
+   generování textu pro koncové uživatele) → **Submit** → napiš do
+   playgroundu testovací zprávu a ověř, že Claude odpovídá.
+   (Bez tohoto kroku první volání z Vercelu vrátí AccessDenied s výzvou
+   k odeslání use case.)
 4. **IAM uživatel** (nikdy root klíče!):
    https://console.aws.amazon.com/iam/home#/users → **Create user** →
    jméno `vevit-tools-ai` → ✅ „Provide user access to the AWS Management
