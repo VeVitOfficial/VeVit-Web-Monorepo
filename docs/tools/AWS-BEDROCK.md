@@ -22,8 +22,8 @@ proměnných.
    byla zrušena — modely se dnes aktivují automaticky při prvním zavolání.
    Pro Anthropic (Claude) ale účet poprvé požádá o krátký dotazník o
    zamýšleném použití. Nejjednodušší ho odbýt předem v konzoli:
-   Bedrock → **Playground → Chat** → vlevo model **Claude 3.5 Haiku**
-   (eu-central-1) → když se zobrazí formulář „use case details", vyplň
+   Bedrock → **Playground → Chat** → tlačítko **„Select model"** → vyber
+   **Claude Haiku 5.5** (eu-central-1) → když se zobrazí formulář „use case details", vyplň
    (2-3 věty: interní AI nástroje pro web — překlady, korektury,
    generování textu pro koncové uživatele) → **Submit** → napiš do
    playgroundu testovací zprávu a ověř, že Claude odpovídá.
@@ -65,7 +65,7 @@ proměnných.
    | Name | Value |
    |---|---|
    | `AWS_REGION` | `eu-central-1` nebo `eu-north-1` (tvůj region z konzole) |
-   | `AWS_BEDROCK_MODEL_ID` | `eu.anthropic.claude-3-5-haiku-20241022-v1:0` |
+   | `AWS_BEDROCK_MODEL_ID` | `eu.anthropic.claude-haiku-5-5` |
    | `AWS_ACCESS_KEY_ID` | `AKIA…` (z kroku A6) |
    | `AWS_SECRET_ACCESS_KEY` | secret z kroku A6 |
 
@@ -88,15 +88,15 @@ proměnných.
 Do `.env.local` přidej tytéž 4 proměnné a restartuj `npm run dev`.
 Bedrock se pak používá i lokálně (platí se tvé tokeny).
 
-## Ceny (orientačně, Claude 3.5 Haiku)
+## Ceny (orientačně, Claude Haiku 5.5)
 
 | | cena za 1M tokenů |
 |---|---|
-| vstup | ~$0.80 |
-| výstup | ~$4.00 |
+| vstup | ~$1 (kontroluj aws.amazon.com/bedrock/pricing) |
+| výstup | ~$5 |
 
-Typický dotaz nástroje (~500 vstupních + 300 výstupních tokenů) ≈ **$0.0016**
-— tisíc dotazů ≈ $1.6. Pro jistotu si v AWS Billing → Budgets nastav
+Typický dotaz nástroje (~500 vstupních + 300 výstupních tokenů) ≈ **$0.002**
+— tisíc dotazů ≈ $2. Přesné sazby závisí na aktuálním ceníku AWS. Pro jistotu si v AWS Billing → Budgets nastav
 alarm (např. $10/měsíc).
 
 Ochrana už od začátku: rate limit 30 dotazů/min/IP (fail-closed), prompt
@@ -131,7 +131,7 @@ klient (AI nástroj) ──POST /tools/api/ai/<tool>──▶ Next.js route (ser
 
 1. **Env proměnné** (Project → Settings → Environment Variables):
    - `AWS_REGION` — např. `eu-central-1`
-   - `AWS_BEDROCK_MODEL_ID` — např. `eu.anthropic.claude-3-5-haiku-20241022-v1:0`
+   - `AWS_BEDROCK_MODEL_ID` — např. `eu.anthropic.claude-haiku-5-5`
      (region prefix v ID musí odpovídat regionu, jinak model nenajdete)
    - Credentials — jedna z možností:
      - `AWS_ACCESS_KEY_ID` + `AWS_SECRET_ACCESS_KEY` (+ případně
@@ -150,8 +150,8 @@ klient (AI nástroj) ──POST /tools/api/ai/<tool>──▶ Next.js route (ser
    }
    ```
 3. **Bedrock Model access** (AWS console → Bedrock → Model access): povolte
-   konkrétní model (např. Claude 3.5 Haiku) pro svůj účet v daném regionu.
-   Bez tohoto kroku route vrací 502 "nemá povolen přístup k modelu".
+   První volání Anthropic modelu vyžaduje jednorázové odeslání use case
+   (viz Část A krok 3). Bez něj route vrací 502 "nemá povolen přístup k modelu".
 4. **maxDuration**: AI route má ve vercel.json 60 s (ostatní route 30 s).
    ConverseStream má vlastní timeout 60 s.
 
@@ -164,16 +164,20 @@ klient (AI nástroj) ──POST /tools/api/ai/<tool>──▶ Next.js route (ser
   ```
 - S AWS env v `.env.local`: Bedrock se použije i lokálně (platí se tokeny).
 
-## Modely
+## Modely (stav 2026-11)
 
-| Model ID (eu-central-1) | Poznámka |
+Starší Claude 3.5 modely AWS vyřadil — aktuální rodina je Claude 5.5.
+
+| Model ID | Poznámka |
 |---|---|
-| `eu.anthropic.claude-3-5-haiku-20241022-v1:0` | rychlý, levný — doporučený default |
-| `eu.anthropic.claude-3-5-sonnet-20241022-v2:0` | kvalitnější, dražší |
-| `eu.anthropic.claude-3-haiku-20240307-v1:0` | nejlevnější |
+| `eu.anthropic.claude-haiku-5-5` | rychlý, levný — doporučený default (1M kontext, obrázky ano) |
+| `eu.anthropic.claude-sonnet-5` | kvalitnější, dražší (dle dostupnosti v catalogu) |
+| `eu.anthropic.claude-opus-5-5` | nejsilnější, nejdražší |
 
-Vision (ai-vision): Claude 3.5 modely umí obrázky.(llava zůstává pro Ollama
-fallback — Bedrock cesta pošle obrázky jako image content blocks automaticky.)
+Kompletní dostupnost: Bedrock docs → „Regional availability by models".
+Prefix `eu.` = geo inference profil (data zůstávají v EU regionech).
+Vision (ai-vision): Haiku 5.5 umí obrázky. Llava zůstává pro Ollama fallback —
+Bedrock cesta posílá obrázky jako image content blocks automaticky.
 
 ## Řešení problémů
 
