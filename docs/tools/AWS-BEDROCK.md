@@ -13,8 +13,11 @@ proměnných.
 1. **Účet**: na https://aws.amazon.com → „Vytvořit účet AWS". Potřebuješ e-mail
    a platební kartu (Bedrock platíš jen za skutečné tokeny — Haiku vychází
    na řádově haléře za dotaz; viz Ceny níže). Bez aktivity nic neplatíš.
-2. **Region**: vpravo nahoře v konzoli vyber **EU (Frankfurt) eu-central-1**
-   (nejbližší Vercelu, který běží ve fra1).
+2. **Region**: vpravo nahoře v konzoli vyber svůj evropský region —
+   **eu-central-1** (Frankfurt, nejbližší Vercelu) nebo
+   **eu-north-1** (Stockholm) — oba podporují Claude a rozdíl latence
+   je ~20 ms. Důležitá je jen shoda prefixu v model ID: evropské regiony
+   používají `eu.` (např. `eu.anthropic.…`).
 3. **Model access**: otevři
    https://console.aws.amazon.com/bedrock/home?region=eu-central-1#/modelaccess
    → najdi **Claude 3.5 Haiku** → „Manage" → ponech **User profile type:
@@ -56,7 +59,7 @@ proměnných.
 
    | Name | Value |
    |---|---|
-   | `AWS_REGION` | `eu-central-1` |
+   | `AWS_REGION` | `eu-central-1` nebo `eu-north-1` (tvůj region z konzole) |
    | `AWS_BEDROCK_MODEL_ID` | `eu.anthropic.claude-3-5-haiku-20241022-v1:0` |
    | `AWS_ACCESS_KEY_ID` | `AKIA…` (z kroku A6) |
    | `AWS_SECRET_ACCESS_KEY` | secret z kroku A6 |
