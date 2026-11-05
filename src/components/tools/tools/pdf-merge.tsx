@@ -28,7 +28,7 @@ interface PdfLib {
 }
 function pdfLib(): PdfLib { return (window as unknown as { PDFLib: PdfLib }).PDFLib; }
 
-const ACCEPT = ".pdf,application/pdf";
+const ACCEPT = [".pdf", "application/pdf"];
 
 function matchesAccept(file: File, accept: string[]): boolean {
   const name = file.name.toLowerCase();
@@ -66,7 +66,7 @@ export default function PdfMerge({ locale }: ToolComponentProps) {
   }, [setToolState, announce, t]);
 
   const addFiles = useCallback((arr: File[]) => {
-    const valid = arr.filter((f) => matchesAccept(f, [ACCEPT]));
+    const valid = arr.filter((f) => matchesAccept(f, ACCEPT));
     if (valid.length < arr.length) setError(t("invalid_type"));
     if (valid.length) { setFiles((prev) => [...prev, ...valid]); setError(""); setState("ready"); }
   }, [t, setState]);

@@ -1,0 +1,3 @@
+Dobrý den,
+
+toto je ukázkový textový soubor s diakritikou.
