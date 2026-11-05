@@ -41,7 +41,6 @@ export default async function ToolsHubPage({
         locale={locale}
         strings={{
           categories: strings.header_categories,
-          newest: strings.header_newest,
           login: strings.header_login,
           login_title: strings.header_login_title,
           brand_name: "VeVit",

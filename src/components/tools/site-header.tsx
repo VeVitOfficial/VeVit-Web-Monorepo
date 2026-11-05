@@ -20,7 +20,7 @@ import { categoryLabel } from "@/components/tools/registry/data";
 import { ThemeToggle } from "@/components/theme-toggle";
 interface Props {
   locale: Locale;
-  strings: { categories: string; newest: string; login: string; login_title: string; brand_name: string; brand_suffix: string };
+  strings: { categories: string; login: string; login_title: string; brand_name: string; brand_suffix: string };
 }
 
 const CATEGORY_DOT_LABEL: Record<Category, string> = {
@@ -105,12 +105,8 @@ export function SiteHeader({ locale, strings }: Props) {
               </svg>
             </button>
             <div className={`cat-dropdown glass-strong${open ? "" : " hidden"}`} id="cat-menu" role="menu">
-              <a href={`${base}#nove`} role="menuitem" onClick={() => setOpen(false)}>
-                <span className="dot" style={{ background: "var(--color-brand)" }}></span> {strings.newest}
-              </a>
-              <div className="sep"></div>
               {CATEGORY_ORDER.map((cat) => (
-                <a key={cat} href={`${base}#${cat}`} role="menuitem" onClick={() => setOpen(false)}>
+                <a key={cat} href={`${base}/?category=${cat}`} role="menuitem" onClick={() => setOpen(false)}>
                   <span className="dot" style={{ background: CATEGORY_COLORS[cat] }}></span>{" "}
                   {categoryLabel(cat, locale) ?? CATEGORY_DOT_LABEL[cat]}
                 </a>

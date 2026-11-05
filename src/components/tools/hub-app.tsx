@@ -103,7 +103,7 @@ export function HubApp({ locale, initialSearchParams, strings }: Props) {
 
   const hasQuery = state.q.trim().length > 0;
   // Aktivní dotaz nebo filtr → plochá mřížka výsledků; jinak sekce podle kategorie.
-  const showResults = Boolean(hasQuery || state.category || state.processing || state.status || state.newOnly);
+  const showResults = Boolean(hasQuery || state.category || state.processing || state.status);
   // Oprava: dřív se results počítalo jen `hasQuery ? applyFilters(...) : []`,
   // takže filtr bez zadaného textu (např. jen kliknutí na chip kategorie)
   // vždy skončil na "0 výsledků" — showResults se přepnul, ale results
@@ -116,7 +116,7 @@ export function HubApp({ locale, initialSearchParams, strings }: Props) {
   }, []);
 
   const resetFilters = useCallback(() => {
-    setState({ q: "", category: "", processing: "", status: "", newOnly: false, sort: "relevance" });
+    setState({ q: "", category: "", processing: "", status: "", sort: "relevance" });
     setActiveIndex(-1);
     if (searchRef.current) searchRef.current.value = "";
   }, []);
@@ -233,6 +233,46 @@ export function HubApp({ locale, initialSearchParams, strings }: Props) {
         </div>
       </section>
 
+      {/* ── 3 hlavní konvertory — přímo pod vyhledáváním ──────────────── */}
+      <section className="hub-converters" aria-label={strings.conv_docs_desc ? strings.conv_docs_title : "Konvertory"}>
+        <a className="hub-conv-card" href={`/${locale}/tools/video-convert`}>
+          <span className="hub-conv-icon" style={{ "--tile-color": CATEGORY_COLORS.media } as React.CSSProperties}>
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="square" aria-hidden="true"><path d={CATEGORY_ICON_PATH.media} /></svg>
+          </span>
+          <span className="hub-conv-body">
+            <strong>{strings.conv_video_title}</strong>
+            <small>{strings.conv_video_desc}</small>
+          </span>
+          <span className="hub-conv-open" aria-hidden="true">→</span>
+        </a>
+        <a className="hub-conv-card" href={`/${locale}/tools/audio-convert`}>
+          <span className="hub-conv-icon" style={{ "--tile-color": "var(--vv-info)" } as React.CSSProperties}>
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="square" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4zM15.5 8.5a5 5 0 0 1 0 7M19 5a9 9 0 0 1 0 14" /></svg>
+          </span>
+          <span className="hub-conv-body">
+            <strong>{strings.conv_audio_title}</strong>
+            <small>{strings.conv_audio_desc}</small>
+          </span>
+          <span className="hub-conv-open" aria-hidden="true">→</span>
+        </a>
+        {/* Dokumenty — karta bez vlastního odkazu, směry převodu jsou samostatné
+            odkazy (vnořené <a> by byly nevalidní HTML). */}
+        <div className="hub-conv-card hub-conv-card--docs">
+          <span className="hub-conv-icon" style={{ "--tile-color": CATEGORY_COLORS.pdf } as React.CSSProperties}>
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="square" aria-hidden="true"><path d={CATEGORY_ICON_PATH.pdf} /></svg>
+          </span>
+          <span className="hub-conv-body">
+            <strong>{strings.conv_docs_title}</strong>
+            <small>{strings.conv_docs_desc}</small>
+            <span className="hub-conv-links">
+              <a href={`/${locale}/tools/pdf-to-word`}>{strings.conv_docs_pdfword}</a>
+              <a href={`/${locale}/tools/pdf-extract-text`}>{strings.conv_docs_pdftxt}</a>
+              <a href={`/${locale}/tools/images-to-pdf`}>{strings.conv_docs_imgpdf}</a>
+            </span>
+          </span>
+        </div>
+      </section>
+
       {/* ── Kategorie — dlaždicová mřížka (redesign) ─────────────────── */}
       <nav className="cat-nav hub-cat-grid" id="cat-nav" aria-label={strings.filters_category}>
         <button
@@ -289,12 +329,7 @@ export function HubApp({ locale, initialSearchParams, strings }: Props) {
             <select className="select" id="hub-sort" value={state.sort} onChange={(e) => update({ sort: e.target.value as HubState["sort"] })}>
               <option value="relevance">{strings.sort_relevance}</option>
               <option value="name">{strings.sort_name}</option>
-              <option value="newest">{strings.sort_newest}</option>
             </select>
-          </label>
-          <label className="hub-checkbox">
-            <input id="hub-filter-new" type="checkbox" checked={state.newOnly} onChange={(e) => update({ newOnly: e.target.checked })} />
-            {strings.filters_new_only}
           </label>
           <button className="btn btn-outline" id="hub-filters-reset" type="button" onClick={resetFilters}>
             {strings.filters_reset}
@@ -327,7 +362,6 @@ export function HubApp({ locale, initialSearchParams, strings }: Props) {
         /* ── Sekce kategorií ────────────────────────────────────────── */
         <div id="sections-view">
           <div className="sections" style={{ paddingTop: 0 }}>
-            <CategorySection id="nove" title={strings.section_newest_title} desc={strings.section_newest_desc} color="var(--color-brand)" tools={sectionTools(TOOLS, state, "nove")} locale={locale} strings={strings} query={state.q} />
             {CATEGORY_ORDER.map((c) => (
               <CategorySection
                 key={c}
@@ -371,16 +405,15 @@ function ToolCard({ tool, locale, strings, query, active }: { tool: Tool; locale
       >
         <ToolIcon name="Star" size={14} fill={fav ? "currentColor" : "none"} />
       </button>
-      <div className="top">
-        <span className="icon-box" style={{ background: `color-mix(in srgb, ${color} 8%, transparent)`, color }}><ToolIcon name={tool.icon} size={20} /></span>
-        <span className="hub-card-badges">
-          <span className={`badge ${PROCESSING_BADGE_CLASS[tool.processing_location]}`} title={loc.title}>{loc.label}</span>
-          {tool.new ? <span className="badge badge-new">{strings.badge_new}</span> : null}
-          {tool.status !== "working" ? (
-            <span className={`badge ${STATUS_BADGE_CLASS[tool.status]}`}>{statusLabel(tool.status, locale)}</span>
-          ) : null}
-        </span>
-      </div>
+        <div className="top">
+          <span className="icon-box" style={{ background: `color-mix(in srgb, ${color} 8%, transparent)`, color }}><ToolIcon name={tool.icon} size={20} /></span>
+          <span className="hub-card-badges">
+            <span className={`badge ${PROCESSING_BADGE_CLASS[tool.processing_location]}`} title={loc.title}>{loc.label}</span>
+            {tool.status !== "working" ? (
+              <span className={`badge ${STATUS_BADGE_CLASS[tool.status]}`}>{statusLabel(tool.status, locale)}</span>
+            ) : null}
+          </span>
+        </div>
       <h3 className="name">{highlight(tool.name, query)}</h3>
       <p className="desc">{highlight(tool.description, query)}</p>
       <div className="footer">
@@ -397,7 +430,6 @@ function ToolCard({ tool, locale, strings, query, active }: { tool: Tool; locale
     "data-category": tool.category,
     "data-processing-location": tool.processing_location,
     "data-status": tool.status,
-    "data-new": tool.new ? "true" : "false",
   } as const;
 
   if (dim) {

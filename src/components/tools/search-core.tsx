@@ -9,8 +9,7 @@ export interface HubState {
   category: "" | Category;
   processing: "" | ProcessingLocation;
   status: "" | ToolStatus;
-  newOnly: boolean;
-  sort: "relevance" | "name" | "newest";
+  sort: "relevance" | "name";
 }
 
 export const DEFAULT_STATE: HubState = {
@@ -18,14 +17,13 @@ export const DEFAULT_STATE: HubState = {
   category: "",
   processing: "",
   status: "",
-  newOnly: false,
   sort: "relevance",
 };
 
 const CATEGORIES: readonly Category[] = ["pdf", "image", "media", "text", "ai", "dev", "security", "calc"];
 const PROCESSINGS: readonly ProcessingLocation[] = ["client", "vevit_server", "external_ai"];
 const STATUSES: readonly ToolStatus[] = ["working", "limited", "experimental", "coming_soon", "broken"];
-const SORTS: readonly ("relevance" | "name" | "newest")[] = ["relevance", "name", "newest"];
+const SORTS: readonly ("relevance" | "name")[] = ["relevance", "name"];
 
 export function parseState(sp: URLSearchParams | Record<string, string | string[] | undefined>): HubState {
   const get = (k: string): string | undefined => {
@@ -37,15 +35,13 @@ export function parseState(sp: URLSearchParams | Record<string, string | string[
   const rawCat = get("category") ?? "";
   const rawProc = get("processing") ?? "";
   const rawStatus = get("status") ?? "";
-  const rawNew = get("new") ?? "";
   const rawSort = get("sort") ?? "";
   return {
     q: rawQ,
     category: (CATEGORIES as readonly string[]).includes(rawCat) ? (rawCat as Category) : "",
     processing: (PROCESSINGS as readonly string[]).includes(rawProc) ? (rawProc as ProcessingLocation) : "",
     status: (STATUSES as readonly string[]).includes(rawStatus) ? (rawStatus as ToolStatus) : "",
-    newOnly: rawNew === "1",
-    sort: (SORTS as readonly string[]).includes(rawSort as "relevance" | "name" | "newest") ? (rawSort as "relevance" | "name" | "newest") : "relevance",
+    sort: (SORTS as readonly string[]).includes(rawSort as "relevance" | "name") ? (rawSort as "relevance" | "name") : "relevance",
   };
 }
 
@@ -55,7 +51,6 @@ export function serializeState(s: HubState): string {
   if (s.category) p.set("category", s.category);
   if (s.processing) p.set("processing", s.processing);
   if (s.status) p.set("status", s.status);
-  if (s.newOnly) p.set("new", "1");
   if (s.sort !== "relevance") p.set("sort", s.sort);
   const str = p.toString();
   return str ? `?${str}` : "";
@@ -145,7 +140,6 @@ export function applyFilters(tools: readonly Tool[], s: HubState): Tool[] {
   if (s.category) out = out.filter((t) => t.category === s.category);
   if (s.processing) out = out.filter((t) => t.processing_location === s.processing);
   if (s.status) out = out.filter((t) => t.status === s.status);
-  if (s.newOnly) out = out.filter((t) => t.new);
   if (s.q.trim()) {
     out = out
       .map((t) => ({ t, sc: scoreTool(t, s.q) }))
@@ -154,20 +148,16 @@ export function applyFilters(tools: readonly Tool[], s: HubState): Tool[] {
       .map((x) => x.t);
   } else if (s.sort === "name") {
     out.sort((a, b) => a.name.localeCompare(b.name, "cs"));
-  } else if (s.sort === "newest") {
-    out.sort((a, b) => Number(b.new) - Number(a.new));
   }
   return out;
 }
 
-/** Tools pro sekci kategorie (nebo 'nove'), respektující aktivní filtry (kromě category). */
-export function sectionTools(tools: readonly Tool[], s: HubState, cat: Category | "nove"): Tool[] {
+/** Tools pro sekci kategorie, respektující aktivní filtry (kromě category). */
+export function sectionTools(tools: readonly Tool[], s: HubState, cat: Category): Tool[] {
   let out = tools.slice();
   if (s.processing) out = out.filter((t) => t.processing_location === s.processing);
   if (s.status) out = out.filter((t) => t.status === s.status);
-  if (s.newOnly) out = out.filter((t) => t.new);
-  if (cat === "nove") out = out.filter((t) => t.new);
-  else out = out.filter((t) => t.category === cat);
+  out = out.filter((t) => t.category === cat);
   if (s.q.trim()) {
     out = out
       .map((t) => ({ t, sc: scoreTool(t, s.q) }))

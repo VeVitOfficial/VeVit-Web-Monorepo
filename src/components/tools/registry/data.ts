@@ -376,7 +376,6 @@ export const TOOL_I18N: Partial<Record<Locale, Record<string, { name?: string; d
 export interface HubI18n {
   statuses: Partial<Record<ToolStatus, string>>;
   loc: Record<ProcessingLocation, string>;
-  badge_new: string;
   card_open: string;
   hero_eyebrow: string;
   search_cta: string;
@@ -392,7 +391,6 @@ export interface HubI18n {
   filters_processing: string;
   filters_status: string;
   filters_sort: string;
-  filters_new_only: string;
   filters_only_local: string;
   filters_reset: string;
   category_all: string;
@@ -400,9 +398,6 @@ export interface HubI18n {
   status_all: string;
   sort_relevance: string;
   sort_name: string;
-  sort_newest: string;
-  section_newest_title: string;
-  section_newest_desc: string;
   recent_title: string;
   recent_desc: string;
   privacy_band_title: string;
@@ -425,18 +420,25 @@ export interface HubI18n {
   doc_title: string;
   doc_description: string;
   header_categories: string;
-  header_newest: string;
   header_login: string;
   header_login_title: string;
   footer_back: string;
   footer_privacy: string;
   footer_copyright: string;
+  conv_video_title: string;
+  conv_video_desc: string;
+  conv_audio_title: string;
+  conv_audio_desc: string;
+  conv_docs_title: string;
+  conv_docs_desc: string;
+  conv_docs_pdfword: string;
+  conv_docs_pdftxt: string;
+  conv_docs_imgpdf: string;
 }
 
 const HUB_CS: HubI18n = {
   statuses: { limited: "Omezeně dostupný", experimental: "Experimentální", coming_soon: "Připravujeme", broken: "Dočasně nefunkční" },
   loc: { client: "Lokálně", external_ai: "Přes AI", vevit_server: "Na serveru" },
-  badge_new: "NOVÉ",
   card_open: "Otevřít →",
   hero_eyebrow: "{count} nástrojů, zdarma, bez registrace",
   search_cta: "Hledat",
@@ -452,7 +454,6 @@ const HUB_CS: HubI18n = {
   filters_processing: "Zpracování",
   filters_status: "Stav",
   filters_sort: "Řazení",
-  filters_new_only: "Jen nové nástroje",
   filters_only_local: "Jen nástroje, které nic neodesílají",
   filters_reset: "Zrušit filtry",
   category_all: "Všechny kategorie",
@@ -460,9 +461,6 @@ const HUB_CS: HubI18n = {
   status_all: "Všechny stavy",
   sort_relevance: "Relevance",
   sort_name: "Název A–Z",
-  sort_newest: "Nejnovější",
-  section_newest_title: "Nejnovější nástroje",
-  section_newest_desc: "Čerstvě přidané nástroje, které ještě nemusíte znát.",
   recent_title: "Kde jste skončili",
   recent_desc: "Uloženo jen ve vašem prohlížeči. Nikam se to neposílá a nepotřebuje to účet.",
   privacy_band_title: "Kde se vaše data zpracovávají",
@@ -485,18 +483,25 @@ const HUB_CS: HubI18n = {
   doc_title: "VeVit Tools. Nástroje pro vaši práci",
   doc_description: "Sada nástrojů pro PDF, obrázky, média, text, AI, vývoj, bezpečnost i kalkulačky. Většinu souborů zpracujeme lokálně v prohlížeči, bez nahrávání na server.",
   header_categories: "Kategorie",
-  header_newest: "Nejnovější",
   header_login: "Přihlásit se",
   header_login_title: "Přihlášení k účtu VeVit je volitelné, všechny nástroje fungují i bez něj.",
   footer_back: "Zpět na VeVit.cz",
   footer_privacy: "Vše zpracováno lokálně v prohlížeči",
   footer_copyright: "© 2026 VeVit Tools.",
+  conv_video_title: "Konverze videa",
+  conv_video_desc: "MP4, WebM, MOV, MKV — komprese i změna formátu přímo v prohlížeči.",
+  conv_audio_title: "Konverze audia",
+  conv_audio_desc: "MP3, WAV, OGG, FLAC — převod, ořez i normalizace zvuku.",
+  conv_docs_title: "Konverze dokumentů",
+  conv_docs_desc: "PDF a obrázky do upravitelných formátů.",
+  conv_docs_pdfword: "PDF → Word",
+  conv_docs_pdftxt: "PDF → Text",
+  conv_docs_imgpdf: "Obrázky → PDF",
 };
 
 const HUB_EN: HubI18n = {
   statuses: { limited: "Limited availability", experimental: "Experimental", coming_soon: "Coming soon", broken: "Temporarily broken" },
   loc: { client: "Local", external_ai: "Via AI", vevit_server: "On server" },
-  badge_new: "NEW",
   card_open: "Open →",
   hero_eyebrow: "{count} tools, free, no sign-up",
   search_cta: "Search",
@@ -512,7 +517,6 @@ const HUB_EN: HubI18n = {
   filters_processing: "Processing",
   filters_status: "Status",
   filters_sort: "Sort",
-  filters_new_only: "New tools only",
   filters_only_local: "Only tools that send nothing",
   filters_reset: "Reset filters",
   category_all: "All categories",
@@ -520,9 +524,6 @@ const HUB_EN: HubI18n = {
   status_all: "All statuses",
   sort_relevance: "Relevance",
   sort_name: "Name A–Z",
-  sort_newest: "Newest",
-  section_newest_title: "Newest tools",
-  section_newest_desc: "Freshly added tools you may not know yet.",
   recent_title: "Where you left off",
   recent_desc: "Saved only in your browser. Nothing is sent anywhere and no account is needed.",
   privacy_band_title: "Where your data is processed",
@@ -545,12 +546,20 @@ const HUB_EN: HubI18n = {
   doc_title: "VeVit Tools. Tools for your work",
   doc_description: "A set of tools for PDF, images, media, text, AI, development, security and calculators. Most files are processed locally in the browser, without uploading to a server.",
   header_categories: "Categories",
-  header_newest: "Newest",
   header_login: "Sign in",
   header_login_title: "A VeVit account is optional, all tools work without one.",
   footer_back: "Back to VeVit.cz",
   footer_privacy: "Everything processed locally in the browser",
   footer_copyright: "© 2026 VeVit Tools.",
+  conv_video_title: "Video converter",
+  conv_video_desc: "MP4, WebM, MOV, MKV — compress and convert right in the browser.",
+  conv_audio_title: "Audio converter",
+  conv_audio_desc: "MP3, WAV, OGG, FLAC — convert, trim and normalize audio.",
+  conv_docs_title: "Document converter",
+  conv_docs_desc: "PDF and images into editable formats.",
+  conv_docs_pdfword: "PDF → Word",
+  conv_docs_pdftxt: "PDF → Text",
+  conv_docs_imgpdf: "Images → PDF",
 };
 
 export const HUB_I18N: Record<Locale, HubI18n> = {
