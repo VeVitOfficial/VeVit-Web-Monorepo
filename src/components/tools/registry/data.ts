@@ -103,6 +103,7 @@ type RawTool = [string, string, string, Category, RawLoc, string, boolean, strin
 const FFMPEG_TOOLS = new Set([
   "audio-convert", "audio-trim-normalize", "video-convert", "video-compress",
   "video-trim", "video-extract-audio", "video-to-gif", "video-merge", "video-target-size",
+  "video-resize", "video-mute", "video-to-webp",
 ]);
 
 const RAW_TOOLS: RawTool[] = [
@@ -122,6 +123,28 @@ const RAW_TOOLS: RawTool[] = [
   ["pdf-extract-text", "Extrakce textu PDF", "Vytáhne text z PDF (pdf.js).", "pdf", "client", "AlignLeft", true],
   ["pdf-password", "Ochrana PDF heslem", "Nastaví nebo odstraní heslo PDF (qpdf.js, běží ve web workeru).", "pdf", "client", "FileKey", false],
 
+  ["pdf-remove-pages", "Odstranění stránek", "Odstraňte vybrané stránky z PDF (rozsahy).", "pdf", "client", "FileMinus", true],
+  ["pdf-extract-pages", "Extrakce stránek", "Vytáhněte vybrané stránky do nového PDF.", "pdf", "client", "FileOutput", true],
+  ["pdf-crop", "Oříznutí PDF", "Ořízněte okraje stránek PDF (crop box).", "pdf", "client", "Crop", true],
+  ["pdf-redact", "Zakrytí citlivých dat", "Zakryjte černě citlivé pasáže v PDF.", "pdf", "client", "Square", true],
+  ["pdf-sign", "Podpis PDF", "Nakreslete podpis a vložte ho do PDF.", "pdf", "client", "PenTool", true],
+  ["pdf-forms", "Vyplnění formulářů", "Vyplňte PDF formuláře (AcroForm pole).", "pdf", "client", "ClipboardList", true],
+  ["pdf-repair", "Oprava PDF", "Best-effort oprava poškozeného PDF.", "pdf", "client", "Wrench", true],
+  ["scan-to-pdf", "Sken → PDF", "Vytvořte PDF z obrázků/snímů (kamera, soubory).", "pdf", "client", "ScanLine", true],
+  ["pdf-compare", "Porovnání PDF", "Porovnejte text dvou PDF a zvýrazněte rozdíly.", "pdf", "client", "FileDiff", true],
+  ["pdf-to-markdown", "PDF → Markdown", "Převeďte PDF na Markdown včetně tabulek.", "pdf", "client", "Hash", true],
+  ["word-to-pdf", "Word → PDF", "Převeďte .docx dokument na PDF.", "pdf", "client", "FileType", true],
+  ["excel-to-pdf", "Excel → PDF", "Převeďte tabulku .xlsx/.csv na PDF.", "pdf", "client", "Table", true],
+  ["pdf-to-excel", "PDF → Excel", "Vytáhněte tabulky z PDF do .xlsx.", "pdf", "client", "Sheet", true],
+  ["pptx-to-pdf", "PowerPoint → PDF", "Převeďte .pptx prezentaci na PDF.", "pdf", "client", "Presentation", true],
+  ["pdf-to-pptx", "PDF → PowerPoint", "Převeďte stránky PDF na slidy .pptx.", "pdf", "client", "MonitorPlay", true],
+  ["translate-pdf", "Překlad PDF", "Přeložte textovou vrstvu PDF do jiného jazyka.", "pdf", "ai", "Languages", true],
+  ["ocr-pdf", "OCR PDF", "Rozpoznejte text ze skenů (tesseract, 45 jazyků, lokálně).", "pdf", "client", "ScanText", true],
+  ["pdf-edit", "Editace PDF", "Přidávejte text, podpis a razítka do PDF.", "pdf", "client", "FilePen", true, "Experimentální editor — základní úpravy (text, podpis, razítko)."],
+  ["pdf-to-pdfa", "PDF → PDF/A", "Převeďte PDF do archivačního formátu PDF/A.", "pdf", "client", "Archive", true, "Konverze do PDF/A vyžaduje specializovanou validaci (veraPDF), kterou prohlížeč neposkytuje. V přípravě."],
+  ["epub-to-mobi", "EPUB → MOBI", "Převeďte e-knihu EPUB do formátu MOBI.", "pdf", "client", "BookOpen", true, "Konverze e-knih vyžaduje Calibre knihovnu, která není dostupná v prohlížeči. V přípravě."],
+  ["epub-to-azw3", "EPUB → AZW3", "Převeďte e-knihu EPUB do formátu AZW3 (Kindle).", "pdf", "client", "BookOpen", true, "Konverze e-knih vyžaduje Calibre knihovnu, která není dostupná v prohlížeči. V přípravě."],
+
   // ── Obrázky ────────────────────────────────────────────────────────────
   ["img-compress", "Komprese obrázku", "Zmenšete obrázek přes canvas (kvalita, JPEG/WebP).", "image", "client", "Image", false],
   ["bg-remover", "Odstranit pozadí", "AI odstranění pozadí z fotografií (ONNX MODNet).", "image", "ai", "Eraser", true],
@@ -138,6 +161,17 @@ const RAW_TOOLS: RawTool[] = [
   ["favicon-generator", "Favicon generátor", "Vygeneruje favicony (PNG více velikostí + ICO).", "image", "client", "Globe", true],
   ["meme-generator", "Meme generátor", "Vytvořte meme s horním/dolním textem (Impact).", "image", "client", "Laugh", true],
 
+  ["image-resize", "Změna velikosti", "Změňte rozměry obrázku (px, %, poměr stran).", "image", "client", "Scaling", true],
+  ["image-add-text", "Text na obrázek", "Přidejte text na obrázek (font, barva, pozice).", "image", "client", "Type", true],
+  ["image-border", "Rámeček obrázku", "Přidejte rámeček (barva, tloušťka).", "image", "client", "Frame", true],
+  ["image-pixelate", "Pixelizace", "Rozpixelujte celý obrázek nebo jeho část.", "image", "client", "Grid3x3", true],
+  ["image-round", "Kulatý profilový obrázek", "Vytvořte kulatý profilový obrázek z fotky.", "image", "client", "Circle", true],
+  ["image-splitter", "Rozříznutí obrázku", "Rozřízněte obrázek na mřížku (2×2, 3×3…) → ZIP.", "image", "client", "Grid2x2", true],
+  ["chart-maker", "Tvůrce grafů", "Vytvořte graf (sloupcový/čárový/kruhový) z dat → PNG.", "image", "client", "BarChart3", true],
+  ["image-bw", "Černobílý převod", "Prahovaná černobílá konverze (threshold).", "image", "client", "Contrast", true],
+  ["blur-background", "Rozostření pozadí", "Rozostřete pozadí a ponechte ostří objekt.", "image", "client", "Droplet", true],
+  ["heic-to-jpg", "HEIC → JPG", "Převeďte iPhone fotky HEIC na JPG/PNG.", "image", "client", "Smartphone", true],
+
   // ── Média ──────────────────────────────────────────────────────────────
   ["video-convert", "Konverze videa", "Přeďte video mezi formáty MP4, WebM (ffmpeg.wasm).", "media", "client", "Video", false],
   ["video-compress", "Komprese videa", "Zmenší velikost videa (ffmpeg.wasm, nastavitelná kvalita).", "media", "client", "Shrink", false],
@@ -151,6 +185,11 @@ const RAW_TOOLS: RawTool[] = [
   ["video-target-size", "Cílová velikost", "Dopočítá bitrate pro cílovou velikost videa.", "media", "client", "Scale", true],
   ["audio-trim-normalize", "Ořez+normalizace audia", "Ořízne a normalizuje hlasitost audia.", "media", "client", "SlidersHorizontal", true],
 
+  ["video-resize", "Změna rozlišení videa", "Změňte rozlišení videa (720p, 1080p, vlastní).", "media", "client", "Scaling", true],
+  ["video-mute", "Ztlumení videa", "Odstraňte zvukovou stopu z videa.", "media", "client", "VolumeX", true],
+  ["video-to-webp", "Video → WebP", "Vytvořte animovaný WebP z videa.", "media", "client", "Image", true],
+  ["audio-to-text", "Přepis audia (Whisper)", "Přepište řeč z audia na text.", "media", "ai", "Mic", true, "Přepis řeči vyžaduje specializovaný model (plánovaná integrace Amazon Transcribe přes AWS). V přípravě."],
+
   // ── Text ───────────────────────────────────────────────────────────────
   ["translate", "Překlad textu", "Přeložte text mezi jazyky pomocí AI.", "text", "ai", "Languages", true],
   ["summarize-text", "Shrnutí textu", "Vytvořte stručné shrnutí dlouhého textu.", "text", "ai", "AlignLeft", true],
@@ -163,12 +202,33 @@ const RAW_TOOLS: RawTool[] = [
   ["text-to-speech", "Text na řeč (TTS)", "Přečtěte text nahlas přes Web Speech API.", "text", "client", "Volume2", true],
   ["text-lines-tool", "Práce s řádky", "Duplicity, řazení, prázdné řádky, unique.", "text", "client", "Rows3", true],
 
+  ["paragraph-writer", "AI psaní odstavce", "Napíše odstavec na dané téma.", "text", "ai", "Pilcrow", true],
+  ["sentence-rewriter", "AI přepis vět", "Přefrázujte věty jinými slovy.", "text", "ai", "Repeat", true],
+  ["essay-writer", "AI esej", "Napíše esej/článek na zadané téma.", "text", "ai", "GraduationCap", true],
+  ["article-writer", "AI článek", "Vytvořte článek z titulku či osnovy.", "text", "ai", "Newspaper", true],
+  ["paragraph-completer", "AI dokončení textu", "Doplňte nedokončený odstavec.", "text", "ai", "TextCursorInput", true],
+  ["content-improver", "AI vylepšení textu", "Zlepšete styly a čitelnost textu.", "text", "ai", "Sparkles", true],
+  ["story-generator", "AI pohádka/příběh", "Vygenerujte příběh podle zadání.", "text", "ai", "BookOpen", true],
+  ["ai-humanizer", "AI humanizér", "Přejděte AI text přirozeněji lidsky.", "text", "ai", "UserRound", true],
+  ["tone-of-voice", "AI tón textu", "Přepište text jiným tónem (formální…).", "text", "ai", "MessageCircle", true],
+  ["faq-generator", "AI FAQ generátor", "Vygenerujte časté otázky a odpovědi.", "text", "ai", "CircleHelp", true],
+  ["business-name-generator", "AI názvy firmy", "Navrhněte názvy pro vaši firmu/projekt.", "text", "ai", "Building2", true],
+  ["blog-outline-generator", "AI osnova blogu", "Vytvořte strukturu blogpostu.", "text", "ai", "ListTree", true],
+  ["blog-post-ideas", "AI nápady na články", "Získejte témata pro vaše články.", "text", "ai", "Lightbulb", true],
+  ["instagram-caption", "AI Instagram popisky", "Vytvořte poutavé popisky a hashtagy.", "text", "ai", "Instagram", true],
+  ["linkedin-post", "AI LinkedIn příspěvek", "Napište profesionální LinkedIn post.", "text", "ai", "Linkedin", true],
+  ["fb-headline-generator", "AI Facebook titulky", "Vygenerujte titulky pro Facebook.", "text", "ai", "Megaphone", true],
+  ["youtube-script", "AI YouTube scénář", "Napište scénář pro YouTube video.", "text", "ai", "Youtube", true],
+
   // ── AI ─────────────────────────────────────────────────────────────────
   ["ai-chat", "AI asistent", "Chatujte s AI asistentem pro různé úkoly.", "ai", "ai", "MessageSquare", false],
   ["ai-vision", "AI analýza obrázku", "Popište a analyzujte obsah obrázku pomocí AI.", "ai", "ai", "Eye", false],
   ["ai-seo", "SEO meta generátor", "Generujte SEO titulky a popisky automaticky.", "ai", "ai", "Search", true],
   ["ai-image-gen", "AI generátor obrázku", "Vytvořte unikátní obrázky z textového popisu.", "ai", "ai", "ImagePlus", true, "Generování obrázků vyžaduje další infrastrukturu (Stable Diffusion / ComfyUI), kterou Ollama neposkytuje. Nástroj je v přípravě."],
   ["ai-sql-gen", "AI generátor SQL", "Převeďte přirozený jazyk na SQL dotazy.", "ai", "ai", "Database", true],
+  ["ai-restore-photo", "AI obnova fotek", "Obnovte poškozené/staré fotografie.", "ai", "ai", "ImageUp", true, "Obnova fotografií vyžaduje specializované modely (GFPGAN/Real-ESRGAN), které nejsou zatím hostované. V přípravě."],
+  ["ai-colorize", "AI kolorování", "Obarvěte černobílé fotografie.", "ai", "ai", "Palette", true, "Kolorování vyžaduje specializované modely (DeOldify). V přípravě."],
+  ["ai-remove-object", "AI odstranění objektů", "Odstraňte nechtěné objekty/osoby z fotky.", "ai", "ai", "Eraser", true, "Odstranění objektů vyžaduje inpainting model (LaMa). V přípravě."],
   ["grammar-check", "AI kontrola pravopisu", "Opravte pravopis a gramatiku českého textu.", "text", "ai", "SpellCheck", true],
   ["ai-email-writer", "AI psaní e-mailu", "Vytvořte e-mail podle zadání a zvoleného tónu.", "text", "ai", "Mail", true],
   ["ai-text-qa", "AI otázky nad textem", "Ptejte se na cokoliv k dodanému textu (kontext).", "ai", "ai", "HelpCircle", true],
@@ -197,6 +257,16 @@ const RAW_TOOLS: RawTool[] = [
   ["gitignore-generator", ".gitignore generátor", "Sestavte .gitignore podle jazyka/nástroje.", "dev", "client", "FileX", true],
   ["fake-data-generator", "Fake data generátor", "Generujte testovací data a exportujte CSV/JSON.", "dev", "client", "Database", true],
   ["color-palette-generator", "Paleta barev", "Vytvořte paletu (komplementární, analogická…).", "dev", "client", "SwatchBook", true],
+
+  ["create-zip", "Vytvořit ZIP", "Zabalte více souborů do ZIP archivu.", "dev", "client", "FolderArchive", true],
+  ["split-csv", "Rozdělení CSV", "Rozdělte velké CSV na více souborů.", "dev", "client", "SplitSquareHorizontal", true],
+  ["split-excel", "Rozdělení Excelu", "Rozdělte .xlsx na více souborů (řádky/listy).", "dev", "client", "Sheet", true],
+  ["csv-to-excel", "CSV → Excel", "Převeďte CSV na formátovaný .xlsx.", "dev", "client", "Table", true],
+  ["excel-to-csv", "Excel → CSV", "Převeďte .xlsx na CSV (vybraný list).", "dev", "client", "FileSpreadsheet", true],
+  ["excel-to-xml", "Excel → XML", "Exportujte tabulku do XML.", "dev", "client", "Code2", true],
+  ["xml-to-excel", "XML → Excel", "Převeďte XML data do .xlsx.", "dev", "client", "FileCode", true],
+  ["xml-to-json", "XML → JSON", "Převeďte XML na JSON (prohlížečový parser).", "dev", "client", "Braces", true],
+  ["json-to-xml", "JSON → XML", "Převeďte JSON na XML.", "dev", "client", "FileCode2", true],
 
   // ── Bezpečnost ─────────────────────────────────────────────────────────
   ["hash-gen", "Hash generátor", "Generujte MD5, SHA-256, SHA-512 hashe.", "security", "client", "Hash", false],
@@ -239,7 +309,12 @@ function canonicalize(raw: RawTool): Tool {
 
   let status: ToolStatus = loc === "ai" ? "limited" : "working";
   if (FFMPEG_TOOLS.has(slug)) status = "limited";
-  if (slug === "ai-image-gen") status = "coming_soon";
+  const COMING_SOON = new Set([
+    "ai-image-gen", "audio-to-text", "ai-restore-photo", "ai-colorize", "ai-remove-object",
+    "pdf-to-pdfa", "epub-to-mobi", "epub-to-azw3",
+  ]);
+  if (COMING_SOON.has(slug)) status = "coming_soon";
+  if (slug === "pdf-edit") status = "experimental";
 
   const slugWords = slug.split(/-+/);
   const keywords = Array.from(new Set([...slugWords, slug].filter(Boolean)));
