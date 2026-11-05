@@ -1,16 +1,26 @@
 "use client";
 
 // PDF na Word — React port legacy tools/assets/js/tools/pdf-to-word.js.
-// pdf.js extrakce textu + minimální OOXML (.docx) přes JSZip. Čistě client-side.
+// pdf.js extrakce textu → layout engine (src/lib/pdf-text-layout.ts) → OOXML
+// (.docx) přes JSZip. Čistě client-side.
+//
+// Layout engine řeší: mezery podle reálných pozic/šířek položek (žádné slepené
+// sloupce ani zbytečné mezery), odstavce (zalomené řádky se slučují), nadpisy
+// (velikost písma), tabulky (konzistentní mřížka buněk — faktury) a
+// vícesloupcovou sazbu.
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { ToolComponentProps, ToolUiI18n } from "@/components/tools/registry/data";
 import {
   useToolUi, fmtSize, loadScript, toastSuccess, Icon, useToolState,
 } from "@/components/tools/tool-runtime";
+import {
+  buildPageBlocks, blocksToDocxFiles,
+  type PdfTextItem, type PageBlocks,
+} from "@/lib/pdf-text-layout";
 
-interface PdfjsTextItem { str: string; transform: number[]; hasEOL?: boolean; }
+interface PdfjsTextItem { str: string; transform: number[]; width: number; height: number; fontName?: string; hasEOL?: boolean; }
 interface PdfjsTextContent { items: PdfjsTextItem[]; }
-interface PdfjsPage { getTextContent(): Promise<PdfjsTextContent>; }
+interface PdfjsPage { getTextContent(): Promise<PdfjsTextContent>; getWidth(): number; getHeight(): number; getViewport(opts: { scale: number }): { width: number; height: number }; }
 interface PdfjsDoc { numPages: number; getPage(n: number): Promise<PdfjsPage>; }
 interface PdfjsLib { GlobalWorkerOptions: { workerSrc: string }; getDocument(opts: { data: Uint8Array }): { promise: Promise<PdfjsDoc> }; }
 interface Jszip {
@@ -24,31 +34,6 @@ function jszip(): Jszip { return new ((window as unknown as { JSZip: JszipCtor }
 
 const ACCEPT = ".pdf,application/pdf";
 
-// XML escape pro obsah odstavce.
-function esc(s: string): string { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
-
-// Rekonstrukce odstavců z textových položek stránky (y-ové řádky + prázdné = konec odstavce).
-function itemsToParagraphs(items: PdfjsTextItem[]): string[] {
-  const rows = new Map<number, { x: number; str: string }[]>();
-  for (const it of items) {
-    if (!it.str) continue;
-    const y = Math.round(it.transform[5]);
-    const row = rows.get(y) ?? [];
-    row.push({ x: it.transform[4], str: it.str });
-    rows.set(y, row);
-  }
-  const ys = Array.from(rows.keys()).sort((a, b) => b - a);
-  const lines = ys.map((y) => rows.get(y)!.sort((a, b) => a.x - b.x).map((r) => r.str).join("").trim()).filter(Boolean);
-  return lines;
-}
-
-const CONTENT_TYPES = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/></Types>`;
-const ROOT_RELS = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>`;
-const DOC_RELS = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"></Relationships>`;
-
 export default function PdfToWord({ locale }: ToolComponentProps) {
   const { t } = useToolUi(locale);
   const { setState: setToolState, rootRef } = useToolState("idle");
@@ -57,12 +42,12 @@ export default function PdfToWord({ locale }: ToolComponentProps) {
   const [error, setError] = useState<string>("");
   const [info, setInfo] = useState<string>("");
   const [done, setDone] = useState(false);
-  const [blobUrl, setBlobUrl] = useState("");
+  const [result, setResult] = useState<{ url: string; name: string; sub: string } | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const dragDepth = useRef(0);
   const [dragOver, setDragOver] = useState(false);
 
-  useEffect(() => { rootRef.current = document.getElementById("tool-root") as HTMLDivElement | null; return () => { if (blobUrl) URL.revokeObjectURL(blobUrl); }; }, [rootRef, blobUrl]);
+  useEffect(() => { rootRef.current = document.getElementById("tool-root") as HTMLDivElement | null; return () => { if (result) URL.revokeObjectURL(result.url); }; }, [rootRef, result]);
   const announce = useCallback((msg: string) => { const live = document.getElementById("tool-live-status"); if (!live) return; live.textContent = ""; window.setTimeout(() => { live.textContent = msg; }, 20); }, []);
   const setState = useCallback((s: "idle" | "ready" | "processing" | "success" | "error", msg?: string) => { setToolState(s); announce(msg ?? t(`state_${s}` as keyof ToolUiI18n)); }, [setToolState, announce, t]);
 
@@ -75,11 +60,11 @@ export default function PdfToWord({ locale }: ToolComponentProps) {
   const addFile = (arr: File[]) => {
     const f = arr.find((x) => x.name.toLowerCase().endsWith(".pdf") || x.type === "application/pdf");
     if (!f) { setError(t("invalid_type")); return; }
-    setFile(f); setError(""); setInfo(""); setDone(false); setBlobUrl(""); setState("ready");
+    setFile(f); setError(""); setInfo(""); setDone(false); setResult(null); setState("ready");
   };
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => { if (e.target.files) addFile(Array.from(e.target.files)); e.target.value = ""; };
   const onDrop = (e: React.DragEvent) => { e.preventDefault(); e.stopPropagation(); setDragOver(false); dragDepth.current = 0; if (e.dataTransfer.files) addFile(Array.from(e.dataTransfer.files)); };
-  const clearAll = () => { setFile(null); setError(""); setProgress(null); setInfo(""); setDone(false); setBlobUrl(""); setState("idle"); };
+  const clearAll = () => { setFile(null); setError(""); setProgress(null); setInfo(""); setDone(false); setResult(null); setState("idle"); };
 
   const run = async () => {
     if (!file) return;
@@ -91,29 +76,38 @@ export default function PdfToWord({ locale }: ToolComponentProps) {
       const buf = await file.arrayBuffer();
       const doc = await pdfjs().getDocument({ data: new Uint8Array(buf) }).promise;
       const total = doc.numPages;
-      const paragraphs: string[] = [];
+      const pages: PageBlocks[] = [];
       for (let i = 1; i <= total; i++) {
         setProgress({ pct: 15 + Math.round((60 * i) / total), label: `Extrahuji stranu ${i}/${total}` });
         const page = await doc.getPage(i);
         const content = await page.getTextContent();
-        paragraphs.push(...itemsToParagraphs(content.items));
+        const viewport = page.getViewport({ scale: 1 });
+        const items: PdfTextItem[] = content.items
+          .filter((it) => typeof it.str === "string")
+          .map((it) => ({
+            str: it.str,
+            x: it.transform[4],
+            y: it.transform[5],
+            width: it.width,
+            height: it.height,
+            fontName: it.fontName,
+          }));
+        pages.push(buildPageBlocks({ items, width: viewport.width, height: viewport.height }));
       }
-      if (!paragraphs.length) {
+      const blockCount = pages.reduce((n, p) => n + p.blocks.length, 0);
+      if (!blockCount) {
         setInfo("PDF neobsahuje textovou vrstvu (pravděpodobně je to sken). Převod nelze provést.");
         setProgress(null); setState("error", "PDF neobsahuje textovou vrstvu.");
         return;
       }
       setProgress({ pct: 80, label: "Sestavuji DOCX…" });
-      const body = paragraphs.map((p) => `  <w:p><w:r><w:t xml:space="preserve">${esc(p)}</w:t></w:r></w:p>`).join("\n");
-      const documentXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>\n${body}\n<w:sectPr><w:pgSz w:w="11906" w:h="16838"/></w:sectPr></w:body></w:document>`;
+      const files = blocksToDocxFiles(pages);
       const zip = jszip();
-      zip.file("[Content_Types].xml", CONTENT_TYPES);
-      zip.file("_rels/.rels", ROOT_RELS);
-      zip.file("word/document.xml", documentXml);
-      zip.file("word/_rels/document.xml.rels", DOC_RELS);
+      for (const [name, data] of Object.entries(files)) zip.file(name, data);
       setProgress({ pct: 95, label: "Balím DOCX…" });
       const blob = await zip.generateAsync({ type: "blob" });
-      setBlobUrl(URL.createObjectURL(blob));
+      const baseName = file.name.replace(/\.pdf$/i, "") || "dokument";
+      setResult({ url: URL.createObjectURL(blob), name: `${baseName}.docx`, sub: "Odstavce, nadpisy a tabulky" });
       setProgress({ pct: 100, label: "Hotovo" }); setProgress(null);
       setDone(true); setState("success");
       toastSuccess("PDF bylo převedeno na DOCX");
@@ -124,7 +118,7 @@ export default function PdfToWord({ locale }: ToolComponentProps) {
     }
   };
 
-  const download = () => { if (blobUrl) { const a = document.createElement("a"); a.href = blobUrl; a.download = "prelozeny.docx"; document.body.appendChild(a); a.click(); a.remove(); } };
+  const download = () => { if (result) { const a = document.createElement("a"); a.href = result.url; a.download = result.name; document.body.appendChild(a); a.click(); a.remove(); } };
 
   return (
     <div className="stack" style={{ maxWidth: "44rem", margin: "0 auto" }}>
@@ -153,7 +147,7 @@ export default function PdfToWord({ locale }: ToolComponentProps) {
       )}
 
       <div className="stack-sm" id="pw2-work">
-        <p className="muted" id="pw2-info" style={{ fontSize: "0.85rem" }}>{info || "Nástroj extrahuje textovou vrstvu PDF a vytvoří z ní upravitelný .docx. Skeny bez textové vrstvy nelze převést."}</p>
+        <p className="muted" id="pw2-info" style={{ fontSize: "0.85rem" }}>{info || "Nástroj extrahuje textovou vrstvu PDF a vytvoří z ní upravitelný .docx — včetně odstavců, nadpisů a tabulek (faktury). Skeny bez textové vrstvy nelze převést."}</p>
         <div className="row" style={{ flexWrap: "wrap" }}>
           <button className="btn btn-primary btn-touch" id="pw2-run" type="button" disabled={!file} onClick={run}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2v6h6" /><path d="M4 4h10l6 6v10H4z" /><path d="M8 14h8" /><path d="M8 18h5" /></svg> Převést na Word
@@ -164,15 +158,15 @@ export default function PdfToWord({ locale }: ToolComponentProps) {
       {progress && (<><div className="progress-track" role="progressbar" aria-valuenow={progress.pct} aria-valuemin={0} aria-valuemax={100}><div className="progress-fill" style={{ width: `${progress.pct}%` }} /></div><p className="progress-label">{progress.label}</p></>)}
       {error && <p className="error-text" role="alert">{error}</p>}
 
-      {done && blobUrl && (
+      {done && result && (
         <div className="result-card">
           <span className="rc-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2v6h6" /><path d="M4 4h10l6 6v10H4z" /></svg></span>
-          <div className="rc-meta"><span className="rc-title">prelozeny.docx</span><span className="rc-sub">Upravitelný text</span></div>
+          <div className="rc-meta"><span className="rc-title">{result.name}</span><span className="rc-sub">{result.sub}</span></div>
           <button className="btn btn-primary" type="button" onClick={download}><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><path d="M7 10l5 5 5-5" /><path d="M12 15V3" /></svg> Stáhnout DOCX</button>
         </div>
       )}
 
-      <div className="privacy-note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m9 12 2 2 4-4" /></svg> Převod běží lokálně přes pdf.js a JSZip. Formátování (tabulky, obrázky) se nepřenáší, pouze text.</div>
+      <div className="privacy-note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m9 12 2 2 4-4" /></svg> Převod běží lokálně přes pdf.js a JSZip — soubor neopustí váš počítač. Obrázky se nepřenášejí, přenáší se text, struktura odstavců a tabulky.</div>
     </div>
   );
 }

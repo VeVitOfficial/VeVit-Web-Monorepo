@@ -1,36 +1,28 @@
 "use client";
 
 // Extrakce textu z PDF — React port legacy tools/assets/js/tools/pdf-extract-text.js.
-// pdf.js getTextContent, rekonstrukce řádků přes transform[5] (y). Čistě client-side.
+// pdf.js getTextContent → sdílený layout engine (src/lib/pdf-text-layout.ts):
+// řádky podle baseline s tolerancí, mezery podle pozic (žádné slepené sloupce),
+// odstavce, tabulky s buňkami oddělenými tabulátorem. Čistě client-side.
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { ToolComponentProps, ToolUiI18n } from "@/components/tools/registry/data";
 import {
   useToolUi, fmtSize, loadScript, toastSuccess, Icon, useToolState, useCopy,
 } from "@/components/tools/tool-runtime";
+import {
+  buildPageBlocks, blocksToPlainText,
+  type PdfTextItem, type PageBlocks,
+} from "@/lib/pdf-text-layout";
 
-interface PdfjsTextItem { str: string; transform: number[]; hasEOL?: boolean; width?: number; }
+interface PdfjsTextItem { str: string; transform: number[]; hasEOL?: boolean; width?: number; height?: number; }
 interface PdfjsTextContent { items: PdfjsTextItem[]; }
-interface PdfjsPage { getTextContent(): Promise<PdfjsTextContent>; }
+interface PdfjsPage { getTextContent(): Promise<PdfjsTextContent>; getViewport(opts: { scale: number }): { width: number; height: number }; }
 interface PdfjsDoc { numPages: number; getPage(n: number): Promise<PdfjsPage>; }
 interface PdfjsLib { GlobalWorkerOptions: { workerSrc: string }; getDocument(opts: { data: Uint8Array }): { promise: Promise<PdfjsDoc> }; }
 
 function pdfjs(): PdfjsLib { return (window as unknown as { pdfjsLib: PdfjsLib }).pdfjsLib; }
 
 const ACCEPT = ".pdf,application/pdf";
-
-// Sestaví řádky z textových položek podle y-ové souřadnice (transform[5]).
-function itemsToLines(items: PdfjsTextItem[]): string {
-  const rows = new Map<number, { x: number; str: string }[]>();
-  for (const it of items) {
-    if (!it.str) continue;
-    const y = Math.round(it.transform[5]);
-    const row = rows.get(y) ?? [];
-    row.push({ x: it.transform[4], str: it.str });
-    rows.set(y, row);
-  }
-  const ys = Array.from(rows.keys()).sort((a, b) => b - a); // shora dolů (y roste nahoru)
-  return ys.map((y) => rows.get(y)!.sort((a, b) => a.x - b.x).map((r) => r.str).join("")).join("\n");
-}
 
 export default function PdfExtractText({ locale }: ToolComponentProps) {
   const { t } = useToolUi(locale);
@@ -74,15 +66,25 @@ export default function PdfExtractText({ locale }: ToolComponentProps) {
       const buf = await file.arrayBuffer();
       const doc = await pdfjs().getDocument({ data: new Uint8Array(buf) }).promise;
       const total = doc.numPages;
-      const parts: string[] = [];
+      const pageTexts: string[] = [];
       for (let i = 1; i <= total; i++) {
         setProgress({ pct: 15 + Math.round((75 * i) / total), label: `Extrahuji stranu ${i}/${total}` });
         const page = await doc.getPage(i);
         const content = await page.getTextContent();
-        const line = itemsToLines(content.items);
-        parts.push(`--- Strana ${i} ---\n${line}`);
+        const viewport = page.getViewport({ scale: 1 });
+        const items: PdfTextItem[] = content.items
+          .filter((it) => typeof it.str === "string" && it.str.trim())
+          .map((it) => ({
+            str: it.str,
+            x: it.transform[4],
+            y: it.transform[5],
+            width: it.width ?? 0,
+            height: it.height ?? 10,
+          }));
+        const pageBlocks = buildPageBlocks({ items, width: viewport.width, height: viewport.height });
+        pageTexts.push(blocksToPlainText([pageBlocks]).trimEnd());
       }
-      const out = parts.join("\n\n");
+      const out = pageTexts.map((txt, i) => `--- Strana ${i + 1} ---\n${txt}`).join("\n\n");
       setText(out); setDone(true);
       setProgress({ pct: 100, label: "Hotovo" }); setProgress(null);
       setState("success");
