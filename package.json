@@ -32,6 +32,7 @@
     "typescript": "^6.0.3"
   },
   "dependencies": {
+    "@aws-sdk/client-bedrock-runtime": "^3.1162.0",
     "@browserbasehq/sdk": "^2.19.1",
     "@stripe/stripe-js": "10.1.0",
     "@supabase/ssr": "^0.12.5",

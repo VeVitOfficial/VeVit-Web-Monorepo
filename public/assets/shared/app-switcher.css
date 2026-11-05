@@ -55,8 +55,15 @@
   .vv-app-switcher__link { padding:.65rem .6rem; }
 }
 
-/* Světlý motiv (Edu přepíná html.light). */
-html.light .vv-app-switcher__menu { --vv-menu-bg:#fff; --vv-menu-border:#e4e4e7; --vv-menu-text:#18181b; --vv-menu-muted:#71717a; --vv-menu-hover:#f4f4f5; --vv-menu-current:#10b98112; box-shadow:0 1.25rem 3rem rgb(15 23 42 / .14); }
-html.light .vv-app-switcher__badge { background:#10b9811f; color:#047857; }
+/* Světlý motiv. Edu přepíná html.light, ostatní aplikace html[data-theme="light"]
+   (theme-toggle v src/components/theme-toggle.tsx) — oba selektory musí fungovat.
+   Bez definice --surface-elev zůstával trigger stále tmavý i na světlém režimu. */
+html[data-theme="light"] { --surface-elev:#f7f8f8; }
+html.light { --surface-elev:#f7f8f8; }
+html[data-theme="light"] .vv-app-switcher__trigger, html.light .vv-app-switcher__trigger { color:#18181b; border-color:#d9dedf; }
+html[data-theme="light"] .vv-app-switcher__trigger:hover, html.light .vv-app-switcher__trigger:hover,
+html[data-theme="light"] .vv-app-switcher__trigger[aria-expanded="true"], html.light .vv-app-switcher__trigger[aria-expanded="true"] { background:#eceff0; }
+html[data-theme="light"] .vv-app-switcher__menu, html.light .vv-app-switcher__menu { --vv-menu-bg:#fff; --vv-menu-border:#e4e4e7; --vv-menu-text:#18181b; --vv-menu-muted:#71717a; --vv-menu-hover:#f4f4f5; --vv-menu-current:#10b98112; box-shadow:0 1.25rem 3rem rgb(15 23 42 / .14); }
+html[data-theme="light"] .vv-app-switcher__badge, html.light .vv-app-switcher__badge { background:#10b9811f; color:#047857; }
 
 @media (prefers-reduced-motion:reduce) { .vv-app-switcher__menu { animation:none; } }

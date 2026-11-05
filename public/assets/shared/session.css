@@ -24,3 +24,15 @@
 .vv-session-menu__item:hover, .vv-session-menu__item:focus-visible { background:#ffffff0d; outline:none; }
 .vv-session-menu__item--danger { color:#f87171; }
 .vv-session-menu__sep { height:1px; margin:.25rem .375rem; background:#232323; }
+
+/* Světlý motiv — Tools přepíná html[data-theme="light"], Edu html.light.
+   Bez této varianty zůstávalo menu natvrdo tmavé i na světlém pozadí. */
+html[data-theme="light"] .vv-session-menu, html.light .vv-session-menu { border-color:#e4e4e7; background:#ffffff; color:#18181b; box-shadow:0 18px 50px rgba(15,23,42,.14); }
+html[data-theme="light"] .vv-session-menu__head, html.light .vv-session-menu__head { border-bottom-color:#ececec; }
+html[data-theme="light"] .vv-session-menu__head small, html.light .vv-session-menu__head small { color:#71717a; }
+html[data-theme="light"] .vv-session-menu__ranks span, html.light .vv-session-menu__ranks span { background:#10b9811f; color:#047857; }
+html[data-theme="light"] .vv-session-menu__item small, html.light .vv-session-menu__item small { color:#71717a; }
+html[data-theme="light"] .vv-session-menu__item:hover, html.light .vv-session-menu__item:hover,
+html[data-theme="light"] .vv-session-menu__item:focus-visible, html.light .vv-session-menu__item:focus-visible { background:#f4f4f5; }
+html[data-theme="light"] .vv-session-menu__item--danger, html.light .vv-session-menu__item--danger { color:#b42323; }
+html[data-theme="light"] .vv-session-menu__sep, html.light .vv-session-menu__sep { background:#ececec; }
