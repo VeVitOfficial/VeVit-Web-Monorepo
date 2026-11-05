@@ -94,7 +94,7 @@ export default function AiEmailWriter({ locale }: ToolComponentProps) {
 
   return (
     <div className="stack" style={{ maxWidth: "46rem", margin: "0 auto" }}>
-      <div className="ai-head"><span className="badge badge-ai">AI</span><span className="muted" style={{ fontSize: "0.875rem" }}>Model: llama3.2</span></div>
+      <div className="ai-head"><span className="badge badge-ai">AI</span></div>
       <textarea className="textarea" id="ew-input" rows={6} placeholder="Popište, o jaký e-mail jde (komu, o čem, co chcete sdělit)…" value={input} onChange={(e) => setInput(e.target.value)} />
       <div className="row" style={{ flexWrap: "wrap", gap: "0.75rem", alignItems: "end" }}>
         <div className="stack-sm"><label className="field-label" htmlFor="ew-tone">Tón</label>

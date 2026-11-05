@@ -87,7 +87,7 @@ function fileToBase64(file: File): Promise<string | null> {
 const ACCEPT = ["image/png", "image/jpeg", "image/webp", "image/bmp"];
 const MAX = 8 * 1024 * 1024;
 const TXT = {
-  model: "Model: llava (vyžaduje `ollama pull llava`)",
+  model: "",
   dzTitle: "Přetáhněte obrázek",
   dzHint: "PNG / JPG / WEBP, analýza přes vision model",
   run: "Analyzovat",
@@ -98,7 +98,7 @@ const TXT = {
   errRead: "Obrázek se nepodařilo načíst.",
   working: "Analyzuji obrázek…",
   qPh: "Na co se zeptat? (prázdné = popiš obrázek)",
-  note: "Obrázek se odešle na lokální Ollamu (model llava). Maximálně 4 obrázky, 8 MB/obrázek. Text otázky max 20 000 znaků. Pokud model llava není nainstalovaný, proxy vrátí srozumitelnou chybu.",
+  note: "Obrázek se odešle na AI inferenci (AWS Bedrock nebo lokální Ollama dle nastavení serveru). Maximálně 4 obrázky, 8 MB/obrázek. Text otázky max 20 000 znaků.",
 };
 
 export default function AiVision({ locale }: ToolComponentProps) {
@@ -176,7 +176,7 @@ export default function AiVision({ locale }: ToolComponentProps) {
   const dzTitle = TXT.dzTitle;
   return (
     <div className="stack" style={{ maxWidth: "46rem", margin: "0 auto" }}>
-      <div className="ai-head"><span className="badge badge-ai">AI</span><span className="muted" style={{ fontSize: "0.875rem" }}>{TXT.model}</span></div>
+      <div className="ai-head"><span className="badge badge-ai">AI</span><span className="muted" style={{ fontSize: "0.875rem" }}>{TXT.model ? <span className="muted" style={{ fontSize: "0.875rem" }}>{TXT.model}</span> : null}</span></div>
 
       <div
         className={`dropzone${dragOver ? " dragover" : ""}`}

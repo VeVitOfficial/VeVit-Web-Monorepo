@@ -49,8 +49,10 @@ export default function ImagesToPdf({ locale }: ToolComponentProps) {
 
   useEffect(() => {
     const urls = files.map((f) => URL.createObjectURL(f));
-    setThumbUrls(urls);
-    return () => urls.forEach((u) => URL.revokeObjectURL(u));
+    let cancelled = false;
+    // asynchronně — setState v efektu musí být mimo synchronní fázi (React Compiler)
+    Promise.resolve().then(() => { if (!cancelled) setThumbUrls(urls); });
+    return () => { cancelled = true; urls.forEach((u) => URL.revokeObjectURL(u)); };
   }, [files]);
 
   useEffect(() => { rootRef.current = document.getElementById("tool-root") as HTMLDivElement | null; return () => { if (blobUrl) URL.revokeObjectURL(blobUrl); }; }, [rootRef, blobUrl]);

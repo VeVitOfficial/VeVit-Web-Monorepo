@@ -90,7 +90,7 @@ function runAi(opts: AiOpts): { abort: () => void } {
 
 // ── cs řetězce (legacy cs-only, ostatní locale fallback na cs) ──────────
 const TXT = {
-  model: "Model: llama3.2",
+  model: "",
   connReady: "Připraveno ke zpracování",
   connProc: "Probíhá zpracování",
   newChat: "Nový chat",
@@ -214,7 +214,7 @@ export default function AiChat({ locale }: ToolComponentProps) {
     <div className="ai-chat" data-copy-label={TXT.copyLabel} data-retry-label={TXT.retryLabel}>
       <div className="ai-head">
         <span className="badge badge-ai">AI</span>
-        <span className="muted" style={{ fontSize: "0.875rem" }}>{TXT.model}</span>
+        <span className="muted" style={{ fontSize: "0.875rem" }}>{TXT.model ? <span className="muted" style={{ fontSize: "0.875rem" }}>{TXT.model}</span> : null}</span>
         <span className={`ai-connection${isLoading ? " is-active" : ""}`} id="ai-connection">
           <span></span>{isLoading ? TXT.connProc : TXT.connReady}
         </span>

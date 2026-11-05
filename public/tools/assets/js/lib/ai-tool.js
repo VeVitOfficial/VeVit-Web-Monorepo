@@ -1,5 +1,10 @@
-// Sdílený helper AI nástrojů (Dávka 12). Zapouzdřuje volání /tools/api/ai/ollama
+// Sdílený helper AI nástrojů (Dávka 12). Zapouzdřuje volání /tools/api/ai/[tool]
 // s NDJSON streamem a bezpečné vykreslení přes jediný VeVitMarkdown renderer.
+//
+// Fix: URL dřív ukazovala na /tools/api/ai/ollama (308 redirect na ai-chat),
+// takže 4 nástroje (translate, summarize, grammar, email) dostávaly 404 —
+// sjednocený route odvozuje nástroj z URL, ne z těla. Endpoint je provider-
+// agnostický (AWS Bedrock nebo Ollama dle env na serveru).
 //
 // Bezpečnost: system prompt nikdy neposílá klient (posílá jen `tool` identifikátor,
 // proxy si prompt dohledá). Uživatelský text jde jako `prompt`.
@@ -7,7 +12,7 @@
   'use strict';
   if (window.AITool) return;
 
-  // opts: { tool, prompt, model?, images?, stream?=true,
+  // opts: { tool, prompt, stream?=true, images?,
   //         onToken(piece, full), onDone(full), onError(msg) }
   // Vrací { abort() }.
   function run(opts) {
@@ -15,13 +20,12 @@
     var full = '';
     var done = false;
     var body = { prompt: opts.prompt, tool: opts.tool, stream: opts.stream !== false };
-    if (opts.model) body.model = opts.model;
     if (opts.images && opts.images.length) body.images = opts.images;
     var root = document.getElementById('tool-root');
     var lifecycle = root && root._toolLifecycle;
     if (lifecycle) lifecycle.setState('processing');
 
-    fetch('/tools/api/ai/ollama', {
+    fetch('/tools/api/ai/' + encodeURIComponent(opts.tool || 'ai-chat'), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),

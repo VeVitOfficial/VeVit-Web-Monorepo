@@ -96,7 +96,7 @@ export default function SummarizeText({ locale }: ToolComponentProps) {
 
   return (
     <div className="stack" style={{ maxWidth: "46rem", margin: "0 auto" }}>
-      <div className="ai-head"><span className="badge badge-ai">AI</span><span className="muted" style={{ fontSize: "0.875rem" }}>Model: llama3.2</span></div>
+      <div className="ai-head"><span className="badge badge-ai">AI</span></div>
       <div className="stack-sm"><label className="field-label" htmlFor="ts-style">Styl shrnutí</label>
         <select className="select" id="ts-style" value={style} onChange={(e) => setStyle(e.target.value)}>
           {STYLES.map((s) => <option key={s} value={s}>{STYLE_LABELS[s]}</option>)}

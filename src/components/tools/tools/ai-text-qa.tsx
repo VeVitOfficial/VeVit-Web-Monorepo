@@ -70,7 +70,7 @@ function runAi(opts: AiOpts): { abort: () => void } {
 }
 
 const TXT = {
-  model: "Model: llama3.2",
+  model: "",
   ctxLabel: "Kontext (text, nad kterým se ptáte)",
   qLabel: "Otázka",
   run: "Zeptat se",
@@ -128,7 +128,7 @@ export default function AiTextQa({ locale }: ToolComponentProps) {
 
   return (
     <div className="stack" style={{ maxWidth: "46rem", margin: "0 auto" }}>
-      <div className="ai-head"><span className="badge badge-ai">AI</span><span className="muted" style={{ fontSize: "0.875rem" }}>{TXT.model}</span></div>
+      <div className="ai-head"><span className="badge badge-ai">AI</span><span className="muted" style={{ fontSize: "0.875rem" }}>{TXT.model ? <span className="muted" style={{ fontSize: "0.875rem" }}>{TXT.model}</span> : null}</span></div>
       <div className="stack-sm">
         <label className="field-label" htmlFor="qa-ctx">{TXT.ctxLabel}</label>
         <textarea className="textarea" id="qa-ctx" rows={8} placeholder={TXT.ctxPh} value={ctx} onChange={(e) => setCtx(e.target.value)} />

@@ -203,7 +203,7 @@ export default function PdfWatermark({ locale }: ToolComponentProps) {
       {previewReady && (
         <div className="stack-sm">
           <span className="field-label">Náhled vodoznaku (strana 1)</span>
-          <WatermarkPreview text={text} size={size} opacity={opacity} angle={angle} color={color} tile={tile} base={page1Ref} />
+          <WatermarkPreview text={text} size={size} opacity={opacity} angle={angle} color={color} tile={tile} base={page1Ref} ready={previewReady} />
         </div>
       )}
 
@@ -224,8 +224,8 @@ export default function PdfWatermark({ locale }: ToolComponentProps) {
 }
 // Živý náhled vodoznaku — základní canvas 1. strany + overlay textu
 // se stejnou matematikou jako run() (centrovaný / dlaždice, škálované na náhled).
-function WatermarkPreview({ text, size, opacity, angle, color, tile, base }: {
-  text: string; size: number; opacity: number; angle: number; color: string; tile: boolean; base: React.MutableRefObject<HTMLCanvasElement | null>;
+function WatermarkPreview({ text, size, opacity, angle, color, tile, base, ready }: {
+  text: string; size: number; opacity: number; angle: number; color: string; tile: boolean; base: React.MutableRefObject<HTMLCanvasElement | null>; ready: boolean;
 }) {
   const ref = useRef<HTMLCanvasElement | null>(null);
   useEffect(() => {
@@ -267,7 +267,7 @@ function WatermarkPreview({ text, size, opacity, angle, color, tile, base }: {
       ctx.restore();
     }
     ctx.restore();
-  }, [text, size, opacity, angle, color, tile, base.current?.width]);
+  }, [text, size, opacity, angle, color, tile, ready]);
   return (
     <div className="pdf-preview-frame">
       <canvas ref={ref} aria-label="Náhled vodoznaku" style={{ maxWidth: "100%", boxShadow: "0 3px 12px rgba(0,0,0,.28)" }} />

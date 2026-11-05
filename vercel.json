@@ -7,6 +7,9 @@
   "functions": {
     "src/app/**/route.ts": {
       "maxDuration": 30
+    },
+    "src/app/tools/api/ai/[tool]/route.ts": {
+      "maxDuration": 60
     }
   },
   "crons": [{ "path": "/api/jobs/run", "schedule": "0 4 * * *" }]

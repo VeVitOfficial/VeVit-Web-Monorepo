@@ -87,7 +87,7 @@ export default function GrammarCheck({ locale }: ToolComponentProps) {
 
   return (
     <div className="stack" style={{ maxWidth: "46rem", margin: "0 auto" }}>
-      <div className="ai-head"><span className="badge badge-ai">AI</span><span className="muted" style={{ fontSize: "0.875rem" }}>Model: llama3.2</span></div>
+      <div className="ai-head"><span className="badge badge-ai">AI</span></div>
       <textarea className="textarea" id="gc-input" rows={10} placeholder="Vložte český text k opravě pravopisu a gramatiky…" value={input} onChange={(e) => setInput(e.target.value)} />
       <button className="btn btn-primary btn-touch" id="gc-run" type="button" disabled={!depsReady && !depsFailed} onClick={go}>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 16 6-12 6 12" /><path d="M8 12h8" /><path d="m16 20 2 2 4-4" /></svg>

@@ -70,7 +70,7 @@ function runAi(opts: AiOpts): { abort: () => void } {
 
 const DIALECTS = ["PostgreSQL", "MySQL", "SQLite", "MSSQL (T-SQL)"];
 const TXT = {
-  model: "Model: llama3.2",
+  model: "",
   dialect: "Dialekt",
   run: "Vygenerovat SQL",
   stop: "Zastavit",
@@ -123,7 +123,7 @@ export default function AiSqlGen({ locale }: ToolComponentProps) {
 
   return (
     <div className="stack" style={{ maxWidth: "46rem", margin: "0 auto" }}>
-      <div className="ai-head"><span className="badge badge-ai">AI</span><span className="muted" style={{ fontSize: "0.875rem" }}>{TXT.model}</span></div>
+      <div className="ai-head"><span className="badge badge-ai">AI</span><span className="muted" style={{ fontSize: "0.875rem" }}>{TXT.model ? <span className="muted" style={{ fontSize: "0.875rem" }}>{TXT.model}</span> : null}</span></div>
       <div className="stack-sm">
         <label className="field-label" htmlFor="sql-dialect">{TXT.dialect}</label>
         <select className="select" id="sql-dialect" value={dialect} onChange={(e) => setDialect(e.target.value)}>

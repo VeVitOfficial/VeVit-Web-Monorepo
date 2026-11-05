@@ -194,7 +194,7 @@ export default function PdfPageNumbers({ locale }: ToolComponentProps) {
       {previewReady && (
         <div className="stack-sm">
           <span className="field-label">Náhled pozice čísla (strana 1)</span>
-          <NumberPreview pos={pos} start={start} fmt={fmt} size={size} base={page1Ref} />
+          <NumberPreview pos={pos} start={start} fmt={fmt} size={size} base={page1Ref} ready={previewReady} />
         </div>
       )}
 
@@ -215,12 +215,10 @@ export default function PdfPageNumbers({ locale }: ToolComponentProps) {
 }
 // Živý náhled čísla strany — základní canvas 1. strany + overlay textu.
 // Pozice/count odpovídají logice run() (stejná matematika, škálovaná na náhled).
-function NumberPreview({ pos, start, fmt, size, base }: {
-  pos: Pos; start: number; fmt: string; size: number; base: React.MutableRefObject<HTMLCanvasElement | null>;
+function NumberPreview({ pos, start, fmt, size, base, ready }: {
+  pos: Pos; start: number; fmt: string; size: number; base: React.MutableRefObject<HTMLCanvasElement | null>; ready: boolean;
 }) {
   const ref = useRef<HTMLCanvasElement | null>(null);
-  const [, force] = useState(0);
-  useEffect(() => { force((n) => n + 1); }, [base.current]);
 
   useEffect(() => {
     const c = ref.current; const b = base.current;
@@ -241,7 +239,7 @@ function NumberPreview({ pos, start, fmt, size, base }: {
     if (pos.endsWith("l")) x = margin;
     else if (pos.endsWith("r")) x = c.width - margin - tw;
     ctx.fillText(label, x, y);
-  }, [pos, start, fmt, size, base.current?.width]);
+  }, [pos, start, fmt, size, ready]);
   return (
     <div className="pdf-preview-frame">
       <canvas ref={ref} aria-label="Náhled číslování strany" style={{ maxWidth: "100%", boxShadow: "0 3px 12px rgba(0,0,0,.28)" }} />

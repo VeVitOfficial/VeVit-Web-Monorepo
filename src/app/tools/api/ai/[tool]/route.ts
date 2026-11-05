@@ -1,6 +1,7 @@
 import { clientIp } from "@/lib/account-auth";
 import { aiSystemPrompt, aiToolKnown } from "@/lib/tools-ai-prompts";
 import { toolsRateLimit } from "@/lib/tools-rate-limit";
+import { bedrockConfigured, bedrockStream } from "@/lib/tools-ai-bedrock";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -10,10 +11,13 @@ export const dynamic = "force-dynamic";
 // catch-allu /tools/api/[...path] a dostávaly tichou 200 od Supabase Edge
 // Function místo skutečné odpovědi. `tool` teď určuje URL segment, ne tělo.
 //
-// Proxy dál forwarduje prompt na Ollama (`OLLAMA_URL`, default
-// localhost:11434). Localhost není z Vercelu dosažitelný, takže bez
-// samostatně hostované Ollamy (nebo náhrady z Fáze 3) endpoint čestně selže
-// na 502 — už bez zmínky o WEDOSu, který od září 2026 neplatí.
+// Provider (Fáze 3 — AWS):
+// 1) AWS Bedrock — pokud jsou nastaveny AWS_REGION + AWS_BEDROCK_MODEL_ID
+//    (Claude přes ConverseStream; credentials přes standardní AWS chain).
+//    Produkuje tentýž NDJSON proud jako Ollama, klienti se nemění.
+// 2) Ollama — fallback, OLLAMA_URL (default localhost:11434). Localhost není
+//    z Vercelu dosažitelný, takže bez Bedrocku (nebo vzdálené Ollamy) endpoint
+//    čestně selže na 502.
 //
 // Hardening: server-side system prompty (nikdy z klienta), klient nesmí
 // zvolit model, limit délky promptu, pravidla pro obrázky jen u vision
@@ -105,6 +109,28 @@ async function handler(request: Request, context: Context): Promise<Response> {
   if (system !== null) payload.system = system;
   if (images.length > 0) payload.images = images;
 
+  // ── AWS Bedrock (primární, když je nakonfigurovaný) ─────────────────────
+  if (bedrockConfigured()) {
+    try {
+      const stream2 = await bedrockStream({ prompt, system, images });
+      return new Response(stream2, {
+        status: 200,
+        headers: {
+          "Content-Type": "application/x-ndjson; charset=utf-8",
+          "Cache-Control": "no-cache, no-store, must-revalidate",
+          "X-Accel-Buffering": "no",
+        },
+      });
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : String(e);
+      // throttling / přístup k modelu odmítnut → srozumitelná hláška
+      if (/Throttling|TooManyRequests/i.test(msg)) return fail(429, "AI služba je přetížená. Zkuste to za chvíli.");
+      if (/AccessDenied|not authorized|Unauthorized/i.test(msg)) return fail(502, "AI služba nemá povolen přístup k modelu (zkontrolujte IAM/Bedrock model access).");
+      return fail(502, "AI služba požadavek nedokončila.");
+    }
+  }
+
+  // ── Ollama fallback ──────────────────────────────────────────────────────
   let upstream: globalThis.Response;
   try {
     upstream = await fetch(`${ollamaUrl().replace(/\/+$/, "")}/api/generate`, {

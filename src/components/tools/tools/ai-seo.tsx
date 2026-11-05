@@ -69,7 +69,7 @@ function runAi(opts: AiOpts): { abort: () => void } {
 }
 
 const TXT = {
-  model: "Model: llama3.2",
+  model: "",
   run: "Vygenerovat meta",
   stop: "Zastavit",
   copy: "Kopírovat",
@@ -119,7 +119,7 @@ export default function AiSeo({ locale }: ToolComponentProps) {
 
   return (
     <div className="stack" style={{ maxWidth: "46rem", margin: "0 auto" }}>
-      <div className="ai-head"><span className="badge badge-ai">AI</span><span className="muted" style={{ fontSize: "0.875rem" }}>{TXT.model}</span></div>
+      <div className="ai-head"><span className="badge badge-ai">AI</span><span className="muted" style={{ fontSize: "0.875rem" }}>{TXT.model ? <span className="muted" style={{ fontSize: "0.875rem" }}>{TXT.model}</span> : null}</span></div>
       <textarea className="textarea" id="seo-input" rows={10} placeholder={TXT.placeholder} value={input} onChange={(e) => setInput(e.target.value)} />
       <button className="btn btn-primary btn-touch" id="seo-run" type="button" onClick={go}>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m21 21-4.34-4.34" /><circle cx="11" cy="11" r="8" /></svg>{" "}

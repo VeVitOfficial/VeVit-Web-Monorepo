@@ -94,7 +94,7 @@ export default function Translate({ locale }: ToolComponentProps) {
 
   return (
     <div className="stack" style={{ maxWidth: "46rem", margin: "0 auto" }}>
-      <div className="ai-head"><span className="badge badge-ai">AI</span><span className="muted" style={{ fontSize: "0.875rem" }}>Model: llama3.2</span></div>
+      <div className="ai-head"><span className="badge badge-ai">AI</span></div>
       <div className="row" style={{ flexWrap: "wrap", gap: "0.75rem", alignItems: "end" }}>
         <div className="stack-sm"><label className="field-label" htmlFor="tt-src">Z jazyka</label>
           <select className="select" id="tt-src" value={src} onChange={(e) => setSrc(e.target.value)}>
