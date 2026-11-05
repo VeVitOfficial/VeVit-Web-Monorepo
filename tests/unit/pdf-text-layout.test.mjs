@@ -4,7 +4,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
-  buildLines, buildPageBlocks, blocksToDocxFiles, blocksToPlainText, detectTable,
+  buildLines, buildPageBlocks, blocksToDocxFiles, blocksToPlainText, detectTable, detectPageColumns,
 } from "../../src/lib/pdf-text-layout.ts";
 
 // helper: položka pdf.js ve tvaru drawText(x, y, size, str)
@@ -147,13 +147,21 @@ test("vícesloupcová sazba: sloupce se nepropletou a výstup jde sloupec po slo
   for (const t of colA) { if (t) items.push(it(t, 50, y, 10, 0.55)); y -= 15; }
   y = 760;
   for (const t of colB) { if (t) items.push(it(t, 330, y, 10, 0.55)); y -= 15; }
+  const lines = buildLines(items);
+  // detekce sloupců musí reálně proběhnout (ne fallback segmentů)
+  const cols = detectPageColumns(lines, 595.28);
+  assert.ok(cols, "detekce sloupců musí uspět");
+  assert.deepEqual(cols.map((b) => b.length), [5, 4]);
   const page = buildPageBlocks({ items, width: 595.28, height: 841.89 });
   const texts = page.blocks.filter((b) => b.kind === "paragraph").map((b) => b.text);
-  // vše ze sloupce A před sloupcem B; žádný text nesmí míchat sloupce
   const joined = texts.join("\n");
   assert.ok(texts.some((t) => t.includes("plyne přes řádky")), "sloupec A kompletní");
   assert.ok(texts.some((t) => t.includes("prohození pořadí")), "sloupec B kompletní");
   assert.ok(!texts.some((t) => t.includes("První sloupec") && t.includes("Druhý sloupec")), "sloupce nesmí být slepené do jednoho odstavce");
+  // pořadí: poslední text sloupce A ("Nový odstavec") před první kompletní větou sloupce B ("Typická chyba")
+  const idxNovy = texts.findIndex((t) => t.includes("Nový odstavec"));
+  const idxTypicka = texts.findIndex((t) => t.includes("Typická chyba"));
+  assert.ok(idxNovy !== -1 && idxTypicka !== -1 && idxNovy < idxTypicka, "sloupec A celý před sloupcem B");
 });
 
 test("roztažené mezery: široké gapy → jednoduché mezery, ne žádné ani trojné", () => {

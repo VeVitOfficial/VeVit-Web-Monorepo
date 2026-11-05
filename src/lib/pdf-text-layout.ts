@@ -47,10 +47,6 @@ function cleanItemText(str: string): string {
   return str.replace(/\s+/g, " ").trim();
 }
 
-function endsWithSentence(text: string): boolean {
-  return /[:;.!?]["»”')\]]?$/.test(text.trim());
-}
-
 function startsLowercase(text: string): boolean {
   return /^[,;)\]»”a-záčďéěíňóřšťúůýžäöüßæøå mn]/.test(text);
 }
@@ -188,7 +184,9 @@ function lineSegments(line: LayoutLine): { str: string; x: number; xEnd: number 
  * Vrací null, pokud stránka není čistě vícesloupcová.
  */
 export function detectPageColumns(lines: LayoutLine[], pageWidth: number): LayoutLine[][] | null {
-  if (lines.length < 6) return null;
+  // pozor: vícesloupcové řádky sdílejí baseline, takže lines je méně než
+  // celkový počet vizuálních řádků obou sloupců — prahová hodnota musí být nízká
+  if (lines.length < 4) return null;
 
   const segs = lines.flatMap((l) => lineSegments(l).map((s) => ({ line: l, seg: s })));
   if (segs.length < 8) return null;
