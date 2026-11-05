@@ -140,7 +140,11 @@ async function handler(request: Request, context: Context): Promise<Response> {
       cache: "no-store",
       signal: AbortSignal.timeout(OLLAMA_TIMEOUT_MS),
     });
-  } catch {
+  } catch (e) {
+    // timeout ≠ nedostupnost: model se načítá/inference trvá déle než 60 s
+    if (e instanceof Error && (e.name === "TimeoutError" || e.name === "AbortError")) {
+      return fail(504, "AI služba neodpověděla v čase (60 s). Zkuste kratší dotaz nebo to zopakujte.");
+    }
     return fail(502, "AI služba není dostupná. Endpoint vyžaduje samostatně hostovanou inferenci.");
   }
 
