@@ -80,3 +80,8 @@ Každé rozhodnutí: co, proč, alternativy. Nová rozhodnutí přidávej na kon
 ## D15 — Prahy PDF → DOCX podle režimu
 - **Co:** upravitelný režim: tolerantní SSIM ≥ 0,4, text ≥ 0,95, ≤ 5 chybějících znaků; přesný režim: tolerantní SSIM ≥ 0,7, ≤ 5 chybějících znaků, pořadí textu se nehodnotí. Výjimky s důvodem v `thresholds.json`.
 - **Proč:** upravitelný režim záměrně mění sazbu (odstavce tečou, Word metriky řádků) a referenční render je LibreOffice; posun o 1–2 pt na řádek sníží SSIM i u vizuálně shodné stránky. Pro srovnání: pdf2docx dosahuje na stejném korpusu 0,05–0,84.
+
+## D16 — Řádkování víceřádkových odstavců „alespoň“ = rozteč z PDF
+- **Co:** odstavce s více řádky dostanou `w:lineRule="atLeast"` s roztečí účaří změřenou v PDF; jednořádkové zůstávají „jednoduché“.
+- **Proč:** násobek („auto“) závisí na metrikách fontu v aplikaci, která DOCX zobrazuje (LibreOffice a Word se liší), a chyba se sčítá po řádcích. Měřeno (tolerantní SSIM, LO render): dva-sloupce 0,20 → 0,61, diakritika 0,59 → 0,79, obrázky 0,88 → 0,995, sken 0,16 → 0,38; zhoršení jen zahlavi-zapati 0,57 → 0,35 (konstantní posun prvního nadpisu, otevřený problém 3). „Alespoň“ se při zvětšení písma neořízne, takže úpravy zůstávají pohodlné.
+- **Zkoušeno a zamítnuto:** „alespoň“ i u jednořádkových odstavců (diakritika 0,79 → 0,66).

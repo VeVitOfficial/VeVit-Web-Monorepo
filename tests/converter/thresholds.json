@@ -22,15 +22,19 @@
       "maxMs": 60000,
       "exceptions": {
         "dva-sloupce": {
-          "meanSsimSoft": 0.18,
+          "meanSsimSoft": 0.5,
           "textSimilarity": 0.88,
-          "reason": "sloupce sekce: LibreOffice láme sloupce jinak než originál (řádkování Caladea), text kompletní"
+          "reason": "sloupce sekce: pořadí čtení textu v renderu LibreOffice (sloupce) se liší od původního toku; text úplný"
         },
         "sken": {
           "meanSsimSoft": 0.1,
           "textSimilarity": 0.2,
           "missingChars": 200,
           "reason": "OCR dvousloupcového skenu: text rozpoznán, pořadí a rozvržení zatím nevěrné (otevřený problém v PROGRESS.md)"
+        },
+        "zahlavi-zapati": {
+          "meanSsimSoft": 0.3,
+          "reason": "první nadpis stránky o 2,2 pt níž v LibreOffice (vlastní ascent pro Carlito u jednoduchého řádkování); tělo pak sedí přesně. Ověřit ve Wordu."
         }
       }
     },

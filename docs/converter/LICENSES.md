@@ -16,6 +16,13 @@ Pravidlo: v produkčním bundlu jen permisivní licence (MIT, BSD, Apache-2.0, I
 | Liberation Sans/Serif/Mono | 2.1.5 | OFL-1.1 | `converter/fonts/Liberation*.woff2` | `OFL-Liberation.txt` |
 | pdfjs-dist | 6.4.299 | Apache-2.0 | chunk workeru PDF → DOCX | NOTICE v bundlu (licenční komentář zůstává) |
 | fflate | 0.8.2 | MIT | chunky workerů | licenční komentář |
+| pdf.js wasm dekodéry (OpenJPEG, PDFium JBIG2, qcms) | z pdfjs-dist 6.4.299 | BSD-2-Clause, BSD-3-Clause, MIT | `converter/pdfjs/wasm/` | `pdfjs/wasm/LICENSE_*` |
+| tesseract.js + worker | 5.1.1 (už vendorované nástrojem ocr-pdf) | Apache-2.0 | `tesseract/` | LICENSES.txt |
+| tesseract.js-core glue `tesseract-core-simd-lstm.js` | 5.1.1 (doplněno převodníkem) | Apache-2.0 | `tesseract/` | LICENSES.txt |
+| tessdata ces, eng | (už vendorované) | Apache-2.0 | `tesseract/*.traineddata` | LICENSES.txt |
+
+Souhrnný soubor pro distribuci: `public/tools/assets/js/lib/converter/LICENSES.txt` (odkaz „Licence komponent“ pod oběma nástroji).
+Skriptovací runtime pdf.js (`quickjs-eval.wasm`) se záměrně nenasazuje.
 
 Žádná GPL/LGPL/AGPL/MPL závislost ve WASM stromu (`grep -v MIT|Apache|BSD|Zlib|ISC|Unicode|BSL` nad `cargo tree` je prázdný).
 
@@ -29,6 +36,9 @@ Pravidlo: v produkčním bundlu jen permisivní licence (MIT, BSD, Apache-2.0, I
 | @playwright/test 1.63 | Apache-2.0 | harness |
 | pngjs 7, jsqr 1.4 | MIT, Apache-2.0 | metriky (PNG, dekódování QR) |
 | zbarimg (zbar) | LGPL-2.1 | kontrolní dekódování QR v CLI (volitelné) |
+| PDFium WASM `@hyzyla/pdfium` 3.0.0 | MIT (PDFium BSD-3) | benchmark extrakce (`tools/bench-extract.ts`), mimo repo |
+| tesseract CLI 5 | Apache-2.0 | OCR v Node harnessu (`tools/ocr-hocr.ts`), jen lokálně |
+| obraz `mcr.microsoft.com/playwright:v1.63.0-noble` | Apache-2.0 (Playwright) + balíčky Ubuntu | WebKit testy na hostiteli bez knihoven |
 | Noto Serif (fixture vloženého fontu) | OFL-1.1 | `tests/converter/fonts-embed/` |
 
 ## Posouzené a nepoužité varianty

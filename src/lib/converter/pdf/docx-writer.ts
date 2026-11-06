@@ -109,7 +109,9 @@ function paraXml(c: Ctx, p: Para, extraPPr = ""): string {
   if (p.line && p.runs.length) {
     const natural = (p.size ?? base.size) * lineFactor(p.runs[0]?.font || base.font);
     const mult = p.line / natural;
-    if (mult > 0.75 && mult < 3) sp.push(`w:line="${Math.round(240 * mult)}" w:lineRule="auto"`);
+    // Rozteč z PDF „alespoň“: nezávisí na metrikách fontu v Wordu/LibreOffice a při zvětšení
+    // písma se řádek neořízne. Menší než přirozená výška jen jako „přesně“.
+    if (mult >= 0.98 && mult < 3) sp.push(`w:line="${tw(p.line)}" w:lineRule="atLeast"`);
     else sp.push(`w:line="${tw(p.line)}" w:lineRule="exact"`);
   }
   pp.push(`<w:spacing ${sp.join(" ")}/>`);
