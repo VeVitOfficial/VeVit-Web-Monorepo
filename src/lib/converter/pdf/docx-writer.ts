@@ -60,6 +60,8 @@ function runXml(r: Run, base: { font: string; size: number; bold: boolean; color
   if (Math.abs(r.size - base.size) >= 0.25) rp.push(`<w:sz w:val="${Math.round(r.size * 2)}"/><w:szCs w:val="${Math.round(r.size * 2)}"/>`);
   const style = r.link ? '<w:rStyle w:val="Hyperlink"/>' : "";
   const rpr = style || rp.length ? `<w:rPr>${style}${rp.join("")}</w:rPr>` : "";
+  // "\n" = ruční zalomení řádku (<w:br/>), "\t" = tabulátor.
+  if (r.text === "\n") return `<w:r>${rpr}<w:br/></w:r>`;
   return r.text.split("\t").map((t, i) => (i ? `<w:r>${rpr}<w:tab/></w:r>` : "") + (t ? `<w:r>${rpr}<w:t xml:space="preserve">${xmlEsc(t)}</w:t></w:r>` : "")).join("");
 }
 
@@ -103,7 +105,10 @@ function paraXml(c: Ctx, p: Para, extraPPr = ""): string {
     }
     pp.push(`<w:numPr><w:ilvl w:val="${level}"/><w:numId w:val="${ls.current}"/></w:numPr>`);
   } else c.lists.current = null;
-  if (p.borderBottom) pp.push(`<w:pBdr><w:bottom w:val="single" w:sz="${p.borderBottom.sz}" w:space="${Math.max(0, Math.min(31, Math.round(p.borderBottom.space)))}" w:color="${p.borderBottom.color}"/></w:pBdr>`);
+  if (p.borderBottom || p.borderTop) {
+    const b = (side: string, v: (Border & { space: number }) | undefined) => (v ? `<w:${side} w:val="single" w:sz="${v.sz}" w:space="${Math.max(0, Math.min(31, Math.round(v.space)))}" w:color="${v.color}"/>` : "");
+    pp.push(`<w:pBdr>${b("top", p.borderTop)}${b("bottom", p.borderBottom)}</w:pBdr>`);
+  }
   const base = styleRun(c.doc, p);
   const sp: string[] = [`w:before="${tw(p.before)}"`, `w:after="${tw(p.after)}"`];
   if (p.line && p.runs.length) {
@@ -202,7 +207,10 @@ function tableXml(c: Ctx, t: Table, leftMargin: number): string {
     });
     const trp: string[] = [];
     if (row.header) trp.push("<w:tblHeader/>");
-    if (!t.layout && row.height > 0) trp.push(`<w:trHeight w:val="${tw(row.height)}" w:hRule="atLeast"/>`);
+    // Výška řádku v PDF je od středu linky ke středu linky; aplikace k výšce řádku přičte
+    // polovinu horní a polovinu dolní linky (měřeno: mřížka 0,5 pt → +0,5 pt, jen dolní 0,75 pt → +0,375 pt).
+    const border = Math.max(0, ...row.cells.map((c) => ((c.borders.top?.sz ?? 0) + (c.borders.bottom?.sz ?? 0)) / 16));
+    if (!t.layout && row.height > 0) trp.push(`<w:trHeight w:val="${tw(Math.max(1, row.height - border))}" w:hRule="atLeast"/>`);
     trp.push("<w:cantSplit/>");
     return `<w:tr><w:trPr>${trp.join("")}</w:trPr>${cells.join("")}</w:tr>`;
   });

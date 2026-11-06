@@ -568,7 +568,44 @@ export function paragraphs(lines: Line[], box: { x0: number; x1: number }, fonts
     prevBottomBase = g[g.length - 1].base;
     paras.push(para);
   }
-  return paras;
+  return joinLineBreaks(paras);
+}
+
+/**
+ * Řádky oddělené ručním zalomením (Shift+Enter, `<w:br/>`) mají v PDF stejnou rozteč jako
+ * řádky odstavce, ale nezalamují se. Jako samostatné jednořádkové odstavce by jejich výška
+ * závisela na metrikách fontu v aplikaci, která DOCX zobrazí (posun ~0,3 pt na řádek), proto
+ * se spojí do jednoho odstavce se zalomeními a roztečí z PDF.
+ */
+function joinLineBreaks(paras: Para[]): Para[] {
+  const out: Para[] = [];
+  for (const p of paras) {
+    const prev = out[out.length - 1];
+    const ok = prev && !prev.heading && !p.heading && !prev.list && !p.list && !prev.tabs && !p.tabs && p.runs.length && prev.runs.length &&
+      prev.firstBase != null && prev.lastBase != null && p.firstBase != null && p.lastBase != null &&
+      Math.abs((prev.size ?? 0) - (p.size ?? 0)) < 0.6 && prev.align === p.align && Math.abs(prev.indLeft - p.indLeft) < 1.5 && Math.abs(p.indFirst) < 1.5;
+    if (ok) {
+      const gap = p.firstBase! - prev.lastBase!;
+      const size = p.size ?? 11;
+      // Stejná rozteč jako uvnitř předchozího bloku (nebo běžné jednoduché řádkování).
+      const inner = prev.line ?? null;
+      const pitchOk = inner != null ? Math.abs(gap - inner) < 0.5 : gap < size * 1.45 && gap > size * 0.9;
+      const innerOk = p.line == null || Math.abs(p.line - gap) < 0.5;
+      // Rozteč menší než přirozený řádek by šla jen „přesně“, a to aplikace sázejí různě.
+      const [asc, desc] = wordMetrics(prev.runs[0]?.font ?? "");
+      const roomy = gap >= size * (asc + desc) * 0.98;
+      if (pitchOk && innerOk && roomy) {
+        prev.runs.push({ ...prev.runs[prev.runs.length - 1], text: "\n", link: undefined });
+        prev.runs.push(...p.runs);
+        prev.line = inner ?? gap;
+        prev.lastBase = p.lastBase;
+        prev.bottom = p.bottom;
+        continue;
+      }
+    }
+    out.push(p);
+  }
+  return out;
 }
 
 function firstWordWidth(l: Line): number {

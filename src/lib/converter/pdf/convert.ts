@@ -112,7 +112,27 @@ async function editableModel(models: PageModel[], pageLines: Line[][], proxies: 
   const bodyRun = bodyStyle(models, fonts, body);
 
   // Okraje: společné pro dokument (Word má okraje na sekci), z nejmenších okrajů obsahu.
-  const ms = models.map((m, i) => marginsOf(m, contentLines[i], (f) => mapFont(f)));
+  // Linky v pásu záhlaví/zápatí (podtržení záhlaví, linka nad zápatím) patří k nim, ne k tělu:
+  // jinak posunou horní/dolní okraj a v těle vznikne prázdná linka navíc.
+  const hfRules: { header?: { color: string; sz: number; space: number }; footer?: { color: string; sz: number; space: number } } = {};
+  const hfPaths = new Set<PathShape>();
+  models.forEach((m, i) => {
+    const hl = pageLines[i].filter((l) => hf.header.has(l)), fl = pageLines[i].filter((l) => hf.footer.has(l));
+    const bodyTop = Math.min(...contentLines[i].map((l) => l.top), m.height), bodyBottom = Math.max(...contentLines[i].map((l) => l.bottom), 0);
+    for (const p of m.paths) {
+      const b = p.bbox, isRule = b.h <= 3 && b.w > m.width * 0.3;
+      if (!isRule) continue;
+      const y = b.y + b.h / 2;
+      if (hl.length && y > Math.max(...hl.map((l) => l.bottom)) - 1 && y < bodyTop) {
+        hfPaths.add(p);
+        hfRules.header ??= { color: hex(p.fill ?? p.stroke ?? [0, 0, 0]), sz: Math.max(2, Math.round(Math.max(p.lineWidth, b.h) * 8)), space: Math.max(0, y - Math.max(...hl.map((l) => l.bottom))) };
+      } else if (fl.length && y < Math.min(...fl.map((l) => l.top)) + 1 && y > bodyBottom) {
+        hfPaths.add(p);
+        hfRules.footer ??= { color: hex(p.fill ?? p.stroke ?? [0, 0, 0]), sz: Math.max(2, Math.round(Math.max(p.lineWidth, b.h) * 8)), space: 0 };
+      }
+    }
+  });
+  const ms = models.map((m, i) => marginsOf({ ...m, paths: m.paths.filter((p) => !hfPaths.has(p)) }, contentLines[i], (f) => mapFont(f)));
   const margins = {
     top: Math.min(...ms.map((m) => m.top)), bottom: Math.min(...ms.map((m) => m.bottom)),
     left: Math.min(...ms.map((m) => m.left)), right: Math.min(...ms.map((m) => m.right)),
@@ -124,7 +144,7 @@ async function editableModel(models: PageModel[], pageLines: Line[][], proxies: 
   for (let i = 0; i < models.length; i++) {
     const m = models[i];
     const { blocks: imgs, used } = await pageImages(m, proxies[i], hooks, contentLines[i], counter, false);
-    const paths = m.paths.filter((p) => !used.has(p));
+    const paths = m.paths.filter((p) => !used.has(p) && !hfPaths.has(p));
     const blocks = layoutPage({ ...m, paths }, contentLines[i], margins, fonts, ctxFor(m), imgs);
     reports[i].tables = blocks.filter((b) => b.kind === "table" && !b.layout).length;
     reports[i].images = imgs.length;
@@ -138,14 +158,19 @@ async function editableModel(models: PageModel[], pageLines: Line[][], proxies: 
   for (let k = 0; k < 3; k++) headingStyles[k] ??= { font: bodyRun.font, size: Math.round(body * (1.6 - k * 0.2) * 2) / 2, bold: true, color: bodyRun.color };
 
   const hfBox = { x0: margins.left, x1: models[0].width - margins.right };
-  const hfBlocks = (ls: Line[] | undefined) => (ls ? paragraphs(ls, hfBox, fonts, ctxFor(models[0]), true) : []);
+  const hfBlocks = (ls: Line[] | undefined, rule?: { color: string; sz: number; space: number }, above = false) => {
+    const ps = ls ? paragraphs(ls, hfBox, fonts, ctxFor(models[0]), true) : [];
+    // Linka pod záhlavím = dolní ohraničení posledního odstavce; nad zápatím = horní prvního.
+    if (rule && ps.length) { if (above) ps[0].borderTop = rule; else ps[ps.length - 1].borderBottom = rule; }
+    return ps;
+  };
   const metric = (l: Line) => wordMetrics(mapFont(fonts[l.segs[0].glyphs[0]?.font]).family);
   const headerOffset = hf.headerText ? Math.max(0, Math.min(...hf.headerText.map((l) => l.base - metric(l)[0] * l.size))) : undefined;
   const footerOffset = hf.footerText ? Math.max(0, models[0].height - Math.max(...hf.footerText.map((l) => l.base + metric(l)[1] * l.size))) : undefined;
   return {
     pages,
-    header: hf.headerText ? { blocks: hfBlocks(hf.headerText), offset: headerOffset } : undefined,
-    footer: hf.footerText ? { blocks: hfBlocks(hf.footerText), pageField: true, offset: footerOffset } : undefined,
+    header: hf.headerText ? { blocks: hfBlocks(hf.headerText, hfRules.header), offset: headerOffset } : undefined,
+    footer: hf.footerText ? { blocks: hfBlocks(hf.footerText, hfRules.footer, true), pageField: true, offset: footerOffset } : undefined,
     body: bodyRun,
     headings: headingStyles,
     title: firstTitle(pages),

@@ -85,3 +85,16 @@ Každé rozhodnutí: co, proč, alternativy. Nová rozhodnutí přidávej na kon
 - **Co:** odstavce s více řádky dostanou `w:lineRule="atLeast"` s roztečí účaří změřenou v PDF; jednořádkové zůstávají „jednoduché“.
 - **Proč:** násobek („auto“) závisí na metrikách fontu v aplikaci, která DOCX zobrazuje (LibreOffice a Word se liší), a chyba se sčítá po řádcích. Měřeno (tolerantní SSIM, LO render): dva-sloupce 0,20 → 0,61, diakritika 0,59 → 0,79, obrázky 0,88 → 0,995, sken 0,16 → 0,38; zhoršení jen zahlavi-zapati 0,57 → 0,35 (konstantní posun prvního nadpisu, otevřený problém 3). „Alespoň“ se při zvětšení písma neořízne, takže úpravy zůstávají pohodlné.
 - **Zkoušeno a zamítnuto:** „alespoň“ i u jednořádkových odstavců (diakritika 0,79 → 0,66).
+
+## D17 — PR proti `feat/tools-overhaul`
+- **Co:** PR #3 `feat/converter-docx-pdf` → `feat/tools-overhaul` (obě větve pushnuté). Výchozí větev remote je `master`; `feat/tools-overhaul` (102 commitů mimo převodník) nebyla na remote.
+- **Proč:** review obsahuje jen převodník. PR proti `master` by nesl i celou nepublikovanou práci `feat/tools-overhaul`. Merge pořadí: nejdřív `feat/tools-overhaul` → `master`, pak tento PR (rozhodne Vít).
+
+## D18 — Příčina horší vizuální shody „diakritika-fonty“ (PDF → Word): ruční zalomení řádků
+- **Zjištění (měřeno, `pdftotext -bbox-layout` originál vs. render):** vodorovně vše sedí — pravé okraje řádků ±0,1 pt, takže **šířky glyfů a mapování fontů jsou správně**; textová shoda 1,000 a 0 chybějících/přebývajících znaků, takže **ToUnicode ani kombinující znaky (č, ř, ů…) problém nejsou** (pdf.js dává předskládané znaky, NFC normalizace v metrice nic nemění). Chyba je **svislá**: v blocích Cambria/Arial/Times se řádky posouvaly o 0,25–0,35 pt na řádek (−1,6 pt po pěti řádcích).
+- **Příčina:** řádky každého bloku jsou ve zdrojovém DOCX oddělené ručním zalomením (`<w:br/>`), nezalamují se. Rekonstrukce je správně nespojila do tekoucího odstavce, ale zapsala jako samostatné jednořádkové odstavce s „jednoduchým“ řádkováním. Výška takového řádku se pak počítá z metrik fontu v aplikaci, která DOCX zobrazí (LibreOffice ≠ Word metriky Caladea/Liberation), a rozdíl se sčítá po řádcích.
+- **Oprava:** po sobě jdoucí řádky se stejnou roztečí, stejným odsazením a velikostí se spojí do jednoho odstavce se zalomeními (`<w:br/>`) a roztečí „alespoň“ z PDF (D16). Neplatí pro rozteč menší než přirozená výška řádku (šlo by jen „přesně“, které aplikace sázejí různě). Výsledek: tolerantní SSIM 0,793 → 0,918 (pdf2docx 0,835).
+
+## D19 — Výška řádků tabulky bez tloušťky linek; linky záhlaví/zápatí patří k nim
+- **Tabulky:** výška řádku z PDF je od středu linky ke středu další; Word i LibreOffice k `trHeight` přičtou polovinu horní a polovinu dolní linky (měřeno: mřížka 0,5 pt → +0,5 pt na řádek, jen dolní linka 0,75 pt → +0,375 pt). `trHeight` se o ni zmenší. Vícestránková tabulka 0,508 → 0,757 (pdf2docx 0,643), sloučené buňky 0,510 → 0,734 (0,538).
+- **Záhlaví/zápatí:** vodorovná linka mezi textem záhlaví a tělem (a nad zápatím) se dřív brala jako obsah těla: posunula horní okraj stránky o ~17 pt a v těle vznikla prázdná linka. Teď je dolním (horním) ohraničením odstavce záhlaví (zápatí). 0,353 → 0,853 (pdf2docx 0,739).

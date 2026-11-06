@@ -45,6 +45,7 @@ export interface Para {
   size?: number;
   /** Dolní ohraničení (vodorovná linka pod odstavcem). */
   borderBottom?: Border & { space: number };
+  borderTop?: Border & { space: number };
   pageBreakBefore?: boolean;
   /** Zarážky tabulátoru (pt od levého okraje oblasti) pro řádky s více segmenty. */
   tabs?: { pos: number; val: "left" | "right" | "center" }[];
