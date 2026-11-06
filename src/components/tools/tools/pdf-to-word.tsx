@@ -1,172 +1,197 @@
 "use client";
 
-// PDF na Word — React port legacy tools/assets/js/tools/pdf-to-word.js.
-// pdf.js extrakce textu → layout engine (src/lib/pdf-text-layout.ts) → OOXML
-// (.docx) přes JSZip. Čistě client-side.
-//
-// Layout engine řeší: mezery podle reálných pozic/šířek položek (žádné slepené
-// sloupce ani zbytečné mezery), odstavce (zalomené řádky se slučují), nadpisy
-// (velikost písma), tabulky (konzistentní mřížka buněk — faktury) a
-// vícesloupcovou sazbu.
-import { useCallback, useEffect, useRef, useState } from "react";
-import type { ToolComponentProps, ToolUiI18n } from "@/components/tools/registry/data";
-import {
-  useToolUi, fmtSize, loadScript, toastSuccess, Icon, useToolState,
-} from "@/components/tools/tool-runtime";
-import {
-  buildPageBlocks, blocksToDocxFiles,
-  type PdfTextItem, type PageBlocks,
-} from "@/lib/pdf-text-layout";
-
-interface PdfjsTextItem { str: string; transform: number[]; width: number; height: number; fontName?: string; hasEOL?: boolean; }
-interface PdfjsTextContent { items: PdfjsTextItem[]; }
-interface PdfjsPage { getTextContent(): Promise<PdfjsTextContent>; getWidth(): number; getHeight(): number; getViewport(opts: { scale: number }): { width: number; height: number }; }
-interface PdfjsDoc { numPages: number; getPage(n: number): Promise<PdfjsPage>; }
-interface PdfjsLib { GlobalWorkerOptions: { workerSrc: string }; getDocument(opts: { data: Uint8Array }): { promise: Promise<PdfjsDoc> }; }
-interface Jszip {
-  file(name: string, data: string): unknown;
-  generateAsync(opts: { type: "blob" }): Promise<Blob>;
-}
-interface JszipCtor { new (): Jszip; }
-
-function pdfjs(): PdfjsLib { return (window as unknown as { pdfjsLib: PdfjsLib }).pdfjsLib; }
-function jszip(): Jszip { return new ((window as unknown as { JSZip: JszipCtor }).JSZip)(); }
+// PDF → Word (DOCX) v prohlížeči: pdf.js 6 ve web workeru, rekonstrukce odstavců, tabulek,
+// záhlaví/zápatí a stylů (upravitelný režim) nebo absolutně umístěné prvky (přesný režim),
+// OCR skenů přes tesseract.js. Soubor se nikam neodesílá. Návrh a měření: docs/converter/.
+import { useCallback, useRef, useState, useSyncExternalStore } from "react";
+import type { ToolComponentProps } from "@/components/tools/registry/data";
+import { useToolState, fmtSize, toastSuccess, Icon } from "@/components/tools/tool-runtime";
+import { ConverterDropzone, ConverterProgress, ConverterWarnings, ConverterPreview, PrivacyNote, downloadBlob, type PhaseState } from "@/components/tools/converter-ui";
+import { DOCX_PDF_I18N, PDF_DOCX_I18N, fmt } from "@/lib/converter/i18n";
+import { convertPdfToDocx, ConverterError, type PdfProgress } from "@/lib/converter/pdf-docx-client";
+import { convertDocxToPdf, defaultLimits } from "@/lib/converter/docx-pdf-client";
+import { deviceProfile, limitsFor } from "@/lib/converter/limits";
+import { isCached } from "@/lib/converter/assets";
+import { previewFirstPage } from "@/lib/converter/preview";
+import type { PdfToDocxResult } from "@/lib/converter/protocol";
 
 const ACCEPT = ".pdf,application/pdf";
+const noopSubscribe = () => () => {};
+const SERVER_LIMITS = limitsFor(deviceProfile({}));
+let clientLimits: ReturnType<typeof defaultLimits> | null = null;
+
+interface Done { docx: Blob; name: string; result: PdfToDocxResult; preview?: string }
 
 export default function PdfToWord({ locale }: ToolComponentProps) {
-  const { t } = useToolUi(locale);
-  const { setState: setToolState, rootRef } = useToolState("idle");
+  const s = PDF_DOCX_I18N[locale] ?? PDF_DOCX_I18N.cs;
+  const c = DOCX_PDF_I18N[locale] ?? DOCX_PDF_I18N.cs;
+  const { setState } = useToolState("idle");
+  const hydrated = useSyncExternalStore(noopSubscribe, () => true, () => false);
+  const limits = hydrated ? (clientLimits ??= defaultLimits()) : SERVER_LIMITS;
+  const weak = hydrated && deviceProfile().weak;
   const [file, setFile] = useState<File | null>(null);
-  const [progress, setProgress] = useState<{ pct: number; label: string } | null>(null);
-  const [error, setError] = useState<string>("");
-  const [info, setInfo] = useState<string>("");
-  const [done, setDone] = useState(false);
-  const [result, setResult] = useState<{ url: string; name: string; sub: string } | null>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
-  const dragDepth = useRef(0);
-  const [dragOver, setDragOver] = useState(false);
+  const [mode, setMode] = useState<"editable" | "exact">("editable");
+  const [ocr, setOcr] = useState(true);
+  const [running, setRunning] = useState(false);
+  const [download, setDownload] = useState<PhaseState | null>(null);
+  const [work, setWork] = useState<PhaseState | null>(null);
+  const [error, setError] = useState("");
+  const [needPassword, setNeedPassword] = useState(false);
+  const [password, setPassword] = useState("");
+  const [done, setDone] = useState<Done | null>(null);
+  const [previewing, setPreviewing] = useState(false);
+  const abortRef = useRef<AbortController | null>(null);
 
-  useEffect(() => { rootRef.current = document.getElementById("tool-root") as HTMLDivElement | null; return () => { if (result) URL.revokeObjectURL(result.url); }; }, [rootRef, result]);
-  const announce = useCallback((msg: string) => { const live = document.getElementById("tool-live-status"); if (!live) return; live.textContent = ""; window.setTimeout(() => { live.textContent = msg; }, 20); }, []);
-  const setState = useCallback((s: "idle" | "ready" | "processing" | "success" | "error", msg?: string) => { setToolState(s); announce(msg ?? t(`state_${s}` as keyof ToolUiI18n)); }, [setToolState, announce, t]);
+  const reset = useCallback(() => {
+    abortRef.current?.abort();
+    setFile(null); setDone(null); setError(""); setDownload(null); setWork(null); setNeedPassword(false); setPassword(""); setRunning(false);
+    setState("idle");
+  }, [setState]);
 
-  const ensurePdfjs = async () => {
-    if ((window as unknown as { pdfjsLib?: unknown }).pdfjsLib) return;
-    await loadScript("/tools/assets/js/lib/pdf.min.js");
-    pdfjs().GlobalWorkerOptions.workerSrc = "/tools/assets/js/lib/pdf.worker.min.js";
+  const pick = (f: File) => {
+    if (!/\.pdf$/i.test(f.name) && f.type !== "application/pdf") { setError(c.err_invalid_file); return; }
+    if (f.size > limits.maxFileBytes) { setError(fmt(c.err_file_too_large, { limit: fmtSize(limits.maxFileBytes) })); return; }
+    setFile(f); setDone(null); setError(""); setNeedPassword(false); setPassword(""); setState("ready");
   };
 
-  const addFile = (arr: File[]) => {
-    const f = arr.find((x) => x.name.toLowerCase().endsWith(".pdf") || x.type === "application/pdf");
-    if (!f) { setError(t("invalid_type")); return; }
-    setFile(f); setError(""); setInfo(""); setDone(false); setResult(null); setState("ready");
+  const onProgress = (p: PdfProgress) => {
+    if (p.phase === "prepare") setWork({ label: s.phase_prepare });
+    else if (p.phase === "convert") setWork({ label: fmt(s.phase_page, { page: p.page ?? 1, pages: p.pages ?? "?" }), ratio: p.page && p.pages ? p.page / p.pages : undefined });
+    else if (p.phase === "ocr-load") setDownload({ label: s.phase_ocr_load });
+    else if (p.phase === "ocr") { setDownload(null); setWork({ label: fmt(s.phase_ocr, { page: p.page ?? 1 }) }); }
   };
-  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => { if (e.target.files) addFile(Array.from(e.target.files)); e.target.value = ""; };
-  const onDrop = (e: React.DragEvent) => { e.preventDefault(); e.stopPropagation(); setDragOver(false); dragDepth.current = 0; if (e.dataTransfer.files) addFile(Array.from(e.dataTransfer.files)); };
-  const clearAll = () => { setFile(null); setError(""); setProgress(null); setInfo(""); setDone(false); setResult(null); setState("idle"); };
 
-  const run = async () => {
-    if (!file) return;
-    setError(""); setInfo(""); setDone(false); setState("processing"); setProgress({ pct: 5, label: "Načítám knihovny…" });
-    try {
-      await ensurePdfjs();
-      await loadScript("/tools/assets/js/lib/jszip.min.js");
-      setProgress({ pct: 15, label: "Načítám PDF…" });
-      const buf = await file.arrayBuffer();
-      const doc = await pdfjs().getDocument({ data: new Uint8Array(buf) }).promise;
-      const total = doc.numPages;
-      const pages: PageBlocks[] = [];
-      for (let i = 1; i <= total; i++) {
-        setProgress({ pct: 15 + Math.round((60 * i) / total), label: `Extrahuji stranu ${i}/${total}` });
-        const page = await doc.getPage(i);
-        const content = await page.getTextContent();
-        const viewport = page.getViewport({ scale: 1 });
-        const items: PdfTextItem[] = content.items
-          .filter((it) => typeof it.str === "string")
-          .map((it) => ({
-            str: it.str,
-            x: it.transform[4],
-            y: it.transform[5],
-            width: it.width,
-            height: it.height,
-            fontName: it.fontName,
-          }));
-        pages.push(buildPageBlocks({ items, width: viewport.width, height: viewport.height }));
-      }
-      const blockCount = pages.reduce((n, p) => n + p.blocks.length, 0);
-      if (!blockCount) {
-        setInfo("PDF neobsahuje textovou vrstvu (pravděpodobně je to sken). Převod nelze provést.");
-        setProgress(null); setState("error", "PDF neobsahuje textovou vrstvu.");
-        return;
-      }
-      setProgress({ pct: 80, label: "Sestavuji DOCX…" });
-      const files = blocksToDocxFiles(pages);
-      const zip = jszip();
-      for (const [name, data] of Object.entries(files)) zip.file(name, data);
-      setProgress({ pct: 95, label: "Balím DOCX…" });
-      const blob = await zip.generateAsync({ type: "blob" });
-      const baseName = file.name.replace(/\.pdf$/i, "") || "dokument";
-      setResult({ url: URL.createObjectURL(blob), name: `${baseName}.docx`, sub: "Odstavce, nadpisy a tabulky" });
-      setProgress({ pct: 100, label: "Hotovo" }); setProgress(null);
-      setDone(true); setState("success");
-      toastSuccess("PDF bylo převedeno na DOCX");
-    } catch (e) {
-      setProgress(null);
-      const m = (e as Error).message || "Převod na Word selhal.";
-      setError(m); setState("error", m);
+  const errorText = (e: unknown): string => {
+    if (!(e instanceof ConverterError)) return fmt(c.err_convert_failed, { message: String((e as Error)?.message ?? e) });
+    const d = e.detail ?? {};
+    switch (e.code) {
+      case "file_too_large": return fmt(c.err_file_too_large, { limit: fmtSize(Number(d.limit ?? 0)) });
+      case "too_many_pages": return fmt(c.err_too_many_pages, { limit: d.limit ?? "" });
+      case "encrypted": return s.err_encrypted;
+      case "wrong_password": return c.err_wrong_password;
+      case "invalid_file": return c.err_invalid_file.replace("Word (.docx)", "PDF");
+      case "out_of_memory": return c.err_out_of_memory;
+      case "engine_load": return c.err_engine_load;
+      default: return fmt(c.err_convert_failed, { message: e.message });
     }
   };
 
-  const download = () => { if (result) { const a = document.createElement("a"); a.href = result.url; a.download = result.name; document.body.appendChild(a); a.click(); a.remove(); } };
+  const run = async () => {
+    if (!file) return;
+    setRunning(true); setError(""); setDone(null); setDownload(null); setWork({ label: s.phase_engine });
+    setState("processing");
+    const ac = new AbortController();
+    abortRef.current = ac;
+    try {
+      const { docx, result } = await convertPdfToDocx(file, { mode, ocr, password: password || undefined }, onProgress, ac.signal, limits);
+      const name = file.name.replace(/\.pdf$/i, "") + ".docx";
+      setDone({ docx, name, result });
+      setState("success");
+      toastSuccess(c.done.replace("PDF", "DOCX"));
+      // Náhled jen když je Word → PDF engine už v mezipaměti (jinak na tlačítko, ať nestahujeme bez ptaní).
+      const build = await fetch("/tools/assets/js/lib/converter/docx-pdf/build.json", { cache: "no-cache" }).then((r) => r.json()).catch(() => null) as { version: string } | null;
+      if (build && (await isCached(`docx-pdf/vevit_docx_pdf_bg.wasm?v=${build.version}`))) void showPreview(docx, name, result);
+    } catch (e) {
+      if ((e as DOMException)?.name === "AbortError") return;
+      if (e instanceof ConverterError && (e.code === "encrypted" || e.code === "wrong_password")) setNeedPassword(true);
+      setError(errorText(e));
+      setState("error");
+    } finally {
+      setRunning(false); setDownload(null); setWork(null);
+      abortRef.current = null;
+    }
+  };
+
+  const showPreview = async (docx: Blob, name: string, result: PdfToDocxResult) => {
+    setPreviewing(true);
+    try {
+      const { pdf } = await convertDocxToPdf(docx, { tagged: false, pdfa: false });
+      const p = await previewFirstPage(pdf);
+      setDone({ docx, name, result, preview: p.dataUrl });
+    } catch { /* náhled je doplněk */ }
+    setPreviewing(false);
+  };
+
+  const warnings: string[] = [];
+  if (done) {
+    const r = done.result;
+    const list = (v: number[]) => v.join(", ");
+    for (const f of r.fonts) warnings.push(fmt(f.note === "metric" ? s.warn_font_metric : f.note === "name" ? s.warn_font_name : s.warn_font_uncommon, { source: f.source, used: f.used }));
+    if (r.ocrPages.length) warnings.push(fmt(s.warn_ocr, { pages: list(r.ocrPages) }));
+    if (r.lowConfidencePages.length) warnings.push(fmt(s.warn_low, { pages: list(r.lowConfidencePages) }));
+    if (r.scannedWithoutOcr.length) warnings.push(fmt(s.warn_scanned, { pages: list(r.scannedWithoutOcr) }));
+  }
 
   return (
-    <div className="stack" style={{ maxWidth: "44rem", margin: "0 auto" }}>
-      <div className={`dropzone${dragOver ? " dragover" : ""}`} id="pw2-drop" role="button" tabIndex={0} aria-label="Přetáhněte sem PDF soubor"
-        onClick={() => inputRef.current?.click()}
-        onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); inputRef.current?.click(); } }}
-        onDragEnter={(e) => { e.preventDefault(); e.stopPropagation(); dragDepth.current += 1; setDragOver(true); }}
-        onDragOver={(e) => { e.preventDefault(); e.stopPropagation(); }}
-        onDragLeave={(e) => { e.preventDefault(); e.stopPropagation(); dragDepth.current -= 1; if (dragDepth.current <= 0) setDragOver(false); }}
-        onDrop={onDrop}>
-        <span className="dz-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><path d="M17 8l-5-5-5 5" /><path d="M12 3v12" /></svg></span>
-        <span className="dz-title">Přetáhněte sem PDF soubor</span>
-        <span className="dz-hint">nebo klikněte pro výběr</span>
-        <span className="dz-accept">Pouze .pdf · jeden soubor</span>
-        <input ref={inputRef} type="file" className="hidden" accept={ACCEPT} aria-hidden="true" onChange={onInputChange} />
-      </div>
+    <div className="stack" style={{ maxWidth: "44rem", margin: "0 auto" }} data-converter="pdf-docx" data-ready={hydrated ? "1" : undefined}>
+      <ConverterDropzone title={s.dz_title} hint={c.dz_hint} accept={ACCEPT} acceptLabel={s.dz_accept} file={file} onFile={pick} disabled={running} />
+      {weak && <p className="conv-note">{fmt(c.weak_device, { size: fmtSize(limits.maxFileBytes) })}</p>}
+      {file && file.size > limits.warnFileBytes && <p className="conv-note">{c.big_file}</p>}
 
-      {file && (
-        <div className="file-list" aria-label="Vybraný soubor">
-          <div className="file-item">
-            <span className="fi-ico"><Icon name="File" size={18} /></span>
-            <span className="fi-meta"><span className="fi-name">{file.name}</span><span className="fi-size">{fmtSize(file.size)}</span></span>
-            <button type="button" className="btn btn-ghost btn-icon-sm fi-remove" aria-label={t("remove_file", { name: file.name })} onClick={clearAll}><Icon name="X" size={16} /></button>
+      {file && !done && (
+        <>
+          <fieldset className="conv-modes" style={{ border: 0, padding: 0, margin: 0 }}>
+            <legend className="field-label">{s.mode_label}</legend>
+            {(["editable", "exact"] as const).map((m) => (
+              <label key={m} className="conv-mode">
+                <input type="radio" name="p2w-mode" value={m} checked={mode === m} onChange={() => setMode(m)} disabled={running} data-testid={`mode-${m}`} />
+                <span><strong>{m === "editable" ? s.mode_editable : s.mode_exact}</strong><small>{m === "editable" ? s.mode_editable_hint : s.mode_exact_hint}</small></span>
+              </label>
+            ))}
+          </fieldset>
+          <div className="conv-options">
+            <label className="conv-option">
+              <input type="checkbox" checked={ocr} onChange={(e) => setOcr(e.target.checked)} disabled={running} data-testid="ocr" />
+              <span>{s.opt_ocr}<small>{s.opt_ocr_hint}</small></span>
+            </label>
           </div>
-        </div>
+          {needPassword && (
+            <div className="stack-sm">
+              <label className="field-label" htmlFor="p2w-password">{c.password_label}</label>
+              <input id="p2w-password" type="password" className="input" value={password} onChange={(e) => setPassword(e.target.value)} autoComplete="off" />
+            </div>
+          )}
+          <div className="row" style={{ flexWrap: "wrap" }}>
+            <button className="btn btn-primary btn-touch" type="button" disabled={running} onClick={run} data-testid="convert">
+              <Icon name="File" size={18} /> {needPassword ? c.password_submit : s.convert}
+            </button>
+            {running && <button className="btn btn-ghost" type="button" onClick={reset}><Icon name="X" size={16} /> {c.cancel}</button>}
+          </div>
+        </>
       )}
 
-      <div className="stack-sm" id="pw2-work">
-        <p className="muted" id="pw2-info" style={{ fontSize: "0.85rem" }}>{info || "Nástroj extrahuje textovou vrstvu PDF a vytvoří z ní upravitelný .docx — včetně odstavců, nadpisů a tabulek (faktury). Skeny bez textové vrstvy nelze převést."}</p>
-        <div className="row" style={{ flexWrap: "wrap" }}>
-          <button className="btn btn-primary btn-touch" id="pw2-run" type="button" disabled={!file} onClick={run}>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2v6h6" /><path d="M4 4h10l6 6v10H4z" /><path d="M8 14h8" /><path d="M8 18h5" /></svg> Převést na Word
-          </button>
-        </div>
-      </div>
-
-      {progress && (<><div className="progress-track" role="progressbar" aria-valuenow={progress.pct} aria-valuemin={0} aria-valuemax={100}><div className="progress-fill" style={{ width: `${progress.pct}%` }} /></div><p className="progress-label">{progress.label}</p></>)}
-      {error && <p className="error-text" role="alert">{error}</p>}
-
-      {done && result && (
-        <div className="result-card">
-          <span className="rc-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2v6h6" /><path d="M4 4h10l6 6v10H4z" /></svg></span>
-          <div className="rc-meta"><span className="rc-title">{result.name}</span><span className="rc-sub">{result.sub}</span></div>
-          <button className="btn btn-primary" type="button" onClick={download}><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><path d="M7 10l5 5 5-5" /><path d="M12 15V3" /></svg> Stáhnout DOCX</button>
-        </div>
+      {running && <ConverterProgress download={download} work={work} />}
+      {error && (
+        <p className="error-text" role="alert" data-testid="error">
+          {error}{needPassword && error === s.err_encrypted ? <> <a href={`/${locale}/tools/pdf-password`}>{s.pdf_password_link}</a>.</> : null}
+        </p>
       )}
 
-      <div className="privacy-note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m9 12 2 2 4-4" /></svg> Převod běží lokálně přes pdf.js a JSZip — soubor neopustí váš počítač. Obrázky se nepřenášejí, přenáší se text, struktura odstavců a tabulky.</div>
+      {done && (
+        <>
+          <div className="result-card">
+            <span className="rc-ico"><Icon name="Check" size={24} /></span>
+            <div className="rc-meta">
+              <span className="rc-title">{done.name}</span>
+              <span className="rc-sub">{fmt(s.result_meta, { pages: done.result.pages, tables: done.result.tables, size: fmtSize(done.docx.size) })} · {done.result.mode === "editable" ? s.mode_editable : s.mode_exact}</span>
+            </div>
+            <button className="btn btn-primary" type="button" onClick={() => downloadBlob(done.docx, done.name)} data-testid="download">
+              <Icon name="Download" size={16} /> {s.download}
+            </button>
+          </div>
+          <ConverterWarnings title={c.warnings_title} items={warnings} />
+          {done.preview ? <ConverterPreview src={done.preview} alt={c.preview_alt} /> : (
+            <div className="row">
+              <button className="btn btn-ghost" type="button" disabled={previewing} onClick={() => showPreview(done.docx, done.name, done.result)} data-testid="preview-button">
+                <Icon name="Eye" size={16} /> {s.preview_show}
+              </button>
+            </div>
+          )}
+          <div className="row"><button className="btn btn-ghost" type="button" onClick={reset}>{c.reset}</button></div>
+        </>
+      )}
+
+      <PrivacyNote licenses={c.licenses}>{c.privacy}</PrivacyNote>
     </div>
   );
 }

@@ -15,6 +15,7 @@ export interface DocxPdfStrings {
   password_label: string; password_submit: string;
   err_file_too_large: string; err_zip_bomb: string; err_encrypted: string; err_wrong_password: string; err_invalid_file: string;
   err_out_of_memory: string; err_engine_load: string; err_convert_failed: string; err_too_many_pages: string; err_pdfa: string;
+  licenses: string;
 }
 
 const cs: DocxPdfStrings = {
@@ -42,6 +43,7 @@ const cs: DocxPdfStrings = {
   err_engine_load: "Převodní engine se nepodařilo stáhnout. Zkontrolujte připojení a zkuste to znovu.",
   err_convert_failed: "Převod se nezdařil: {message}", err_too_many_pages: "Dokument má víc než {limit} stran.",
   err_pdfa: "Dokument nejde uložit jako PDF/A: {message}. Zkuste převod bez PDF/A.",
+  licenses: "Licence komponent",
 };
 
 const en: DocxPdfStrings = {
@@ -69,6 +71,7 @@ const en: DocxPdfStrings = {
   err_engine_load: "The conversion engine could not be downloaded. Check your connection and try again.",
   err_convert_failed: "Conversion failed: {message}", err_too_many_pages: "The document has more than {limit} pages.",
   err_pdfa: "The document cannot be saved as PDF/A: {message}. Try converting without PDF/A.",
+  licenses: "Component licences",
 };
 
 const de: DocxPdfStrings = {
@@ -96,6 +99,7 @@ const de: DocxPdfStrings = {
   err_engine_load: "Die Umwandlungs-Engine konnte nicht geladen werden. Prüfen Sie die Verbindung und versuchen Sie es erneut.",
   err_convert_failed: "Umwandlung fehlgeschlagen: {message}", err_too_many_pages: "Das Dokument hat mehr als {limit} Seiten.",
   err_pdfa: "Das Dokument kann nicht als PDF/A gespeichert werden: {message}. Versuchen Sie es ohne PDF/A.",
+  licenses: "Lizenzen der Komponenten",
 };
 
 const es: DocxPdfStrings = {
@@ -123,6 +127,7 @@ const es: DocxPdfStrings = {
   err_engine_load: "No se pudo descargar el motor de conversión. Compruebe la conexión e inténtelo de nuevo.",
   err_convert_failed: "La conversión falló: {message}", err_too_many_pages: "El documento tiene más de {limit} páginas.",
   err_pdfa: "El documento no se puede guardar como PDF/A: {message}. Pruebe sin PDF/A.",
+  licenses: "Licencias de los componentes",
 };
 
 const uk: DocxPdfStrings = {
@@ -150,6 +155,7 @@ const uk: DocxPdfStrings = {
   err_engine_load: "Не вдалося завантажити рушій перетворення. Перевірте з’єднання і спробуйте ще раз.",
   err_convert_failed: "Перетворення не вдалося: {message}", err_too_many_pages: "Документ має понад {limit} сторінок.",
   err_pdfa: "Документ не можна зберегти як PDF/A: {message}. Спробуйте без PDF/A.",
+  licenses: "Ліцензії компонентів",
 };
 
 const fr: DocxPdfStrings = {
@@ -177,6 +183,7 @@ const fr: DocxPdfStrings = {
   err_engine_load: "Le moteur de conversion n’a pas pu être téléchargé. Vérifiez la connexion et réessayez.",
   err_convert_failed: "La conversion a échoué : {message}", err_too_many_pages: "Le document compte plus de {limit} pages.",
   err_pdfa: "Le document ne peut pas être enregistré en PDF/A : {message}. Essayez sans PDF/A.",
+  licenses: "Licences des composants",
 };
 
 const sk: DocxPdfStrings = {
@@ -204,6 +211,7 @@ const sk: DocxPdfStrings = {
   err_engine_load: "Prevodný engine sa nepodarilo stiahnuť. Skontrolujte pripojenie a skúste to znova.",
   err_convert_failed: "Prevod sa nepodaril: {message}", err_too_many_pages: "Dokument má viac ako {limit} strán.",
   err_pdfa: "Dokument nejde uložiť ako PDF/A: {message}. Skúste prevod bez PDF/A.",
+  licenses: "Licencie komponentov",
 };
 
 export const DOCX_PDF_I18N: Record<Locale, DocxPdfStrings> = { cs, en, de, es, uk, fr, sk };
@@ -211,3 +219,124 @@ export const DOCX_PDF_I18N: Record<Locale, DocxPdfStrings> = { cs, en, de, es, u
 export function fmt(template: string, vars: Record<string, string | number> = {}): string {
   return template.replace(/\{(\w+)\}/g, (_, k) => String(vars[k] ?? ""));
 }
+
+// ── PDF → Word ──────────────────────────────────────────────────────────
+
+export interface PdfDocxStrings {
+  dz_title: string; dz_accept: string;
+  mode_label: string; mode_editable: string; mode_editable_hint: string; mode_exact: string; mode_exact_hint: string;
+  opt_ocr: string; opt_ocr_hint: string;
+  convert: string; download: string;
+  phase_engine: string; phase_prepare: string; phase_page: string; phase_ocr_load: string; phase_ocr: string;
+  warn_font_metric: string; warn_font_name: string; warn_font_uncommon: string; warn_ocr: string; warn_low: string; warn_scanned: string; warn_tagged: string;
+  result_meta: string; preview_show: string; preview_note: string;
+  err_encrypted: string; pdf_password_link: string;
+}
+
+const pcs: PdfDocxStrings = {
+  dz_title: "Přetáhněte sem PDF", dz_accept: ".pdf · jeden soubor",
+  mode_label: "Režim převodu", mode_editable: "Upravitelný", mode_editable_hint: "Skutečné odstavce, tabulky a styly. Pohodlné úpravy.",
+  mode_exact: "Přesný", mode_exact_hint: "Každý prvek na přesném místě jako v PDF. Úpravy jsou méně pohodlné.",
+  opt_ocr: "Rozpoznat text ve skenovaných stránkách (OCR)", opt_ocr_hint: "Čeština a angličtina. Při prvním použití se stáhne asi 10 MB dat.",
+  convert: "Převést do Wordu", download: "Stáhnout DOCX",
+  phase_engine: "Načítám PDF engine…", phase_prepare: "Otevírám PDF…", phase_page: "Zpracovávám stranu {page} z {pages}…",
+  phase_ocr_load: "Načítám rozpoznávání textu (OCR)…", phase_ocr: "Rozpoznávám text na straně {page}…",
+  warn_font_metric: "Font {source} je v dokumentu jako {used} (stejné šířky znaků).", warn_font_name: "Font {source} je v dokumentu jako {used}.",
+  warn_font_uncommon: "Font {source} nemusí být v počítači nainstalovaný, Word ho případně nahradí jiným.",
+  warn_ocr: "Text na stranách {pages} byl rozpoznán pomocí OCR. Zkontrolujte ho.", warn_low: "Strany s nízkou jistotou rozpoznání: {pages}.",
+  warn_scanned: "Strany {pages} jsou sken bez textu. Pro upravitelný text zapněte OCR.", warn_tagged: "PDF má strukturu (tagy), využita pro odstavce a tabulky.",
+  result_meta: "{pages} str. · {tables} tabulek · {size}", preview_show: "Zobrazit náhled výsledku", preview_note: "Náhled vykreslí převodní engine Word → PDF (asi {size}, jen poprvé).",
+  err_encrypted: "PDF je chráněné heslem. Zadejte heslo níže, nebo ho odstraňte nástrojem", pdf_password_link: "Ochrana PDF heslem",
+};
+const pen: PdfDocxStrings = {
+  dz_title: "Drop a PDF here", dz_accept: ".pdf · one file",
+  mode_label: "Conversion mode", mode_editable: "Editable", mode_editable_hint: "Real paragraphs, tables and styles. Easy to edit.",
+  mode_exact: "Exact", mode_exact_hint: "Every element in its exact place, like the PDF. Less convenient to edit.",
+  opt_ocr: "Recognise text in scanned pages (OCR)", opt_ocr_hint: "Czech and English. The first use downloads about 10 MB of data.",
+  convert: "Convert to Word", download: "Download DOCX",
+  phase_engine: "Loading the PDF engine…", phase_prepare: "Opening the PDF…", phase_page: "Processing page {page} of {pages}…",
+  phase_ocr_load: "Loading text recognition (OCR)…", phase_ocr: "Recognising text on page {page}…",
+  warn_font_metric: "Font {source} is used as {used} (same character widths).", warn_font_name: "Font {source} is used as {used}.",
+  warn_font_uncommon: "Font {source} may not be installed on your computer; Word may substitute it.",
+  warn_ocr: "Text on pages {pages} was recognised with OCR. Please check it.", warn_low: "Pages with low recognition confidence: {pages}.",
+  warn_scanned: "Pages {pages} are scans without text. Turn on OCR for editable text.", warn_tagged: "The PDF has structure tags; they were used for paragraphs and tables.",
+  result_meta: "{pages} pages · {tables} tables · {size}", preview_show: "Show a preview of the result", preview_note: "The preview is drawn by the Word → PDF engine (about {size}, first time only).",
+  err_encrypted: "The PDF is password protected. Enter the password below, or remove it with", pdf_password_link: "PDF password protection",
+};
+const pde: PdfDocxStrings = {
+  dz_title: "PDF hierher ziehen", dz_accept: ".pdf · eine Datei",
+  mode_label: "Umwandlungsmodus", mode_editable: "Bearbeitbar", mode_editable_hint: "Echte Absätze, Tabellen und Formatvorlagen. Bequem zu bearbeiten.",
+  mode_exact: "Exakt", mode_exact_hint: "Jedes Element genau an seiner Stelle wie im PDF. Weniger bequem zu bearbeiten.",
+  opt_ocr: "Text in gescannten Seiten erkennen (OCR)", opt_ocr_hint: "Tschechisch und Englisch. Beim ersten Mal werden etwa 10 MB Daten geladen.",
+  convert: "In Word umwandeln", download: "DOCX herunterladen",
+  phase_engine: "PDF-Engine wird geladen…", phase_prepare: "PDF wird geöffnet…", phase_page: "Seite {page} von {pages} wird verarbeitet…",
+  phase_ocr_load: "Texterkennung (OCR) wird geladen…", phase_ocr: "Text auf Seite {page} wird erkannt…",
+  warn_font_metric: "Schrift {source} wird als {used} verwendet (gleiche Zeichenbreiten).", warn_font_name: "Schrift {source} wird als {used} verwendet.",
+  warn_font_uncommon: "Schrift {source} ist eventuell nicht installiert; Word ersetzt sie gegebenenfalls.",
+  warn_ocr: "Der Text auf den Seiten {pages} wurde per OCR erkannt. Bitte prüfen.", warn_low: "Seiten mit geringer Erkennungssicherheit: {pages}.",
+  warn_scanned: "Die Seiten {pages} sind Scans ohne Text. Für bearbeitbaren Text OCR einschalten.", warn_tagged: "Das PDF hat Struktur-Tags; sie wurden für Absätze und Tabellen genutzt.",
+  result_meta: "{pages} S. · {tables} Tabellen · {size}", preview_show: "Vorschau des Ergebnisses anzeigen", preview_note: "Die Vorschau zeichnet die Word → PDF-Engine (etwa {size}, nur beim ersten Mal).",
+  err_encrypted: "Das PDF ist passwortgeschützt. Geben Sie das Passwort unten ein oder entfernen Sie es mit", pdf_password_link: "PDF-Passwortschutz",
+};
+const pes: PdfDocxStrings = {
+  dz_title: "Arrastre aquí un PDF", dz_accept: ".pdf · un archivo",
+  mode_label: "Modo de conversión", mode_editable: "Editable", mode_editable_hint: "Párrafos, tablas y estilos reales. Fácil de editar.",
+  mode_exact: "Exacto", mode_exact_hint: "Cada elemento en su sitio exacto, como en el PDF. Menos cómodo de editar.",
+  opt_ocr: "Reconocer texto en páginas escaneadas (OCR)", opt_ocr_hint: "Checo e inglés. La primera vez se descargan unos 10 MB de datos.",
+  convert: "Convertir a Word", download: "Descargar DOCX",
+  phase_engine: "Cargando el motor PDF…", phase_prepare: "Abriendo el PDF…", phase_page: "Procesando la página {page} de {pages}…",
+  phase_ocr_load: "Cargando el reconocimiento de texto (OCR)…", phase_ocr: "Reconociendo el texto de la página {page}…",
+  warn_font_metric: "La fuente {source} se usa como {used} (mismos anchos de carácter).", warn_font_name: "La fuente {source} se usa como {used}.",
+  warn_font_uncommon: "Puede que la fuente {source} no esté instalada; Word podría sustituirla.",
+  warn_ocr: "El texto de las páginas {pages} se reconoció con OCR. Revíselo.", warn_low: "Páginas con baja confianza de reconocimiento: {pages}.",
+  warn_scanned: "Las páginas {pages} son escaneos sin texto. Active el OCR para obtener texto editable.", warn_tagged: "El PDF tiene etiquetas de estructura; se usaron para párrafos y tablas.",
+  result_meta: "{pages} págs. · {tables} tablas · {size}", preview_show: "Mostrar vista previa del resultado", preview_note: "La vista previa la dibuja el motor Word → PDF (unos {size}, solo la primera vez).",
+  err_encrypted: "El PDF está protegido con contraseña. Introdúzcala abajo o quítela con", pdf_password_link: "Protección de PDF con contraseña",
+};
+const puk: PdfDocxStrings = {
+  dz_title: "Перетягніть сюди PDF", dz_accept: ".pdf · один файл",
+  mode_label: "Режим перетворення", mode_editable: "Редагований", mode_editable_hint: "Справжні абзаци, таблиці й стилі. Зручно редагувати.",
+  mode_exact: "Точний", mode_exact_hint: "Кожен елемент точно на своєму місці, як у PDF. Редагувати менш зручно.",
+  opt_ocr: "Розпізнати текст на сканованих сторінках (OCR)", opt_ocr_hint: "Чеська й англійська. Під час першого використання завантажується близько 10 МБ даних.",
+  convert: "Перетворити на Word", download: "Завантажити DOCX",
+  phase_engine: "Завантажую рушій PDF…", phase_prepare: "Відкриваю PDF…", phase_page: "Обробляю сторінку {page} з {pages}…",
+  phase_ocr_load: "Завантажую розпізнавання тексту (OCR)…", phase_ocr: "Розпізнаю текст на сторінці {page}…",
+  warn_font_metric: "Шрифт {source} використано як {used} (ті самі ширини символів).", warn_font_name: "Шрифт {source} використано як {used}.",
+  warn_font_uncommon: "Шрифт {source} може бути не встановлений; Word може його замінити.",
+  warn_ocr: "Текст на сторінках {pages} розпізнано за допомогою OCR. Перевірте його.", warn_low: "Сторінки з низькою впевненістю розпізнавання: {pages}.",
+  warn_scanned: "Сторінки {pages} — скани без тексту. Увімкніть OCR, щоб отримати редагований текст.", warn_tagged: "PDF має структурні теги; їх використано для абзаців і таблиць.",
+  result_meta: "{pages} стор. · {tables} таблиць · {size}", preview_show: "Показати попередній перегляд", preview_note: "Перегляд малює рушій Word → PDF (близько {size}, лише вперше).",
+  err_encrypted: "PDF захищено паролем. Введіть пароль нижче або видаліть його інструментом", pdf_password_link: "Захист PDF паролем",
+};
+const pfr: PdfDocxStrings = {
+  dz_title: "Déposez ici un PDF", dz_accept: ".pdf · un fichier",
+  mode_label: "Mode de conversion", mode_editable: "Modifiable", mode_editable_hint: "Vrais paragraphes, tableaux et styles. Facile à modifier.",
+  mode_exact: "Exact", mode_exact_hint: "Chaque élément à sa place exacte, comme dans le PDF. Moins pratique à modifier.",
+  opt_ocr: "Reconnaître le texte des pages numérisées (OCR)", opt_ocr_hint: "Tchèque et anglais. La première utilisation télécharge environ 10 Mo de données.",
+  convert: "Convertir en Word", download: "Télécharger le DOCX",
+  phase_engine: "Chargement du moteur PDF…", phase_prepare: "Ouverture du PDF…", phase_page: "Traitement de la page {page} sur {pages}…",
+  phase_ocr_load: "Chargement de la reconnaissance de texte (OCR)…", phase_ocr: "Reconnaissance du texte de la page {page}…",
+  warn_font_metric: "La police {source} est utilisée comme {used} (mêmes largeurs de caractères).", warn_font_name: "La police {source} est utilisée comme {used}.",
+  warn_font_uncommon: "La police {source} n’est peut-être pas installée ; Word pourra la remplacer.",
+  warn_ocr: "Le texte des pages {pages} a été reconnu par OCR. Vérifiez-le.", warn_low: "Pages avec une faible confiance de reconnaissance : {pages}.",
+  warn_scanned: "Les pages {pages} sont des numérisations sans texte. Activez l’OCR pour obtenir du texte modifiable.", warn_tagged: "Le PDF contient des balises de structure ; elles ont servi pour les paragraphes et les tableaux.",
+  result_meta: "{pages} p. · {tables} tableaux · {size}", preview_show: "Afficher un aperçu du résultat", preview_note: "L’aperçu est dessiné par le moteur Word → PDF (environ {size}, la première fois seulement).",
+  err_encrypted: "Le PDF est protégé par un mot de passe. Saisissez-le ci-dessous ou supprimez-le avec", pdf_password_link: "Protection PDF par mot de passe",
+};
+const psk: PdfDocxStrings = {
+  dz_title: "Presuňte sem PDF", dz_accept: ".pdf · jeden súbor",
+  mode_label: "Režim prevodu", mode_editable: "Upraviteľný", mode_editable_hint: "Skutočné odseky, tabuľky a štýly. Pohodlné úpravy.",
+  mode_exact: "Presný", mode_exact_hint: "Každý prvok na presnom mieste ako v PDF. Úpravy sú menej pohodlné.",
+  opt_ocr: "Rozpoznať text v naskenovaných stranách (OCR)", opt_ocr_hint: "Čeština a angličtina. Pri prvom použití sa stiahne asi 10 MB dát.",
+  convert: "Previesť do Wordu", download: "Stiahnuť DOCX",
+  phase_engine: "Načítavam PDF engine…", phase_prepare: "Otváram PDF…", phase_page: "Spracúvam stranu {page} z {pages}…",
+  phase_ocr_load: "Načítavam rozpoznávanie textu (OCR)…", phase_ocr: "Rozpoznávam text na strane {page}…",
+  warn_font_metric: "Písmo {source} je v dokumente ako {used} (rovnaké šírky znakov).", warn_font_name: "Písmo {source} je v dokumente ako {used}.",
+  warn_font_uncommon: "Písmo {source} nemusí byť v počítači nainštalované, Word ho prípadne nahradí iným.",
+  warn_ocr: "Text na stranách {pages} bol rozpoznaný pomocou OCR. Skontrolujte ho.", warn_low: "Strany s nízkou istotou rozpoznania: {pages}.",
+  warn_scanned: "Strany {pages} sú sken bez textu. Pre upraviteľný text zapnite OCR.", warn_tagged: "PDF má štruktúru (tagy), využitá pre odseky a tabuľky.",
+  result_meta: "{pages} str. · {tables} tabuliek · {size}", preview_show: "Zobraziť náhľad výsledku", preview_note: "Náhľad vykreslí prevodný engine Word → PDF (asi {size}, len prvýkrát).",
+  err_encrypted: "PDF je chránené heslom. Zadajte heslo nižšie alebo ho odstráňte nástrojom", pdf_password_link: "Ochrana PDF heslom",
+};
+
+export const PDF_DOCX_I18N: Record<Locale, PdfDocxStrings> = { cs: pcs, en: pen, de: pde, es: pes, uk: puk, fr: pfr, sk: psk };

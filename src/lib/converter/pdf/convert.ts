@@ -7,7 +7,7 @@ import { buildLines, findHeaderFooter, layoutPage, bodySizeOf, headingSizes, mar
 import { mapFont, fontReport, wordMetrics, type FontReport } from "./fontmap.ts";
 import { encodePng, rasterizeRects } from "./png.ts";
 import { writeDocx } from "./docx-writer.ts";
-import type { Block, DocModel, ImageBlock, PageLayout, Para, Table, FrameBlock, ShapeBlock, Run } from "./model.ts";
+import type { Block, DocModel, ImageBlock, PageLayout, Table, FrameBlock, ShapeBlock, Run } from "./model.ts";
 
 export type PdfToDocxMode = "editable" | "exact";
 
@@ -66,9 +66,7 @@ export async function pdfToDocx(pdfjs: typeof Pdfjs, doc: Pdfjs.PDFDocumentProxy
   return { docx: writeDocx(docModel), report: { pages: reports, fonts: fontReport(Object.values(fonts)), tagged, mode } };
 }
 
-function runFont(fonts: Record<string, FontInfo>) {
-  return (f: FontInfo | undefined) => mapFont(f);
-}
+const runFont = () => (f: FontInfo | undefined) => mapFont(f);
 
 /** Nejčastější font a barva textu → styl Normální. */
 function bodyStyle(models: PageModel[], fonts: Record<string, FontInfo>, size: number): { font: string; size: number; color: string } {
@@ -90,7 +88,11 @@ async function pageImages(m: PageModel, page: Pdfjs.PDFPageProxy, hooks: PdfToDo
     const raw = hooks.imagePixels ? await hooks.imagePixels(page, im.id).catch(() => null) : null;
     if (!raw) continue;
     const png = encodePng(raw.data, raw.width, raw.height, raw.channels);
-    const overlapsText = lines.some((l) => l.x1 > im.x && l.x0 < im.x + im.w && l.bottom > im.y && l.top < im.y + im.h);
+    // Plovoucí jen při skutečném překryvu s textem (popisek těsně pod obrázkem nevadí).
+    const overlapsText = lines.some((l) => {
+      const ox = Math.min(l.x1, im.x + im.w) - Math.max(l.x0, im.x), oy = Math.min(l.bottom, im.y + im.h) - Math.max(l.top, im.y);
+      return ox > 0 && oy > 0 && ox * oy > 0.3 * (l.x1 - l.x0) * (l.bottom - l.top);
+    });
     out.push({ kind: "image", x: im.x, y: im.y, w: im.w, h: im.h, png, pxW: raw.width, pxH: raw.height, name: `image${++counter.n}.png`, anchored: anchoredAlways || overlapsText });
   }
   const { clusters, used } = vectorClusters(m.paths);
@@ -106,7 +108,7 @@ async function editableModel(models: PageModel[], pageLines: Line[][], proxies: 
   const contentLines = pageLines.map((ls) => ls.filter((l) => !hf.header.has(l) && !hf.footer.has(l)));
   const body = bodySizeOf(models);
   const heads = headingSizes(contentLines.flat(), body);
-  const ctxFor = (m: PageModel): LayoutCtx => ({ bodySize: body, headingSizes: heads, fontMap: runFont(fonts), links: m.links });
+  const ctxFor = (m: PageModel): LayoutCtx => ({ bodySize: body, headingSizes: heads, fontMap: runFont(), links: m.links });
   const bodyRun = bodyStyle(models, fonts, body);
 
   // Okraje: společné pro dokument (Word má okraje na sekci), z nejmenších okrajů obsahu.
@@ -218,7 +220,7 @@ function pathD(p: PathShape): string {
 async function exactModel(models: PageModel[], pageLines: Line[][], proxies: Pdfjs.PDFPageProxy[], fonts: Record<string, FontInfo>, hooks: PdfToDocxHooks, reports: PageReport[]): Promise<DocModel> {
   const body = bodySizeOf(models);
   const bodyRun = bodyStyle(models, fonts, body);
-  const ctx: LayoutCtx = { bodySize: body, headingSizes: [], fontMap: runFont(fonts), links: [] };
+  const ctx: LayoutCtx = { bodySize: body, headingSizes: [], fontMap: runFont(), links: [] };
   const counter = { n: 0 };
   const pages: PageLayout[] = [];
   for (let i = 0; i < models.length; i++) {

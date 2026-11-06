@@ -111,7 +111,7 @@ const RAW_TOOLS: RawTool[] = [
   ["pdf-merge", "Sloučení PDF", "Sloučí více PDF souborů do jednoho.", "pdf", "client", "Files", false],
   ["pdf-split", "Rozdělení PDF", "Rozdělí PDF na jednotlivé stránky.", "pdf", "client", "Scissors", false],
   ["pdf-compress", "Komprese PDF", "Zmenší velikost PDF souboru.", "pdf", "client", "Shrink", false],
-  ["pdf-to-word", "PDF → Word", "Vytáhne text z PDF a sestaví .docx.", "pdf", "client", "FileText", false],
+  ["pdf-to-word", "PDF → Word", "Převede PDF na upravitelný dokument Word: odstavce, tabulky, obrázky, záhlaví i OCR skenů. Přímo v prohlížeči.", "pdf", "client", "FileText", true],
   ["html-to-pdf", "HTML → PDF", "Převede HTML kód na PDF (html2canvas+jsPDF).", "pdf", "client", "FileCode", false],
   ["invoice-gen", "Faktura generátor", "Generujte profesionální faktury s QR kódem.", "pdf", "client", "Receipt", true],
   ["pdf-to-images", "PDF → obrázky", "Převede stránky PDF na obrázky (PNG/JPEG ZIP).", "pdf", "client", "ImagePlus", true],
@@ -133,7 +133,7 @@ const RAW_TOOLS: RawTool[] = [
   ["scan-to-pdf", "Sken → PDF", "Vytvořte PDF z obrázků/snímů (kamera, soubory).", "pdf", "client", "ScanLine", true],
   ["pdf-compare", "Porovnání PDF", "Porovnejte text dvou PDF a zvýrazněte rozdíly.", "pdf", "client", "FileDiff", true],
   ["pdf-to-markdown", "PDF → Markdown", "Převeďte PDF na Markdown včetně tabulek.", "pdf", "client", "Hash", true],
-  ["word-to-pdf", "Word → PDF", "Převeďte .docx dokument na PDF.", "pdf", "client", "FileType", true],
+  ["word-to-pdf", "Word → PDF", "Převede dokument Word (.docx) na PDF se zachovaným vzhledem, fonty a tabulkami, volitelně PDF/A. Přímo v prohlížeči.", "pdf", "client", "FileType", true],
   ["excel-to-pdf", "Excel → PDF", "Převeďte tabulku .xlsx/.csv na PDF.", "pdf", "client", "Table", true],
   ["pdf-to-excel", "PDF → Excel", "Vytáhněte tabulky z PDF do .xlsx.", "pdf", "client", "Sheet", true],
   ["pptx-to-pdf", "PowerPoint → PDF", "Převeďte .pptx prezentaci na PDF.", "pdf", "client", "Presentation", true],
@@ -340,7 +340,8 @@ export const TOOL_I18N: Partial<Record<Locale, Record<string, { name?: string; d
     "pdf-merge": { name: "Merge PDF", desc: "Merge multiple PDF files into one." },
     "pdf-split": { name: "Split PDF", desc: "Split a PDF into individual pages." },
     "pdf-compress": { name: "Compress PDF", desc: "Reduce the size of a PDF file." },
-    "pdf-to-word": { name: "PDF → Word", desc: "Extract text from PDF and build a .docx." },
+    "pdf-to-word": { name: "PDF → Word", desc: "Convert a PDF to an editable Word document: paragraphs, tables, images, headers and OCR for scans. In your browser." },
+    "word-to-pdf": { name: "Word → PDF", desc: "Convert a Word document (.docx) to PDF, keeping layout, fonts and tables; PDF/A optional. In your browser." },
     "html-to-pdf": { name: "HTML → PDF", desc: "Convert HTML code to PDF (html2canvas+jsPDF)." },
     "invoice-gen": { name: "Invoice generator", desc: "Generate professional invoices with a QR code." },
     "pdf-to-images": { name: "PDF → images", desc: "Convert PDF pages to images (PNG/JPEG ZIP)." },
@@ -444,6 +445,28 @@ export const TOOL_I18N: Partial<Record<Locale, Record<string, { name?: string; d
     "time-calc": { name: "Time calculator", desc: "Add and subtract time values." },
     "iban-converter": { name: "IBAN converter", desc: "Convert a Czech account number to IBAN and back." },
     "birth-number-validator": { name: "Birth number validator", desc: "Verify format and checksum of a Czech birth number." },
+  },
+  // Převodníky Word ⇄ PDF jsou plně lokalizované (src/lib/converter/i18n.ts); ostatní nástroje
+  // v těchto jazycích zatím padají zpět na češtinu.
+  de: {
+    "pdf-to-word": { name: "PDF → Word", desc: "PDF in ein bearbeitbares Word-Dokument umwandeln: Absätze, Tabellen, Bilder, Kopfzeilen und OCR für Scans. Direkt im Browser." },
+    "word-to-pdf": { name: "Word → PDF", desc: "Word-Dokument (.docx) in PDF umwandeln, mit Layout, Schriften und Tabellen; optional PDF/A. Direkt im Browser." },
+  },
+  es: {
+    "pdf-to-word": { name: "PDF → Word", desc: "Convierta un PDF en un documento de Word editable: párrafos, tablas, imágenes, encabezados y OCR de escaneos. En su navegador." },
+    "word-to-pdf": { name: "Word → PDF", desc: "Convierta un documento de Word (.docx) a PDF conservando diseño, fuentes y tablas; PDF/A opcional. En su navegador." },
+  },
+  uk: {
+    "pdf-to-word": { name: "PDF → Word", desc: "Перетворіть PDF на редагований документ Word: абзаци, таблиці, зображення, колонтитули й OCR сканів. Прямо в браузері." },
+    "word-to-pdf": { name: "Word → PDF", desc: "Перетворіть документ Word (.docx) на PDF зі збереженням вигляду, шрифтів і таблиць; за бажанням PDF/A. Прямо в браузері." },
+  },
+  fr: {
+    "pdf-to-word": { name: "PDF → Word", desc: "Convertissez un PDF en document Word modifiable : paragraphes, tableaux, images, en-têtes et OCR des numérisations. Dans votre navigateur." },
+    "word-to-pdf": { name: "Word → PDF", desc: "Convertissez un document Word (.docx) en PDF en conservant mise en page, polices et tableaux ; PDF/A en option. Dans votre navigateur." },
+  },
+  sk: {
+    "pdf-to-word": { name: "PDF → Word", desc: "Prevedie PDF na upraviteľný dokument Word: odseky, tabuľky, obrázky, hlavičky aj OCR skenov. Priamo v prehliadači." },
+    "word-to-pdf": { name: "Word → PDF", desc: "Prevedie dokument Word (.docx) na PDF so zachovaným vzhľadom, písmami a tabuľkami, voliteľne PDF/A. Priamo v prehliadači." },
   },
 };
 

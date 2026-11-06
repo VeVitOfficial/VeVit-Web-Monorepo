@@ -193,7 +193,7 @@ export default function WordToPdf({ locale }: ToolComponentProps) {
         </>
       )}
 
-      <PrivacyNote>{s.privacy}</PrivacyNote>
+      <PrivacyNote licenses={s.licenses}>{s.privacy}</PrivacyNote>
     </div>
   );
 }

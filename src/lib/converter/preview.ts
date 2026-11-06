@@ -1,5 +1,7 @@
 // Náhled první strany PDF a počet stran (pdf.js 6, vendorovaný — D7).
 import { importStatic, CONVERTER_BASE } from "./assets.ts";
+import { pdfjsDocumentParams } from "./pdfjs-params.ts";
+export { pdfjsDocumentParams };
 import type * as Pdfjs from "pdfjs-dist";
 
 let lib: Promise<typeof Pdfjs> | null = null;
@@ -11,25 +13,6 @@ export function loadPdfjs(): Promise<typeof Pdfjs> {
     return m;
   }).catch((e) => { lib = null; throw e; });
   return lib;
-}
-
-export function pdfjsDocumentParams(data: Uint8Array, password?: string) {
-  const base = new URL("pdfjs/", new URL(CONVERTER_BASE, self.location.origin)).toString();
-  return {
-    data,
-    password,
-    isEvalSupported: false,
-    // Jména fontů (PostScript) pro mapování na plné fonty v DOCX.
-    fontExtraProperties: true,
-    enableXfa: false,
-    cMapUrl: base + "cmaps/",
-    cMapPacked: true,
-    standardFontDataUrl: base + "standard_fonts/",
-    wasmUrl: base + "wasm/",
-    iccUrl: base + "iccs/",
-    // Odkazy a skripty v PDF se nikdy nespouštějí.
-    stopAtErrors: false,
-  };
 }
 
 export interface Preview { dataUrl: string; pages: number; width: number; height: number }

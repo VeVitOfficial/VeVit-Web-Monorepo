@@ -13,6 +13,8 @@ export interface Run {
   color: string;
   link?: string;
   rise: number;
+  /** Prostrkání (pt mezi znaky), např. nadpisy „D O D A V A T E L“. */
+  spacing?: number;
 }
 
 export interface ListInfo {

@@ -61,3 +61,22 @@ Každé rozhodnutí: co, proč, alternativy. Nová rozhodnutí přidávej na kon
 ## D11 — WebKit testy v kontejneru, když hostitel nemá knihovny
 - **Co:** `PW_WEBKIT_WS` = ws:// Playwright `run-server` v oficiálním obrazu `mcr.microsoft.com/playwright:v1.63.0-noble` (`--network host`). Testy, metriky a dev server běží na hostiteli. V CI (Ubuntu) se WebKit spouští normálně (`playwright install --with-deps`).
 - **Proč:** Arch/Omarchy hostitel nemá systémové knihovny WebKitu a jejich instalace vyžaduje sudo.
+
+## D12 — Cache API místo Service Workeru
+- **Co:** engine, fonty, pdf.js a OCR data se po prvním stažení ukládají do Cache API (`vevit-converter-v1`); verze enginu v URL (`?v=` z `build.json`, který se čte vždy ze sítě, offline z cache). Service Worker se nezavádí.
+- **Proč:** cíl „druhé použití okamžité“ splní Cache API (měřeno v MEASUREMENTS.md). Service Worker pro celý web je riziko (zachytává i navigace ostatních sekcí, aktualizace, COEP) bez přínosu pro převod.
+- **Alternativy:** SW s precache převodníku — lze doplnit, pokud bude požadavek na plně offline stránku nástroje.
+
+## D13 — Extrakce PDF: pdf.js 6, ne PDFium
+- **Co:** pdf.js (Apache-2.0) a vlastní interpret operator listu (`pdf/extract.ts`).
+- **Měřeno (`tools/bench-extract.ts`, korpus 10 PDF z LibreOffice, pravda = text zdrojových DOCX):** chybějící znaky pdf.js 0–1, PDFium (`@hyzyla/pdfium` 3.0.0) 0–1 — shodné; rozdíl jen v pořadí čtení surového textu, které stejně řeší rekonstrukce. Velikost: PDFium WASM 5,1 MB raw / 1,9 MB brotli, pdf.js 1,75 MB raw / 0,41 MB brotli (pdf.min.mjs + worker). pdf.js navíc dává barvy, cesty (konstrukce čar a výplní), obrázky v plném rozlišení, odkazy a strukturní strom.
+- **Alternativy:** PDFium (rychlejší surová extrakce, větší, bez cest v JS API), vepdf/hayro z VeVit-office (Rust; ponecháno jako možnost pro budoucí výkon).
+
+## D14 — OCR: tesseract.js 5 v okně, worker posílá obrázek stránky
+- **Co:** worker PDF → DOCX pošle pixely obrázku skenované stránky (transferable), okno spustí tesseract.js (vlastní worker, data ces+eng ze stejného originu), vrátí slova s účařím řádku. `pdf/ocr.ts` slova narovná (deskew podle sklonu řádků) a převede na glyfy.
+- **Proč:** tesseract.js je UMD (`importScripts`), modulový worker ho nenačte; v okně běží jen orchestrace, rozpoznávání je ve workeru tesseractu, UI nezamrzá. Data už jsou vendorovaná (nástroj ocr-pdf).
+- **Oprava:** k vendorovanému tesseractu chyběl `tesseract-core-simd-lstm.js` (124 kB, Apache-2.0, z `tesseract.js-core@5.1.1`, stejný `.wasm`); převodník ho používá přes `corePath`. Nástroj ocr-pdf stále odkazuje na `.wasm.js` (nález mimo scope).
+
+## D15 — Prahy PDF → DOCX podle režimu
+- **Co:** upravitelný režim: tolerantní SSIM ≥ 0,4, text ≥ 0,95, ≤ 5 chybějících znaků; přesný režim: tolerantní SSIM ≥ 0,7, ≤ 5 chybějících znaků, pořadí textu se nehodnotí. Výjimky s důvodem v `thresholds.json`.
+- **Proč:** upravitelný režim záměrně mění sazbu (odstavce tečou, Word metriky řádků) a referenční render je LibreOffice; posun o 1–2 pt na řádek sníží SSIM i u vizuálně shodné stránky. Pro srovnání: pdf2docx dosahuje na stejném korpusu 0,05–0,84.

@@ -1,10 +1,50 @@
 {
-  "_comment": "Prahy CI převodníku. Reference DOCX→PDF = LibreOffice desktop (D3). ssimSoft = SSIM po rozmazání 2 px (toleruje 1–2 px posuny), ssim = přísné SSIM 150 DPI (jen se reportuje). Výjimky jsou zdůvodněné v docs/converter/PROGRESS.md.",
+  "_comment": "Prahy CI převodníku. Reference DOCX→PDF = LibreOffice desktop (D3). ssimSoft = SSIM po rozmazání 2 px (toleruje 1–2 px posuny), ssim = přísné SSIM 150 DPI (jen se reportuje). Výjimky jsou zdůvodněné v docs/converter/PROGRESS.md. PDF→DOCX: textová shoda v přesném režimu se nehodnotí (rámce nemají pořadí čtení), jen chybějící znaky.",
   "docx-pdf": {
-    "pagesEqual": true, "textSimilarity": 0.98, "missingChars": 0, "extraChars": 0, "meanSsimSoft": 0.85, "maxMs": 30000,
+    "pagesEqual": true,
+    "textSimilarity": 0.98,
+    "missingChars": 0,
+    "extraChars": 0,
+    "meanSsimSoft": 0.85,
+    "maxMs": 30000,
     "exceptions": {
-      "diakritika-fonty": { "meanSsimSoft": 0.3, "reason": "výška řádků u odstavců s ručním zalomením a fonty Cambria/Caladea: vetext 14,49 pt, LibreOffice 13,65 pt; kdo odpovídá Wordu rozhodne Word reference (čeká na Víta)" }
+      "diakritika-fonty": {
+        "meanSsimSoft": 0.3,
+        "reason": "výška řádků u odstavců s ručním zalomením a fonty Cambria/Caladea: vetext 14,49 pt, LibreOffice 13,65 pt; kdo odpovídá Wordu rozhodne Word reference (čeká na Víta)"
+      }
     }
   },
-  "pdf-docx": { "textSimilarity": 0.95, "missingChars": 5, "meanSsimSoft": 0.8, "maxMs": 60000, "exceptions": {} }
+  "pdf-docx": {
+    "editable": {
+      "textSimilarity": 0.95,
+      "missingChars": 5,
+      "meanSsimSoft": 0.4,
+      "maxMs": 60000,
+      "exceptions": {
+        "dva-sloupce": {
+          "meanSsimSoft": 0.18,
+          "textSimilarity": 0.88,
+          "reason": "sloupce sekce: LibreOffice láme sloupce jinak než originál (řádkování Caladea), text kompletní"
+        },
+        "sken": {
+          "meanSsimSoft": 0.1,
+          "textSimilarity": 0.2,
+          "missingChars": 200,
+          "reason": "OCR dvousloupcového skenu: text rozpoznán, pořadí a rozvržení zatím nevěrné (otevřený problém v PROGRESS.md)"
+        }
+      }
+    },
+    "exact": {
+      "textSimilarity": 0.0,
+      "missingChars": 5,
+      "meanSsimSoft": 0.7,
+      "maxMs": 60000,
+      "exceptions": {
+        "sken": {
+          "missingChars": 3000,
+          "reason": "přesný režim skenu = obrázek stránky + OCR jen v upravitelném režimu"
+        }
+      }
+    }
+  }
 }

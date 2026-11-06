@@ -54,6 +54,7 @@ function runXml(r: Run, base: { font: string; size: number; bold: boolean; color
   if (r.bold !== base.bold) rp.push(r.bold ? "<w:b/><w:bCs/>" : '<w:b w:val="0"/><w:bCs w:val="0"/>');
   if (r.italic) rp.push("<w:i/><w:iCs/>");
   if (r.color !== base.color && !r.link) rp.push(`<w:color w:val="${r.color}"/>`);
+  if (r.spacing && Math.abs(r.spacing) >= 0.1) rp.push(`<w:spacing w:val="${tw(r.spacing)}"/>`);
   if (Math.abs(r.size - base.size) >= 0.25) rp.push(`<w:sz w:val="${Math.round(r.size * 2)}"/><w:szCs w:val="${Math.round(r.size * 2)}"/>`);
   const style = r.link ? '<w:rStyle w:val="Hyperlink"/>' : "";
   const rpr = style || rp.length ? `<w:rPr>${style}${rp.join("")}</w:rPr>` : "";
@@ -217,7 +218,9 @@ function blocksXml(c: Ctx, blocks: Block[], startY: number, leftMargin: number, 
   let pendingBreak = false;
   const anchoredRuns: string[] = [];
   for (const b of blocks) {
-    if (b.kind === "image" && b.anchored) { anchoredRuns.push(imageXml(c, b, page ?? undefined)); continue; }
+    // Plovoucí obrázek jen na úrovni stránky; v buňce tabulky je vždy v řádku (jinak by ho
+    // malý kotvicí odstavec ořízl).
+    if (b.kind === "image" && b.anchored && page) { anchoredRuns.push(imageXml(c, b, page)); continue; }
     if (b.kind === "shape") { anchoredRuns.push(shapeXml(c, b)); continue; }
     if (b.kind === "frame") { out += frameXml(c, b); continue; }
     const gap = blockTop(b) - y;

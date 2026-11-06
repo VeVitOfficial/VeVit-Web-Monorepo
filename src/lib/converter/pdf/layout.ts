@@ -18,6 +18,8 @@ import type { Block, Para, Run, Table, TableCell, TableRow, Borders, Border, Ima
 export interface Seg {
   glyphs: Glyph[];
   x0: number; x1: number; top: number; bottom: number; base: number; size: number;
+  /** Rovnoměrná mezera mezi znaky (prostrkání, pt); 0 = běžný text. */
+  tracking?: number;
 }
 
 export interface Line { segs: Seg[]; x0: number; x1: number; top: number; bottom: number; base: number; size: number }
@@ -65,13 +67,12 @@ export function buildLines(glyphs: Glyph[], gapFactor = 1.6): Line[] {
     const medGap = median(gaps);
     const segs: Seg[] = [];
     let cur: Glyph[] = [];
-    let prevEnd = -Infinity, prevSize = 0, gapAfterSpace = false;
+    let prevEnd = -Infinity, prevSize = 0;
     for (const g of row) {
       const gap = g.x - prevEnd;
       const lim = Math.max(Math.max(prevSize, g.size) * gapFactor, medGap * 2.5);
       // Dvě mezery za sebou nebo velký skok = nový segment (sloupec).
       if (cur.length && gap > lim) { segs.push(mkSeg(trimSpaces(cur))); cur = []; }
-      gapAfterSpace = g.space;
       if (g.space && !cur.length) continue;
       cur.push(g);
       prevEnd = Math.max(prevEnd, g.x + g.w); prevSize = g.size;
@@ -80,7 +81,7 @@ export function buildLines(glyphs: Glyph[], gapFactor = 1.6): Line[] {
     const ok = segs.filter((s) => s.glyphs.length);
     if (!ok.length) continue;
     // Vložení mezer podle geometrie, kde PDF mezeru nemá (Skia/Chrome kreslí slova zvlášť).
-    for (const s of ok) s.glyphs = withSpaces(s.glyphs);
+    for (const s of ok) { s.tracking = trackingOf(s.glyphs); s.glyphs = withSpaces(s.glyphs, s.tracking); }
     lines.push({ segs: ok, x0: ok[0].x0, x1: ok[ok.length - 1].x1, top: Math.min(...ok.map((s) => s.top)), bottom: Math.max(...ok.map((s) => s.bottom)), base: median(ok.map((s) => s.base)), size: Math.max(...ok.map((s) => s.size)) });
   }
   return lines;
@@ -93,11 +94,22 @@ function trimSpaces(gs: Glyph[]): Glyph[] {
   return gs.slice(a, b);
 }
 
-function withSpaces(gs: Glyph[]): Glyph[] {
+/** Prostrkání: většina mezer mezi písmeny slova je kladná a stejná (CSS letter-spacing). */
+function trackingOf(gs: Glyph[]): number {
+  const gaps: number[] = [];
+  for (let i = 1; i < gs.length; i++) if (!gs[i].space && !gs[i - 1].space) gaps.push(gs[i].x - (gs[i - 1].x + gs[i - 1].w));
+  if (gaps.length < 4) return 0;
+  const m = median(gaps), size = gs[0].size;
+  if (m < size * 0.05) return 0;
+  // Stejnoměrné: aspoň 60 % mezer do ±0,04 velikosti od mediánu.
+  return gaps.filter((g) => Math.abs(g - m) < size * 0.04).length >= gaps.length * 0.6 ? m : 0;
+}
+
+function withSpaces(gs: Glyph[], tracking = 0): Glyph[] {
   const out: Glyph[] = [];
   for (let i = 0; i < gs.length; i++) {
     const g = gs[i], p = out[out.length - 1];
-    if (p && !p.space && !g.space && g.x - (p.x + p.w) > Math.min(p.size, g.size) * 0.18) {
+    if (p && !p.space && !g.space && g.x - (p.x + p.w) - tracking > Math.min(p.size, g.size) * 0.18) {
       out.push({ ...p, ch: " ", x: p.x + p.w, w: g.x - p.x - p.w, space: true });
     }
     // Sloučení vícenásobných mezer.
@@ -496,9 +508,9 @@ function segRuns(seg: Seg, fonts: Record<string, FontInfo>, ctx: LayoutCtx): Run
     const link = ctx.links.find((l) => g.x + g.w / 2 >= l.x && g.x + g.w / 2 <= l.x + l.w && g.base >= l.y - 1 && g.base <= l.y + l.h + 2)?.url;
     const sizeHp = Math.round(g.size * 2) / 2;
     const last = runs[runs.length - 1];
-    if (last && last.font === f.family && last.bold === f.bold && last.italic === f.italic && last.color === color && Math.abs(last.size - sizeHp) < 0.25 && last.link === link) { last.text += g.ch; continue; }
+    if (last && last.font === f.family && last.bold === f.bold && last.italic === f.italic && last.color === color && Math.abs(last.size - sizeHp) < 0.25 && last.link === link && last.spacing === (seg.tracking || undefined)) { last.text += g.ch; continue; }
     if (last && g.space && last.link === link) { last.text += " "; continue; }
-    runs.push({ text: g.ch, font: f.family, bold: f.bold, italic: f.italic, size: sizeHp, color, link, rise: 0 });
+    runs.push({ text: g.ch, font: f.family, bold: f.bold, italic: f.italic, size: sizeHp, color, link, rise: 0, spacing: seg.tracking || undefined });
   }
   return runs;
 }
@@ -515,7 +527,7 @@ function lineRuns(l: Line, fonts: Record<string, FontInfo>, ctx: LayoutCtx): Run
 function appendRuns(target: Run[], add: Run[]) {
   for (const r of add) {
     const last = target[target.length - 1];
-    if (last && last.font === r.font && last.bold === r.bold && last.italic === r.italic && last.color === r.color && last.size === r.size && last.link === r.link) last.text += r.text;
+    if (last && last.font === r.font && last.bold === r.bold && last.italic === r.italic && last.color === r.color && last.size === r.size && last.link === r.link && last.spacing === r.spacing) last.text += r.text;
     else target.push({ ...r });
   }
 }
@@ -608,7 +620,6 @@ function makePara(g: Line[], box: { x0: number; x1: number }, fonts: Record<stri
     else if (allEq(rights) && !allEq(lefts)) align = "right";
     else if (allEq(centers) && !allEq(lefts) && Math.abs(centers[0]) < tol * 2) align = "center";
   } else {
-    const l = g[0];
     if (rights[0] < tol && lefts[0] > tol * 2) align = "right";
     else if (Math.abs(centers[0]) < tol && lefts[0] > tol * 2) align = "center";
   }
@@ -671,10 +682,22 @@ function xyCut(items: AnyItem[], box: { x0: number; x1: number }, fonts: Record<
   // Svislý řez (sloupce vedle sebe): mezera v projekci na x přes celou výšku skupiny.
   const lineItems = items.filter((i) => i.kind === "line") as Item[];
   if (depth < 6 && items.length >= 2) {
-    // Nejdřív vodorovné pásy: bloky oddělené prázdným řádkem se zpracují zvlášť.
+    // Nejdřív sloupce přes celou skupinu (tekoucí text ve dvou sloupcích, i ze skenu, kde
+    // mezery mezi řádky kolísají), pak vodorovné pásy oddělené prázdným místem.
+    const whole = verticalCut(items, ctx.bodySize);
+    if (whole) {
+      const left = items.filter((i) => (i.x0 + i.x1) / 2 < whole), right = items.filter((i) => (i.x0 + i.x1) / 2 >= whole);
+      if (isTextColumn(left) && isTextColumn(right)) {
+        return [sideBySide([left, right], [{ x0: box.x0, x1: Math.max(...left.map((i) => i.x1)) }, { x0: Math.min(...right.map((i) => i.x0)), x1: box.x1 }], box, fonts, ctx, depth)];
+      }
+    }
+    if (!whole) {
+      const split = enablingHorizontalSplit(items, ctx.bodySize, true);
+      if (split) return [...xyCut(split[0], box, fonts, ctx, depth + 1), ...xyCut(split[1], box, fonts, ctx, depth + 1)];
+    }
     const bands = horizontalBands(items);
     if (bands.length > 1) return bands.flatMap((b) => xyCut(b, box, fonts, ctx, depth + 1));
-    let cut = verticalCut(items, ctx.bodySize);
+    const cut = whole ?? verticalCut(items, ctx.bodySize);
     if (!cut) {
       // Nadpis přes celou šířku nad dvěma sloupci blokuje svislý řez: zkusíme vodorovné řezy
       // od největší mezery a vezmeme první, po kterém jde některá část rozdělit na sloupce.
@@ -716,7 +739,7 @@ function horizontalBands(items: AnyItem[]): AnyItem[][] {
   return bands;
 }
 
-function enablingHorizontalSplit(items: AnyItem[], body: number): [AnyItem[], AnyItem[]] | null {
+function enablingHorizontalSplit(items: AnyItem[], body: number, textColumnsOnly = false): [AnyItem[], AnyItem[]] | null {
   const s = [...items].sort((a, b) => a.top - b.top);
   const cands: { at: number; gap: number }[] = [];
   let bottom = s[0].bottom;
@@ -732,7 +755,9 @@ function enablingHorizontalSplit(items: AnyItem[], body: number): [AnyItem[], An
     for (const part of [rest, top]) {
       if (part.length < 4) continue;
       const cut = verticalCut(part, body);
-      if (cut && part.filter((i) => i.x1 <= cut).length >= 2 && part.filter((i) => i.x0 >= cut).length >= 2) return [top, rest];
+      if (!cut) continue;
+      const l = part.filter((i) => i.x1 <= cut), r = part.filter((i) => i.x0 >= cut);
+      if (textColumnsOnly ? isTextColumn(l) && isTextColumn(r) : l.length >= 2 && r.length >= 2) return [top, rest];
     }
   }
   return null;
@@ -743,7 +768,9 @@ function verticalCut(items: AnyItem[], body: number): number | null {
   let end = iv[0][1], best: { gap: number; at: number } | null = null;
   for (let k = 1; k < iv.length; k++) {
     const [a, b] = iv[k];
-    if (a > end && a - end > Math.max(body * 1.5, 12)) {
+    // Mezera přes celou výšku skupiny; slova jednoho řádku dělí jen mezery < 1,6 × písmo,
+    // takže i užší sloupcová mezera (≈ 1 písmo) je spolehlivá.
+    if (a > end && a - end > Math.max(body * 0.9, 9)) {
       if (!best || a - end > best.gap) best = { gap: a - end, at: (a + end) / 2 };
     }
     end = Math.max(end, b);
@@ -756,7 +783,9 @@ function isTextColumn(g: AnyItem[]): boolean {
   const ls = g.filter((i) => i.kind === "line");
   if (ls.length < 6 || ls.length < g.length * 0.9) return false;
   const right = Math.max(...ls.map((i) => i.x1));
-  return ls.filter((i) => right - i.x1 < 2.5).length >= ls.length * 0.4;
+  // Tolerance i pro OCR (okraje slov ze skenu kolísají o víc než u textové vrstvy).
+  const tol = Math.max(2.5, (ls[0].kind === "line" ? ls[0].line.size : 10) * 0.35);
+  return ls.filter((i) => right - i.x1 < tol).length >= ls.length * 0.4;
 }
 
 /** Bloky vedle sebe → tabulka bez ohraničení (titulek | datumy), nebo sloupce textu. */

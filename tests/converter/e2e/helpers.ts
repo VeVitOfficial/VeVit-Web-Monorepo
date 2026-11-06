@@ -44,7 +44,9 @@ export async function runTool(page: Page, testInfo: TestInfo, slug: string, inpu
   const t0 = Date.now();
   await root.locator('[data-testid="convert"], #wp-run, #pw2-run').first().click();
   const download = root.locator('[data-testid="download"], .result-card button:has-text("Stáhnout")').first();
-  await expect(download).toBeVisible({ timeout: opts.timeout ?? 300_000 });
+  const error = root.locator('[data-testid="error"]');
+  await expect(download.or(error)).toBeVisible({ timeout: opts.timeout ?? 240_000 });
+  if (await error.isVisible()) throw new Error(`tool error: ${await error.innerText()}`);
   const ms = Date.now() - t0;
   const [dl] = await Promise.all([page.waitForEvent("download"), download.click()]);
   page.off("request", onReq);
@@ -81,7 +83,7 @@ export function privacyViolations(requests: CapturedRequest[], origin: string, f
 }
 
 /** Appends one result row (JSON lines) for the summary script. */
-export function record(kind: "docx-pdf" | "pdf-docx", row: Record<string, unknown>) {
+export function record(kind: "docx-pdf" | "pdf-docx" | "perf", row: Record<string, unknown>) {
   const dir = path.join(OUT, LABEL);
   mkdirSync(dir, { recursive: true });
   appendFileSync(path.join(dir, `${kind}.jsonl`), JSON.stringify({ label: LABEL, at: new Date().toISOString(), ...row }) + "\n");

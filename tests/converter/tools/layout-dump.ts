@@ -7,10 +7,22 @@ import { buildLines, layoutPage, bodySizeOf, headingSizes, marginsOf, rulesAndFi
 import { mapFont } from "../../../src/lib/converter/pdf/fontmap.ts";
 import type { Block } from "../../../src/lib/converter/pdf/model.ts";
 
-const [file, pageArg] = process.argv.slice(2);
+const [file, pageArg0] = process.argv.slice(2);
+const pageArg = pageArg0 && !pageArg0.startsWith("--") ? pageArg0 : undefined;
 const doc = await pdfjs.getDocument({ data: new Uint8Array(readFileSync(file)), fontExtraProperties: true }).promise;
 const page = await doc.getPage(Number(pageArg ?? 1));
 const m = await extractPage(pdfjs as never, page, 0);
+// --hocr <file>: OCR words from tesseract CLI instead of the text layer (scans).
+const hi = process.argv.indexOf("--hocr");
+if (hi > 0) {
+  const { hocrWords } = await import("./ocr-hocr.ts");
+  const { ocrGlyphs } = await import("../../../src/lib/converter/pdf/ocr.ts");
+  const im = m.images[0];
+  const pxW = Number(process.argv[hi + 2] ?? 1654);
+  m.glyphs.push(...ocrGlyphs(hocrWords(process.argv[hi + 1]), im, im.w / pxW, im.w / pxW));
+  m.fonts.ocr = { id: "ocr", name: "Liberation Serif", family: "Liberation Serif", bold: false, italic: false, serif: true, mono: false };
+  m.images = [];
+}
 const lines = buildLines(m.glyphs);
 const body = bodySizeOf([m]);
 console.log("lines:"); for (const l of lines.slice(0, 40)) console.log(`  y=${l.base.toFixed(1)} x=${l.x0.toFixed(1)}-${l.x1.toFixed(1)} s=${l.size} segs=${l.segs.length} ${JSON.stringify(lineText(l).slice(0, 70))}`);

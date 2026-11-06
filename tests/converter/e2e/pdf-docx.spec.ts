@@ -9,7 +9,7 @@ import { comparePdfs, pdfText, textSimilarity, decodeQr } from "../lib/metrics.m
 // @ts-expect-error plain ESM helpers without type declarations
 import { renderDocx, docxTables, docxStructure, hasSoffice } from "../lib/docx-metrics.mjs";
 
-const T = JSON.parse(readFileSync(path.join(__dirname, "../thresholds.json"), "utf8"))["pdf-docx"];
+const TALL = JSON.parse(readFileSync(path.join(__dirname, "../thresholds.json"), "utf8"))["pdf-docx"];
 const MODES = (process.env.CONVERTER_MODES ?? "editable").split(",");
 
 for (const mode of MODES) for (const name of docsFrom("pdf", ".pdf")) {
@@ -46,15 +46,19 @@ for (const mode of MODES) for (const name of docsFrom("pdf", ".pdf")) {
     if (name.startsWith("faktura")) {
       const qr = await decodeQr(rendered);
       row.qr = qr;
-      const cells = tables.flatMap((t: { rows: string[][] }) => t.rows);
+      // Tisícové oddělovače bývají nezlomitelné mezery (Chrome i Word).
+      const cells = tables.flatMap((t: { rows: string[][] }) => t.rows.map((r) => r.map((c) => c.replace(/[\u00a0\u202f]/g, " "))));
       const rowWith = (s: string) => cells.find((r: string[]) => r.some((c) => c.includes(s)));
       const web = rowWith("Webová stránka"), sprava = rowWith("Správa obsahu");
       row.invoice = { webRow: web, spravaRow: sprava, hasTotal: cells.some((r: string[]) => r.some((c) => c.includes("19 800,00 Kč"))) };
       record("pdf-docx", row);
+      // Přesný režim tabulky nevytváří (absolutně umístěné rámce) — buňky jen v upravitelném.
+      if (mode === "editable") {
       expect.soft(web, "row 'Webová stránka' is a table row").toBeTruthy();
       expect.soft(web?.filter((c: string) => c.includes("15 000,00 Kč")).length, "15 000,00 Kč in price and total cells").toBe(2);
       expect.soft(sprava?.some((c: string) => c === "4 800,00 Kč"), "4 800,00 Kč in its own cell").toBe(true);
       expect.soft(sprava?.some((c: string) => c === "800,00 Kč"), "800,00 Kč in its own cell").toBe(true);
+      }
       expect.soft(qr.length, "QR code decodes after round trip").toBeGreaterThan(0);
       if (qr.length) expect.soft(qr[0]).toContain("AM:19800.00");
     } else {
@@ -62,7 +66,8 @@ for (const mode of MODES) for (const name of docsFrom("pdf", ".pdf")) {
     }
     testInfo.annotations.push({ type: "metrics", description: JSON.stringify(row) });
 
-    const X = { ...T, ...(T.exceptions?.[`${name}.${mode}`] ?? T.exceptions?.[name] ?? {}) };
+    const T = TALL[mode];
+    const X = { ...T, ...(T.exceptions?.[name] ?? {}) };
     expect(violations, "no request may carry the document or leave the origin").toEqual([]);
     expect.soft(txt.similarity, "text similarity").toBeGreaterThanOrEqual(X.textSimilarity);
     expect.soft(txt.missingChars, "missing characters").toBeLessThanOrEqual(X.missingChars);

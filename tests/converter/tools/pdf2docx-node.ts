@@ -6,6 +6,9 @@ import { readFileSync, readdirSync, mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import * as pdfjs from "pdfjs-dist/legacy/build/pdf.mjs";
 import { pdfToDocx, type RawImage } from "../../../src/lib/converter/pdf/convert.ts";
+import { ocrGlyphs } from "../../../src/lib/converter/pdf/ocr.ts";
+import { hocrWords } from "./ocr-hocr.ts";
+import { execFileSync } from "node:child_process";
 // @ts-expect-error plain ESM helper
 import { comparePdfs, pdfText, textSimilarity, decodeQr } from "../lib/metrics.mjs";
 // @ts-expect-error plain ESM helper
@@ -32,7 +35,20 @@ for (const name of docs) {
   const input = path.join(root, "corpus/pdf", `${name}.pdf`);
   const t0 = performance.now();
   const doc = await pdfjs.getDocument({ data: new Uint8Array(readFileSync(input)), isEvalSupported: false, fontExtraProperties: true, standardFontDataUrl: path.join(root, "../../node_modules/pdfjs-dist/standard_fonts/") }).promise;
-  const { docx, report } = await pdfToDocx(pdfjs as never, doc, mode, { imagePixels });
+  // OCR přes tesseract CLI se stejnými daty (ces+eng) jako v prohlížeči, když je k dispozici.
+  const ocr = async (page: pdfjs.PDFPageProxy, m: { images: { id: string; x: number; y: number; w: number; h: number }[]; fonts: Record<string, unknown>; index: number }) => {
+    const im = [...m.images].sort((a, b) => b.w * b.h - a.w * a.h)[0];
+    const raw = im && (await imagePixels(page, im.id));
+    if (!raw) return null;
+    const { encodePng } = await import("../../../src/lib/converter/pdf/png.ts");
+    const png = path.join(out, `${name}-p${m.index + 1}.png`);
+    writeFileSync(png, encodePng(raw.data, raw.width, raw.height, raw.channels));
+    try { execFileSync("tesseract", [png, png.replace(/\.png$/, ""), "--tessdata-dir", path.join(root, "../../public/tools/assets/js/lib/tesseract"), "-l", "ces+eng", "-c", "tessedit_create_hocr=1"], { stdio: "pipe" }); } catch { return null; }
+    const words = hocrWords(png.replace(/\.png$/, ".hocr"));
+    m.fonts.ocr = { id: "ocr", name: "Liberation Serif", family: "Liberation Serif", bold: false, italic: false, serif: true, mono: false };
+    return { glyphs: ocrGlyphs(words, im, im.w / raw.width, im.h / raw.height), confidence: words.reduce((s, w) => s + w.confidence, 0) / Math.max(1, words.length) };
+  };
+  const { docx, report } = await pdfToDocx(pdfjs as never, doc, mode, { imagePixels, ocr: ocr as never });
   const ms = performance.now() - t0;
   const docxPath = path.join(out, `${name}.docx`);
   writeFileSync(docxPath, docx);
