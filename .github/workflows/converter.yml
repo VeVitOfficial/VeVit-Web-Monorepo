@@ -29,7 +29,7 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install -y --no-install-recommends poppler-utils libreoffice-writer-nogui
       - run: npx playwright install --with-deps chromium firefox webkit
       - name: Unit tests (layout, fonts, zip guard)
-        run: node --test tests/converter/unit/
+        run: node --test "tests/converter/unit/*.test.mjs"
       - name: Production build
         run: npm run build
       - name: Converter e2e (Chromium, Firefox, WebKit)
