@@ -55,6 +55,8 @@ function runXml(r: Run, base: { font: string; size: number; bold: boolean; color
   if (r.italic) rp.push("<w:i/><w:iCs/>");
   if (r.color !== base.color && !r.link) rp.push(`<w:color w:val="${r.color}"/>`);
   if (r.spacing && Math.abs(r.spacing) >= 0.1) rp.push(`<w:spacing w:val="${tw(r.spacing)}"/>`);
+  // Průhledná výplň textu (Word 2010+); starší čtečky ho ukážou černě.
+  if (r.transparent) rp.push('<w14:textFill><a:solidFill><a:srgbClr val="000000"><a:alpha val="0"/></a:srgbClr></a:solidFill></w14:textFill>');
   if (Math.abs(r.size - base.size) >= 0.25) rp.push(`<w:sz w:val="${Math.round(r.size * 2)}"/><w:szCs w:val="${Math.round(r.size * 2)}"/>`);
   const style = r.link ? '<w:rStyle w:val="Hyperlink"/>' : "";
   const rpr = style || rp.length ? `<w:rPr>${style}${rp.join("")}</w:rPr>` : "";

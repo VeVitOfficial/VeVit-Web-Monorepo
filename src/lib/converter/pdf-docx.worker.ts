@@ -26,19 +26,42 @@ function pdfjs(): Promise<typeof Pdfjs> {
 
 /** Pixely obrázku z page.objs: ImageBitmap (OffscreenCanvas) nebo surová data pdf.js. */
 async function imagePixels(page: Pdfjs.PDFPageProxy, id: string): Promise<RawImage | null> {
-  const obj = await new Promise<{ bitmap?: ImageBitmap; data?: Uint8ClampedArray; width?: number; height?: number; kind?: number } | null>((res) => {
+  const obj = await new Promise<{ bitmap?: ImageBitmap | VideoFrame; data?: Uint8ClampedArray; width?: number; height?: number; kind?: number } | null>((res) => {
     try { page.objs.get(id, (o: never) => res(o)); } catch { res(null); }
     setTimeout(() => res(null), 15_000);
   });
   if (!obj) return null;
-  const width = Number(obj.width ?? obj.bitmap?.width ?? 0), height = Number(obj.height ?? obj.bitmap?.height ?? 0);
+  const bm = obj.bitmap as { width?: number; height?: number; displayWidth?: number; displayHeight?: number } | undefined;
+  const width = Number(obj.width ?? bm?.width ?? bm?.displayWidth ?? 0), height = Number(obj.height ?? bm?.height ?? bm?.displayHeight ?? 0);
   if (!(width > 0 && height > 0)) return null;
   if (obj.bitmap) {
-    const c = new OffscreenCanvas(width, height);
-    const g = c.getContext("2d");
-    if (!g) return null;
-    g.drawImage(obj.bitmap, 0, 0, width, height);
-    return { data: g.getImageData(0, 0, width, height).data, width, height, channels: 4 };
+    // pdf.js 6 dává ImageBitmap, nebo u JPEG VideoFrame (WebCodecs). WebKit VideoFrame do
+    // OffscreenCanvas nenakreslí → postupně: drawImage, createImageBitmap, VideoFrame.copyTo.
+    const draw = (src: CanvasImageSource): Uint8ClampedArray | null => {
+      try {
+        const c = new OffscreenCanvas(width, height);
+        const g = c.getContext("2d");
+        if (!g) return null;
+        g.drawImage(src, 0, 0, width, height);
+        const d = g.getImageData(0, 0, width, height).data;
+        // Celé průhledné = kreslení selhalo potichu.
+        for (let i = 3; i < d.length; i += 4 * 97) if (d[i] !== 0) return d;
+        return null;
+      } catch { return null; }
+    };
+    let data = draw(obj.bitmap as CanvasImageSource);
+    if (!data && typeof createImageBitmap === "function") {
+      try { data = draw(await createImageBitmap(obj.bitmap as ImageBitmapSource)); } catch { /* další pokus */ }
+    }
+    const frame = obj.bitmap as unknown as { copyTo?: (dst: Uint8Array, o: { format: string }) => Promise<unknown>; allocationSize?: (o: { format: string }) => number };
+    if (!data && typeof frame.copyTo === "function") {
+      try {
+        const buf = new Uint8Array(frame.allocationSize?.({ format: "RGBA" }) ?? width * height * 4);
+        await frame.copyTo(buf, { format: "RGBA" });
+        data = new Uint8ClampedArray(buf.buffer, 0, width * height * 4);
+      } catch { /* bez pixelů */ }
+    }
+    return data ? { data, width, height, channels: 4 } : null;
   }
   if (!obj.data) return null;
   const px = width * height;

@@ -15,6 +15,8 @@ export interface Run {
   rise: number;
   /** Prostrkání (pt mezi znaky), např. nadpisy „D O D A V A T E L“. */
   spacing?: number;
+  /** Neviditelný text nad obrázkem skenu (OCR v přesném režimu): lze hledat a kopírovat. */
+  transparent?: boolean;
 }
 
 export interface ListInfo {

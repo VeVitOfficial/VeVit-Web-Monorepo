@@ -18,7 +18,8 @@ export function pdfjsDocumentParams(data: Uint8Array, password?: string, opts: {
     // Ve workeru není `document`: fonty se nenačítají jako FontFace (pro extrakci nejsou potřeba).
     disableFontFace: !!opts.worker,
     // Výchozí hodnota se odvozuje z document.baseURI (ve workeru neexistuje); data stahuje worker pdf.js.
-    ...(opts.worker ? { useWorkerFetch: true } : {}),
+    // Obrázky jako surová data (ne VideoFrame/ImageBitmap): WebKit z VideoFrame pixely nevydá.
+    ...(opts.worker ? { useWorkerFetch: true, isImageDecoderSupported: false, isOffscreenCanvasSupported: false } : {}),
     // Odkazy a skripty v PDF se nikdy nespouštějí.
     stopAtErrors: false,
   };

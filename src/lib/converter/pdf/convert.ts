@@ -240,7 +240,9 @@ async function exactModel(models: PageModel[], pageLines: Line[][], proxies: Pdf
     // zarovnaný do bloku (roztažené mezery) se rozdělí po slovech, ať slova sedí na pixel.
     for (const l of pageLines[i]) for (const s of l.segs) {
       for (const part of exactParts(s)) {
-        const runs: Run[] = paragraphs([{ ...l, segs: [part], x0: part.x0, x1: part.x1 }], { x0: part.x0, x1: part.x1 + 1 }, fonts, ctx, true)[0]?.runs ?? [];
+        let runs: Run[] = paragraphs([{ ...l, segs: [part], x0: part.x0, x1: part.x1 }], { x0: part.x0, x1: part.x1 + 1 }, fonts, ctx, true)[0]?.runs ?? [];
+        // OCR nad obrázkem skenu: text průhledný, viditelný zůstává originální obraz.
+        if (part.glyphs[0]?.font === "ocr" && imgs.length) runs = runs.map((r) => ({ ...r, transparent: true }));
         const [asc, desc] = wordMetrics(runs[0]?.font ?? bodyRun.font);
         const lineHeight = part.size * (asc + desc);
         const frame: FrameBlock = { kind: "frame", x: part.x0, y: part.base - part.size * asc, w: part.x1 - part.x0 + part.size * 0.6, h: lineHeight, runs, lineHeight };
