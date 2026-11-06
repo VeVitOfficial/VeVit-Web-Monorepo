@@ -27,21 +27,23 @@ export function add_font(bytes, family) {
 }
 
 /**
- * Converts a DOCX to PDF. `password` opens encrypted documents (empty = none). The embedded
- * fonts are loaded first, as Word and LibreOffice do. Returns the PDF bytes.
+ * Converts a DOCX to PDF. `password` opens encrypted documents (empty = none); `pdfa` writes
+ * PDF/A-2b (tagged). The embedded fonts are loaded first, as Word and LibreOffice do.
+ * Returns the PDF bytes.
  * @param {Uint8Array} docx
  * @param {string} password
  * @param {boolean} tagged
+ * @param {boolean} pdfa
  * @returns {Uint8Array}
  */
-export function convert(docx, password, tagged) {
+export function convert(docx, password, tagged, pdfa) {
     try {
         const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
         const ptr0 = passArray8ToWasm0(docx, wasm.__wbindgen_export);
         const len0 = WASM_VECTOR_LEN;
         const ptr1 = passStringToWasm0(password, wasm.__wbindgen_export, wasm.__wbindgen_export2);
         const len1 = WASM_VECTOR_LEN;
-        wasm.convert(retptr, ptr0, len0, ptr1, len1, tagged);
+        wasm.convert(retptr, ptr0, len0, ptr1, len1, tagged, pdfa);
         var r0 = getDataViewMemory0().getInt32(retptr + 4 * 0, true);
         var r1 = getDataViewMemory0().getInt32(retptr + 4 * 1, true);
         var r2 = getDataViewMemory0().getInt32(retptr + 4 * 2, true);

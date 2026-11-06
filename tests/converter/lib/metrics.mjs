@@ -81,18 +81,46 @@ export function pixelDiff(a, b, tol = 64) {
   return { ratio: ink ? diff / ink : 0, png: PNG.sync.write(out) };
 }
 
+/** Box blur (radius r, two passes ≈ Gaussian), paper-white outside the page: the tolerant
+ *  SSIM variant forgives 1–2 px shifts that the 150 DPI SSIM punishes like missing text. */
+export function blur(page, r = 2) {
+  const { width: W, height: H } = page;
+  const k = 2 * r + 1;
+  const pass1d = (src, len, stride, lines, lineStride, dst) => {
+    const pre = new Float64Array(len + 1);
+    for (let l = 0; l < lines; l++) {
+      const base = l * lineStride;
+      for (let i = 0; i < len; i++) pre[i + 1] = pre[i] + src[base + i * stride];
+      for (let i = 0; i < len; i++) {
+        const a = i - r, b = i + r;
+        const inside = pre[Math.min(len, b + 1)] - pre[Math.max(0, a)];
+        const outside = (Math.max(0, -a) + Math.max(0, b - len + 1)) * 255;
+        dst[base + i * stride] = (inside + outside) / k;
+      }
+    }
+  };
+  let g = page.gray;
+  for (let pass = 0; pass < 2; pass++) {
+    const h = new Uint8Array(W * H), v = new Uint8Array(W * H);
+    pass1d(g, W, 1, H, W, h);
+    pass1d(h, H, W, W, 1, v);
+    g = v;
+  }
+  return { ...page, gray: g };
+}
+
 /** Compares two PDFs page by page. Missing pages count as SSIM 0. */
 export function comparePdfs(refPdf, outPdf, { dpi = 150, diffDir, name } = {}) {
   const A = renderPdf(refPdf, dpi), B = renderPdf(outPdf, dpi);
   const pages = [];
   for (let i = 0; i < Math.max(A.length, B.length); i++) {
-    if (!A[i] || !B[i]) { pages.push({ page: i + 1, ssim: 0, diff: 1 }); continue; }
+    if (!A[i] || !B[i]) { pages.push({ page: i + 1, ssim: 0, ssimSoft: 0, diff: 1 }); continue; }
     const d = pixelDiff(A[i], B[i]);
     if (diffDir) writeFileSync(path.join(diffDir, `${name}-p${i + 1}.png`), d.png);
-    pages.push({ page: i + 1, ssim: ssim(A[i], B[i]), diff: d.ratio });
+    pages.push({ page: i + 1, ssim: ssim(A[i], B[i]), ssimSoft: ssim(blur(A[i]), blur(B[i])), diff: d.ratio });
   }
-  const mean = pages.reduce((s, p) => s + p.ssim, 0) / (pages.length || 1);
-  return { pagesRef: A.length, pagesOut: B.length, ssim: mean, minSsim: Math.min(...pages.map((p) => p.ssim)), diff: Math.max(...pages.map((p) => p.diff)), pages };
+  const mean = (k) => pages.reduce((s, p) => s + (p[k] ?? 0), 0) / (pages.length || 1);
+  return { pagesRef: A.length, pagesOut: B.length, ssim: mean("ssim"), ssimSoft: mean("ssimSoft"), minSsim: Math.min(...pages.map((p) => p.ssim)), diff: Math.max(...pages.map((p) => p.diff)), pages };
 }
 
 export const pdfText = (pdfPath) => execFileSync("pdftotext", ["-enc", "UTF-8", "-raw", pdfPath, "-"], { encoding: "utf8" });

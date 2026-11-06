@@ -22,5 +22,7 @@ mkdir -p "$out"
 cp "$tmp/vevit_docx_pdf.js" "$out/vevit_docx_pdf.js"
 # Content hash for cache busting (the engine URL carries ?v=<hash>, assets are immutable-cached).
 hash="$(sha256sum "$out/vevit_docx_pdf_bg.wasm" | cut -c1-16)"
-printf '{"version":"%s","vetext":"%s"}\n' "$hash" "$(git -C "$root/../VeVit-office" rev-parse --short HEAD 2>/dev/null || echo unknown)" > "$out/build.json"
+raw="$(stat -c %s "$out/vevit_docx_pdf_bg.wasm")"
+br="$(brotli -q 11 -c "$out/vevit_docx_pdf_bg.wasm" | wc -c)"
+printf '{"version":"%s","vetext":"%s","wasmBytes":%s,"brotliBytes":%s}\n' "$hash" "$(git -C "$root/../VeVit-office" rev-parse --short HEAD 2>/dev/null || echo unknown)" "$raw" "$br" > "$out/build.json"
 ls -la "$out"

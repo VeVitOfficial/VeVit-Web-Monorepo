@@ -31,6 +31,7 @@
     "eslint-config-next": "^16.3.2",
     "fontkit": "^2.0.4",
     "jsqr": "1.4.0",
+    "pdfjs-dist": "6.4.299",
     "pngjs": "7.0.0",
     "tailwindcss": "^3.4.17",
     "typescript": "^6.0.3"
@@ -47,7 +48,6 @@
     "fflate": "0.8.2",
     "next": "^16.3.2",
     "parse5": "^8.0.1",
-    "pdfjs-dist": "6.4.299",
     "playwright-core": "^1.63.0",
     "qrcode": "^1.5.4",
     "react": "^19.2.8",

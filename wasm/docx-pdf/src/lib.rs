@@ -53,10 +53,11 @@ pub fn resolve_fonts(requests: &str) -> Result<String, JsError> {
     Ok(serde_json::Value::Array(out).to_string())
 }
 
-/// Converts a DOCX to PDF. `password` opens encrypted documents (empty = none). The embedded
-/// fonts are loaded first, as Word and LibreOffice do. Returns the PDF bytes.
+/// Converts a DOCX to PDF. `password` opens encrypted documents (empty = none); `pdfa` writes
+/// PDF/A-2b (tagged). The embedded fonts are loaded first, as Word and LibreOffice do.
+/// Returns the PDF bytes.
 #[wasm_bindgen]
-pub fn convert(docx: &[u8], password: &str, tagged: bool) -> Result<Vec<u8>, JsError> {
+pub fn convert(docx: &[u8], password: &str, tagged: bool, pdfa: bool) -> Result<Vec<u8>, JsError> {
     let pw = (!password.is_empty()).then_some(password);
     let doc = vetext_docx::read_with_password(docx, pw).map_err(|e| JsError::new(&e.to_string()))?;
     let files: Vec<(Vec<u8>, String)> = vetext_docx::embedded_fonts(&doc)
@@ -66,7 +67,7 @@ pub fn convert(docx: &[u8], password: &str, tagged: bool) -> Result<Vec<u8>, JsE
     if !files.is_empty() {
         vetext_fonts::FontDb::global().add_document_fonts(files);
     }
-    let opts = vetext_pdf::PdfOptions { tagged, ..Default::default() };
+    let opts = vetext_pdf::PdfOptions { tagged: tagged || pdfa, pdfa, ..Default::default() };
     vetext_pdf::export(&doc, &opts).map_err(|e| JsError::new(&e.to_string()))
 }
 

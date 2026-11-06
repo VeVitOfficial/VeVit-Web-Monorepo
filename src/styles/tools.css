@@ -1267,3 +1267,22 @@ button.pdf-page-card { cursor: pointer; }
 /* Lepenie akční lišty (tool-action-bar) přidá spodní safe-area pro iPhony
    s Home indicátorem. */
 .tool-action-bar { padding-bottom: calc(0.625rem + env(safe-area-inset-bottom, 0px)); }
+
+/* ── Převodníky Word ⇄ PDF (converter-ui.tsx) ─────────────────────────── */
+.conv-options { display: flex; flex-direction: column; gap: 0.5rem; }
+.conv-option { display: flex; gap: 0.6rem; align-items: flex-start; font-size: 0.9rem; color: var(--foreground); cursor: pointer; }
+.conv-option input { margin-top: 0.2rem; flex: 0 0 auto; }
+.conv-option small { display: block; color: var(--muted-foreground); font-size: 0.8rem; }
+.conv-modes { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 0.5rem; }
+.conv-mode { border: 1px solid var(--border); border-radius: 0.75rem; padding: 0.75rem; cursor: pointer; display: flex; gap: 0.6rem; align-items: flex-start; background: var(--panel); }
+.conv-mode:has(input:checked) { border-color: var(--primary); background: rgba(var(--vv-green-rgb), 0.06); }
+.conv-mode strong { display: block; font-size: 0.9rem; }
+.conv-mode small { display: block; color: var(--muted-foreground); font-size: 0.8rem; }
+.conv-progress + .conv-progress { margin-top: 0.25rem; }
+.conv-warnings { border: 1px solid color-mix(in srgb, var(--vv-warning) 40%, transparent); background: color-mix(in srgb, var(--vv-warning) 8%, transparent); border-radius: 0.75rem; padding: 0.75rem 1rem; font-size: 0.85rem; }
+.conv-warnings-title { display: flex; align-items: center; gap: 0.4rem; font-weight: 600; margin: 0 0 0.35rem; color: var(--foreground); }
+.conv-warnings ul { margin: 0; padding-left: 1.2rem; color: var(--foreground); }
+.conv-warnings li + li { margin-top: 0.2rem; }
+.conv-preview { margin: 0; display: flex; justify-content: center; }
+.conv-preview img { max-width: min(100%, 22rem); height: auto; border: 1px solid var(--border); border-radius: 0.25rem; box-shadow: 0 4px 16px rgba(0,0,0,.12); background: #fff; }
+.conv-note { font-size: 0.85rem; color: var(--muted-foreground); margin: 0; }

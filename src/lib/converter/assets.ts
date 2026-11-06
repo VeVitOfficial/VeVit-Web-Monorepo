@@ -29,7 +29,7 @@ function openCache(): Promise<Cache | null> {
  * Stáhne `path` (relativně k CONVERTER_BASE nebo absolutní URL na stejném originu)
  * a vrátí bajty. Odpověď se uloží do Cache API; při dalším volání se vrátí odtud.
  */
-export async function fetchAsset(path: string, label: string, onProgress?: ProgressFn, signal?: AbortSignal): Promise<Uint8Array> {
+export async function fetchAsset(path: string, label: string, onProgress?: ProgressFn, signal?: AbortSignal): Promise<Uint8Array<ArrayBuffer>> {
   const url = new URL(path, new URL(CONVERTER_BASE, self.location.origin)).toString();
   const cache = await openCache();
   const hit = cache ? await cache.match(url).catch(() => undefined) : undefined;
@@ -43,12 +43,12 @@ export async function fetchAsset(path: string, label: string, onProgress?: Progr
   // Content-Length je u brotli přenosu komprimovaná velikost, průběh je tak jen orientační.
   const total = Number(res.headers.get("content-length") ?? 0);
   const reader = res.body.getReader();
-  const chunks: Uint8Array[] = [];
+  const chunks: Uint8Array<ArrayBuffer>[] = [];
   let loaded = 0;
   for (;;) {
     const { done, value } = await reader.read();
     if (done) break;
-    chunks.push(value);
+    chunks.push(value as Uint8Array<ArrayBuffer>);
     loaded += value.length;
     onProgress?.({ label, loaded, total: Math.max(total, loaded), cached: false });
   }
@@ -65,6 +65,32 @@ export async function fetchJson<T>(path: string, label: string): Promise<T> {
   return JSON.parse(new TextDecoder().decode(await fetchAsset(path, label))) as T;
 }
 
+/**
+ * Malé popisné soubory (build.json s verzí enginu): nejdřív síť, ať se po nasazení nového
+ * enginu změní `?v=`; bez sítě poslední uložená verze.
+ */
+export async function fetchFreshJson<T>(path: string): Promise<T> {
+  const url = new URL(path, new URL(CONVERTER_BASE, self.location.origin)).toString();
+  const cache = await openCache();
+  try {
+    const res = await fetch(url, { cache: "no-cache", credentials: "same-origin" });
+    if (!res.ok) throw new AssetError(`HTTP ${res.status}`, url);
+    const text = await res.text();
+    await cache?.put(url, new Response(text, { headers: { "content-type": "application/json" } })).catch(() => undefined);
+    return JSON.parse(text) as T;
+  } catch (e) {
+    const hit = cache ? await cache.match(url).catch(() => undefined) : undefined;
+    if (hit) return (await hit.json()) as T;
+    throw e;
+  }
+}
+
+/** Dynamický import ES modulu ze statických souborů (mimo bundler, viz D7). */
+export function importStatic<T>(path: string): Promise<T> {
+  const url = new URL(path, new URL(CONVERTER_BASE, self.location.origin)).toString();
+  return import(/* webpackIgnore: true */ /* turbopackIgnore: true */ url) as Promise<T>;
+}
+
 /** Je soubor už v cache? (UI tak může napsat „engine je připraven“ místo velikosti stažení.) */
 export async function isCached(path: string): Promise<boolean> {
   const cache = await openCache();
@@ -73,7 +99,7 @@ export async function isCached(path: string): Promise<boolean> {
   return !!(await cache.match(url).catch(() => undefined));
 }
 
-function concat(chunks: Uint8Array[], size: number): Uint8Array {
+function concat(chunks: Uint8Array<ArrayBuffer>[], size: number): Uint8Array<ArrayBuffer> {
   if (chunks.length === 1) return chunks[0];
   const out = new Uint8Array(size);
   let o = 0;

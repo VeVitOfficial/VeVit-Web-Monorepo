@@ -37,3 +37,27 @@ Každé rozhodnutí: co, proč, alternativy. Nová rozhodnutí přidávej na kon
   - licence: vetext MIT/Apache, LO MPL-2.0 + povinnost nabízet zdroj buildu.
 - **Riziko:** referencí je LO, ne Word (D3). Rozdíl LO ↔ Word u řádkování může být větší než LO ↔ vetext; vetext implementuje Word metriky řádku (`vetext_fonts::word::line_metrics`). Po dodání Word PDF přepočítat.
 - **Alternativy:** LO WASM jako volitelný „maximální věrnost“ engine — odloženo (velikost, Vercel limity, CDN čeká na Víta).
+
+## D7 — pdf.js 6.4.299 vendorovaný do `converter/pdfjs/`, ne bundlovaný
+- **Co:** `pdf.min.mjs`, `pdf.worker.min.mjs`, `cmaps/`, `standard_fonts/`, `wasm/` (openjpeg, jbig2, qcms) a `iccs/` z npm `pdfjs-dist` zkopírované do `public/tools/assets/js/lib/converter/pdfjs/`; načítá se `import()` s `turbopackIgnore` (`assets.ts → importStatic`). `pdfjs-dist` je devDependency jen kvůli typům.
+- **Proč:** pdf.js potřebuje vlastní worker a podpůrná data na stálých URL; bundlování přes Turbopack přidává riziko (top-level await, node polyfilly) a pdf.js by se zdvojil s chunkem workeru. Starý pdf.js 3.11 zůstává pro ostatních 35 PDF nástrojů beze změny.
+- **Bezpečnost:** `isEvalSupported: false`, `enableXfa: false`, skriptovací `quickjs-eval.wasm` není vůbec nasazený.
+- **Alternativy:** bundlovat `pdfjs-dist` (viz výše), upgradovat i starou 3.11 (mimo scope, riziko pro 35 nástrojů).
+
+## D8 — PDF/A-2b přímo v enginu (vendorovaný `vetext-pdf` s jednou změnou)
+- **Co:** `wasm/vendor/vetext-pdf` = kopie `vetext/crates/pdf` + `PdfOptions::pdfa`, které krille předá archival validator `A2_B` (`PATCH.md`).
+- **Proč:** vetext export nemá jak předat krilla `Configuration`. Dodatečná úprava hotového PDF (XMP, OutputIntent přes pdf-lib) by nezaručila splnění (krilla validátor hlídá fonty, průhlednost, metadata už při zápisu).
+- **Ověření:** všech 10 dokumentů korpusu se uloží jako PDF/A-2b (XMP `pdfaid:part=2`). Validace veraPDF neproběhla — instalace veraPDF (Java instalátor z webu) byla v tomto prostředí zamítnuta → čeká na Víta.
+
+## D9 — Bez SharedArrayBuffer, jednovláknově; COEP beze změny
+- **Co:** žádná část převodníku nepotřebuje SharedArrayBuffer: vetext běží v jednom vlákně, pdf.js má vlastní worker, OCR a stránky PDF → DOCX se paralelizují více workery. COEP zůstává `credentialless` pro celý web; `require-corp` pro stránky převodníku se nezavádí.
+- **Proč:** Safari/WebKit `credentialless` nepodporuje, takže by bez `require-corp` neměl SAB — ale převodník SAB nevyžaduje, takže v Safari funguje stejně (WebKit e2e 10/10). `require-corp` by bez CORP hlaviček rozbil Turnstile/Google Fonts na těchto stránkách a nic by nepřinesl. Jednovláknová cesta je tak jediná cesta → není co rozbít „fallbackem“.
+- **Alternativy:** `require-corp` jen na `/tools/word-to-pdf` a `/tools/pdf-to-word` (zkoušeno v úvaze, bez přínosu); vícevláknový build vetext (rayon + wasm threads) — layout je i tak 10–160 ms/dokument.
+
+## D10 — Vizuální metrika: přísné SSIM i tolerantní SSIM
+- **Co:** reportuje se `ssim` (8×8 okna, 150 DPI, bez prázdných oken) a `ssimSoft` (totéž po box blur r=2 ×2). Prahy CI jsou na `ssimSoft`; přísné SSIM se ukládá a hlídá v tabulkách.
+- **Proč:** posun řádku o 1–2 px (jiné zaokrouhlení výšky řádku, jiné rozložení mezer u zarovnání do bloku) shodí přísné SSIM na 0,6 i u vizuálně shodné stránky; tolerantní varianta to odpustí, ale chybějící/přidaný obsah stále trestá (stará implementace word-to-pdf: 0,18–0,25; nová 0,91–0,99).
+
+## D11 — WebKit testy v kontejneru, když hostitel nemá knihovny
+- **Co:** `PW_WEBKIT_WS` = ws:// Playwright `run-server` v oficiálním obrazu `mcr.microsoft.com/playwright:v1.63.0-noble` (`--network host`). Testy, metriky a dev server běží na hostiteli. V CI (Ubuntu) se WebKit spouští normálně (`playwright install --with-deps`).
+- **Proč:** Arch/Omarchy hostitel nemá systémové knihovny WebKitu a jejich instalace vyžaduje sudo.
