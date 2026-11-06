@@ -28,7 +28,7 @@ for (const label of labels) {
     console.log("| prohlížeč | režim | dokument | stran | SSIM | SSIM tolerantní | text | chybí | tabulky | textová pole | ms | faktura buňky | QR | soukromí |");
     console.log("|---|---|---|---|---|---|---|---|---|---|---|---|---|---|");
     for (const r of pd.sort((a, b) => a.browser.localeCompare(b.browser) || (a.mode ?? "").localeCompare(b.mode ?? "") || a.doc.localeCompare(b.doc))) {
-      const inv = r.invoice ? (r.invoice.webRow?.filter((c) => c.includes("15 000,00")).length === 2 && r.invoice.spravaRow?.some((c) => c === "4 800,00 Kč") && r.invoice.hasTotal ? "ano" : "ne") : "";
+      const inv = r.mode === "exact" && r.invoice ? "—" : r.invoice ? (r.invoice.webRow?.filter((c) => c.includes("15 000,00")).length === 2 && r.invoice.spravaRow?.some((c) => c === "4 800,00 Kč") && r.invoice.hasTotal ? "ano" : "ne") : "";
       const tb = (r.tables ?? []).map((t) => `${t.rows}×${t.cols}${t.headerRows ? "h" : ""}`).join(",");
       console.log(`| ${r.browser} | ${r.mode} | ${r.doc} | ${r.pagesRef}/${r.pagesOut} | ${f3(r.ssim)} | ${f3(r.ssimSoft)} | ${f3(r.text)} | ${r.missingChars} | ${tb} | ${(r.structure?.textBoxes ?? 0) + (r.structure?.frames ?? 0)} | ${r.ms} | ${inv} | ${r.qr ? (r.qr.length ? "ano" : "ne") : ""} | ${r.privacyViolations ? "PORUŠENO" : "ok"} |`);
     }
