@@ -1,0 +1,36 @@
+# Headless DOCX → PDF engine for the browser converter (word-to-pdf tool).
+# Thin wasm-bindgen wrapper over the vetext crates (fork of storytold/wordcraft,
+# Apache-2.0 upstream, MIT OR Apache-2.0 in the fork) from ~/Projects/VeVit-office.
+# Build: scripts/converter/build-wasm.sh (the built .wasm is vendored in
+# public/tools/assets/js/lib/converter/, so CI and Vercel never build Rust).
+[package]
+name = "vevit-docx-pdf"
+version = "0.1.0"
+edition = "2024"
+license = "MIT OR Apache-2.0"
+publish = false
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+vetext-doc = { path = "../../../VeVit-office/apps/vetext/crates/doc" }
+vetext-docx = { path = "../../../VeVit-office/apps/vetext/crates/docx" }
+vetext-fonts = { path = "../../../VeVit-office/apps/vetext/crates/fonts" }
+vetext-pdf = { path = "../../../VeVit-office/apps/vetext/crates/pdf" }
+wasm-bindgen = "=0.2.129"
+serde_json = "1"
+
+[profile.release]
+opt-level = "s"
+lto = "fat"
+codegen-units = 1
+panic = "abort"
+debug = 0
+strip = true
+
+# Same patches as the vetext workspace: they don't carry over to a crate outside it.
+[patch.crates-io]
+krilla = { path = "../../../VeVit-office/vendor/ve-libs/vendor/krilla" }
+
+[workspace]
