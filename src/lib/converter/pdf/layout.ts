@@ -10,7 +10,8 @@
 //  4. odstavce v listech: zarovnání, odsazení, řádkování, mezery, nadpisy, seznamy.
 // Vše jsou čisté funkce bez DOM: testy je pouští v Node nad extrahovanými JSON fixtures.
 import type { Glyph, PageModel, PathShape, Rgb, FontInfo } from "./extract.ts";
-import type { Block, Para, Run, Table, TableCell, TableRow, Borders, Border, ImageBlock, DocModel, PageLayout, ListInfo, Align } from "./model.ts";
+import { wordMetrics } from "./fontmap.ts";
+import type { Block, Para, Run, Table, TableCell, TableRow, Borders, Border, ImageBlock, DocModel, PageLayout, ListInfo, Align, ColumnsBlock } from "./model.ts";
 
 // ── Segmenty a řádky ────────────────────────────────────────────────────
 
@@ -58,14 +59,18 @@ export function buildLines(glyphs: Glyph[], gapFactor = 1.6): Line[] {
   const lines: Line[] = [];
   for (const row of rows) {
     row.sort((a, b) => a.x - b.x);
+    // Mezery mezi slovy na řádku: u textu zarovnaného do bloku jsou velké, ale stejné.
+    const gaps: number[] = [];
+    for (let k = 1; k < row.length; k++) { const gp = row[k].x - (row[k - 1].x + row[k - 1].w); if (gp > row[k].size * 0.12 && gp < row[k].size * gapFactor) gaps.push(gp); }
+    const medGap = median(gaps);
     const segs: Seg[] = [];
     let cur: Glyph[] = [];
     let prevEnd = -Infinity, prevSize = 0, gapAfterSpace = false;
     for (const g of row) {
       const gap = g.x - prevEnd;
-      const lim = Math.max(prevSize, g.size) * gapFactor;
+      const lim = Math.max(Math.max(prevSize, g.size) * gapFactor, medGap * 2.5);
       // Dvě mezery za sebou nebo velký skok = nový segment (sloupec).
-      if (cur.length && (gap > lim || (g.space && gapAfterSpace && gap > g.size * 0.3))) { segs.push(mkSeg(trimSpaces(cur))); cur = []; }
+      if (cur.length && gap > lim) { segs.push(mkSeg(trimSpaces(cur))); cur = []; }
       gapAfterSpace = g.space;
       if (g.space && !cur.length) continue;
       cur.push(g);
@@ -245,35 +250,52 @@ function subRects(p: PathShape): { x: number; y: number; w: number; h: number }[
 
 interface TableRegion { x0: number; x1: number; y0: number; y1: number; rowYs: number[]; colXs: number[]; kind: "grid" | "rows" | "aligned" }
 
-/** Svislé souřadnice čar → hranice řádků; čáry se stejným rozsahem x tvoří jednu tabulku. */
+/**
+ * Tabulky z čar. Mřížka = souvislá komponenta vodorovných a svislých čar, které se protínají
+ * (i krátké čáry uvnitř sloučených buněk patří ke své tabulce). Zbylé vodorovné čáry se stejným
+ * rozsahem nad sebou = tabulka „linky mezi řádky“ (faktury).
+ */
 function ruledRegions(rules: Rule[]): TableRegion[] {
-  const hs = rules.filter((r) => r.horiz && r.x1 - r.x0 > 30).sort((a, b) => a.y0 - b.y0);
-  const vs = rules.filter((r) => !r.horiz);
+  const hs = rules.filter((r) => r.horiz && r.x1 - r.x0 > 8).sort((a, b) => a.y0 - b.y0);
+  const vs = rules.filter((r) => !r.horiz && r.y1 - r.y0 > 4);
+  const touch = (h: Rule, v: Rule) => v.x0 >= h.x0 - 2.5 && v.x0 <= h.x1 + 2.5 && h.y0 >= v.y0 - 2.5 && h.y0 <= v.y1 + 2.5;
+  // Union-find nad čarami.
+  const all = [...hs, ...vs];
+  const parent = all.map((_, i) => i);
+  const find = (i: number): number => (parent[i] === i ? i : (parent[i] = find(parent[i])));
+  hs.forEach((h, i) => vs.forEach((v, j) => { if (touch(h, v)) parent[find(i)] = find(hs.length + j); }));
+  const comps = new Map<number, Rule[]>();
+  all.forEach((r, i) => { const k = find(i); if (!comps.has(k)) comps.set(k, []); comps.get(k)!.push(r); });
   const regions: TableRegion[] = [];
+  const inGrid = new Set<Rule>();
+  for (const comp of comps.values()) {
+    const ch = comp.filter((r) => r.horiz), cv = comp.filter((r) => !r.horiz);
+    if (ch.length < 2 || cv.length < 2) continue;
+    const x0 = Math.min(...comp.map((r) => r.x0)), x1 = Math.max(...comp.map((r) => r.x1));
+    const y0 = Math.min(...comp.map((r) => r.y0)), y1 = Math.max(...comp.map((r) => r.y1));
+    if (x1 - x0 < 30 || y1 - y0 < 8) continue;
+    regions.push({ x0, x1, y0, y1, rowYs: dedupe(ch.map((r) => r.y0), 1.5), colXs: dedupe(cv.map((r) => r.x0), 2), kind: "grid" });
+    for (const r of comp) inGrid.add(r);
+  }
+  // Linky mezi řádky: zbývající vodorovné čáry se stejným levým/pravým koncem nad sebou.
+  const rest = hs.filter((h) => !inGrid.has(h) && h.x1 - h.x0 > 30);
   const used = new Set<Rule>();
-  for (const h of hs) {
+  for (const h of rest) {
     if (used.has(h)) continue;
-    // Skupina vodorovných čar se zhruba stejným levým a pravým koncem, nad sebou bez velkých mezer.
     const group = [h]; used.add(h);
-    for (const o of hs) {
-      if (used.has(o)) continue;
+    for (const o of rest) {
+      if (used.has(o) || o.y0 < h.y0) continue;
       const last = group[group.length - 1];
-      if (o.y0 - last.y0 > 120) break;
-      const overlap = Math.min(o.x1, h.x1) - Math.max(o.x0, h.x0);
-      if (overlap > 0.8 * Math.min(o.x1 - o.x0, h.x1 - h.x0) && Math.abs(o.x0 - h.x0) < 40) { group.push(o); used.add(o); }
+      // Mezera výrazně větší než dosavadní řádky = další tabulka (nadpis, odstavec mezi nimi).
+      const rowGaps = group.slice(1).map((r, k) => r.y0 - group[k].y0);
+      const typical = rowGaps.length ? median(rowGaps) : 40;
+      if (o.y0 - last.y0 > Math.max(30, typical * 1.6) || o.y0 - last.y0 > 120) break;
+      if (Math.abs(o.x0 - h.x0) < 6 && Math.abs(o.x1 - h.x1) < 6) { group.push(o); used.add(o); }
     }
     const x0 = Math.min(...group.map((r) => r.x0)), x1 = Math.max(...group.map((r) => r.x1));
-    const y0 = group[0].y0, y1 = group[group.length - 1].y0;
-    const inside = vs.filter((v) => v.x0 >= x0 - 2 && v.x0 <= x1 + 2 && v.y1 > y0 - 2 && v.y0 < y1 + 2);
     const rowYs = dedupe(group.map((r) => r.y0), 1.5);
-    if (inside.length >= 2 && rowYs.length >= 2) {
-      const colXs = dedupe([x0, x1, ...inside.map((v) => v.x0)], 2);
-      regions.push({ x0, x1, y0, y1, rowYs, colXs, kind: "grid" });
-    } else if (rowYs.length >= 3) {
-      regions.push({ x0, x1, y0, y1, rowYs, colXs: [], kind: "rows" });
-    } else if (rowYs.length === 2 && y1 - y0 < 60) {
-      // Dvě čáry (záhlaví nad a pod) — tabulka s jedním řádkem dat se ověří zarovnáním textu.
-      regions.push({ x0, x1, y0, y1, rowYs, colXs: [], kind: "rows" });
+    if (rowYs.length >= 3 || (rowYs.length === 2 && rowYs[1] - rowYs[0] < 60)) {
+      regions.push({ x0, x1, y0: rowYs[0], y1: rowYs[rowYs.length - 1], rowYs, colXs: [], kind: "rows" });
     }
   }
   return regions;
@@ -375,11 +397,15 @@ function buildTable(reg: TableRegion, lines: Line[], rules: Rule[], fills: FillB
   const hRules = rules.filter((r) => r.horiz), vRules = rules.filter((r) => !r.horiz);
   const hAt = (y: number, xa: number, xb: number) => hRules.find((r) => Math.abs(r.y0 - y) < 2 && r.x0 <= xa + 2 && r.x1 >= xb - 2);
   const vAt = (x: number, ya: number, yb: number) => vRules.find((r) => Math.abs(r.x0 - x) < 2 && r.y0 <= ya + 2 && r.y1 >= yb - 2);
-  const cellLines = (r: number, c0: number, c1: number) => inLines
+  // Text do buněk po glyfech (segment může přes hranici sloupce: „1 Položka…“ bez velké mezery).
+  const cellLines = (r: number, c0: number, c1: number): Line[] => inLines
     .filter((l) => l.base > rowYs[r] && l.base <= rowYs[r + 1] + 1)
-    .map((l) => ({ ...l, segs: l.segs.filter((s) => (s.x0 + s.x1) / 2 >= colXs[c0] - 1 && (s.x0 + s.x1) / 2 < colXs[c1 + 1] + 1) }))
-    .filter((l) => l.segs.length)
-    .map((l) => ({ ...l, x0: l.segs[0].x0, x1: l.segs[l.segs.length - 1].x1 }));
+    .map((l) => {
+      const segs = l.segs.map((sg) => sg.glyphs.filter((g) => { const cx = g.x + g.w / 2; return cx >= colXs[c0] - 0.5 && cx < colXs[c1 + 1] - 0.5; }))
+        .map((gs) => trimSpaces(gs)).filter((gs) => gs.length).map((gs) => mkSeg(gs));
+      return segs.length ? { ...l, segs, x0: segs[0].x0, x1: segs[segs.length - 1].x1 } : null;
+    })
+    .filter((l): l is Line => !!l);
 
   // Sloučené buňky: v mřížce chybí vnitřní čára mezi sousedními buňkami.
   const vMergeDown: boolean[][] = Array.from({ length: nRows }, () => Array(nCols).fill(false));
@@ -417,8 +443,25 @@ function buildTable(reg: TableRegion, lines: Line[], rules: Rule[], fills: FillB
       col += cell.span;
     }
   }
-  // Pokračující buňky nesmí nést text (text je v první buňce sloučení).
-  for (const row of rows) for (const cell of row.cells) if (cell.vMerge === "continue") cell.blocks = [emptyPara()];
+  // Pokračující buňky nesmí nést text: svisle vystředěný text sloučené buňky (např. „Region“)
+  // leží v pdf v dolním řádku, přesune se do první buňky sloučení, která dostane vAlign center.
+  const restartAt = new Map<number, TableCell>();
+  for (const row of rows) {
+    let col = 0;
+    for (const cell of row.cells) {
+      if (cell.vMerge === "restart") restartAt.set(col, cell);
+      else if (cell.vMerge === "continue") {
+        const head = restartAt.get(col);
+        const content = cell.blocks.filter((b) => b.kind !== "para" || b.runs.length);
+        if (head && content.length) {
+          head.blocks = [...head.blocks.filter((b) => b.kind !== "para" || b.runs.length), ...content];
+          head.valign = "center";
+        }
+        cell.blocks = [emptyPara()];
+      } else restartAt.delete(col);
+      col += cell.span;
+    }
+  }
 
   return {
     kind: "table",
@@ -573,6 +616,12 @@ function makePara(g: Line[], box: { x0: number; x1: number }, fonts: Record<stri
   let indFirst = g.length > 1 && (align === "left" || align === "both") ? lefts[0] - indLeft : 0;
   if (g.length === 1 && (align === "left" || align === "both")) { indLeft = Math.max(0, lefts[0]); indFirst = 0; }
   if (list) { indLeft = list.textX; indFirst = -(list.textX - list.markerX); }
+  // Víc segmentů na řádku (záhlaví „vlevo … vpravo“): zarážky podle skutečných pozic.
+  let tabs: Para["tabs"];
+  if (g.length === 1 && g[0].segs.length > 1) {
+    tabs = g[0].segs.slice(1).map((sg) => (box.x1 - sg.x1 < tol * 2 ? { pos: sg.x1 - box.x0, val: "right" as const } : { pos: sg.x0 - box.x0, val: "left" as const }));
+    align = "left"; indLeft = Math.max(0, lefts[0]); indFirst = 0;
+  }
   const pitch = g.length >= 2 ? median(g.slice(1).map((l, i) => l.base - g[i].base)) : null;
   let heading: number | undefined;
   if (!inCell && !list && g.length <= 3) {
@@ -582,7 +631,7 @@ function makePara(g: Line[], box: { x0: number; x1: number }, fonts: Record<stri
   void width;
   return {
     kind: "para", runs, align, indLeft, indRight: 0, indFirst, before: 0, after: 0,
-    line: pitch, top: g[0].top, bottom: g[g.length - 1].bottom, firstBase: g[0].base, lastBase: g[g.length - 1].base, heading, list, size,
+    tabs, line: pitch, top: g[0].top, bottom: g[g.length - 1].bottom, firstBase: g[0].base, lastBase: g[g.length - 1].base, heading, list, size,
   };
 }
 
@@ -625,7 +674,13 @@ function xyCut(items: AnyItem[], box: { x0: number; x1: number }, fonts: Record<
     // Nejdřív vodorovné pásy: bloky oddělené prázdným řádkem se zpracují zvlášť.
     const bands = horizontalBands(items);
     if (bands.length > 1) return bands.flatMap((b) => xyCut(b, box, fonts, ctx, depth + 1));
-    const cut = verticalCut(items, ctx.bodySize);
+    let cut = verticalCut(items, ctx.bodySize);
+    if (!cut) {
+      // Nadpis přes celou šířku nad dvěma sloupci blokuje svislý řez: zkusíme vodorovné řezy
+      // od největší mezery a vezmeme první, po kterém jde některá část rozdělit na sloupce.
+      const split = enablingHorizontalSplit(items, ctx.bodySize);
+      if (split) return [...xyCut(split[0], box, fonts, ctx, depth + 1), ...xyCut(split[1], box, fonts, ctx, depth + 1)];
+    }
     if (cut) {
       const left = items.filter((i) => (i.x0 + i.x1) / 2 < cut), right = items.filter((i) => (i.x0 + i.x1) / 2 >= cut);
       if (left.length && right.length) {
@@ -661,6 +716,28 @@ function horizontalBands(items: AnyItem[]): AnyItem[][] {
   return bands;
 }
 
+function enablingHorizontalSplit(items: AnyItem[], body: number): [AnyItem[], AnyItem[]] | null {
+  const s = [...items].sort((a, b) => a.top - b.top);
+  const cands: { at: number; gap: number }[] = [];
+  let bottom = s[0].bottom;
+  for (let i = 1; i < s.length; i++) {
+    if (s[i].top > bottom) cands.push({ at: i, gap: s[i].top - bottom });
+    bottom = Math.max(bottom, s[i].bottom);
+  }
+  // Shora dolů: první řez, po kterém jde zbytek (nebo začátek) rozdělit na sloupce — tak
+  // zůstanou sloupce v jednom bloku a odříznou se jen prvky přes celou šířku.
+  for (const c of cands.slice(0, 40)) {
+    const top = s.slice(0, c.at), rest = s.slice(c.at);
+    // Jen řez, po kterém aspoň jedna část má sloupce s víc než jedním prvkem na každé straně.
+    for (const part of [rest, top]) {
+      if (part.length < 4) continue;
+      const cut = verticalCut(part, body);
+      if (cut && part.filter((i) => i.x1 <= cut).length >= 2 && part.filter((i) => i.x0 >= cut).length >= 2) return [top, rest];
+    }
+  }
+  return null;
+}
+
 function verticalCut(items: AnyItem[], body: number): number | null {
   const iv = items.map((i) => [i.x0, i.x1] as [number, number]).sort((a, b) => a[0] - b[0]);
   let end = iv[0][1], best: { gap: number; at: number } | null = null;
@@ -674,8 +751,25 @@ function verticalCut(items: AnyItem[], body: number): number | null {
   return best?.at ?? null;
 }
 
+/** Tekoucí text: hodně řádků a velká část z nich končí na stejném pravém okraji (do bloku / vlevo). */
+function isTextColumn(g: AnyItem[]): boolean {
+  const ls = g.filter((i) => i.kind === "line");
+  if (ls.length < 6 || ls.length < g.length * 0.9) return false;
+  const right = Math.max(...ls.map((i) => i.x1));
+  return ls.filter((i) => right - i.x1 < 2.5).length >= ls.length * 0.4;
+}
+
 /** Bloky vedle sebe → tabulka bez ohraničení (titulek | datumy), nebo sloupce textu. */
 function sideBySide(groups: AnyItem[][], boxes: { x0: number; x1: number }[], box: { x0: number; x1: number }, fonts: Record<string, FontInfo>, ctx: LayoutCtx, depth: number): Block {
+  if (groups.length === 2 && groups.every(isTextColumn)) {
+    const ext = groups.map((g) => ({ x0: Math.min(...g.map((i) => i.x0)), x1: Math.max(...g.map((i) => i.x1)) }));
+    const top = Math.min(...groups.flat().map((i) => i.top)), bottom = Math.max(...groups.flat().map((i) => i.bottom));
+    const col: ColumnsBlock = {
+      kind: "columns", x: ext[0].x0, widths: ext.map((e) => e.x1 - e.x0), gap: ext[1].x0 - ext[0].x1,
+      cols: groups.map((g, i) => xyCut(g, ext[i], fonts, ctx, depth + 1)), top, bottom,
+    };
+    return col;
+  }
   const cells: TableCell[] = groups.map((g, i) => ({ blocks: xyCut(g, boxes[i], fonts, ctx, depth + 1), span: 1, borders: {}, valign: "top" }));
   const bounds = [box.x0, ...boxes.slice(1).map((b, i) => (boxes[i].x1 + b.x0) / 2), box.x1];
   const top = Math.min(...groups.flat().map((i) => i.top)), bottom = Math.max(...groups.flat().map((i) => i.bottom));
@@ -774,16 +868,21 @@ export function findHeaderFooter(pages: { page: PageModel; lines: Line[] }[]): {
   return { header, footer, headerText, footerText };
 }
 
-/** Okraje stránky z obsahu (zaokrouhlené na rozumné hodnoty). */
-export function marginsOf(page: PageModel, lines: Line[]): { top: number; bottom: number; left: number; right: number } {
-  const xs = lines.map((l) => l.x0), xe = lines.map((l) => l.x1), ys = lines.map((l) => l.top), ye = lines.map((l) => l.bottom);
+/**
+ * Okraje stránky z obsahu. Svisle podle řádků Wordu (účaří ± ascent/descent fontu), aby
+ * první řádek stránky ležel na stejném účaří jako v originálu.
+ */
+export function marginsOf(page: PageModel, lines: Line[], fontMap?: (f: FontInfo | undefined) => { family: string }): { top: number; bottom: number; left: number; right: number } {
+  const metric = (l: Line) => wordMetrics(fontMap ? fontMap(page.fonts[l.segs[0].glyphs[0]?.font]).family : "");
+  const xs = lines.map((l) => l.x0), xe = lines.map((l) => l.x1);
+  const ys = lines.map((l) => l.base - metric(l)[0] * l.size), ye = lines.map((l) => l.base + metric(l)[1] * l.size);
   for (const p of page.paths) { xs.push(p.bbox.x); xe.push(p.bbox.x + p.bbox.w); ys.push(p.bbox.y); ye.push(p.bbox.y + p.bbox.h); }
   for (const im of page.images) { xs.push(im.x); xe.push(im.x + im.w); ys.push(im.y); ye.push(im.y + im.h); }
   const clamp = (v: number) => Math.max(14, Math.min(144, v));
   if (!xs.length) return { top: 72, bottom: 72, left: 72, right: 72 };
   return {
     left: clamp(Math.min(...xs) - 1), right: clamp(page.width - Math.max(...xe) - 1),
-    top: clamp(Math.min(...ys) - 2), bottom: clamp(page.height - Math.max(...ye) - 2),
+    top: clamp(Math.min(...ys)), bottom: clamp(page.height - Math.max(...ye) - 2),
   };
 }
 

@@ -42,6 +42,8 @@ export interface Para {
   /** Dolní ohraničení (vodorovná linka pod odstavcem). */
   borderBottom?: Border & { space: number };
   pageBreakBefore?: boolean;
+  /** Zarážky tabulátoru (pt od levého okraje oblasti) pro řádky s více segmenty. */
+  tabs?: { pos: number; val: "left" | "right" | "center" }[];
 }
 
 export interface Border { color: string; /** osminy bodu */ sz: number }
@@ -86,7 +88,10 @@ export interface FrameBlock { kind: "frame"; x: number; y: number; w: number; h:
 /** Vektorový tvar (přesný režim): cesta v souřadnicích stránky. */
 export interface ShapeBlock { kind: "shape"; x: number; y: number; w: number; h: number; d: string; fill?: string; stroke?: string; lineWidth: number }
 
-export type Block = Para | Table | ImageBlock | RuleBlock | FrameBlock | ShapeBlock;
+/** Tekoucí sloupce textu (sekce Wordu se sloupci), ne bloky vedle sebe. */
+export interface ColumnsBlock { kind: "columns"; x: number; widths: number[]; gap: number; cols: Block[][]; top: number; bottom: number }
+
+export type Block = Para | Table | ImageBlock | RuleBlock | FrameBlock | ShapeBlock | ColumnsBlock;
 
 export interface PageLayout {
   width: number; height: number;
@@ -96,7 +101,7 @@ export interface PageLayout {
   exact?: boolean;
 }
 
-export interface HeaderFooter { blocks: Block[]; pageField?: boolean }
+export interface HeaderFooter { blocks: Block[]; pageField?: boolean; /** Vzdálenost od horního (záhlaví) / dolního (zápatí) okraje stránky, pt. */ offset?: number }
 
 export interface DocModel {
   pages: PageLayout[];

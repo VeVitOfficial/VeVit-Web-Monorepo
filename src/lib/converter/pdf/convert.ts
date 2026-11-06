@@ -3,8 +3,8 @@
 // umístěných rámců, tvarů a obrázků).
 import type * as Pdfjs from "pdfjs-dist";
 import { extractPage, type PageModel, type Glyph, type FontInfo, type PathShape } from "./extract.ts";
-import { buildLines, findHeaderFooter, layoutPage, bodySizeOf, headingSizes, marginsOf, paragraphs, vectorClusters, hex, lineText, type Line, type LayoutCtx } from "./layout.ts";
-import { mapFont, fontReport, type FontReport } from "./fontmap.ts";
+import { buildLines, findHeaderFooter, layoutPage, bodySizeOf, headingSizes, marginsOf, paragraphs, vectorClusters, hex, lineText, type Line, type LayoutCtx, type Seg } from "./layout.ts";
+import { mapFont, fontReport, wordMetrics, type FontReport } from "./fontmap.ts";
 import { encodePng, rasterizeRects } from "./png.ts";
 import { writeDocx } from "./docx-writer.ts";
 import type { Block, DocModel, ImageBlock, PageLayout, Para, Table, FrameBlock, ShapeBlock, Run } from "./model.ts";
@@ -110,7 +110,7 @@ async function editableModel(models: PageModel[], pageLines: Line[][], proxies: 
   const bodyRun = bodyStyle(models, fonts, body);
 
   // Okraje: společné pro dokument (Word má okraje na sekci), z nejmenších okrajů obsahu.
-  const ms = models.map((m, i) => marginsOf(m, pageLines[i]));
+  const ms = models.map((m, i) => marginsOf(m, contentLines[i], (f) => mapFont(f)));
   const margins = {
     top: Math.min(...ms.map((m) => m.top)), bottom: Math.min(...ms.map((m) => m.bottom)),
     left: Math.min(...ms.map((m) => m.left)), right: Math.min(...ms.map((m) => m.right)),
@@ -137,10 +137,13 @@ async function editableModel(models: PageModel[], pageLines: Line[][], proxies: 
 
   const hfBox = { x0: margins.left, x1: models[0].width - margins.right };
   const hfBlocks = (ls: Line[] | undefined) => (ls ? paragraphs(ls, hfBox, fonts, ctxFor(models[0]), true) : []);
+  const metric = (l: Line) => wordMetrics(mapFont(fonts[l.segs[0].glyphs[0]?.font]).family);
+  const headerOffset = hf.headerText ? Math.max(0, Math.min(...hf.headerText.map((l) => l.base - metric(l)[0] * l.size))) : undefined;
+  const footerOffset = hf.footerText ? Math.max(0, models[0].height - Math.max(...hf.footerText.map((l) => l.base + metric(l)[1] * l.size))) : undefined;
   return {
     pages,
-    header: hf.headerText ? { blocks: hfBlocks(hf.headerText) } : undefined,
-    footer: hf.footerText ? { blocks: hfBlocks(hf.footerText), pageField: true } : undefined,
+    header: hf.headerText ? { blocks: hfBlocks(hf.headerText), offset: headerOffset } : undefined,
+    footer: hf.footerText ? { blocks: hfBlocks(hf.footerText), pageField: true, offset: footerOffset } : undefined,
     body: bodyRun,
     headings: headingStyles,
     title: firstTitle(pages),
@@ -155,27 +158,48 @@ function firstTitle(pages: PageLayout[]): string | undefined {
 /** Tabulka pokračující na další stránce: spojit a opakovaný první řádek označit jako záhlaví. */
 function mergeContinuedTables(pages: PageLayout[]) {
   const rowText = (t: Table, r: number) => t.rows[r]?.cells.map((c) => c.blocks.map((b) => (b.kind === "para" ? b.runs.map((x) => x.text).join("") : "")).join("")).join("|") ?? "";
-  for (let i = 0; i + 1 < pages.length; i++) {
-    const a = [...pages[i].blocks].reverse().find((b) => b.kind === "table" && !b.layout) as Table | undefined;
-    const b = pages[i + 1].blocks.find((x) => x.kind === "table" && !x.layout) as Table | undefined;
-    if (!a || !b || pages[i + 1].blocks[0] !== b) continue;
-    if (a.colWidths.length !== b.colWidths.length || a.colWidths.some((w, k) => Math.abs(w - b.colWidths[k]) > 3)) continue;
-    const lastA = pages[i].blocks[pages[i].blocks.length - 1];
-    if (lastA !== a) continue;
-    if (rowText(a, 0) && rowText(a, 0) === rowText(b, 0)) {
-      a.rows[0].header = true;
-      b.rows.shift();
+  // `open` = tabulka, kterou končí dosavadní obsah (i přes strany, které se celé přelily do ní).
+  let open: Table | null = null;
+  for (let i = 0; i < pages.length; i++) {
+    const blocks = pages[i].blocks;
+    const first = blocks[0];
+    if (open && first && first.kind === "table" && !first.layout && first.colWidths.length === open.colWidths.length && open.colWidths.every((w, k) => Math.abs(w - first.colWidths[k]) <= 3)) {
+      if (rowText(open, 0) && rowText(open, 0) === rowText(first, 0)) {
+        open.rows[0].header = true;
+        first.rows.shift();
+      }
+      open.rows.push(...first.rows);
+      blocks.shift();
+      (pages[i] as PageLayout & { continues?: boolean }).continues = true;
     }
-    a.rows.push(...b.rows);
-    pages[i + 1].blocks.shift();
-    // Stránku, ze které se tabulka přesunula, už nezačínáme zalomením (tabulka teče dál).
-    const next = pages[i + 1].blocks[0];
-    if (next && next.kind === "para") (next as Para & { noBreak?: boolean }).pageBreakBefore = false;
-    (pages[i + 1] as PageLayout & { continues?: boolean }).continues = true;
+    const last = blocks[blocks.length - 1];
+    if (last && last.kind === "table" && !last.layout) open = last;
+    else if (blocks.length) open = null;
   }
 }
 
 // ── Přesný režim ────────────────────────────────────────────────────────
+
+/** Segment → části pro rámce: celý segment, nebo po slovech, když jsou mezery roztažené. */
+function exactParts(s: Seg): Seg[] {
+  const words: Glyph[][] = [];
+  let cur: Glyph[] = [];
+  for (const g of s.glyphs) {
+    if (g.space) { if (cur.length) words.push(cur); cur = []; continue; }
+    cur.push(g);
+  }
+  if (cur.length) words.push(cur);
+  if (words.length < 2) return [s];
+  const gaps = words.slice(1).map((w, k) => w[0].x - (words[k][words[k].length - 1].x + words[k][words[k].length - 1].w));
+  const sorted = [...gaps].sort((a, b) => a - b);
+  const med = sorted[sorted.length >> 1];
+  if (med < s.size * 0.36) return [s];
+  return words.map((w) => mkSegLite(w, s));
+}
+
+function mkSegLite(gs: Glyph[], parent: Seg): Seg {
+  return { glyphs: gs, x0: gs[0].x, x1: gs[gs.length - 1].x + gs[gs.length - 1].w, top: parent.top, bottom: parent.bottom, base: parent.base, size: parent.size };
+}
 
 function pathD(p: PathShape): string {
   const { x, y, w, h } = p.bbox;
@@ -210,12 +234,16 @@ async function exactModel(models: PageModel[], pageLines: Line[][], proxies: Pdf
       blocks.push(shape);
     }
     blocks.push(...imgs);
-    // Každý segment řádku = jeden rámec na přesné pozici (účaří → horní hrana rámce).
+    // Každý segment řádku = jeden rámec na přesné pozici (účaří → horní hrana rámce). Řádek
+    // zarovnaný do bloku (roztažené mezery) se rozdělí po slovech, ať slova sedí na pixel.
     for (const l of pageLines[i]) for (const s of l.segs) {
-      const runs: Run[] = paragraphs([{ ...l, segs: [s], x0: s.x0, x1: s.x1 }], { x0: s.x0, x1: s.x1 + 1 }, fonts, ctx, true)[0]?.runs ?? [];
-      const lineHeight = s.size * 1.2;
-      const frame: FrameBlock = { kind: "frame", x: s.x0, y: s.base - s.size * 0.95, w: s.x1 - s.x0 + s.size * 0.6, h: lineHeight, runs, lineHeight };
-      blocks.push(frame);
+      for (const part of exactParts(s)) {
+        const runs: Run[] = paragraphs([{ ...l, segs: [part], x0: part.x0, x1: part.x1 }], { x0: part.x0, x1: part.x1 + 1 }, fonts, ctx, true)[0]?.runs ?? [];
+        const [asc, desc] = wordMetrics(runs[0]?.font ?? bodyRun.font);
+        const lineHeight = part.size * (asc + desc);
+        const frame: FrameBlock = { kind: "frame", x: part.x0, y: part.base - part.size * asc, w: part.x1 - part.x0 + part.size * 0.6, h: lineHeight, runs, lineHeight };
+        blocks.push(frame);
+      }
     }
     reports[i].images = imgs.length;
     pages.push({ width: m.width, height: m.height, margins: { top: 0, bottom: 0, left: 0, right: 0 }, blocks, exact: true });

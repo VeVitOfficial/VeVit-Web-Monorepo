@@ -3,7 +3,7 @@
 // se běh liší od stylu odstavce. Tabulky s přesnými šířkami sloupců, ohraničení jen tam, kde
 // v originálu jsou. Přesný režim: rámce (framePr) a tvary ukotvené ke stránce.
 import { zipSync, strToU8 } from "fflate";
-import type { Block, DocModel, Para, Run, Table, ImageBlock, RuleBlock, FrameBlock, ShapeBlock, PageLayout, Border, Borders, ListInfo } from "./model.ts";
+import type { Block, DocModel, Para, Run, Table, ImageBlock, RuleBlock, FrameBlock, ShapeBlock, PageLayout, Border, Borders, ListInfo, ColumnsBlock } from "./model.ts";
 
 const tw = (pt: number) => Math.round(pt * 20);
 const emu = (pt: number) => Math.round(pt * 12700);
@@ -11,20 +11,13 @@ export const xmlEsc = (s: string) => s.replace(/[\u0000-\u0008\u000b\u000c\u000e
 
 const NS = 'xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture" xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml" mc:Ignorable="w14"';
 
-/**
- * Metriky řádku Wordu jako násobky velikosti písma: Windows ascent a descent (OS/2 usWin*),
- * ze kterých Word skládá výšku jednoduchého řádku. Metricky kompatibilní klony mají stejné.
- */
-const METRICS: Record<string, [number, number]> = {
-  calibri: [0.952, 0.269], carlito: [0.952, 0.269], cambria: [0.95, 0.222], caladea: [0.95, 0.222],
-  arial: [0.905, 0.212], "liberation sans": [0.905, 0.212], helvetica: [0.905, 0.212],
-  "times new roman": [0.891, 0.216], "liberation serif": [0.891, 0.216],
-  "courier new": [0.833, 0.3], "liberation mono": [0.833, 0.3], "noto serif": [1.069, 0.293], "noto sans": [1.069, 0.293],
-};
-const metrics = (font: string): [number, number] => METRICS[font.toLowerCase()] ?? [0.92, 0.25];
+import { wordMetrics as metrics } from "./fontmap.ts";
 const lineFactor = (font: string) => { const [a, d] = metrics(font); return a + d; };
 
 interface Ctx {
+  hf: { header?: string; footer?: string };
+  /** Počet ukončených sekcí (kvůli `continuous` u dalších). */
+  sections: boolean[];
   rels: string[];
   media: Record<string, Uint8Array>;
   nextRel: number;
@@ -126,6 +119,11 @@ function paraXml(c: Ctx, p: Para, extraPPr = ""): string {
   }
   if (p.align !== "left") pp.push(`<w:jc w:val="${p.align}"/>`);
   if (extraPPr) pp.push(extraPPr);
+  if (p.tabs?.length) {
+    // Výchozí zarážky stylů Záhlaví/Zápatí (střed, vpravo) by text posunuly jinam.
+    const clear = '<w:tab w:val="clear" w:pos="4536"/><w:tab w:val="clear" w:pos="9072"/>';
+    pp.splice(pp.findIndex((x) => x.startsWith("<w:spacing")), 0, `<w:tabs>${clear}${p.tabs.map((t) => `<w:tab w:val="${t.val}" w:pos="${tw(t.pos)}"/>`).join("")}</w:tabs>`);
+  }
   // Velikost písma prázdného odstavce (značky odstavce) podle obsahu, ať nepřidává výšku.
   const markSize = p.size && Math.abs(p.size - base.size) >= 0.25 ? `<w:rPr><w:sz w:val="${Math.round(p.size * 2)}"/></w:rPr>` : "";
   return `<w:p><w:pPr>${pp.join("")}${markSize}</w:pPr>${runsXml(c, p.runs, base)}</w:p>`;
@@ -191,7 +189,9 @@ function tableXml(c: Ctx, t: Table, leftMargin: number): string {
       if (cell.shade) tcp.push(`<w:shd w:val="clear" w:color="auto" w:fill="${cell.shade}"/>`);
       if (cell.valign !== "top") tcp.push(`<w:vAlign w:val="${cell.valign}"/>`);
       // Svislé mezery v buňce se počítají od horní hrany řádku (obsah vpravo dole zůstane dole).
-      const start = row.top ?? (cell.blocks[0] ? blockTop(cell.blocks[0]) : 0);
+      const firstTop = cell.blocks[0] ? blockTop(cell.blocks[0]) : 0;
+      // Svisle vystředěná (sloučená) buňka: pozici řeší vAlign, ne mezera nad textem.
+      const start = cell.valign !== "top" ? firstTop : (row.top ?? firstTop);
       const inner = blocksXml(c, cell.blocks, start, t.x + (t.layout ? 0 : 3), null, true);
       return `<w:tc><w:tcPr>${tcp.join("")}</w:tcPr>${inner || "<w:p/>"}</w:tc>`;
     });
@@ -204,8 +204,8 @@ function tableXml(c: Ctx, t: Table, leftMargin: number): string {
   return `<w:tbl>${tblPr}${grid}${rows.join("")}</w:tbl>`;
 }
 
-const blockTop = (b: Block): number => (b.kind === "para" || b.kind === "table" ? b.top : b.kind === "rule" ? b.y : b.kind === "image" ? b.y : b.y);
-const blockBottom = (b: Block): number => (b.kind === "para" || b.kind === "table" ? b.bottom : b.kind === "rule" ? b.y + b.sz / 16 : b.kind === "image" ? b.y + b.h : b.y + b.h);
+const blockTop = (b: Block): number => (b.kind === "para" || b.kind === "table" || b.kind === "columns" ? b.top : b.y);
+const blockBottom = (b: Block): number => (b.kind === "para" || b.kind === "table" || b.kind === "columns" ? b.bottom : b.kind === "rule" ? b.y + b.sz / 16 : b.y + b.h);
 
 /**
  * Sekvence bloků → XML se svislými mezerami podle pozic v originálu (mezera před odstavcem,
@@ -245,6 +245,9 @@ function blocksXml(c: Ctx, blocks: Block[], startY: number, leftMargin: number, 
       pendingBreak = false;
     } else if (b.kind === "rule") {
       out += ruleXml(b, gap);
+    } else if (b.kind === "columns" && page) {
+      out += columnsXml(c, b, y, page, out.length > 0 || pendingBreak);
+      c.sections.push(true);
     }
     y = blockBottom(b);
   }
@@ -254,9 +257,30 @@ function blocksXml(c: Ctx, blocks: Block[], startY: number, leftMargin: number, 
   return out;
 }
 
-function sectPr(p: PageLayout, hf: { header?: string; footer?: string }, cols?: number): string {
+interface Cols { widths: number[]; gap: number }
+
+function sectPr(p: PageLayout & { headerOffset?: number; footerOffset?: number }, hf: { header?: string; footer?: string }, cols?: Cols, continuous = false): string {
   const orient = p.width > p.height ? ' w:orient="landscape"' : "";
-  return `<w:sectPr>${hf.header ? `<w:headerReference w:type="default" r:id="${hf.header}"/>` : ""}${hf.footer ? `<w:footerReference w:type="default" r:id="${hf.footer}"/>` : ""}<w:pgSz w:w="${tw(p.width)}" w:h="${tw(p.height)}"${orient}/><w:pgMar w:top="${tw(p.margins.top)}" w:right="${tw(p.margins.right)}" w:bottom="${tw(p.margins.bottom)}" w:left="${tw(p.margins.left)}" w:header="${tw(Math.min(36, p.margins.top / 2))}" w:footer="${tw(Math.min(36, p.margins.bottom / 2))}" w:gutter="0"/><w:cols w:space="708"${cols ? ` w:num="${cols}"` : ""}/></w:sectPr>`;
+  const colXml = cols
+    ? `<w:cols w:num="${cols.widths.length}" w:space="${tw(cols.gap)}" w:equalWidth="0">${cols.widths.map((w, i) => `<w:col w:w="${tw(w)}"${i < cols.widths.length - 1 ? ` w:space="${tw(cols.gap)}"` : ""}/>`).join("")}</w:cols>`
+    : '<w:cols w:space="708"/>';
+  return `<w:sectPr>${hf.header ? `<w:headerReference w:type="default" r:id="${hf.header}"/>` : ""}${hf.footer ? `<w:footerReference w:type="default" r:id="${hf.footer}"/>` : ""}${continuous ? '<w:type w:val="continuous"/>' : ""}<w:pgSz w:w="${tw(p.width)}" w:h="${tw(p.height)}"${orient}/><w:pgMar w:top="${tw(p.margins.top)}" w:right="${tw(p.margins.right)}" w:bottom="${tw(p.margins.bottom)}" w:left="${tw(p.margins.left)}" w:header="${tw(p.headerOffset ?? Math.min(36, p.margins.top / 2))}" w:footer="${tw(p.footerOffset ?? Math.min(36, p.margins.bottom / 2))}" w:gutter="0"/>${colXml}</w:sectPr>`;
+}
+
+/**
+ * Sloupce: konec předchozí (jednosloupcové) sekce, obsah levého sloupce, zalomení sloupce,
+ * pravý sloupec a konec dvousloupcové sekce. Další obsah stránky pokračuje plynule.
+ */
+function columnsXml(c: Ctx, b: ColumnsBlock, y: number, page: PageLayout, hasBefore: boolean): string {
+  const hf = c.hf;
+  const tiny = '<w:spacing w:before="0" w:after="0" w:line="20" w:lineRule="exact"/><w:rPr><w:sz w:val="2"/></w:rPr>';
+  let out = hasBefore ? `<w:p><w:pPr>${tiny}${sectPr(page, hf, undefined, c.sections.length > 0)}</w:pPr></w:p>` : "";
+  out += blocksXml(c, b.cols[0], y, b.x, page);
+  out += `<w:p><w:pPr>${tiny}</w:pPr><w:r><w:br w:type="column"/></w:r></w:p>`;
+  out += blocksXml(c, b.cols[1], y, b.x + b.widths[0] + b.gap, page);
+  const left = Math.max(0, b.x - page.margins.left);
+  out += `<w:p><w:pPr>${tiny}${sectPr({ ...page, margins: { ...page.margins, left: page.margins.left + left } }, hf, { widths: b.widths, gap: b.gap }, true)}</w:pPr></w:p>`;
+  return out;
 }
 
 function stylesXml(doc: DocModel): string {
@@ -350,9 +374,9 @@ function hfXml(c: Ctx, tag: "hdr" | "ftr", blocks: Block[]): string {
 }
 
 export function writeDocx(doc: DocModel): Uint8Array {
-  const c: Ctx = { rels: [], media: {}, nextRel: 10, nextDrawing: 1, linkRels: new Map(), lists: collectLists(doc), doc };
-  const files: Record<string, Uint8Array | string> = {};
   const hf: { header?: string; footer?: string } = {};
+  const c: Ctx = { hf, sections: [], rels: [], media: {}, nextRel: 10, nextDrawing: 1, linkRels: new Map(), lists: collectLists(doc), doc };
+  const files: Record<string, Uint8Array | string> = {};
   const ct: string[] = [];
   if (doc.header?.blocks.length) {
     hf.header = "rIdHdr1";
@@ -367,18 +391,24 @@ export function writeDocx(doc: DocModel): Uint8Array {
     ct.push('<Override PartName="/word/footer1.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.footer+xml"/>');
   }
   let body = "";
+  for (const p of doc.pages) Object.assign(p, { headerOffset: doc.header?.offset, footerOffset: doc.footer?.offset });
   doc.pages.forEach((p, i) => {
     const first = p.blocks[0];
-    const blocks = i > 0 && first ? [first.kind === "para" ? { ...first, pageBreakBefore: true } : first, ...p.blocks.slice(1)] : p.blocks;
-    let xml = blocksXml(c, blocks, p.margins.top, p.margins.left, p);
-    if (i > 0 && first && first.kind !== "para") xml = spacerXml(1, true) + xml;
+    // Stránka, jejíž začátek se přelil do tabulky z předchozí strany, nezačíná zalomením.
+    const breakHere = i > 0 && !(p as PageLayout & { continues?: boolean }).continues;
+    const blocks = breakHere && first ? [first.kind === "para" ? { ...first, pageBreakBefore: true } : first, ...p.blocks.slice(1)] : p.blocks;
+    const startY = breakHere || i === 0 ? p.margins.top : (first ? blockTop(first) : p.margins.top);
+    let xml = blocksXml(c, blocks, startY, p.margins.left, p);
+    if (breakHere && first && first.kind !== "para") xml = spacerXml(1, true) + xml;
+    // Přesný režim: rámce se kotví k následujícímu běžnému odstavci — ten musí být na téže stránce.
+    if (p.exact) xml += spacerXml(1);
     body += xml;
     // Jiný rozměr další stránky (na šířku) = konec sekce.
     const next = doc.pages[i + 1];
     if (next && (Math.abs(next.width - p.width) > 1 || Math.abs(next.height - p.height) > 1)) body += `<w:p><w:pPr>${sectPr(p, hf)}</w:pPr></w:p>`;
   });
   const last = doc.pages[doc.pages.length - 1];
-  body += sectPr(last, hf);
+  body += sectPr(last, hf, undefined, c.sections.length > 0);
 
   files["word/document.xml"] = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document ${NS}><w:body>${body}</w:body></w:document>`;
   files["word/styles.xml"] = stylesXml(doc);

@@ -41,3 +41,15 @@ export function fontReport(fonts: FontInfo[]): FontReport[] {
   }
   return [...out.values()];
 }
+
+/**
+ * Metriky řádku Wordu jako násobky velikosti písma: Windows ascent a descent (OS/2 usWin*),
+ * ze kterých Word skládá výšku jednoduchého řádku. Metricky kompatibilní klony mají stejné.
+ */
+const METRICS: Record<string, [number, number]> = {
+  calibri: [0.952, 0.269], carlito: [0.952, 0.269], cambria: [0.95, 0.222], caladea: [0.95, 0.222],
+  arial: [0.905, 0.212], "liberation sans": [0.905, 0.212], helvetica: [0.905, 0.212],
+  "times new roman": [0.891, 0.216], "liberation serif": [0.891, 0.216],
+  "courier new": [0.833, 0.3], "liberation mono": [0.833, 0.3], "noto serif": [1.069, 0.293], "noto sans": [1.069, 0.293],
+};
+export const wordMetrics = (font: string): [number, number] => METRICS[font.toLowerCase()] ?? [0.92, 0.25];
