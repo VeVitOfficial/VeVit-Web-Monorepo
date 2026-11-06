@@ -28,7 +28,7 @@ for (const mode of MODES) for (const name of docsFrom("pdf", ".pdf")) {
     const dir = path.join(OUT, LABEL, testInfo.project.name);
     const diffDir = path.join(dir, "diff");
     mkdirSync(diffDir, { recursive: true });
-    const rendered = renderDocx(run.outPath, path.join(dir, `${name}.${mode}.render.pdf`), path.join(__dirname, "../fonts/fonts.conf"));
+    const rendered = renderDocx(run.outPath, path.join(dir, `${name}.${mode}.render.pdf`), path.join(__dirname, "../fonts/render-docx.conf"));
     const cmp = comparePdfs(input, rendered, { diffDir, name: `${name}.${mode}` });
     // Scans have no text layer: compare against the text of the PDF the scan was made from.
     const refText = pdfText(name === "sken" ? path.join(CORPUS, "ref-lo", "dva-sloupce.pdf") : input);

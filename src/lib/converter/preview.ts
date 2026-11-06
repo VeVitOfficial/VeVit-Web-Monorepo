@@ -19,6 +19,8 @@ export function pdfjsDocumentParams(data: Uint8Array, password?: string) {
     data,
     password,
     isEvalSupported: false,
+    // Jména fontů (PostScript) pro mapování na plné fonty v DOCX.
+    fontExtraProperties: true,
     enableXfa: false,
     cMapUrl: base + "cmaps/",
     cMapPacked: true,

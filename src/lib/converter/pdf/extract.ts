@@ -166,7 +166,8 @@ export async function extractPage(pdfjs: typeof Pdfjs, page: Pdfjs.PDFPageProxy,
       if (ch && size > 0.1) {
         glyphs.push({
           ch, x: Math.min(x0, x1), y: y0 - size * 0.8, w, h: size, base: y0, size, font: t.font, color: g.fill,
-          space: !!gl.isSpace || /^\s+$/.test(ch), angle: Math.abs(angle) < 0.01 ? 0 : angle, mcid, visible: t.render !== 3 && t.render !== 7,
+          // isSpace z pdf.js = kód znaku 32 v kódování fontu, v subsetech to bývá i čárka.
+          space: /^\s+$/.test(ch), angle: Math.abs(angle) < 0.01 ? 0 : angle, mcid, visible: t.render !== 3 && t.render !== 7,
         });
       }
       t.tm = mul([1, 0, 0, 1, (advance + spacing) * t.hScale, 0], t.tm);

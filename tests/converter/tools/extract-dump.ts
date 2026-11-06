@@ -6,7 +6,7 @@ import * as pdfjs from "pdfjs-dist/legacy/build/pdf.mjs";
 import { extractPage } from "../../../src/lib/converter/pdf/extract.ts";
 
 const [file, out] = process.argv.slice(2);
-const doc = await pdfjs.getDocument({ data: new Uint8Array(readFileSync(file)), isEvalSupported: false, useSystemFonts: false, standardFontDataUrl: "node_modules/pdfjs-dist/standard_fonts/" }).promise;
+const doc = await pdfjs.getDocument({ data: new Uint8Array(readFileSync(file)), isEvalSupported: false, fontExtraProperties: true, useSystemFonts: false, standardFontDataUrl: "node_modules/pdfjs-dist/standard_fonts/" }).promise;
 const pages = [];
 for (let i = 1; i <= doc.numPages; i++) {
   const page = await doc.getPage(i);
