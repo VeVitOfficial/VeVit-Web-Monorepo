@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/tools/site-header";
 import { SiteFooter } from "@/components/tools/site-footer";
 import { Toaster } from "@/components/tools/tool-runtime";
 import { RecordRecent } from "@/components/tools/record-recent";
+import { ToolIcon } from "@/components/tools/tool-icons";
 import { TOOL_COMPONENTS } from "@/components/tools/registry";
 import {
   getTool, HUB_I18N, TOOL_UI_I18N, SUPPORTED_LOCALES, CATEGORY_COLORS, CATEGORY_LABELS,
@@ -93,7 +94,7 @@ export default async function ToolPage({ params }: Props) {
         </nav>
 
         <div className="tool-header">
-          <span className="bar" style={{ background: color }}></span>
+          <span className="tool-icon" style={{ background: `color-mix(in srgb, ${color} 10%, transparent)`, color }}><ToolIcon name={tool.icon} size={22} /></span>
           <h1>{L.name}</h1>
           <span
             className="loc-tag"

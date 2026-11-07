@@ -215,10 +215,10 @@ const RAW_TOOLS: RawTool[] = [
   ["business-name-generator", "AI názvy firmy", "Navrhněte názvy pro vaši firmu/projekt.", "text", "ai", "Building2", true],
   ["blog-outline-generator", "AI osnova blogu", "Vytvořte strukturu blogpostu.", "text", "ai", "ListTree", true],
   ["blog-post-ideas", "AI nápady na články", "Získejte témata pro vaše články.", "text", "ai", "Lightbulb", true],
-  ["instagram-caption", "AI Instagram popisky", "Vytvořte poutavé popisky a hashtagy.", "text", "ai", "Instagram", true],
-  ["linkedin-post", "AI LinkedIn příspěvek", "Napište profesionální LinkedIn post.", "text", "ai", "Linkedin", true],
+  ["instagram-caption", "AI Instagram popisky", "Vytvořte poutavé popisky a hashtagy.", "text", "ai", "Camera", true],
+  ["linkedin-post", "AI LinkedIn příspěvek", "Napište profesionální LinkedIn post.", "text", "ai", "BriefcaseBusiness", true],
   ["fb-headline-generator", "AI Facebook titulky", "Vygenerujte titulky pro Facebook.", "text", "ai", "Megaphone", true],
-  ["youtube-script", "AI YouTube scénář", "Napište scénář pro YouTube video.", "text", "ai", "Youtube", true],
+  ["youtube-script", "AI YouTube scénář", "Napište scénář pro YouTube video.", "text", "ai", "SquarePlay", true],
 
   // ── AI ─────────────────────────────────────────────────────────────────
   ["ai-chat", "AI asistent", "Chatujte s AI asistentem pro různé úkoly.", "ai", "ai", "MessageSquare", false],

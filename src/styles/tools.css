@@ -597,7 +597,7 @@ svg { display: block; }
 .breadcrumb a:hover { color: var(--foreground); }
 .breadcrumb .sep { opacity: 0.5; }
 .tool-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; }
-.tool-header .bar { width: 0.25rem; height: 1.5rem; border-radius: 999px; }
+.tool-header .tool-icon { flex: none; width: 2.5rem; height: 2.5rem; border-radius: 0.5rem; display: grid; place-items: center; }
 .tool-header h1 { font-size: 1.875rem; font-weight: 600; letter-spacing: -0.02em; margin: 0; }
 .tool-header .loc-tag { font-size: 0.75rem; font-weight: 500; padding: 0.25rem 0.5rem; border-radius: 0.375rem; border: 1px solid; }
 .tool-desc { color: var(--muted-foreground); margin: 0 0 2rem; }
@@ -655,7 +655,7 @@ svg { display: block; }
   .tool-page { padding: 1.25rem 1rem; }
   .breadcrumb { margin-bottom: 1rem; }
   .tool-header { align-items: flex-start; flex-wrap: wrap; }
-  .tool-header h1 { font-size: 1.5rem; flex: 1 1 calc(100% - 2rem); }
+  .tool-header h1 { font-size: 1.5rem; flex: 1 1 calc(100% - 3.5rem); }
   .tool-desc { margin-bottom: 1.25rem; }
   .tool-shell { padding: 1rem; }
   .tool-steps li { justify-content: center; padding: .5rem .25rem; font-size: 0.75rem; }
