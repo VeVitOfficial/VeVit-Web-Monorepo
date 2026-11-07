@@ -61,7 +61,8 @@ export async function runTool(page: Page, testInfo: TestInfo, slug: string, inpu
 // Site-wide Vercel Web Analytics / Speed Insights (src/app/layout.tsx): page-view beacons,
 // loaded on every page. Allowed only as GET of their script or as small beacons that carry
 // neither the file name nor file content.
-const ANALYTICS = [/^https:\/\/va\.vercel-scripts\.com\//, /\/_vercel\/(insights|speed-insights)\//];
+// Vercel Toolbar (vercel.live) se vkládá jen do preview deploymentů — povolen jen jako GET bez těla.
+const ANALYTICS = [/^https:\/\/va\.vercel-scripts\.com\//, /\/_vercel\/(insights|speed-insights)\//, /^https:\/\/vercel\.live\//];
 
 /**
  * Privacy rule: after the file is chosen, the page may only GET static files from its own

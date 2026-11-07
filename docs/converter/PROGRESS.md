@@ -1,7 +1,43 @@
 # Převodník DOCX ⇄ PDF — průběh a závěrečná zpráva
 
 Začni čtením tohoto souboru a `DECISIONS.md`. Architektura a příkazy: `README.md`, licence:
-`LICENSES.md`, měření: `MEASUREMENTS.md`. Větev `feat/converter-docx-pdf` (nepushnuto).
+`LICENSES.md`, měření: `MEASUREMENTS.md`.
+
+## 2. kolo (2026-11-07) — závěrečná zpráva
+
+**PR:** #3 `feat/converter-docx-pdf` → `feat/tools-overhaul` (D17), #4 `fix/ocr-pdf-tesseract` → `feat/tools-overhaul`. Oba PR se spolu sloučí bez konfliktu (ověřeno `git merge-tree`). Nic nemergnuto ani nenasazeno do produkce.
+
+| Úkol | Výsledek |
+|---|---|
+| 1 Push, PR, CI | PR #3 otevřen. CI workflow **Converter Word ⇄ PDF prochází** (92 testů, 16 přeskočených výkonových mimo Chromium). Opraveno: `node --test <adresář>` na Node 24 v CI (padal i `npm run test:unit` → Security preflight teď prochází). **AIFB E2E padá i na `feat/tools-overhaul`, `feat/aifb-teorie` a starších větvích** (500 na `/cs/edu/ai-gramotnost/upravy` pro roli admin) — mimo převodník, neopraveno. |
+| 2 PDF → Word vs. pdf2docx | Všechny čtyři priority nad pdf2docx (tolerantní SSIM): diakritika 0,793 → **0,918** (pdf2docx 0,835), vícestránková tabulka 0,508 → **0,757** (0,643), sloučené buňky 0,510 → **0,734** (0,538), záhlaví/zápatí 0,353 → **0,853** (0,739). Průměr upravitelného režimu 0,650 → **0,771** (pdf2docx 0,515); VeVit ≥ pdf2docx na **11/12** dokumentů — horší jen u skenu, kde pdf2docx nechá obrázek bez textu (textová shoda 0). Příčina u diakritiky: ruční zalomení řádků, ne fonty/ToUnicode (D18); tabulky a záhlaví: D19. |
+| 3 Dvousloupcový sken | Rekonstrukce pořadí zůstává slabá; přidáno varování „U vícesloupcových skenů zkontrolujte pořadí textu (strany …)“ v 7 jazycích, detekce nezávislá na rekonstrukci (`pdf/ocr.ts`, unit + e2e test ve 3 prohlížečích). |
+| 4 Safari / COEP require-corp | Vyzkoušeno (D20): `require-corp` jen na stránkách převodníku udělá WebKit cross-origin izolovaným, ale WebKit pak nespustí workery (skripty mají globální `credentialless`). Funguje až s `require-corp` i na `/_next/static/*` a `/tools/assets/js/lib/*` pro celý web. Nenasazeno — převodník SharedArrayBuffer nepotřebuje. |
+| 5 Paměť v prohlížeči | Změřeno (D22, MEASUREMENTS): špička Word → PDF 39–59 MB, PDF → Word 34 MB, sken s OCR 157 MB (102 MB workery). API funguje s `credentialless`, ale jen v plném Chromiu (ne v headless shellu Playwrightu) — harness přepnut. |
+| 6 Preview: content-encoding | `vevit_docx_pdf_bg.wasm` jde s **`content-encoding: br`** (4,52 MB přeneseno). Nález: data OCR šla přes `308` a nekomprimovaná — opraveno (D21: proxy + `.traineddata.gz`, 1,73 MB). E2E proti preview zastaví Vercel Security Checkpoint po ~4 testech (D23); ty, které proběhly, mají stejné metriky jako lokálně. |
+| Samostatná větev | `fix/ocr-pdf-tesseract` (PR #4): corePath na doplněný `tesseract-core-simd-lstm.js`, `.traineddata.gz` (tesseract.js má výchozí `gzip: true`), statické přípony v proxy; unit test existence souborů (bez opravy selže 2/5) a prohlížečový test OCR skenu (bez opravy selže, s opravou projde). |
+
+Kontrola kvality (2. kolo): `npm run lint` 0 chyb, `npm run typecheck` čistý, `npm run build` projde, `npm run test:unit` 209/209, unit testy převodníku 12/12, e2e matice proti produkčnímu buildu — viz MEASUREMENTS.md („E2E — finální běh 2. kola“).
+
+### Otevřené problémy po 2. kole
+1. **Word → PDF, `diakritika-fonty`:** výška řádků Cambria/Caladea v enginu 14,49 pt vs. LibreOffice 13,65 pt (tolerantní SSIM 0,37). Rozhodne PDF z Wordu; oprava by byla ve vetext-layout (VeVit-office).
+2. **Sken ve dvou sloupcích:** pořadí textu po OCR nevěrné (textová shoda 0,29) — uživatel dostane varování. Další krok: bloky a pořadí z tesseractu (`data.blocks`).
+3. **Časy LibreOffice WASM v prohlížeči** nezměřeny (D6 stojí na velikosti a SAB).
+4. **Velikost enginu:** 47 % WASM jsou zakompilované fonty a slovníky dělení vetextu; Vercel komprimuje slaběji než `brotli -11` (4,52 vs. 3,4 MB).
+5. **Strukturní strom tagovaného PDF** se nevyužívá.
+
+### Čeká na Víta (aktualizováno)
+- **Pořadí merge:** `feat/tools-overhaul` → `master`, pak PR #3 a #4 (oba proti `feat/tools-overhaul`).
+- **AIFB E2E v CI** padá nezávisle na převodníku (stránka editoru `ai-gramotnost/upravy`, 500 pro admina) — rozhodnout, kdo opraví.
+- **E2E proti preview v CI:** Protection Bypass for Automation na Vercelu (D23).
+- Referenční **PDF z Wordu** do `tests/converter/corpus/word-ref/` (D3).
+- **veraPDF** validace PDF/A-2b.
+- **Cargo features ve VeVit-office** pro menší engine.
+
+---
+
+## 1. kolo (2026-11-06) — původní zpráva
+
 
 ## Stav fází
 
@@ -44,7 +80,7 @@ D1 vendorování do `public/…/converter/` · D2 stejné slugy · D3 reference 
 ## Nálezy mimo scope (neopraveno)
 - `.gitignore` obsahuje `/public/`, ale `public/` je od `dea3ca9` zdrojový strom (210+ souborů force-tracked). Nové soubory převodníku přidávám `git add -f`.
 - `src/lib/tools-seo.ts`: hreflang jen cs/en/x-default při 7 jazycích (de, es, uk, fr, sk chybí).
-- Nástroj `ocr-pdf` odkazuje na `tesseract-core-simd-lstm.wasm.js`, který ve vendorovaném tesseractu chybí (převodník používá doplněný `tesseract-core-simd-lstm.js`); ocr-pdf je pravděpodobně nefunkční.
+- ~~Nástroj `ocr-pdf` je nefunkční~~ — opraveno ve větvi `fix/ocr-pdf-tesseract` (PR #4).
 - `TOOL_UI_I18N` a `HUB_I18N` mají pro de/es/uk/fr/sk jen češtinu (převodníky mají vlastní plné překlady).
 
 ## Čeká na Víta

@@ -1,5 +1,193 @@
 # Převodník Word ⇄ PDF — měření
 
+> **2. kolo (2026-11-07):** nová srovnávací tabulka s pdf2docx, paměť v prohlížeči a komprese na
+> preview deploymentu jsou v sekci „2. kolo“ na začátku. Starší sekce popisují stav 1. kola.
+
+## 2. kolo
+
+### PDF → DOCX: VeVit vs. pdf2docx (tolerantní SSIM, LibreOffice render, stejný korpus)
+
+| dokument | pdf2docx | VeVit upravitelný (1. kolo) | **VeVit upravitelný (2. kolo)** | VeVit přesný | text pdf2docx | text VeVit upr. | stran pdf2docx | stran VeVit |
+|---|---|---|---|---|---|---|---|---|
+| diakritika-fonty | 0.835 | 0.793 | **0.918** ✓ | 0.926 | 1.000 | 1.000 | 2/2 | 2/2 |
+| dva-sloupce | 0.051 | 0.607 | **0.607** ✓ | 0.818 | 0.478 | 0.901 | 1/5 | 1/1 |
+| faktura | 0.167 | 0.412 | **0.705** ✓ | 0.967 | 0.468 | 1.000 | 1/2 | 1/1 |
+| faktura-2026001 | 0.264 | 0.781 | **0.765** ✓ | 0.909 | 0.686 | 1.000 | 1/2 | 1/1 |
+| landscape | 0.339 | 0.653 | **0.724** ✓ | 0.974 | 0.981 | 1.000 | 1/1 | 1/1 |
+| obrazky | 0.628 | 0.995 | **0.995** ✓ | 0.977 | 0.989 | 1.000 | 2/2 | 2/2 |
+| seznamy | 0.711 | 0.924 | **0.924** ✓ | 0.840 | 0.911 | 1.000 | 1/1 | 1/1 |
+| sken | 0.645 | 0.380 | **0.380** ✗ | 0.847 | 0.000 | 0.774 | 1/1 | 1/1 |
+| sloucene-bunky | 0.538 | 0.510 | **0.734** ✓ | 0.977 | 1.000 | 1.000 | 1/1 | 1/1 |
+| tabulka-vicestrankova | 0.643 | 0.508 | **0.757** ✓ | 0.735 | 0.942 | 1.000 | 4/4 | 4/4 |
+| vlozeny-font | 0.626 | 0.886 | **0.886** ✓ | 0.781 | 1.000 | 1.000 | 1/1 | 1/1 |
+| zahlavi-zapati | 0.739 | 0.353 | **0.853** ✓ | 0.888 | 0.976 | 1.000 | 2/2 | 2/2 |
+| **průměr** | 0.515 | 0.650 | **0.771** | 0.887 | 0.786 | 0.973 | | |
+
+VeVit upravitelný ≥ pdf2docx: 11/12 dokumentů.
+
+pdf2docx je lepší jen u skenu, a to proto, že nechá obrázek stránky bez textu (textová shoda 0);
+VeVit text rozpozná OCR (0,774) a u vícesloupcového skenu varuje uživatele.
+
+### E2E — finální běh 2. kola (produkční `next start`, Chromium, Firefox, WebKit)
+
+128 testů prošlo, 0 selhalo, 16 přeskočeno (výkonové testy jen v Chromiu). Soukromí: 0 porušení.
+
+| profil | nástroj | dokument | studený ms | teplý ms | špička paměti MB |
+|---|---|---|---|---|---|
+| desktop | pdf-to-word | faktura-2026001.pdf | 871 | 246 | 14 |
+| desktop | pdf-to-word | tabulka-vicestrankova.pdf | 839 | 245 | 14 |
+| desktop | word-to-pdf | faktura.docx | 1855 | 261 | 23 |
+| desktop | word-to-pdf | tabulka-vicestrankova.docx | 1881 | 356 | 30 |
+| mobile | pdf-to-word | faktura-2026001.pdf | 4074 | 282 | 14 |
+| mobile | pdf-to-word | tabulka-vicestrankova.pdf | 4144 | 248 | 14 |
+| mobile | word-to-pdf | faktura.docx | 29968 | 502 | 28 |
+| mobile | word-to-pdf | tabulka-vicestrankova.docx | 32013 | 478 | 28 |
+
+### DOCX → PDF (final2, reference: LibreOffice desktop)
+
+| prohlížeč | dokument | stran ref/výst | SSIM | SSIM tolerantní | text | chybí | navíc | ms | QR | soukromí |
+|---|---|---|---|---|---|---|---|---|---|---|
+| chromium | diakritika-fonty | 2/2 | 0.209 | 0.371 | 1.000 | 0 | 0 | 1940 |  | ok |
+| chromium | dva-sloupce | 1/1 | 0.958 | 0.994 | 0.992 | 0 | 0 | 1887 |  | ok |
+| chromium | faktura | 1/1 | 0.666 | 0.913 | 1.000 | 0 | 0 | 1882 | ano | ok |
+| chromium | landscape | 1/1 | 0.733 | 0.977 | 1.000 | 0 | 0 | 1875 |  | ok |
+| chromium | obrazky | 2/2 | 0.912 | 0.977 | 1.000 | 0 | 0 | 1892 |  | ok |
+| chromium | seznamy | 1/1 | 0.889 | 0.985 | 1.000 | 0 | 0 | 1901 |  | ok |
+| chromium | sloucene-bunky | 1/1 | 0.742 | 0.938 | 1.000 | 0 | 0 | 1896 |  | ok |
+| chromium | tabulka-vicestrankova | 4/4 | 0.808 | 0.966 | 1.000 | 0 | 0 | 1900 |  | ok |
+| chromium | vlozeny-font | 1/1 | 0.718 | 0.950 | 1.000 | 0 | 0 | 1878 |  | ok |
+| chromium | zahlavi-zapati | 2/2 | 0.631 | 0.938 | 1.000 | 0 | 0 | 1887 |  | ok |
+| firefox | diakritika-fonty | 2/2 | 0.209 | 0.371 | 1.000 | 0 | 0 | 2105 |  | ok |
+| firefox | dva-sloupce | 1/1 | 0.958 | 0.994 | 0.992 | 0 | 0 | 1508 |  | ok |
+| firefox | faktura | 1/1 | 0.666 | 0.913 | 1.000 | 0 | 0 | 1503 | ano | ok |
+| firefox | landscape | 1/1 | 0.733 | 0.977 | 1.000 | 0 | 0 | 1536 |  | ok |
+| firefox | obrazky | 2/2 | 0.912 | 0.977 | 1.000 | 0 | 0 | 2039 |  | ok |
+| firefox | seznamy | 1/1 | 0.889 | 0.985 | 1.000 | 0 | 0 | 2037 |  | ok |
+| firefox | sloucene-bunky | 1/1 | 0.742 | 0.938 | 1.000 | 0 | 0 | 2021 |  | ok |
+| firefox | tabulka-vicestrankova | 4/4 | 0.808 | 0.966 | 1.000 | 0 | 0 | 2020 |  | ok |
+| firefox | vlozeny-font | 1/1 | 0.718 | 0.950 | 1.000 | 0 | 0 | 2049 |  | ok |
+| firefox | zahlavi-zapati | 2/2 | 0.631 | 0.938 | 1.000 | 0 | 0 | 2067 |  | ok |
+| webkit | diakritika-fonty | 2/2 | 0.209 | 0.371 | 1.000 | 0 | 0 | 2667 |  | ok |
+| webkit | dva-sloupce | 1/1 | 0.958 | 0.994 | 0.992 | 0 | 0 | 2028 |  | ok |
+| webkit | faktura | 1/1 | 0.666 | 0.913 | 1.000 | 0 | 0 | 1999 | ano | ok |
+| webkit | landscape | 1/1 | 0.733 | 0.977 | 1.000 | 0 | 0 | 2007 |  | ok |
+| webkit | obrazky | 2/2 | 0.912 | 0.977 | 1.000 | 0 | 0 | 2477 |  | ok |
+| webkit | seznamy | 1/1 | 0.889 | 0.985 | 1.000 | 0 | 0 | 2030 |  | ok |
+| webkit | sloucene-bunky | 1/1 | 0.742 | 0.938 | 1.000 | 0 | 0 | 1966 |  | ok |
+| webkit | tabulka-vicestrankova | 4/4 | 0.808 | 0.966 | 1.000 | 0 | 0 | 2552 |  | ok |
+| webkit | vlozeny-font | 1/1 | 0.718 | 0.950 | 1.000 | 0 | 0 | 1964 |  | ok |
+| webkit | zahlavi-zapati | 2/2 | 0.631 | 0.938 | 1.000 | 0 | 0 | 2001 |  | ok |
+
+### PDF → DOCX (final2, DOCX vykreslené LibreOffice vs. původní PDF)
+
+| prohlížeč | režim | dokument | stran | SSIM | SSIM tolerantní | text | chybí | tabulky | textová pole | ms | faktura buňky | QR | soukromí |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| chromium | editable | diakritika-fonty | 2/2 | 0.591 | 0.918 | 1.000 | 0 |  | 0 | 874 |  |  | ok |
+| chromium | editable | dva-sloupce | 1/1 | 0.151 | 0.607 | 0.901 | 0 |  | 0 | 859 |  |  | ok |
+| chromium | editable | faktura | 1/1 | 0.381 | 0.705 | 1.000 | 0 | 1×2,1×2,3×4,1×2 | 0 | 875 | ano | ano | ok |
+| chromium | editable | faktura-2026001 | 1/1 | 0.327 | 0.765 | 1.000 | 0 | 1×2,1×2,3×4,1×2 | 0 | 881 | ano | ano | ok |
+| chromium | editable | landscape | 1/1 | 0.268 | 0.724 | 1.000 | 0 | 6×13 | 0 | 861 |  |  | ok |
+| chromium | editable | obrazky | 2/2 | 0.968 | 0.995 | 1.000 | 0 |  | 0 | 856 |  |  | ok |
+| chromium | editable | seznamy | 1/1 | 0.830 | 0.924 | 1.000 | 0 |  | 0 | 352 |  |  | ok |
+| chromium | editable | sken | 1/1 | 0.359 | 0.540 | 0.292 | 12 | 34×3 | 0 | 6436 |  |  | ok |
+| chromium | editable | sloucene-bunky | 1/1 | 0.396 | 0.734 | 1.000 | 0 | 6×5,4×3 | 0 | 354 |  |  | ok |
+| chromium | editable | tabulka-vicestrankova | 4/4 | 0.487 | 0.757 | 1.000 | 0 | 91×6h | 0 | 871 |  |  | ok |
+| chromium | editable | vlozeny-font | 1/1 | 0.587 | 0.886 | 1.000 | 0 |  | 0 | 401 |  |  | ok |
+| chromium | editable | zahlavi-zapati | 2/2 | 0.481 | 0.853 | 1.000 | 0 |  | 0 | 853 |  |  | ok |
+| chromium | exact | diakritika-fonty | 2/2 | 0.679 | 0.926 | 1.000 | 0 |  | 115 | 852 |  |  | ok |
+| chromium | exact | dva-sloupce | 1/1 | 0.553 | 0.818 | 0.292 | 0 |  | 195 | 862 |  |  | ok |
+| chromium | exact | faktura | 1/1 | 0.900 | 0.967 | 0.600 | 0 |  | 38 | 854 | — | ano | ok |
+| chromium | exact | faktura-2026001 | 1/1 | 0.688 | 0.909 | 0.600 | 0 |  | 38 | 856 | — | ano | ok |
+| chromium | exact | landscape | 1/1 | 0.860 | 0.974 | 1.000 | 0 |  | 80 | 365 |  |  | ok |
+| chromium | exact | obrazky | 2/2 | 0.865 | 0.977 | 1.000 | 0 |  | 13 | 853 |  |  | ok |
+| chromium | exact | seznamy | 1/1 | 0.551 | 0.840 | 1.000 | 0 |  | 29 | 353 |  |  | ok |
+| chromium | exact | sken | 1/1 | 0.702 | 0.834 | 0.267 | 64 |  | 260 | 7449 |  |  | ok |
+| chromium | exact | sloucene-bunky | 1/1 | 0.895 | 0.977 | 0.949 | 0 |  | 39 | 352 |  |  | ok |
+| chromium | exact | tabulka-vicestrankova | 4/4 | 0.653 | 0.735 | 0.884 | 0 |  | 294 | 857 |  |  | ok |
+| chromium | exact | vlozeny-font | 1/1 | 0.509 | 0.781 | 1.000 | 0 |  | 43 | 354 |  |  | ok |
+| chromium | exact | zahlavi-zapati | 2/2 | 0.609 | 0.888 | 0.976 | 0 |  | 247 | 854 |  |  | ok |
+| firefox | editable | diakritika-fonty | 2/2 | 0.591 | 0.918 | 1.000 | 0 |  | 0 | 992 |  |  | ok |
+| firefox | editable | dva-sloupce | 1/1 | 0.151 | 0.607 | 0.901 | 0 |  | 0 | 972 |  |  | ok |
+| firefox | editable | faktura | 1/1 | 0.381 | 0.705 | 1.000 | 0 | 1×2,1×2,3×4,1×2 | 0 | 979 | ano | ano | ok |
+| firefox | editable | faktura-2026001 | 1/1 | 0.327 | 0.765 | 1.000 | 0 | 1×2,1×2,3×4,1×2 | 0 | 976 | ano | ano | ok |
+| firefox | editable | landscape | 1/1 | 0.268 | 0.724 | 1.000 | 0 | 6×13 | 0 | 975 |  |  | ok |
+| firefox | editable | obrazky | 2/2 | 0.968 | 0.995 | 1.000 | 0 |  | 0 | 969 |  |  | ok |
+| firefox | editable | seznamy | 1/1 | 0.830 | 0.924 | 1.000 | 0 |  | 0 | 474 |  |  | ok |
+| firefox | editable | sken | 1/1 | 0.359 | 0.540 | 0.292 | 12 | 34×3 | 0 | 6700 |  |  | ok |
+| firefox | editable | sloucene-bunky | 1/1 | 0.396 | 0.734 | 1.000 | 0 | 6×5,4×3 | 0 | 971 |  |  | ok |
+| firefox | editable | tabulka-vicestrankova | 4/4 | 0.487 | 0.757 | 1.000 | 0 | 91×6h | 0 | 992 |  |  | ok |
+| firefox | editable | vlozeny-font | 1/1 | 0.587 | 0.886 | 1.000 | 0 |  | 0 | 467 |  |  | ok |
+| firefox | editable | zahlavi-zapati | 2/2 | 0.481 | 0.853 | 1.000 | 0 |  | 0 | 975 |  |  | ok |
+| firefox | exact | diakritika-fonty | 2/2 | 0.679 | 0.926 | 1.000 | 0 |  | 115 | 982 |  |  | ok |
+| firefox | exact | dva-sloupce | 1/1 | 0.553 | 0.818 | 0.292 | 0 |  | 195 | 978 |  |  | ok |
+| firefox | exact | faktura | 1/1 | 0.900 | 0.967 | 0.600 | 0 |  | 38 | 1201 | — | ano | ok |
+| firefox | exact | faktura-2026001 | 1/1 | 0.688 | 0.909 | 0.600 | 0 |  | 38 | 977 | — | ano | ok |
+| firefox | exact | landscape | 1/1 | 0.860 | 0.974 | 1.000 | 0 |  | 80 | 980 |  |  | ok |
+| firefox | exact | obrazky | 2/2 | 0.865 | 0.977 | 1.000 | 0 |  | 13 | 979 |  |  | ok |
+| firefox | exact | seznamy | 1/1 | 0.551 | 0.840 | 1.000 | 0 |  | 29 | 464 |  |  | ok |
+| firefox | exact | sken | 1/1 | 0.702 | 0.834 | 0.267 | 64 |  | 260 | 7692 |  |  | ok |
+| firefox | exact | sloucene-bunky | 1/1 | 0.895 | 0.977 | 0.949 | 0 |  | 39 | 973 |  |  | ok |
+| firefox | exact | tabulka-vicestrankova | 4/4 | 0.653 | 0.735 | 0.884 | 0 |  | 294 | 976 |  |  | ok |
+| firefox | exact | vlozeny-font | 1/1 | 0.509 | 0.781 | 1.000 | 0 |  | 43 | 457 |  |  | ok |
+| firefox | exact | zahlavi-zapati | 2/2 | 0.609 | 0.888 | 0.976 | 0 |  | 247 | 973 |  |  | ok |
+| webkit | editable | diakritika-fonty | 2/2 | 0.591 | 0.918 | 1.000 | 0 |  | 0 | 886 |  |  | ok |
+| webkit | editable | dva-sloupce | 1/1 | 0.151 | 0.607 | 0.901 | 0 |  | 0 | 895 |  |  | ok |
+| webkit | editable | faktura | 1/1 | 0.381 | 0.705 | 1.000 | 0 | 1×2,1×2,3×4,1×2 | 0 | 899 | ano | ano | ok |
+| webkit | editable | faktura-2026001 | 1/1 | 0.327 | 0.765 | 1.000 | 0 | 1×2,1×2,3×4,1×2 | 0 | 883 | ano | ano | ok |
+| webkit | editable | landscape | 1/1 | 0.268 | 0.724 | 1.000 | 0 | 6×13 | 0 | 889 |  |  | ok |
+| webkit | editable | obrazky | 2/2 | 0.968 | 0.995 | 1.000 | 0 |  | 0 | 912 |  |  | ok |
+| webkit | editable | seznamy | 1/1 | 0.830 | 0.924 | 1.000 | 0 |  | 0 | 876 |  |  | ok |
+| webkit | editable | sken | 1/1 | 0.359 | 0.540 | 0.292 | 12 | 34×3 | 0 | 6835 |  |  | ok |
+| webkit | editable | sloucene-bunky | 1/1 | 0.396 | 0.734 | 1.000 | 0 | 6×5,4×3 | 0 | 865 |  |  | ok |
+| webkit | editable | tabulka-vicestrankova | 4/4 | 0.487 | 0.757 | 1.000 | 0 | 91×6h | 0 | 875 |  |  | ok |
+| webkit | editable | vlozeny-font | 1/1 | 0.587 | 0.886 | 1.000 | 0 |  | 0 | 883 |  |  | ok |
+| webkit | editable | zahlavi-zapati | 2/2 | 0.481 | 0.853 | 1.000 | 0 |  | 0 | 874 |  |  | ok |
+| webkit | exact | diakritika-fonty | 2/2 | 0.679 | 0.926 | 1.000 | 0 |  | 115 | 876 |  |  | ok |
+| webkit | exact | dva-sloupce | 1/1 | 0.553 | 0.818 | 0.292 | 0 |  | 195 | 890 |  |  | ok |
+| webkit | exact | faktura | 1/1 | 0.900 | 0.967 | 0.600 | 0 |  | 38 | 883 | — | ano | ok |
+| webkit | exact | faktura-2026001 | 1/1 | 0.688 | 0.909 | 0.600 | 0 |  | 38 | 873 | — | ano | ok |
+| webkit | exact | landscape | 1/1 | 0.860 | 0.974 | 1.000 | 0 |  | 80 | 891 |  |  | ok |
+| webkit | exact | obrazky | 2/2 | 0.865 | 0.977 | 1.000 | 0 |  | 13 | 875 |  |  | ok |
+| webkit | exact | seznamy | 1/1 | 0.551 | 0.840 | 1.000 | 0 |  | 29 | 382 |  |  | ok |
+| webkit | exact | sken | 1/1 | 0.702 | 0.834 | 0.267 | 64 |  | 260 | 7888 |  |  | ok |
+| webkit | exact | sloucene-bunky | 1/1 | 0.895 | 0.977 | 0.949 | 0 |  | 39 | 900 |  |  | ok |
+| webkit | exact | tabulka-vicestrankova | 4/4 | 0.653 | 0.735 | 0.884 | 0 |  | 294 | 865 |  |  | ok |
+| webkit | exact | vlozeny-font | 1/1 | 0.509 | 0.781 | 1.000 | 0 |  | 43 | 396 |  |  | ok |
+| webkit | exact | zahlavi-zapati | 2/2 | 0.609 | 0.888 | 0.976 | 0 |  | 247 | 901 |  |  | ok |
+
+### Paměť v prohlížeči (Chromium, `performance.measureUserAgentSpecificMemory`, D22)
+
+Celá stránka včetně workerů, vzorkováno po 150 ms během převodu (krátké špičky mezi vzorky se
+mohou minout), dev server.
+
+| nástroj | dokument | před převodem MB | špička MB | z toho workery MB |
+|---|---|---|---|---|
+| word-to-pdf | faktura.docx | 24.8 | 39.3 | 11.5 |
+| word-to-pdf | tabulka-vicestrankova.docx | 24.9 | 50.8 | 21.7 |
+| word-to-pdf | obrazky.docx | 25.0 | 58.9 | 30.5 |
+| pdf-to-word | faktura-2026001.pdf | 7.1 | 33.9 | 8.4 |
+| pdf-to-word | tabulka-vicestrankova.pdf | 24.5 | 34.1 | 8.6 |
+| pdf-to-word | obrazky.pdf | 24.5 | 34.0 | 8.5 |
+| pdf-to-word | sken.pdf | 24.4 | 156.9 | 102.1 |
+
+Výkonový e2e test (`perf.spec.ts`) hlásí špičku 45–49 MB pro Word → PDF a 34–35 MB pro PDF → Word
+(desktop i mobilní profil).
+
+### Komprese na Vercel preview (`ve-vit-web-monorepo-5t9sm0qp9-vevit.vercel.app`)
+
+| soubor | HTTP | content-encoding | přeneseno |
+|---|---|---|---|
+| `converter/docx-pdf/vevit_docx_pdf_bg.wasm` | 200 | **br** | 4,52 MB (raw 10,8 MB; lokální `brotli -11` by dalo 3,4 MB) |
+| `converter/pdfjs/pdf.worker.min.mjs` | 200 | br | 0,39 MB |
+| `tesseract/tesseract-core-simd-lstm.wasm` | 200 | br | 1,06 MB |
+| `tesseract/ces.traineddata.gz` | 200 | (soubor gzip) | 1,73 MB — dřív `308` na `/cs/…` a 3,8 MB nekomprimovaně (D21) |
+| `converter/fonts/Carlito-Regular.woff2` | 200 | (WOFF2) | 0,19 MB |
+
+Vercel komprimuje brotli nižší úrovní než lokální `brotli -11`; předkomprimovaný soubor by ušetřil
+~1,1 MB, ale statický soubor z `public/` s vlastním `content-encoding` Next/Vercel neservíruje —
+ponecháno.
+
+
 Stav 2026-11-07. Prostředí: Linux x86_64 (Omarchy), Node 26, LibreOffice 26.8 (reference a neutrální
 render), Playwright 1.63 (Chromium, Firefox, WebKit v kontejneru `mcr.microsoft.com/playwright:v1.63.0-noble`).
 Reference DOCX → PDF = **LibreOffice desktop**, ne Word (D3) — po dodání PDF z Wordu přepočítat.

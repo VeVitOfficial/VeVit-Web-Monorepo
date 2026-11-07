@@ -113,3 +113,8 @@ Každé rozhodnutí: co, proč, alternativy. Nová rozhodnutí přidávej na kon
 
 ## D22 — Paměť v prohlížeči: plný Chromium, ne headless shell
 - `performance.measureUserAgentSpecificMemory()` je v Chromiu dostupné na stránkách převodníku i s COEP `credentialless` (`crossOriginIsolated === true`), ale **ne v headless shellu**, který Playwright spouští ve výchozím stavu („not available“). Harness proto pro projekt chromium používá `channel: "chromium"` a `--enable-blink-features=ForceEagerMeasureMemory` (výsledek hned, ne až po GC).
+
+## D23 — E2E proti Vercel preview: Security Checkpoint
+- **Zjištění:** preview deployment (`*-vevit.vercel.app`) po prvních automatizovaných požadavcích odpoví stránkou „Vercel Security Checkpoint — Failed to verify your browser (Code 21)“; další testy pak nenajdou stránku nástroje. První 4 převody stihly proběhnout a daly stejné metriky jako lokálně (Word → PDF faktura: 1/1 strana, text 1,000, QR čitelný; vícestránková tabulka 4/4, tolerantní SSIM 0,966; PDF → Word faktura 0,765, text 1,000, QR čitelný).
+- Preview navíc vkládá Vercel Toolbar (`vercel.live`, GET bez těla) — test soukromí ho teď povoluje stejně jako analytiku (žádné tělo, žádný obsah souboru).
+- **Čeká na Víta:** pro e2e proti preview v CI je potřeba „Protection Bypass for Automation“ (tajný klíč projektu na Vercelu, hlavička `x-vercel-protection-bypass`) nebo výjimka ve firewallu — nastavení cloudu nedělám.
