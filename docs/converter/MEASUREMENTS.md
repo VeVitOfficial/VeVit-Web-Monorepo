@@ -3,6 +3,31 @@
 > **2. kolo (2026-11-07):** nová srovnávací tabulka s pdf2docx, paměť v prohlížeči a komprese na
 > preview deploymentu jsou v sekci „2. kolo“ na začátku. Starší sekce popisují stav 1. kola.
 
+> **Platnost (4. kolo):** všechna vizuální měření DOCX výstupu v tomto souboru (SSIM, strany, QR z
+> renderu) vznikla renderem DOCX přes LibreOffice a platí jen pro LibreOffice, ne pro Word / Word pro
+> web (D25, D26).
+
+## 4. kolo — přesný režim v textových polích DrawingML (D25)
+
+Node + LibreOffice render, přesný režim, před → po (tolerantní SSIM / textová shoda):
+
+| Dokument | před | po |
+|---|---|---|
+| diakritika-fonty | 0,926 / 1,000 | 0,926 / 0,978 |
+| dva-sloupce | 0,818 / 0,792 | 0,818 / 0,783 |
+| faktura-2026001 | 0,909 / 0,600 | 0,909 / 0,600 |
+| faktura | 0,967 / 0,600 | 0,967 / 0,600 |
+| landscape | 0,974 / 1,000 | 0,974 / 1,000 |
+| obrazky | 0,977 / 1,000 | **0,989** / 1,000 |
+| seznamy | 0,840 / 1,000 | 0,840 / 0,924 |
+| sken | 0,810 / 0,774 | 0,810 / 0,774 |
+| sloucene-bunky | 0,977 / 0,949 | 0,977 / 0,949 |
+| tabulka-vicestrankova | 0,735 / 0,884 | 0,736 / 0,884 |
+| vlozeny-font | 0,781 / 1,000 | 0,781 / 0,941 |
+| zahlavi-zapati | 0,888 / 0,976 | 0,889 / 0,976 |
+
+Nižší textová shoda = jiné pořadí běhů v PDF exportu LibreOffice (odrážka u položky), ne chybějící text (0 chybějících znaků u všech kromě skenu).
+
 ## 3. kolo — dvousloupcový sken (D24)
 
 E2E proti produkčnímu buildu (`next start`), PDF → Word + odolnost: **90/90** v Chromiu, Firefoxu

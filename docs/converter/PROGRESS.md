@@ -3,6 +3,23 @@
 Začni čtením tohoto souboru a `DECISIONS.md`. Architektura a příkazy: `README.md`, licence:
 `LICENSES.md`, měření: `MEASUREMENTS.md`.
 
+## 4. kolo (2026-11-07) — přesný režim PDF → Word rozbitý ve Wordu
+
+> **Platnost vizuálních metrik: všechny vizuální metriky DOCX výstupu (přísné i tolerantní SSIM, počty stran, QR z renderu, „vizuální shoda přesného režimu 0,89“ v 1. a 2. kole) jsou změřené na DOCX vykresleném přes LibreOffice a platí jen pro LibreOffice.** Word ani Word pro web jimi ověřené nejsou — LibreOffice vykreslil rámce `w:framePr` správně, Word pro web je ignoruje, a metriky tak hlásily 0,89 u dokumentu, který byl ve Wordu rozbitý. Strukturu, kterou Word musí respektovat, hlídají unit testy nad OOXML; vizuální kontrola ve Wordu je zatím ruční (návrh automatizace: D26).
+
+- **Příčina:** přesný režim umisťoval text starými rámci `w:framePr`; Word pro web je nevykresluje a odstavce dá do toku pod sebe. Čáry a QR kód (DrawingML `wp:anchor`) pozici držely. Podrobně D25.
+- **Oprava:** každý segment textu = textové pole DrawingML (`wp:anchor` od stránky, `wrapNone`, `wps:txbx`, `bodyPr wrap="none"` bez vnitřních okrajů, pevná šířka z bboxu). Žádný `w:framePr` v přesném režimu.
+- **Test:** nový unit test převede `faktura-2026001.pdf` v přesném režimu a ověří, že každý textový běh je v textovém poli s absolutní pozicí od stránky (se starým writerem selže). Unit testy převodníku 17/17. E2E PDF → Word proti produkčnímu buildu v Chromiu a Firefoxu: upravitelný 24/24, přesný 24/24 (nově kontroluje 0 rámců `w:framePr` a textová pole); WebKit tentokrát nespuštěn.
+- **Metriky (LibreOffice!):** tolerantní SSIM přesného režimu beze změny nebo lepší (`obrazky` 0,977 → 0,989); textová shoda tří dokumentů nižší jen pořadím běhů v exportu LibreOffice (D25), práh 0.
+- **Ukázky:** `docs/converter/faktura-2026001-presny-rezim.docx` a `tabulka-vicestrankova-presny-rezim.docx` (přesný režim, vygenerováno v Chromiu proti produkčnímu buildu).
+
+### Ruční test ve Wordu pro web (a desktopu)
+1. Otevřít `faktura-2026001-presny-rezim.docx`: hlavička „Faktura“ vlevo, „Vystaveno / Splatnost / Var. symbol“ vpravo nahoře, zelená čára pod hlavičkou, dodavatel a odběratel ve dvou sloupcích, tabulka položek se čtyřmi sloupci čísel zarovnanými vpravo, QR vlevo dole, „19 800,00 Kč“ zeleně vpravo dole.
+2. Žádný řádek se nezalomil na dva (hlavně dlouhé „CZ6508000000192000145399“ a „Správa obsahu (hodiny)“) a žádné pole neořízlo spodek písmen (p, y, ý).
+3. Kliknout do textu: kurzor se dá dát do pole a text upravit; pole nemá rámeček ani výplň.
+4. Počet stran 1 (nepřibyla prázdná druhá strana).
+5. Totéž v desktopovém Wordu, pokud je po ruce, a `tabulka-vicestrankova-presny-rezim.docx` (4 strany) — text na každé straně na své straně.
+
 ## 3. kolo (2026-11-07) — otevřený problém č. 2: dvousloupcový sken
 
 | | před | po |
@@ -74,7 +91,7 @@ Kontrola kvality (2. kolo): `npm run lint` 0 chyb, `npm run typecheck` čistý, 
 - **PDF → Word** (`/[lang]/tools/pdf-to-word`, nahrazuje pdf.js 3.11 + pdf-text-layout): upravitelný a přesný režim, OCR skenů.
   - Faktura `faktura-2026001.pdf`: tabulka 3×4 s řádky „Webová stránka | 1 | 15 000,00 Kč | 15 000,00 Kč“ a „Správa obsahu (hodiny) | 6 | 800,00 Kč | 4 800,00 Kč“, 19 800,00 Kč v buňce, QR dekódovatelný po převodu (vektorový QR → PNG přesně na mřížku modulů), zelená linka, dvousloupcový blok dodavatel/odběratel, prostrkané nadpisy, 1 strana — ve všech třech prohlížečích.
   - Upravitelný režim: styly Nadpis 1–3 / Normální / Odstavec se seznamem / Záhlaví / Zápatí / Tabulka, přímé formátování jen rozdílů, 0 textových rámců, mřížkové tabulky se sloučenými buňkami a stínováním, tabulky jen s linkami mezi řádky, vícestránková tabulka spojená do jedné (91 řádků) s opakovaným záhlavím, sloupce sekce, seznamy s číslováním, záhlaví/zápatí s poli PAGE/NUMPAGES, odkazy, obrázky v původním rozlišení.
-  - Průměr tolerantního SSIM na korpusu (Node + LibreOffice render): **VeVit upravitelný 0,65**, **VeVit přesný 0,89**, pdf2docx 0,52; textová shoda VeVit upravitelný 0,97, pdf2docx 0,79. pdf2docx má vyšší tolerantní SSIM na 5 dokumentech z 12 (diakritika, sloučené buňky, záhlaví, vícestránková tabulka, sken — u skenu jen proto, že ponechá obrázek bez textu) — tabulka v MEASUREMENTS.md.
+  - Průměr tolerantního SSIM na korpusu (Node + LibreOffice render): **VeVit upravitelný 0,65**, **VeVit přesný 0,89** (jen render LibreOffice — ve Wordu pro web byl přesný režim rozbitý, viz 4. kolo), pdf2docx 0,52; textová shoda VeVit upravitelný 0,97, pdf2docx 0,79. pdf2docx má vyšší tolerantní SSIM na 5 dokumentech z 12 (diakritika, sloučené buňky, záhlaví, vícestránková tabulka, sken — u skenu jen proto, že ponechá obrázek bez textu) — tabulka v MEASUREMENTS.md.
 - **Soukromí:** ve všech e2e testech 0 síťových požadavků mimo origin / s tělem / s obsahem či názvem souboru (kromě analytiky webu, která obsah nenese — test to ověřuje).
 - **Odolnost:** zip bomba, nesmyslný DOCX, šifrovaný DOCX, useknuté PDF a šifrované PDF skončí srozumitelnou chybou, stránka zůstane funkční; šifrované PDF se po zadání hesla převede, odkaz na nástroj Ochrana PDF heslem.
 - **Kvalita kódu:** `npm run lint` 0 chyb (37 varování, žádné v kódu převodníku), `npm run typecheck` čistý, `npm run build` projde, unit testy 11/11.
