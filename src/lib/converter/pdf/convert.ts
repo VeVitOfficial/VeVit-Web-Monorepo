@@ -7,6 +7,7 @@ import { buildLines, findHeaderFooter, layoutPage, bodySizeOf, headingSizes, mar
 import { mapFont, fontReport, wordMetrics, type FontReport } from "./fontmap.ts";
 import { encodePng, rasterizeRects } from "./png.ts";
 import { writeDocx } from "./docx-writer.ts";
+import { isMultiColumn } from "./ocr.ts";
 import type { Block, DocModel, ImageBlock, PageLayout, Table, FrameBlock, ShapeBlock, Run } from "./model.ts";
 
 export type PdfToDocxMode = "editable" | "exact";
@@ -23,7 +24,7 @@ export interface PdfToDocxHooks {
   maxPages?: number;
 }
 
-export interface PageReport { index: number; scanned: boolean; ocr: boolean; ocrConfidence?: number; lowConfidence: boolean; tables: number; images: number }
+export interface PageReport { index: number; scanned: boolean; ocr: boolean; ocrConfidence?: number; lowConfidence: boolean; tables: number; images: number; /** Sken s více sloupci: pořadí textu je třeba zkontrolovat. */ multiColumn?: boolean }
 
 export interface PdfToDocxReport {
   pages: PageReport[];
@@ -48,6 +49,7 @@ export async function pdfToDocx(pdfjs: typeof Pdfjs, doc: Pdfjs.PDFDocumentProxy
       if (res) {
         m.glyphs.push(...res.glyphs);
         rep.ocr = true; rep.ocrConfidence = res.confidence; rep.lowConfidence = res.confidence < 0.7;
+        rep.multiColumn = isMultiColumn(res.glyphs, m.width);
         // Sken jako pozadí jen v přesném režimu; v upravitelném zůstává čistý text.
         if (mode === "editable") m.images = [];
       }

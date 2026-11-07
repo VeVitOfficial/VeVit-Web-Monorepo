@@ -136,3 +136,15 @@ test("docx writer: minimal model → valid package with styles, numbering and ta
   // Žádné řídicí znaky ani neescapované entity.
   assert.doesNotMatch(doc, /[\u0000-\u0008]/);
 });
+
+test("ocr: multi-column scan detection", async () => {
+  const { isMultiColumn } = await import("../../../src/lib/converter/pdf/ocr.ts");
+  const g = (x, base) => ({ ch: "a", x, y: base - 8, w: 5, h: 11, base, size: 11, font: "ocr", color: [0, 0, 0], space: false, angle: 0, visible: true });
+  const two = [], one = [];
+  for (let line = 0; line < 40; line++) for (let k = 0; k < 40; k++) {
+    two.push(g(70 + k * 5, 100 + line * 14), g(310 + k * 5, 100 + line * 14));
+    one.push(g(70 + k * 11, 100 + line * 14));
+  }
+  assert.equal(isMultiColumn(two, 595), true);
+  assert.equal(isMultiColumn(one, 595), false);
+});

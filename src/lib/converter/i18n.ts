@@ -229,6 +229,7 @@ export interface PdfDocxStrings {
   convert: string; download: string;
   phase_engine: string; phase_prepare: string; phase_page: string; phase_ocr_load: string; phase_ocr: string;
   warn_font_metric: string; warn_font_name: string; warn_font_uncommon: string; warn_ocr: string; warn_low: string; warn_scanned: string; warn_tagged: string;
+  warn_columns: string;
   result_meta: string; preview_show: string; preview_note: string;
   err_encrypted: string; pdf_password_link: string;
 }
@@ -244,7 +245,7 @@ const pcs: PdfDocxStrings = {
   warn_font_metric: "Font {source} je v dokumentu jako {used} (stejné šířky znaků).", warn_font_name: "Font {source} je v dokumentu jako {used}.",
   warn_font_uncommon: "Font {source} nemusí být v počítači nainstalovaný, Word ho případně nahradí jiným.",
   warn_ocr: "Text na stranách {pages} byl rozpoznán pomocí OCR. Zkontrolujte ho.", warn_low: "Strany s nízkou jistotou rozpoznání: {pages}.",
-  warn_scanned: "Strany {pages} jsou sken bez textu. Pro upravitelný text zapněte OCR.", warn_tagged: "PDF má strukturu (tagy), využita pro odstavce a tabulky.",
+  warn_scanned: "Strany {pages} jsou sken bez textu. Pro upravitelný text zapněte OCR.", warn_tagged: "PDF má strukturu (tagy), využita pro odstavce a tabulky.", warn_columns: "U vícesloupcových skenů zkontrolujte pořadí textu (strany {pages}).",
   result_meta: "{pages} str. · {tables} tabulek · {size}", preview_show: "Zobrazit náhled výsledku", preview_note: "Náhled vykreslí převodní engine Word → PDF (asi {size}, jen poprvé).",
   err_encrypted: "PDF je chráněné heslem. Zadejte heslo níže, nebo ho odstraňte nástrojem", pdf_password_link: "Ochrana PDF heslem",
 };
@@ -259,7 +260,7 @@ const pen: PdfDocxStrings = {
   warn_font_metric: "Font {source} is used as {used} (same character widths).", warn_font_name: "Font {source} is used as {used}.",
   warn_font_uncommon: "Font {source} may not be installed on your computer; Word may substitute it.",
   warn_ocr: "Text on pages {pages} was recognised with OCR. Please check it.", warn_low: "Pages with low recognition confidence: {pages}.",
-  warn_scanned: "Pages {pages} are scans without text. Turn on OCR for editable text.", warn_tagged: "The PDF has structure tags; they were used for paragraphs and tables.",
+  warn_scanned: "Pages {pages} are scans without text. Turn on OCR for editable text.", warn_tagged: "The PDF has structure tags; they were used for paragraphs and tables.", warn_columns: "For multi-column scans, check the reading order of the text (pages {pages}).",
   result_meta: "{pages} pages · {tables} tables · {size}", preview_show: "Show a preview of the result", preview_note: "The preview is drawn by the Word → PDF engine (about {size}, first time only).",
   err_encrypted: "The PDF is password protected. Enter the password below, or remove it with", pdf_password_link: "PDF password protection",
 };
@@ -274,7 +275,7 @@ const pde: PdfDocxStrings = {
   warn_font_metric: "Schrift {source} wird als {used} verwendet (gleiche Zeichenbreiten).", warn_font_name: "Schrift {source} wird als {used} verwendet.",
   warn_font_uncommon: "Schrift {source} ist eventuell nicht installiert; Word ersetzt sie gegebenenfalls.",
   warn_ocr: "Der Text auf den Seiten {pages} wurde per OCR erkannt. Bitte prüfen.", warn_low: "Seiten mit geringer Erkennungssicherheit: {pages}.",
-  warn_scanned: "Die Seiten {pages} sind Scans ohne Text. Für bearbeitbaren Text OCR einschalten.", warn_tagged: "Das PDF hat Struktur-Tags; sie wurden für Absätze und Tabellen genutzt.",
+  warn_scanned: "Die Seiten {pages} sind Scans ohne Text. Für bearbeitbaren Text OCR einschalten.", warn_tagged: "Das PDF hat Struktur-Tags; sie wurden für Absätze und Tabellen genutzt.", warn_columns: "Bei mehrspaltigen Scans die Reihenfolge des Textes prüfen (Seiten {pages}).",
   result_meta: "{pages} S. · {tables} Tabellen · {size}", preview_show: "Vorschau des Ergebnisses anzeigen", preview_note: "Die Vorschau zeichnet die Word → PDF-Engine (etwa {size}, nur beim ersten Mal).",
   err_encrypted: "Das PDF ist passwortgeschützt. Geben Sie das Passwort unten ein oder entfernen Sie es mit", pdf_password_link: "PDF-Passwortschutz",
 };
@@ -289,7 +290,7 @@ const pes: PdfDocxStrings = {
   warn_font_metric: "La fuente {source} se usa como {used} (mismos anchos de carácter).", warn_font_name: "La fuente {source} se usa como {used}.",
   warn_font_uncommon: "Puede que la fuente {source} no esté instalada; Word podría sustituirla.",
   warn_ocr: "El texto de las páginas {pages} se reconoció con OCR. Revíselo.", warn_low: "Páginas con baja confianza de reconocimiento: {pages}.",
-  warn_scanned: "Las páginas {pages} son escaneos sin texto. Active el OCR para obtener texto editable.", warn_tagged: "El PDF tiene etiquetas de estructura; se usaron para párrafos y tablas.",
+  warn_scanned: "Las páginas {pages} son escaneos sin texto. Active el OCR para obtener texto editable.", warn_tagged: "El PDF tiene etiquetas de estructura; se usaron para párrafos y tablas.", warn_columns: "En escaneos de varias columnas, revise el orden del texto (páginas {pages}).",
   result_meta: "{pages} págs. · {tables} tablas · {size}", preview_show: "Mostrar vista previa del resultado", preview_note: "La vista previa la dibuja el motor Word → PDF (unos {size}, solo la primera vez).",
   err_encrypted: "El PDF está protegido con contraseña. Introdúzcala abajo o quítela con", pdf_password_link: "Protección de PDF con contraseña",
 };
@@ -304,7 +305,7 @@ const puk: PdfDocxStrings = {
   warn_font_metric: "Шрифт {source} використано як {used} (ті самі ширини символів).", warn_font_name: "Шрифт {source} використано як {used}.",
   warn_font_uncommon: "Шрифт {source} може бути не встановлений; Word може його замінити.",
   warn_ocr: "Текст на сторінках {pages} розпізнано за допомогою OCR. Перевірте його.", warn_low: "Сторінки з низькою впевненістю розпізнавання: {pages}.",
-  warn_scanned: "Сторінки {pages} — скани без тексту. Увімкніть OCR, щоб отримати редагований текст.", warn_tagged: "PDF має структурні теги; їх використано для абзаців і таблиць.",
+  warn_scanned: "Сторінки {pages} — скани без тексту. Увімкніть OCR, щоб отримати редагований текст.", warn_tagged: "PDF має структурні теги; їх використано для абзаців і таблиць.", warn_columns: "У багатоколонкових сканах перевірте порядок тексту (сторінки {pages}).",
   result_meta: "{pages} стор. · {tables} таблиць · {size}", preview_show: "Показати попередній перегляд", preview_note: "Перегляд малює рушій Word → PDF (близько {size}, лише вперше).",
   err_encrypted: "PDF захищено паролем. Введіть пароль нижче або видаліть його інструментом", pdf_password_link: "Захист PDF паролем",
 };
@@ -319,7 +320,7 @@ const pfr: PdfDocxStrings = {
   warn_font_metric: "La police {source} est utilisée comme {used} (mêmes largeurs de caractères).", warn_font_name: "La police {source} est utilisée comme {used}.",
   warn_font_uncommon: "La police {source} n’est peut-être pas installée ; Word pourra la remplacer.",
   warn_ocr: "Le texte des pages {pages} a été reconnu par OCR. Vérifiez-le.", warn_low: "Pages avec une faible confiance de reconnaissance : {pages}.",
-  warn_scanned: "Les pages {pages} sont des numérisations sans texte. Activez l’OCR pour obtenir du texte modifiable.", warn_tagged: "Le PDF contient des balises de structure ; elles ont servi pour les paragraphes et les tableaux.",
+  warn_scanned: "Les pages {pages} sont des numérisations sans texte. Activez l’OCR pour obtenir du texte modifiable.", warn_tagged: "Le PDF contient des balises de structure ; elles ont servi pour les paragraphes et les tableaux.", warn_columns: "Pour les numérisations sur plusieurs colonnes, vérifiez l’ordre du texte (pages {pages}).",
   result_meta: "{pages} p. · {tables} tableaux · {size}", preview_show: "Afficher un aperçu du résultat", preview_note: "L’aperçu est dessiné par le moteur Word → PDF (environ {size}, la première fois seulement).",
   err_encrypted: "Le PDF est protégé par un mot de passe. Saisissez-le ci-dessous ou supprimez-le avec", pdf_password_link: "Protection PDF par mot de passe",
 };
@@ -334,7 +335,7 @@ const psk: PdfDocxStrings = {
   warn_font_metric: "Písmo {source} je v dokumente ako {used} (rovnaké šírky znakov).", warn_font_name: "Písmo {source} je v dokumente ako {used}.",
   warn_font_uncommon: "Písmo {source} nemusí byť v počítači nainštalované, Word ho prípadne nahradí iným.",
   warn_ocr: "Text na stranách {pages} bol rozpoznaný pomocou OCR. Skontrolujte ho.", warn_low: "Strany s nízkou istotou rozpoznania: {pages}.",
-  warn_scanned: "Strany {pages} sú sken bez textu. Pre upraviteľný text zapnite OCR.", warn_tagged: "PDF má štruktúru (tagy), využitá pre odseky a tabuľky.",
+  warn_scanned: "Strany {pages} sú sken bez textu. Pre upraviteľný text zapnite OCR.", warn_tagged: "PDF má štruktúru (tagy), využitá pre odseky a tabuľky.", warn_columns: "Pri viacstĺpcových skenoch skontrolujte poradie textu (strany {pages}).",
   result_meta: "{pages} str. · {tables} tabuliek · {size}", preview_show: "Zobraziť náhľad výsledku", preview_note: "Náhľad vykreslí prevodný engine Word → PDF (asi {size}, len prvýkrát).",
   err_encrypted: "PDF je chránené heslom. Zadajte heslo nižšie alebo ho odstráňte nástrojom", pdf_password_link: "Ochrana PDF heslom",
 };

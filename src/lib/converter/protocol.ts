@@ -68,6 +68,8 @@ export interface PdfToDocxResult {
   ocrPages: number[];
   lowConfidencePages: number[];
   scannedWithoutOcr: number[];
+  /** Strany vícesloupcových skenů (OCR): pořadí textu ke kontrole. */
+  multiColumnOcrPages: number[];
   tables: number;
   images: number;
   tagged: boolean;

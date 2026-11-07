@@ -46,3 +46,29 @@ export function ocrGlyphs(words: OcrWord[], im: { x: number; y: number }, sx: nu
 
 
 
+
+/**
+ * Vícesloupcový sken: ve střední části šířky stránky je svislý pruh bez slov a vlevo i vpravo
+ * od něj je text přes velkou část výšky. Nezávislé na rekonstrukci layoutu, aby uživatel dostal
+ * varování o pořadí textu i tehdy, když rekonstrukce sloupce nepozná.
+ */
+export function isMultiColumn(glyphs: Glyph[], pageWidth: number): boolean {
+  if (glyphs.length < 200) return false;
+  const bins = 100, occ = new Array<number>(bins).fill(0);
+  for (const g of glyphs) {
+    const a = Math.max(0, Math.floor((g.x / pageWidth) * bins)), b = Math.min(bins - 1, Math.floor(((g.x + g.w) / pageWidth) * bins));
+    for (let i = a; i <= b; i++) occ[i]++;
+  }
+  const busy = Math.max(...occ);
+  for (let i = 30; i <= 70; i++) {
+    if (occ[i] > busy * 0.02) continue;
+    const left = occ.slice(0, i).some((v) => v > busy * 0.3), right = occ.slice(i + 1).some((v) => v > busy * 0.3);
+    if (!left || !right) continue;
+    // Text vlevo i vpravo od pruhu na velké části výšky stránky (ne jen podpis vedle razítka).
+    const x = (i / bins) * pageWidth;
+    const ys = (side: (g: Glyph) => boolean) => { const v = glyphs.filter(side).map((g) => g.base); return v.length ? Math.max(...v) - Math.min(...v) : 0; };
+    const h = Math.max(...glyphs.map((g) => g.base)) - Math.min(...glyphs.map((g) => g.base));
+    if (ys((g) => g.x + g.w < x) > h * 0.4 && ys((g) => g.x > x) > h * 0.4) return true;
+  }
+  return false;
+}

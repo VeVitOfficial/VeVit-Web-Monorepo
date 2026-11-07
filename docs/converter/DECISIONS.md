@@ -98,3 +98,18 @@ Každé rozhodnutí: co, proč, alternativy. Nová rozhodnutí přidávej na kon
 ## D19 — Výška řádků tabulky bez tloušťky linek; linky záhlaví/zápatí patří k nim
 - **Tabulky:** výška řádku z PDF je od středu linky ke středu další; Word i LibreOffice k `trHeight` přičtou polovinu horní a polovinu dolní linky (měřeno: mřížka 0,5 pt → +0,5 pt na řádek, jen dolní linka 0,75 pt → +0,375 pt). `trHeight` se o ni zmenší. Vícestránková tabulka 0,508 → 0,757 (pdf2docx 0,643), sloučené buňky 0,510 → 0,734 (0,538).
 - **Záhlaví/zápatí:** vodorovná linka mezi textem záhlaví a tělem (a nad zápatím) se dřív brala jako obsah těla: posunula horní okraj stránky o ~17 pt a v těle vznikla prázdná linka. Teď je dolním (horním) ohraničením odstavce záhlaví (zápatí). 0,353 → 0,853 (pdf2docx 0,739).
+
+## D20 — Pokus: COEP `require-corp` jen pro stránky převodníku (Safari)
+- **Postup a výsledek (měřeno v Chromiu, Firefoxu a WebKitu 2026-11-07, dev server):**
+  1. Výchozí stav (`credentialless` pro celý web): `crossOriginIsolated` Chromium **true**, Firefox **true**, WebKit **false** (credentialless nezná) — převodník funguje ve všech, SAB nepotřebuje.
+  2. `require-corp` jen na `/[lang]/tools/{word-to-pdf,pdf-to-word}`: WebKit **true** (SharedArrayBuffer k dispozici), Chromium a Firefox převádějí dál. **WebKit ale nespustí worker enginu** („Převodní engine se nepodařilo stáhnout“, 6/6 testů převodu selhalo): skripty workerů (`/_next/static/…`, `/tools/assets/js/lib/…`) mají globální `credentialless`, které WebKit nezná, a pod dokumentem s `require-corp` je zablokuje.
+  3. `require-corp` navíc na `/_next/static/*` a `/tools/assets/js/lib/*`: WebKit převádí (4/4), izolace zůstává.
+- **Rozhodnutí:** nenasazeno, `next.config.ts` beze změny. Krok 3 mění hlavičky statických souborů celého webu (workery ffmpeg, OCR a dalších nástrojů by běžely s `require-corp`), a převodník přitom SharedArrayBuffer nepoužívá (D9) — přínos nulový, riziko pro ostatní nástroje nenulové.
+- **Kdy se k tomu vrátit:** kdyby převodník dostal vícevláknový WASM (rayon + wasm threads). Pak stačí krok 3 omezit na `/_next/static/*` + `/tools/assets/js/lib/converter/*` a `tesseract/*` a ověřit ostatní nástroje s workery.
+
+## D21 — Data OCR předkomprimovaná (`.traineddata.gz`) a statické přípony v proxy
+- **Nález na preview deploymentu:** `/tools/assets/js/lib/tesseract/*.traineddata` vracel `308` na `/cs/tools/…` (proxy `src/proxy.ts` nezná příponu `.traineddata`, stejně tak `.bcmap` a `.pfb` z pdf.js) a po přesměrování se data posílala nekomprimovaná (`application/octet-stream`, 3,8 + 4,0 MB).
+- **Oprava:** přípony `traineddata|gz|bcmap|pfb|txt` doplněny do `publicFile` v proxy; převodník stahuje `ces/eng.traineddata.gz` (`gzip: true` v tesseract.js, 1,7 + 1,9 MB). Původní `.traineddata` zůstávají pro nástroj ocr-pdf.
+
+## D22 — Paměť v prohlížeči: plný Chromium, ne headless shell
+- `performance.measureUserAgentSpecificMemory()` je v Chromiu dostupné na stránkách převodníku i s COEP `credentialless` (`crossOriginIsolated === true`), ale **ne v headless shellu**, který Playwright spouští ve výchozím stavu („not available“). Harness proto pro projekt chromium používá `channel: "chromium"` a `--enable-blink-features=ForceEagerMeasureMemory` (výsledek hned, ne až po GC).

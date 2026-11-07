@@ -137,6 +137,7 @@ async function convert(msg: Extract<PdfWorkerIn, { type: "convert" }>) {
       ocrPages: report.pages.filter((p) => p.ocr).map((p) => p.index + 1),
       lowConfidencePages: report.pages.filter((p) => p.lowConfidence).map((p) => p.index + 1),
       scannedWithoutOcr: report.pages.filter((p) => p.scanned && !p.ocr).map((p) => p.index + 1),
+      multiColumnOcrPages: report.pages.filter((p) => p.ocr && p.multiColumn).map((p) => p.index + 1),
       tables: report.pages.reduce((s, p) => s + p.tables, 0), images: report.pages.reduce((s, p) => s + p.images, 0),
       tagged: report.tagged,
       timings: { engineMs: Math.round(t1 - t0), convertMs: Math.round(t2 - t1) },

@@ -69,6 +69,7 @@ for (const mode of MODES) for (const name of docsFrom("pdf", ".pdf")) {
     const T = TALL[mode];
     const X = { ...T, ...(T.exceptions?.[name] ?? {}) };
     expect(violations, "no request may carry the document or leave the origin").toEqual([]);
+    if (name === "sken") expect.soft(run.warnings.join(" "), "multi-column scan warning").toMatch(/pořadí textu/);
     expect.soft(txt.similarity, "text similarity").toBeGreaterThanOrEqual(X.textSimilarity);
     expect.soft(txt.missingChars, "missing characters").toBeLessThanOrEqual(X.missingChars);
     expect.soft(cmp.ssimSoft, "mean tolerant SSIM vs original PDF").toBeGreaterThanOrEqual(X.meanSsimSoft);

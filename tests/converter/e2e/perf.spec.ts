@@ -33,6 +33,16 @@ async function memoryMb(page: Page): Promise<number | null> {
   });
 }
 
+/** Špička paměti během `run` (vzorkování po 150 ms; krátké špičky mezi vzorky se mohou minout). */
+async function peakMemoryMb(page: Page, run: () => Promise<number>): Promise<{ ms: number; peak: number | null }> {
+  let peak: number | null = await memoryMb(page), done = false;
+  const poll = (async () => { while (!done) { const m = await memoryMb(page); if (m != null && (peak == null || m > peak)) peak = m; await new Promise((r) => setTimeout(r, 150)); } })();
+  const ms = await run();
+  done = true; await poll;
+  const m = await memoryMb(page); if (m != null && (peak == null || m > peak)) peak = m;
+  return { ms, peak };
+}
+
 for (const prof of PROFILES) for (const c of CASES) {
   test(`perf ${prof.name}: ${c.slug} ${path.basename(c.input)}`, async ({ page, browserName }, testInfo) => {
     test.skip(browserName !== "chromium", "CDP throttling and memory API are Chromium-only");
@@ -45,15 +55,14 @@ for (const prof of PROFILES) for (const c of CASES) {
     let bytes = 0;
     page.on("response", async (r) => { if (/\/tools\/assets\/js\/lib\//.test(r.url())) bytes += Number(r.headers()["content-length"] ?? 0); });
     await root.locator('input[type="file"]').first().setInputFiles(c.input);
-    const cold = await convertOnce(page);
-    const mem = await memoryMb(page);
+    const { ms: cold, peak: mem } = await peakMemoryMb(page, () => convertOnce(page));
     const coldBytes = bytes;
     // Druhý převod: engine je načtený ve workeru / v Cache API.
     await root.getByRole("button", { name: /Převést jiný|Convert another/ }).click();
     await root.locator('input[type="file"]').first().setInputFiles(c.input);
     bytes = 0;
     const warm = await convertOnce(page);
-    const row = { browser: testInfo.project.name, profile: prof.name, tool: c.slug, doc: path.basename(c.input), coldMs: cold, warmMs: warm, coldBytes, warmBytes: bytes, memoryMb: mem };
+    const row = { browser: testInfo.project.name, profile: prof.name, tool: c.slug, doc: path.basename(c.input), coldMs: cold, warmMs: warm, coldBytes, warmBytes: bytes, peakMemoryMb: mem };
     record("perf", row);
     testInfo.annotations.push({ type: "metrics", description: JSON.stringify(row) });
   });

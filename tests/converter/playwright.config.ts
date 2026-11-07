@@ -23,7 +23,8 @@ export default defineConfig({
     locale: "cs-CZ",
   },
   projects: [
-    { name: "chromium", use: { ...devices["Desktop Chrome"] } },
+    // Plný Chromium (ne headless shell): jen ten má performance.measureUserAgentSpecificMemory.
+    { name: "chromium", use: { ...devices["Desktop Chrome"], channel: "chromium", launchOptions: { args: ["--enable-blink-features=ForceEagerMeasureMemory"] } } },
     { name: "firefox", use: { ...devices["Desktop Firefox"] } },
     { name: "webkit", use: { ...devices["Desktop Safari"], ...(process.env.PW_WEBKIT_WS ? { connectOptions: { wsEndpoint: process.env.PW_WEBKIT_WS } } : {}) } },
   ],

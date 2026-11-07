@@ -37,7 +37,7 @@ function tesseract(onProgress?: (p: PdfProgress) => void): Promise<TesseractWork
     await loadScriptOnce(`${TESS_BASE}/tesseract.min.js`);
     const T = (window as unknown as { Tesseract: TesseractLib }).Tesseract;
     // corePath přímo na JS glue: jinak tesseract.js chce 3,9MB `.wasm.js` s wasm v base64.
-    return T.createWorker("ces+eng", 1, { workerPath: `${TESS_BASE}/worker.min.js`, corePath: `${TESS_BASE}/tesseract-core-simd-lstm.js`, langPath: `${TESS_BASE}/`, gzip: false, workerBlobURL: false });
+    return T.createWorker("ces+eng", 1, { workerPath: `${TESS_BASE}/worker.min.js`, corePath: `${TESS_BASE}/tesseract-core-simd-lstm.js`, langPath: `${TESS_BASE}/`, gzip: true, workerBlobURL: false });
   })().catch((e) => { tess = null; throw e; });
   return tess;
 }

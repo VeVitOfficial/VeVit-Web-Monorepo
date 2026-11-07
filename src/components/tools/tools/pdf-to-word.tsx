@@ -120,6 +120,7 @@ export default function PdfToWord({ locale }: ToolComponentProps) {
     if (r.ocrPages.length) warnings.push(fmt(s.warn_ocr, { pages: list(r.ocrPages) }));
     if (r.lowConfidencePages.length) warnings.push(fmt(s.warn_low, { pages: list(r.lowConfidencePages) }));
     if (r.scannedWithoutOcr.length) warnings.push(fmt(s.warn_scanned, { pages: list(r.scannedWithoutOcr) }));
+    if (r.multiColumnOcrPages?.length) warnings.push(fmt(s.warn_columns, { pages: list(r.multiColumnOcrPages) }));
   }
 
   return (
