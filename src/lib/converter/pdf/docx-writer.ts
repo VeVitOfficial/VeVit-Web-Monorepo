@@ -1,7 +1,7 @@
 // DocModel → DOCX (OOXML zabalené fflate). Čisté OOXML: styly (Normální, Nadpis 1–3, Název,
 // Odstavec se seznamem, Záhlaví/Zápatí, Hypertextový odkaz) a přímé formátování jen tam, kde
 // se běh liší od stylu odstavce. Tabulky s přesnými šířkami sloupců, ohraničení jen tam, kde
-// v originálu jsou. Přesný režim: rámce (framePr) a tvary ukotvené ke stránce.
+// v originálu jsou. Přesný režim: textová pole, tvary a obrázky ukotvené ke stránce.
 import { zipSync, strToU8 } from "fflate";
 import type { Block, DocModel, Para, Run, Table, ImageBlock, RuleBlock, FrameBlock, ShapeBlock, PageLayout, Border, Borders, ListInfo, ColumnsBlock } from "./model.ts";
 
@@ -175,10 +175,19 @@ function shapeXml(c: Ctx, s: ShapeBlock): string {
   return `<w:r><w:drawing><wp:anchor distT="0" distB="0" distL="0" distR="0" simplePos="0" relativeHeight="${id}" behindDoc="1" locked="0" layoutInCell="1" allowOverlap="1"><wp:simplePos x="0" y="0"/><wp:positionH relativeFrom="page"><wp:posOffset>${emu(s.x)}</wp:posOffset></wp:positionH><wp:positionV relativeFrom="page"><wp:posOffset>${emu(s.y)}</wp:posOffset></wp:positionV><wp:extent cx="${cx}" cy="${cy}"/><wp:effectExtent l="0" t="0" r="0" b="0"/><wp:wrapNone/><wp:docPr id="${id}" name="Tvar ${id}"/><wp:cNvGraphicFramePr/><a:graphic><a:graphicData uri="http://schemas.microsoft.com/office/word/2010/wordprocessingShape"><wps:wsp><wps:cNvSpPr/><wps:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="${cx}" cy="${cy}"/></a:xfrm><a:custGeom><a:avLst/><a:gdLst/><a:ahLst/><a:cxnLst/><a:rect l="0" t="0" r="r" b="b"/><a:pathLst>${s.d}</a:pathLst></a:custGeom>${fill}${ln}</wps:spPr><wps:bodyPr/></wps:wsp></a:graphicData></a:graphic></wp:anchor></w:drawing></w:r>`;
 }
 
-function frameXml(c: Ctx, f: FrameBlock): string {
+/**
+ * Text na absolutní pozici = textové pole DrawingML ukotvené ke stránce (jako čáry a obrázky).
+ * Rámce w:framePr Word pro web nezobrazí a text skládá pod sebe (D25). Bez okrajů a bez
+ * zalamování (wrap="none"): řádek se nezalomí jinak ani při jiné šířce náhradního písma.
+ */
+function textBoxXml(c: Ctx, f: FrameBlock): string {
   const base = { font: c.doc.body.font, size: c.doc.body.size, bold: false, color: c.doc.body.color };
+  const id = c.nextDrawing++;
   const h = Math.max(1, f.lineHeight);
-  return `<w:p><w:pPr><w:framePr w:w="${tw(f.w + 2)}" w:h="${tw(h)}" w:hRule="exact" w:wrap="around" w:vAnchor="page" w:hAnchor="page" w:x="${tw(f.x)}" w:y="${tw(f.y)}"/><w:spacing w:before="0" w:after="0" w:line="${tw(h)}" w:lineRule="exact"/></w:pPr>${runsXml(c, f.runs, base)}</w:p>`;
+  // Výška pole s rezervou: Word text přetékající pole ořízne.
+  const cx = emu(f.w + 2), cy = emu(h + 1);
+  const para = `<w:p><w:pPr><w:spacing w:before="0" w:after="0" w:line="${tw(h)}" w:lineRule="exact"/></w:pPr>${runsXml(c, f.runs, base)}</w:p>`;
+  return `<w:r><w:drawing><wp:anchor distT="0" distB="0" distL="0" distR="0" simplePos="0" relativeHeight="${id}" behindDoc="0" locked="0" layoutInCell="1" allowOverlap="1"><wp:simplePos x="0" y="0"/><wp:positionH relativeFrom="page"><wp:posOffset>${emu(f.x)}</wp:posOffset></wp:positionH><wp:positionV relativeFrom="page"><wp:posOffset>${emu(f.y)}</wp:posOffset></wp:positionV><wp:extent cx="${cx}" cy="${cy}"/><wp:effectExtent l="0" t="0" r="0" b="0"/><wp:wrapNone/><wp:docPr id="${id}" name="Text ${id}"/><wp:cNvGraphicFramePr/><a:graphic><a:graphicData uri="http://schemas.microsoft.com/office/word/2010/wordprocessingShape"><wps:wsp><wps:cNvSpPr txBox="1"/><wps:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="${cx}" cy="${cy}"/></a:xfrm><a:prstGeom prst="rect"><a:avLst/></a:prstGeom><a:noFill/><a:ln><a:noFill/></a:ln></wps:spPr><wps:txbx><w:txbxContent>${para}</w:txbxContent></wps:txbx><wps:bodyPr rot="0" vert="horz" wrap="none" lIns="0" tIns="0" rIns="0" bIns="0" anchor="t" anchorCtr="0" upright="1"><a:noAutofit/></wps:bodyPr></wps:wsp></a:graphicData></a:graphic></wp:anchor></w:drawing></w:r>`;
 }
 
 function tableXml(c: Ctx, t: Table, leftMargin: number): string {
@@ -234,7 +243,7 @@ function blocksXml(c: Ctx, blocks: Block[], startY: number, leftMargin: number, 
     // malý kotvicí odstavec ořízl).
     if (b.kind === "image" && b.anchored && page) { anchoredRuns.push(imageXml(c, b, page)); continue; }
     if (b.kind === "shape") { anchoredRuns.push(shapeXml(c, b)); continue; }
-    if (b.kind === "frame") { out += frameXml(c, b); continue; }
+    if (b.kind === "frame") { anchoredRuns.push(textBoxXml(c, b)); continue; }
     const gap = blockTop(b) - y;
     if (b.kind === "para") {
       const size = b.size ?? c.doc.body.size;
@@ -421,8 +430,6 @@ export function writeDocx(doc: DocModel): Uint8Array {
     const startY = breakHere || i === 0 ? p.margins.top : (first ? blockTop(first) : p.margins.top);
     let xml = blocksXml(c, blocks, startY, p.margins.left, p);
     if (breakHere && first && first.kind !== "para") xml = spacerXml(1, true) + xml;
-    // Přesný režim: rámce se kotví k následujícímu běžnému odstavci — ten musí být na téže stránce.
-    if (p.exact) xml += spacerXml(1);
     body += xml;
     // Jiný rozměr další stránky (na šířku) = konec sekce.
     const next = doc.pages[i + 1];

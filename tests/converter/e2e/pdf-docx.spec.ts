@@ -52,7 +52,7 @@ for (const mode of MODES) for (const name of docsFrom("pdf", ".pdf")) {
       const web = rowWith("Webová stránka"), sprava = rowWith("Správa obsahu");
       row.invoice = { webRow: web, spravaRow: sprava, hasTotal: cells.some((r: string[]) => r.some((c) => c.includes("19 800,00 Kč"))) };
       record("pdf-docx", row);
-      // Přesný režim tabulky nevytváří (absolutně umístěné rámce) — buňky jen v upravitelném.
+      // Přesný režim tabulky nevytváří (absolutně umístěná textová pole) — buňky jen v upravitelném.
       if (mode === "editable") {
       expect.soft(web, "row 'Webová stránka' is a table row").toBeTruthy();
       expect.soft(web?.filter((c: string) => c.includes("15 000,00 Kč")).length, "15 000,00 Kč in price and total cells").toBe(2);
@@ -69,6 +69,12 @@ for (const mode of MODES) for (const name of docsFrom("pdf", ".pdf")) {
     const T = TALL[mode];
     const X = { ...T, ...(T.exceptions?.[name] ?? {}) };
     expect(violations, "no request may carry the document or leave the origin").toEqual([]);
+    // Render přes LibreOffice rámce w:framePr ukáže, Word pro web ne (D25): text přesného režimu
+    // jen v textových polích DrawingML.
+    if (mode === "exact") {
+      expect.soft(structure.frames, "exact mode: no w:framePr frames").toBe(0);
+      expect.soft(structure.textBoxes, "exact mode: text in DrawingML text boxes").toBeGreaterThan(0);
+    }
     if (name === "sken") expect.soft(run.warnings.join(" "), "multi-column scan warning").toMatch(/pořadí textu/);
     expect.soft(txt.similarity, "text similarity").toBeGreaterThanOrEqual(X.textSimilarity);
     expect.soft(txt.missingChars, "missing characters").toBeLessThanOrEqual(X.missingChars);

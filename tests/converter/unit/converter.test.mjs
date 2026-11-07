@@ -214,3 +214,32 @@ test("layout: word in the page margin on a text line does not turn two text colu
   assert.ok(!all(blocks).some((b) => b.kind === "table" && !b.layout), "no data table");
   assert.ok(all(blocks).some((b) => b.kind === "columns"), "text columns kept");
 });
+
+// Přesný režim ve Wordu: text na pozici jen přes DrawingML textová pole ukotvená ke stránce.
+// Rámce w:framePr Word pro web ignoruje a text skládá pod sebe (D25); LibreOffice je umí,
+// proto to vizuální metriky (render přes LibreOffice) nezachytí.
+test("exact mode: every text run sits in a page-anchored DrawingML text box", async () => {
+  const pdfjs = await import("pdfjs-dist/legacy/build/pdf.mjs");
+  const { pdfToDocx } = await import("../../../src/lib/converter/pdf/convert.ts");
+  const doc = await pdfjs.getDocument({ data: new Uint8Array(readFileSync(path.join(corpus, "faktura-2026001.pdf"))), isEvalSupported: false, fontExtraProperties: true, standardFontDataUrl: path.join(here, "../../../node_modules/pdfjs-dist/standard_fonts/") }).promise;
+  const { docx } = await pdfToDocx(pdfjs, doc, "exact");
+  const xml = strFromU8(unzipSync(docx)["word/document.xml"]);
+  assert.ok(!xml.includes("<w:framePr"), "no legacy frames");
+  assert.ok(!xml.includes("<v:"), "no VML");
+  let boxes = 0, text = "";
+  const rest = xml.replace(/<wp:anchor [\s\S]*?<\/wp:anchor>/g, (a) => {
+    if (!a.includes("<w:txbxContent>")) return "";
+    boxes++;
+    assert.match(a, /<wp:positionH relativeFrom="page"><wp:posOffset>\d+<\/wp:posOffset><\/wp:positionH>/);
+    assert.match(a, /<wp:positionV relativeFrom="page"><wp:posOffset>\d+<\/wp:posOffset><\/wp:positionV>/);
+    assert.match(a, /<wp:wrapNone\/>/);
+    assert.match(a, /<wp:extent cx="[1-9]\d*" cy="[1-9]\d*"\/>/);
+    assert.match(a, /<wps:bodyPr [^>]*wrap="none" lIns="0" tIns="0" rIns="0" bIns="0"/);
+    text += [...a.matchAll(/<w:t[^>]*>([^<]*)<\/w:t>/g)].map((m) => m[1]).join(" ") + "\n";
+    return "";
+  });
+  assert.ok(boxes >= 30, `text boxes: ${boxes}`);
+  assert.ok(!/<w:t[ >]/.test(rest), "no text outside text boxes");
+  assert.match(text, /Faktura/);
+  assert.match(text, /19\s800,00/);
+});

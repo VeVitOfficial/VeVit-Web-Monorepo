@@ -66,7 +66,7 @@ export function docxStructure(docxPath) {
     styledParagraphs: (doc.match(/<w:pStyle /g) ?? []).length,
     headings: (doc.match(/<w:pStyle w:val="Heading\d"/g) ?? []).length,
     tables: (doc.match(/<w:tbl>/g) ?? []).length,
-    textBoxes: (doc.match(/<w:txbxContent>|<wps:txbx>/g) ?? []).length,
+    textBoxes: (doc.match(/<w:txbxContent>/g) ?? []).length,
     frames: (doc.match(/<w:framePr /g) ?? []).length,
     anchoredDrawings: (doc.match(/<wp:anchor /g) ?? []).length,
     inlineDrawings: (doc.match(/<wp:inline /g) ?? []).length,
