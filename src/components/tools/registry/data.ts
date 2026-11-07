@@ -16,7 +16,7 @@ import type { ComponentType } from "react";
 
 export type Category = "pdf" | "image" | "media" | "text" | "ai" | "dev" | "security" | "calc";
 export type ProcessingLocation = "client" | "vevit_server" | "external_ai" | "external";
-export type ToolStatus = "working" | "limited" | "experimental" | "coming_soon" | "broken";
+export type ToolStatus = "working" | "limited" | "experimental" | "coming_soon" | "broken" | "maintenance";
 export type Locale = "cs" | "en" | "de" | "es" | "uk" | "fr" | "sk";
 
 /** Props, které dostává každá komponenta nástroje od shellu. */
@@ -315,6 +315,8 @@ function canonicalize(raw: RawTool): Tool {
   ]);
   if (COMING_SOON.has(slug)) status = "coming_soon";
   if (slug === "pdf-edit") status = "experimental";
+  // AI nástroje jsou dočasně v údržbě (nejdou otevřít); ty, které ještě nejsou hotové, zůstávají „Připravujeme“.
+  if (loc === "ai" && status !== "coming_soon") status = "maintenance";
 
   const slugWords = slug.split(/-+/);
   const keywords = Array.from(new Set([...slugWords, slug].filter(Boolean)));
@@ -536,7 +538,7 @@ export interface HubI18n {
 }
 
 const HUB_CS: HubI18n = {
-  statuses: { limited: "Omezeně dostupný", experimental: "Experimentální", coming_soon: "Připravujeme", broken: "Dočasně nefunkční" },
+  statuses: { limited: "Omezeně dostupný", experimental: "Experimentální", coming_soon: "Připravujeme", broken: "Dočasně nefunkční", maintenance: "V údržbě" },
   loc: { client: "Lokálně", external_ai: "Přes AI", vevit_server: "Na serveru", external: "Třetí strana" },
   card_open: "Otevřít →",
   hero_eyebrow: "{count} nástrojů, zdarma, bez registrace",
@@ -599,7 +601,7 @@ const HUB_CS: HubI18n = {
 };
 
 const HUB_EN: HubI18n = {
-  statuses: { limited: "Limited availability", experimental: "Experimental", coming_soon: "Coming soon", broken: "Temporarily broken" },
+  statuses: { limited: "Limited availability", experimental: "Experimental", coming_soon: "Coming soon", broken: "Temporarily broken", maintenance: "Under maintenance" },
   loc: { client: "Local", external_ai: "Via AI", vevit_server: "On server", external: "Third party" },
   card_open: "Open →",
   hero_eyebrow: "{count} tools, free, no sign-up",
@@ -676,6 +678,7 @@ export interface ToolUiI18n {
   cancel: string; retry: string; reset: string;
   download: string; result_ready: string;
   text_meta: string; file_format: string;
+  maintenance_note: string;
 }
 
 const TOOL_UI_CS: ToolUiI18n = {
@@ -689,6 +692,7 @@ const TOOL_UI_CS: ToolUiI18n = {
   cancel: "Zrušit", retry: "Zkusit znovu", reset: "Začít znovu",
   download: "Stáhnout výsledek", result_ready: "Hotovo, výsledek je připraven",
   text_meta: "{characters} znaků · {lines} řádků", file_format: "{type} · {size}",
+  maintenance_note: "Nástroj je dočasně v údržbě a nelze ho použít. Zkuste to prosím později.",
 };
 
 const TOOL_UI_EN: ToolUiI18n = {
@@ -702,6 +706,7 @@ const TOOL_UI_EN: ToolUiI18n = {
   cancel: "Cancel", retry: "Try again", reset: "Start over",
   download: "Download result", result_ready: "Done, result is ready",
   text_meta: "{characters} characters · {lines} lines", file_format: "{type} · {size}",
+  maintenance_note: "This tool is temporarily under maintenance and cannot be used. Please try again later.",
 };
 
 export const TOOL_UI_I18N: Record<Locale, ToolUiI18n> = {
@@ -710,13 +715,13 @@ export const TOOL_UI_I18N: Record<Locale, ToolUiI18n> = {
 
 // ── Stavové labely (pro badge Stav v dropdownu a na kartách) ────────────
 export const STATUS_LABELS: Record<Locale, Record<ToolStatus, string>> = {
-  cs: { working: "Dostupné", limited: "Omezeně dostupné", experimental: "Experimentální", coming_soon: "Připravujeme", broken: "Nefunkční" },
-  en: { working: "Available", limited: "Limited", experimental: "Experimental", coming_soon: "Coming soon", broken: "Broken" },
-  de: { working: "Verfügbar", limited: "Eingeschränkt", experimental: "Experimentell", coming_soon: "In Vorbereitung", broken: "Defekt" },
-  es: { working: "Disponible", limited: "Limitado", experimental: "Experimental", coming_soon: "Próximamente", broken: "Roto" },
-  uk: { working: "Доступний", limited: "Обмежений", experimental: "Експериментальний", coming_soon: "Очікується", broken: "Зламаний" },
-  fr: { working: "Disponible", limited: "Limité", experimental: "Expérimental", coming_soon: "Bientôt", broken: "Cassé" },
-  sk: { working: "Dostupné", limited: "Obmedzene dostupné", experimental: "Experimentálne", coming_soon: "Pripravujeme", broken: "Nefunkčné" },
+  cs: { working: "Dostupné", limited: "Omezeně dostupné", experimental: "Experimentální", coming_soon: "Připravujeme", broken: "Nefunkční", maintenance: "V údržbě" },
+  en: { working: "Available", limited: "Limited", experimental: "Experimental", coming_soon: "Coming soon", broken: "Broken", maintenance: "Under maintenance" },
+  de: { working: "Verfügbar", limited: "Eingeschränkt", experimental: "Experimentell", coming_soon: "In Vorbereitung", broken: "Defekt", maintenance: "In Wartung" },
+  es: { working: "Disponible", limited: "Limitado", experimental: "Experimental", coming_soon: "Próximamente", broken: "Roto", maintenance: "En mantenimiento" },
+  uk: { working: "Доступний", limited: "Обмежений", experimental: "Експериментальний", coming_soon: "Очікується", broken: "Зламаний", maintenance: "На обслуговуванні" },
+  fr: { working: "Disponible", limited: "Limité", experimental: "Expérimental", coming_soon: "Bientôt", broken: "Cassé", maintenance: "En maintenance" },
+  sk: { working: "Dostupné", limited: "Obmedzene dostupné", experimental: "Experimentálne", coming_soon: "Pripravujeme", broken: "Nefunkčné", maintenance: "V údržbe" },
 };
 
 export const SUPPORTED_LOCALES: readonly Locale[] = ["cs", "en", "de", "es", "uk", "fr", "sk"];

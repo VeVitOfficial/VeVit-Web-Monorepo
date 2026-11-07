@@ -22,7 +22,7 @@ export const DEFAULT_STATE: HubState = {
 
 const CATEGORIES: readonly Category[] = ["pdf", "image", "media", "text", "ai", "dev", "security", "calc"];
 const PROCESSINGS: readonly ProcessingLocation[] = ["client", "vevit_server", "external_ai", "external"];
-const STATUSES: readonly ToolStatus[] = ["working", "limited", "experimental", "coming_soon", "broken"];
+const STATUSES: readonly ToolStatus[] = ["working", "limited", "experimental", "maintenance", "coming_soon", "broken"];
 const SORTS: readonly ("relevance" | "name")[] = ["relevance", "name"];
 
 export function parseState(sp: URLSearchParams | Record<string, string | string[] | undefined>): HubState {

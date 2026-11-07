@@ -46,6 +46,7 @@ const STATUS_BADGE_CLASS: Record<ToolStatus, string> = {
   experimental: "tool-status-experimental",
   coming_soon: "tool-status-coming-soon",
   broken: "tool-status-broken",
+  maintenance: "tool-status-maintenance",
 };
 
 export default async function ToolPage({ params }: Props) {
@@ -63,7 +64,9 @@ export default async function ToolPage({ params }: Props) {
   const loc = locationMeta(tool.processing_location, locale);
   const L = localizeTool(tool, locale);
   const Component = TOOL_COMPONENTS[tool.slug];
-  const hasImpl = Component != null;
+  // V údržbě: nástroj se nespouští, jen informace (i když implementace existuje).
+  const maintenance = tool.status === "maintenance";
+  const hasImpl = Component != null && !maintenance;
 
   return (
     <>
@@ -122,7 +125,9 @@ export default async function ToolPage({ params }: Props) {
             <div className="tool-placeholder tool-info-only">
               <div className="tool-info-icon">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  {tool.status === "coming_soon" ? (
+                  {maintenance ? (
+                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z" />
+                  ) : tool.status === "coming_soon" ? (
                     <path d="m12 3-1.9 5.8a2 2 0 0 1-1.287 1.288L3 12l5.8 1.9a2 2 0 0 1 1.288 1.287L12 21l1.9-5.8a2 2 0 0 1 1.287-1.288L21 12l-5.8-1.9a2 2 0 0 1-1.288-1.287Z" />
                   ) : (
                     <><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></>
@@ -130,8 +135,8 @@ export default async function ToolPage({ params }: Props) {
                 </svg>
               </div>
               <div>
-                <p className="t">{uiStrings.state_idle}</p>
-                <p>{statusLabel(tool.status, locale)}. {uiStrings.state_idle}</p>
+                <p className="t">{maintenance ? statusLabel(tool.status, locale) : uiStrings.state_idle}</p>
+                <p>{maintenance ? uiStrings.maintenance_note : `${statusLabel(tool.status, locale)}. ${uiStrings.state_idle}`}</p>
               </div>
               {tool.note ? <p className="sr-only">{tool.note}</p> : null}
             </div>

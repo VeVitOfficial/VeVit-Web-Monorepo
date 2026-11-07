@@ -509,7 +509,7 @@ svg { display: block; }
 }
 .badge svg { width: 0.75rem; height: 0.75rem; }
 .badge-status-coming_soon, .badge-status-broken { border-color: rgba(235,75,75,.35); color: var(--vv-danger-text); background: rgba(235,75,75,.1); }
-.badge-status-limited, .badge-status-experimental { border-color: rgba(221,152,21,.35); color: var(--vv-warn-text); background: rgba(221,152,21,.1); }
+.badge-status-limited, .badge-status-experimental, .badge-status-maintenance { border-color: rgba(221,152,21,.35); color: var(--vv-warn-text); background: rgba(221,152,21,.1); }
 .badge-loc-local { background: rgba(var(--vv-green-rgb), 0.1); color: var(--green-text); border-color: rgba(var(--vv-green-rgb), 0.2); }
 .badge-loc-other { background: var(--muted); color: var(--muted-foreground); }
 .badge-loc-server { background: rgba(107,114,128,0.16); color: var(--server-badge-text); border-color: rgba(107,114,128,0.3); }
@@ -679,7 +679,7 @@ svg { display: block; }
 .certificate-status { color: var(--primary); font-weight: 700; }
 .certificate-status-expires_soon { color: var(--vv-warn-text); }
 .tool-status-coming_soon, .tool-status-broken { border-color: rgba(235,75,75,.38); color: var(--vv-danger-text); background: rgba(235,75,75,.1); }
-.tool-status-limited, .tool-status-experimental { border-color: rgba(221,152,21,.38); color: var(--vv-warn-text); background: rgba(221,152,21,.1); }
+.tool-status-limited, .tool-status-experimental, .tool-status-maintenance { border-color: rgba(221,152,21,.38); color: var(--vv-warn-text); background: rgba(221,152,21,.1); }
 
 .two-col { display: grid; grid-template-columns: 1fr; gap: 1rem; }
 @media (min-width: 768px) { .two-col { grid-template-columns: 1fr 1fr; } }
