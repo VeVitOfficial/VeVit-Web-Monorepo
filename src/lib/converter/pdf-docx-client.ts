@@ -37,6 +37,8 @@ function tesseract(onProgress?: (p: PdfProgress) => void): Promise<TesseractWork
     await loadScriptOnce(`${TESS_BASE}/tesseract.min.js`);
     const T = (window as unknown as { Tesseract: TesseractLib }).Tesseract;
     // corePath přímo na JS glue: jinak tesseract.js chce 3,9MB `.wasm.js` s wasm v base64.
+    // Výchozí PSM 6 (jeden blok): řádky vedou přes oba sloupce skenu, sloupce rozdělí až
+    // rekonstrukce podle mezer. PSM 3 (automatická segmentace) na korpusu zahodí celé řádky (D24).
     return T.createWorker("ces+eng", 1, { workerPath: `${TESS_BASE}/worker.min.js`, corePath: `${TESS_BASE}/tesseract-core-simd-lstm.js`, langPath: `${TESS_BASE}/`, gzip: true, workerBlobURL: false });
   })().catch((e) => { tess = null; throw e; });
   return tess;
@@ -51,14 +53,14 @@ async function runOcr(image: { data: Uint8ClampedArray; width: number; height: n
   // Účaří a výška řádku z tesseractu: slova jednoho řádku pak sdílejí účaří i velikost písma.
   const words: OcrWord[] = [];
   const lines = data.lines?.length ? data.lines : [{ words: data.words, bbox: { x0: 0, y0: 0, x1: 0, y1: 0 } } as TessLine];
-  for (const line of lines) {
+  for (const [li, line] of lines.entries()) {
     const bl = line.baseline?.has_baseline !== false ? line.baseline : undefined;
     for (const x of line.words) {
       if (!x.text.trim()) continue;
       const cx = (x.bbox.x0 + x.bbox.x1) / 2;
       const base = bl && bl.x1 !== bl.x0 ? bl.y0 + ((bl.y1 - bl.y0) * (cx - bl.x0)) / (bl.x1 - bl.x0) : undefined;
       const slope = bl && bl.x1 !== bl.x0 ? (bl.y1 - bl.y0) / (bl.x1 - bl.x0) : undefined;
-      words.push({ text: x.text, x0: x.bbox.x0, y0: x.bbox.y0, x1: x.bbox.x1, y1: x.bbox.y1, confidence: x.confidence / 100, base, rowHeight: line.rowAttributes?.row_height, slope });
+      words.push({ text: x.text, x0: x.bbox.x0, y0: x.bbox.y0, x1: x.bbox.x1, y1: x.bbox.y1, confidence: x.confidence / 100, base, rowHeight: line.rowAttributes?.row_height, slope, line: li });
     }
   }
   return { words, confidence: data.confidence / 100 };

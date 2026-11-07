@@ -3,6 +3,21 @@
 > **2. kolo (2026-11-07):** nová srovnávací tabulka s pdf2docx, paměť v prohlížeči a komprese na
 > preview deploymentu jsou v sekci „2. kolo“ na začátku. Starší sekce popisují stav 1. kola.
 
+## 3. kolo — dvousloupcový sken (D24)
+
+E2E proti produkčnímu buildu (`next start`), PDF → Word + odolnost: **90/90** v Chromiu, Firefoxu
+i WebKitu (`tests/converter/out/r3`). Změněné řádky oproti 2. kolu, ve všech třech prohlížečích shodně:
+
+| režim | dokument | text | tolerantní SSIM | chybí znaků |
+|---|---|---|---|---|
+| upravitelný | sken | 0.292 → **0.804** | 0.540 → 0.357 | 12 → 12 |
+| přesný | sken | 0.267 → **0.787** | 0.834 → 0.794 | 64 → **12** |
+| přesný | dva-sloupce | 0.292 → **0.792** | 0.818 → 0.818 | 0 → 0 |
+
+Ostatní dokumenty: rozdíl < 0,005 ve všech metrikách. Srovnání s pdf2docx níže (Node, tesseract CLI)
+pro sken platí dál: tolerantní SSIM pdf2docx 0,645 (obrázek bez textu, textová shoda 0) vs. VeVit
+0,357 s textovou shodou 0,804.
+
 ## 2. kolo
 
 ### PDF → DOCX: VeVit vs. pdf2docx (tolerantní SSIM, LibreOffice render, stejný korpus)

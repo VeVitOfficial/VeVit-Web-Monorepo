@@ -26,6 +26,8 @@ export interface Glyph {
   mcid?: number;
   /** Viditelný (Tr ≠ 3, tj. ne neviditelná OCR vrstva). */
   visible: boolean;
+  /** Prostrkání určené předem (OCR: dorovnání šířky po zaokrouhlení velikosti), v bodech. */
+  tracking?: number;
 }
 
 export interface FontInfo {

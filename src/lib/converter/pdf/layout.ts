@@ -96,6 +96,7 @@ function trimSpaces(gs: Glyph[]): Glyph[] {
 
 /** Prostrkání: většina mezer mezi písmeny slova je kladná a stejná (CSS letter-spacing). */
 function trackingOf(gs: Glyph[]): number {
+  if (gs[0]?.tracking != null) return gs[0].tracking;
   const gaps: number[] = [];
   for (let i = 1; i < gs.length; i++) if (!gs[i].space && !gs[i - 1].space) gaps.push(gs[i].x - (gs[i - 1].x + gs[i - 1].w));
   if (gaps.length < 4) return 0;
@@ -336,6 +337,29 @@ function projectColumns(segs: Seg[], x0: number, x1: number): number[] {
   return bounds;
 }
 
+/**
+ * Dva sloupce tekoucího textu se společnými účařími (sken, kde OCR vrací řádek přes oba sloupce)
+ * vypadají jako tabulka bez čar. Když jde oblast svisle rozříznout na dvě strany, které jsou obě
+ * tekoucí text, nechá se na XY-cut (sloupce sekce).
+ */
+function proseColumns(segs: Seg[]): boolean {
+  if (segs.length < 12) return false;
+  const items: AnyItem[] = segs.map((sg) => {
+    const line: Line = { segs: [sg], x0: sg.x0, x1: sg.x1, top: sg.top, bottom: sg.bottom, base: sg.base, size: sg.size };
+    return { kind: "line", line, x0: sg.x0, x1: sg.x1, top: sg.top, bottom: sg.bottom };
+  });
+  // Všechny svislé mezery, ne jen nejširší: šum skenu u okraje stránky dělá širší mezeru než sloupce.
+  const iv = items.map((i) => [i.x0, i.x1]).sort((a, b) => a[0] - b[0]);
+  const min = Math.max(median(segs.map((sg) => sg.size)) * 0.9, 9);
+  for (let k = 1, end = iv[0][1]; k < iv.length; end = Math.max(end, iv[k][1]), k++) {
+    if (iv[k][0] - end < min) continue;
+    const cut = (iv[k][0] + end) / 2;
+    const l = items.filter((i) => i.x1 <= cut), r = items.filter((i) => i.x0 >= cut);
+    if (isTextColumn(l) && isTextColumn(r)) return true;
+  }
+  return false;
+}
+
 /** Tabulky bez čar: ≥3 po sobě jdoucí řádky s ≥2 segmenty zarovnanými do stejných sloupců. */
 function alignedRegions(lines: Line[], taken: (l: Line) => boolean): TableRegion[] {
   const out: TableRegion[] = [];
@@ -347,7 +371,7 @@ function alignedRegions(lines: Line[], taken: (l: Line) => boolean): TableRegion
       const colXs = projectColumns(segs, x0, x1);
       const cols = colXs.length - 1;
       // Každý řádek musí mít obsah v aspoň 2 sloupcích a sloupce musí být ≥ 3 (jinak jde o odstavec vedle titulku).
-      if (cols >= 3 && run.filter((l) => l.segs.length >= 2).length >= run.length * 0.7) {
+      if (cols >= 3 && run.filter((l) => l.segs.length >= 2).length >= run.length * 0.7 && !proseColumns(segs)) {
         out.push({ x0, x1, y0: run[0].top - 2, y1: run[run.length - 1].bottom + 2, rowYs: [], colXs, kind: "aligned" });
       }
     }
@@ -760,6 +784,42 @@ function xyCut(items: AnyItem[], box: { x0: number; x1: number }, fonts: Record<
   return out;
 }
 
+/**
+ * Pořadí čtení segmentů stránky (přesný režim: rámce v DOCX jdou za sebou, jak se čtou, ne
+ * řádek přes oba sloupce). Řezy jako v `xyCut`, ale svisle jen mezi sloupci tekoucího textu.
+ */
+export function readingOrder(lines: Line[], body: number): Seg[] {
+  const items: Item[] = lines.flatMap((l) => l.segs.map((sg) => ({ kind: "line" as const, line: { ...l, segs: [sg], x0: sg.x0, x1: sg.x1, top: sg.top, bottom: sg.bottom, base: sg.base }, x0: sg.x0, x1: sg.x1, top: sg.top, bottom: sg.bottom })));
+  // Uvnitř skupiny původní pořadí řádků a segmentů (horní hrany segmentů jednoho řádku se liší).
+  const rank = new Map(items.map((it, k) => [it, k]));
+  const byRank = (g: AnyItem[]) => [...g].sort((a, b) => rank.get(a as Item)! - rank.get(b as Item)!);
+  // Sloupce tabulky mají taky společný okraj, ale krátké buňky nebo čísla; próza má dlouhé
+  // řádky převážně z písmen.
+  const prose = (g: AnyItem[]) => {
+    if (!isTextColumn(g)) return false;
+    const txt = g.map((i) => segText((i as Item).line.segs[0]));
+    const letters = txt.join("").replace(/\s/g, ""), alpha = letters.replace(/[^\p{L}]/gu, "").length;
+    return median(txt.map((t) => t.length)) >= 20 && alpha >= letters.length * 0.75;
+  };
+  const order = (g: AnyItem[], depth: number): AnyItem[] => {
+    if (depth >= 6 || g.length < 2) return byRank(g);
+    const sides = (cut: number) => [g.filter((i) => (i.x0 + i.x1) / 2 < cut), g.filter((i) => (i.x0 + i.x1) / 2 >= cut)];
+    const whole = verticalCut(g, body);
+    if (whole) {
+      const [l, r] = sides(whole);
+      if (prose(l) && prose(r)) return [...order(l, depth + 1), ...order(r, depth + 1)];
+    } else {
+      const split = enablingHorizontalSplit(g, body, true);
+      if (split) return [...order(split[0], depth + 1), ...order(split[1], depth + 1)];
+    }
+    // Jiné bloky vedle sebe (tabulky, štítek | hodnota) se čtou po řádcích.
+    const bands = horizontalBands(g);
+    if (bands.length > 1) return bands.flatMap((b) => order(b, depth + 1));
+    return byRank(g);
+  };
+  return order(items, 0).map((i) => (i as Item).line.segs[0]);
+}
+
 function horizontalBands(items: AnyItem[]): AnyItem[][] {
   const s = [...items].sort((a, b) => a.top - b.top);
   const bands: AnyItem[][] = [];
@@ -819,10 +879,13 @@ function verticalCut(items: AnyItem[], body: number): number | null {
 function isTextColumn(g: AnyItem[]): boolean {
   const ls = g.filter((i) => i.kind === "line");
   if (ls.length < 6 || ls.length < g.length * 0.9) return false;
-  const right = Math.max(...ls.map((i) => i.x1));
   // Tolerance i pro OCR (okraje slov ze skenu kolísají o víc než u textové vrstvy).
   const tol = Math.max(2.5, (ls[0].kind === "line" ? ls[0].line.size : 10) * 0.35);
-  return ls.filter((i) => right - i.x1 < tol).length >= ls.length * 0.4;
+  // Společný pravý okraj = nejčastější konec řádků (ne maximum: jeden přečnívající řádek nebo
+  // šum skenu u okraje by ho posunul).
+  const ends = ls.map((i) => i.x1);
+  const atEdge = Math.max(...ends.map((r) => ends.filter((x) => Math.abs(x - r) < tol / 2).length));
+  return atEdge >= ls.length * 0.4;
 }
 
 /** Bloky vedle sebe → tabulka bez ohraničení (titulek | datumy), nebo sloupce textu. */

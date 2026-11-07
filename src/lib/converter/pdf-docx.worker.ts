@@ -7,7 +7,7 @@ import { LimitError, isOutOfMemory } from "./limits.ts";
 import { pdfjsDocumentParams } from "./pdfjs-params.ts";
 import { pdfToDocx, type RawImage } from "./pdf/convert.ts";
 import type { Glyph, PageModel } from "./pdf/extract.ts";
-import { ocrGlyphs } from "./pdf/ocr.ts";
+import { OCR_FONTS, ocrGlyphs } from "./pdf/ocr.ts";
 import type { PdfWorkerIn, PdfWorkerOut, ConverterErrorCode, OcrWord } from "./protocol.ts";
 import type * as Pdfjs from "pdfjs-dist";
 
@@ -97,7 +97,7 @@ async function ocrPage(id: number, page: Pdfjs.PDFPageProxy, m: PageModel): Prom
   });
   if (!res.words?.length) return null;
   const sx = im.w / raw.width, sy = im.h / raw.height;
-  m.fonts.ocr = { id: "ocr", name: "Liberation Serif", family: "Liberation Serif", bold: false, italic: false, serif: true, mono: false };
+  Object.assign(m.fonts, OCR_FONTS);
   return { glyphs: ocrGlyphs(res.words, im, sx, sy), confidence: res.confidence };
 }
 

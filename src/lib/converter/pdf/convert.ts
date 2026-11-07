@@ -3,11 +3,11 @@
 // umístěných rámců, tvarů a obrázků).
 import type * as Pdfjs from "pdfjs-dist";
 import { extractPage, type PageModel, type Glyph, type FontInfo, type PathShape } from "./extract.ts";
-import { buildLines, findHeaderFooter, layoutPage, bodySizeOf, headingSizes, marginsOf, paragraphs, vectorClusters, hex, lineText, type Line, type LayoutCtx, type Seg } from "./layout.ts";
+import { buildLines, findHeaderFooter, layoutPage, bodySizeOf, headingSizes, marginsOf, paragraphs, readingOrder, vectorClusters, hex, lineText, type Line, type LayoutCtx, type Seg } from "./layout.ts";
 import { mapFont, fontReport, wordMetrics, type FontReport } from "./fontmap.ts";
 import { encodePng, rasterizeRects } from "./png.ts";
 import { writeDocx } from "./docx-writer.ts";
-import { isMultiColumn } from "./ocr.ts";
+import { isMultiColumn, isOcrFont } from "./ocr.ts";
 import type { Block, DocModel, ImageBlock, PageLayout, Table, FrameBlock, ShapeBlock, Run } from "./model.ts";
 
 export type PdfToDocxMode = "editable" | "exact";
@@ -265,11 +265,14 @@ async function exactModel(models: PageModel[], pageLines: Line[][], proxies: Pdf
     blocks.push(...imgs);
     // Každý segment řádku = jeden rámec na přesné pozici (účaří → horní hrana rámce). Řádek
     // zarovnaný do bloku (roztažené mezery) se rozdělí po slovech, ať slova sedí na pixel.
-    for (const l of pageLines[i]) for (const s of l.segs) {
+    // Rámce v pořadí čtení (sloupce za sebou), ať kopírování a čtečky obrazovky drží text.
+    const lineOf = new Map(pageLines[i].flatMap((l) => l.segs.map((sg) => [sg, l] as const)));
+    for (const s of readingOrder(pageLines[i], body)) {
+      const l = lineOf.get(s)!;
       for (const part of exactParts(s)) {
         let runs: Run[] = paragraphs([{ ...l, segs: [part], x0: part.x0, x1: part.x1 }], { x0: part.x0, x1: part.x1 + 1 }, fonts, ctx, true)[0]?.runs ?? [];
         // OCR nad obrázkem skenu: text průhledný, viditelný zůstává originální obraz.
-        if (part.glyphs[0]?.font === "ocr" && imgs.length) runs = runs.map((r) => ({ ...r, transparent: true }));
+        if (isOcrFont(part.glyphs[0]?.font) && imgs.length) runs = runs.map((r) => ({ ...r, transparent: true }));
         const [asc, desc] = wordMetrics(runs[0]?.font ?? bodyRun.font);
         const lineHeight = part.size * (asc + desc);
         const frame: FrameBlock = { kind: "frame", x: part.x0, y: part.base - part.size * asc, w: part.x1 - part.x0 + part.size * 0.6, h: lineHeight, runs, lineHeight };

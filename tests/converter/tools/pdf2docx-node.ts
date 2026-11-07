@@ -6,7 +6,7 @@ import { readFileSync, readdirSync, mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import * as pdfjs from "pdfjs-dist/legacy/build/pdf.mjs";
 import { pdfToDocx, type RawImage } from "../../../src/lib/converter/pdf/convert.ts";
-import { ocrGlyphs } from "../../../src/lib/converter/pdf/ocr.ts";
+import { OCR_FONTS, ocrGlyphs } from "../../../src/lib/converter/pdf/ocr.ts";
 import { hocrWords } from "./ocr-hocr.ts";
 import { execFileSync } from "node:child_process";
 // @ts-expect-error plain ESM helper
@@ -43,9 +43,10 @@ for (const name of docs) {
     const { encodePng } = await import("../../../src/lib/converter/pdf/png.ts");
     const png = path.join(out, `${name}-p${m.index + 1}.png`);
     writeFileSync(png, encodePng(raw.data, raw.width, raw.height, raw.channels));
-    try { execFileSync("tesseract", [png, png.replace(/\.png$/, ""), "--tessdata-dir", path.join(root, "../../public/tools/assets/js/lib/tesseract"), "-l", "ces+eng", "-c", "tessedit_create_hocr=1"], { stdio: "pipe" }); } catch { return null; }
-    const words = hocrWords(png.replace(/\.png$/, ".hocr"));
-    m.fonts.ocr = { id: "ocr", name: "Liberation Serif", family: "Liberation Serif", bold: false, italic: false, serif: true, mono: false };
+    // OCR_WORDS=<json>: slova zachycená z tesseract.js v prohlížeči místo tesseract CLI.
+    if (!process.env.OCR_WORDS) try { execFileSync("tesseract", [png, png.replace(/\.png$/, ""), "--tessdata-dir", path.join(root, "../../public/tools/assets/js/lib/tesseract"), "-l", "ces+eng", "-c", "tessedit_create_hocr=1", ...(process.env.OCR_PSM ? ["--psm", process.env.OCR_PSM] : [])], { stdio: "pipe" }); } catch { return null; }
+    const words = process.env.OCR_WORDS ? JSON.parse(readFileSync(process.env.OCR_WORDS, "utf8")) : hocrWords(png.replace(/\.png$/, ".hocr"));
+    Object.assign(m.fonts, OCR_FONTS);
     return { glyphs: ocrGlyphs(words, im, im.w / raw.width, im.h / raw.height), confidence: words.reduce((s, w) => s + w.confidence, 0) / Math.max(1, words.length) };
   };
   const { docx, report } = await pdfToDocx(pdfjs as never, doc, mode, { imagePixels, ocr: ocr as never });

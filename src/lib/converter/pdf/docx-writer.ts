@@ -263,12 +263,18 @@ function blocksXml(c: Ctx, blocks: Block[], startY: number, leftMargin: number, 
     } else if (b.kind === "columns" && page) {
       out += columnsXml(c, b, y, page, out.length > 0 || pendingBreak);
       c.sections.push(true);
+    } else if (b.kind === "columns") {
+      // Sloupce sekce v buňce nejdou: tabulka bez ohraničení se stejnými sloupci.
+      if (gap > 3 || pendingBreak) out += spacerXml(Math.max(1, gap - 1), pendingBreak);
+      pendingBreak = false;
+      const colWidths = [b.widths[0] + b.gap / 2, b.widths[1] + b.gap / 2];
+      out += tableXml(c, { kind: "table", x: b.x, colWidths, rows: [{ cells: b.cols.map((blocks) => ({ blocks, span: 1, borders: {}, valign: "top" })), height: b.bottom - b.top, top: b.top }], top: b.top, bottom: b.bottom, layout: true }, leftMargin);
     }
     y = blockBottom(b);
   }
   if (anchoredRuns.length) out = `<w:p><w:pPr><w:spacing w:before="0" w:after="0" w:line="20" w:lineRule="exact"/></w:pPr>${anchoredRuns.join("")}</w:p>` + out;
   // Tabulka nesmí být posledním prvkem buňky ani dokumentu.
-  if (inCell && blocks.length && blocks[blocks.length - 1].kind === "table") out += "<w:p/>";
+  if (inCell && blocks.length && (blocks[blocks.length - 1].kind === "table" || blocks[blocks.length - 1].kind === "columns")) out += "<w:p/>";
   return out;
 }
 

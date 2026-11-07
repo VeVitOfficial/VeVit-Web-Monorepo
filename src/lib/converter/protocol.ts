@@ -49,7 +49,7 @@ export interface PdfToDocxOptions {
 
 /** Slovo z OCR v pixelech obrázku stránky. */
 /** `base` = účaří řádku pod slovem, `rowHeight` = výška řádku z tesseractu (px obrázku). */
-export interface OcrWord { text: string; x0: number; y0: number; x1: number; y1: number; confidence: number; base?: number; rowHeight?: number; /** Sklon účaří řádku (dy/dx). */ slope?: number }
+export interface OcrWord { text: string; x0: number; y0: number; x1: number; y1: number; confidence: number; base?: number; rowHeight?: number; /** Sklon účaří řádku (dy/dx). */ slope?: number; /** Pořadí řádku OCR na stránce. */ line?: number }
 
 export type PdfWorkerIn =
   | { type: "convert"; id: number; pdf: ArrayBuffer; options: PdfToDocxOptions; limits: ConverterLimits }

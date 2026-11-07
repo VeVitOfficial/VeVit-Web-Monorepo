@@ -12,15 +12,18 @@ const pageArg = pageArg0 && !pageArg0.startsWith("--") ? pageArg0 : undefined;
 const doc = await pdfjs.getDocument({ data: new Uint8Array(readFileSync(file)), fontExtraProperties: true }).promise;
 const page = await doc.getPage(Number(pageArg ?? 1));
 const m = await extractPage(pdfjs as never, page, 0);
-// --hocr <file>: OCR words from tesseract CLI instead of the text layer (scans).
+// --hocr <file.hocr|words.json>: OCR words (tesseract CLI hOCR or captured tesseract.js words)
+// instead of the text layer (scans).
 const hi = process.argv.indexOf("--hocr");
 if (hi > 0) {
   const { hocrWords } = await import("./ocr-hocr.ts");
   const { ocrGlyphs } = await import("../../../src/lib/converter/pdf/ocr.ts");
   const im = m.images[0];
   const pxW = Number(process.argv[hi + 2] ?? 1654);
-  m.glyphs.push(...ocrGlyphs(hocrWords(process.argv[hi + 1]), im, im.w / pxW, im.w / pxW));
-  m.fonts.ocr = { id: "ocr", name: "Liberation Serif", family: "Liberation Serif", bold: false, italic: false, serif: true, mono: false };
+  // --hocr words.json: slova zachycená z tesseract.js v prohlížeči.
+  const src = process.argv[hi + 1], words = src.endsWith(".json") ? JSON.parse(readFileSync(src, "utf8")) : hocrWords(src);
+  m.glyphs.push(...ocrGlyphs(words, im, im.w / pxW, im.w / pxW));
+  Object.assign(m.fonts, (await import("../../../src/lib/converter/pdf/ocr.ts")).OCR_FONTS);
   m.images = [];
 }
 const lines = buildLines(m.glyphs);

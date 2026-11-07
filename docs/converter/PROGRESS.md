@@ -3,6 +3,23 @@
 Začni čtením tohoto souboru a `DECISIONS.md`. Architektura a příkazy: `README.md`, licence:
 `LICENSES.md`, měření: `MEASUREMENTS.md`.
 
+## 3. kolo (2026-11-07) — otevřený problém č. 2: dvousloupcový sken
+
+| | před | po |
+|---|---|---|
+| Sken, upravitelný: textová shoda v pořadí | 0,292 | **0,804** (chybí 12 znaků) |
+| Sken, přesný: textová shoda / chybějící znaky | 0,267 / 64 | **0,787 / 12** |
+| `dva-sloupce`, přesný: textová shoda | 0,292 | **0,792** |
+| Sken, upravitelný: tolerantní SSIM | 0,540 | 0,357 (tekoucí sloupce místo tabulky, nadpis bez tučnosti) |
+| Sken, přesný: tolerantní SSIM | 0,834 | 0,794 |
+| Ostatních 11 dokumentů, oba režimy | — | beze změny (Node i prohlížeče) |
+
+Stejné hodnoty v Chromiu, Firefoxu i WebKitu; e2e PDF → Word + odolnost proti produkčnímu buildu 90/90. Příčina a opravy: D24 (tesseract.js má výchozí PSM 6; PSM 3 zahazuje řádky; tabulku ze sloupců dělal šum u okraje, svislé-jen narovnání a křehká detekce okraje sloupce). Nově: font a velikost OCR textu z šířek slov (Caladea 11 pt místo Liberation Serif), pořadí čtení rámců v přesném režimu. Prahy skenu zpřísněny (text ≥ 0,75, chybí ≤ 30). Unit testy převodníku 16/16 (test pojistky bez opravy selže).
+
+Varování „u vícesloupcových skenů zkontrolujte pořadí textu“ zůstává — korpus má jen jeden sken.
+
+Nové nástroje: `OCR_WORDS=<json>` v `pdf2docx-node.ts` a `layout-dump.ts --hocr <words.json>` (slova zachycená z tesseract.js v prohlížeči), `scripts/converter/gen-ocr-widths.mjs`.
+
 ## 2. kolo (2026-11-07) — závěrečná zpráva
 
 **PR:** #3 `feat/converter-docx-pdf` → `feat/tools-overhaul` (D17), #4 `fix/ocr-pdf-tesseract` → `feat/tools-overhaul`. Oba PR se spolu sloučí bez konfliktu (ověřeno `git merge-tree`). Nic nemergnuto ani nenasazeno do produkce.
@@ -21,7 +38,7 @@ Kontrola kvality (2. kolo): `npm run lint` 0 chyb, `npm run typecheck` čistý, 
 
 ### Otevřené problémy po 2. kole
 1. **Word → PDF, `diakritika-fonty`:** výška řádků Cambria/Caladea v enginu 14,49 pt vs. LibreOffice 13,65 pt (tolerantní SSIM 0,37). Rozhodne PDF z Wordu; oprava by byla ve vetext-layout (VeVit-office).
-2. **Sken ve dvou sloupcích:** pořadí textu po OCR nevěrné (textová shoda 0,29) — uživatel dostane varování. Další krok: bloky a pořadí z tesseractu (`data.blocks`).
+2. ~~**Sken ve dvou sloupcích:** pořadí textu po OCR nevěrné (textová shoda 0,29)~~ — vyřešeno ve 3. kole (0,804, D24); zbývá tučnost nadpisů z OCR.
 3. **Časy LibreOffice WASM v prohlížeči** nezměřeny (D6 stojí na velikosti a SAB).
 4. **Velikost enginu:** 47 % WASM jsou zakompilované fonty a slovníky dělení vetextu; Vercel komprimuje slaběji než `brotli -11` (4,52 vs. 3,4 MB).
 5. **Strukturní strom tagovaného PDF** se nevyužívá.
