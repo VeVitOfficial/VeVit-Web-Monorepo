@@ -75,8 +75,12 @@ export default function OcrPdf({ locale }: ToolComponentProps) {
       setInfo("Stahuji jazyková data (při prvním použití ~4 MB)…");
       worker = await tesseract().createWorker(lang, 1, {
         workerPath: `${TESS_BASE}/worker.min.js`,
-        corePath: `${TESS_BASE}/`,
+        // Přímo JS glue jádra (načte vedle ležící .wasm). S adresářem by tesseract.js chtěl
+        // tesseract-core-simd-lstm.wasm.js (3,9 MB, wasm v base64), který vendorovaný není.
+        corePath: `${TESS_BASE}/tesseract-core-simd-lstm.js`,
         langPath: `${TESS_BASE}/`,
+        // Výchozí gzip: true stahuje <jazyk>.traineddata.gz (1,7–1,9 MB místo 3,7–4 MB).
+        gzip: true,
         workerBlobURL: false,
       });
       setInfo("Jazyková data připravena — spouštím OCR.");
