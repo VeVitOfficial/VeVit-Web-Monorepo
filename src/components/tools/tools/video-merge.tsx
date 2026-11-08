@@ -6,8 +6,9 @@
 import { useState } from "react";
 import type { ToolComponentProps } from "@/components/tools/registry/data";
 import { useToolUi, fmtSize, toastSuccess } from "@/components/tools/tool-runtime";
+import { SortableFileList } from "@/components/tools/file-preview";
 import {
-  Dropzone, FileList, Progress, ResultArea, ensureWrapper, getFFmpegWrapper, setToolState,
+  Dropzone, Progress, ResultArea, ensureWrapper, getFFmpegWrapper, setToolState,
 } from "@/components/tools/tools/audio-convert";
 
 const ACCEPT = ["video/*", ".mp4", ".webm", ".mov", ".mkv", ".avi"];
@@ -43,17 +44,6 @@ export default function VideoMerge({ locale }: ToolComponentProps) {
     }
     setFiles((prev) => [...prev, ...arr]);
     setToolState("ready");
-  };
-
-  const removeAt = (idx: number) => setFiles((prev) => prev.filter((_, i) => i !== idx));
-  const move = (i: number, dir: -1 | 1) => {
-    setFiles((prev) => {
-      const j = i + dir;
-      if (j < 0 || j >= prev.length) return prev;
-      const next = prev.slice();
-      const tmp = next[i]; next[i] = next[j]; next[j] = tmp;
-      return next;
-    });
   };
 
   const run = async () => {
@@ -106,13 +96,7 @@ export default function VideoMerge({ locale }: ToolComponentProps) {
       </Dropzone>
 
       {files.length ? (
-        <FileList
-          files={files.map((f) => ({ name: f.name, size: f.size }))}
-          onRemove={removeAt}
-          reorder
-          onMove={move}
-          locale={locale}
-        />
+        <SortableFileList files={files} onChange={setFiles} onAddFiles={onFiles} locale={locale} ariaLabel="Videa ke sloučení" />
       ) : null}
 
       <div className={files.length ? "" : " hidden"} id="vm-work">

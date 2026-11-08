@@ -8,7 +8,7 @@ import {
   useToolUi, loadScript, toastSuccess, Icon, useToolState,
 } from "@/components/tools/tool-runtime";
 
-interface PdfImg { width(): number; height(): number; }
+interface PdfImg { width: number; height: number; }
 interface PdfPageMod { getWidth(): number; getHeight(): number; drawText(text: string, opts: unknown): void; drawImage(img: PdfImg, opts: unknown): void; moveTo(x: number, y: number): void; lineTo(x: number, y: number): void; line(opts: unknown): void; }
 interface PdfDoc {
   create(): Promise<PdfDoc>;

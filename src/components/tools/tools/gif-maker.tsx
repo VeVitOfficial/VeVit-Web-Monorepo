@@ -3,6 +3,7 @@
 // Tvůrce animovaného GIFu ze sekvence obrázků, čistě client-side (gifenc lazy-load).
 // Port legacy gif-maker.js. Renderuje pouze vnitřní tělo .tool-tool.
 import { useCallback, useEffect, useRef, useState } from "react";
+import { SortableFileList } from "@/components/tools/file-preview";
 import type { ToolComponentProps } from "@/components/tools/registry/data";
 import { useToolUi, fmtSize, loadScript, toastSuccess } from "@/components/tools/tool-runtime";
 
@@ -57,7 +58,7 @@ export default function GifMaker({ locale }: ToolComponentProps) {
     if (resultUrlRef.current) URL.revokeObjectURL(resultUrlRef.current);
   }, []);
 
-  const pick = (list: FileList | null) => {
+  const pick = (list: FileList | File[] | null) => {
     if (!list || !list.length) return;
     const incoming = Array.from(list);
     const cur = itemsRef.current.slice();
@@ -70,21 +71,6 @@ export default function GifMaker({ locale }: ToolComponentProps) {
     itemsRef.current = cur;
     setItems(cur);
     setError("");
-  };
-
-  const remove = (id: number) => {
-    const it = itemsRef.current.find((x) => x.id === id);
-    if (it) URL.revokeObjectURL(it.url);
-    const next = itemsRef.current.filter((x) => x.id !== id);
-    itemsRef.current = next;
-    setItems(next);
-  };
-  const move = (i: number, dir: -1 | 1) => {
-    const j = i + dir; if (j < 0 || j >= itemsRef.current.length) return;
-    const arr = itemsRef.current.slice();
-    const tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp;
-    itemsRef.current = arr;
-    setItems(arr);
   };
 
   const onDrop = (e: React.DragEvent) => { e.preventDefault(); e.stopPropagation(); (e.currentTarget as HTMLElement).classList.remove("dragover"); pick(e.dataTransfer.files); };
@@ -165,22 +151,13 @@ export default function GifMaker({ locale }: ToolComponentProps) {
 
       {items.length > 0 ? (
         <div id="gm-work">
-          <div className="file-list" id="gm-list">
-            {items.map((it, i) => (
-              <div key={it.id} className="file-row">
-                <img src={it.url} alt="" className="file-thumb" />
-                <span className="file-name">{it.name}</span>
-                <span className="muted" style={{ fontSize: "0.75rem" }}>{fmtSize(it.size)}</span>
-                <div className="row" style={{ gap: "0.2rem" }}>
-                  <button type="button" className="btn btn-ghost" aria-label="Nahoru" disabled={i === 0} onClick={() => move(i, -1)}>↑</button>
-                  <button type="button" className="btn btn-ghost" aria-label="Dolů" disabled={i === items.length - 1} onClick={() => move(i, 1)}>↓</button>
-                  <button type="button" className="btn btn-ghost file-remove" aria-label="Odebrat" onClick={() => remove(it.id)}>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12" /></svg>
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
+          <SortableFileList id="gm-list" files={items.map((it) => it.file)} locale={locale} onAddFiles={(fs) => pick(fs)}
+            onChange={(next) => {
+              const byFile = new Map(itemsRef.current.map((x) => [x.file, x]));
+              const arr = next.map((f) => byFile.get(f)).filter((x): x is ImgItem => !!x);
+              for (const it of itemsRef.current) if (!arr.includes(it)) URL.revokeObjectURL(it.url);
+              itemsRef.current = arr; setItems(arr);
+            }} />
           <div className="two-col" style={{ gap: "1rem", marginTop: "0.75rem" }}>
             <div className="stack-sm"><label className="field-label" htmlFor="gm-delay">Zpoždění snímku: <span>{delay}</span> ms</label><input type="range" id="gm-delay" min={20} max={2000} step={20} value={delay} style={{ width: "100%" }} onChange={(e) => setDelay(+e.target.value)} /></div>
             <div className="stack-sm"><label className="field-label" htmlFor="gm-width">Šířka (0 = originál)</label><input className="input" id="gm-width" type="number" min={0} step={10} value={width} onChange={(e) => setWidth(+e.target.value || 0)} /></div>

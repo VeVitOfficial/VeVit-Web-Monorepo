@@ -679,6 +679,7 @@ export interface ToolUiI18n {
   download: string; result_ready: string;
   text_meta: string; file_format: string;
   maintenance_note: string;
+  swap_direction: string;
 }
 
 const TOOL_UI_CS: ToolUiI18n = {
@@ -693,6 +694,7 @@ const TOOL_UI_CS: ToolUiI18n = {
   download: "Stáhnout výsledek", result_ready: "Hotovo, výsledek je připraven",
   text_meta: "{characters} znaků · {lines} řádků", file_format: "{type} · {size}",
   maintenance_note: "Nástroj je dočasně v údržbě a nelze ho použít. Zkuste to prosím později.",
+  swap_direction: "Obrátit převod",
 };
 
 const TOOL_UI_EN: ToolUiI18n = {
@@ -707,6 +709,7 @@ const TOOL_UI_EN: ToolUiI18n = {
   download: "Download result", result_ready: "Done, result is ready",
   text_meta: "{characters} characters · {lines} lines", file_format: "{type} · {size}",
   maintenance_note: "This tool is temporarily under maintenance and cannot be used. Please try again later.",
+  swap_direction: "Reverse conversion",
 };
 
 export const TOOL_UI_I18N: Record<Locale, ToolUiI18n> = {
@@ -757,6 +760,15 @@ export function localizeTool(tool: Tool, locale: Locale): { name: string; descri
     description: override?.desc ?? tool.description,
   };
 }
+
+/** Opačný směr převodu (šipka v nadpisu nástroje ho otevře). Jen dvojice, které opravdu existují. */
+const REVERSE_PAIRS: [string, string][] = [
+  ["pdf-to-word", "word-to-pdf"], ["pdf-to-excel", "excel-to-pdf"], ["pdf-to-pptx", "pptx-to-pdf"],
+  ["pdf-to-images", "images-to-pdf"], ["csv-to-excel", "excel-to-csv"], ["excel-to-xml", "xml-to-excel"],
+  ["xml-to-json", "json-to-xml"],
+];
+const REVERSE_TOOL: Record<string, string> = Object.fromEntries(REVERSE_PAIRS.flatMap(([a, b]) => [[a, b], [b, a]]));
+export const reverseSlug = (slug: string): string | undefined => REVERSE_TOOL[slug];
 
 /** Lokalizovaný label kategorie (fallback na cs). */
 export function categoryLabel(cat: Category, locale: Locale): string {

@@ -10,7 +10,7 @@ import { ToolIcon } from "@/components/tools/tool-icons";
 import { TOOL_COMPONENTS } from "@/components/tools/registry";
 import {
   getTool, HUB_I18N, TOOL_UI_I18N, SUPPORTED_LOCALES, CATEGORY_COLORS, CATEGORY_LABELS,
-  statusLabel, locationMeta, localizeTool, type Locale, type ToolStatus,
+  statusLabel, locationMeta, localizeTool, reverseSlug, type Locale, type ToolStatus,
 } from "@/components/tools/registry/data";
 import { toolAlternates } from "@/lib/tools-seo";
 
@@ -48,6 +48,22 @@ const STATUS_BADGE_CLASS: Record<ToolStatus, string> = {
   broken: "tool-status-broken",
   maintenance: "tool-status-maintenance",
 };
+
+/** „A → B“: šipka je odkaz na opačný převod („B → A“), pokud takový nástroj existuje. */
+function titleWithSwap(name: string, reverse: string | undefined, locale: Locale, label: string) {
+  const i = name.indexOf("→");
+  const target = reverse ? getTool(reverse) : undefined;
+  if (i < 0 || !target) return name;
+  return (
+    <>
+      {name.slice(0, i).trimEnd()}{" "}
+      <a className="swap-arrow" href={`/${locale}/tools/${target.slug}`} title={`${label}: ${localizeTool(target, locale).name}`} aria-label={`${label}: ${localizeTool(target, locale).name}`}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m16 3 4 4-4 4" /><path d="M20 7H4" /><path d="m8 21-4-4 4-4" /><path d="M4 17h16" /></svg>
+      </a>{" "}
+      {name.slice(i + 1).trimStart()}
+    </>
+  );
+}
 
 export default async function ToolPage({ params }: Props) {
   // await connection() — stránka se staticky neprerenderuje, protože čte
@@ -98,7 +114,7 @@ export default async function ToolPage({ params }: Props) {
 
         <div className="tool-header">
           <span className="tool-icon" style={{ background: `color-mix(in srgb, ${color} 10%, transparent)`, color }}><ToolIcon name={tool.icon} size={22} /></span>
-          <h1>{L.name}</h1>
+          <h1>{titleWithSwap(L.name, reverseSlug(tool.slug), locale, uiStrings.swap_direction)}</h1>
           <span
             className="loc-tag"
             style={{ borderColor: `color-mix(in srgb, ${color} 19%, transparent)`, color, background: `color-mix(in srgb, ${color} 6%, transparent)` }}
