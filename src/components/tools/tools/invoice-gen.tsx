@@ -6,7 +6,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { ToolComponentProps } from "@/components/tools/registry/data";
 import { Icon, toastSuccess, useToolState } from "@/components/tools/tool-runtime";
 import {
-  CURRENCIES, calcLine, calcTotals, clearDraft, defaultInvoice, dueDate, emptyItem, fmtDate, formatSeriesNumber, invoiceNumber, loadDraft, loadTemplates,
+  COLOR_PRESETS, CURRENCIES, calcLine, calcTotals, clearDraft, defaultInvoice, dueDate, emptyItem, fmtDate, formatSeriesNumber, invoiceNumber, loadDraft, loadTemplates,
   mergeInvoice, mergeParty, money, saveDraft, saveTemplates, spdString, uid, validIban, variableSymbol,
   type DiscountType, type Invoice, type Item, type Party, type PartyTemplate, type PayMethod, type Templates,
 } from "@/components/tools/invoice/model";
@@ -276,6 +276,15 @@ function Editor({ initial, initialTemplates, restored }: { initial: Invoice; ini
               <select id="iv-cur" className="select" value={inv.currency} onChange={(e) => patch({ currency: e.target.value as Invoice["currency"] })}>
                 {CURRENCIES.map((c) => <option key={c} value={c}>{c}</option>)}
               </select>
+            </Field>
+            <Field id="iv-color" label="Hlavní barva dokladu" wide>
+              <div className="iv-colors">
+                {COLOR_PRESETS.map((c) => (
+                  <button key={c.value} type="button" className="iv-swatch" style={{ background: c.value }} title={c.label} aria-label={c.label}
+                    aria-pressed={inv.color === c.value} onClick={() => patch({ color: c.value })} />
+                ))}
+                <input id="iv-color" type="color" className="iv-color-input" value={inv.color} aria-label="Vlastní barva" onChange={(e) => patch({ color: e.target.value })} />
+              </div>
             </Field>
             <label className="iv-check iv-wide">
               <input id="iv-vatpayer" type="checkbox" checked={inv.vatPayer} onChange={(e) => patch({ vatPayer: e.target.checked })} />

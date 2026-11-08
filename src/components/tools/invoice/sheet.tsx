@@ -4,7 +4,7 @@
 /* eslint-disable @next/next/no-img-element -- QR je data: URL vygenerovaná lokálně, next/image tu nedává smysl */
 import { useEffect, useRef, useState } from "react";
 import {
-  L, addressLines, calcLine, contactLines, dueDate, fmtDate, invoiceNumber, money, plainNumber, variableSymbol,
+  L, addressLines, calcLine, contactLines, cssRgb, dueDate, fmtDate, inkColor, invoiceNumber, money, onColor, plainNumber, softColor, variableSymbol,
   type Invoice, type Totals,
 } from "@/components/tools/invoice/model";
 
@@ -45,7 +45,13 @@ export function InvoiceSheet({ inv, totals, qrUrl }: { inv: Invoice; totals: Tot
       : vs ? ([[t.vs, vs]] as [string, string][]) : []),
   ];
   return (
-    <div className="iv-sheet" style={{ width: SHEET_W, minHeight: SHEET_H }}>
+    <div
+      className="iv-sheet"
+      style={{
+        width: SHEET_W, minHeight: SHEET_H,
+        "--iv-main": inv.color, "--iv-ink": cssRgb(inkColor(inv.color)), "--iv-soft": cssRgb(softColor(inv.color)), "--iv-on": cssRgb(onColor(inv.color)),
+      } as React.CSSProperties}
+    >
       <div className="iv-head">
         <div>
           <div className="iv-title">{inv.vatPayer ? t.taxInvoice : t.invoice}</div>

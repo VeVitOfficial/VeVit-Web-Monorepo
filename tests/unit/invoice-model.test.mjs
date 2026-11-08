@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import {
-  calcTotals, defaultInvoice, emptyItem, formatSeriesNumber, invoiceNumber, mergeInvoice, spdString, validIban, variableSymbol,
+  calcTotals, DEFAULT_COLOR, defaultInvoice, inkColor, normalizeColor, onColor, emptyItem, formatSeriesNumber, invoiceNumber, mergeInvoice, spdString, validIban, variableSymbol,
 } from "../../src/components/tools/invoice/model.ts";
 
 const item = (o) => ({ ...emptyItem(), ...o });
@@ -70,4 +70,14 @@ test("mergeInvoice doplní chybějící pole a odmítne nesmysly", () => {
   assert.equal(m.items[0].vat, 100);
   assert.match(m.issue, /^\d{4}-\d{2}-\d{2}$/);
   assert.equal(mergeInvoice(null).items.length, 1);
+});
+
+test("hlavní barva: neplatná hodnota spadne na výchozí, světlá barva dostane tmavý text a ztmavený nadpis", () => {
+  assert.equal(mergeInvoice({ color: "#2563EB" }).color, "#2563eb");
+  assert.equal(mergeInvoice({ color: "red" }).color, DEFAULT_COLOR);
+  assert.equal(normalizeColor(undefined), DEFAULT_COLOR);
+  assert.deepEqual(onColor("#ffff00"), [0.09, 0.1, 0.12]);
+  assert.deepEqual(onColor("#1f2937"), [1, 1, 1]);
+  const ink = inkColor("#ffff00");
+  assert.ok(ink[0] < 1 && ink[2] < 0.5);
 });

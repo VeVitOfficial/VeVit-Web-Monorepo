@@ -2,7 +2,7 @@
 // Žádná data se neodesílají; knihovny a písma se načtou až při prvním exportu.
 import { loadScript } from "@/components/tools/tool-runtime";
 import {
-  L, addressLines, calcLine, contactLines, dueDate, fmtDate, invoiceNumber, money, plainNumber, variableSymbol,
+  L, addressLines, calcLine, contactLines, dueDate, fmtDate, hexToRgb, inkColor, invoiceNumber, money, onColor, plainNumber, softColor, variableSymbol,
   type Invoice, type Totals,
 } from "@/components/tools/invoice/model";
 
@@ -49,7 +49,8 @@ export async function buildInvoicePdf(inv: Invoice, totals: Totals, qrPng: Uint8
   const cur = (n: number) => clean(money(n, inv.currency, inv.lang));
   const PW = 595.28, PH = 841.89, M = 40, CW = PW - 2 * M, BOTTOM = PH - 56;
   const ink = rgb(0.09, 0.1, 0.12), grey = rgb(0.4, 0.42, 0.45), line = rgb(0.85, 0.87, 0.89), soft = rgb(0.955, 0.965, 0.96);
-  const accent = rgb(0.13, 0.55, 0.4), accentSoft = rgb(0.9, 0.96, 0.93), white = rgb(1, 1, 1);
+  const accentBg = rgb(...hexToRgb(inv.color)), accentOn = rgb(...onColor(inv.color));
+  const accent = rgb(...inkColor(inv.color)), accentSoft = rgb(...softColor(inv.color));
 
   let page = doc.addPage([PW, PH]);
   let y = M; // vzdálenost od horního okraje
@@ -182,9 +183,9 @@ export async function buildInvoicePdf(inv: Invoice, totals: Totals, qrPng: Uint8
   let ty = top0;
   const tx = PW - M - 200;
   totalsRows.forEach(([k, v]) => { text(k, tx, ty, 9.5, font, grey); text(v, PW - M, ty, 9.5, font, ink, "r"); ty += 16; });
-  rect(tx - 8, ty - 2, 208, 28, accent);
-  text(t.payable, tx, ty + 8, 10, bold, white);
-  text(cur(totals.payable), PW - M - 6, ty + 7, 12, bold, white, "r");
+  rect(tx - 8, ty - 2, 208, 28, accentBg);
+  text(t.payable, tx, ty + 8, 10, bold, accentOn);
+  text(cur(totals.payable), PW - M - 6, ty + 7, 12, bold, accentOn, "r");
   y = Math.max(y, ty + 28) + 24;
 
   // ── Platební údaje + QR ──

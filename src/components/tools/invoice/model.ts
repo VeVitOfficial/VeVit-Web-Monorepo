@@ -20,12 +20,49 @@ export interface Payment {
 }
 export interface Series { prefix: string; year: boolean; pad: number; next: number }
 export interface Invoice {
-  lang: Lang; currency: Currency; vatPayer: boolean;
+  lang: Lang; currency: Currency; vatPayer: boolean; color: string;
   series: Series; numberAuto: boolean; number: string;
   issue: string; taxDate: string; dueDays: number;
   supplier: Party; customer: Party; payment: Payment;
   items: Item[]; roundTotal: boolean; note: string; showQr: boolean;
 }
+
+// ── Hlavní barva ───────────────────────────────────────────────────────────
+export const DEFAULT_COLOR = "#218c66";
+export const COLOR_PRESETS: { value: string; label: string }[] = [
+  { value: "#218c66", label: "Zelená" }, { value: "#2563eb", label: "Modrá" }, { value: "#4f46e5", label: "Indigo" },
+  { value: "#7c3aed", label: "Fialová" }, { value: "#db2777", label: "Růžová" }, { value: "#dc2626", label: "Červená" },
+  { value: "#ea580c", label: "Oranžová" }, { value: "#0891b2", label: "Tyrkys" }, { value: "#1f2937", label: "Grafit" },
+];
+export function normalizeColor(v: unknown): string {
+  const m = typeof v === "string" ? /^#?([0-9a-f]{6})$/i.exec(v.trim()) : null;
+  return m ? `#${m[1].toLowerCase()}` : DEFAULT_COLOR;
+}
+/** Složky 0–1. */
+export function hexToRgb(hex: string): [number, number, number] {
+  const h = normalizeColor(hex).slice(1);
+  return [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16) / 255) as [number, number, number];
+}
+/** Světlý tón hlavní barvy (pozadí hlavičky tabulky). */
+export function softColor(hex: string): [number, number, number] {
+  return hexToRgb(hex).map((c) => 1 - (1 - c) * 0.12) as [number, number, number];
+}
+/** Text na plochu hlavní barvy: bílý, nebo tmavý u světlých barev. */
+export function onColor(hex: string): [number, number, number] {
+  const [r, g, b] = hexToRgb(hex).map((c) => (c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4));
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b > 0.45 ? [0.09, 0.1, 0.12] : [1, 1, 1];
+}
+/** Text hlavní barvy na bílém: u příliš světlé barvy ztmavíme, aby byl čitelný. */
+export function inkColor(hex: string): [number, number, number] {
+  let c = hexToRgb(hex);
+  for (let i = 0; i < 8; i++) {
+    const [r, g, b] = c.map((x) => (x <= 0.03928 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4));
+    if (0.2126 * r + 0.7152 * g + 0.0722 * b < 0.3) break;
+    c = c.map((x) => x * 0.85) as [number, number, number];
+  }
+  return c;
+}
+export const cssRgb = (c: [number, number, number]) => `rgb(${c.map((x) => Math.round(x * 255)).join(",")})`;
 
 // ── Pomocné ────────────────────────────────────────────────────────────────
 export const round2 = (n: number): number => Math.round((n + Number.EPSILON) * 100) / 100;
@@ -67,7 +104,7 @@ export const emptyPayment = (): Payment => ({ method: "transfer", bank: "", acco
 
 export function defaultInvoice(now = new Date()): Invoice {
   return {
-    lang: "cs", currency: "CZK", vatPayer: true,
+    lang: "cs", currency: "CZK", vatPayer: true, color: DEFAULT_COLOR,
     series: { prefix: "", year: true, pad: 3, next: 1 }, numberAuto: true, number: "",
     issue: isoDate(now), taxDate: isoDate(now), dueDays: 14,
     supplier: emptyParty(), customer: emptyParty(), payment: emptyPayment(),
@@ -169,6 +206,7 @@ export function mergeInvoice(raw: unknown): Invoice {
     lang: o.lang === "en" ? "en" : "cs",
     currency: (CURRENCIES as readonly string[]).includes(o.currency as string) ? (o.currency as Currency) : d.currency,
     vatPayer: o.vatPayer !== false,
+    color: normalizeColor(o.color),
     series: { prefix: str(s.prefix).slice(0, 12), year: s.year !== false, pad: Math.min(8, Math.max(1, num(s.pad, d.series.pad))), next: Math.max(1, Math.round(num(s.next, 1))) },
     numberAuto: o.numberAuto !== false,
     number: str(o.number),

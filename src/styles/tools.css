@@ -1522,7 +1522,7 @@ video.vv-lb-media { background: #000; }
 .iv-sheet .iv-muted { color: #666b73; font-size: 12px; }
 .iv-ph { color: #a2a7ae; }
 .iv-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; margin-bottom: 26px; }
-.iv-title { font-size: 26px; font-weight: 700; color: #218c66; line-height: 1.15; }
+.iv-title { font-size: 26px; font-weight: 700; color: var(--iv-ink, #218c66); line-height: 1.15; }
 .iv-number { margin-top: 6px; font-size: 15px; color: #5a5f66; }
 .iv-dates { width: auto !important; }
 .iv-dates td { padding: 1px 0 1px 18px; font-size: 12.5px; }
@@ -1531,7 +1531,7 @@ video.vv-lb-media { background: #000; }
 .iv-party { background: #f4f6f5; border-radius: 6px; padding: 12px 14px; min-height: 60px; overflow-wrap: anywhere; }
 .iv-party-title { font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #666b73; margin-bottom: 6px; }
 .iv-party-name { font-size: 14.5px; font-weight: 700; margin-bottom: 2px; }
-.iv-items th { background: #e6f4ee; color: #218c66; font-size: 11px; padding: 7px 6px; }
+.iv-items th { background: var(--iv-soft, #e6f4ee); color: var(--iv-ink, #218c66); font-size: 11px; padding: 7px 6px; }
 .iv-items td { padding: 8px 6px; border-bottom: 1px solid #dde1e4; font-size: 12.5px; font-variant-numeric: tabular-nums; }
 .iv-items th:first-child, .iv-items td:first-child { padding-left: 8px; }
 .iv-items td:first-child { width: 31%; }
@@ -1541,7 +1541,7 @@ video.vv-lb-media { background: #000; }
 .iv-recap td { padding: 4px; }
 .iv-totals-box { display: flex; flex-direction: column; gap: 5px; font-size: 12.5px; color: #5a5f66; font-variant-numeric: tabular-nums; }
 .iv-totals-box > div { display: flex; justify-content: space-between; gap: 14px; }
-.iv-totals-box .iv-payable { margin-top: 4px; padding: 9px 12px; border-radius: 6px; background: #218c66; color: #fff; font-size: 15px; font-weight: 700; }
+.iv-totals-box .iv-payable { margin-top: 4px; padding: 9px 12px; border-radius: 6px; background: var(--iv-main, #218c66); color: var(--iv-on, #fff); font-size: 15px; font-weight: 700; }
 .iv-pay-row { display: flex; justify-content: space-between; gap: 24px; margin-top: 30px; align-items: flex-start; }
 .iv-pay table { width: auto; font-size: 12.5px; }
 .iv-pay td { text-align: left; padding: 2px 18px 2px 0; }
@@ -1561,3 +1561,8 @@ video.vv-lb-media { background: #000; }
   @page { size: A4; margin: 0; }
 }
 @media (max-width: 40rem) { .iv-grid { grid-template-columns: minmax(0, 1fr); } .iv-card-body { padding: .85rem; } }
+
+.iv-colors { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; }
+.iv-swatch { width: 1.9rem; height: 1.9rem; border-radius: 50%; border: 2px solid transparent; box-shadow: 0 0 0 1px var(--border); cursor: pointer; padding: 0; }
+.iv-swatch[aria-pressed="true"] { border-color: var(--background); box-shadow: 0 0 0 2px var(--foreground); }
+.iv-color-input { width: 2.4rem; height: 1.9rem; padding: 0; border: 1px solid var(--border); border-radius: .4rem; background: none; cursor: pointer; }

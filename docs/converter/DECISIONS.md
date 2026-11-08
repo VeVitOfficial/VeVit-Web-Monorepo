@@ -175,3 +175,6 @@ Každé rozhodnutí: co, proč, alternativy. Nová rozhodnutí přidávej na kon
 ## D31 — Neplatná syntaxe `rgba(var(--vv-green-rgb), x)` (5. kolo)
 - Proměnná `--vv-green-rgb` je zapsaná s mezerami (`63 212 150`), takže `rgba(var(--…), .2)` je neplatné a prohlížeč hodnotu zahodí (průhledné pozadí/ohraničení, např. hover tlačítek). V `tools.css` nahrazeno za `rgb(var(--…) / x)`; stejný vzor zůstává v `globals.css`, obchodě, účtu a dalších stránkách — mimo rozsah, neopraveno.
 
+
+## D32 — Faktura: hlavní barva
+Pole `color` (hex, výchozí #218c66) v konceptu, JSON i šabloně; 9 předvoleb + vlastní `<input type=color>`. Náhled používá CSS proměnné `--iv-*`, PDF stejné odvozené odstíny. Text na ploše barvy je bílý/tmavý podle jasu, nadpis se u světlých barev ztmavuje kvůli čitelnosti.
