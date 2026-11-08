@@ -3,6 +3,28 @@
 Začni čtením tohoto souboru a `DECISIONS.md`. Architektura a příkazy: `README.md`, licence:
 `LICENSES.md`, měření: `MEASUREMENTS.md`.
 
+## 5. kolo (2026-11-08) — ovládání nástrojů, náhledy, HTML → PDF, faktury
+
+Větev `feat/converter-docx-pdf`, bez pushe. Rozhodnutí D27–D31 v `DECISIONS.md`.
+
+| # | Zadání | Stav |
+|---|---|---|
+| 1 | Převodníky audio/video/obrázek: pole vlevo, náhled po nahrání, vpravo nabídka formátů | hotovo (`ConvertShell`); „text“ jako samostatný převodník nebyl pokryt (nejasné zadání) |
+| 2 | Drag & drop a zvětšený náhled u slučování a podobných nástrojů | hotovo (`SortableFileList`: PDF merge, obrázky/sken → PDF, ZIP, GIF, koláž, spojení videí) |
+| 3 | Rozdělení PDF: náhledy s dělicími čarami (klik = řez), panel stažení, pole „rozdělit po stránce“ | hotovo (`pdf-split.tsx`) |
+| 4 | Komprese: černobílá + náhled před/po | hotovo |
+| 5 | Šipka v nadpisu obrací převod | hotovo (D28) |
+| 6 | Nadpis nástroje | vycentrován („na center na doprava“ bylo nejasné — dejte vědět, pokud mělo být doprava) |
+| 7 | Bílý text na černém tlačítku | opraveno (D31: neplatná `rgba(var())` syntaxe) |
+| 8 | HTML → PDF | hotovo, Chromium na serveru + lokální záloha (D29); po bezpečnostní kontrole opraveno IPv6 SSRF, WebSocket, časový strop, rate limit |
+| 9 | Generátor faktur | hotovo (D30): dvousloupcový editor, živý A4 náhled, měny, DPH po položkách, neplátce, slevy % i částkou, platební údaje, šablony, řady, autosave, PDF/tisk/QR/JSON |
+| 10 | PDF → obrázky | hotovo: PNG/JPG/WebP/BMP/TIFF/GIF, bez ZIPu, s náhledem |
+| 11 | „l.width is not a function“ | opraveno (pdf-lib `width`/`height` jsou vlastnosti, ne metody) v obrázky → PDF, sken → PDF, faktura, podpis PDF |
+
+**Ověřeno:** `tsc`, `eslint src` (0 chyb), `npm run test:unit` (209 + 7 nových pro fakturu), ruční průchod v prohlížeči (Playwright, localhost:3211) včetně stažení PDF/QR/JSON, vícestránkové faktury (3 strany, opakovaná hlavička) a mobilního rozvržení; QR dekódován `zbarimg`.
+
+**Neověřeno / otevřené:** produkční nasazení HTML → PDF vyžaduje binárku Chromium (`CHROMIUM_EXECUTABLE_PATH`, `CHROMIUM_NO_SANDBOX=1`); rate limit je v paměti procesu; stejná neplatná `rgba(var(--vv-*-rgb), x)` syntaxe zůstává v `globals.css`, obchodě, účtu a dalších stylech; náhled faktury a PDF jsou dvě implementace (ne pixelově shodné); e2e testy `tests/converter` v tomto kole znovu neběžely.
+
 ## 4. kolo (2026-11-07) — přesný režim PDF → Word rozbitý ve Wordu
 
 > **Platnost vizuálních metrik: všechny vizuální metriky DOCX výstupu (přísné i tolerantní SSIM, počty stran, QR z renderu, „vizuální shoda přesného režimu 0,89“ v 1. a 2. kole) jsou změřené na DOCX vykresleném přes LibreOffice a platí jen pro LibreOffice.** Word ani Word pro web jimi ověřené nejsou — LibreOffice vykreslil rámce `w:framePr` správně, Word pro web je ignoruje, a metriky tak hlásily 0,89 u dokumentu, který byl ve Wordu rozbitý. Strukturu, kterou Word musí respektovat, hlídají unit testy nad OOXML; vizuální kontrola ve Wordu je zatím ruční (návrh automatizace: D26).
