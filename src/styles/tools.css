@@ -1466,3 +1466,98 @@ video.vv-lb-media { background: #000; }
 .hp-result { display: flex; gap: 1rem; align-items: flex-start; padding: 1rem; border: 1px solid var(--border); border-radius: .6rem; background: var(--panel); flex-wrap: wrap; }
 .hp-result-img { padding: 0; border: 1px solid var(--border); border-radius: .4rem; background: #fff; cursor: zoom-in; max-width: 14rem; overflow: hidden; }
 .hp-result-img img { display: block; width: 100%; height: auto; }
+
+/* ── Generátor faktur: dvousloupcový editor + živý náhled A4 ───────────── */
+.iv-layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.5rem; align-items: start; padding-bottom: 9rem; /* místo pro cookies lištu a toasty */ }
+@media (min-width: 62rem) { .iv-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr); } }
+.iv-form { display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
+.iv-restored { font-size: .85rem; color: var(--muted-foreground); padding: .5rem .75rem; border: 1px dashed var(--border); border-radius: .5rem; }
+.iv-card { --iv-accent: var(--primary); border: 1px solid var(--border); border-left: 4px solid var(--iv-accent); border-radius: .75rem; background: var(--panel); overflow: hidden; }
+.iv-card--inv { --iv-accent: #6366f1; }
+.iv-card--sup { --iv-accent: var(--primary); }
+.iv-card--cus { --iv-accent: #f59e0b; }
+.iv-card--items { --iv-accent: #0ea5e9; }
+.iv-card--pay { --iv-accent: #ec4899; }
+.iv-card--misc { --iv-accent: var(--muted-foreground); }
+.iv-card-head { display: flex; align-items: center; justify-content: space-between; gap: .75rem; padding: .65rem 1rem; background: color-mix(in srgb, var(--iv-accent) 10%, transparent); border-bottom: 1px solid var(--border); }
+.iv-card-head h3 { margin: 0; font-size: .95rem; font-weight: 600; color: var(--foreground); }
+.iv-card-body { padding: 1rem; display: flex; flex-direction: column; gap: .85rem; }
+.iv-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
+.iv-field { min-width: 0; }
+.iv-wide { grid-column: 1 / -1; }
+.iv-hint { display: block; margin-top: .2rem; font-size: .75rem; color: var(--muted-foreground); }
+.iv-hint--err { color: var(--destructive); }
+.iv-check { display: flex; align-items: center; gap: .55rem; font-size: .875rem; color: var(--foreground); cursor: pointer; min-height: 2.25rem; }
+.iv-check input { width: 1.05rem; height: 1.05rem; accent-color: var(--primary); }
+.iv-output { display: flex; align-items: center; min-height: 2.75rem; padding: 0 .75rem; border: 1px dashed var(--border); border-radius: .5rem; color: var(--muted-foreground); font-variant-numeric: tabular-nums; }
+.iv-tpl { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+.iv-tpl .select { flex: 1 1 12rem; min-width: 0; }
+.iv-item-list { display: flex; flex-direction: column; gap: .75rem; }
+.iv-item { border: 1px solid var(--border); border-radius: .6rem; padding: .75rem; background: color-mix(in srgb, var(--background) 60%, transparent); display: flex; flex-direction: column; gap: .6rem; }
+.iv-item-head { display: flex; gap: .5rem; align-items: center; }
+.iv-item-head .input { flex: 1; min-width: 0; }
+.iv-item-no { flex: none; display: grid; place-items: center; width: 1.6rem; height: 1.6rem; border-radius: 50%; background: color-mix(in srgb, var(--iv-accent) 18%, transparent); color: var(--foreground); font-size: .78rem; font-weight: 600; }
+.iv-item-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr)); gap: .6rem; }
+.iv-disc { display: grid; grid-template-columns: minmax(0, 1fr) 4.6rem; gap: .35rem; }
+.iv-item-sum { display: flex; flex-wrap: wrap; gap: .25rem 1rem; justify-content: flex-end; font-size: .8rem; color: var(--muted-foreground); font-variant-numeric: tabular-nums; }
+.iv-item-sum strong { color: var(--foreground); font-size: .9rem; }
+.iv-totals { display: flex; flex-direction: column; gap: .25rem; margin-left: auto; width: min(100%, 22rem); font-size: .875rem; font-variant-numeric: tabular-nums; }
+.iv-totals > div { display: flex; justify-content: space-between; gap: 1rem; color: var(--muted-foreground); }
+.iv-totals .iv-total { margin-top: .25rem; padding: .5rem .75rem; border-radius: .5rem; background: color-mix(in srgb, var(--iv-accent) 14%, transparent); color: var(--foreground); font-weight: 700; font-size: 1rem; }
+.iv-data-row { display: flex; flex-wrap: wrap; gap: .5rem; }
+
+.iv-preview { min-width: 0; display: flex; flex-direction: column; gap: .75rem; }
+@media (min-width: 62rem) { .iv-preview { position: sticky; top: 5.5rem; max-height: calc(100vh - 6.5rem); overflow-y: auto; padding-right: .25rem; } }
+.iv-actions { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+.iv-saved { font-size: .78rem; color: var(--muted-foreground); }
+.iv-viewport { position: relative; width: 100%; border-radius: .5rem; box-shadow: 0 6px 24px rgba(0, 0, 0, .28); overflow: hidden; background: #fff; }
+.iv-viewport-inner { transform-origin: top left; }
+
+/* Papírový list: pevné barvy, nezávislé na tmavém režimu webu */
+.iv-sheet { box-sizing: border-box; padding: 48px 52px 56px; background: #fff; color: #1a1d21; font: 13px/1.45 "Liberation Sans", Arial, Helvetica, sans-serif; background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 1122px, rgba(0, 0, 0, .14) 1122px, rgba(0, 0, 0, .14) 1123px); }
+.iv-sheet table { width: 100%; border-collapse: collapse; }
+.iv-sheet th, .iv-sheet td { text-align: right; vertical-align: top; }
+.iv-sheet .iv-l { text-align: left; }
+.iv-sheet .iv-pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+.iv-sheet .iv-muted { color: #666b73; font-size: 12px; }
+.iv-ph { color: #a2a7ae; }
+.iv-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; margin-bottom: 26px; }
+.iv-title { font-size: 26px; font-weight: 700; color: #218c66; line-height: 1.15; }
+.iv-number { margin-top: 6px; font-size: 15px; color: #5a5f66; }
+.iv-dates { width: auto !important; }
+.iv-dates td { padding: 1px 0 1px 18px; font-size: 12.5px; }
+.iv-dates td:first-child { color: #666b73; }
+.iv-parties { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 26px; }
+.iv-party { background: #f4f6f5; border-radius: 6px; padding: 12px 14px; min-height: 60px; overflow-wrap: anywhere; }
+.iv-party-title { font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #666b73; margin-bottom: 6px; }
+.iv-party-name { font-size: 14.5px; font-weight: 700; margin-bottom: 2px; }
+.iv-items th { background: #e6f4ee; color: #218c66; font-size: 11px; padding: 7px 6px; }
+.iv-items td { padding: 8px 6px; border-bottom: 1px solid #dde1e4; font-size: 12.5px; font-variant-numeric: tabular-nums; }
+.iv-items th:first-child, .iv-items td:first-child { padding-left: 8px; }
+.iv-items td:first-child { width: 31%; }
+.iv-sum-row { display: grid; grid-template-columns: 1.1fr 1fr; gap: 28px; align-items: start; margin-top: 22px; }
+.iv-recap { font-size: 12px; font-variant-numeric: tabular-nums; }
+.iv-recap th { color: #666b73; font-size: 10.5px; font-weight: 700; padding: 3px 4px; border-bottom: 1px solid #dde1e4; text-transform: uppercase; letter-spacing: .04em; }
+.iv-recap td { padding: 4px; }
+.iv-totals-box { display: flex; flex-direction: column; gap: 5px; font-size: 12.5px; color: #5a5f66; font-variant-numeric: tabular-nums; }
+.iv-totals-box > div { display: flex; justify-content: space-between; gap: 14px; }
+.iv-totals-box .iv-payable { margin-top: 4px; padding: 9px 12px; border-radius: 6px; background: #218c66; color: #fff; font-size: 15px; font-weight: 700; }
+.iv-pay-row { display: flex; justify-content: space-between; gap: 24px; margin-top: 30px; align-items: flex-start; }
+.iv-pay table { width: auto; font-size: 12.5px; }
+.iv-pay td { text-align: left; padding: 2px 18px 2px 0; }
+.iv-pay td:first-child { color: #666b73; }
+.iv-pay td:last-child { font-weight: 700; overflow-wrap: anywhere; }
+.iv-qr { display: flex; flex-direction: column; align-items: center; gap: 3px; flex: none; font-size: 10.5px; color: #666b73; }
+.iv-qr img { display: block; }
+.iv-note { margin-top: 26px; font-size: 12.5px; }
+
+/* Tisk: jen list faktury (klon je vložen přímo do <body>) */
+#iv-print-root { display: none; }
+@media print {
+  body.iv-printing > *:not(#iv-print-root) { display: none !important; }
+  body.iv-printing #iv-print-root { display: block !important; }
+  body.iv-printing { background: #fff !important; }
+  body.iv-printing .iv-sheet { width: 210mm !important; min-height: 0 !important; box-shadow: none; background-image: none; padding: 14mm 14mm 16mm; }
+  @page { size: A4; margin: 0; }
+}
+@media (max-width: 40rem) { .iv-grid { grid-template-columns: minmax(0, 1fr); } .iv-card-body { padding: .85rem; } }
