@@ -1429,3 +1429,31 @@ video.vv-lb-media { background: #000; }
 .p2i-out figcaption { display: flex; flex-direction: column; min-width: 0; }
 .p2i-out figcaption .fi-name { font-size: .8rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .p2i-out figcaption .fi-size { font-size: .75rem; color: var(--muted-foreground); }
+
+/* ── Převodníky: pole + náhled vlevo, nabídka formátů vpravo (convert-layout.tsx) ── */
+.conv-shell { display: grid; grid-template-columns: minmax(0, 1fr) 19rem; gap: 1.25rem; align-items: start; max-width: 62rem; margin: 0 auto; }
+@media (max-width: 860px) { .conv-shell { grid-template-columns: minmax(0, 1fr); } }
+.conv-left { min-width: 0; }
+.conv-shell.has-file .conv-left .dropzone { padding: 1rem; }
+.conv-right { display: flex; flex-direction: column; gap: 1rem; padding: 1rem; border: 1px solid var(--border); border-radius: .6rem; background: var(--panel); min-width: 0; position: sticky; top: 1rem; }
+@media (max-width: 860px) { .conv-right { position: static; } }
+.conv-formats { display: flex; flex-direction: column; gap: .4rem; }
+.conv-format { position: relative; display: flex; align-items: baseline; gap: .6rem; padding: .55rem .75rem; border: 1px solid var(--border); border-radius: .5rem; background: var(--background); color: var(--foreground); text-align: left; cursor: pointer; transition: border-color .15s, background .15s; }
+.conv-format:hover:not(:disabled) { border-color: var(--primary); }
+.conv-format:disabled { opacity: .5; cursor: not-allowed; }
+.conv-format.is-on { border-color: var(--primary); background: rgb(var(--vv-green-rgb) / .1); }
+.conv-format-label { font-weight: 600; font-size: .9rem; }
+.conv-format-hint { font-size: .75rem; color: var(--muted-foreground); }
+.conv-format-check { position: absolute; right: .7rem; top: 50%; transform: translateY(-50%); color: var(--primary); }
+.conv-preview-box { margin: 0; border: 1px solid var(--border); border-radius: .6rem; background: var(--panel); overflow: hidden; }
+.conv-preview-media { display: grid; place-items: center; background: color-mix(in srgb, var(--foreground) 5%, transparent); min-height: 3.5rem; }
+.conv-preview-media img, .conv-preview-media video { display: block; max-width: 100%; max-height: 22rem; }
+.conv-preview-media audio { width: calc(100% - 1.5rem); margin: .75rem; }
+.conv-preview-box figcaption { display: flex; align-items: center; gap: .6rem; padding: .6rem .75rem; border-top: 1px solid var(--border); }
+.conv-preview-box figcaption .fi-meta { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.conv-preview-box .fi-name { font-size: .875rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.conv-preview-box .fi-size { font-size: .75rem; color: var(--muted-foreground); }
+.conv-right .result-card { flex-direction: column; align-items: stretch; gap: .6rem; }
+.conv-right .result-card .rc-actions { display: flex; flex-direction: column; gap: .4rem; }
+.conv-right .result-card .btn { width: 100%; }
+.conv-right .result-card .rc-icon { align-self: flex-start; }

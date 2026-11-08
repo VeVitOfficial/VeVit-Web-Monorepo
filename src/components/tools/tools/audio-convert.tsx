@@ -11,6 +11,7 @@
 // platil beze změny. Žádné nové npm závislosti — ffmpeg UMD zůstává v public/.
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { ToolComponentProps, Locale } from "@/components/tools/registry/data";
+import { ConvertShell, FormatMenu, FilePreview, type FormatOption } from "@/components/tools/convert-layout";
 import {
   loadScript, fmtSize, Icon, useToolUi, toastSuccess, toastError,
 } from "@/components/tools/tool-runtime";
@@ -307,14 +308,22 @@ export function reportError(locale: Locale, msg: string): string {
 export { toastSuccess, fmtSize };
 
 // ── audio-convert: komponenta ─────────────────────────────────────────────
-const CODECS: Record<string, string> = { mp3: "libmp3lame", wav: "pcm_s16le", ogg: "libvorbis", flac: "flac" };
-const LOSSY: Record<string, boolean> = { mp3: true, ogg: true };
+const CODECS: Record<string, string> = { mp3: "libmp3lame", wav: "pcm_s16le", ogg: "libvorbis", flac: "flac", m4a: "aac" };
+const LOSSY: Record<string, boolean> = { mp3: true, ogg: true, m4a: true };
+const MIME: Record<string, string> = { mp3: "audio/mpeg", wav: "audio/wav", ogg: "audio/ogg", flac: "audio/flac", m4a: "audio/mp4" };
+const FORMATS: FormatOption<"mp3" | "wav" | "ogg" | "flac" | "m4a">[] = [
+  { key: "mp3", label: "MP3", hint: "univerzální, ztrátový" },
+  { key: "m4a", label: "M4A (AAC)", hint: "Apple/mobily, ztrátový" },
+  { key: "ogg", label: "OGG (Vorbis)", hint: "otevřený, ztrátový" },
+  { key: "wav", label: "WAV", hint: "nekomprimovaný" },
+  { key: "flac", label: "FLAC", hint: "bezztrátový" },
+];
 const ACCEPT = ["audio/*", ".mp3", ".wav", ".ogg", ".m4a", ".flac", ".aac"];
 
 export default function AudioConvert({ locale }: ToolComponentProps) {
   const { t } = useToolUi(locale);
   const [file, setFile] = useState<File | null>(null);
-  const [format, setFormat] = useState<"mp3" | "wav" | "ogg" | "flac">("mp3");
+  const [format, setFormat] = useState<"mp3" | "wav" | "ogg" | "flac" | "m4a">("mp3");
   const [bitrate, setBitrate] = useState(192);
   const [running, setRunning] = useState(false);
   const [progress, setProgress] = useState<{ pct: number; label: string } | null>(null);
@@ -345,7 +354,7 @@ export default function AudioConvert({ locale }: ToolComponentProps) {
         file,
         inName: "in." + media.ext(file.name),
         outName: "out." + f,
-        outMime: "audio/" + f,
+        outMime: MIME[f],
         args: (inN, outN) => {
           const a = ["-i", inN, "-c:a", CODECS[f]];
           if (LOSSY[f]) a.push("-b:a", String(bitrate || 192) + "k");
@@ -369,81 +378,38 @@ export default function AudioConvert({ locale }: ToolComponentProps) {
   };
 
   return (
-    <div className="stack" style={{ maxWidth: "44rem", margin: "0 auto" }}>
-      <Dropzone
-        accept={ACCEPT}
-        multiple={false}
-        maxSize={100 * 1024 * 1024}
-        onFiles={onFiles}
-        onError={(m) => setError(m)}
-        ariaLabel="Přetáhněte audio"
-        locale={locale}
-      >
-        <span className="dz-ico">
-          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M9 18V5l12-2v13" /><circle cx="6" cy="18" r="3" /><circle cx="18" cy="16" r="3" />
-          </svg>
-        </span>
-        <span className="dz-title">Přetáhněte audio</span>
-        <span className="dz-hint">MP3, WAV, OGG, M4A, FLAC, převod přes ffmpeg.wasm</span>
-      </Dropzone>
-
-      {file ? (
-        <FileList files={[{ name: file.name, size: file.size }]} onRemove={() => reset()} locale={locale} />
-      ) : null}
-
-      <div className={file ? "" : " hidden"} id="ac-work">
-        <div className="stack-sm">
-          <label className="field-label" htmlFor="ac-format">Cílový formát</label>
-          <select
-            className="select" id="ac-format" value={format}
-            onChange={(e) => setFormat(e.target.value as typeof format)}
-          >
-            <option value="mp3">MP3</option>
-            <option value="wav">WAV</option>
-            <option value="ogg">OGG (Vorbis)</option>
-            <option value="flac">FLAC</option>
-          </select>
-        </div>
-        <div className={`stack-sm${LOSSY[format] ? "" : " hidden"}`} id="ac-br-grp">
-          <label className="field-label" htmlFor="ac-br">Bitrate (kbps, ztrátové)</label>
-          <input
-            className="input" id="ac-br" type="number" value={bitrate} min={64} max={320}
-            style={{ width: "6rem" }}
-            onChange={(e) => setBitrate(Number(e.target.value) || 192)}
-          />
-        </div>
-        <button
-          className="btn btn-primary btn-touch" id="ac-run" type="button"
-          disabled={!file || running}
-          onClick={run}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M9 18V5l12-2v13" /><circle cx="6" cy="18" r="3" /><circle cx="18" cy="16" r="3" />
-          </svg>{" "}
-          Převést
-        </button>
-      </div>
-
-      <Progress
-        pct={progress?.pct}
-        label={progress?.label}
-        hidden={!progress}
-        indeterminate={progress != null && progress.pct <= 0}
-      />
-
-      {error ? <p className="error-text" role="alert">{error}</p> : null}
-
-      <ResultArea
-        blob={result?.blob ?? null}
-        filename={result?.filename ?? ""}
-        onReset={reset}
-        locale={locale}
-      />
-
-      <p className="muted" style={{ fontSize: "0.8rem" }}>
-        Převod audia přes ffmpeg.wasm. Limit ~100 MB. Běží lokálně.
-      </p>
-    </div>
+    <ConvertShell
+      hasFile={!!file}
+      left={
+        <>
+          <Dropzone accept={ACCEPT} multiple={false} maxSize={100 * 1024 * 1024} onFiles={onFiles} onError={(m) => setError(m)} ariaLabel="Přetáhněte audio" locale={locale}>
+            <span className="dz-ico">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M9 18V5l12-2v13" /><circle cx="6" cy="18" r="3" /><circle cx="18" cy="16" r="3" />
+              </svg>
+            </span>
+            <span className="dz-title">{file ? "Vyměnit audio" : "Přetáhněte audio"}</span>
+            <span className="dz-hint">MP3, WAV, OGG, M4A, FLAC, převod přes ffmpeg.wasm</span>
+          </Dropzone>
+          {file ? <FilePreview file={file} onRemove={reset} /> : null}
+        </>
+      }
+      right={
+        <>
+          <FormatMenu title="Převést na" formats={FORMATS} value={format} onChange={(k) => { setFormat(k); setResult(null); }} disabled={!file || running} />
+          <div className={`stack-sm${LOSSY[format] ? "" : " hidden"}`} id="ac-br-grp">
+            <label className="field-label" htmlFor="ac-br">Bitrate (kbps, ztrátové)</label>
+            <input className="input" id="ac-br" type="number" value={bitrate} min={64} max={320} style={{ width: "6rem" }} onChange={(e) => setBitrate(Number(e.target.value) || 192)} />
+          </div>
+          <button className="btn btn-primary btn-touch btn-block" id="ac-run" type="button" disabled={!file || running} onClick={run}>
+            Převést na {FORMATS.find((f) => f.key === format)?.label}
+          </button>
+          <Progress pct={progress?.pct} label={progress?.label} hidden={!progress} indeterminate={progress != null && progress.pct <= 0} />
+          {error ? <p className="error-text" role="alert">{error}</p> : null}
+          <ResultArea blob={result?.blob ?? null} filename={result?.filename ?? ""} onReset={reset} locale={locale} />
+          <p className="muted" style={{ fontSize: "0.78rem", margin: 0 }}>Převod přes ffmpeg.wasm, limit ~100 MB. Běží lokálně, soubor neopouští prohlížeč.</p>
+        </>
+      }
+    />
   );
 }
