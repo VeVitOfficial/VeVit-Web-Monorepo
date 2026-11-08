@@ -1457,3 +1457,12 @@ video.vv-lb-media { background: #000; }
 .conv-right .result-card .rc-actions { display: flex; flex-direction: column; gap: .4rem; }
 .conv-right .result-card .btn { width: 100%; }
 .conv-right .result-card .rc-icon { align-self: flex-start; }
+
+/* ── HTML → PDF ──────────────────────────────────────────────────────── */
+.hp-edit { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1rem; align-items: start; }
+@media (max-width: 860px) { .hp-edit { grid-template-columns: minmax(0, 1fr); } }
+.hp-preview { width: 100%; height: 22.5rem; border: 1px solid var(--border); border-radius: .5rem; background: #fff; }
+.hp-opts { display: grid; grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); gap: .9rem 1rem; align-items: end; }
+.hp-result { display: flex; gap: 1rem; align-items: flex-start; padding: 1rem; border: 1px solid var(--border); border-radius: .6rem; background: var(--panel); flex-wrap: wrap; }
+.hp-result-img { padding: 0; border: 1px solid var(--border); border-radius: .4rem; background: #fff; cursor: zoom-in; max-width: 14rem; overflow: hidden; }
+.hp-result-img img { display: block; width: 100%; height: auto; }
