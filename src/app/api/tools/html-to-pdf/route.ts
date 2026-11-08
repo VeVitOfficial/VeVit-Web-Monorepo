@@ -18,8 +18,10 @@ function json(status: number, code: string, message: string): Response {
   return Response.json({ error: { code, message } }, { status, headers: { "Cache-Control": "no-store" } });
 }
 
+/** Klient podle posledního záznamu X-Forwarded-For (přidává ho naše proxy); první záznam může klient podvrhnout. */
 function clientKey(request: Request): string {
-  return (request.headers.get("x-forwarded-for")?.split(",")[0] ?? request.headers.get("x-real-ip") ?? "local").trim();
+  const xff = request.headers.get("x-forwarded-for")?.split(",").map((s) => s.trim()).filter(Boolean);
+  return xff?.length ? xff[xff.length - 1] : (request.headers.get("x-real-ip") ?? "local").trim();
 }
 
 function rateLimited(key: string): boolean {

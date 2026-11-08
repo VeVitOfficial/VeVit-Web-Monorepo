@@ -64,14 +64,37 @@ function ipv4Blocked(ip: string): boolean {
     (a === 198 && (b === 18 || b === 19))
   );
 }
+/** Rozbalí IPv6 na 8 skupin (16bitových čísel); IPv4 zápis na konci převede na dvě skupiny. */
+function ipv6Groups(ip: string): number[] | null {
+  let l = ip.toLowerCase().split("%")[0];
+  const v4 = l.match(/(\d+\.\d+\.\d+\.\d+)$/);
+  if (v4) {
+    const o = v4[1].split(".").map(Number);
+    l = l.slice(0, -v4[1].length) + ((o[0] << 8) | o[1]).toString(16) + ":" + ((o[2] << 8) | o[3]).toString(16);
+  }
+  const halves = l.split("::");
+  if (halves.length > 2) return null;
+  const head = halves[0] ? halves[0].split(":") : [];
+  const tail = halves.length === 2 && halves[1] ? halves[1].split(":") : [];
+  const fill = halves.length === 2 ? 8 - head.length - tail.length : 0;
+  if (fill < 0 || (halves.length === 1 && head.length !== 8)) return null;
+  const all = [...head, ...Array<string>(fill).fill("0"), ...tail].map((g) => parseInt(g || "0", 16));
+  return all.length === 8 && all.every((n) => Number.isInteger(n) && n >= 0 && n <= 0xffff) ? all : null;
+}
+const v4FromGroups = (hi: number, lo: number) => `${hi >> 8}.${hi & 255}.${lo >> 8}.${lo & 255}`;
+
 export function isBlockedIp(ip: string): boolean {
   if (net.isIPv4(ip)) return ipv4Blocked(ip);
   if (net.isIPv6(ip)) {
-    const l = ip.toLowerCase();
-    if (l === "::" || l === "::1") return true;
-    const mapped = l.match(/^::ffff:(\d+\.\d+\.\d+\.\d+)$/);
-    if (mapped) return ipv4Blocked(mapped[1]);
-    return /^f[cd]/.test(l) || /^fe[89ab]/.test(l) || l.startsWith("ff");
+    const g = ipv6Groups(ip);
+    if (!g) return true;
+    const [g0, g1, g2, g3, g4, g5, g6, g7] = g;
+    if (g.every((n) => n === 0) || (g.slice(0, 7).every((n) => n === 0) && g7 === 1)) return true; // :: a ::1
+    // IPv4 vložená do IPv6: ::ffff:a.b.c.d, ::a.b.c.d, 64:ff9b::/96 (NAT64), 2002::/16 (6to4), Teredo 2001::/32
+    if (g0 === 0 && g1 === 0 && g2 === 0 && g3 === 0 && g4 === 0 && (g5 === 0xffff || g5 === 0)) return ipv4Blocked(v4FromGroups(g6, g7));
+    if (g0 === 0x64 && g1 === 0xff9b && g2 === 0 && g3 === 0 && g4 === 0 && g5 === 0) return ipv4Blocked(v4FromGroups(g6, g7));
+    if (g0 === 0x2002 || (g0 === 0x2001 && g1 === 0)) return true; // 6to4 a Teredo se nepoužívají
+    return (g0 & 0xfe00) === 0xfc00 || (g0 & 0xffc0) === 0xfe80 || (g0 & 0xff00) === 0xff00;
   }
   return true;
 }
@@ -144,7 +167,7 @@ async function getBrowser(): Promise<Browser> {
   browserPromise = (async () => {
     const { chromium } = await import("playwright-core");
     const executablePath = process.env.CHROMIUM_EXECUTABLE_PATH?.trim() || undefined;
-    const args = ["--disable-dev-shm-usage", "--disable-extensions", "--disable-gpu", "--no-first-run"];
+    const args = ["--disable-dev-shm-usage", "--disable-extensions", "--disable-gpu", "--no-first-run", "--force-webrtc-ip-handling-policy=disable_non_proxied_udp", "--webrtc-ip-handling-policy=disable_non_proxied_udp"];
     if (process.env.CHROMIUM_NO_SANDBOX === "1") args.push("--no-sandbox");
     return chromium.launch({ headless: true, executablePath, args });
   })();
@@ -215,14 +238,36 @@ async function guard(context: BrowserContext, page: Page) {
       await route.abort("blockedbyclient").catch(() => { /* požadavek už mohl skončit */ });
     }
   });
+  // WebSocket by obešel page.route — zavřeme je rovnou
+  await context.routeWebSocket(/.*/, (ws) => { void ws.close(); });
   page.on("popup", (p) => { void p.close(); });
   page.on("dialog", (d) => { void d.dismiss(); });
 }
 
+/** Tvrdý strop celého převodu: po vypršení se kontext zavře a slot se uvolní, ať Playwright visí kdekoli. */
 export async function renderHtmlToPdf(options: HtmlPdfOptions): Promise<Buffer> {
   await acquire();
-  const started = Date.now();
+  let released = false;
+  const free = () => { if (!released) { released = true; release(); } };
   let context: BrowserContext | null = null;
+  let timer: NodeJS.Timeout | undefined;
+  const deadline = new Promise<never>((_, reject) => {
+    timer = setTimeout(() => {
+      void context?.close().catch(() => undefined);
+      reject(new RenderError("timeout", "Vykreslení trvalo příliš dlouho (limit 45 s). Zjednodušte stránku nebo zkraťte čekání.", 504));
+    }, RENDER_TIMEOUT_MS);
+  });
+  try {
+    return await Promise.race([renderInContext(options, (c) => { context = c; }), deadline]);
+  } finally {
+    clearTimeout(timer);
+    await (context as BrowserContext | null)?.close().catch(() => undefined);
+    free();
+  }
+}
+
+async function renderInContext(options: HtmlPdfOptions, setContext: (c: BrowserContext) => void): Promise<Buffer> {
+  const started = Date.now();
   try {
     const browser = await getBrowser();
     const [pw, ph] = PAGE_MM[options.format];
@@ -231,7 +276,7 @@ export async function renderHtmlToPdf(options: HtmlPdfOptions): Promise<Buffer> 
     const innerPx = Math.max(100, (wMm - 2 * options.margin) * PX_PER_MM);
     const layoutW = options.layoutWidth > 0 ? options.layoutWidth : Math.round(innerPx);
 
-    context = await browser.newContext({
+    const context = await browser.newContext({
       viewport: { width: layoutW, height: 900 },
       javaScriptEnabled: options.javascript,
       serviceWorkers: "block",
@@ -239,6 +284,7 @@ export async function renderHtmlToPdf(options: HtmlPdfOptions): Promise<Buffer> 
       permissions: [],
       locale: "cs-CZ",
     });
+    setContext(context);
     const page = await context.newPage();
     page.setDefaultTimeout(20_000);
     await guard(context, page);
@@ -276,8 +322,5 @@ export async function renderHtmlToPdf(options: HtmlPdfOptions): Promise<Buffer> 
     const msg = (e as Error).message || "";
     if (/timeout/i.test(msg)) throw new RenderError("timeout", "Vykreslení trvalo příliš dlouho (limit 45 s). Zjednodušte stránku nebo zkraťte čekání.", 504);
     throw new RenderError("failed", "Vykreslení se nepodařilo: " + msg.split("\n")[0], 500);
-  } finally {
-    await context?.close().catch(() => undefined);
-    release();
   }
 }
