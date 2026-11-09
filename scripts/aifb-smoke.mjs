@@ -43,7 +43,8 @@ const publicModuleStatus = course.status === "draft" && production ? 404 : 200;
 checks.push({ url: `${prefix}/kurz`, role: null, status: 200 });
 checks.push({ url: courseUrls[1], role: null, status: publicModuleStatus });
 
-admin(`${prefix}/ucitel`);
+// Třídy učitele se přestěhovaly do portálu VeVit Edu pro školy.
+checks.push({ url: `${prefix}/ucitel`, role: "admin", status: 307, location: /\/cs\/edu\/school\/tridy$/ });
 admin(`${prefix}/upravy`);
 admin(`${prefix}/upravy?doc=kurz&path=${encodeURIComponent("modules/[kurz-m1]")}`);
 admin(`${prefix}/upravy?doc=zs1&path=${encodeURIComponent("levels/[zs1-blok-a]/lessons/[zs1-blok-a-cv1]")}`);

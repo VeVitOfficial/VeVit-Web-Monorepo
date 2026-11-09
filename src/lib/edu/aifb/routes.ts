@@ -33,9 +33,9 @@ export const modulePath = (locale: string, module: string) => `${coursePath(loca
 export const courseLessonPath = (locale: string, module: string, lesson: string) => `${modulePath(locale, module)}/${lesson}`;
 export const guidePath = (locale: string, categoryId: string, anchor?: string) =>
   `${categoryPath(locale, categoryId)}/${GUIDE_SEGMENT}${anchor ? `#${anchor}` : ""}`;
-export const teacherPath = (locale: string) => `${hubPath(locale)}/ucitel`;
-export const classPath = (locale: string, classId: string) => `${teacherPath(locale)}/${classId}`;
+/** Třídy učitele jsou v portálu VeVit Edu pro školy (/edu/school/tridy). */
+export const teacherPath = (locale: string) => `/${locale}/edu/school/tridy`;
 export const editorPath = (locale: string, doc?: string, path?: string) =>
   `${hubPath(locale)}/upravy${doc ? `?doc=${encodeURIComponent(doc)}${path ? `&path=${encodeURIComponent(path)}` : ""}` : ""}`;
-/** VeVit Edu pro školy: zadání kódu třídy. */
+/** VeVit Edu pro školy: zadání kódu školy. */
 export const schoolsPath = (locale: string) => `/${locale}/edu/skoly`;

@@ -74,7 +74,8 @@ function getFirstTextPreview(blocks: unknown[] | undefined): string {
   return "Vlastní lekce";
 }
 
-export function EduHomePage({ locale, aifbLessons }: { locale: string; aifbLessons: number }) {
+/** `school`: přihlášený je ve škole (VeVit Edu pro školy), tlačítko se mění na „Vstoupit do třídy“. */
+export function EduHomePage({ locale, aifbLessons, school = null }: { locale: string; aifbLessons: number; school?: { name: string; href: string } | null }) {
   // locale z x-vv-locale hlavičky — useEduLang() ho inicializuje a nabízí t/lessonsUnit.
   void locale;
   const { t, lang, lessonsLabel } = useEduLang();
@@ -225,14 +226,14 @@ export function EduHomePage({ locale, aifbLessons }: { locale: string; aifbLesso
               </span>
               <div>
                 <h2 id="edu-schools-title" className="text-lg font-semibold text-[var(--color-text-primary)]">{t("aifb.schools.title")}</h2>
-                <p className="text-sm text-[var(--color-text-secondary)]">{t("aifb.schools.body")}</p>
+                <p className="text-sm text-[var(--color-text-secondary)]">{school ? t("aifb.schools.bodyIn", { name: school.name }) : t("aifb.schools.body")}</p>
               </div>
             </div>
             <Link
-              href={`/${lang}/edu/skoly#trida`}
+              href={school ? school.href : `/${lang}/edu/skoly#skola`}
               className="inline-flex items-center justify-center gap-2 rounded-lg bg-vv-green px-6 py-3 font-semibold text-black transition-colors hover:bg-vv-green-dim"
             >
-              {t("aifb.schools.cta")}
+              {school ? t("aifb.schools.enter") : t("aifb.schools.cta")}
               <Icon name="arrow-right" className="h-4 w-4" />
             </Link>
           </div>

@@ -177,7 +177,7 @@ test("soukromí: žádné požadavky mimo vlastní doménu", async () => {
 
 test("žádný vodorovný posun na 360 px", async () => {
   await withPage(async (page) => {
-    const course = ["/kurz", "/kurz/m2", "/kurz/m6/teorie", "/kurz/m2/cv2", "/ucitel", "/upravy"];
+    const course = ["/kurz", "/kurz/m2", "/kurz/m6/teorie", "/kurz/m2/cv2", "/upravy"];
     for (const path of ["", "/aifb/zs1", "/aifb/zs2", "/aifb/ss", "/aifb/zs1/blok-a", "/aifb/zs1/blok-a/cv3", "/aifb/zs2/level-3/teorie", "/aifb/ss/level-6/teorie", ...course]) {
       await page.goto(`${root}${path}`);
       const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
@@ -288,6 +288,7 @@ test("student bez třídy: výzva k zadání kódu", async () => {
     await page.goto(root);
     assert.equal(await page.getByText("Zatím nejsi v žádné třídě").count(), 1);
     assert.equal(await page.locator('a[href$="/edu/skoly"]').count(), 1);
+    assert.equal(await page.getByText("Zadat kód školy").count(), 1);
   }, {}, "student");
 });
 
@@ -295,9 +296,8 @@ test("učitel: všechny kategorie, metodika a Moje třídy, bez úprav obsahu", 
   await withPage(async (page) => {
     await page.goto(root);
     for (const id of ["zs1", "zs2", "ss"]) assert.equal(await page.locator(`a[href$="/aifb/${id}"]`).count(), 1, id);
-    await page.getByRole("link", { name: "Moje třídy a odemykání lekcí" }).click();
-    await page.waitForURL(/\/ucitel$/);
-    assert.equal(await page.locator("h1").innerText(), "Moje třídy");
+    // Třídy jsou v portálu VeVit Edu pro školy (testovací role tam neplatí, portál čte členství ve škole).
+    assert.match(await page.getByRole("link", { name: "Moje třídy a odemykání lekcí" }).getAttribute("href"), /\/edu\/school\/tridy$/);
     await page.goto(`${root}/aifb/zs1/blok-a`);
     assert.equal(await page.locator(".aifb-lesson-row--locked").count(), 0);
     assert.equal(await page.locator("summary", { hasText: "Pro učitele" }).count(), 1);

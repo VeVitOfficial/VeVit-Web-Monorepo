@@ -228,8 +228,8 @@ const cs: Messages = {
   "aifb.access.lockedTitle": "Lekce je zatím zamčená",
   "aifb.access.lockedBody": "Tuhle lekci ještě neodemkl tvůj učitel. Až ji odemkne, najdeš ji tady.",
   "aifb.access.noClass.title": "Zatím nejsi v žádné třídě",
-  "aifb.access.noClass.body": "Kód třídy ti dá učitel. Zadej ho na stránce VeVit Edu pro školy.",
-  "aifb.access.noClass.link": "Zadat kód třídy",
+  "aifb.access.noClass.body": "Kód školy ti dá učitel. Zadej ho na stránce VeVit Edu pro školy a vyber svou třídu.",
+  "aifb.access.noClass.link": "Zadat kód školy",
   "aifb.access.myClasses": "Moje třídy",
 
   "aifb.hub.admin.title": "Správa",
@@ -285,8 +285,10 @@ const cs: Messages = {
   "aifb.class.archiveConfirm": "Zrušit třídu {{name}}? Žáci z ní budou odebráni a kód přestane platit.",
 
   "aifb.schools.title": "VeVit Edu pro školy",
-  "aifb.schools.body": "Máš od učitele kód třídy? Zadej ho a uvidíš lekce AI gramotnosti, které ti učitel odemkne.",
-  "aifb.schools.cta": "Zadat kód třídy",
+  "aifb.schools.body": "Máš od učitele kód školy? Zadej ho, vyber svou třídu a uvidíš lekce, které ti učitel odemkne nebo zadá.",
+  "aifb.schools.cta": "VeVit Edu pro školy",
+  "aifb.schools.bodyIn": "Jsi zapsaný ve škole {{name}}. Lekce a úkoly od učitele najdeš ve své třídě.",
+  "aifb.schools.enter": "Vstoupit do třídy",
   "aifb.join.title": "Máš kód třídy?",
   "aifb.join.lead": "Zadej kód, který ti dal učitel. Připojíš se ke třídě a uvidíš lekce AI gramotnosti, které ti učitel odemkne.",
   "aifb.join.label": "Kód třídy",
