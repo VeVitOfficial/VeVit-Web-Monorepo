@@ -30,7 +30,7 @@
      "blocks": [
       {
        "type": "p",
-       "text": "Tento dokument obsahuje plán cvičení pro výuku praktické gramotnosti v oblasti umělé inteligence podle systému AI Fluency Benchmark (AIFB). Je určen především učitelům informatiky a počítačové vědy na středních školách a gymnáziích, mohou ho však využít i vedoucí seminářů, koordinátoři digitální výchovy nebo lektoři zájmových kroužků. Plán pokrývá všech šest úrovní AIFB, od základů bezpečné práce s AI až po návrh komplexních multiagentních systémů, a nabízí tak ucelenou trajektorii výuky, kterou lze zařadit do běžných hodin informatiky i do volitelných seminářů."
+       "text": "Tento dokument obsahuje plán cvičení pro výuku praktické gramotnosti v oblasti umělé inteligence podle systému AI Fluency Benchmark (AIFB). Je určen především učitelům informatiky a počítačové vědy na středních školách a gymnáziích, mohou ho však využít i vedoucí seminářů, koordinátoři digitální výchovy nebo lektoři zájmových kroužků. Plán má dvě části. Jádro tvoří šest základních úrovní praktické AI gramotnosti pro všechny studenty: jak AI funguje, jak s ní mluvit, co jí svěřit, jaký nástroj na co zvolit, jak poznat její výtvory a jak se v oboru orientovat. Na ně navazují čtyři rozšiřující úrovně 7 až 10 pro zájemce o automatizaci, programování a návrh AI systémů, které se hodí do volitelných seminářů."
       },
       {
        "type": "p",
@@ -53,11 +53,11 @@
      "blocks": [
       {
        "type": "p",
-       "text": "Orientační časová dotace se u jednotlivých úrovní liší podle náročnosti cvičení: úrovně 1 a 2 se pohybují v rozsahu sedmi až osmi hodin, úroveň 3 v rozsahu osmi až deseti hodin a úrovně 4 až 6 v rozsahu devíti až čtrnácti hodin. Při jedné hodině informatiky týdně tak jedna úroveň odpovídá zhruba dvěma až třem měsícům výuky, které však není nutné umísťovat do souvislého období. Tento rozsah poskytuje dostatek prostoru jak pro teorii, tak pro samostatné procvičování, a zároveň není natolik náročný, aby znemožnil plnění ostatních témat učebních osnov. U nejvyšších úrovní lze část práce, zejména práci na vlastních projektech, přenést do domácí přípravy."
+       "text": "Orientační časová dotace se u jednotlivých úrovní liší podle náročnosti cvičení: základní úrovně 1 až 6 se pohybují v rozsahu sedmi až osmi hodin, úroveň 7 v rozsahu osmi až deseti hodin a úrovně 8 až 10 v rozsahu devíti až čtrnácti hodin. Při jedné hodině informatiky týdně tak jedna úroveň odpovídá zhruba dvěma až třem měsícům výuky, které však není nutné umísťovat do souvislého období. Tento rozsah poskytuje dostatek prostoru jak pro teorii, tak pro samostatné procvičování, a zároveň není natolik náročný, aby znemožnil plnění ostatních témat učebních osnov. U nejvyšších úrovní lze část práce, zejména práci na vlastních projektech, přenést do domácí přípravy."
       },
       {
        "type": "table",
-       "caption": "Doporučené členění úrovně na výukové bloky (rámcově pro úrovně 1 a 2)",
+       "caption": "Doporučené členění úrovně na výukové bloky (rámcově pro úrovně 1 až 6)",
        "header": [
         "Část výuky",
         "Obsah",
@@ -105,9 +105,9 @@
        "type": "list",
        "ordered": false,
        "items": [
-        "**Úrovně 1 až 3:** webový prohlížeč a přístup ke konverzačnímu nástroji. Dbejte na věkové podmínky služeb: ChatGPT nesmí používat děti do 13 let a nezletilí do 18 let potřebují souhlas zákonného zástupce, Claude je určen až od 18 let a Gemini je přístupný i mladším teenagerům s doplňkovými ochranami. Pro práci ve třídě se proto doporučuje jeden sjednocený nástroj pro celou třídu a účty spravované učitelem; nástroje, ke kterým studenti přístup nemají, učitel prezentuje z vlastního účtu. Sdílení jednoho účtu více osobami podmínky některých služeb nepovolují, proto upřednostněte vzdělávací nebo školní variantu nástroje, pokud ji poskytovatel nabízí. Pro úroveň 3 dále školní účet v automatizačním nástroji (například n8n nebo Make) a přístup k jednomu veřejnému API s volnými požadavky, obojí spravované dospělým.",
-        "**Úrovně 4 a 5:** nainstalovaný Python ve verzi 3.10 nebo novější, editor kódu (například VS Code) a školní účet u poskytovatele API modelů s nastaveným limitem útraty. Celou úroveň 4 lze provozovat i bez placených služeb: lokální model spuštěný v nástroji Ollama zpřístupňuje kompatibilní rozhraní API, na kterém lze absolvovat všechna cvičení bez poplatků. Pro úroveň 5 je vhodný počítač s alespoň 8 GB paměti pro spuštění lokálního modelu.",
-        "**Úroveň 6:** prostředí z úrovní 4 a 5 doplněné o knihovny pro multiagentní systémy (například CrewAI nebo LangGraph), vektorovou databázi (například Chroma) a prostor pro uložení dokumentů, nad kterými budou studenti budovat vyhledávání. I zde lze využít lokální modely a obejít se tak bez placených služeb.",
+        "**Úrovně 1 až 7:** webový prohlížeč a přístup ke konverzačnímu nástroji. Dbejte na věkové podmínky služeb: ChatGPT nesmí používat děti do 13 let a nezletilí do 18 let potřebují souhlas zákonného zástupce, Claude je určen až od 18 let a Gemini je přístupný i mladším teenagerům s doplňkovými ochranami. Pro práci ve třídě se proto doporučuje jeden sjednocený nástroj pro celou třídu a účty spravované učitelem; nástroje, ke kterým studenti přístup nemají, učitel prezentuje z vlastního účtu. Sdílení jednoho účtu více osobami podmínky některých služeb nepovolují, proto upřednostněte vzdělávací nebo školní variantu nástroje, pokud ji poskytovatel nabízí. Pro úroveň 7 dále školní účet v automatizačním nástroji (například n8n nebo Make) a přístup k jednomu veřejnému API s volnými požadavky, obojí spravované dospělým.",
+        "**Úrovně 8 a 9:** nainstalovaný Python ve verzi 3.10 nebo novější, editor kódu (například VS Code) a školní účet u poskytovatele API modelů s nastaveným limitem útraty. Celou úroveň 8 lze provozovat i bez placených služeb: lokální model spuštěný v nástroji Ollama zpřístupňuje kompatibilní rozhraní API, na kterém lze absolvovat všechna cvičení bez poplatků. Pro úroveň 9 je vhodný počítač s alespoň 8 GB paměti pro spuštění lokálního modelu.",
+        "**Úroveň 10:** prostředí z úrovní 8 a 9 doplněné o knihovny pro multiagentní systémy (například CrewAI nebo LangGraph), vektorovou databázi (například Chroma) a prostor pro uložení dokumentů, nad kterými budou studenti budovat vyhledávání. I zde lze využít lokální modely a obejít se tak bez placených služeb.",
         "**Společné:** projektor nebo sdílená obrazovka pro ukázky, tabule pro schémata pracovních postupů a vytištěné podklady pro cvičení, která nevyžadují počítač. Všechny uvedené nástroje jsou příklady ve výuce ověřených služeb; můžete je nahradit ekvivalentem se stejnou funkcí."
        ]
       },
@@ -145,51 +145,75 @@
    "blocks": [
     {
      "type": "p",
-     "text": "Systém AI Fluency Benchmark definuje šest navazujících úrovní, které postupně rozvíjejí dovednosti od základního porozumění umělé inteligenci až po návrh komplexních AI systémů. Úrovně 1 až 3 tvoří první etapu projektu a jsou určeny k přímému nasazení ve výuce. Úrovně 4 až 6 jsou připravovány jako navazující etapa, jejíž podoba bude upřesněna po vyhodnocení pilotního provozu; jejich obsah je v tomto plánu uveden proto, aby školy mohly promyšleně stavět trajektorii výuky a propojit povinnou výuku s volitelnými semináři."
+     "text": "Plán pro střední školy má šest základních úrovní a čtyři rozšiřující. Základní úrovně 1 až 6 jsou určeny všem studentům bez ohledu na obor a míří na běžné každodenní používání AI při studiu, v práci i v osobním životě: nevyžadují programování ani zvláštní vybavení. Rozšiřující úrovně 7 až 10 se věnují automatizaci, práci s API, programování a návrhu AI systémů a jsou určeny studentům s hlubším zájmem."
     },
     {
      "type": "table",
-     "caption": "Přehled šesti úrovní AIFB",
+     "caption": "Přehled úrovní AIFB na střední škole",
      "header": [
       "Úroveň",
-      "Certifikace AIFB",
+      "Název",
       "Hlavní témata",
       "Doporučené zařazení"
      ],
      "rows": [
       [
        "1",
-       "Certified AI Associate",
-       "Základy AI, principy jazykových modelů, bezpečnost dat, etika, orientace v rozhraních konverzačních nástrojů.",
+       "Co je AI a jak funguje – LLM, tokeny, kontextové okno a halucinace",
+       "Velký jazykový model, token, kontextové okno, trénovací data a jejich limity, halucinace a ověřování.",
        "1. ročník SŠ"
       ],
       [
        "2",
-       "Certified Prompt Specialist",
-       "Prompt engineering, role a kontext, zero-shot a few-shot přístupy, Markdown, JSON, tvorba instrukcí.",
+       "Jak s AI mluvit – Prompt, iterace a strukturovaný výstup",
+       "Prompt engineering, role a kontext, zero-shot a few-shot, iterace, Markdown a JSON, dlouhé úlohy po krocích.",
        "1. až 2. ročník SŠ"
       ],
       [
        "3",
-       "Certified AI Automation Practitioner",
+       "O čem s AI mluvit – Data, soukromí, osobní témata a duševní zdraví",
+       "Kam putují data, podmínky služeb, anonymizace, chatbot jako důvěrník, duševní zdraví a místa pomoci.",
+       "1. až 2. ročník SŠ"
+      ],
+      [
+       "4",
+       "Jaký nástroj na co – Výběr nástroje a modelu, AI při studiu a v praxi",
+       "Kdy AI nepoužít, srovnání nástrojů, výběr modelu podle úkolu a ceny, AI při studiu a na brigádě.",
+       "2. ročník SŠ"
+      ],
+      [
+       "5",
+       "Poznej AI a používej ji poctivě – Deepfaky, podvody, vygenerované weby a akademická poctivost",
+       "Deepfaky, limity detektorů, phishing a klonování hlasu, vygenerované weby a recenze, citování a autorská práva.",
+       "2. až 3. ročník SŠ"
+      ],
+      [
+       "6",
+       "Svět AI – Trh, API, MCP, agenti, žebříčky a jak zůstat v obraze",
+       "Firmy a modely, otevřené a uzavřené modely, API, MCP, autonomní agenti, žebříčky a benchmarky, AI Act, pracovní trh.",
+       "3. ročník SŠ"
+      ],
+      [
+       "7",
+       "AIFB Advanced – Automatizace a práce s API",
        "Návrh pracovních postupů, no-code automatizace (například n8n nebo Make), práce s API a JSON odpověďmi, multimodalita.",
        "2. až 3. ročník SŠ"
       ],
       [
-       "4",
-       "v přípravě",
+       "8",
+       "Advanced API Integration and Scripting",
        "Programové volání modelů v Pythonu a TypeScriptu, správa kontextu, function calling, tokenizace a optimalizace nákladů.",
        "3. ročník, seminář informatiky"
       ],
       [
-       "5",
-       "v přípravě",
+       "9",
+       "Custom AI Developer",
        "Návrh a tvorba vlastních AI aplikací, vyhodnocování kvality modelů, lokální modely, základy dolaďování.",
        "3. až 4. ročník, seminář"
       ],
       [
-       "6",
-       "v přípravě",
+       "10",
+       "AI Systems Architect",
        "Multiagentní systémy, RAG a vektorové databáze, bezpečnost, řízení přístupu a pravidla podnikového využití.",
        "4. ročník, ročníkový projekt"
       ]
@@ -197,11 +221,11 @@
     },
     {
      "type": "p",
-     "text": "Úrovně na sebe plynule navazují, ale nepředpokládají, že student absolvuje všechny. Přirozenou průchozí trasou je absolvování úrovní 1 až 3 v rámci povinné výuky informatiky v průběhu prvního až třetího ročníku, kde získané dovednosti pokrývají potřeby většiny studentů. Úrovně 4 až 6 jsou určeny pro studenty s hlubším zájmem o programování a vývoj aplikací a nejlépe fungují v podobě volitelného semináře nebo přípravy ročníkové práce. Toto členění odpovídá i plánovanému certifikačnímu modelu, ve kterém po splnění stanovených podmínek úrovně student získává certifikát s veřejně ověřitelnou platností."
+     "text": "Úrovně na sebe navazují, ale nepředpokládají, že student absolvuje všechny. Přirozenou trasou je absolvování základních úrovní 1 až 6 v prvním až třetím ročníku, kde získané dovednosti pokrývají potřeby většiny studentů. První dvě úrovně je vhodné zachovat v uvedeném pořadí, protože na nich ostatní stavějí. Rozšiřující úrovně 7 až 10 nejlépe fungují v podobě volitelného semináře nebo přípravy ročníkové práce."
     },
     {
      "type": "p",
-     "text": "Projektový plán AIFB počítá se studenty základních i středních škol, proto k tomuto dokumentu vycházejí dva samostatné plány pro základní školy: plán prvního stupně, který převádí základy úrovní 1 a 2 do čtyř bloků přizpůsobených věku žáků prvního až pátého ročníku, a plán druhého stupně, který úrovně 1 a 2 adaptuje pro ročníky šesté až deváté a vyšší úrovně nabízí hlouběji zainteresovaným žákům jako přípravu na střední školu. Tato středoškolská verze plánu zůstává výchozí pro úrovně 4 až 6, kde je potřeba zralosti a zkušeností starších studentů. Učitel, který chce obsah přizpůsobit konkrétní třídě, upraví rozsah teoretické přípravy a zaměří se na cvičení s konkrétními zadáními."
+     "text": "K tomuto dokumentu patří dva plány pro základní školy: plán prvního stupně se čtyřmi bloky pro první až pátý ročník a plán druhého stupně, který má stejných šest základních úrovní s jednoduššími cvičeními. Student, který základní úrovně absolvoval na základní škole, jimi po krátkém vstupním ověření projde rychleji; středoškolská cvičení jsou náročnější a samostatnější, proto se úrovně úplně nepřeskakují."
     }
    ]
   },
@@ -218,7 +242,7 @@
      "blocks": [
       {
        "type": "p",
-       "text": "Nejpřirozenější cestou je rozložit úrovně tak, aby povinná výuka informatiky pokryla úrovně 1 až 3 a volitelný seminář úrovně 4 až 6. Následující tabulka ukazuje doporučené zařazení pro osmiletá gymnázia a čtyřleté studijní obory; školy s jinou strukturou si sloupce přizpůsobí podle svých osnov. Důležitější než přesný ročník je zachovat pořadí úrovní a zajistit, aby mezi úrovní 3 a 4 neuplynul příliš dlouhý čas, protože programové dovednosti se rychle zapomínají, pokud se nepoužívají."
+       "text": "Nejpřirozenější cestou je rozložit úrovně tak, aby povinná výuka informatiky pokryla základní úrovně 1 až 6 a volitelný seminář rozšiřující úrovně 7 až 10. Následující tabulka ukazuje doporučené zařazení pro osmiletá gymnázia a čtyřleté studijní obory; školy s jinou strukturou si sloupce přizpůsobí podle svých osnov. Důležitější než přesný ročník je zachovat pořadí prvních dvou úrovní a nenechávat mezi úrovněmi příliš dlouhou pauzu."
       },
       {
        "type": "table",
@@ -231,43 +255,33 @@
        "rows": [
         [
          "1. ročník",
-         "Level 1 – Foundation",
-         "Povinná výuka informatiky, podzimní půlrok."
+         "Level 1 – Co je AI a jak funguje, Level 2 – Jak s AI mluvit",
+         "Povinná výuka informatiky."
         ],
         [
          "1. až 2. ročník",
-         "Level 2 – Intermediate",
-         "Povinná výuka informatiky, jarní půlrok navazujícího semestru."
+         "Level 3 – O čem s AI mluvit, Level 4 – Jaký nástroj na co",
+         "Povinná výuka informatiky; úroveň 3 lze vést i v základech společenských věd."
         ],
         [
          "2. až 3. ročník",
-         "Level 3 – Advanced",
+         "Level 5 – Poznej AI a používej ji poctivě, Level 6 – Svět AI",
          "Povinná výuka informatiky, případně projektová výuka."
         ],
         [
-         "3. ročník",
-         "Level 4 – API Integration",
-         "Volitelný seminář informatiky, bloková výuka."
-        ],
-        [
          "3. až 4. ročník",
-         "Level 5 – Custom AI Developer",
-         "Volitelný seminář, projektová výuka s rezervou."
-        ],
-        [
-         "4. ročník",
-         "Level 6 – Systems Architect",
-         "Seminář v kombinaci s ročníkovou prací a obhajobou."
+         "Level 7 až 10 – rozšíření pro zájemce",
+         "Volitelný seminář informatiky, případně v kombinaci s ročníkovou prací."
         ]
        ]
       },
       {
        "type": "p",
-       "text": "První etapa projektu AIFB se soustředí na úrovně 1 až 3, které se připravují k pilotnímu ověřování; jednou z možností je spolupráce s Gymnáziem Františka Palackého v Neratovicích, jejíž podmínky se teprve projednávají. Přístup k výukovým modulům a certifikaci je pro zapojené školy plánován jako bezplatný a jejich zkušenosti pomohou upravit náročnost úloh i podobu testů. Úrovně 4 až 6 jsou připravovány jako navazující etapa podle výsledků pilotu, a proto je vhodné jejich zařazení do osnov plánovat s určitou rezervou a sledovat aktuální informace projektu."
+       "text": "První etapa projektu AIFB se soustředí na základní úrovně 1 až 6, které se připravují k pilotnímu ověřování; jednou z možností je spolupráce s Gymnáziem Františka Palackého v Neratovicích, jejíž podmínky se teprve projednávají. Přístup k výukovým modulům a certifikaci je pro zapojené školy plánován jako bezplatný a jejich zkušenosti pomohou upravit náročnost úloh i podobu testů. Rozšiřující úrovně 7 až 10 jsou připravovány jako navazující etapa podle výsledků pilotu, a proto je vhodné jejich zařazení do osnov plánovat s určitou rezervou a sledovat aktuální informace projektu."
       },
       {
        "type": "p",
-       "text": "Žáci, kteří absolvovali úrovně 1 a 2 podle plánu pro druhý stupeň základní školy, mohou na střední škole po krátkém vstupním testu pokračovat rovnou úrovní 3. Dosažené úrovně je však vhodné přebírat až po ověření znalostí, protože obsah a nároky na druhém stupni jsou zjednodušené."
+       "text": "Žáci, kteří absolvovali základní úrovně podle plánu pro druhý stupeň základní školy, jimi na střední škole po krátkém vstupním ověření projdou rychleji. Dosažené úrovně je vhodné přebírat až po ověření znalostí, protože obsah a nároky na druhém stupni jsou zjednodušené."
       }
      ]
     },
@@ -278,7 +292,7 @@
      "blocks": [
       {
        "type": "p",
-       "text": "Vzdělávací moduly a certifikační testy jsou navrženy jako samostatné, ale propojené části systému. Výuka podle tohoto plánu studenty připraví na obsah úrovní, přičemž samotný certifikát získají po splnění stanovených podmínek certifikačního testu na platformě. U úrovní 1 až 3 je přístup pro zapojené školy plánován jako bezplatný, konkrétní podmínky zapojení školy sjedná vedení s provozovatelem projektu. Každý vydaný certifikát má jedinečný identifikátor, QR kód a veřejnou stránku pro ověření platnosti, na které je uvedeno, jaké dovednosti certifikát potvrzuje."
+       "text": "Vzdělávací moduly a certifikační testy jsou navrženy jako samostatné, ale propojené části systému. Výuka podle tohoto plánu studenty připraví na obsah úrovní, přičemž samotný certifikát získají po splnění stanovených podmínek certifikačního testu na platformě. U základních úrovní je přístup pro zapojené školy plánován jako bezplatný, konkrétní podmínky zapojení školy sjedná vedení s provozovatelem projektu. Každý vydaný certifikát má jedinečný identifikátor, QR kód a veřejnou stránku pro ověření platnosti, na které je uvedeno, jaké dovednosti certifikát potvrzuje."
       },
       {
        "type": "p",
@@ -301,7 +315,7 @@
       },
       {
        "type": "p",
-       "text": "Zavedení všech šesti úrovní do výuky je běh na dlouhou trať, který nevyžaduje, aby škola začala hned od všeho. Smysluplný první krok tvoří úrovně 1 a 2, které nepotřebují nic jiného než běžný počítač a bezplatný nástroj, a přitom studentům dají největší porci praktických dovedností pro každodenní práci s umělou inteligencí. Další úrovně lze přidávat postupně podle zájmu studentů a možností školy, a každý mezikrok je přínosem sám o sobě."
+       "text": "Zavedení všech úrovní do výuky je běh na dlouhou trať, který nevyžaduje, aby škola začala hned od všeho. Smysluplný první krok tvoří úrovně 1 a 2, které nepotřebují nic jiného než běžný počítač a bezplatný nástroj, a přitom studentům dají největší porci praktických dovedností pro každodenní práci s umělou inteligencí. Další úrovně lze přidávat postupně podle zájmu studentů a možností školy, a každý mezikrok je přínosem sám o sobě."
       }
      ]
     }
@@ -313,18 +327,17 @@
    "id": "ss-level-1",
    "order": 1,
    "code": "Level 1",
-   "title": "AIFB Foundation",
-   "subtitle": "Základy a bezpečnost",
+   "title": "Co je AI a jak funguje",
+   "subtitle": "LLM, tokeny, kontextové okno a halucinace",
    "intro": [
-    "První úroveň seznamuje studenty s tím, co dnešní nástroje umělé inteligence dovedou, kde jsou jejich limity a jak se s nimi pracuje bezpečně. Cílem není technický výklad, ale budování zdravého úsudku: student by měl po absolvování úrovně chápat, že jazykový model generuje text na základě naučených vzorců, že jeho odpovědi nejsou vždy pravdivé a že za výsledek práce nese odpovědnost člověk. Úroveň je vhodná jako úvod do celého bloku výuky o AI a nevyžaduje žádné předchozí zkušenosti s programováním ani s konverzačními nástroji."
+    "První úroveň dává studentům přesnější představu o nástroji, který většina z nich už používá. Cílem není technický výklad, ale úsudek opřený o několik pojmů: student má chápat, že velký jazykový model skládá text po tokenech podle naučených vzorců, že pracuje jen s tím, co se vejde do kontextového okna, že jeho znalosti končí určitým datem a že plynulá odpověď nemusí být pravdivá. Kdo tyto čtyři věci zná, dokáže si většinu podivného chování modelu vysvětlit sám. Úroveň nevyžaduje žádné předchozí zkušenosti s programováním."
    ],
    "goals": [
-    "Student vysvětlí vlastními slovy, co je velký jazykový model a jak přibližně funguje.",
-    "Student uvede alespoň tři typické limity současných AI nástrojů a k nim příklady chyb.",
-    "Student rozpozná nepřesný nebo vymyšlený výstup modelu a ověří ho v nezávislém zdroji.",
-    "Student rozřadí informace podle toho, zda je lze bezpečně zadat do AI nástroje.",
-    "Student se orientuje v rozhraních konverzačních nástrojů, ke kterým má jeho třída schválený přístup, například ChatGPT nebo Gemini, a sformuluje jasné a srozumitelné zadání.",
-    "Student popíše zásady bezpečného a etického používání AI ve škole i mimo ni."
+    "Student vysvětlí, co je velký jazykový model (LLM) a jak generuje odpověď.",
+    "Student vysvětlí pojmy token a kontextové okno a popíše, jak ovlivňují dlouhou konverzaci.",
+    "Student popíše, z čeho model čerpá, co je datum uzávěrky znalostí a jak vzniká zkreslení.",
+    "Student rozpozná halucinaci a ověří tvrzení modelu v nezávislém zdroji.",
+    "Student posoudí, na které úlohy se model hodí a kde je jeho odpověď potřeba kontrolovat."
    ],
    "hours": "7 až 8 hodin",
    "schedule": {
@@ -336,7 +349,7 @@
     "rows": [
      [
       "Blok 1",
-      "Teoretická příprava: historie AI, principy jazykových modelů, bezpečnost a etika.",
+      "Teoretická příprava: velký jazykový model, token, kontextové okno, trénovací data a jejich limity, halucinace a ověřování.",
       "2 hodiny"
      ],
      [
@@ -346,18 +359,18 @@
      ],
      [
       "Blok 3",
-      "Cvičení 3 (Co sdílet a co ne) a cvičení 4 (Srovnávací test rozhraní).",
+      "Cvičení 3 (Tokeny a kontextové okno v praxi) a cvičení 4 (Odkud model ví, co ví).",
       "2 hodiny"
      ],
      [
       "Blok 4",
-      "Cvičení 5 (Případová studie etického dilematu) a společné shrnutí úrovně.",
+      "Cvičení 5 (Pojmy pro laika) a společné shrnutí úrovně.",
       "1 až 2 hodiny"
      ]
     ]
    },
    "scheduleNote": [
-    "Rozvržení předpokládá, že teoretická příprava proběhne formou řízené diskuze s ukázkami na projektoru, a že studenti použijí přístup ke konverzačnímu nástroji, který pro třídu spravuje učitel. Pokud část třídy nemá vlastní účet, lze cvičení 1 provést ve dvojicích. Závěrečný blok je vhodné vést jako společnou besedu, protože etická dilemata fungují lépe ve skupinové diskuzi než v samostatné práci."
+    "Rozvržení předpokládá, že teoretická příprava proběhne formou řízené diskuze s ukázkami na projektoru a že studenti použijí přístup ke konverzačnímu nástroji, který pro třídu spravuje učitel. Pokud část třídy nemá vlastní účet, lze cvičení provést ve dvojicích. U cvičení 3 si předem vyzkoušejte, jak dlouhá konverzace je ve zvoleném nástroji potřeba, aby model začal pravidla porušovat; u novějších modelů to může trvat déle."
    ],
    "lessons": [
     {
@@ -367,21 +380,20 @@
      "title": "Teorie",
      "teacher": {
       "intro": [
-       "Teoretická část úrovně pokrývá stručnou historii umělé inteligence, princip fungování velkých jazykových modelů, možnosti a limity současných nástrojů a zásady bezpečného zacházení s daty. Opakovací otázky slouží k aktivaci pozornosti na začátku hodiny i k rychlé kontrole porozumění na konci. Diskuzní témata jsou určena pro práci ve skupinách a nemají jednu správnou odpověď; cílem je, aby studenti formulovali a obhájili vlastní stanovisko."
+       "Teoretická část pokrývá stručnou historii umělé inteligence, princip velkých jazykových modelů, tokeny a kontextové okno, možnosti a limity současných nástrojů a zásady ověřování. Opakovací otázky slouží k aktivaci pozornosti na začátku hodiny i k rychlé kontrole porozumění na konci. Diskuzní témata jsou určena pro práci ve skupinách a nemají jednu správnou odpověď; cílem je, aby studenti formulovali a obhájili vlastní stanovisko."
       ],
       "reviewQuestions": [
-       "Co znamená zkratka LLM a co velký jazykový model vlastně dělá, když odpovídá na otázku?",
-       "Proč se výstup modelu někdy jeví jako sebejistý, i když informace jsou smyšlené?",
-       "Co je to halucinace modelu a uveďte příklad situace, kdy může být nebezpečná.",
-       "Která data byste nikdy neměli zadávat do veřejného konverzačního nástroje a proč?",
-       "Na co si dát pozor při práci s texty, obrázky nebo kódem vytvořenými umělou inteligencí z hlediska autorských práv?",
-       "Čím se od sebe liší nástroje jako ChatGPT, Claude nebo Gemini a v čem se naopak podobají?",
-       "Kdy má podle vás smysl AI použít a kdy je lepší práci odvést sami, bez její pomoci?"
+       "Co znamená zkratka LLM a co model dělá, když odpovídá na otázku?",
+       "Co je token a proč se délka textu u modelů počítá v tokenech, ne ve slovech?",
+       "Co je kontextové okno a co se stane, když ho konverzace přesáhne?",
+       "Proč model někdy zní sebejistě, i když si informaci vymyslel?",
+       "Co je datum uzávěrky znalostí a jak se liší model s vyhledáváním od modelu bez něj?",
+       "Jak se do odpovědí modelu dostanou předsudky?",
+       "Kdy má smysl AI použít a kdy je lepší práci odvést bez ní?"
       ],
       "discussionTopics": [
-       "Student použil AI k napsání domácího úkolu, který měl trénovat jeho vlastní dovednost. Je to podvod, chytrá práce, nebo něco mezi?",
-       "Společnost vydává novinky psané modelem bez kontroly redaktora. Kdo nese odpovědnost za případnou chybu v informacích?",
-       "Kamarád vám poradil zadat do AI nástroje fotku spolužáka a vyzvat ho k vtipnému popisu. Co je na tom problém a jak byste zareagovali?"
+       "Student použil AI k napsání úkolu, který měl trénovat jeho vlastní dovednost. Je to podvod, chytrá práce, nebo něco mezi?",
+       "Redakce vydává zprávy psané modelem bez kontroly redaktora. Kdo nese odpovědnost za chybu?"
       ]
      },
      "pupil": {
@@ -426,13 +438,14 @@
      "id": "ss-level-1-cv3",
      "type": "exercise",
      "order": 3,
-     "title": "Co sdílet a co ne",
+     "title": "Tokeny a kontextové okno v praxi",
      "teacher": {
       "description": [
-       "Učitel si před hodinou připraví dvacet karet s různými informacemi, například jméno oblíbeného youtubera, rodné číslo, fotografie z oslavy, adresa školy, známky z pololetí, veřejné jméno autora knihy, zdravotní záznam nebo název oblíbené hry. Ve skupinách karty roztřídí do tří kategorií: lze bez obav zadat do AI, zadat jen po úpravě a anonymizaci, nikdy nezadávat. Ke každé sporné kartě skupina napíše jednořádkové zdůvodnění. Na závěr skupiny porovnají výsledky a diskutují případy, kde se jejich hodnocení lišilo."
+       "Studenti nejdřív odhadnou, na kolik tokenů model rozdělí tři texty: českou větu, stejnou větu anglicky a řádek s čísly a značkami. Odhady porovnají s výsledkem nástroje, který tokeny zobrazuje, nebo s ukázkou, kterou připraví učitel, a zapíšou, proč čeština vychází na víc tokenů než angličtina.",
+       "Druhá část zkoumá kontextové okno. Student na začátku konverzace zadá modelu tři pravidla, například odpovídej nejvýš dvěma větami, každou odpověď ukonči slovem „hotovo“ a nepoužívej slovo „velmi“. Potom vede dlouhý rozhovor na jiné téma a vkládá delší texty. Sleduje, po kolika zprávách model některé pravidlo poruší, a zkusí dva způsoby nápravy: připomenout pravidla a začít novou konverzaci se shrnutím."
       ],
-      "expectedOutput": "Roztříděné karty se zdůvodněními a společný seznam pravidel bezpečného zadávání dat.",
-      "form": "Skupinová práce se společným shrnutím.",
+      "expectedOutput": "Tabulka odhadů a skutečných počtů tokenů a záznam pokusu: kdy model pravidlo porušil a který způsob nápravy fungoval.",
+      "form": "Samostatně nebo ve dvojicích.",
       "time": "45 minut"
      },
      "pupil": {
@@ -443,13 +456,13 @@
      "id": "ss-level-1-cv4",
      "type": "exercise",
      "order": 4,
-     "title": "Srovnávací test rozhraní",
+     "title": "Odkud model ví, co ví",
      "teacher": {
       "description": [
-       "Student zvolí tři rozmanité úlohy, například vysvětlení odborného pojmu, návrh plánu na víkend a opravu chybné věty. Stejné zadání pošle postupně do dvou nebo tří nástrojů, které třída používá, a odpovědi si uloží; nástroj, ke kterému studenti přístup nemají (například Claude určený od 18 let), učitel krátce předvede z vlastního účtu. Do tabulky s řádky podle nástrojů a sloupci podle úloh pak zaznamená pro každý nástroj a každou úlohu, jak odpověď obstála z hlediska srozumitelnosti, přesnosti a použitelnosti. Závěrem odpoví na otázku, zda by pro daný typ úlohy některému nástroji dal přednost a proč."
+       "Student položí modelu čtyři druhy otázek: na obecně známý fakt, na událost z posledních týdnů, na místní údaj (například jméno ředitele školy nebo otevírací dobu knihovny v obci) a na úzce odborné téma, které sám dobře zná. U každé odpovědi zapíše, jestli model odpověděl správně, přiznal neznalost, nebo si odpověď vymyslel, a jak to ověřil. Pokud má škola k dispozici nástroj s vyhledáváním, zopakuje stejné otázky v něm a porovná, co se změnilo a jestli uvedené zdroje opravdu existují a tvrzení potvrzují. Třída z výsledků odvodí, o čem model spolehlivě neví."
       ],
-      "expectedOutput": "Vyplněná srovnávací tabulka použitých nástrojů a tři závěrečné věty s doporučením.",
-      "form": "Samostatně.",
+      "expectedOutput": "Tabulka čtyř otázek s hodnocením odpovědi a způsobem ověření; tři obecná zjištění o hranicích znalostí modelu.",
+      "form": "Samostatně, společné shrnutí.",
       "time": "45 minut"
      },
      "pupil": {
@@ -460,14 +473,14 @@
      "id": "ss-level-1-cv5",
      "type": "exercise",
      "order": 5,
-     "title": "Případová studie etického dilematu",
+     "title": "Pojmy pro laika",
      "teacher": {
       "description": [
-       "Skupiny dostanou popis situace: studentka si není jistá, zda smí použít AI při přípravě referátu, a učitel má vlastní, dosud nevyhlášená pravidla. Skupina nejdřív vyjmenuje zájmy všech zúčastněných, poté navrhne alespoň dvě možná řešení včetně jejich důsledků a zvolí jedno, které obhájí. Následuje prezentace stanovisek jednotlivých skupin a společná diskuze. Jako rozšíření může třída navrhnout vlastní pravidla používání AI pro svůj předmět či celou školu."
+       "Studenti ve dvojicích připraví jednostránkový výklad šesti pojmů pro čtenáře, který o AI nic neví, například pro rodiče: velký jazykový model, token, kontextové okno, trénovací data, halucinace a teplota. Každý pojem vysvětlí nejvýš třemi větami a přidají příklad z běžného používání, na kterém je vidět, proč je užitečné pojem znát. Výklad napíšou sami; model smějí použít až ke kontrole věcné správnosti a jeho připomínky ověří v teorii. Dvojice si texty vymění a čtou je očima laika: podtrhnou každé slovo, kterému by nerozuměl."
       ],
-      "expectedOutput": "Krátce zdokumentované stanovisko skupiny s odůvodněním a návrh pravidel pro třídu.",
-      "form": "Skupinová práce s prezentací.",
-      "time": "45 až 90 minut"
+      "expectedOutput": "Jednostránkový výklad šesti pojmů s příklady, opravený po vzájemné kontrole.",
+      "form": "Ve dvojicích, vzájemná kontrola.",
+      "time": "45 minut"
      },
      "pupil": {
       "status": "todo"
@@ -475,13 +488,13 @@
     }
    ],
    "teacherNotes": [
-    "Pro všechna cvičení úrovně 1 stačí bezplatné verze nástrojů; nepotřebujete placené předplatné ani pokročilé modely. U cvičení 2 si sadu chybných výstupů můžete předem vygenerovat sami a anonymizovat. U cvičení 5 je užitečné mít připravené otázky pro moderování diskuze, protože se brzy objeví šedé zóny bez jednoznačné odpovědi. Před zahájením úrovně si ověřte aktuální věkové podmínky služeb: ChatGPT nesmí používat děti do 13 let a u nezletilých do 18 let vyžaduje souhlas zákonného zástupce, Claude je určen až od 18 let, takže ho ve výuce ukazujete pouze z vlastního účtu, a Gemini je přístupný i mladším teenagerům s doplňkovými ochranami. Nejrobustnějším řešením pro třídu je proto jeden sjednocený nástroj zvolený učitelem a v případě potřeby ukázky z učitelova účtu, aby výuka nezávisela na tom, které služby si kteří studenti založí."
+    "Pro všechna cvičení úrovně 1 stačí bezplatné verze nástrojů. U cvičení 2 si sadu chybných výstupů můžete předem vygenerovat sami. Před zahájením úrovně si ověřte aktuální věkové podmínky služby: většina konverzačních nástrojů vyžaduje u nezletilých souhlas zákonného zástupce a některé jsou určeny až od 18 let. Nejjednodušším řešením je jeden nástroj zvolený školou pro celou třídu. Pravidla bezpečné práce shrnuje oddíl 1.4."
    ],
    "certification": {
     "name": "Certified AI Associate",
     "status": "planned"
    },
-   "themes": "Základy AI, principy jazykových modelů, bezpečnost dat, etika, orientace v rozhraních konverzačních nástrojů.",
+   "themes": "Velký jazykový model, token, kontextové okno, trénovací data a jejich limity, halucinace a ověřování.",
    "recommendedPlacement": "1. ročník SŠ",
    "unitLabel": "Level",
    "status": "content-ready",
@@ -491,18 +504,17 @@
    "id": "ss-level-2",
    "order": 2,
    "code": "Level 2",
-   "title": "AIFB Intermediate",
-   "subtitle": "Prompting a datové struktury",
+   "title": "Jak s AI mluvit",
+   "subtitle": "Prompt, iterace a strukturovaný výstup",
    "intro": [
-    "Druhá úroveň rozvíjí dovednost, která odlišuje běžného uživatele od pokročilého: schopnost přesně zadávat úlohy a strukturovaně komunikovat s modelem. Studenti se učí pracovat s rolí a kontextem, předávat modelu příklady požadovaného výstupu a výsledky zapisovat ve formátech Markdown a JSON, které jsou základem strojově zpracovatelné komunikace. Tyto dovednosti přímo navazují na úroveň 3, kde budou strukturované výstupy a přesná zadání potřebné pro sestavování automatizovaných postupů."
+    "Druhá úroveň rozvíjí dovednost, která nejvíc rozhoduje o kvalitě výsledku: přesně zadat úlohu a zadání systematicky ladit. Studenti se učí pracovat s rolí a kontextem, používat ukázkové příklady, vést iterace tak, aby věděli, která změna pomohla, a rozdělit rozsáhlou úlohu na kroky, které lze průběžně kontrolovat. Druhým tématem je podoba výstupu. Studenti pracují s formáty Markdown a JSON z pohledu uživatele: píšou v Markdownu poznámky, umějí si o strukturovaný výstup říct a přečtou zápis v JSON, na který narazí v nastavení aplikací i v odpovědích nástrojů."
    ],
    "goals": [
     "Student složí prompt z role, kontextu, úkolu a požadované podoby výstupu.",
-    "Student vysvětlí rozdíl mezi přístupy zero-shot a few-shot a uvede, kdy který použít.",
-    "Student vytvoří dokument v Markdownu s nadpisy, seznamy, tabulkou a odkazem.",
-    "Student převede nestrukturovaný text do platné struktury JSON a strukturu si zpětně přečte i zkontroluje.",
-    "Student napíše znovupoužitelnou instrukci (tzv. AI skill), kterou lze do modelu vkládat opakovaně, pro konkrétní činnost.",
-    "Student kriticky porovná výstupy modelu pro různě formulovaná zadání téže úlohy."
+    "Student vysvětlí rozdíl mezi zadáním bez příkladů a s příklady (zero-shot a few-shot) a zvolí vhodný přístup.",
+    "Student vede iterace zadání a doloží, která úprava vedla ke zlepšení.",
+    "Student napíše dokument v Markdownu a přečte a opraví jednoduchý zápis v JSON.",
+    "Student rozdělí rozsáhlou úlohu na kroky s průběžnou kontrolou a vytvoří znovupoužitelnou instrukci."
    ],
    "hours": "7 až 8 hodin",
    "schedule": {
@@ -514,7 +526,7 @@
     "rows": [
      [
       "Blok 1",
-      "Teoretická příprava: prompting, role a kontext, zero-shot a few-shot, formáty Markdown a JSON.",
+      "Teoretická příprava: prompt engineering, role a kontext, zero-shot a few-shot, iterace, Markdown a JSON, dlouhé úlohy po krocích.",
       "2 hodiny"
      ],
      [
@@ -524,18 +536,18 @@
      ],
      [
       "Blok 3",
-      "Cvičení 3 (Markdown dokument) a cvičení 4 (JSON struktury).",
+      "Cvičení 3 (Iterace: od prvního pokusu k použitelnému výsledku) a cvičení 4 (Strukturovaný výstup: Markdown a JSON).",
       "2 hodiny"
      ],
      [
       "Blok 4",
-      "Cvičení 5 (Vlastní AI skill) a společné shrnutí úrovně.",
+      "Cvičení 5 (Dlouhá úloha po krocích) a společné shrnutí úrovně.",
       "1 až 2 hodiny"
      ]
     ]
    },
    "scheduleNote": [
-    "Blok 1 je vhodné vést formou živých ukázek: učitel na projektoru postupně vylepšuje jeden prompt a třída komentuje, co se s výstupem děje. Při cvičení 3 a 4 se hodí dvojice, kde jeden student diktuje strukturu a druhý ji zapisuje, protože se při práci s formáty rychle projeví chyby v domluvě. Závěrečné cvičení úrovně je nejrozsáhlejší a lze ho zadat i jako domácí práci, kterou třída zhodnotí v posledním bloku."
+    "Blok 1 je vhodné vést formou živých ukázek: učitel na projektoru postupně vylepšuje jeden prompt a třída komentuje, co se s výstupem děje. U cvičení 3 trvejte na předem sepsaných kritériích, jinak se hodnocení zvrhne v dojem. Cvičení 5 je nejrozsáhlejší; nejlépe funguje, když studenti pracují na skutečné úloze z jiného předmětu."
    ],
    "lessons": [
     {
@@ -545,16 +557,16 @@
      "title": "Teorie",
      "teacher": {
       "intro": [
-       "Teoretická část zavádí pojem prompt engineering jako disciplínu přesné komunikace s modelem. Studenti se seznámí se stavebními prvky dobrého zadání, s významem kontextu a rolí a s tím, kdy má smysl doplnit příklady požadovaného výstupu. Druhým tématem jsou datové formáty: Markdown pro čitelné dokumenty a JSON pro přenos strukturovaných dat. Opakovací otázky propojují obě témata, protože v praxi se prompt a formát výstupu kombinují."
+       "Teoretická část zavádí prompt engineering jako disciplínu přesné komunikace s modelem. Studenti se seznámí se stavebními prvky dobrého zadání, s významem kontextu a rolí, s ukázkovými příklady a s postupem ladění. Druhým tématem jsou formáty: Markdown pro čitelné dokumenty a JSON pro strukturovaná data. Opakovací otázky propojují obě témata, protože v praxi se zadání a podoba výstupu kombinují."
       ],
       "reviewQuestions": [
-       "Jaké čtyři stavební prvky dobrého promptu jsme si uvedli a k čemu každý slouží?",
-       "Vysvětlete vlastními slovy rozdíl mezi zero-shot a few-shot zadáním a uveďte příklad úlohy pro každý přístup.",
-       "Proč může nastat situace, že model při few-shot zadání napodobí i chybu z ukázkových příkladů?",
-       "Co znamená, že JSON je strojově čitelný formát, a proč je to pro automatizaci důležité?",
+       "Jaké čtyři stavební prvky má dobrý prompt a k čemu každý slouží?",
+       "Vysvětlete rozdíl mezi zero-shot a few-shot zadáním a uveďte příklad úlohy pro každý přístup.",
+       "Proč model při few-shot zadání napodobí i chybu z ukázkových příkladů?",
+       "Proč je při ladění lepší měnit jednu věc než přepsat celé zadání?",
        "Jak se v Markdownu zapíše nadpis druhé úrovně, odrážkový seznam a tabulka?",
-       "Kdy byste modelu předepisovali výstupní formát a kdy je lepší nechat výstup volný?",
-       "Co je to znovupoužitelná instrukce (tzv. AI skill) a čím se liší od jednorázového promptu?"
+       "Co znamená, že JSON je strojově čitelný, a kde se s ním jako uživatel setkáte?",
+       "Kdy je lepší začít novou konverzaci a co si do ní přenést?"
       ],
       "discussionTopics": [
        "Kde končí poctivá pomoc modelu a kde začíná zadávání úkolu, který má rozvíjet samotného studenta?",
@@ -603,13 +615,13 @@
      "id": "ss-level-2-cv3",
      "type": "exercise",
      "order": 3,
-     "title": "Markdown dokument",
+     "title": "Iterace: od prvního pokusu k použitelnému výsledku",
      "teacher": {
       "description": [
-       "Student dostane nestrukturovaný text o dvou stránkách, například výtah z encyklopedického hesla nebo pracovní poznámky. Jeho úkolem je vytvořit z textu přehledný dokument v Markdownu: s nadpisy, podnadpisy, odrážkovým seznamem, tabulkou a jedním odkazem. Model může využít pro doporučení struktury, ale finální úprava a kontrola syntaxe je na studentovi. Výsledek si zobrazí v náhledu a ověří, že se tabulka a seznamy vykreslily správně."
+       "Student si zvolí reálnou úlohu ze studia, například osnovu referátu, výpisky z kapitoly nebo e-mail vyučujícímu, a předem si sepíše tři kritéria, podle kterých pozná dobrý výsledek. Napíše první verzi zadání a odpověď podle kritérií ohodnotí. V každé další iteraci smí změnit jedinou věc (kontext, omezení, příklad, podobu výstupu) a zaznamená hypotézu, proč by měla pomoci, a skutečný účinek. Po čtyřech iteracích porovná první a poslední výstup a určí, která změna měla největší vliv a která žádný. Jednu iteraci záměrně provede v nové konverzaci se shrnutím a porovná ji s pokračováním ve staré."
       ],
-      "expectedOutput": "Soubor s dokumentem ve formátu Markdown a krátká reflexe, kde byla potřeba ruční korekce výstupu modelu.",
-      "form": "Samostatně nebo ve dvojicích.",
+      "expectedOutput": "Deník čtyř iterací s hypotézou a výsledkem, hodnocení podle vlastních kritérií a závěr o nejúčinnější úpravě.",
+      "form": "Samostatně, porovnání ve dvojicích.",
       "time": "45 minut"
      },
      "pupil": {
@@ -620,14 +632,15 @@
      "id": "ss-level-2-cv4",
      "type": "exercise",
      "order": 4,
-     "title": "JSON struktury",
+     "title": "Strukturovaný výstup: Markdown a JSON",
      "teacher": {
       "description": [
-       "Student dostane tři textové podklady: recept, rozvrh dne a seznam knih s autory. Pro každý podklad navrhne vhodnou JSON strukturu, promyslí názvy klíčů a vztahy mezi nimi a nechá si modelem vygenerovat datový soubor. Vygenerovaný JSON následně zkontroluje, opraví případné chyby a ověří platnost ve validátoru. Ke každému souboru doplní jedno kladné a jedno záporné zjištění o spolehlivosti modelu při práci se strukturou."
+       "První část je věnována Markdownu. Student si nechá z vlastních poznámek k jedné hodině vytvořit přehled v Markdownu s nadpisy, odrážkami a tabulkou pojmů, vloží ho do editoru, který Markdown zobrazuje, a ručně v něm opraví a doplní, co model vynechal. Cílem je, aby Markdown uměl číst i psát bez pomoci.",
+       "Druhá část je věnována JSON. Student požádá model, aby stejné pojmy vrátil jako JSON podle zadané struktury, například pole objektů s klíči pojem, vysvětlení a příklad. Výstup zkontroluje v online validátoru nebo v editoru, najde a opraví případnou chybu a vysvětlí, k čemu by takový zápis využil program, například aplikace s kartičkami na učení. Na závěr dostane zápis v JSON se třemi záměrnými chybami (chybějící čárka, uvozovky, závorka) a opraví ho."
       ],
-      "expectedOutput": "Tři platné JSON soubory s poznámkami o kontrole a jedním návrhem na zlepšení struktury.",
+      "expectedOutput": "Opravený dokument v Markdownu, platný zápis v JSON podle zadané struktury a opravený zápis se třemi chybami.",
       "form": "Samostatně.",
-      "time": "45 minut"
+      "time": "45 až 90 minut"
      },
      "pupil": {
       "status": "todo"
@@ -637,14 +650,14 @@
      "id": "ss-level-2-cv5",
      "type": "exercise",
      "order": 5,
-     "title": "Vlastní AI skill",
+     "title": "Dlouhá úloha po krocích",
      "teacher": {
       "description": [
-       "Student si zvolí opakovanou činnost, kterou by chtěl mít zjednodušenou, například přípravu krátkých kvízů z učiva, korekturu textů v daném stylu nebo generování plánů tréninku. Navrhne instrukci, kterou lze do modelu vložit opakovaně: popíše roli, vstup, pravidla výstupu a krajní případy, kdy má model odpovědět odmítnutím nebo dotazem na doplnění. Instrukci otestuje alespoň na třech různých vstupech, iterativně ji vylepší a prezentuje spolužákům ve zkrácené ukázce."
+       "Student pracuje na rozsáhlejší úloze, například na seminární práci nebo projektu do jiného předmětu, a místo jednoho velkého zadání si sestaví postup: ujasnění zadání a kritérií, osnova, kontrola osnovy, rozpracování jedné části, kontrola faktů, úprava stylu. U každého kroku určí, co udělá sám, s čím pomůže model a jak výstup zkontroluje, než půjde dál. Postup vyzkouší na jedné části úlohy. Z osvědčených zadání pak vytvoří znovupoužitelnou instrukci, kterou lze vložit na začátek příští podobné práce, a otestuje ji na jiném tématu. Text práce zůstává jeho vlastní; model pomáhá s osnovou, zpětnou vazbou a kontrolou."
       ],
-      "expectedOutput": "Finální instrukce, tři testovací vstupy s výstupy a shrnutí provedených úprav.",
+      "expectedOutput": "Postup o pěti až šesti krocích s rozdělením práce a kontrolou, výstup jedné části a znovupoužitelná instrukce otestovaná na druhém tématu.",
       "form": "Samostatně, závěrečná prezentace ve skupinách.",
-      "time": "45 až 90 minut (prezentaci lze vést ve skupinách souběžně)"
+      "time": "90 minut"
      },
      "pupil": {
       "status": "todo"
@@ -652,13 +665,13 @@
     }
    ],
    "teacherNotes": [
-    "Zadání cvičení průběžně obměňujte, protože přesně formulované úlohy tohoto typu si studenti snadno najdou vyřešené na internetu i v konverzačních nástrojích samotných. Stačí vyměnit konkrétní podklady, texty a činnosti, čímž zachováte vypovídací hodnotu práce i smysluplnost hodnocení. Při hodnocení kombinujte automatické kontroly, například validaci JSON, s předem vyhlášenými kritérii kvality promptu a vlastním posouzením. Studenty upozorněte, že věta, kterou model odmítne vyplnit podle zadání, je signálem nejasné instrukce, nikoli důvod k jejímu obejití."
+    "Zadání cvičení průběžně obměňujte, protože přesně formulované úlohy si studenti snadno najdou vyřešené. U cvičení 4 není cílem programování, ale schopnost strukturovaný zápis přečíst, vyžádat a opravit. U cvičení 5 se předem domluvte s vyučujícím předmětu, ze kterého úloha pochází, jaká míra pomoci AI je u ní přípustná. Kdo má zájem o programové využití formátů a volání modelů, pokračuje v rozšiřujících úrovních 7 až 10."
    ],
    "certification": {
     "name": "Certified Prompt Specialist",
     "status": "planned"
    },
-   "themes": "Prompt engineering, role a kontext, zero-shot a few-shot přístupy, Markdown, JSON, tvorba instrukcí.",
+   "themes": "Prompt engineering, role a kontext, zero-shot a few-shot, iterace, Markdown a JSON, dlouhé úlohy po krocích.",
    "recommendedPlacement": "1. až 2. ročník SŠ",
    "unitLabel": "Level",
    "status": "content-ready",
@@ -668,10 +681,708 @@
    "id": "ss-level-3",
    "order": 3,
    "code": "Level 3",
+   "title": "O čem s AI mluvit",
+   "subtitle": "Data, soukromí, osobní témata a duševní zdraví",
+   "intro": [
+    "Třetí úroveň se věnuje tomu, co studenti do konverzačních nástrojů skutečně píšou. Vedle školních úloh jsou to často osobní věci: vztahy, zdraví, starosti, rozhodnutí, o kterých nechtějí mluvit s nikým jiným. Úroveň k tomu přistupuje věcně a bez moralizování. První část ukazuje, co se s napsaným textem děje: kde se ukládá, kdo k němu může mít přístup a co o tom říkají podmínky služby. Druhá část se věnuje chatbotu jako důvěrníkovi: proč je příjemné mu psát, v čem může opravdu pomoci, kde jsou jeho meze a jak poznat, že rozhovory se strojem začínají nahrazovat lidi. Studenti si z úrovně odnesou vlastní zásady a přehled míst, kam se obrátit."
+   ],
+   "goals": [
+    "Student v podmínkách služby najde, jak nakládá s konverzacemi, a nastaví si soukromí.",
+    "Student rozliší osobní a citlivé údaje, údaje třetích osob a důvěrné informace a umí text anonymizovat.",
+    "Student vysvětlí, proč chatbot souhlasí a povzbuzuje, a popíše rizika citové závislosti.",
+    "Student posoudí, s jakým osobním tématem může AI pomoci a kdy je potřeba odborník.",
+    "Student zná konkrétní místa pomoci a sestaví si vlastní zásady pro osobní rozhovory s AI."
+   ],
+   "hours": "7 až 8 hodin",
+   "schedule": {
+    "header": [
+     "Blok",
+     "Obsah výuky",
+     "Časová dotace"
+    ],
+    "rows": [
+     [
+      "Blok 1",
+      "Teoretická příprava: kam putují data, podmínky služeb, anonymizace, chatbot jako důvěrník, duševní zdraví a místa pomoci.",
+      "2 hodiny"
+     ],
+     [
+      "Blok 2",
+      "Cvičení 1 (Kam putují moje data) a cvičení 2 (Co do AI nepatří).",
+      "2 hodiny"
+     ],
+     [
+      "Blok 3",
+      "Cvičení 3 (Chatbot jako důvěrník) a cvičení 4 (Těžká témata: kde AI pomůže a kde ne).",
+      "2 hodiny"
+     ],
+     [
+      "Blok 4",
+      "Cvičení 5 (Osobní zásady) a společné shrnutí úrovně.",
+      "1 až 2 hodiny"
+     ]
+    ]
+   },
+   "scheduleNote": [
+    "Cvičení 1 a 2 tvoří první polovinu úrovně a lze je vést v počítačové učebně. Cvičení 3 a 4 patří k sobě: zařaďte je ve dvou po sobě jdoucích hodinách a na cvičení 4 si vyhraďte čas bez tlaku. Počítejte s tím, že část studentů bude chtít mluvit až po hodině."
+   ],
+   "lessons": [
+    {
+     "id": "ss-level-3-teorie",
+     "type": "theory",
+     "order": 0,
+     "title": "Teorie",
+     "teacher": {
+      "intro": [
+       "Teoretická část má dvě poloviny. První popisuje cestu textu od klávesnice na servery poskytovatele, rozdíl mezi osobními, citlivými a důvěrnými údaji a postup anonymizace. Druhá se věnuje osobním tématům: proč jazykový model působí empaticky, co je na tom užitečné a co klamavé, a kde jsou hranice, za kterými je potřeba člověk. Téma veďte klidně a bez zlehčování. Nikdo ze studentů nesmí být vyzván, aby mluvil o sobě; pracuje se s modelovými situacemi."
+      ],
+      "reviewQuestions": [
+       "Co se děje s textem, který napíšete do veřejného konverzačního nástroje?",
+       "Jaký je rozdíl mezi osobním a citlivým údajem? Uveďte příklady.",
+       "Proč do AI nepatří údaje o jiných lidech ani interní dokumenty z brigády?",
+       "Co musí zůstat a co zmizet, když text anonymizujete?",
+       "Proč model skoro vždy souhlasí a mluví vstřícně?",
+       "S čím vám chatbot při osobním problému pomoci může a co neumí?",
+       "Kam se můžete obrátit, když je vám dlouhodobě špatně nebo máte strach o kamaráda?"
+      ],
+      "discussionTopics": [
+       "Je chatbot, kterému se člověk svěřuje, lepší než nic, nebo horší než nic?",
+       "Firma nabízí „AI přítele“, který si pamatuje všechno, co mu řeknete. Co za to firma získává?"
+      ]
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "ss-level-3-cv1",
+     "type": "exercise",
+     "order": 1,
+     "title": "Kam putují moje data",
+     "teacher": {
+      "description": [
+       "Studenti ve dvojicích prostudují podmínky užívání a zásady ochrany soukromí jednoho konverzačního nástroje, který určí učitel, a hledají odpovědi na šest otázek: jak dlouho se konverzace uchovávají, jestli se používají k trénování modelů a zda to lze vypnout, kdo je může číst, od kolika let je služba určena, co se děje s nahranými soubory a jak se historie maže. U každé odpovědi uvedou, kde ji našli. Dvojice s různými nástroji pak výsledky spojí do srovnávací tabulky. Kdo má vlastní účet, zkontroluje si doma jeho nastavení; ve škole se k osobním účtům nikdo nepřihlašuje."
+      ],
+      "expectedOutput": "Vyplněná tabulka šesti otázek s odkazem na příslušnou část podmínek a společné srovnání nástrojů.",
+      "form": "Ve dvojicích, společné srovnání.",
+      "time": "45 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "ss-level-3-cv2",
+     "type": "exercise",
+     "order": 2,
+     "title": "Co do AI nepatří",
+     "teacher": {
+      "description": [
+       "Učitel si před hodinou připraví dvacet karet s různými informacemi, například jméno oblíbeného youtubera, rodné číslo, fotografie z oslavy, adresa školy, známky z pololetí, veřejné jméno autora knihy, zdravotní záznam nebo název oblíbené hry. Ve skupinách karty roztřídí do tří kategorií: lze bez obav zadat do AI, zadat jen po úpravě a anonymizaci, nikdy nezadávat. Ke každé sporné kartě skupina napíše jednořádkové zdůvodnění. Na závěr skupiny porovnají výsledky a diskutují případy, kde se jejich hodnocení lišilo."
+      ],
+      "expectedOutput": "Roztříděné karty se zdůvodněními a společný seznam pravidel bezpečného zadávání dat.",
+      "form": "Skupinová práce se společným shrnutím.",
+      "time": "45 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "ss-level-3-cv3",
+     "type": "exercise",
+     "order": 3,
+     "title": "Chatbot jako důvěrník",
+     "teacher": {
+      "description": [
+       "Učitel předloží dva připravené záznamy rozhovorů. V prvním si smyšlený student stěžuje chatbotu na konflikt s rodiči a chatbot ho ve všem podpoří. Ve druhém stejný problém řeší s kamarádem, který mu oponuje. Studenti hledají, čím se odpovědi liší, a vysvětlují proč: model je vyladěný k vstřícnosti, nezná druhou stranu, nenese následky a nemá vlastní zájem na tom, jak to dopadne.",
+       "Skupiny pak rozeberou tři modelové situace: někdo si s chatbotem píše několik hodin denně, někdo má „AI přítele“ v placené aplikaci, někdo se s chatbotem radí před každým rozhodnutím. U každé pojmenují, co člověk získává, co ztrácí a podle čeho by poznal, že to přerůstá. Výsledkem je seznam signálů, například odkládání setkání s lidmi nebo neklid bez přístupu k aplikaci."
+      ],
+      "expectedOutput": "Rozbor dvou rozhovorů a seznam pěti signálů, že rozhovory s chatbotem začínají nahrazovat lidi.",
+      "form": "Společný rozbor, dál ve skupinách.",
+      "time": "45 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "ss-level-3-cv4",
+     "type": "exercise",
+     "order": 4,
+     "title": "Těžká témata: kde AI pomůže a kde ne",
+     "teacher": {
+      "description": [
+       "Cvičení pracuje jen s modelovými situacemi; učitel na začátku řekne, že nikdo nemusí mluvit o sobě, a připomene, kde ve škole sídlí školní psycholog nebo výchovný poradce. Skupiny dostanou pět situací: stres před maturitou, rozchod, dlouhodobá úzkost a nespavost, kamarád, který naznačuje, že nechce žít, a podezření na poruchu příjmu potravy u spolužačky.",
+       "U každé situace zapíšou do tří sloupců, co může udělat AI (pomoci pojmenovat, co se děje, najít informace o odborné pomoci, připravit první větu pro těžký rozhovor), co AI neumí (posoudit závažnost, poznat krizi, zavolat pomoc, vést léčbu) a kdo má být další krok: blízký člověk, školní psycholog, praktický lékař, Linka bezpečí 116 111 (pro děti a studenty do 26 let), Linka první psychické pomoci 116 123, při ohrožení života 155 nebo 112. Třída výsledky spojí do jedné mapy pomoci."
+      ],
+      "expectedOutput": "Tabulka pěti situací se třemi sloupci a třídní mapa pomoci s konkrétními kontakty.",
+      "form": "Skupinová práce, společné shrnutí.",
+      "time": "45 až 90 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "ss-level-3-cv5",
+     "type": "exercise",
+     "order": 5,
+     "title": "Osobní zásady",
+     "teacher": {
+      "description": [
+       "Každý student si sepíše vlastní zásady pro osobní rozhovory s AI. Mají mít nejvýš deset bodů ve čtyřech oblastech: které údaje o sobě neuvádím, co nepíšu o druhých, jak zacházím s radami v osobních věcech a co udělám, když jde o něco vážného. Ke každému bodu připojí jednu větu zdůvodnění. Zásady jsou osobní a neodevzdávají se; učitel hodnotí jen to, že vznikly. Dobrovolníci přečtou jeden bod, který považují za nejdůležitější, a třída z nich sestaví společný krátký seznam."
+      ],
+      "expectedOutput": "Osobní zásady o nejvýš deseti bodech (neodevzdávají se) a společný třídní seznam.",
+      "form": "Samostatně, dobrovolné sdílení.",
+      "time": "45 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    }
+   ],
+   "teacherNotes": [
+    "Úroveň se dotýká duševního zdraví. Před cvičením 4 informujte školního psychologa nebo výchovného poradce, ověřte si postup školy pro případ, že se student svěří, a kontakty uvádějte konkrétně. Pracujte jen s modelovými situacemi a nikoho nenuťte ke sdílení. Vyhněte se zesměšňování i strašení: řada studentů si s chatbotem píše o osobních věcech běžně a moralizování je odradí od otevřenosti. U cvičení 1 se studenti nepřihlašují k osobním účtům; podmínky jsou veřejně dostupné. Pravidla ochrany údajů shrnuje oddíl 1.4."
+   ],
+   "certification": null,
+   "themes": "Kam putují data, podmínky služeb, anonymizace, chatbot jako důvěrník, duševní zdraví a místa pomoci.",
+   "recommendedPlacement": "1. až 2. ročník SŠ",
+   "unitLabel": "Level",
+   "status": "content-ready",
+   "lessonCount": 6
+  },
+  {
+   "id": "ss-level-4",
+   "order": 4,
+   "code": "Level 4",
+   "title": "Jaký nástroj na co",
+   "subtitle": "Výběr nástroje a modelu, AI při studiu a v praxi",
+   "intro": [
+    "Čtvrtá úroveň učí vybírat. Častou chybou není, že lidé AI používají špatně, ale že ji používají na úlohy, které jiný nástroj zvládne spolehlivěji, rychleji a levněji: přesný výpočet patří do tabulky, aktuální údaj do vyhledávače a hromadné přejmenování souborů zvládne krátký skript. Studenti si na vlastních pokusech ověří, kde AI vyhrává a kde prohrává, a naučí se rozhodovat podle spolehlivosti, času a ceny. Druhá část úrovně se věnuje výběru uvnitř AI: jak se liší rychlé a velké modely, bezplatné a placené verze a nástroje pro text, obraz a vyhledávání. Úroveň uzavírají dvě praktické oblasti, studium a brigáda."
+   ],
+   "goals": [
+    "Student u úlohy rozhodne, zda je vhodná AI, vyhledávač, tabulka, nebo jednoduchý program, a rozhodnutí zdůvodní.",
+    "Student porovná nástroje podle správnosti, času a ceny na konkrétní úloze.",
+    "Student vysvětlí, čím se liší menší a větší modely a bezplatné a placené verze, a zvolí vhodný typ pro úlohu.",
+    "Student používá AI při studiu tak, aby látce rozuměl, a umí to doložit.",
+    "Student použije AI při běžné pracovní úloze, ochrání při tom důvěrné údaje a výstup zkontroluje."
+   ],
+   "hours": "7 až 8 hodin",
+   "schedule": {
+    "header": [
+     "Blok",
+     "Obsah výuky",
+     "Časová dotace"
+    ],
+    "rows": [
+     [
+      "Blok 1",
+      "Teoretická příprava: kdy AI nepoužít, srovnání nástrojů, výběr modelu podle úkolu a ceny, AI při studiu a na brigádě.",
+      "2 hodiny"
+     ],
+     [
+      "Blok 2",
+      "Cvičení 1 (AI, vyhledávač, tabulka, nebo skript?) a cvičení 2 (Stejný úkol, tři nástroje).",
+      "2 hodiny"
+     ],
+     [
+      "Blok 3",
+      "Cvičení 3 (Výběr modelu podle úkolu a ceny) a cvičení 4 (AI při studiu).",
+      "2 hodiny"
+     ],
+     [
+      "Blok 4",
+      "Cvičení 5 (AI na brigádě a v praxi) a společné shrnutí úrovně.",
+      "1 až 2 hodiny"
+     ]
+    ]
+   },
+   "scheduleNote": [
+    "Úroveň stojí na měřených pokusech, proto si podklady připravte tak, aby šla správnost jednoznačně ověřit. Cvičení 1 se obejde bez počítačů. U cvičení 3 se údaje o cenách a limitech rychle mění; zjišťujte je vždy z oficiálních stránek a s datem. Cvičení 4 dává smysl jen s látkou, kterou studenti právě probírají."
+   ],
+   "lessons": [
+    {
+     "id": "ss-level-4-teorie",
+     "type": "theory",
+     "order": 0,
+     "title": "Teorie",
+     "teacher": {
+      "intro": [
+       "Teoretická část staví AI vedle nástrojů, které studenti znají: vyhledávače, tabulkového procesoru a jednoduchých programů. Vysvětluje, proč je deterministický nástroj u přesných a opakovaných úloh spolehlivější, a kdy naopak dává smysl AI. Dále popisuje druhy AI nástrojů, rozdíl mezi menšími a většími modely a to, co se skrývá za cenou. Závěr patří zásadám pro studium a pro práci."
+      ],
+      "reviewQuestions": [
+       "Proč je tabulkový procesor na výpočty spolehlivější než jazykový model?",
+       "Co znamená, že skript dá při stejném vstupu vždy stejný výsledek, a proč je to výhoda?",
+       "Na které druhy úloh se AI hodí nejlépe?",
+       "Čím se liší menší a rychlejší model od velkého?",
+       "Co se obvykle liší mezi bezplatnou a placenou verzí nástroje?",
+       "Jak poznáte, že vám AI při učení pomohla, a ne jen ušetřila práci?",
+       "Které informace z brigády nebo praxe do veřejného AI nástroje nepatří?"
+      ],
+      "discussionTopics": [
+       "Firma nahradila jednoduchý formulář chatbotem. Kdy je to zlepšení a kdy krok zpět?",
+       "Je používání nejsilnějšího modelu na každou drobnost plýtvání, nebo rozumná jistota?"
+      ]
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "ss-level-4-cv1",
+     "type": "exercise",
+     "order": 1,
+     "title": "AI, vyhledávač, tabulka, nebo skript?",
+     "teacher": {
+      "description": [
+       "Skupiny dostanou dvacet úloh ze studia a běžného života: spočítat průměr známek, přejmenovat dvě stě fotek podle data, zjistit termín přihlášek na vysokou školu, shrnout dlouhý článek, převést dokument do PDF, navrhnout strukturu prezentace, najít nejlevnější spoj, opravit styl motivačního dopisu, seřadit tabulku podle sloupce nebo přeložit odborný text. Ke každé úloze zvolí nástroj a u osmi z nich zapíšou zdůvodnění podle tří kritérií: spolehlivost výsledku, čas a cena. U úloh typu „skript“ nemusí program umět napsat; stačí poznat, že jde o přesný opakovaný postup, a vědět, že o takový skript lze požádat i AI. Třída pak porovná sporné úlohy."
+      ],
+      "expectedOutput": "Přiřazení dvaceti úloh a osm zdůvodnění podle spolehlivosti, času a ceny.",
+      "form": "Skupinová práce se společným shrnutím.",
+      "time": "45 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "ss-level-4-cv2",
+     "type": "exercise",
+     "order": 2,
+     "title": "Stejný úkol, tři nástroje",
+     "teacher": {
+      "description": [
+       "Dvojice provedou tři měřené pokusy. V prvním spočítají součty a průměry z tabulky o padesáti řádcích v tabulkovém procesoru a totéž zadají modelu; výsledky porovnají a hledají chyby. Ve druhém hledají aktuální údaj, například podmínky přijímacího řízení na zvoleném oboru, ve vyhledávači a u AI a ověřují ho na oficiálních stránkách. Ve třetím nechají model shrnout dvoustránkový text a shrnutí porovnají s vlastním. U každého pokusu zapíšou čas, správnost a to, jak snadno šla chyba odhalit. Závěr pojmenuje, kde AI ušetřila čas a kde přidala riziko."
+      ],
+      "expectedOutput": "Protokol tří pokusů s časem, správností a nalezenými chybami a závěr pro každý typ úlohy.",
+      "form": "Ve dvojicích.",
+      "time": "45 až 90 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "ss-level-4-cv3",
+     "type": "exercise",
+     "order": 3,
+     "title": "Výběr modelu podle úkolu a ceny",
+     "teacher": {
+      "description": [
+       "Učitel představí, podle čeho se modely a nástroje liší: velikost a rychlost modelu, schopnost pracovat s obrázky a soubory, přístup k vyhledávání, limity bezplatné verze a cena placené. Studenti z oficiálních stránek dvou poskytovatelů zjistí, co nabízí bezplatná a placená verze, a zapíšou údaje s datem. Potom dostanou šest úloh, například oprava překlepů v e-mailu, rozbor dlouhého dokumentu, návrh loga, rešerše s uvedením zdrojů, vysvětlení příkladu z matematiky a přepis nahrávky, a ke každé určí, jaký typ nástroje stačí a kde by se vyplatil silnější. Diskuze se věnuje otázce, kdy má placená verze pro studenta smysl."
+      ],
+      "expectedOutput": "Srovnání bezplatné a placené verze dvou nástrojů s datem zjištění a tabulka šesti úloh s doporučeným typem nástroje.",
+      "form": "Ve dvojicích, společná diskuze.",
+      "time": "45 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "ss-level-4-cv4",
+     "type": "exercise",
+     "order": 4,
+     "title": "AI při studiu",
+     "teacher": {
+      "description": [
+       "Student si vybere téma, ze kterého ho čeká zkoušení nebo test. Bez AI si nejdřív zapíše, co umí a čemu nerozumí. Pak s modelem vyzkouší tři postupy: vysvětlení obtížné části na jiné úrovni a s jiným příkladem, zkoušení otázkami bez prozrazení odpovědí se zpětnou vazbou a sestavení plánu opakování na týden. Vše, co model tvrdí, ověří v učebnici a zapíše aspoň jednu nalezenou nepřesnost. Na závěr látku bez pomůcek vysvětlí spolužákovi. Do reflexe porovná tento postup se zadáním „udělej mi výpisky“: co si z každého odnesl o týden později."
+      ],
+      "expectedOutput": "Záznam studia: výchozí stav, otázky s vlastními odpověďmi, nalezená nepřesnost, plán opakování a krátká reflexe.",
+      "form": "Samostatně, vysvětlení ve dvojicích.",
+      "time": "45 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "ss-level-4-cv5",
+     "type": "exercise",
+     "order": 5,
+     "title": "AI na brigádě a v praxi",
+     "teacher": {
+      "description": [
+       "Studenti řeší čtyři modelové pracovní úlohy: odpověď na stížnost zákazníka, úprava životopisu a motivačního dopisu k inzerátu, zápis z porady z neuspořádaných poznámek a přehled směn do tabulky. Podklady připraví učitel a schválně do nich vloží údaje, které do veřejného nástroje nepatří: jména zákazníků, telefonní čísla, ceny dodavatele. Student musí nejdřív rozhodnout, co z podkladů smí vložit a co anonymizuje, pak úlohu s AI zpracuje a výstup zkontroluje: fakta, tón a to, zda si model nic nepřidal. U životopisu ověří, že v něm nejsou dovednosti, které nemá. Třída sepíše pravidla, na která by se zeptala zaměstnavatele první den."
+      ],
+      "expectedOutput": "Čtyři zpracované úlohy se seznamem odstraněných údajů a provedených kontrol; seznam otázek na pravidla zaměstnavatele.",
+      "form": "Samostatně nebo ve dvojicích.",
+      "time": "90 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    }
+   ],
+   "teacherNotes": [
+    "Nestavte úroveň jako spor „AI proti ostatním“; cílem je vědomý výběr. Úlohy volte tak, aby AI v části z nich prokazatelně vyhrála. U cvičení 3 nevyžadujte placené účty a nedoporučujte konkrétní předplatné. U cvičení 5 používejte jen smyšlené podklady. Kdo chce skripty a automatizace sám psát, najde je v rozšiřujících úrovních 7 až 10. Pravidla bezpečné práce shrnuje oddíl 1.4."
+   ],
+   "certification": null,
+   "themes": "Kdy AI nepoužít, srovnání nástrojů, výběr modelu podle úkolu a ceny, AI při studiu a na brigádě.",
+   "recommendedPlacement": "2. ročník SŠ",
+   "unitLabel": "Level",
+   "status": "content-ready",
+   "lessonCount": 6
+  },
+  {
+   "id": "ss-level-5",
+   "order": 5,
+   "code": "Level 5",
+   "title": "Poznej AI a používej ji poctivě",
+   "subtitle": "Deepfaky, podvody, vygenerované weby a akademická poctivost",
+   "intro": [
+    "Pátá úroveň se věnuje světu, ve kterém může obrázek, hlas, text i celý web vyrobit kdokoli během několika minut. Studenti se učí, že rozpoznat výtvor AI pouhým pohledem je stále méně spolehlivé a že detektory se pletou oběma směry. Místo honby za neomylným návodem si proto osvojí postup: zjistit původ, ověřit v nezávislém zdroji, všímat si, co po mně kdo chce, a nejednat pod tlakem. Poslední cvičení se obrací k vlastní práci studentů: jak AI poctivě použít v seminární práci, jak její použití přiznat a jak je to s autorskými právy."
+   ],
+   "goals": [
+    "Student popíše, jak vznikají deepfaky obrazu, videa a hlasu, a ověří původ sporného materiálu.",
+    "Student vysvětlí, proč nelze text od AI spolehlivě určit, a zhodnotí výpověď detektoru.",
+    "Student rozpozná znaky podvodné komunikace včetně cílených zpráv a ví, jak postupovat.",
+    "Student posoudí důvěryhodnost webu a recenzí a pozná znaky hromadně generovaného obsahu.",
+    "Student použije AI v odborné práci v souladu s pravidly školy, přizná ji a správně cituje."
+   ],
+   "hours": "7 až 8 hodin",
+   "schedule": {
+    "header": [
+     "Blok",
+     "Obsah výuky",
+     "Časová dotace"
+    ],
+    "rows": [
+     [
+      "Blok 1",
+      "Teoretická příprava: deepfaky, limity detektorů, phishing a klonování hlasu, vygenerované weby a recenze, citování a autorská práva.",
+      "2 hodiny"
+     ],
+     [
+      "Blok 2",
+      "Cvičení 1 (Deepfaky a vyrobené obrázky) a cvičení 2 (Text od člověka, nebo od AI? Limity detektorů).",
+      "2 hodiny"
+     ],
+     [
+      "Blok 3",
+      "Cvičení 3 (Phishing nové generace) a cvičení 4 (Web vygenerovaný AI).",
+      "2 hodiny"
+     ],
+     [
+      "Blok 4",
+      "Cvičení 5 (Seminárka poctivě) a společné shrnutí úrovně.",
+      "1 až 2 hodiny"
+     ]
+    ]
+   },
+   "scheduleNote": [
+    "Cvičení 1 a 2 mají záměrně stejnou stavbu: nejdřív tip, potom metoda. Nezkracujte druhou část. Podklady si připravte předem a u každého si poznamenejte skutečný původ. Cvičení 3 lze spojit s výukou finanční gramotnosti. Cvičení 5 je vhodné sladit s vyučujícími, kteří seminární práce zadávají."
+   ],
+   "lessons": [
+    {
+     "id": "ss-level-5-teorie",
+     "type": "theory",
+     "order": 0,
+     "title": "Teorie",
+     "teacher": {
+      "intro": [
+       "Teoretická část prochází čtyři podoby výtvorů AI: obraz a video, hlas, text a celé webové stránky. U každé uvádí, podle čeho lze pojmout podezření, a hlavně postup ověření nezávislý na vzhledu. Samostatně se věnuje podvodům, které AI usnadnila, a v závěru akademické poctivosti a autorským právům."
+      ],
+      "reviewQuestions": [
+       "Co je deepfake a jaké jeho druhy znáte?",
+       "Proč nestačí hledat chyby v obrázku? Jak ověříte jeho původ?",
+       "Proč se detektory AI textu pletou a co z toho plyne pro jejich použití ve škole?",
+       "Čím se dnešní podvodné zprávy liší od těch před pár lety?",
+       "Jak byste si ověřili, že vám opravdu volá člen rodiny, který žádá peníze?",
+       "Podle čeho poznáte web s hromadně vygenerovaným obsahem?",
+       "Jak v odborné práci přiznat použití AI a proč nelze AI uvést jako zdroj faktů?"
+      ],
+      "discussionTopics": [
+       "Má být každý obrázek a video vytvořené AI povinně označené? Kdo by to měl kontrolovat?",
+       "Škola obvinila studenta z použití AI jen na základě detektoru. Jak by měl spor proběhnout?"
+      ]
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "ss-level-5-cv1",
+     "type": "exercise",
+     "order": 1,
+     "title": "Deepfaky a vyrobené obrázky",
+     "teacher": {
+      "description": [
+       "Učitel připraví sadu deseti materiálů se známým původem: fotografie, obrázky vytvořené AI, upravené snímky a krátké zvukové či video ukázky. Studenti nejdřív tipují a zapisují důvody; úspěšnost se spočítá. Potom se pracuje metodicky. Dvojice si vyberou tři materiály a zjišťují původ: zpětné vyhledání obrázku, nejstarší výskyt, kdo ho zveřejnil, co k němu uvádějí důvěryhodná média, případně údaje o původu vložené v souboru. Třída porovná úspěšnost tipování s úspěšností ověřování a sepíše postup pro případ, že na sporný materiál narazí na sociálních sítích."
+      ],
+      "expectedOutput": "Tabulka tipů, protokol ověření původu tří materiálů a třídní postup „než to pošlu dál“.",
+      "form": "Samostatný tip, ověřování ve dvojicích.",
+      "time": "45 až 90 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "ss-level-5-cv2",
+     "type": "exercise",
+     "order": 2,
+     "title": "Text od člověka, nebo od AI? Limity detektorů",
+     "teacher": {
+      "description": [
+       "Třída připraví pokus. Polovina studentů napíše odstavec na zadané téma sama, čtvrtina ho nechá napsat model a čtvrtina vlastní text nechá modelem upravit. Texty se anonymně promíchají. Studenti tipují autorství a pak všechny texty projdou jedním nebo dvěma veřejně dostupnými detektory. Výsledky se zapíšou do tabulky: kolik lidských textů detektor označil za strojové, kolik strojových prošlo a jak dopadly upravené texty. Diskuze se věnuje důsledkům: co znamená falešné obvinění, proč detektor nemůže být důkaz a jak lze autorství doložit jinak, například verzemi dokumentu, poznámkami a ústním vysvětlením."
+      ],
+      "expectedOutput": "Tabulka výsledků tipování a detektorů s počtem chyb obou druhů a tři závěry pro školní praxi.",
+      "form": "Celá třída, společné vyhodnocení.",
+      "time": "45 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "ss-level-5-cv3",
+     "type": "exercise",
+     "order": 3,
+     "title": "Phishing nové generace",
+     "teacher": {
+      "description": [
+       "Studenti rozeberou osm modelových případů: e-mail od „banky“ bez jediné chyby, zpráva od „doručovací služby“, cílený e-mail, který zná jméno školy i třídního učitele, nabídka brigády s platbou předem, falešný e-shop, telefonát hlasem příbuzného v nouzi a dvě skutečné zprávy. U každého určí, co je cílem útočníka, jaký nátlak používá a podle čeho se dal poznat, když jazyk je bezchybný: adresa odesílatele, odkaz vedoucí jinam, žádost o kód nebo platbu, spěch. Pak navrhnou ověření jinou cestou, například zpětné zavolání na známé číslo nebo domluvené rodinné heslo. Na závěr si každý zkontroluje, kde používá dvoufázové ověření."
+      ],
+      "expectedOutput": "Rozbor osmi případů (cíl, nátlak, znak, ověření) a osobní seznam tří opatření.",
+      "form": "Ve dvojicích, společné shrnutí.",
+      "time": "45 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "ss-level-5-cv4",
+     "type": "exercise",
+     "order": 4,
+     "title": "Web vygenerovaný AI",
+     "teacher": {
+      "description": [
+       "Skupiny dostanou pět webů a stránek s recenzemi k jednomu tématu, například k výběru notebooku nebo doplňku stravy: odborný web s uvedenými autory, zpravodajský článek, e-shop, srovnávač s provizí a web s hromadně generovanými články. Hodnotí je podle kontrolního seznamu: provozovatel a kontakt, autor a datum, zdroje tvrzení, obchodní zájem, konkrétnost a ověřitelnost údajů, stáří domény nebo historie webu. U recenzí hledají znaky hromadné výroby: obecné formulace, stejná stavba, nahromadění v krátkém čase. Každému webu přidělí důvěru a zdůvodní ji. Třída ze zkušeností sestaví krátký seznam otázek."
+      ],
+      "expectedOutput": "Vyhodnocení pěti webů podle kontrolního seznamu a třídní seznam šesti otázek.",
+      "form": "Skupinová práce.",
+      "time": "45 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "ss-level-5-cv5",
+     "type": "exercise",
+     "order": 5,
+     "title": "Seminárka poctivě",
+     "teacher": {
+      "description": [
+       "Studenti nejdřív prostudují pravidla své školy pro používání AI a podmínky jedné vysoké školy nebo soutěže odborných prací. Na jejich základě roztřídí patnáct způsobů využití AI v seminární práci do tří skupin: přípustné bez uvedení, přípustné s uvedením, nepřípustné. Jde například o nápady na téma, rešerši, překlad zdroje, jazykovou korekturu, přeformulování odstavce, napsání kapitoly nebo vymyšlení citace.",
+       "Ve druhé části zpracují krátký odborný text na zadané téma. Smějí použít AI na osnovu, zpětnou vazbu a korekturu; fakta musí doložit zdroji, které sami otevřeli a přečetli. K textu připojí prohlášení o použití AI (nástroj, účel, rozsah) a seznam literatury podle citační normy. Učitel upozorní na dvě pasti: model si zdroje vymýšlí a text může připomínat cizí dílo."
+      ],
+      "expectedOutput": "Roztříděných patnáct způsobů využití, krátký odborný text s ověřenými zdroji a prohlášení o použití AI.",
+      "form": "Skupiny, pak samostatně.",
+      "time": "90 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    }
+   ],
+   "teacherNotes": [
+    "Nepoužívejte deepfaky skutečných spolužáků ani učitelů a studenty k jejich výrobě nevybízejte; stačí ukázky se známým původem. Detektory AI textu prezentujte jako nástroj s chybami obou druhů. U podvodů pracujte se smyšlenými nebo znečitelněnými ukázkami bez funkčních odkazů. Pokud škola pravidla pro AI v odborných pracích nemá, lze první část cvičení 5 využít k jejich návrhu. Pravidla bezpečné práce shrnuje oddíl 1.4."
+   ],
+   "certification": null,
+   "themes": "Deepfaky, limity detektorů, phishing a klonování hlasu, vygenerované weby a recenze, citování a autorská práva.",
+   "recommendedPlacement": "2. až 3. ročník SŠ",
+   "unitLabel": "Level",
+   "status": "content-ready",
+   "lessonCount": 6
+  },
+  {
+   "id": "ss-level-6",
+   "order": 6,
+   "code": "Level 6",
+   "title": "Svět AI",
+   "subtitle": "Trh, API, MCP, agenti, žebříčky a jak zůstat v obraze",
+   "intro": [
+    "Šestá úroveň dává studentům přehled, který vydrží déle než konkrétní nástroj. Obor se mění v řádu týdnů, a kdo zná jen jednu aplikaci, je odkázaný na reklamu. Studenti si proto vytvoří mapu trhu: kdo vyvíjí velké modely, jak se liší uzavřené a otevřené modely a co znamená, že aplikace je „postavená na“ cizím modelu. Seznámí se s pojmy API, MCP a autonomní agent z pohledu uživatele, který má rozumět tomu, co mu aplikace nabízí a jaká oprávnění po něm chce. Naučí se číst srovnávací přehledy a žebříčky modelů a znát jejich meze. Úroveň uzavírá širší pohled: evropská pravidla pro AI, pracovní trh a osobní plán, jak zůstat v obraze."
+   ],
+   "goals": [
+    "Student popíše hlavní firmy a modely na trhu a rozdíl mezi uzavřeným a otevřeným modelem.",
+    "Student vysvětlí, k čemu slouží API a MCP a co z nich plyne pro uživatele aplikace.",
+    "Student vysvětlí, co je autonomní agent, a navrhne, jaká oprávnění mu dát a co musí schvalovat člověk.",
+    "Student vyčte ze srovnávacího přehledu modelů údaje potřebné k výběru a pojmenuje meze benchmarků.",
+    "Student uvede hlavní zásady evropského nařízení o umělé inteligenci, které se ho týkají.",
+    "Student si sestaví plán, podle kterého bude sledovat vývoj oboru."
+   ],
+   "hours": "7 až 8 hodin",
+   "schedule": {
+    "header": [
+     "Blok",
+     "Obsah výuky",
+     "Časová dotace"
+    ],
+    "rows": [
+     [
+      "Blok 1",
+      "Teoretická příprava: firmy a modely, otevřené a uzavřené modely, API, MCP, autonomní agenti, žebříčky a benchmarky, AI Act, pracovní trh.",
+      "2 hodiny"
+     ],
+     [
+      "Blok 2",
+      "Cvičení 1 (Mapa trhu AI) a cvičení 2 (API a MCP bez programování).",
+      "2 hodiny"
+     ],
+     [
+      "Blok 3",
+      "Cvičení 3 (Agenti: co jim svěřit) a cvičení 4 (Žebříčky a benchmarky).",
+      "2 hodiny"
+     ],
+     [
+      "Blok 4",
+      "Cvičení 5 (AI, pravidla a budoucnost práce) a společné shrnutí úrovně.",
+      "1 až 2 hodiny"
+     ]
+    ]
+   },
+   "scheduleNote": [
+    "V této úrovni se jmenují konkrétní firmy a nástroje, protože jsou předmětem výuky. Většinu cvičení lze vést s veřejně dostupnými stránkami bez přihlášení. Cvičení 3 se obejde bez počítačů. Na závěrečné cvičení počítejte se dvěma hodinami včetně krátkých prezentací."
+   ],
+   "lessons": [
+    {
+     "id": "ss-level-6-teorie",
+     "type": "theory",
+     "order": 0,
+     "title": "Teorie",
+     "teacher": {
+      "intro": [
+       "Teoretická část představuje hlavní firmy a jejich modely, rozdíl mezi modelem a aplikací a mezi uzavřenými a otevřenými modely. Zavádí pojmy API, MCP a agent na úrovni, která stačí uživateli k informovanému rozhodování. Dále ukazuje, jak číst srovnávací přehledy, například llm-stats.com, a proč jim nevěřit slepě. Sekce pro střední školy přidává evropské nařízení o umělé inteligenci a dopady na pracovní trh."
+      ],
+      "reviewQuestions": [
+       "Které firmy vyvíjejí velké jazykové modely a čím se jejich přístup liší?",
+       "Jaký je rozdíl mezi uzavřeným a otevřeným modelem?",
+       "K čemu slouží API a jak poznáte aplikaci postavenou na cizím modelu?",
+       "K čemu slouží MCP a co znamená připojit k AI nástroj nebo zdroj dat?",
+       "Co odlišuje autonomního agenta od chatbota?",
+       "Co je benchmark a proč podle jednoho čísla nelze vybrat model?",
+       "Co po vás jako po uživateli a budoucím zaměstnanci chce evropské nařízení o umělé inteligenci?"
+      ],
+      "discussionTopics": [
+       "Agent s přístupem k e-mailu a platební kartě ušetří hodiny práce. Kde je hranice, za kterou byste mu oprávnění nedali?",
+       "Která z dovedností, které dnes u AI máte, bude užitečná i za pět let?"
+      ]
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "ss-level-6-cv1",
+     "type": "exercise",
+     "order": 1,
+     "title": "Mapa trhu AI",
+     "teacher": {
+      "description": [
+       "Skupiny zpracují profily firem, které vyvíjejí velké jazykové modely, například OpenAI, Google, Anthropic, Meta, Mistral AI a DeepSeek; další firmu si mohou doplnit. Z oficiálních stránek a dokumentace zjistí: zemi původu, aktuální modely a nástroje pro veřejnost, zda firma modely zveřejňuje k volnému použití, jak vydělává a čím se odlišuje. Každý údaj opatří zdrojem a datem. Profily se spojí do společné mapy. Třída na ní hledá tři věci: aplikace, které známe a které běží na cizím modelu, rozdíl mezi uzavřenými a otevřenými modely a to, co se od posledního pololetí změnilo."
+      ],
+      "expectedOutput": "Profily firem se zdroji a daty a společná mapa trhu se třemi zjištěními.",
+      "form": "Skupinová práce, společná mapa.",
+      "time": "45 až 90 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "ss-level-6-cv2",
+     "type": "exercise",
+     "order": 2,
+     "title": "API a MCP bez programování",
+     "teacher": {
+      "description": [
+       "Cvičení vysvětluje dva pojmy na příkladech, bez psaní kódu. U API studenti prozkoumají tři aplikace nebo služby, které nabízejí funkci s AI, a z jejich popisu a podmínek zjišťují, čí model používají a kam se posílají data uživatele. Zakreslí cestu dat: uživatel, aplikace, API, poskytovatel modelu a zpět. Učitel doplní, proč se za volání přes API platí podle tokenů.",
+       "U MCP učitel ukáže dokumentaci nebo nastavení nástroje, který umožňuje připojit zdroje dat a nástroje, například kalendář, úložiště souborů nebo vyhledávání. Studenti k pěti připojením vypíšou, co díky nim AI nově umí a k čemu získává přístup, a rozhodnou, která by povolili u školního a která u soukromého účtu."
+      ],
+      "expectedOutput": "Nákres cesty dat u tří aplikací a tabulka pěti připojení: co umožní, k čemu dá přístup, povolit nebo ne.",
+      "form": "Ve dvojicích.",
+      "time": "45 až 90 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "ss-level-6-cv3",
+     "type": "exercise",
+     "order": 3,
+     "title": "Agenti: co jim svěřit",
+     "teacher": {
+      "description": [
+       "Skupiny navrhnou agenta pro reálný úkol, například organizaci maturitního plesu, hledání brigády nebo správu třídního fondu. Návrh vzniká na papíře a má čtyři části: cíl a kroky, které agent provádí sám, nástroje a data, ke kterým potřebuje přístup, kroky, které musí schválit člověk, a způsob, jak se jeho práce kontroluje a zastaví. Potom si skupiny návrhy vymění a hledají, co se může pokazit: chybný krok, který nejde vrátit, útrata, únik údajů, pokyn podstrčený v e-mailu nebo na webu, který agent přečte. Autoři návrh upraví. Kdo má ve škole přístup k nástroji s agentním režimem, může jeden bezpečný krok předvést."
+      ],
+      "expectedOutput": "Návrh agenta o čtyřech částech, seznam rizik od jiné skupiny a upravená verze s omezenými oprávněními.",
+      "form": "Skupinová práce, vzájemná oponentura.",
+      "time": "45 až 90 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "ss-level-6-cv4",
+     "type": "exercise",
+     "order": 4,
+     "title": "Žebříčky a benchmarky",
+     "teacher": {
+      "description": [
+       "Studenti pracují se srovnávacím přehledem modelů, například llm-stats.com, a s jedním dalším žebříčkem podle výběru učitele. Nejdřív zjistí, co jednotlivé sloupce znamenají: datum vydání, velikost kontextového okna, cena za vstupní a výstupní tokeny, výsledky v testech. Potom řeší tři zadání: vybrat model pro shrnování dlouhých dokumentů s omezeným rozpočtem, model pro rychlé odpovědi v aplikaci a model, který lze provozovat na vlastním počítači. Výběr zdůvodní údaji z přehledu. Závěrečná část se věnuje mezím: kdo test sestavil, co neměří, proč se pořadí mezi žebříčky liší a proč vlastní zkouška na vlastní úloze řekne víc než jedno číslo."
+      ],
+      "expectedOutput": "Slovníček sloupců přehledu, tři zdůvodněné výběry modelu a seznam čtyř mezí benchmarků.",
+      "form": "Ve dvojicích.",
+      "time": "45 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    },
+    {
+     "id": "ss-level-6-cv5",
+     "type": "exercise",
+     "order": 5,
+     "title": "AI, pravidla a budoucnost práce",
+     "teacher": {
+      "description": [
+       "Závěrečné cvičení šesti úrovní má tři části. V první studenti pracují se shrnutím evropského nařízení o umělé inteligenci (AI Act) a přiřazují deset příkladů systémů k úrovním rizika: zakázané praktiky, vysoké riziko, povinnost průhlednosti, minimální riziko. Hledají také, co se týká jich: označování uměle vytvořeného obsahu a požadavek na AI gramotnost lidí, kteří s AI pracují.",
+       "Ve druhé části si každý vybere obor, který ho zajímá, a z důvěryhodných zdrojů zjistí, které činnosti v něm AI už mění a které zůstávají na lidech. Ve třetí části sepíše osobní plán: tři zdroje, které bude sledovat (například srovnávací přehled modelů, oficiální oznámení jednoho poskytovatele a nezávislé médium), jak často a jak si novinku ověří, než jí uvěří."
+      ],
+      "expectedOutput": "Přiřazení deseti systémů k úrovním rizika, jednostránkový přehled „AI v mém oboru“ a osobní plán sledování oboru.",
+      "form": "Skupiny, pak samostatně; krátké prezentace.",
+      "time": "90 minut"
+     },
+     "pupil": {
+      "status": "todo"
+     }
+    }
+   ],
+   "teacherNotes": [
+    "Údaje o firmách, modelech a cenách rychle stárnou; před každým během úrovně si je ověřte a od studentů vyžadujte datum a zdroj. Pojmy API a MCP zde stačí na úrovni porozumění; praktickou práci s nimi obsahují rozšiřující úrovně 7 až 10. U nařízení o umělé inteligenci pracujte s oficiálním shrnutím a upozorněte, že jednotlivé povinnosti nabíhají postupně. Hodnoťte věcnou správnost a práci se zdroji, ne rozsah."
+   ],
+   "certification": null,
+   "themes": "Firmy a modely, otevřené a uzavřené modely, API, MCP, autonomní agenti, žebříčky a benchmarky, AI Act, pracovní trh.",
+   "recommendedPlacement": "3. ročník SŠ",
+   "unitLabel": "Level",
+   "status": "content-ready",
+   "lessonCount": 6
+  },
+  {
+   "id": "ss-level-7",
+   "order": 7,
+   "code": "Level 7",
    "title": "AIFB Advanced",
    "subtitle": "Automatizace a práce s API",
    "intro": [
-    "Třetí úroveň posouvá práci s umělou inteligencí od jednotlivých konverzací k propojeným pracovním postupům. Studenti se naučí popsat proces jako sled kroků, sestavit jednoduchou automatizaci v no-code nástroji a zavolat veřejné rozhraní API, jehož odpověď ve formátu JSON zpracují. Důraz je kladen na pochopení principů, které jsou společné všem automatizačním nástrojům, nikoli na detailní ovládání konkrétního produktu. Úroveň tím připravuje půdu pro programovou integraci modelů v úrovni 4 a zároveň rozvíjí schopnost přemýšlet o práci s daty systematicky."
+    "Sedmá úroveň posouvá práci s umělou inteligencí od jednotlivých konverzací k propojeným pracovním postupům. Studenti se naučí popsat proces jako sled kroků, sestavit jednoduchou automatizaci v no-code nástroji a zavolat veřejné rozhraní API, jehož odpověď ve formátu JSON zpracují. Důraz je kladen na pochopení principů, které jsou společné všem automatizačním nástrojům, nikoli na detailní ovládání konkrétního produktu. Úroveň tím připravuje půdu pro programovou integraci modelů v úrovni 8 a zároveň rozvíjí schopnost přemýšlet o práci s daty systematicky."
    ],
    "goals": [
     "Student rozloží běžný proces na sled kroků a navrhne, které kroky lze automatizovat.",
@@ -716,7 +1427,7 @@
    ],
    "lessons": [
     {
-     "id": "ss-level-3-teorie",
+     "id": "ss-level-7-teorie",
      "type": "theory",
      "order": 0,
      "title": "Teorie",
@@ -743,7 +1454,7 @@
      }
     },
     {
-     "id": "ss-level-3-cv1",
+     "id": "ss-level-7-cv1",
      "type": "exercise",
      "order": 1,
      "title": "Návrh pracovního postupu na papíře",
@@ -760,7 +1471,7 @@
      }
     },
     {
-     "id": "ss-level-3-cv2",
+     "id": "ss-level-7-cv2",
      "type": "exercise",
      "order": 2,
      "title": "První automatizace v n8n nebo Make",
@@ -777,7 +1488,7 @@
      }
     },
     {
-     "id": "ss-level-3-cv3",
+     "id": "ss-level-7-cv3",
      "type": "exercise",
      "order": 3,
      "title": "Práce s API klíči a požadavky",
@@ -794,7 +1505,7 @@
      }
     },
     {
-     "id": "ss-level-3-cv4",
+     "id": "ss-level-7-cv4",
      "type": "exercise",
      "order": 4,
      "title": "Zpracování JSON odpovědí",
@@ -811,7 +1522,7 @@
      }
     },
     {
-     "id": "ss-level-3-cv5",
+     "id": "ss-level-7-cv5",
      "type": "exercise",
      "order": 5,
      "title": "Multimodální úloha",
@@ -842,12 +1553,12 @@
    "lessonCount": 6
   },
   {
-   "id": "ss-level-4",
-   "order": 4,
-   "code": "Level 4",
+   "id": "ss-level-8",
+   "order": 8,
+   "code": "Level 8",
    "title": "Advanced API Integration and Scripting",
    "intro": [
-    "Čtvrtá úroveň je první, ve které studenti přecházejí od klikání ve webových rozhraních k programové práci s modely. Všechny úlohy lze řešit v Pythonu, který je pro většinu škol nejpřístupnější; školy s jiným zvykem mohou použít TypeScript, protože jsou principy totožné. Studenti se naučí model zavolat ze skriptu, vést vícekolovou konverzaci s pamětí, předat modelu volatelné funkce a odhadnout náklady na provoz. Úroveň předpokládá znalost základů programování na úrovni proměnných, podmínek, cyklů a funkcí."
+    "Osmá úroveň je první, ve které studenti přecházejí od klikání ve webových rozhraních k programové práci s modely. Všechny úlohy lze řešit v Pythonu, který je pro většinu škol nejpřístupnější; školy s jiným zvykem mohou použít TypeScript, protože jsou principy totožné. Studenti se naučí model zavolat ze skriptu, vést vícekolovou konverzaci s pamětí, předat modelu volatelné funkce a odhadnout náklady na provoz. Úroveň předpokládá znalost základů programování na úrovni proměnných, podmínek, cyklů a funkcí."
    ],
    "goals": [
     "Student zavolá jazykový model ze skriptu v Pythonu pomocí oficiální knihovny poskytovatele.",
@@ -892,7 +1603,7 @@
    ],
    "lessons": [
     {
-     "id": "ss-level-4-teorie",
+     "id": "ss-level-8-teorie",
      "type": "theory",
      "order": 0,
      "title": "Teorie",
@@ -918,7 +1629,7 @@
      }
     },
     {
-     "id": "ss-level-4-cv1",
+     "id": "ss-level-8-cv1",
      "type": "exercise",
      "order": 1,
      "title": "První skript volající model",
@@ -935,7 +1646,7 @@
      }
     },
     {
-     "id": "ss-level-4-cv2",
+     "id": "ss-level-8-cv2",
      "type": "exercise",
      "order": 2,
      "title": "Správa konverzačního kontextu",
@@ -952,7 +1663,7 @@
      }
     },
     {
-     "id": "ss-level-4-cv3",
+     "id": "ss-level-8-cv3",
      "type": "exercise",
      "order": 3,
      "title": "Function calling v praxi",
@@ -969,7 +1680,7 @@
      }
     },
     {
-     "id": "ss-level-4-cv4",
+     "id": "ss-level-8-cv4",
      "type": "exercise",
      "order": 4,
      "title": "Tokeny a cena",
@@ -986,7 +1697,7 @@
      }
     },
     {
-     "id": "ss-level-4-cv5",
+     "id": "ss-level-8-cv5",
      "type": "exercise",
      "order": 5,
      "title": "Ošetření chyb a spolehlivost",
@@ -1004,7 +1715,7 @@
     }
    ],
    "teacherNotes": [
-    "Úroveň 4 patří do připravované navazující etapy AIFB, proto počítejte s tím, že se podoba zadání po pilotu může upravit; samotné dovednosti ale zůstávají stabilní a stojí za výuku už nyní. Cvičení 3 vyžaduje model, který volání nástrojů spolehlivě podporuje: u cloudových služeb je to dnes standard, ale malé lokální modely v Ollamě na function calling často nestačí; pokud cvičení řešíte lokálně, zvolte model s explicitní podporou nástrojů, případně převeďte cvičení na simulovaná volání. Pro práci ve třídě doporučujeme jeden školní API účet s nastaveným měsíčním limitem útraty a s klíči rozdanými pro skupiny, nikoli neomezené individuální účty. Programové zázemí si ověřte předem: stačí Python, editor a připojení k internetu, žádný výkonný hardware není potřeba. Chcete-li se vyhnout placeným službám úplně, lze všechna cvičení absolvovat proti lokálnímu modelu v nástroji Ollama, který zpřístupňuje kompatibilní rozhraní API; počítejte s pomalejšími odpověďmi a nižší kvalitou menších modelů, pro procvičení dovedností to však dostačuje. Nejčastější potíží bývá správa klíčů a cena, proto zařaďte cvičení 4 vždy, i když zbytku rozvržení musíte něco ušetřit."
+    "Úroveň 8 patří do připravované navazující etapy AIFB, proto počítejte s tím, že se podoba zadání po pilotu může upravit; samotné dovednosti ale zůstávají stabilní a stojí za výuku už nyní. Cvičení 3 vyžaduje model, který volání nástrojů spolehlivě podporuje: u cloudových služeb je to dnes standard, ale malé lokální modely v Ollamě na function calling často nestačí; pokud cvičení řešíte lokálně, zvolte model s explicitní podporou nástrojů, případně převeďte cvičení na simulovaná volání. Pro práci ve třídě doporučujeme jeden školní API účet s nastaveným měsíčním limitem útraty a s klíči rozdanými pro skupiny, nikoli neomezené individuální účty. Programové zázemí si ověřte předem: stačí Python, editor a připojení k internetu, žádný výkonný hardware není potřeba. Chcete-li se vyhnout placeným službám úplně, lze všechna cvičení absolvovat proti lokálnímu modelu v nástroji Ollama, který zpřístupňuje kompatibilní rozhraní API; počítejte s pomalejšími odpověďmi a nižší kvalitou menších modelů, pro procvičení dovedností to však dostačuje. Nejčastější potíží bývá správa klíčů a cena, proto zařaďte cvičení 4 vždy, i když zbytku rozvržení musíte něco ušetřit."
    ],
    "certification": {
     "name": null,
@@ -1017,12 +1728,12 @@
    "lessonCount": 6
   },
   {
-   "id": "ss-level-5",
-   "order": 5,
-   "code": "Level 5",
+   "id": "ss-level-9",
+   "order": 9,
+   "code": "Level 9",
    "title": "Custom AI Developer",
    "intro": [
-    "Pátá úroveň mění roli studenta z uživatele v tvůrce. Cílem je navrhnout a naprogramovat malou vlastní aplikaci, která jazykový model smysluplně využívá, a naučit se její kvalitu měřit. K tomu patří seznámení s vyhodnocováním modelů, tedy s přípravou testovacích sad a hodnocením odpovědí, a s provozem modelů lokálně, který ukazuje, že cloud není jediná možnost. Tematicky uzavírá úroveň pohled na dolaďování modelů: studenti si neprovedou vlastní fine-tuning, ale naučí se rozpoznat, kdy má smysl a kdy jde o zbytečně drahou cestu."
+    "Devátá úroveň mění roli studenta z uživatele v tvůrce. Cílem je navrhnout a naprogramovat malou vlastní aplikaci, která jazykový model smysluplně využívá, a naučit se její kvalitu měřit. K tomu patří seznámení s vyhodnocováním modelů, tedy s přípravou testovacích sad a hodnocením odpovědí, a s provozem modelů lokálně, který ukazuje, že cloud není jediná možnost. Tematicky uzavírá úroveň pohled na dolaďování modelů: studenti si neprovedou vlastní fine-tuning, ale naučí se rozpoznat, kdy má smysl a kdy jde o zbytečně drahou cestu."
    ],
    "goals": [
     "Student navrhne vlastní AI aplikaci včetně cílové skupiny, scénářů užití a hranic použití.",
@@ -1067,7 +1778,7 @@
    ],
    "lessons": [
     {
-     "id": "ss-level-5-teorie",
+     "id": "ss-level-9-teorie",
      "type": "theory",
      "order": 0,
      "title": "Teorie",
@@ -1094,7 +1805,7 @@
      }
     },
     {
-     "id": "ss-level-5-cv1",
+     "id": "ss-level-9-cv1",
      "type": "exercise",
      "order": 1,
      "title": "Návrh vlastní aplikace",
@@ -1111,7 +1822,7 @@
      }
     },
     {
-     "id": "ss-level-5-cv2",
+     "id": "ss-level-9-cv2",
      "type": "exercise",
      "order": 2,
      "title": "Jednoduchá aplikace s modelem",
@@ -1128,7 +1839,7 @@
      }
     },
     {
-     "id": "ss-level-5-cv3",
+     "id": "ss-level-9-cv3",
      "type": "exercise",
      "order": 3,
      "title": "Vyhodnocování kvality modelu",
@@ -1145,7 +1856,7 @@
      }
     },
     {
-     "id": "ss-level-5-cv4",
+     "id": "ss-level-9-cv4",
      "type": "exercise",
      "order": 4,
      "title": "Lokální model přes Ollamu",
@@ -1162,7 +1873,7 @@
      }
     },
     {
-     "id": "ss-level-5-cv5",
+     "id": "ss-level-9-cv5",
      "type": "exercise",
      "order": 5,
      "title": "Kdy (ne) dolaďovat model",
@@ -1180,7 +1891,7 @@
     }
    ],
    "teacherNotes": [
-    "Úroveň 5 funguje nejlépe jako projektová výuka: přidejte jednu rezervní hodinu na doťahování aplikací, protože téměř vždy někdo narazí na problém, který stojí řešení. Počítače s osmi gigabajty paměti spustí malé lokální modely spolehlivě; slabší stroje cvičení 4 zvládnou jen jako diváky ukázky, což není na škodu. Při hodnocení aplikací oceněte především funkčnost, ošetření chyb a dokumentaci, nikoli rozsah. Studentům připomeňte, že aplikace z této úrovně jsou vhodným základem maturitní nebo ročníkové práce, a podejte jim k tomu zpětnou vazbu i v této souvislosti."
+    "Úroveň 9 funguje nejlépe jako projektová výuka: přidejte jednu rezervní hodinu na doťahování aplikací, protože téměř vždy někdo narazí na problém, který stojí řešení. Počítače s osmi gigabajty paměti spustí malé lokální modely spolehlivě; slabší stroje cvičení 4 zvládnou jen jako diváky ukázky, což není na škodu. Při hodnocení aplikací oceněte především funkčnost, ošetření chyb a dokumentaci, nikoli rozsah. Studentům připomeňte, že aplikace z této úrovně jsou vhodným základem maturitní nebo ročníkové práce, a podejte jim k tomu zpětnou vazbu i v této souvislosti."
    ],
    "certification": {
     "name": null,
@@ -1193,12 +1904,12 @@
    "lessonCount": 6
   },
   {
-   "id": "ss-level-6",
-   "order": 6,
-   "code": "Level 6",
+   "id": "ss-level-10",
+   "order": 10,
+   "code": "Level 10",
    "title": "AI Systems Architect",
    "intro": [
-    "Šestá, nejvyšší úroveň navazuje na všechny předchozí: studenti navrhují systémy, v nichž spolupracuje více komponent a více agentů, data se doplňují vyhledáváním ve vlastních dokumentech a celé řešení musí obstát v bezpečnostní kontrole. Práce na úrovni je koncipována jako jeden velký projekt rozdělený do menších cvičení, která na sebe navazují. Absolvování úrovní 4 a 5 je prakticky nezbytné; bez zkušenosti s programovou prací s modely a s hodnocením jejich kvality by student nebyl schopen systém smysluplně sestavit ani obhájit."
+    "Desátá, nejvyšší úroveň navazuje na všechny předchozí: studenti navrhují systémy, v nichž spolupracuje více komponent a více agentů, data se doplňují vyhledáváním ve vlastních dokumentech a celé řešení musí obstát v bezpečnostní kontrole. Práce na úrovni je koncipována jako jeden velký projekt rozdělený do menších cvičení, která na sebe navazují. Absolvování úrovní 8 a 9 je prakticky nezbytné; bez zkušenosti s programovou prací s modely a s hodnocením jejich kvality by student nebyl schopen systém smysluplně sestavit ani obhájit."
    ],
    "goals": [
     "Student navrhne architekturu systému s více spolupracujícími agenty a popíše jejich role.",
@@ -1244,7 +1955,7 @@
    ],
    "lessons": [
     {
-     "id": "ss-level-6-teorie",
+     "id": "ss-level-10-teorie",
      "type": "theory",
      "order": 0,
      "title": "Teorie",
@@ -1271,7 +1982,7 @@
      }
     },
     {
-     "id": "ss-level-6-cv1",
+     "id": "ss-level-10-cv1",
      "type": "exercise",
      "order": 1,
      "title": "Architektura multiagentního systému",
@@ -1288,7 +1999,7 @@
      }
     },
     {
-     "id": "ss-level-6-cv2",
+     "id": "ss-level-10-cv2",
      "type": "exercise",
      "order": 2,
      "title": "Základní RAG pipeline",
@@ -1305,7 +2016,7 @@
      }
     },
     {
-     "id": "ss-level-6-cv3",
+     "id": "ss-level-10-cv3",
      "type": "exercise",
      "order": 3,
      "title": "Sémantické vyhledávání",
@@ -1322,7 +2033,7 @@
      }
     },
     {
-     "id": "ss-level-6-cv4",
+     "id": "ss-level-10-cv4",
      "type": "exercise",
      "order": 4,
      "title": "Bezpečnostní audit",
@@ -1339,7 +2050,7 @@
      }
     },
     {
-     "id": "ss-level-6-cv5",
+     "id": "ss-level-10-cv5",
      "type": "exercise",
      "order": 5,
      "title": "Závěrečný projekt",
@@ -1357,7 +2068,7 @@
     }
    ],
    "teacherNotes": [
-    "Úroveň 6 klade nejvyšší nároky na učitele i studenty, proto ji zařazujte jen do semináře pro motivované studenty, nejlépe ve čtvrtém ročníku. Cvičení 2 a 3 jsou technicky nejnáročnější; pokud se ukáže, že implementace celé pipeline nestihne, lze postavit na kostře, kterou si učitel připraví předem, a studenti doplní klíčové části. Závěrečný projekt hodnoťte kombinací technické kvality, bezpečnostního pohledu, dokumentace a obhajoby a stanovte kritéria předem. Připomeňte studentům, že data pro projekty musí být buď veřejná, nebo důsledně anonymizovaná, a že výstupy systémů nesmí obsahovat osobní údaje spolužáků ani učitelů."
+    "Úroveň 10 klade nejvyšší nároky na učitele i studenty, proto ji zařazujte jen do semináře pro motivované studenty, nejlépe ve čtvrtém ročníku. Cvičení 2 a 3 jsou technicky nejnáročnější; pokud se ukáže, že implementace celé pipeline nestihne, lze postavit na kostře, kterou si učitel připraví předem, a studenti doplní klíčové části. Závěrečný projekt hodnoťte kombinací technické kvality, bezpečnostního pohledu, dokumentace a obhajoby a stanovte kritéria předem. Připomeňte studentům, že data pro projekty musí být buď veřejná, nebo důsledně anonymizovaná, a že výstupy systémů nesmí obsahovat osobní údaje spolužáků ani učitelů."
    ],
    "certification": {
     "name": null,

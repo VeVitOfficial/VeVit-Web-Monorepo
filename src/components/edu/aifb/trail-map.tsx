@@ -1,6 +1,6 @@
 // Téma trail (2. stupeň ZŠ): klikatá stezka se zastávkami (levely) a ukazatelem XP. Hravé, ale
 // ne dětinské: expedice a odznaky. Zastávka ukazuje číslo levelu, název, hodiny a štítek
-// certifikace („Připravuje se"); levely 4–6 mají štítek „Pro pokročilé".
+// certifikace („Připravuje se"); rozšiřující levely 7–10 mají štítek „Pro zájemce".
 
 import Link from "next/link";
 import { aifbT } from "@/lib/edu/aifb/i18n";

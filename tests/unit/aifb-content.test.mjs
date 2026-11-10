@@ -8,10 +8,10 @@ import { lessonSlug, levelSlug } from "../../src/lib/edu/aifb/routes.ts";
 
 const contentDir = new URL("../../src/content/aifb/", import.meta.url).pathname;
 
-test("obsah AIFB je platný: 3 kategorie, 16 levelů, 96 lekcí", () => {
+test("obsah AIFB je platný: 3 kategorie, 24 levelů, 144 lekcí", () => {
   const { errors, summary } = validateAifb(contentDir);
   assert.deepEqual(errors, []);
-  assert.deepEqual(summary, { categories: 3, levels: 16, lessons: 96 });
+  assert.deepEqual(summary, { categories: 3, levels: 24, lessons: 144 });
 });
 
 function mutated(edit) {
@@ -37,7 +37,7 @@ test("odebrání lekce shodí validaci počtu", () => {
     writeFileSync(file, JSON.stringify(data));
   });
   assert.ok(errors.length > 0);
-  assert.ok(errors.some((e) => e.includes("96")));
+  assert.ok(errors.some((e) => e.includes("144")));
 });
 
 test("odkaz na neexistující oddíl shodí validaci", () => {

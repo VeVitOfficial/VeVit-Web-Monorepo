@@ -1,6 +1,6 @@
 {
  "version": "2026-10",
- "status": "draft",
+ "status": "reviewed",
  "note": "Texty teorie pro žáky a studenty, napsané podle témat, cílů a teoretické části metodických plánů. Návrh: čeká na odbornou kontrolu vlastníkem (pravidlo R7). Originální obsahové soubory aifb-content-*.json se nemění.",
  "topics": {
   "zs1-a": {
@@ -116,6 +116,33 @@
      ]
     },
     {
+     "id": "kamarad",
+     "heading": "Je chytrý program kamarád?",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Chytrý program umí mluvit mile. Řekne „To je hezké!“ nebo „To mě mrzí.“ Ale nic při tom necítí. Nemá radost a není mu smutno. Jsou to jen slova, která se naučil."
+      },
+      {
+       "type": "list",
+       "ordered": false,
+       "title": "Co umí jen kamarád",
+       "items": [
+        "obejmout tě,",
+        "mít radost z tvého obrázku,",
+        "poznat, že jsi smutný,",
+        "stýskat se mu po tobě."
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "tip",
+       "title": "Když tě něco trápí",
+       "text": "Jdi za člověkem: za maminkou, tatínkem, babičkou nebo paní učitelkou. Stroj tě nepohladí a nepomůže ti."
+      }
+     ]
+    },
+    {
      "id": "videa",
      "heading": "Proč tablet ukazuje každému jiná videa",
      "blocks": [
@@ -227,7 +254,8 @@
    "summary": [
     "Umělá inteligence je program, který se naučil z mnoha příkladů.",
     "Počítač není živý. Všechno, co umí, ho naučili lidé.",
-    "Jméno, adresa a fotky patří jen rodině a škole."
+    "Jméno, adresa a fotky patří jen rodině a škole.",
+    "Chytrý program nic necítí a není kamarád. S trápením jdeme za člověkem."
    ]
   },
   "zs1-b": {
@@ -363,6 +391,47 @@
      ]
     },
     {
+     "id": "pomocnik",
+     "heading": "Vyber správného pomocníka",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Chytrý program není nejlepší na všechno. Na některé úkoly je lepší jiný pomocník. Je rychlejší a nesplete se."
+      },
+      {
+       "type": "terms",
+       "items": [
+        {
+         "term": "Kalkulačka",
+         "text": "Na počítání. Vždycky spočítá správně."
+        },
+        {
+         "term": "Kniha a slovník",
+         "text": "Na to, co slovo znamená nebo jak se píše."
+        },
+        {
+         "term": "Hodiny, kalendář, jídelníček",
+         "text": "Na to, co platí právě teď a tady."
+        },
+        {
+         "term": "Dospělý",
+         "text": "Na to, co tě trápí, a na věci, které se týkají tebe."
+        },
+        {
+         "term": "Chytrý program",
+         "text": "Na nápady a na vysvětlení jinými slovy. Odpověď vždycky zkontroluj."
+        }
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "tip",
+       "title": "Pravidlo",
+       "text": "Nejdřív si řekni, co potřebuješ. Potom vyber pomocníka."
+      }
+     ]
+    },
+    {
      "id": "odpovednost",
      "heading": "Kdo za to může?",
      "blocks": [
@@ -419,7 +488,8 @@
    "summary": [
     "Program se učí z mnoha příkladů. Chyby v příkladech znamenají chyby v odpovědích.",
     "Program neví, že neví. Když odpověď nezná, tipne si.",
-    "Za použití odpovědi odpovídá vždy člověk, proto ověřujeme."
+    "Za použití odpovědi odpovídá vždy člověk, proto ověřujeme.",
+    "Na počítání je kalkulačka, na slova kniha. Pomocníka vybíráme podle úkolu."
    ]
   },
   "zs1-c": {
@@ -599,6 +669,33 @@
      ]
     },
     {
+     "id": "trapeni",
+     "heading": "Když tě něco trápí",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Někdy má člověk starost: špatnou známku, hádku s kamarádem nebo je mu dlouho smutno. S programem si o tom psát můžeš, ale program neví, jak moc je to vážné. Nezná tě, nemůže za tebou přijít a nemůže ti pomoci."
+      },
+      {
+       "type": "list",
+       "ordered": false,
+       "title": "Za kým jít",
+       "items": [
+        "za rodiči, babičkou nebo dědou,",
+        "za paní učitelkou nebo panem učitelem,",
+        "za školním psychologem,",
+        "zavolat na **Linku bezpečí 116 111**. Je zdarma a funguje ve dne i v noci."
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "info",
+       "title": "Stačí jedna věta",
+       "text": "Nemusíš vědět, jak to říct. Stačí: „Potřebuju ti něco říct.“"
+      }
+     ]
+    },
+    {
      "id": "kdy",
      "heading": "Kdy pomoc pomáhá a kdy zdržuje",
      "blocks": [
@@ -616,7 +713,8 @@
    "summary": [
     "Dobré zadání říká, kdo má počítač být, co má udělat a jak má odpověď znít.",
     "Odpovědi čteme s otazníkem a důležité údaje ověřujeme.",
-    "Do konverzace nepatří osobní údaje."
+    "Do konverzace nepatří osobní údaje.",
+    "Když tě něco trápí, jdi za dospělým. Linka bezpečí má číslo 116 111."
    ]
   },
   "zs1-d": {
@@ -773,6 +871,39 @@
      ]
     },
     {
+     "id": "poznat",
+     "heading": "Od člověka, nebo od AI?",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "AI umí vyrobit obrázek jako fotku a napsat zprávu bez jediné chyby. Jen podle toho, jak to vypadá, to dnes často nepoznáš. Dobrý detektiv proto nehádá. Ověřuje."
+      },
+      {
+       "type": "terms",
+       "items": [
+        {
+         "term": "Obrázek",
+         "text": "Kdo ho zveřejnil? Ukazují ho i jiné stránky, kterým věříme?"
+        },
+        {
+         "term": "Text",
+         "text": "Dají se údaje najít i v knize nebo v encyklopedii?"
+        },
+        {
+         "term": "Zpráva",
+         "text": "Slibuje výhru? Spěchá? Chce, abys někam kliknul nebo poslal heslo?"
+        }
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "warning",
+       "title": "Podezřelá zpráva",
+       "text": "Neklikej, nic neposílej a ukaž ji dospělému. Platí to, i když je napsaná hezky a bez chyb."
+      }
+     ]
+    },
+    {
      "id": "zdroje",
      "heading": "Odkud informace pocházejí",
      "blocks": [
@@ -816,7 +947,8 @@
    "summary": [
     "Dobré zadání má roli, úkol, tón a přesnou podobu výstupu.",
     "Vzor pomáhá, ale program napodobí i chybu.",
-    "Pomoc programu vždy poctivě přiznáme."
+    "Pomoc programu vždy poctivě přiznáme.",
+    "Výtvor AI se pohledem nepozná. Ověřujeme a podezřelou zprávu ukážeme dospělému."
    ]
   },
   "foundation": {
@@ -902,6 +1034,30 @@
       {
        "type": "p",
        "text": "Ve všech těchto úlohách model pomáhá nejvíc tehdy, když výsledek dokážeš posoudit. Pokud téma vůbec neznáš, nepoznáš ani chybu."
+      }
+     ]
+    },
+    {
+     "id": "kontext",
+     "heading": "Kontextové okno: co model právě vidí",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Model si nepamatuje svět ani tebe. Při každé odpovědi vidí jen to, co je právě v **kontextovém okně**: tvoje zprávy, své předchozí odpovědi a vložené soubory. Okno má omezenou velikost, která se počítá v tokenech."
+      },
+      {
+       "type": "figure",
+       "figure": "context-window",
+       "caption": "Do kontextového okna se vejde jen omezené množství textu. Co se nevejde, model nevidí."
+      },
+      {
+       "type": "list",
+       "ordered": false,
+       "items": [
+        "V dlouhé konverzaci může model „zapomenout“ pokyn ze začátku.",
+        "Nová konverzace začíná s prázdným oknem, pokud nástroj nemá zapnutou paměť.",
+        "Co modelu neřekneš nebo nevložíš, to neví: nezná tvou třídu, učebnici ani zadání úkolu."
+       ]
       }
      ]
     },
@@ -1103,6 +1259,7 @@
    ],
    "summary": [
     "Jazykový model předpovídá text token po tokenu. Plynulost neznamená pravdivost.",
+    "Model vidí jen to, co je v kontextovém okně. Co mu neřekneš, to neví.",
     "Halucinace vypadají přesvědčivě, proto důležité údaje ověřujeme v nezávislých zdrojích.",
     "Osobní údaje a údaje o druhých do AI nástrojů nepatří. Pomoc AI poctivě přiznáváme."
    ]
@@ -1371,6 +1528,907 @@
     "Dobré zadání má roli, kontext, úkol a podobu výstupu.",
     "Ukázky pomáhají s formátem, ale model napodobí i jejich chyby.",
     "Markdown je pro lidi, JSON pro stroje. Opakované úlohy si ulož jako AI skill."
+   ]
+  },
+  "komunikace": {
+   "lead": "Chatbot odpoví kdykoli, nikdy se nesměje a nic neprozradí spolužákům. Proto mu lidé píšou i věci, které by jinak neřekli nikomu. V této úrovni zjistíš, co se s takovým textem děje, co do AI nepatří a kdy je lepší jít za člověkem.",
+   "sections": [
+    {
+     "id": "kam-text",
+     "heading": "Kam putuje to, co napíšeš",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Text, který napíšeš do AI nástroje, neopouští jen tvoje ústa jako věta řečená kamarádovi. Odejde přes internet na počítače firmy, která nástroj provozuje. Tam se zpracuje a většinou i uloží."
+      },
+      {
+       "type": "list",
+       "ordered": false,
+       "items": [
+        "Konverzace bývají uložené v historii, dokud je nesmažeš, a někdy i déle.",
+        "Podle podmínek služby se mohou použít ke zlepšování modelů. Často to jde v nastavení vypnout.",
+        "K vybraným konverzacím se mohou dostat lidé, kteří kontrolují kvalitu a bezpečnost služby.",
+        "Co jednou odešleš, nemáš plně pod kontrolou, podobně jako zprávu poslanou do skupiny."
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "info",
+       "title": "Užitečné měřítko",
+       "text": "Než něco odešleš, představ si, že to čte cizí dospělý člověk. Vadilo by ti to? Pak to tam nepiš, nebo to nejdřív uprav."
+      }
+     ]
+    },
+    {
+     "id": "udaje",
+     "heading": "Osobní a citlivé údaje",
+     "blocks": [
+      {
+       "type": "terms",
+       "items": [
+        {
+         "term": "Osobní údaj",
+         "text": "Cokoli, podle čeho se dá poznat konkrétní člověk: jméno a příjmení, adresa, telefon, e-mail, rodné číslo, fotka, název školy spolu s třídou."
+        },
+        {
+         "term": "Citlivý údaj",
+         "text": "Osobní údaj, jehož zneužití může ublížit víc: zdraví, náboženství, původ, sexuální orientace, potíže v rodině."
+        },
+        {
+         "term": "Přístupové údaje",
+         "text": "Hesla, ověřovací kódy, čísla karet. Do AI nástroje nepatří nikdy, ani „jen na zkoušku“."
+        }
+       ]
+      },
+      {
+       "type": "figure",
+       "figure": "privacy-sort",
+       "caption": "Obecné otázky a učivo ano. Osobní údaje, hesla a údaje o druhých ne."
+      },
+      {
+       "type": "p",
+       "text": "Stejná pravidla platí pro soubory a fotky. Vyfocený dopis od lékaře nebo snímek obrazovky s chatem obsahuje stejné údaje, jako kdybys je opsal."
+      }
+     ]
+    },
+    {
+     "id": "druzi",
+     "heading": "Údaje o druhých lidech",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "O sobě rozhoduješ ty. O spolužákovi, kamarádce, učiteli nebo rodičích ne. Když do AI napíšeš jejich jméno, vložíš jejich fotku nebo přepošleš jejich zprávu, rozhoduješ za ně bez jejich vědomí."
+      },
+      {
+       "type": "callout",
+       "tone": "warning",
+       "title": "Pravidlo",
+       "text": "Fotky a údaje jiných lidí do AI nástroje bez jejich souhlasu nevkládej. Platí to i pro „vtipné“ úpravy fotek a pro snímky obrazovky ze společného chatu."
+      }
+     ]
+    },
+    {
+     "id": "anonymizace",
+     "heading": "Jak zprávu upravit, aby byla bezpečná",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Většinou nepotřebuješ, aby AI věděla, o kom přesně píšeš. Potřebuje rozumět situaci. Úpravě, po které z textu nejde poznat konkrétní člověk, se říká **anonymizace**."
+      },
+      {
+       "type": "list",
+       "ordered": true,
+       "items": [
+        "Jména nahraď obecným označením: spolužák, kamarádka, učitel.",
+        "Vynech adresy, název školy, přesná data a telefonní čísla.",
+        "Zdravotní a rodinné podrobnosti popiš obecně, nebo je vynech.",
+        "Přečti si výsledek a zeptej se: poznal by někdo ze třídy, o kom to je?"
+       ]
+      },
+      {
+       "type": "example",
+       "title": "Před a po",
+       "text": "Před: Tereza Nováková z 8. B o mně napsala do skupiny, že jsem ukradl Matějovi mobil. Co mám dělat?\n\nPo: Spolužačka o mně ve třídní skupině napsala něco, co není pravda. Jak na to mám klidně reagovat?"
+      }
+     ]
+    },
+    {
+     "id": "pratelsky",
+     "heading": "Proč chatbot působí jako kamarád",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Chatbot píše vlídně, trpělivě a skoro vždy ti dá za pravdu. Není to proto, že by mu na tobě záleželo. Jazykový model je vyladěný tak, aby byl vstřícný a aby se s ním dobře povídalo."
+      },
+      {
+       "type": "list",
+       "ordered": false,
+       "items": [
+        "Nic necítí. Věty jako „to mě mrzí“ skládá stejně jako každý jiný text.",
+        "Zná jen tvou verzi příběhu a obvykle s ní souhlasí.",
+        "Nezná tě. Neví, jak vypadáš, jak se dnes tváříš ani co bylo minulý týden.",
+        "Nenese následky. Když poradí špatně, nic se mu nestane."
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Kamarád ti občas řekne i to, co slyšet nechceš. Právě proto je jeho názor cenný."
+      }
+     ]
+    },
+    {
+     "id": "pomuze",
+     "heading": "S čím může AI u osobních věcí pomoci",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Psát si s chatbotem o tom, co tě trápí, není zakázané ani ostudné. Je dobré vědět, k čemu se hodí."
+      },
+      {
+       "type": "list",
+       "ordered": false,
+       "items": [
+        "pojmenovat, co se vlastně děje a co cítíš,",
+        "srovnat si myšlenky, než o tom promluvíš s člověkem,",
+        "připravit si první větu pro těžký rozhovor s rodiči nebo učitelem,",
+        "najít, kam se s daným problémem obrátit."
+       ],
+       "title": "Hodí se"
+      },
+      {
+       "type": "list",
+       "ordered": false,
+       "items": [
+        "nepozná, jak vážné to je,",
+        "nezavolá pomoc a nepřijde za tebou,",
+        "nenahradí psychologa ani lékaře a nemůže tě léčit,",
+        "může se splést a znít při tom naprosto jistě."
+       ],
+       "title": "Nezvládne"
+      }
+     ]
+    },
+    {
+     "id": "clovek",
+     "heading": "Kdy jít za člověkem",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Když trápení trvá dlouho, když se bojíš o sebe nebo o někoho jiného, když ti někdo ubližuje, je potřeba člověk. Čím dřív, tím líp. Nemusíš vědět, jak to říct. Stačí věta: „Potřebuju si s tebou o něčem promluvit.“"
+      },
+      {
+       "type": "list",
+       "ordered": false,
+       "items": [
+        "**Blízký dospělý:** rodiče, prarodiče, starší sourozenec, trenér.",
+        "**Ve škole:** třídní učitel, školní psycholog nebo výchovný poradce.",
+        "**Linka bezpečí 116 111:** zdarma a nepřetržitě, pro děti a studenty. Jde i chat a e-mail.",
+        "**Když jde o život nebo zdraví:** 155 nebo 112."
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "warning",
+       "title": "Když se bojíš o kamaráda",
+       "text": "Pokud ti kamarád napíše, že si chce ublížit, nenech si to pro sebe a neřeš to jen s chatbotem. Řekni to dospělému, kterému věříš. Není to žalování."
+      }
+     ]
+    },
+    {
+     "id": "zasady",
+     "heading": "Zásady, které se vyplatí",
+     "blocks": [
+      {
+       "type": "list",
+       "ordered": true,
+       "items": [
+        "O sobě piš jen to, co by mohl číst cizí člověk.",
+        "O druhých nepiš nic, podle čeho by se dali poznat.",
+        "Rady v osobních věcech ber jako jeden názor, ne jako rozhodnutí.",
+        "Když si s chatbotem píšeš víc než s lidmi, zpozorni.",
+        "Když jde o něco vážného, jdi za člověkem."
+       ]
+      }
+     ]
+    }
+   ],
+   "summary": [
+    "Co napíšeš do AI nástroje, odchází na cizí počítače a může se uložit. Osobní údaje, hesla a údaje o druhých tam nepatří.",
+    "Chatbot je vstřícný, protože je tak vyrobený. Není to kamarád ani psycholog.",
+    "S vážným trápením jdi za člověkem. Linka bezpečí má číslo 116 111."
+   ]
+  },
+  "nastroje": {
+   "lead": "Kdo má kladivo, vidí všude hřebíky. Kdo má chatbot, ptá se ho i na to, co líp zvládne kalkulačka nebo vyhledávač. V této úrovni se naučíš vybrat nástroj podle úkolu a poznat, kdy AI vůbec není potřeba.",
+   "sections": [
+    {
+     "id": "vyber",
+     "heading": "Nejdřív úkol, potom nástroj",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Dobrý řemeslník nezačíná tím, že vezme první nářadí, které má po ruce. Nejdřív se podívá, co je potřeba udělat. S AI je to stejné: je to jeden z nástrojů, ne odpověď na všechno."
+      },
+      {
+       "type": "list",
+       "ordered": true,
+       "items": [
+        "Co přesně potřebuju? Číslo, aktuální údaj, vysvětlení, nápad, hotový text?",
+        "Musí být výsledek přesný, nebo stačí dobrý návrh?",
+        "Umím výsledek zkontrolovat?",
+        "Mám se to naučit sám?"
+       ],
+       "title": "Čtyři otázky před začátkem"
+      }
+     ]
+    },
+    {
+     "id": "bez-ai",
+     "heading": "Kdy AI nepotřebuješ",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Jazykový model odpověď skládá, nepočítá ji ani ji nikde nevyhledává (pokud nemá připojené vyhledávání). U některých úloh je proto jednodušší nástroj rychlejší, přesnější a pokaždé dá stejný výsledek."
+      },
+      {
+       "type": "terms",
+       "items": [
+        {
+         "term": "Výpočet",
+         "text": "Kalkulačka nebo tabulka. Model se u delších čísel splete a nepozná to."
+        },
+        {
+         "term": "Aktuální údaj",
+         "text": "Vyhledávač, jízdní řád, oficiální web. Počasí, odjezdy, ceny a výsledky se mění každý den."
+        },
+        {
+         "term": "Cesta a místo",
+         "text": "Mapa. Ví, kde co je a jak dlouho to trvá."
+        },
+        {
+         "term": "Význam slova a pravopis",
+         "text": "Slovník a pravidla. Jsou ověřené a nevymýšlejí si."
+        },
+        {
+         "term": "Seřadit, sečíst, vyfiltrovat",
+         "text": "Tabulkový procesor. Udělá to přesně i s tisícem řádků."
+        },
+        {
+         "term": "Opakovaná přesná práce",
+         "text": "Jednoduchý program nebo skript, například hromadné přejmenování souborů nebo převod formátu."
+        }
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "tip",
+       "title": "Dobré vědět",
+       "text": "I když se rozhodneš pro tabulku nebo skript, AI ti může pomoci je vytvořit: poradí vzorec nebo napíše krátký program. Samotnou práci pak udělá spolehlivý nástroj."
+      }
+     ]
+    },
+    {
+     "id": "s-ai",
+     "heading": "Kdy se AI hodí",
+     "blocks": [
+      {
+       "type": "list",
+       "ordered": false,
+       "items": [
+        "vysvětlit látku jinak, jednodušeji nebo na příkladu,",
+        "navrhnout osnovu, nápady, otázky k procvičení,",
+        "shrnout nebo přeformulovat text, který máš před sebou,",
+        "dát zpětnou vazbu na tvůj vlastní text,",
+        "pomoci s překladem a formulací,",
+        "poradit, jak úkol rozdělit na kroky."
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Společné mají to, že neexistuje jedna jediná správná odpověď a že výsledek dokážeš posoudit."
+      }
+     ]
+    },
+    {
+     "id": "druhy",
+     "heading": "AI není jeden program",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Slovem „AI“ se označují nástroje, které dělají velmi různé věci. Vyplatí se vědět, jaké druhy existují."
+      },
+      {
+       "type": "terms",
+       "items": [
+        {
+         "term": "Konverzační nástroj",
+         "text": "Píše a vysvětluje text, odpovídá na otázky. Stojí na velkém jazykovém modelu."
+        },
+        {
+         "term": "Generátor obrázků",
+         "text": "Podle popisu vytvoří obrázek. Neví, co je pravda; kreslí to, co popisu odpovídá."
+        },
+        {
+         "term": "Překladač",
+         "text": "Převádí text mezi jazyky. Na běžné věty spolehlivý, u odborných textů potřebuje kontrolu."
+        },
+        {
+         "term": "Převod řeči a textu",
+         "text": "Přepíše nahrávku na text nebo přečte text nahlas."
+        },
+        {
+         "term": "Hledání s AI",
+         "text": "Vyhledá stránky a shrne je s odkazy. Odkazy je potřeba otevřít a ověřit."
+        }
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Řada aplikací dnes více druhů spojuje. Konkrétní názvy se rychle mění, druhy zůstávají."
+      }
+     ]
+    },
+    {
+     "id": "porovnani",
+     "heading": "Podle čeho nástroje porovnat",
+     "blocks": [
+      {
+       "type": "terms",
+       "items": [
+        {
+         "term": "Správnost",
+         "text": "Dá nástroj správný výsledek? A poznám, když ne?"
+        },
+        {
+         "term": "Čas",
+         "text": "Jak dlouho to trvá včetně kontroly?"
+        },
+        {
+         "term": "Cena",
+         "text": "Je to zdarma? Platím penězi, nebo svými údaji?"
+        },
+        {
+         "term": "Soukromí",
+         "text": "Co všechno nástroji při tom sdělím?"
+        }
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Odpověď od AI přijde rychle. Pokud ji ale musíš celou přepočítat, žádný čas jsi neušetřil."
+      }
+     ]
+    },
+    {
+     "id": "uceni",
+     "heading": "AI při učení: pomocník, nebo zkratka",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Stejný nástroj tě může látku naučit i zařídit, že ji neumíš. Rozdíl je v tom, kdo při tom přemýšlí."
+      },
+      {
+       "type": "list",
+       "ordered": false,
+       "items": [
+        "nech si látku vysvětlit jinak než v učebnici,",
+        "nech se vyzkoušet a odpovídej sám,",
+        "požádej o zpětnou vazbu na vlastní řešení,",
+        "nech si sestavit plán opakování."
+       ],
+       "title": "Pomáhá"
+      },
+      {
+       "type": "list",
+       "ordered": false,
+       "items": [
+        "necháš si napsat výpisky a nepřečteš je,",
+        "opíšeš řešení, kterému nerozumíš,",
+        "ptáš se dřív, než sám zkusíš přemýšlet."
+       ],
+       "title": "Škodí"
+      },
+      {
+       "type": "figure",
+       "figure": "human-loop",
+       "caption": "AI navrhne, člověk zkontroluje a rozhodne. Bez kontroly se chyba dostane dál."
+      },
+      {
+       "type": "callout",
+       "tone": "tip",
+       "title": "Test",
+       "text": "Zavři okno a zkus látku vysvětlit spolužákovi. Když to nejde, AI ti práci udělala, ale nic tě nenaučila."
+      }
+     ]
+    },
+    {
+     "id": "kontrola",
+     "heading": "Co po AI vždycky zkontrolovat",
+     "blocks": [
+      {
+       "type": "list",
+       "ordered": false,
+       "items": [
+        "čísla, data, jména a citace,",
+        "jestli odpověď opravdu odpovídá na to, na co ses ptal,",
+        "jestli si model nepřidal něco, co v zadání nebylo,",
+        "jestli se výsledek shoduje s učebnicí nebo jiným ověřeným zdrojem."
+       ]
+      }
+     ]
+    },
+    {
+     "id": "strom",
+     "heading": "Rychlý rozhodovací postup",
+     "blocks": [
+      {
+       "type": "list",
+       "ordered": true,
+       "items": [
+        "Jde o přesný výpočet nebo řazení? → kalkulačka, tabulka.",
+        "Jde o aktuální nebo místní údaj? → vyhledávač, oficiální web, mapa.",
+        "Jsou v tom osobní údaje? → uprav zadání, nebo AI nepoužívej.",
+        "Má mě úkol něco naučit? → AI jen na vysvětlení a kontrolu.",
+        "Umím výsledek posoudit? → pokud ne, začni učebnicí nebo se zeptej člověka.",
+        "Jinak: AI je dobrá volba. Výsledek zkontroluj."
+       ]
+      }
+     ]
+    }
+   ],
+   "summary": [
+    "Nejdřív si ujasni úkol, potom vyber nástroj. AI je jeden z nich.",
+    "Přesné výpočty, aktuální údaje a opakovanou práci zvládne jednodušší nástroj spolehlivěji a levněji.",
+    "Při učení má AI vysvětlovat a zkoušet. Přemýšlet musíš ty."
+   ]
+  },
+  "poznej-ai": {
+   "lead": "Obrázek jako fotka, zpráva bez jediné chyby, web plný článků. To vše dnes umí AI vyrobit za pár minut. Naučíš se, čeho si všímat, jak si věci ověřit a jak AI používat tak, aby sis za svou prací mohl stát.",
+   "sections": [
+    {
+     "id": "proc",
+     "heading": "Proč už nestačí „vypadá to divně“",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Ještě nedávno prozradily obrázek od AI ruce se šesti prsty a podvodný e-mail lámaná čeština. To už neplatí. Nástroje se zlepšují tak rychle, že spoléhat na chyby je čím dál horší taktika."
+      },
+      {
+       "type": "p",
+       "text": "Užitečnější otázka než „vypadá to jako od AI?“ je **„odkud to je a kdo to potvrzuje?“**. Ta funguje bez ohledu na to, jak dobré nástroje budou."
+      }
+     ]
+    },
+    {
+     "id": "obrazky",
+     "heading": "Obrázky a videa",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Uměle vytvořenému nebo pozměněnému obrázku, videu či nahrávce, která vypadá jako skutečná, se říká **deepfake**."
+      },
+      {
+       "type": "list",
+       "ordered": false,
+       "items": [
+        "ruce, prsty, zuby, uši a šperky,",
+        "nápisy a čísla v pozadí,",
+        "stíny a odrazy, které nesedí,",
+        "příliš hladká pleť a dokonalé světlo,",
+        "u videa nepřirozené mrkání a pohyb rtů."
+       ],
+       "title": "Signály, které někdy pomohou"
+      },
+      {
+       "type": "figure",
+       "figure": "ai-made",
+       "caption": "Fotka, nebo vyrobený obrázek? Vzhled napoví, původ rozhodne."
+      },
+      {
+       "type": "list",
+       "ordered": true,
+       "items": [
+        "Kdo obrázek zveřejnil jako první a kdy?",
+        "Ukazují ho i důvěryhodná média nebo oficiální zdroje?",
+        "Co najde zpětné vyhledávání obrázku?"
+       ],
+       "title": "Ověření původu"
+      },
+      {
+       "type": "callout",
+       "tone": "warning",
+       "title": "Než to pošleš dál",
+       "text": "Šokující „fotka“ známého člověka nebo spolužáka je přesně ten případ, kdy se vyplatí pět minut počkat a ověřit. Sdílením falešného obrázku můžeš někomu vážně ublížit."
+      }
+     ]
+    },
+    {
+     "id": "texty",
+     "heading": "Texty: kdo to psal",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Text od AI bývá uhlazený, vyvážený a bez překlepů. Stejně ale píše i spousta pečlivých lidí. A naopak: model umí na požádání psát hovorově a s chybami."
+      },
+      {
+       "type": "p",
+       "text": "Existují **detektory AI textu**, které odhadují, jestli text psal stroj. Pletou se oběma směry: označí lidský text za strojový a strojový propustí. Jejich výsledek proto není důkaz a nikoho podle něj nelze obvinit."
+      },
+      {
+       "type": "list",
+       "ordered": false,
+       "items": [
+        "Dají se tvrzení v textu ověřit? Existují uvedené zdroje?",
+        "Umí autor vysvětlit, co napsal, a odpovědět na otázky?",
+        "Má autor poznámky, osnovu nebo starší verze textu?"
+       ],
+       "title": "Co vypovídá víc než styl"
+      }
+     ]
+    },
+    {
+     "id": "zpravy",
+     "heading": "Podezřelé zprávy a e-maily",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Podvodné zprávy se snaží vylákat peníze, hesla nebo ověřovací kódy. Díky AI jsou dnes psané bezchybně a mohou být i osobní: znají tvé jméno nebo školu."
+      },
+      {
+       "type": "terms",
+       "items": [
+        {
+         "term": "Kdo to posílá",
+         "text": "Podívej se na skutečnou adresu nebo číslo, ne jen na jméno. Zpráva z nového čísla „od kamaráda“ je varování."
+        },
+        {
+         "term": "Tlak",
+         "text": "Spěch, strach nebo velká výhra. „Do hodiny ti zablokujeme účet.“ „Vyhrál jsi telefon.“"
+        },
+        {
+         "term": "Co po tobě chce",
+         "text": "Kliknout na odkaz, přihlásit se, poslat kód, zaplatit. Banka, škola ani herní služba po tobě heslo nebo kód ve zprávě nechtějí."
+        }
+       ]
+      },
+      {
+       "type": "list",
+       "ordered": true,
+       "items": [
+        "Neklikej a nic neposílej.",
+        "Ověř to jinou cestou: zavolej na číslo, které znáš, otevři web ručně.",
+        "Řekni to dospělému a zprávu nahlas."
+       ],
+       "title": "Tři kroky, když si nejsi jistý"
+      }
+     ]
+    },
+    {
+     "id": "weby",
+     "heading": "Weby a recenze",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "AI umožňuje vyrobit stovky článků a recenzí během chvíle. Vznikají tak weby, které vypadají seriózně, ale nikdo jejich obsah neověřil. Jejich cílem bývá reklama nebo prodej."
+      },
+      {
+       "type": "list",
+       "ordered": false,
+       "items": [
+        "Kdo web provozuje? Je tam kontakt?",
+        "Je uveden autor a datum?",
+        "Odkud web čerpá? Uvádí zdroje?",
+        "Co se mi snaží prodat?",
+        "Říkají totéž i jiné, nezávislé zdroje?"
+       ],
+       "title": "Pět otázek"
+      },
+      {
+       "type": "figure",
+       "figure": "ask-check",
+       "caption": "Zeptat se, přečíst, ověřit. Platí pro odpověď od AI i pro web, který neznáš."
+      }
+     ]
+    },
+    {
+     "id": "poctivost",
+     "heading": "Pomáhá, nebo dělá za mě",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Druhá strana téže mince: i ty můžeš odevzdat práci, kterou napsala AI. Jestli je to v pořádku, záleží na dvou věcech: co tě měl úkol naučit a jaká pravidla dal učitel."
+      },
+      {
+       "type": "list",
+       "ordered": false,
+       "items": [
+        "nechat si vysvětlit látku,",
+        "nechat si zkontrolovat pravopis nebo styl vlastního textu,",
+        "nechat si navrhnout osnovu a text napsat sám."
+       ],
+       "title": "Obvykle v pořádku"
+      },
+      {
+       "type": "list",
+       "ordered": false,
+       "items": [
+        "nechat si napsat sloh nebo referát a odevzdat ho jako svůj,",
+        "opsat řešení, kterému nerozumíš,",
+        "nechat si vymyslet zdroje a citace."
+       ],
+       "title": "Obvykle není v pořádku"
+      }
+     ]
+    },
+    {
+     "id": "priznani",
+     "heading": "Jak použití AI přiznat",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Přiznat pomoc AI není ostuda, je to stejné jako uvést zdroj. Stačí krátká poznámka na konci práce."
+      },
+      {
+       "type": "example",
+       "title": "Poznámka o použití AI",
+       "text": "Při práci jsem použil konverzační AI nástroj k návrhu osnovy a ke kontrole pravopisu. Text jsem psal sám a fakta jsem ověřil v učebnici a ve zdrojích uvedených v seznamu."
+      },
+      {
+       "type": "callout",
+       "tone": "info",
+       "title": "AI není zdroj",
+       "text": "Model není kniha ani článek. Fakta z jeho odpovědi ověř a jako zdroj uveď to, kde jsi je ověřil."
+      }
+     ]
+    },
+    {
+     "id": "navyky",
+     "heading": "Čtyři návyky, které vydrží",
+     "blocks": [
+      {
+       "type": "list",
+       "ordered": true,
+       "items": [
+        "Zpomal. Podvody i falešné zprávy sázejí na spěch.",
+        "Ptej se na původ: kdo, kdy, kde.",
+        "Ověřuj ve druhém, nezávislém zdroji.",
+        "Za tím, co sdílíš a odevzdáváš, stojíš ty."
+       ]
+      }
+     ]
+    }
+   ],
+   "summary": [
+    "Výtvory AI se podle vzhledu poznávají čím dál hůř. Rozhoduje původ a ověření v jiném zdroji.",
+    "Detektory AI textu se pletou a nejsou důkaz.",
+    "Podvodná zpráva spěchá a něco po tobě chce. Neklikej, ověř jinou cestou, řekni to dospělému.",
+    "Použití AI ve vlastní práci přiznej a fakta ověř."
+   ]
+  },
+  "svet-ai": {
+   "lead": "Nástroje, které dnes znáš, mohou za rok vypadat jinak. Nemá smysl učit se nazpaměť názvy. Vyplatí se vědět, kdo AI vyrábí, rozumět pár pojmům, které uslyšíš stále častěji, a umět si najít, co platí právě teď.",
+   "sections": [
+    {
+     "id": "model-aplikace",
+     "heading": "Model a aplikace nejsou totéž",
+     "blocks": [
+      {
+       "type": "terms",
+       "items": [
+        {
+         "term": "Model",
+         "text": "„Motor“: velký jazykový model, který skládá text. Sám o sobě nemá okno, tlačítka ani historii."
+        },
+        {
+         "term": "Aplikace",
+         "text": "„Auto“ postavené kolem motoru: web nebo program, ve kterém s modelem mluvíš. Přidává historii, nahrávání souborů, vyhledávání."
+        }
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Jedna firma může nabízet více modelů a jeden model může pohánět mnoho různých aplikací, i od jiných firem. Proto se „AI v aplikaci“ může chovat podobně jako chatbot, který už znáš."
+      }
+     ]
+    },
+    {
+     "id": "firmy",
+     "heading": "Kdo velké modely vyrábí",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Velké jazykové modely vyvíjí jen několik firem, protože trénování stojí obrovské peníze a potřebuje spoustu výpočetní techniky."
+      },
+      {
+       "type": "terms",
+       "items": [
+        {
+         "term": "OpenAI (USA)",
+         "text": "Modely GPT a nástroj ChatGPT, který na konci roku 2022 ukázal AI široké veřejnosti."
+        },
+        {
+         "term": "Google (USA)",
+         "text": "Modely a asistent Gemini, propojené s vyhledávačem a dalšími službami firmy."
+        },
+        {
+         "term": "Anthropic (USA)",
+         "text": "Modely a asistent Claude."
+        },
+        {
+         "term": "Meta (USA)",
+         "text": "Modely Llama, které dává k dispozici ostatním, a asistent ve svých sociálních sítích."
+        },
+        {
+         "term": "Mistral AI (Francie)",
+         "text": "Nejznámější evropský výrobce, asistent Le Chat."
+        },
+        {
+         "term": "DeepSeek (Čína)",
+         "text": "Modely, které zaujaly nízkou cenou provozu."
+        }
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "info",
+       "title": "Ověř si datum",
+       "text": "Přehled odpovídá podzimu 2026. Názvy modelů i pořadí firem se mění během měsíců. U každého údaje o AI se ptej, z kdy je."
+      }
+     ]
+    },
+    {
+     "id": "agent",
+     "heading": "Chatbot a agent",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "**Chatbot** odpovídá na zprávy. Napíšeš otázku, dostaneš odpověď a další krok je na tobě."
+      },
+      {
+       "type": "p",
+       "text": "**Agent** dostane cíl a sám si ho rozdělí na kroky. Umí k tomu používat nástroje: vyhledat na webu, otevřít soubor, vyplnit formulář, něco spočítat. Po každém kroku se podívá, co vyšlo, a rozhodne, co dál. Když pracuje dlouho a bez dozoru, mluví se o **autonomním agentovi**."
+      },
+      {
+       "type": "figure",
+       "figure": "agents",
+       "caption": "Agent si úkol rozdělí na kroky a používá nástroje. Na důležité kroky dohlíží člověk."
+      },
+      {
+       "type": "list",
+       "ordered": false,
+       "items": [
+        "všude, kde se platí,",
+        "kde se něco odesílá jiným lidem,",
+        "kde se něco maže nebo nejde vrátit,",
+        "kde jde o osobní údaje."
+       ],
+       "title": "Kdy má agent počkat na schválení člověkem"
+      },
+      {
+       "type": "p",
+       "text": "Agent se může splést stejně jako chatbot. Rozdíl je v tom, že jeho chyba už není jen věta na obrazovce, ale provedený krok."
+      }
+     ]
+    },
+    {
+     "id": "api",
+     "heading": "API: jak se programy domlouvají",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "**API** je domluvený způsob, jak jeden program požádá druhý o službu. Představ si restauraci: host nechodí do kuchyně, objedná si u číšníka podle jídelního lístku. Lístek říká, co lze objednat a v jaké podobě."
+      },
+      {
+       "type": "figure",
+       "figure": "api-request",
+       "caption": "Aplikace pošle přes API požadavek a dostane odpověď. Uživatel vidí jen výsledek."
+      },
+      {
+       "type": "p",
+       "text": "Díky API může být jazykový model „uvnitř“ jiné aplikace: v poznámkách, v e-mailu, ve výukové hře. Aplikace pošle tvůj text výrobci modelu a ukáže ti odpověď. Stojí za to vědět, že tvůj text v tu chvíli putuje k další firmě."
+      }
+     ]
+    },
+    {
+     "id": "mcp",
+     "heading": "MCP: jak se k AI připojují nástroje",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "**MCP** (Model Context Protocol) je společný standard, podle kterého se k AI aplikaci připojují nástroje a zdroje dat: kalendář, složka s dokumenty, vyhledávání, databáze. Funguje jako jednotný tvar zásuvky. Kdo vyrobí „zástrčku“ pro svůj nástroj, může ho připojit k různým AI aplikacím."
+      },
+      {
+       "type": "p",
+       "text": "Standard zveřejnila v roce 2024 firma Anthropic a postupně ho převzali i další výrobci."
+      },
+      {
+       "type": "callout",
+       "tone": "warning",
+       "title": "Co to znamená pro tebe",
+       "text": "Když AI připojíš ke kalendáři nebo k souborům, může je číst a někdy i měnit. Připojuj jen to, co k úkolu potřebuje, a jen nástrojům, kterým věříš."
+      }
+     ]
+    },
+    {
+     "id": "zebricky",
+     "heading": "Žebříčky a srovnání modelů",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Který model je nejlepší? Na to se pokouší odpovědět srovnávací přehledy a žebříčky, například **llm-stats.com**. Ukazují modely vedle sebe: kdy vyšly, kolik stojí, jak velké mají kontextové okno a jak dopadly v testech."
+      },
+      {
+       "type": "terms",
+       "items": [
+        {
+         "term": "Benchmark",
+         "text": "Sada testových úloh, na které se modely porovnávají."
+        },
+        {
+         "term": "Cena",
+         "text": "Uvádí se za milion tokenů na vstupu a na výstupu. Týká se programového přístupu."
+        },
+        {
+         "term": "Kontextové okno",
+         "text": "Kolik textu model pojme najednou."
+        }
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Žebříček je užitečný jako přehled, ne jako rozsudek. Test měří jen to, na co byl postavený, a pořadí se mění s každým novým modelem. Nejlíp poznáš, jestli se model hodí, když ho vyzkoušíš na vlastní úloze."
+      }
+     ]
+    },
+    {
+     "id": "novinky",
+     "heading": "Novinka, nebo reklama",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "O AI se píše hodně a často nadšeně. Většina zpráv vychází z oznámení samotných firem, které chtějí svůj výrobek prodat."
+      },
+      {
+       "type": "list",
+       "ordered": false,
+       "items": [
+        "Kdo to říká? Firma o vlastním výrobku, nebo někdo nezávislý?",
+        "Je to už k dispozici, nebo jen ohlášené?",
+        "Potvrzuje to druhý zdroj?",
+        "Co přesně se změnilo pro mě jako uživatele?"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "v-obraze",
+     "heading": "Jak zůstat v obraze",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Nemusíš sledovat všechno. Stačí pár zdrojů a zvyk se k nim jednou za čas vrátit."
+      },
+      {
+       "type": "list",
+       "ordered": false,
+       "items": [
+        "srovnávací přehled modelů, například llm-stats.com,",
+        "oficiální oznámení výrobce nástroje, který používáš,",
+        "jedno nezávislé médium, které o technologiích píše věcně."
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Názvy se změní. Co ses naučil v šesti úrovních, vydrží: jak model funguje, jak mu zadat úkol, co mu nesvěřit, kdy sáhnout po jiném nástroji a jak si věci ověřit."
+      }
+     ]
+    }
+   ],
+   "summary": [
+    "Model je motor, aplikace je auto kolem něj. Velké modely vyrábí jen několik firem.",
+    "Agent plní cíl sám po krocích a používá nástroje. Důležité kroky má schvalovat člověk.",
+    "API spojuje aplikace s modelem, MCP připojuje k AI nástroje a data. Obojí znamená, že tvá data putují dál.",
+    "Žebříčky jako llm-stats.com dávají přehled. Údaje o AI rychle stárnou, proto se ptej na datum a zdroj."
    ]
   },
   "automation": {
@@ -2143,7 +3201,7 @@
        "items": [
         "lepší prompt a jasnější instrukce,",
         "ukázkové příklady přímo v zadání,",
-        "vyhledávání ve vlastních dokumentech (RAG, viz úroveň 6),",
+        "vyhledávání ve vlastních dokumentech (RAG, viz úroveň 10),",
         "a teprve potom doladění."
        ],
        "title": "V jakém pořadí to zkoušet"
@@ -2507,15 +3565,287 @@
    ]
   },
   "zs2-level-3": {
-   "topic": "automation"
+   "topic": "komunikace"
   },
   "ss-level-3": {
-   "topic": "automation"
+   "topic": "komunikace",
+   "extra": [
+    {
+     "id": "podminky",
+     "heading": "Podmínky služeb: co v nich hledat",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Každý nástroj má podmínky užívání a zásady ochrany soukromí. Nemusíš je číst celé. Stačí v nich najít odpovědi na několik otázek."
+      },
+      {
+       "type": "list",
+       "ordered": false,
+       "items": [
+        "Jak dlouho se konverzace a nahrané soubory uchovávají?",
+        "Používají se k trénování modelů? Dá se to vypnout?",
+        "Kdo k nim může mít přístup?",
+        "Od kolika let je služba určena a co platí pro nezletilé?",
+        "Jak se historie a účet mažou?"
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Podmínky se mění a u bezplatných, placených a školních verzí se mohou lišit. Na brigádě nebo praxi navíc platí pravidla zaměstnavatele: interní dokumenty a údaje zákazníků do soukromého účtu nepatří."
+      }
+     ]
+    },
+    {
+     "id": "zavislost",
+     "heading": "Když rozhovory se strojem nahrazují lidi",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Některé aplikace nabízejí „AI přítele“ nebo „AI partnera“, který si pamatuje, co mu řekneš, a píše ti první. Firma na takové službě vydělává tím víc, čím víc času v ní trávíš. Vstřícnost tu není jen vlastnost modelu, ale i obchodní záměr."
+      },
+      {
+       "type": "list",
+       "ordered": false,
+       "items": [
+        "odkládáš kvůli psaní s chatbotem setkání s lidmi,",
+        "bez přístupu k aplikaci jsi neklidný,",
+        "radíš se s ním před každým rozhodnutím,",
+        "říkáš mu věci, které už neříkáš nikomu jinému,",
+        "platíš za to, aby rozhovor pokračoval."
+       ],
+       "title": "Signály, že to přerůstá"
+      },
+      {
+       "type": "p",
+       "text": "Pro dospělé funguje nepřetržitě a zdarma také Linka první psychické pomoci 116 123. Školní psycholog je vázán mlčenlivostí a první návštěva k ničemu nezavazuje."
+      }
+     ]
+    }
+   ]
   },
   "zs2-level-4": {
-   "topic": "scripting"
+   "topic": "nastroje"
   },
   "ss-level-4": {
+   "topic": "nastroje",
+   "extra": [
+    {
+     "id": "modely",
+     "heading": "Menší a větší modely, zdarma a za peníze",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Poskytovatelé obvykle nabízejí několik modelů najednou. Liší se velikostí, rychlostí a cenou a nejsilnější model není vždy nejlepší volba."
+      },
+      {
+       "type": "terms",
+       "items": [
+        {
+         "term": "Menší model",
+         "text": "Rychlý a levný. Stačí na opravu překlepů, krátké shrnutí, jednoduché otázky."
+        },
+        {
+         "term": "Velký model",
+         "text": "Pomalejší a dražší. Vyplatí se u složitých úvah, dlouhých dokumentů a náročnějších úloh."
+        },
+        {
+         "term": "Bezplatná verze",
+         "text": "Mívá omezený počet zpráv, slabší model nebo méně funkcí. Pro školní práci obvykle stačí."
+        },
+        {
+         "term": "Placená verze",
+         "text": "Vyšší limity, silnější modely, práce se soubory. Vyplatí se jen tomu, kdo na limity opravdu naráží."
+        }
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Za programový přístup se platí podle počtu tokenů na vstupu a výstupu. I proto platí, že úlohu, kterou zvládne tabulka nebo krátký skript, není rozumné posílat velkému modelu: je to pomalejší, dražší a méně spolehlivé."
+      }
+     ]
+    },
+    {
+     "id": "prace",
+     "heading": "AI na brigádě a v praxi",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "V práci platí vše, co ve škole, a k tomu pravidla zaměstnavatele. Zeptej se na ně hned první den."
+      },
+      {
+       "type": "list",
+       "ordered": false,
+       "items": [
+        "Smí se tu AI používat? Jaký nástroj a na co?",
+        "Které informace jsou důvěrné: údaje zákazníků, ceny, smlouvy, interní dokumenty?",
+        "Kdo odpovídá za výsledek? Odpověď je vždy stejná: ten, kdo ho odeslal."
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "warning",
+       "title": "Životopis",
+       "text": "AI ti pomůže se stylem a strukturou životopisu. Nesmí v něm přibýt dovednost nebo zkušenost, kterou nemáš. U pohovoru se na ni někdo zeptá."
+      }
+     ]
+    }
+   ]
+  },
+  "zs2-level-5": {
+   "topic": "poznej-ai"
+  },
+  "ss-level-5": {
+   "topic": "poznej-ai",
+   "extra": [
+    {
+     "id": "hlas",
+     "heading": "Klonování hlasu a cílené podvody",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "K napodobení hlasu dnes stačí krátká nahrávka, třeba z videa na sociální síti. Podvodník pak zavolá hlasem příbuzného, který je „v nouzi“ a potřebuje rychle peníze. Cílené e-maily zase využívají veřejně dostupné údaje: jméno školy, vyučujícího, firmy, kde pracuješ."
+      },
+      {
+       "type": "list",
+       "ordered": false,
+       "items": [
+        "Domluvte si v rodině heslo nebo otázku, kterou cizí člověk nezná.",
+        "Zavěs a zavolej zpět na číslo, které máš uložené.",
+        "Zapni si dvoufázové ověření u e-mailu, sociálních sítí a banky.",
+        "Ověřovací kód nikdy nikomu nediktuj ani nepřeposílej."
+       ],
+       "title": "Obrana"
+      }
+     ]
+    },
+    {
+     "id": "citace",
+     "heading": "Citování, autorská práva a odborná práce",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "V seminární nebo ročníkové práci se řiď pravidly školy, případně soutěže či vysoké školy, kam práci podáváš. Liší se, ale několik zásad platí téměř všude."
+      },
+      {
+       "type": "list",
+       "ordered": false,
+       "items": [
+        "Použití AI se uvádí: jaký nástroj, na co a v jakém rozsahu.",
+        "AI nelze uvést jako autora ani jako zdroj faktů.",
+        "Každý zdroj v seznamu literatury jsi sám otevřel a přečetl. Model si citace vymýšlí.",
+        "Za obsah práce odpovídáš ty, včetně chyb, které do ní vnesl model."
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Výstup modelu může připomínat cizí dílo, ať jde o text, obrázek nebo kód. Před zveřejněním si ověř, že nekopíruješ cizí práci. Pravidla pro označování uměle vytvořeného obsahu postupně zavádí i evropské nařízení o umělé inteligenci."
+      }
+     ]
+    }
+   ]
+  },
+  "zs2-level-6": {
+   "topic": "svet-ai"
+  },
+  "ss-level-6": {
+   "topic": "svet-ai",
+   "extra": [
+    {
+     "id": "otevrene",
+     "heading": "Uzavřené a otevřené modely",
+     "blocks": [
+      {
+       "type": "terms",
+       "items": [
+        {
+         "term": "Uzavřený model",
+         "text": "Běží jen na počítačích výrobce. Používáš ho přes aplikaci nebo API a platíš podle využití."
+        },
+        {
+         "term": "Otevřený model",
+         "text": "Výrobce ho zveřejní ke stažení. Kdo má dost výkonný počítač, může ho provozovat sám, i bez internetu."
+        }
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Otevřený model dává kontrolu nad daty, protože nic neodchází k cizí firmě. Vyžaduje ale vlastní techniku a bývá o něco slabší než nejlepší uzavřené modely. Slovo „otevřený“ také neznamená vždy totéž: liší se v tom, co přesně výrobce zveřejnil a co s tím dovoluje dělat."
+      }
+     ]
+    },
+    {
+     "id": "ai-act",
+     "heading": "Evropská pravidla: AI Act",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Evropská unie přijala v roce 2024 **nařízení o umělé inteligenci** (AI Act). Jeho povinnosti nabíhají postupně a dělí systémy AI podle rizika."
+      },
+      {
+       "type": "terms",
+       "items": [
+        {
+         "term": "Zakázané praktiky",
+         "text": "Například manipulace lidí proti jejich vůli nebo plošné bodování občanů."
+        },
+        {
+         "term": "Vysoké riziko",
+         "text": "Systémy, které rozhodují o lidech: přijímání do práce a do školy, úvěry, zdravotnictví. Platí pro ně přísné požadavky a lidský dohled."
+        },
+        {
+         "term": "Povinnost průhlednosti",
+         "text": "Člověk má vědět, že mluví s chatbotem, a uměle vytvořený obsah má být označen."
+        },
+        {
+         "term": "Minimální riziko",
+         "text": "Většina běžných použití, například filtr nevyžádané pošty."
+        }
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Nařízení také ukládá firmám a institucím, které AI používají, aby zajistily dostatečnou **AI gramotnost** svých lidí. To, co se učíš v těchto úrovních, po tobě tedy jednou může chtít i zaměstnavatel."
+      }
+     ]
+    },
+    {
+     "id": "prace-budoucnost",
+     "heading": "AI a pracovní trh",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "AI mění hlavně jednotlivé činnosti, ne celá povolání naráz. Rychle přebírá rutinní práci s textem a daty. Na lidech zůstává zadání, kontrola, odpovědnost a jednání s druhými."
+      },
+      {
+       "type": "list",
+       "ordered": false,
+       "items": [
+        "přesně formulovat, co je potřeba udělat,",
+        "posoudit a ověřit výsledek,",
+        "vědět, kdy AI nepoužít,",
+        "chránit údaje své i cizí,",
+        "průběžně se učit nové nástroje."
+       ],
+       "title": "Dovednosti, které se neztratí"
+      },
+      {
+       "type": "p",
+       "text": "V oboru, který tě zajímá, se vyplatí zjistit, které činnosti AI už mění. Ptej se lidí z praxe a hledej zdroje, které nepíší výrobci nástrojů."
+      }
+     ]
+    }
+   ]
+  },
+  "zs2-level-7": {
+   "topic": "automation"
+  },
+  "ss-level-7": {
+   "topic": "automation"
+  },
+  "zs2-level-8": {
+   "topic": "scripting"
+  },
+  "ss-level-8": {
    "topic": "scripting",
    "extra": [
     {
@@ -2534,10 +3864,10 @@
     }
    ]
   },
-  "zs2-level-5": {
+  "zs2-level-9": {
    "topic": "developer"
   },
-  "ss-level-5": {
+  "ss-level-9": {
    "topic": "developer",
    "extra": [
     {
@@ -2562,10 +3892,10 @@
     }
    ]
   },
-  "zs2-level-6": {
+  "zs2-level-10": {
    "topic": "architect"
   },
-  "ss-level-6": {
+  "ss-level-10": {
    "topic": "architect",
    "extra": [
     {

@@ -32,7 +32,7 @@ Nejrychleji v aplikaci: Úpravy obsahu → Online kurz / Teorie → „Stav a po
 | Teorie | `src/content/aifb/aifb-theory.json` | `"status": "draft"` → `"reviewed"` (zmizí poznámka o návrhu) |
 | Pilotní cvičení | `src/content/aifb/pupil-pilots.json` | u konkrétní lekce `"status": "draft"` → `"reviewed"` |
 
-U pilotních cvičení validace stav `draft` vyžaduje (aby ho nikdo nezměnil omylem). Při schválení je potřeba upravit i tuto kontrolu v `validatePupilLayer` (`src/lib/edu/aifb/pupil.ts`) a test v `tests/unit/aifb-pupil.test.mjs`. Test kurzu (`aifb-course.test.mjs`) také čeká `draft` a po schválení se upraví.
+U cvičení validace v repozitáři dovoluje stav `draft` a `reviewed` (`published` nastavuje jen admin v aplikaci). Od 10. 11. 2026 jsou cvičení ve stavu `reviewed`; návrhem zůstávají čtyři cvičení s AI a dva citlivé rozhovory (`zs2-level-3-cv4`, `ss-level-3-cv4`), což hlídá test v `tests/unit/aifb-pupil.test.mjs`. Vrátit vše do návrhu jde nahrazením `"status": "reviewed"` za `"draft"` v `pupil-pilots.json`.
 
 Celý text k přečtení je v `generovano/teorie.md`, `generovano/online-kurz.md` a `generovano/pilotni-cviceni.md` (u cvičení jsou vyznačené správné odpovědi).
 

@@ -6,10 +6,27 @@ Všechny jsou v `src/components/edu/aifb/interactive/`, rozcestník `PupilLayerV
 
 | Komponenta | Co dělá | Konfigurace |
 |---|---|---|
-| `QuizCard` | otázky s jednou správnou odpovědí; po „Zkontrolovat“ ukáže „Správně“ / „Zatím ne“ a vysvětlení; na konci skóre a „Začít znovu“ | `questions: [{ id, prompt, options: [{ id, text }], correct, explanation }]` |
-| `CardSort` | třídění karet do hromádek bez tahání myší (každá karta má tlačítka „Dát do hromádky: …“); upozorní na špatně zařazené | `piles`, `cards`, volitelně `expected` (karta → hromádka) a `hint` |
-| `TrafficLightCards` | u každé situace zelená / červená, hned zpětná vazba, na konci skóre | `situations: [{ id, text, answer?, feedback? }]`, volitelně `labels: { green, red }` (výchozí „můžu říct“ / „tajemství“) |
+| `QuizCard` | jedna otázka na obrazovce, možnosti jako velké dlaždice; odpověď se hodnotí hned po výběru (správná ukáže vysvětlení a „Další“, chybnou lze zkusit znovu) | `questions: [{ id, prompt, emoji?, options: [{ id, text, emoji? }], correct, explanation }]` |
+| `CardSort` | třídění bez tahání myší: aktuální karta je velká uprostřed, hromádky jsou velká tlačítka; s `expected` se špatná hromádka hned ohlásí a karta zůstane, bez `expected` se nehodnotí a kartu lze vrátit | `piles`, `cards` (oboje s volitelným `emoji`), volitelně `expected` (karta → hromádka) a `hint` |
+| `TrafficLightCards` | jedna situace na obrazovce se semaforem, dvě velká tlačítka; správná odpověď ukáže vysvětlení a „Další“ | `situations: [{ id, text, emoji?, answer?, feedback? }]`, volitelně `labels: { green, red }` (výchozí „můžu říct“ / „tajemství“) |
+| `PromptBuilder` | skládačka zadání: v každé části (role, úkol, podoba…) se vybírá kartička, zadání se průběžně skládá do „zprávy“; po odeslání se u každé části ukáže, jestli pomohla a proč | `goal`, `success`, `slots: [{ id, label, why, options: [{ id, text, good? }] }]` |
+| `TextDetective` | detektiv v textu: text je rozdělený na klikací úseky, žák hledá chyby (`errors`), varovné znaky (`signals`) nebo osobní údaje (`redact`: po kliknutí se nahradí bezpečným slovem); text může mít rámec zprávy, e-mailu nebo webu | `mode`, `frame?`, `header?: { from?, subject? }`, `segments: [{ id, text, target?, replacement?, explanation? }]` |
+| `NextWord` | hra na jazykový model: žák tipuje další slovo a pak vidí sloupce s tím, jak pravděpodobná slova by volil model; nehodnotí se pravda, jen shoda | `rounds: [{ id, start, options: [{ word, percent }], note }]` (procenta jsou ilustrační) |
+| `ScaleLine` | přímka mezi dvěma póly; žák umístí situaci, mimo správné rozmezí dostane nápovědu směru | `left`, `right`, `steps?` (3–7, výchozí 5), `items: [{ id, text, emoji?, min, max, feedback }]` |
+| `ChatSim` | předem napsaný rozhovor v bublinách (chatbot, kamarád, agent, podvodník); žák vybírá reakci, rozumná posune rozhovor dál, u nerozumné se ukáže proč | `persona: { name, emoji }`, `steps: [{ id, message, choices: [{ id, text, good?, feedback, reply? }] }]` |
+| `PairMatch` | spojovačka: karta vlevo a k ní karta vpravo; správná dvojice se zamkne a očísluje | `pairs: [{ id, left, right, emoji? }]` |
 | `AiSandbox` | cvičení s jazykovým modelem přes server | `mode: "prompt-rescue"` (`vaguePrompts`) nebo `"fact-check"` (`topicLabel`) |
+
+### Herní podoba (listopad 2026)
+
+Cvičení jsou navržená tak, aby bavila děti a šla ovládat na tabletu i na interaktivní tabuli:
+
+- **Mise:** volitelné pole `theme: { emoji, title }` u vrstvy vykreslí tematickou hlavičku (na 1. stupni podle ostrova na pirátské mapě).
+- **Postup:** tečky nad kartou ukazují hotové, aktuální a zbývající kroky; vždy je vidět jen jeden krok.
+- **Obrázky:** volitelné `emoji` u otázek, možností, karet, hromádek a situací. Je jen ozdobné (`aria-hidden`), význam nese text.
+- **Odezva hned:** správná odpověď zezelená s ✓ a ukáže vysvětlení, chybná se označí ✗ a karta se zatřese; dítě zkouší dál, dokud neodpoví správně.
+- **Hvězdičky:** závěrečná karta ukáže 1–3 hvězdičky podle odpovědí napoprvé (`starsFor` v `interactive-logic.ts`: 3 = vše, 2 = aspoň 60 %, 1 = dokončeno), konfety a „Hrát znovu“.
+- Společné prvky jsou v `interactive/game-ui.tsx`, styly v `aifb.css` (třídy `aifb-game*`, `aifb-tile`, `aifb-mission`). Animace běží jen bez `prefers-reduced-motion`.
 
 Přístupnost: ovládání klávesnicí, přepínače v `fieldset` s `legend`, stav vždy i textem (ne jen barvou), tlačítka aspoň 44 px vysoká, výsledky v `role="status"`.
 
@@ -48,6 +65,15 @@ Jsou jen čtyři a všechna jsou návrh:
 | `AIFB_AI_API_KEY` (nebo `EDU_AI_API_KEY`) | – | klíč; bez něj se model nevolá |
 | `AIFB_AI_API_URL` (nebo `EDU_AI_API_URL`) | OpenAI-kompatibilní endpoint chat completions | adresa služby |
 | `AIFB_AI_MODEL` (nebo `EDU_AI_MODEL`) | `gpt-4o-mini` | model |
+
+### Vlastní model na AWS
+
+Server volá libovolný endpoint ve formátu OpenAI chat completions, takže model může běžet na vlastním serveru v AWS a žákovská zadání pak neodcházejí třetí straně. Dvě běžné cesty:
+
+- **EC2 s GPU a otevřeným modelem** (vLLM, Ollama nebo llama.cpp server; všechny nabízejí cestu `/v1/chat/completions`): `AIFB_AI_API_URL=https://<adresa>/v1/chat/completions`, `AIFB_AI_MODEL=<název modelu na serveru>`, `AIFB_AI_API_KEY=<klíč, který server vyžaduje>`.
+- **Amazon Bedrock**, pokud pro zvolený model nabízí OpenAI-kompatibilní endpoint (ověřit v aktuální dokumentaci AWS); nastavení jsou stejné tři proměnné.
+
+Server musí být dostupný jen přes HTTPS a chráněný klíčem (bez klíče se model nevolá vůbec a vrací se uložená odpověď). Limity dotazů, kontrola osobních údajů a ořez délky zůstávají na straně aplikace a platí pro jakýkoli model. Před nasazením je potřeba ověřit, že zvolený model umí dobře česky a drží se systémového promptu; uložené odpovědi slouží jako záloha při výpadku. Pravidlo R1 platí dál: 1. stupeň cvičení s AI nemá.
 
 Poskytovatel se mění jen na jednom místě (`callProvider` v `ai-service.ts`). Rozhraní nikde neukazuje značku modelu (R8).
 

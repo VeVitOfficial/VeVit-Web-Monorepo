@@ -1,7 +1,7 @@
 // Kontrola obsahu AIFB (CI i build): bez externích závislostí.
 //   node scripts/aifb-validate.mjs
 // 1) každý obsahový soubor proti aifb-content.schema.json (podmnožina JSON Schema 2020-12),
-// 2) invarianty z plánu: 3 kategorie s obsahem, 16 levelů, 96 lekcí, unikátní id,
+// 2) invarianty z plánu: 3 kategorie s obsahem, 24 levelů (4 + 10 + 10), 144 lekcí, unikátní id,
 //    shoda katalogu s obsahem, tvar id lekcí, odkazy „kapitola/oddíl" vedou na existující oddíl,
 //    certifikace jen jako „planned", text pro žáky jen ve stavu todo/draft.
 // Obsahové soubory se nikdy nepřepisují ani nepřeformátovávají.
@@ -22,7 +22,7 @@ export { validateAgainstSchema };
 const repoRoot = join(dirname(fileURLToPath(import.meta.url)), "..");
 const defaultDir = join(repoRoot, "src/content/aifb");
 const CATEGORY_FILES = { zs1: "aifb-content-zs1.json", zs2: "aifb-content-zs2.json", ss: "aifb-content-ss.json" };
-const EXPECTED = { categories: 3, levels: 16, lessons: 96 };
+const EXPECTED = { categories: 3, levels: 24, lessons: 144 };
 
 // ── Invarianty obsahu ───────────────────────────────────────────────────────
 
@@ -140,7 +140,7 @@ export function validateAifb(dir = defaultDir, publicDir = join(repoRoot, "publi
     else if (statSync(onDisk).size !== item.bytes) errors.push(`downloads.json: ${item.file} má ${statSync(onDisk).size} B, v manifestu ${item.bytes} B`);
   }
 
-  // Pilotní žákovská vrstva (F6): jen existující lekce, jen stav draft, platné konfigurace, AI jen mimo 1. stupeň.
+  // Žákovská vrstva (F6): jen existující lekce, stav draft nebo reviewed, platné konfigurace, AI jen mimo 1. stupeň.
   const overlay = read("pupil-pilots.json");
   const lessonIndex = new Map();
   for (const [categoryId, fileName] of Object.entries(CATEGORY_FILES)) {

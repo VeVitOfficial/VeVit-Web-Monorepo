@@ -202,7 +202,7 @@ test("online kurz: hub → kurz → modul → teorie → lekce s cvičením → 
     assert.ok(await page.locator(".th-figure").count() >= 1, "teorie má ilustraci");
     await page.getByRole("link", { name: /Pokračovat: Lekce 1/ }).click();
     await page.waitForURL(/\/kurz\/m4\/cv1$/);
-    const item = page.locator(".aifb-traffic__item").nth(1);
+    const item = page.locator(".aifb-traffic__item").first();
     await item.getByRole("button", { name: "Nepatří do AI" }).click();
     await assert.doesNotReject(item.getByRole("status").waitFor());
     await page.getByRole("link", { name: /Lekce 2: Rozřaď údaje/ }).click();

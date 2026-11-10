@@ -91,8 +91,8 @@
      "id": "zs2-level-1",
      "order": 1,
      "code": "Level 1",
-     "title": "AIFB Foundation",
-     "subtitle": "Základy a bezpečnost",
+     "title": "Co je AI a jak funguje",
+     "subtitle": "Jazykové modely, jejich možnosti a chyby",
      "grades": "6. až 7. třída",
      "hours": "7 až 8 hodin",
      "lessonCount": 6,
@@ -106,8 +106,8 @@
      "id": "zs2-level-2",
      "order": 2,
      "code": "Level 2",
-     "title": "AIFB Intermediate",
-     "subtitle": "Prompting a datové struktury",
+     "title": "Jak s AI mluvit",
+     "subtitle": "Dobré zadání, ladění a podoba odpovědi",
      "grades": "7. až 8. třída",
      "hours": "7 až 8 hodin",
      "lessonCount": 6,
@@ -121,6 +121,54 @@
      "id": "zs2-level-3",
      "order": 3,
      "code": "Level 3",
+     "title": "O čem s AI mluvit",
+     "subtitle": "Soukromí, osobní témata a kdy jít za člověkem",
+     "grades": "7. až 8. třída",
+     "hours": "7 až 8 hodin",
+     "lessonCount": 6,
+     "certification": null,
+     "route": "/edu/ai-gramotnost/aifb/zs2/level-3"
+    },
+    {
+     "id": "zs2-level-4",
+     "order": 4,
+     "code": "Level 4",
+     "title": "Jaký nástroj na co",
+     "subtitle": "Kdy pomůže AI a kdy stačí něco jednoduššího",
+     "grades": "8. třída",
+     "hours": "7 až 8 hodin",
+     "lessonCount": 6,
+     "certification": null,
+     "route": "/edu/ai-gramotnost/aifb/zs2/level-4"
+    },
+    {
+     "id": "zs2-level-5",
+     "order": 5,
+     "code": "Level 5",
+     "title": "Poznej AI a používej ji poctivě",
+     "subtitle": "Obrázky, texty, zprávy a weby vytvořené AI",
+     "grades": "8. až 9. třída",
+     "hours": "7 až 8 hodin",
+     "lessonCount": 6,
+     "certification": null,
+     "route": "/edu/ai-gramotnost/aifb/zs2/level-5"
+    },
+    {
+     "id": "zs2-level-6",
+     "order": 6,
+     "code": "Level 6",
+     "title": "Svět AI",
+     "subtitle": "Kdo AI vyrábí, co jsou agenti a jak zůstat v obraze",
+     "grades": "9. třída",
+     "hours": "7 až 8 hodin",
+     "lessonCount": 6,
+     "certification": null,
+     "route": "/edu/ai-gramotnost/aifb/zs2/level-6"
+    },
+    {
+     "id": "zs2-level-7",
+     "order": 7,
+     "code": "Level 7",
      "title": "AIFB Advanced",
      "subtitle": "Automatizace a práce s API",
      "grades": "8. až 9. třída",
@@ -130,12 +178,12 @@
       "name": "Certified AI Automation Practitioner",
       "status": "planned"
      },
-     "route": "/edu/ai-gramotnost/aifb/zs2/level-3"
+     "route": "/edu/ai-gramotnost/aifb/zs2/level-7"
     },
     {
-     "id": "zs2-level-4",
-     "order": 4,
-     "code": "Level 4",
+     "id": "zs2-level-8",
+     "order": 8,
+     "code": "Level 8",
      "title": "Advanced API Integration and Scripting",
      "subtitle": null,
      "grades": "8. až 9. třída, kroužek programování",
@@ -145,27 +193,27 @@
       "name": null,
       "status": "planned"
      },
-     "route": "/edu/ai-gramotnost/aifb/zs2/level-4"
+     "route": "/edu/ai-gramotnost/aifb/zs2/level-8"
     },
     {
-     "id": "zs2-level-5",
-     "order": 5,
-     "code": "Level 5",
+     "id": "zs2-level-9",
+     "order": 9,
+     "code": "Level 9",
      "title": "Custom AI Developer",
      "subtitle": null,
-     "grades": "kroužek po úrovni 4, projektová výuka",
+     "grades": "kroužek po úrovni 8, projektová výuka",
      "hours": "9 až 13 hodin",
      "lessonCount": 6,
      "certification": {
       "name": null,
       "status": "planned"
      },
-     "route": "/edu/ai-gramotnost/aifb/zs2/level-5"
+     "route": "/edu/ai-gramotnost/aifb/zs2/level-9"
     },
     {
-     "id": "zs2-level-6",
-     "order": 6,
-     "code": "Level 6",
+     "id": "zs2-level-10",
+     "order": 10,
+     "code": "Level 10",
      "title": "AI Systems Architect",
      "subtitle": null,
      "grades": "výjimečně, jako individuální projekt",
@@ -175,12 +223,12 @@
       "name": null,
       "status": "planned"
      },
-     "route": "/edu/ai-gramotnost/aifb/zs2/level-6"
+     "route": "/edu/ai-gramotnost/aifb/zs2/level-10"
     }
    ],
    "totals": {
-    "levels": 6,
-    "lessons": 36
+    "levels": 10,
+    "lessons": 60
    }
   },
   {
@@ -199,8 +247,8 @@
      "id": "ss-level-1",
      "order": 1,
      "code": "Level 1",
-     "title": "AIFB Foundation",
-     "subtitle": "Základy a bezpečnost",
+     "title": "Co je AI a jak funguje",
+     "subtitle": "LLM, tokeny, kontextové okno a halucinace",
      "grades": "1. ročník SŠ",
      "hours": "7 až 8 hodin",
      "lessonCount": 6,
@@ -214,8 +262,8 @@
      "id": "ss-level-2",
      "order": 2,
      "code": "Level 2",
-     "title": "AIFB Intermediate",
-     "subtitle": "Prompting a datové struktury",
+     "title": "Jak s AI mluvit",
+     "subtitle": "Prompt, iterace a strukturovaný výstup",
      "grades": "1. až 2. ročník SŠ",
      "hours": "7 až 8 hodin",
      "lessonCount": 6,
@@ -229,6 +277,54 @@
      "id": "ss-level-3",
      "order": 3,
      "code": "Level 3",
+     "title": "O čem s AI mluvit",
+     "subtitle": "Data, soukromí, osobní témata a duševní zdraví",
+     "grades": "1. až 2. ročník SŠ",
+     "hours": "7 až 8 hodin",
+     "lessonCount": 6,
+     "certification": null,
+     "route": "/edu/ai-gramotnost/aifb/ss/level-3"
+    },
+    {
+     "id": "ss-level-4",
+     "order": 4,
+     "code": "Level 4",
+     "title": "Jaký nástroj na co",
+     "subtitle": "Výběr nástroje a modelu, AI při studiu a v praxi",
+     "grades": "2. ročník SŠ",
+     "hours": "7 až 8 hodin",
+     "lessonCount": 6,
+     "certification": null,
+     "route": "/edu/ai-gramotnost/aifb/ss/level-4"
+    },
+    {
+     "id": "ss-level-5",
+     "order": 5,
+     "code": "Level 5",
+     "title": "Poznej AI a používej ji poctivě",
+     "subtitle": "Deepfaky, podvody, vygenerované weby a akademická poctivost",
+     "grades": "2. až 3. ročník SŠ",
+     "hours": "7 až 8 hodin",
+     "lessonCount": 6,
+     "certification": null,
+     "route": "/edu/ai-gramotnost/aifb/ss/level-5"
+    },
+    {
+     "id": "ss-level-6",
+     "order": 6,
+     "code": "Level 6",
+     "title": "Svět AI",
+     "subtitle": "Trh, API, MCP, agenti, žebříčky a jak zůstat v obraze",
+     "grades": "3. ročník SŠ",
+     "hours": "7 až 8 hodin",
+     "lessonCount": 6,
+     "certification": null,
+     "route": "/edu/ai-gramotnost/aifb/ss/level-6"
+    },
+    {
+     "id": "ss-level-7",
+     "order": 7,
+     "code": "Level 7",
      "title": "AIFB Advanced",
      "subtitle": "Automatizace a práce s API",
      "grades": "2. až 3. ročník SŠ",
@@ -238,12 +334,12 @@
       "name": "Certified AI Automation Practitioner",
       "status": "planned"
      },
-     "route": "/edu/ai-gramotnost/aifb/ss/level-3"
+     "route": "/edu/ai-gramotnost/aifb/ss/level-7"
     },
     {
-     "id": "ss-level-4",
-     "order": 4,
-     "code": "Level 4",
+     "id": "ss-level-8",
+     "order": 8,
+     "code": "Level 8",
      "title": "Advanced API Integration and Scripting",
      "subtitle": null,
      "grades": "3. ročník, seminář informatiky",
@@ -253,12 +349,12 @@
       "name": null,
       "status": "planned"
      },
-     "route": "/edu/ai-gramotnost/aifb/ss/level-4"
+     "route": "/edu/ai-gramotnost/aifb/ss/level-8"
     },
     {
-     "id": "ss-level-5",
-     "order": 5,
-     "code": "Level 5",
+     "id": "ss-level-9",
+     "order": 9,
+     "code": "Level 9",
      "title": "Custom AI Developer",
      "subtitle": null,
      "grades": "3. až 4. ročník, seminář",
@@ -268,12 +364,12 @@
       "name": null,
       "status": "planned"
      },
-     "route": "/edu/ai-gramotnost/aifb/ss/level-5"
+     "route": "/edu/ai-gramotnost/aifb/ss/level-9"
     },
     {
-     "id": "ss-level-6",
-     "order": 6,
-     "code": "Level 6",
+     "id": "ss-level-10",
+     "order": 10,
+     "code": "Level 10",
      "title": "AI Systems Architect",
      "subtitle": null,
      "grades": "4. ročník, ročníkový projekt",
@@ -283,12 +379,12 @@
       "name": null,
       "status": "planned"
      },
-     "route": "/edu/ai-gramotnost/aifb/ss/level-6"
+     "route": "/edu/ai-gramotnost/aifb/ss/level-10"
     }
    ],
    "totals": {
-    "levels": 6,
-    "lessons": 36
+    "levels": 10,
+    "lessons": 60
    }
   },
   {
@@ -312,7 +408,7 @@
  ],
  "totals": {
   "categoriesWithContent": 3,
-  "levels": 16,
-  "lessons": 96
+  "levels": 24,
+  "lessons": 144
  }
 }

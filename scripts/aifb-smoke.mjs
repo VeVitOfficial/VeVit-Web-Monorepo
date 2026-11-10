@@ -1,4 +1,4 @@
-// Smoke test běžícího serveru: hub, 3 kategorie, 16 levelů (+ tisk), 16 teorií a 80 lekcí,
+// Smoke test běžícího serveru: hub, 3 kategorie, 24 levelů (+ tisk), 24 teorií a 120 lekcí,
 // průvodce, online kurz a stránky učitele a admina. Spuštění: `npm run smoke:aifb` (server na
 // BASE_URL, výchozí http://localhost:3000; potřebuje `npm run dev`, nebo `npm start` s AIFB_TEST_ROLES=1).
 // Obsah se prochází v roli admina (testovací cookie aifb_test_role) a každá stránka musí vrátit 200

@@ -2,24 +2,28 @@
 
 # Text teorie AIFB (všechna témata)
 
-Stav: **draft**. Texty teorie pro žáky a studenty, napsané podle témat, cílů a teoretické části metodických plánů. Návrh: čeká na odbornou kontrolu vlastníkem (pravidlo R7). Originální obsahové soubory aifb-content-*.json se nemění.
+Stav: **reviewed**. Texty teorie pro žáky a studenty, napsané podle témat, cílů a teoretické části metodických plánů. Návrh: čeká na odbornou kontrolu vlastníkem (pravidlo R7). Originální obsahové soubory aifb-content-*.json se nemění.
 
-Soubor: `src/content/aifb/aifb-theory.json`. Celkem 8331 slov.
+Soubor: `src/content/aifb/aifb-theory.json`. Celkem 12800 slov.
 
 ## Které téma patří ke kterému levelu
 
 | Téma | Slov | Bloky / levely | Sekce navíc |
 |---|---|---|---|
-| `zs1-a` | 650 | 1. stupeň ZŠ · Blok A: AI kolem nás | – |
-| `zs1-b` | 588 | 1. stupeň ZŠ · Blok B: Jak přemýšlí počítač | – |
-| `zs1-c` | 571 | 1. stupeň ZŠ · Blok C: Host AI ve třídě | – |
-| `zs1-d` | 551 | 1. stupeň ZŠ · Blok D: Přesná zadání a vlastní projekt | – |
-| `foundation` | 1088 | 2. stupeň ZŠ · Level 1: AIFB Foundation<br>Střední školy a gymnázia · Level 1: AIFB Foundation | ss-level-1: Jak model vzniká: předtrénování a doladění |
-| `prompting` | 927 | 2. stupeň ZŠ · Level 2: AIFB Intermediate<br>Střední školy a gymnázia · Level 2: AIFB Intermediate | ss-level-2: Složité úlohy po krocích |
-| `automation` | 979 | 2. stupeň ZŠ · Level 3: AIFB Advanced<br>Střední školy a gymnázia · Level 3: AIFB Advanced | – |
-| `scripting` | 937 | 2. stupeň ZŠ · Level 4: Advanced API Integration and Scripting<br>Střední školy a gymnázia · Level 4: Advanced API Integration and Scripting | ss-level-4: Stejný princip v TypeScriptu |
-| `developer` | 756 | 2. stupeň ZŠ · Level 5: Custom AI Developer<br>Střední školy a gymnázia · Level 5: Custom AI Developer | ss-level-5: Jak doladění probíhá |
-| `architect` | 901 | 2. stupeň ZŠ · Level 6: AI Systems Architect<br>Střední školy a gymnázia · Level 6: AI Systems Architect | ss-level-6: Pravidla pro využití AI v organizaci |
+| `zs1-a` | 737 | 1. stupeň ZŠ · Blok A: AI kolem nás | – |
+| `zs1-b` | 683 | 1. stupeň ZŠ · Blok B: Jak přemýšlí počítač | – |
+| `zs1-c` | 672 | 1. stupeň ZŠ · Blok C: Host AI ve třídě | – |
+| `zs1-d` | 646 | 1. stupeň ZŠ · Blok D: Přesná zadání a vlastní projekt | – |
+| `foundation` | 1191 | 2. stupeň ZŠ · Level 1: Co je AI a jak funguje<br>Střední školy a gymnázia · Level 1: Co je AI a jak funguje | ss-level-1: Jak model vzniká: předtrénování a doladění |
+| `prompting` | 927 | 2. stupeň ZŠ · Level 2: Jak s AI mluvit<br>Střední školy a gymnázia · Level 2: Jak s AI mluvit | ss-level-2: Složité úlohy po krocích |
+| `komunikace` | 833 | 2. stupeň ZŠ · Level 3: O čem s AI mluvit<br>Střední školy a gymnázia · Level 3: O čem s AI mluvit | ss-level-3: Podmínky služeb: co v nich hledat<br>ss-level-3: Když rozhovory se strojem nahrazují lidi |
+| `nastroje` | 696 | 2. stupeň ZŠ · Level 4: Jaký nástroj na co<br>Střední školy a gymnázia · Level 4: Jaký nástroj na co | ss-level-4: Menší a větší modely, zdarma a za peníze<br>ss-level-4: AI na brigádě a v praxi |
+| `poznej-ai` | 741 | 2. stupeň ZŠ · Level 5: Poznej AI a používej ji poctivě<br>Střední školy a gymnázia · Level 5: Poznej AI a používej ji poctivě | ss-level-5: Klonování hlasu a cílené podvody<br>ss-level-5: Citování, autorská práva a odborná práce |
+| `svet-ai` | 824 | 2. stupeň ZŠ · Level 6: Svět AI<br>Střední školy a gymnázia · Level 6: Svět AI | ss-level-6: Uzavřené a otevřené modely<br>ss-level-6: Evropská pravidla: AI Act<br>ss-level-6: AI a pracovní trh |
+| `automation` | 979 | 2. stupeň ZŠ · Level 7: AIFB Advanced<br>Střední školy a gymnázia · Level 7: AIFB Advanced | – |
+| `scripting` | 937 | 2. stupeň ZŠ · Level 8: Advanced API Integration and Scripting<br>Střední školy a gymnázia · Level 8: Advanced API Integration and Scripting | ss-level-8: Stejný princip v TypeScriptu |
+| `developer` | 756 | 2. stupeň ZŠ · Level 9: Custom AI Developer<br>Střední školy a gymnázia · Level 9: Custom AI Developer | ss-level-9: Jak doladění probíhá |
+| `architect` | 901 | 2. stupeň ZŠ · Level 10: AI Systems Architect<br>Střední školy a gymnázia · Level 10: AI Systems Architect | ss-level-10: Pravidla pro využití AI v organizaci |
 
 ## Ilustrace a kde se používají (teorie i online kurz)
 
@@ -27,21 +31,21 @@ Komponenty jsou v `src/components/edu/aifb/theory-figures.tsx`, seznam id v `FIG
 
 | Ilustrace | Použití |
 |---|---|
-| `agents` | téma architect#agenti<br>kurz kurz-m6#agenti |
+| `agents` | téma svet-ai#agent<br>téma architect#agenti<br>kurz kurz-m6#agenti |
 | `ai-around-us` | téma zs1-a#pojmy<br>téma zs1-a#jak-poznat<br>kurz kurz-m1#kde |
-| `ai-made` | téma zs1-c#obrazky<br>kurz kurz-m3#obrazky |
-| `api-request` | téma automation#api |
-| `ask-check` | téma zs1-c#overovani<br>kurz kurz-m2#ladeni<br>kurz kurz-m3#overovani |
-| `context-window` | téma prompting#rozhovor<br>téma scripting#kontext<br>kurz kurz-m6#kontext |
+| `ai-made` | téma zs1-c#obrazky<br>téma poznej-ai#obrazky<br>kurz kurz-m3#obrazky |
+| `api-request` | téma svet-ai#api<br>téma automation#api |
+| `ask-check` | téma zs1-c#overovani<br>téma poznej-ai#weby<br>kurz kurz-m2#ladeni<br>kurz kurz-m3#overovani |
+| `context-window` | téma foundation#kontext<br>téma prompting#rozhovor<br>téma scripting#kontext<br>kurz kurz-m6#kontext |
 | `eval-loop` | téma developer#vyhodnoceni<br>kurz kurz-m6#kvalita |
 | `fair-data` | téma zs1-b#ferovost<br>téma foundation#zkresleni<br>kurz kurz-m3#zkresleni |
 | `function-calling` | téma scripting#funkce<br>kurz kurz-m6#nastroje |
 | `hallucination` | téma foundation#halucinace<br>kurz kurz-m3#halucinace |
-| `human-loop` | téma automation#clovek<br>kurz kurz-m5#clovek |
+| `human-loop` | téma nastroje#uceni<br>téma automation#clovek<br>kurz kurz-m5#clovek |
 | `learn-from-examples` | téma zs1-b#uceni<br>kurz kurz-m1#uceni |
 | `markdown-json` | téma prompting#json<br>téma scripting#strukturovany<br>kurz kurz-m5#format |
 | `next-word` | téma zs1-c#jak-odpovida<br>téma foundation#llm<br>kurz kurz-m1#jazykovy-model |
-| `privacy-sort` | téma foundation#data<br>téma developer#soukromi<br>kurz kurz-m4#co-ne |
+| `privacy-sort` | téma foundation#data<br>téma komunikace#udaje<br>téma developer#soukromi<br>kurz kurz-m4#co-ne |
 | `prompt-blocks` | téma prompting#bloky<br>kurz kurz-m2#recept |
 | `prompt-injection` | téma architect#injection<br>kurz kurz-m6#agenti |
 | `prompt-recipe` | téma zs1-d#ctyri |
@@ -104,6 +108,20 @@ Když s tebou hlasová asistentka mluví mile, není to proto, že by tě měla 
 > **Zkus to doma** (tip)
 > Najdi doma chytrého pomocníka. Je to stroj, nebo člověk? Kdo ho naučil, co umí?
 
+### Je chytrý program kamarád? `#kamarad`
+
+Chytrý program umí mluvit mile. Řekne „To je hezké!“ nebo „To mě mrzí.“ Ale nic při tom necítí. Nemá radost a není mu smutno. Jsou to jen slova, která se naučil.
+
+**Co umí jen kamarád**
+
+- obejmout tě,
+- mít radost z tvého obrázku,
+- poznat, že jsi smutný,
+- stýskat se mu po tobě.
+
+> **Když tě něco trápí** (tip)
+> Jdi za člověkem: za maminkou, tatínkem, babičkou nebo paní učitelkou. Stroj tě nepohladí a nepomůže ti.
+
 ### Proč tablet ukazuje každému jiná videa `#videa`
 
 Program si pamatuje, na co se díváš. Podle toho ti nabízí podobná videa. Spolužákovi nabízí jiná, protože se dívá na jiné věci.
@@ -159,6 +177,7 @@ Pravidla platí doma, ve škole i u kamarádů. A platí i pro dospělé.
 - Umělá inteligence je program, který se naučil z mnoha příkladů.
 - Počítač není živý. Všechno, co umí, ho naučili lidé.
 - Jméno, adresa a fotky patří jen rodině a škole.
+- Chytrý program nic necítí a není kamarád. S trápením jdeme za člověkem.
 
 ---
 
@@ -234,6 +253,19 @@ Důležitou věc si ověř aspoň na jednom dalším místě: v knize, v encyklo
 - Vymyslí něco úplně nového.
 - Nese za své rozhodnutí odpovědnost.
 
+### Vyber správného pomocníka `#pomocnik`
+
+Chytrý program není nejlepší na všechno. Na některé úkoly je lepší jiný pomocník. Je rychlejší a nesplete se.
+
+- **Kalkulačka:** Na počítání. Vždycky spočítá správně.
+- **Kniha a slovník:** Na to, co slovo znamená nebo jak se píše.
+- **Hodiny, kalendář, jídelníček:** Na to, co platí právě teď a tady.
+- **Dospělý:** Na to, co tě trápí, a na věci, které se týkají tebe.
+- **Chytrý program:** Na nápady a na vysvětlení jinými slovy. Odpověď vždycky zkontroluj.
+
+> **Pravidlo** (tip)
+> Nejdřív si řekni, co potřebuješ. Potom vyber pomocníka.
+
 ### Kdo za to může? `#odpovednost`
 
 Když použijeme chybnou odpověď z počítače, odpovídá za to člověk, který se rozhodl počítači věřit. Počítač za nic odpovídat nemůže.
@@ -267,6 +299,7 @@ Lepší otázka: Napiš tři zajímavosti o ježkovi pro žáka třetí třídy.
 - Program se učí z mnoha příkladů. Chyby v příkladech znamenají chyby v odpovědích.
 - Program neví, že neví. Když odpověď nezná, tipne si.
 - Za použití odpovědi odpovídá vždy člověk, proto ověřujeme.
+- Na počítání je kalkulačka, na slova kniha. Pomocníka vybíráme podle úkolu.
 
 ---
 
@@ -353,6 +386,20 @@ Jsme slušní, i když je to jen program. Trénujeme tím, jak mluvíme s lidmi.
 > **Pravidlo** (warning)
 > Do konverzace nikdy nepíšeme osobní údaje: jména, adresy, telefony ani fotky.
 
+### Když tě něco trápí `#trapeni`
+
+Někdy má člověk starost: špatnou známku, hádku s kamarádem nebo je mu dlouho smutno. S programem si o tom psát můžeš, ale program neví, jak moc je to vážné. Nezná tě, nemůže za tebou přijít a nemůže ti pomoci.
+
+**Za kým jít**
+
+- za rodiči, babičkou nebo dědou,
+- za paní učitelkou nebo panem učitelem,
+- za školním psychologem,
+- zavolat na **Linku bezpečí 116 111**. Je zdarma a funguje ve dne i v noci.
+
+> **Stačí jedna věta** (info)
+> Nemusíš vědět, jak to říct. Stačí: „Potřebuju ti něco říct.“
+
 ### Kdy pomoc pomáhá a kdy zdržuje `#kdy`
 
 Program se hodí, když potřebuješ nápad, vysvětlení jinými slovy nebo kontrolu.
@@ -364,6 +411,7 @@ Nehodí se, když se máš něco naučit sám. Když za tebe napíše úkol, tvo
 - Dobré zadání říká, kdo má počítač být, co má udělat a jak má odpověď znít.
 - Odpovědi čteme s otazníkem a důležité údaje ověřujeme.
 - Do konverzace nepatří osobní údaje.
+- Když tě něco trápí, jdi za dospělým. Linka bezpečí má číslo 116 111.
 
 ---
 
@@ -453,6 +501,17 @@ Když ti při práci pomohl program, řekni to. Poctivé přiznání není ostud
 Nápady na názvy kapitol mi navrhl počítačový pomocník. Texty jsem napsal sám a fakta jsem ověřil v encyklopedii.
 ```
 
+### Od člověka, nebo od AI? `#poznat`
+
+AI umí vyrobit obrázek jako fotku a napsat zprávu bez jediné chyby. Jen podle toho, jak to vypadá, to dnes často nepoznáš. Dobrý detektiv proto nehádá. Ověřuje.
+
+- **Obrázek:** Kdo ho zveřejnil? Ukazují ho i jiné stránky, kterým věříme?
+- **Text:** Dají se údaje najít i v knize nebo v encyklopedii?
+- **Zpráva:** Slibuje výhru? Spěchá? Chce, abys někam kliknul nebo poslal heslo?
+
+> **Podezřelá zpráva** (warning)
+> Neklikej, nic neposílej a ukaž ji dospělému. Platí to, i když je napsaná hezky a bez chyb.
+
 ### Odkud informace pocházejí `#zdroje`
 
 Když připravuješ projekt, je dobré zapsat si, odkud jsi informace vzal. Program sám o sobě není zdroj, protože si může vymýšlet. Zdrojem je kniha, encyklopedie, časopis nebo stránka, které věříme.
@@ -477,12 +536,13 @@ Kdybys celý projekt nechal na programu, mohly by v něm zůstat chyby, které b
 - Dobré zadání má roli, úkol, tón a přesnou podobu výstupu.
 - Vzor pomáhá, ale program napodobí i chybu.
 - Pomoc programu vždy poctivě přiznáme.
+- Výtvor AI se pohledem nepozná. Ověřujeme a podezřelou zprávu ukážeme dospělému.
 
 ---
 
 ## Téma `foundation`
 
-Používá: 2. stupeň ZŠ · Level 1: AIFB Foundation, Střední školy a gymnázia · Level 1: AIFB Foundation
+Používá: 2. stupeň ZŠ · Level 1: Co je AI a jak funguje, Střední školy a gymnázia · Level 1: Co je AI a jak funguje
 
 *Jak to, že počítač umí psát jako člověk? V této úrovni zjistíš, co jazykový model doopravdy dělá, kde se plete a jak s ním pracovat bezpečně a poctivě.*
 
@@ -520,6 +580,16 @@ Proto model píše plynule a přirozeně. Neznamená to ale, že ví, co je prav
 - popsat obrázek nebo přečíst text z fotky (u modelů, které pracují i s obrazem).
 
 Ve všech těchto úlohách model pomáhá nejvíc tehdy, když výsledek dokážeš posoudit. Pokud téma vůbec neznáš, nepoznáš ani chybu.
+
+### Kontextové okno: co model právě vidí `#kontext`
+
+Model si nepamatuje svět ani tebe. Při každé odpovědi vidí jen to, co je právě v **kontextovém okně**: tvoje zprávy, své předchozí odpovědi a vložené soubory. Okno má omezenou velikost, která se počítá v tokenech.
+
+*[Ilustrace `context-window`]* Do kontextového okna se vejde jen omezené množství textu. Co se nevejde, model nevidí.
+
+- V dlouhé konverzaci může model „zapomenout“ pokyn ze začátku.
+- Nová konverzace začíná s prázdným oknem, pokud nástroj nemá zapnutou paměť.
+- Co modelu neřekneš nebo nevložíš, to neví: nezná tvou třídu, učebnici ani zadání úkolu.
 
 ### Limity a halucinace `#halucinace`
 
@@ -618,10 +688,11 @@ AI nástroj může učení urychlit i pokazit. Rozdíl dělá to, jak ho použí
 ### Shrnutí
 
 - Jazykový model předpovídá text token po tokenu. Plynulost neznamená pravdivost.
+- Model vidí jen to, co je v kontextovém okně. Co mu neřekneš, to neví.
 - Halucinace vypadají přesvědčivě, proto důležité údaje ověřujeme v nezávislých zdrojích.
 - Osobní údaje a údaje o druhých do AI nástrojů nepatří. Pomoc AI poctivě přiznáváme.
 
-### Jen Střední školy a gymnázia · Level 1: AIFB Foundation: Jak model vzniká: předtrénování a doladění `#vznik-modelu`
+### Jen Střední školy a gymnázia · Level 1: Co je AI a jak funguje: Jak model vzniká: předtrénování a doladění `#vznik-modelu`
 
 Vývoj modelu má obvykle dvě velké fáze. Při **předtrénování** model prochází obrovské množství textu a učí se předpovídat další token. Výsledkem je model, který umí pokračovat v textu, ale ještě se nechová jako ochotný asistent.
 
@@ -633,7 +704,7 @@ Na stejnou otázku nedostaneš vždy stejnou odpověď. Model při výběru dal�
 
 ## Téma `prompting`
 
-Používá: 2. stupeň ZŠ · Level 2: AIFB Intermediate, Střední školy a gymnázia · Level 2: AIFB Intermediate
+Používá: 2. stupeň ZŠ · Level 2: Jak s AI mluvit, Střední školy a gymnázia · Level 2: Jak s AI mluvit
 
 *Stejný model může dát průměrnou i výbornou odpověď. Rozdíl často dělá zadání. Naučíš se ho stavět z částí a dávat výstupu podobu, se kterou se dá dál pracovat.*
 
@@ -791,7 +862,7 @@ Před novým začátkem si nech od modelu napsat krátké shrnutí: co platí, c
 - Ukázky pomáhají s formátem, ale model napodobí i jejich chyby.
 - Markdown je pro lidi, JSON pro stroje. Opakované úlohy si ulož jako AI skill.
 
-### Jen Střední školy a gymnázia · Level 2: AIFB Intermediate: Složité úlohy po krocích `#kroky`
+### Jen Střední školy a gymnázia · Level 2: Jak s AI mluvit: Složité úlohy po krocích `#kroky`
 
 Složitou úlohu je lepší rozdělit na menší kroky: nejdřív nech model vypsat osnovu, potom ji zkontroluj a teprve pak ho nech rozpracovat jednotlivé části. Každý krok můžeš ověřit a opravit dřív, než se chyba přenese dál.
 
@@ -799,9 +870,548 @@ Pomáhá také požádat model, ať před konečnou odpovědí stručně popíš
 
 ---
 
+## Téma `komunikace`
+
+Používá: 2. stupeň ZŠ · Level 3: O čem s AI mluvit, Střední školy a gymnázia · Level 3: O čem s AI mluvit
+
+*Chatbot odpoví kdykoli, nikdy se nesměje a nic neprozradí spolužákům. Proto mu lidé píšou i věci, které by jinak neřekli nikomu. V této úrovni zjistíš, co se s takovým textem děje, co do AI nepatří a kdy je lepší jít za člověkem.*
+
+### Kam putuje to, co napíšeš `#kam-text`
+
+Text, který napíšeš do AI nástroje, neopouští jen tvoje ústa jako věta řečená kamarádovi. Odejde přes internet na počítače firmy, která nástroj provozuje. Tam se zpracuje a většinou i uloží.
+
+- Konverzace bývají uložené v historii, dokud je nesmažeš, a někdy i déle.
+- Podle podmínek služby se mohou použít ke zlepšování modelů. Často to jde v nastavení vypnout.
+- K vybraným konverzacím se mohou dostat lidé, kteří kontrolují kvalitu a bezpečnost služby.
+- Co jednou odešleš, nemáš plně pod kontrolou, podobně jako zprávu poslanou do skupiny.
+
+> **Užitečné měřítko** (info)
+> Než něco odešleš, představ si, že to čte cizí dospělý člověk. Vadilo by ti to? Pak to tam nepiš, nebo to nejdřív uprav.
+
+### Osobní a citlivé údaje `#udaje`
+
+- **Osobní údaj:** Cokoli, podle čeho se dá poznat konkrétní člověk: jméno a příjmení, adresa, telefon, e-mail, rodné číslo, fotka, název školy spolu s třídou.
+- **Citlivý údaj:** Osobní údaj, jehož zneužití může ublížit víc: zdraví, náboženství, původ, sexuální orientace, potíže v rodině.
+- **Přístupové údaje:** Hesla, ověřovací kódy, čísla karet. Do AI nástroje nepatří nikdy, ani „jen na zkoušku“.
+
+*[Ilustrace `privacy-sort`]* Obecné otázky a učivo ano. Osobní údaje, hesla a údaje o druhých ne.
+
+Stejná pravidla platí pro soubory a fotky. Vyfocený dopis od lékaře nebo snímek obrazovky s chatem obsahuje stejné údaje, jako kdybys je opsal.
+
+### Údaje o druhých lidech `#druzi`
+
+O sobě rozhoduješ ty. O spolužákovi, kamarádce, učiteli nebo rodičích ne. Když do AI napíšeš jejich jméno, vložíš jejich fotku nebo přepošleš jejich zprávu, rozhoduješ za ně bez jejich vědomí.
+
+> **Pravidlo** (warning)
+> Fotky a údaje jiných lidí do AI nástroje bez jejich souhlasu nevkládej. Platí to i pro „vtipné“ úpravy fotek a pro snímky obrazovky ze společného chatu.
+
+### Jak zprávu upravit, aby byla bezpečná `#anonymizace`
+
+Většinou nepotřebuješ, aby AI věděla, o kom přesně píšeš. Potřebuje rozumět situaci. Úpravě, po které z textu nejde poznat konkrétní člověk, se říká **anonymizace**.
+
+1. Jména nahraď obecným označením: spolužák, kamarádka, učitel.
+2. Vynech adresy, název školy, přesná data a telefonní čísla.
+3. Zdravotní a rodinné podrobnosti popiš obecně, nebo je vynech.
+4. Přečti si výsledek a zeptej se: poznal by někdo ze třídy, o kom to je?
+
+**Před a po**
+
+```
+Před: Tereza Nováková z 8. B o mně napsala do skupiny, že jsem ukradl Matějovi mobil. Co mám dělat?
+
+Po: Spolužačka o mně ve třídní skupině napsala něco, co není pravda. Jak na to mám klidně reagovat?
+```
+
+### Proč chatbot působí jako kamarád `#pratelsky`
+
+Chatbot píše vlídně, trpělivě a skoro vždy ti dá za pravdu. Není to proto, že by mu na tobě záleželo. Jazykový model je vyladěný tak, aby byl vstřícný a aby se s ním dobře povídalo.
+
+- Nic necítí. Věty jako „to mě mrzí“ skládá stejně jako každý jiný text.
+- Zná jen tvou verzi příběhu a obvykle s ní souhlasí.
+- Nezná tě. Neví, jak vypadáš, jak se dnes tváříš ani co bylo minulý týden.
+- Nenese následky. Když poradí špatně, nic se mu nestane.
+
+Kamarád ti občas řekne i to, co slyšet nechceš. Právě proto je jeho názor cenný.
+
+### S čím může AI u osobních věcí pomoci `#pomuze`
+
+Psát si s chatbotem o tom, co tě trápí, není zakázané ani ostudné. Je dobré vědět, k čemu se hodí.
+
+**Hodí se**
+
+- pojmenovat, co se vlastně děje a co cítíš,
+- srovnat si myšlenky, než o tom promluvíš s člověkem,
+- připravit si první větu pro těžký rozhovor s rodiči nebo učitelem,
+- najít, kam se s daným problémem obrátit.
+
+**Nezvládne**
+
+- nepozná, jak vážné to je,
+- nezavolá pomoc a nepřijde za tebou,
+- nenahradí psychologa ani lékaře a nemůže tě léčit,
+- může se splést a znít při tom naprosto jistě.
+
+### Kdy jít za člověkem `#clovek`
+
+Když trápení trvá dlouho, když se bojíš o sebe nebo o někoho jiného, když ti někdo ubližuje, je potřeba člověk. Čím dřív, tím líp. Nemusíš vědět, jak to říct. Stačí věta: „Potřebuju si s tebou o něčem promluvit.“
+
+- **Blízký dospělý:** rodiče, prarodiče, starší sourozenec, trenér.
+- **Ve škole:** třídní učitel, školní psycholog nebo výchovný poradce.
+- **Linka bezpečí 116 111:** zdarma a nepřetržitě, pro děti a studenty. Jde i chat a e-mail.
+- **Když jde o život nebo zdraví:** 155 nebo 112.
+
+> **Když se bojíš o kamaráda** (warning)
+> Pokud ti kamarád napíše, že si chce ublížit, nenech si to pro sebe a neřeš to jen s chatbotem. Řekni to dospělému, kterému věříš. Není to žalování.
+
+### Zásady, které se vyplatí `#zasady`
+
+1. O sobě piš jen to, co by mohl číst cizí člověk.
+2. O druhých nepiš nic, podle čeho by se dali poznat.
+3. Rady v osobních věcech ber jako jeden názor, ne jako rozhodnutí.
+4. Když si s chatbotem píšeš víc než s lidmi, zpozorni.
+5. Když jde o něco vážného, jdi za člověkem.
+
+### Shrnutí
+
+- Co napíšeš do AI nástroje, odchází na cizí počítače a může se uložit. Osobní údaje, hesla a údaje o druhých tam nepatří.
+- Chatbot je vstřícný, protože je tak vyrobený. Není to kamarád ani psycholog.
+- S vážným trápením jdi za člověkem. Linka bezpečí má číslo 116 111.
+
+### Jen Střední školy a gymnázia · Level 3: O čem s AI mluvit: Podmínky služeb: co v nich hledat `#podminky`
+
+Každý nástroj má podmínky užívání a zásady ochrany soukromí. Nemusíš je číst celé. Stačí v nich najít odpovědi na několik otázek.
+
+- Jak dlouho se konverzace a nahrané soubory uchovávají?
+- Používají se k trénování modelů? Dá se to vypnout?
+- Kdo k nim může mít přístup?
+- Od kolika let je služba určena a co platí pro nezletilé?
+- Jak se historie a účet mažou?
+
+Podmínky se mění a u bezplatných, placených a školních verzí se mohou lišit. Na brigádě nebo praxi navíc platí pravidla zaměstnavatele: interní dokumenty a údaje zákazníků do soukromého účtu nepatří.
+
+### Jen Střední školy a gymnázia · Level 3: O čem s AI mluvit: Když rozhovory se strojem nahrazují lidi `#zavislost`
+
+Některé aplikace nabízejí „AI přítele“ nebo „AI partnera“, který si pamatuje, co mu řekneš, a píše ti první. Firma na takové službě vydělává tím víc, čím víc času v ní trávíš. Vstřícnost tu není jen vlastnost modelu, ale i obchodní záměr.
+
+**Signály, že to přerůstá**
+
+- odkládáš kvůli psaní s chatbotem setkání s lidmi,
+- bez přístupu k aplikaci jsi neklidný,
+- radíš se s ním před každým rozhodnutím,
+- říkáš mu věci, které už neříkáš nikomu jinému,
+- platíš za to, aby rozhovor pokračoval.
+
+Pro dospělé funguje nepřetržitě a zdarma také Linka první psychické pomoci 116 123. Školní psycholog je vázán mlčenlivostí a první návštěva k ničemu nezavazuje.
+
+---
+
+## Téma `nastroje`
+
+Používá: 2. stupeň ZŠ · Level 4: Jaký nástroj na co, Střední školy a gymnázia · Level 4: Jaký nástroj na co
+
+*Kdo má kladivo, vidí všude hřebíky. Kdo má chatbot, ptá se ho i na to, co líp zvládne kalkulačka nebo vyhledávač. V této úrovni se naučíš vybrat nástroj podle úkolu a poznat, kdy AI vůbec není potřeba.*
+
+### Nejdřív úkol, potom nástroj `#vyber`
+
+Dobrý řemeslník nezačíná tím, že vezme první nářadí, které má po ruce. Nejdřív se podívá, co je potřeba udělat. S AI je to stejné: je to jeden z nástrojů, ne odpověď na všechno.
+
+**Čtyři otázky před začátkem**
+
+1. Co přesně potřebuju? Číslo, aktuální údaj, vysvětlení, nápad, hotový text?
+2. Musí být výsledek přesný, nebo stačí dobrý návrh?
+3. Umím výsledek zkontrolovat?
+4. Mám se to naučit sám?
+
+### Kdy AI nepotřebuješ `#bez-ai`
+
+Jazykový model odpověď skládá, nepočítá ji ani ji nikde nevyhledává (pokud nemá připojené vyhledávání). U některých úloh je proto jednodušší nástroj rychlejší, přesnější a pokaždé dá stejný výsledek.
+
+- **Výpočet:** Kalkulačka nebo tabulka. Model se u delších čísel splete a nepozná to.
+- **Aktuální údaj:** Vyhledávač, jízdní řád, oficiální web. Počasí, odjezdy, ceny a výsledky se mění každý den.
+- **Cesta a místo:** Mapa. Ví, kde co je a jak dlouho to trvá.
+- **Význam slova a pravopis:** Slovník a pravidla. Jsou ověřené a nevymýšlejí si.
+- **Seřadit, sečíst, vyfiltrovat:** Tabulkový procesor. Udělá to přesně i s tisícem řádků.
+- **Opakovaná přesná práce:** Jednoduchý program nebo skript, například hromadné přejmenování souborů nebo převod formátu.
+
+> **Dobré vědět** (tip)
+> I když se rozhodneš pro tabulku nebo skript, AI ti může pomoci je vytvořit: poradí vzorec nebo napíše krátký program. Samotnou práci pak udělá spolehlivý nástroj.
+
+### Kdy se AI hodí `#s-ai`
+
+- vysvětlit látku jinak, jednodušeji nebo na příkladu,
+- navrhnout osnovu, nápady, otázky k procvičení,
+- shrnout nebo přeformulovat text, který máš před sebou,
+- dát zpětnou vazbu na tvůj vlastní text,
+- pomoci s překladem a formulací,
+- poradit, jak úkol rozdělit na kroky.
+
+Společné mají to, že neexistuje jedna jediná správná odpověď a že výsledek dokážeš posoudit.
+
+### AI není jeden program `#druhy`
+
+Slovem „AI“ se označují nástroje, které dělají velmi různé věci. Vyplatí se vědět, jaké druhy existují.
+
+- **Konverzační nástroj:** Píše a vysvětluje text, odpovídá na otázky. Stojí na velkém jazykovém modelu.
+- **Generátor obrázků:** Podle popisu vytvoří obrázek. Neví, co je pravda; kreslí to, co popisu odpovídá.
+- **Překladač:** Převádí text mezi jazyky. Na běžné věty spolehlivý, u odborných textů potřebuje kontrolu.
+- **Převod řeči a textu:** Přepíše nahrávku na text nebo přečte text nahlas.
+- **Hledání s AI:** Vyhledá stránky a shrne je s odkazy. Odkazy je potřeba otevřít a ověřit.
+
+Řada aplikací dnes více druhů spojuje. Konkrétní názvy se rychle mění, druhy zůstávají.
+
+### Podle čeho nástroje porovnat `#porovnani`
+
+- **Správnost:** Dá nástroj správný výsledek? A poznám, když ne?
+- **Čas:** Jak dlouho to trvá včetně kontroly?
+- **Cena:** Je to zdarma? Platím penězi, nebo svými údaji?
+- **Soukromí:** Co všechno nástroji při tom sdělím?
+
+Odpověď od AI přijde rychle. Pokud ji ale musíš celou přepočítat, žádný čas jsi neušetřil.
+
+### AI při učení: pomocník, nebo zkratka `#uceni`
+
+Stejný nástroj tě může látku naučit i zařídit, že ji neumíš. Rozdíl je v tom, kdo při tom přemýšlí.
+
+**Pomáhá**
+
+- nech si látku vysvětlit jinak než v učebnici,
+- nech se vyzkoušet a odpovídej sám,
+- požádej o zpětnou vazbu na vlastní řešení,
+- nech si sestavit plán opakování.
+
+**Škodí**
+
+- necháš si napsat výpisky a nepřečteš je,
+- opíšeš řešení, kterému nerozumíš,
+- ptáš se dřív, než sám zkusíš přemýšlet.
+
+*[Ilustrace `human-loop`]* AI navrhne, člověk zkontroluje a rozhodne. Bez kontroly se chyba dostane dál.
+
+> **Test** (tip)
+> Zavři okno a zkus látku vysvětlit spolužákovi. Když to nejde, AI ti práci udělala, ale nic tě nenaučila.
+
+### Co po AI vždycky zkontrolovat `#kontrola`
+
+- čísla, data, jména a citace,
+- jestli odpověď opravdu odpovídá na to, na co ses ptal,
+- jestli si model nepřidal něco, co v zadání nebylo,
+- jestli se výsledek shoduje s učebnicí nebo jiným ověřeným zdrojem.
+
+### Rychlý rozhodovací postup `#strom`
+
+1. Jde o přesný výpočet nebo řazení? → kalkulačka, tabulka.
+2. Jde o aktuální nebo místní údaj? → vyhledávač, oficiální web, mapa.
+3. Jsou v tom osobní údaje? → uprav zadání, nebo AI nepoužívej.
+4. Má mě úkol něco naučit? → AI jen na vysvětlení a kontrolu.
+5. Umím výsledek posoudit? → pokud ne, začni učebnicí nebo se zeptej člověka.
+6. Jinak: AI je dobrá volba. Výsledek zkontroluj.
+
+### Shrnutí
+
+- Nejdřív si ujasni úkol, potom vyber nástroj. AI je jeden z nich.
+- Přesné výpočty, aktuální údaje a opakovanou práci zvládne jednodušší nástroj spolehlivěji a levněji.
+- Při učení má AI vysvětlovat a zkoušet. Přemýšlet musíš ty.
+
+### Jen Střední školy a gymnázia · Level 4: Jaký nástroj na co: Menší a větší modely, zdarma a za peníze `#modely`
+
+Poskytovatelé obvykle nabízejí několik modelů najednou. Liší se velikostí, rychlostí a cenou a nejsilnější model není vždy nejlepší volba.
+
+- **Menší model:** Rychlý a levný. Stačí na opravu překlepů, krátké shrnutí, jednoduché otázky.
+- **Velký model:** Pomalejší a dražší. Vyplatí se u složitých úvah, dlouhých dokumentů a náročnějších úloh.
+- **Bezplatná verze:** Mívá omezený počet zpráv, slabší model nebo méně funkcí. Pro školní práci obvykle stačí.
+- **Placená verze:** Vyšší limity, silnější modely, práce se soubory. Vyplatí se jen tomu, kdo na limity opravdu naráží.
+
+Za programový přístup se platí podle počtu tokenů na vstupu a výstupu. I proto platí, že úlohu, kterou zvládne tabulka nebo krátký skript, není rozumné posílat velkému modelu: je to pomalejší, dražší a méně spolehlivé.
+
+### Jen Střední školy a gymnázia · Level 4: Jaký nástroj na co: AI na brigádě a v praxi `#prace`
+
+V práci platí vše, co ve škole, a k tomu pravidla zaměstnavatele. Zeptej se na ně hned první den.
+
+- Smí se tu AI používat? Jaký nástroj a na co?
+- Které informace jsou důvěrné: údaje zákazníků, ceny, smlouvy, interní dokumenty?
+- Kdo odpovídá za výsledek? Odpověď je vždy stejná: ten, kdo ho odeslal.
+
+> **Životopis** (warning)
+> AI ti pomůže se stylem a strukturou životopisu. Nesmí v něm přibýt dovednost nebo zkušenost, kterou nemáš. U pohovoru se na ni někdo zeptá.
+
+---
+
+## Téma `poznej-ai`
+
+Používá: 2. stupeň ZŠ · Level 5: Poznej AI a používej ji poctivě, Střední školy a gymnázia · Level 5: Poznej AI a používej ji poctivě
+
+*Obrázek jako fotka, zpráva bez jediné chyby, web plný článků. To vše dnes umí AI vyrobit za pár minut. Naučíš se, čeho si všímat, jak si věci ověřit a jak AI používat tak, aby sis za svou prací mohl stát.*
+
+### Proč už nestačí „vypadá to divně“ `#proc`
+
+Ještě nedávno prozradily obrázek od AI ruce se šesti prsty a podvodný e-mail lámaná čeština. To už neplatí. Nástroje se zlepšují tak rychle, že spoléhat na chyby je čím dál horší taktika.
+
+Užitečnější otázka než „vypadá to jako od AI?“ je **„odkud to je a kdo to potvrzuje?“**. Ta funguje bez ohledu na to, jak dobré nástroje budou.
+
+### Obrázky a videa `#obrazky`
+
+Uměle vytvořenému nebo pozměněnému obrázku, videu či nahrávce, která vypadá jako skutečná, se říká **deepfake**.
+
+**Signály, které někdy pomohou**
+
+- ruce, prsty, zuby, uši a šperky,
+- nápisy a čísla v pozadí,
+- stíny a odrazy, které nesedí,
+- příliš hladká pleť a dokonalé světlo,
+- u videa nepřirozené mrkání a pohyb rtů.
+
+*[Ilustrace `ai-made`]* Fotka, nebo vyrobený obrázek? Vzhled napoví, původ rozhodne.
+
+**Ověření původu**
+
+1. Kdo obrázek zveřejnil jako první a kdy?
+2. Ukazují ho i důvěryhodná média nebo oficiální zdroje?
+3. Co najde zpětné vyhledávání obrázku?
+
+> **Než to pošleš dál** (warning)
+> Šokující „fotka“ známého člověka nebo spolužáka je přesně ten případ, kdy se vyplatí pět minut počkat a ověřit. Sdílením falešného obrázku můžeš někomu vážně ublížit.
+
+### Texty: kdo to psal `#texty`
+
+Text od AI bývá uhlazený, vyvážený a bez překlepů. Stejně ale píše i spousta pečlivých lidí. A naopak: model umí na požádání psát hovorově a s chybami.
+
+Existují **detektory AI textu**, které odhadují, jestli text psal stroj. Pletou se oběma směry: označí lidský text za strojový a strojový propustí. Jejich výsledek proto není důkaz a nikoho podle něj nelze obvinit.
+
+**Co vypovídá víc než styl**
+
+- Dají se tvrzení v textu ověřit? Existují uvedené zdroje?
+- Umí autor vysvětlit, co napsal, a odpovědět na otázky?
+- Má autor poznámky, osnovu nebo starší verze textu?
+
+### Podezřelé zprávy a e-maily `#zpravy`
+
+Podvodné zprávy se snaží vylákat peníze, hesla nebo ověřovací kódy. Díky AI jsou dnes psané bezchybně a mohou být i osobní: znají tvé jméno nebo školu.
+
+- **Kdo to posílá:** Podívej se na skutečnou adresu nebo číslo, ne jen na jméno. Zpráva z nového čísla „od kamaráda“ je varování.
+- **Tlak:** Spěch, strach nebo velká výhra. „Do hodiny ti zablokujeme účet.“ „Vyhrál jsi telefon.“
+- **Co po tobě chce:** Kliknout na odkaz, přihlásit se, poslat kód, zaplatit. Banka, škola ani herní služba po tobě heslo nebo kód ve zprávě nechtějí.
+
+**Tři kroky, když si nejsi jistý**
+
+1. Neklikej a nic neposílej.
+2. Ověř to jinou cestou: zavolej na číslo, které znáš, otevři web ručně.
+3. Řekni to dospělému a zprávu nahlas.
+
+### Weby a recenze `#weby`
+
+AI umožňuje vyrobit stovky článků a recenzí během chvíle. Vznikají tak weby, které vypadají seriózně, ale nikdo jejich obsah neověřil. Jejich cílem bývá reklama nebo prodej.
+
+**Pět otázek**
+
+- Kdo web provozuje? Je tam kontakt?
+- Je uveden autor a datum?
+- Odkud web čerpá? Uvádí zdroje?
+- Co se mi snaží prodat?
+- Říkají totéž i jiné, nezávislé zdroje?
+
+*[Ilustrace `ask-check`]* Zeptat se, přečíst, ověřit. Platí pro odpověď od AI i pro web, který neznáš.
+
+### Pomáhá, nebo dělá za mě `#poctivost`
+
+Druhá strana téže mince: i ty můžeš odevzdat práci, kterou napsala AI. Jestli je to v pořádku, záleží na dvou věcech: co tě měl úkol naučit a jaká pravidla dal učitel.
+
+**Obvykle v pořádku**
+
+- nechat si vysvětlit látku,
+- nechat si zkontrolovat pravopis nebo styl vlastního textu,
+- nechat si navrhnout osnovu a text napsat sám.
+
+**Obvykle není v pořádku**
+
+- nechat si napsat sloh nebo referát a odevzdat ho jako svůj,
+- opsat řešení, kterému nerozumíš,
+- nechat si vymyslet zdroje a citace.
+
+### Jak použití AI přiznat `#priznani`
+
+Přiznat pomoc AI není ostuda, je to stejné jako uvést zdroj. Stačí krátká poznámka na konci práce.
+
+**Poznámka o použití AI**
+
+```
+Při práci jsem použil konverzační AI nástroj k návrhu osnovy a ke kontrole pravopisu. Text jsem psal sám a fakta jsem ověřil v učebnici a ve zdrojích uvedených v seznamu.
+```
+
+> **AI není zdroj** (info)
+> Model není kniha ani článek. Fakta z jeho odpovědi ověř a jako zdroj uveď to, kde jsi je ověřil.
+
+### Čtyři návyky, které vydrží `#navyky`
+
+1. Zpomal. Podvody i falešné zprávy sázejí na spěch.
+2. Ptej se na původ: kdo, kdy, kde.
+3. Ověřuj ve druhém, nezávislém zdroji.
+4. Za tím, co sdílíš a odevzdáváš, stojíš ty.
+
+### Shrnutí
+
+- Výtvory AI se podle vzhledu poznávají čím dál hůř. Rozhoduje původ a ověření v jiném zdroji.
+- Detektory AI textu se pletou a nejsou důkaz.
+- Podvodná zpráva spěchá a něco po tobě chce. Neklikej, ověř jinou cestou, řekni to dospělému.
+- Použití AI ve vlastní práci přiznej a fakta ověř.
+
+### Jen Střední školy a gymnázia · Level 5: Poznej AI a používej ji poctivě: Klonování hlasu a cílené podvody `#hlas`
+
+K napodobení hlasu dnes stačí krátká nahrávka, třeba z videa na sociální síti. Podvodník pak zavolá hlasem příbuzného, který je „v nouzi“ a potřebuje rychle peníze. Cílené e-maily zase využívají veřejně dostupné údaje: jméno školy, vyučujícího, firmy, kde pracuješ.
+
+**Obrana**
+
+- Domluvte si v rodině heslo nebo otázku, kterou cizí člověk nezná.
+- Zavěs a zavolej zpět na číslo, které máš uložené.
+- Zapni si dvoufázové ověření u e-mailu, sociálních sítí a banky.
+- Ověřovací kód nikdy nikomu nediktuj ani nepřeposílej.
+
+### Jen Střední školy a gymnázia · Level 5: Poznej AI a používej ji poctivě: Citování, autorská práva a odborná práce `#citace`
+
+V seminární nebo ročníkové práci se řiď pravidly školy, případně soutěže či vysoké školy, kam práci podáváš. Liší se, ale několik zásad platí téměř všude.
+
+- Použití AI se uvádí: jaký nástroj, na co a v jakém rozsahu.
+- AI nelze uvést jako autora ani jako zdroj faktů.
+- Každý zdroj v seznamu literatury jsi sám otevřel a přečetl. Model si citace vymýšlí.
+- Za obsah práce odpovídáš ty, včetně chyb, které do ní vnesl model.
+
+Výstup modelu může připomínat cizí dílo, ať jde o text, obrázek nebo kód. Před zveřejněním si ověř, že nekopíruješ cizí práci. Pravidla pro označování uměle vytvořeného obsahu postupně zavádí i evropské nařízení o umělé inteligenci.
+
+---
+
+## Téma `svet-ai`
+
+Používá: 2. stupeň ZŠ · Level 6: Svět AI, Střední školy a gymnázia · Level 6: Svět AI
+
+*Nástroje, které dnes znáš, mohou za rok vypadat jinak. Nemá smysl učit se nazpaměť názvy. Vyplatí se vědět, kdo AI vyrábí, rozumět pár pojmům, které uslyšíš stále častěji, a umět si najít, co platí právě teď.*
+
+### Model a aplikace nejsou totéž `#model-aplikace`
+
+- **Model:** „Motor“: velký jazykový model, který skládá text. Sám o sobě nemá okno, tlačítka ani historii.
+- **Aplikace:** „Auto“ postavené kolem motoru: web nebo program, ve kterém s modelem mluvíš. Přidává historii, nahrávání souborů, vyhledávání.
+
+Jedna firma může nabízet více modelů a jeden model může pohánět mnoho různých aplikací, i od jiných firem. Proto se „AI v aplikaci“ může chovat podobně jako chatbot, který už znáš.
+
+### Kdo velké modely vyrábí `#firmy`
+
+Velké jazykové modely vyvíjí jen několik firem, protože trénování stojí obrovské peníze a potřebuje spoustu výpočetní techniky.
+
+- **OpenAI (USA):** Modely GPT a nástroj ChatGPT, který na konci roku 2022 ukázal AI široké veřejnosti.
+- **Google (USA):** Modely a asistent Gemini, propojené s vyhledávačem a dalšími službami firmy.
+- **Anthropic (USA):** Modely a asistent Claude.
+- **Meta (USA):** Modely Llama, které dává k dispozici ostatním, a asistent ve svých sociálních sítích.
+- **Mistral AI (Francie):** Nejznámější evropský výrobce, asistent Le Chat.
+- **DeepSeek (Čína):** Modely, které zaujaly nízkou cenou provozu.
+
+> **Ověř si datum** (info)
+> Přehled odpovídá podzimu 2026. Názvy modelů i pořadí firem se mění během měsíců. U každého údaje o AI se ptej, z kdy je.
+
+### Chatbot a agent `#agent`
+
+**Chatbot** odpovídá na zprávy. Napíšeš otázku, dostaneš odpověď a další krok je na tobě.
+
+**Agent** dostane cíl a sám si ho rozdělí na kroky. Umí k tomu používat nástroje: vyhledat na webu, otevřít soubor, vyplnit formulář, něco spočítat. Po každém kroku se podívá, co vyšlo, a rozhodne, co dál. Když pracuje dlouho a bez dozoru, mluví se o **autonomním agentovi**.
+
+*[Ilustrace `agents`]* Agent si úkol rozdělí na kroky a používá nástroje. Na důležité kroky dohlíží člověk.
+
+**Kdy má agent počkat na schválení člověkem**
+
+- všude, kde se platí,
+- kde se něco odesílá jiným lidem,
+- kde se něco maže nebo nejde vrátit,
+- kde jde o osobní údaje.
+
+Agent se může splést stejně jako chatbot. Rozdíl je v tom, že jeho chyba už není jen věta na obrazovce, ale provedený krok.
+
+### API: jak se programy domlouvají `#api`
+
+**API** je domluvený způsob, jak jeden program požádá druhý o službu. Představ si restauraci: host nechodí do kuchyně, objedná si u číšníka podle jídelního lístku. Lístek říká, co lze objednat a v jaké podobě.
+
+*[Ilustrace `api-request`]* Aplikace pošle přes API požadavek a dostane odpověď. Uživatel vidí jen výsledek.
+
+Díky API může být jazykový model „uvnitř“ jiné aplikace: v poznámkách, v e-mailu, ve výukové hře. Aplikace pošle tvůj text výrobci modelu a ukáže ti odpověď. Stojí za to vědět, že tvůj text v tu chvíli putuje k další firmě.
+
+### MCP: jak se k AI připojují nástroje `#mcp`
+
+**MCP** (Model Context Protocol) je společný standard, podle kterého se k AI aplikaci připojují nástroje a zdroje dat: kalendář, složka s dokumenty, vyhledávání, databáze. Funguje jako jednotný tvar zásuvky. Kdo vyrobí „zástrčku“ pro svůj nástroj, může ho připojit k různým AI aplikacím.
+
+Standard zveřejnila v roce 2024 firma Anthropic a postupně ho převzali i další výrobci.
+
+> **Co to znamená pro tebe** (warning)
+> Když AI připojíš ke kalendáři nebo k souborům, může je číst a někdy i měnit. Připojuj jen to, co k úkolu potřebuje, a jen nástrojům, kterým věříš.
+
+### Žebříčky a srovnání modelů `#zebricky`
+
+Který model je nejlepší? Na to se pokouší odpovědět srovnávací přehledy a žebříčky, například **llm-stats.com**. Ukazují modely vedle sebe: kdy vyšly, kolik stojí, jak velké mají kontextové okno a jak dopadly v testech.
+
+- **Benchmark:** Sada testových úloh, na které se modely porovnávají.
+- **Cena:** Uvádí se za milion tokenů na vstupu a na výstupu. Týká se programového přístupu.
+- **Kontextové okno:** Kolik textu model pojme najednou.
+
+Žebříček je užitečný jako přehled, ne jako rozsudek. Test měří jen to, na co byl postavený, a pořadí se mění s každým novým modelem. Nejlíp poznáš, jestli se model hodí, když ho vyzkoušíš na vlastní úloze.
+
+### Novinka, nebo reklama `#novinky`
+
+O AI se píše hodně a často nadšeně. Většina zpráv vychází z oznámení samotných firem, které chtějí svůj výrobek prodat.
+
+- Kdo to říká? Firma o vlastním výrobku, nebo někdo nezávislý?
+- Je to už k dispozici, nebo jen ohlášené?
+- Potvrzuje to druhý zdroj?
+- Co přesně se změnilo pro mě jako uživatele?
+
+### Jak zůstat v obraze `#v-obraze`
+
+Nemusíš sledovat všechno. Stačí pár zdrojů a zvyk se k nim jednou za čas vrátit.
+
+- srovnávací přehled modelů, například llm-stats.com,
+- oficiální oznámení výrobce nástroje, který používáš,
+- jedno nezávislé médium, které o technologiích píše věcně.
+
+Názvy se změní. Co ses naučil v šesti úrovních, vydrží: jak model funguje, jak mu zadat úkol, co mu nesvěřit, kdy sáhnout po jiném nástroji a jak si věci ověřit.
+
+### Shrnutí
+
+- Model je motor, aplikace je auto kolem něj. Velké modely vyrábí jen několik firem.
+- Agent plní cíl sám po krocích a používá nástroje. Důležité kroky má schvalovat člověk.
+- API spojuje aplikace s modelem, MCP připojuje k AI nástroje a data. Obojí znamená, že tvá data putují dál.
+- Žebříčky jako llm-stats.com dávají přehled. Údaje o AI rychle stárnou, proto se ptej na datum a zdroj.
+
+### Jen Střední školy a gymnázia · Level 6: Svět AI: Uzavřené a otevřené modely `#otevrene`
+
+- **Uzavřený model:** Běží jen na počítačích výrobce. Používáš ho přes aplikaci nebo API a platíš podle využití.
+- **Otevřený model:** Výrobce ho zveřejní ke stažení. Kdo má dost výkonný počítač, může ho provozovat sám, i bez internetu.
+
+Otevřený model dává kontrolu nad daty, protože nic neodchází k cizí firmě. Vyžaduje ale vlastní techniku a bývá o něco slabší než nejlepší uzavřené modely. Slovo „otevřený“ také neznamená vždy totéž: liší se v tom, co přesně výrobce zveřejnil a co s tím dovoluje dělat.
+
+### Jen Střední školy a gymnázia · Level 6: Svět AI: Evropská pravidla: AI Act `#ai-act`
+
+Evropská unie přijala v roce 2024 **nařízení o umělé inteligenci** (AI Act). Jeho povinnosti nabíhají postupně a dělí systémy AI podle rizika.
+
+- **Zakázané praktiky:** Například manipulace lidí proti jejich vůli nebo plošné bodování občanů.
+- **Vysoké riziko:** Systémy, které rozhodují o lidech: přijímání do práce a do školy, úvěry, zdravotnictví. Platí pro ně přísné požadavky a lidský dohled.
+- **Povinnost průhlednosti:** Člověk má vědět, že mluví s chatbotem, a uměle vytvořený obsah má být označen.
+- **Minimální riziko:** Většina běžných použití, například filtr nevyžádané pošty.
+
+Nařízení také ukládá firmám a institucím, které AI používají, aby zajistily dostatečnou **AI gramotnost** svých lidí. To, co se učíš v těchto úrovních, po tobě tedy jednou může chtít i zaměstnavatel.
+
+### Jen Střední školy a gymnázia · Level 6: Svět AI: AI a pracovní trh `#prace-budoucnost`
+
+AI mění hlavně jednotlivé činnosti, ne celá povolání naráz. Rychle přebírá rutinní práci s textem a daty. Na lidech zůstává zadání, kontrola, odpovědnost a jednání s druhými.
+
+**Dovednosti, které se neztratí**
+
+- přesně formulovat, co je potřeba udělat,
+- posoudit a ověřit výsledek,
+- vědět, kdy AI nepoužít,
+- chránit údaje své i cizí,
+- průběžně se učit nové nástroje.
+
+V oboru, který tě zajímá, se vyplatí zjistit, které činnosti AI už mění. Ptej se lidí z praxe a hledej zdroje, které nepíší výrobci nástrojů.
+
+---
+
 ## Téma `automation`
 
-Používá: 2. stupeň ZŠ · Level 3: AIFB Advanced, Střední školy a gymnázia · Level 3: AIFB Advanced
+Používá: 2. stupeň ZŠ · Level 7: AIFB Advanced, Střední školy a gymnázia · Level 7: AIFB Advanced
 
 *Spousta školních i domácích úkolů se pořád opakuje. Pracovní postupy a API umožňují propojit služby tak, aby část práce běžela sama a člověk hlídal jen to podstatné.*
 
@@ -966,7 +1576,7 @@ Ne každý krok má proběhnout bez lidí. U kroků, kde jde o lidi, peníze neb
 
 ## Téma `scripting`
 
-Používá: 2. stupeň ZŠ · Level 4: Advanced API Integration and Scripting, Střední školy a gymnázia · Level 4: Advanced API Integration and Scripting
+Používá: 2. stupeň ZŠ · Level 8: Advanced API Integration and Scripting, Střední školy a gymnázia · Level 8: Advanced API Integration and Scripting
 
 *Na této úrovni přestáváš klikat v chatu a voláš model z vlastního programu. Model se stává službou: posíláš zprávy, dostáváš odpovědi a platíš podle tokenů. Naučíš se, jak takovou integraci postavit spolehlivě a levně.*
 
@@ -1109,7 +1719,7 @@ Když skript s odpovědí dál pracuje, potřebuje přesný tvar, nejčastěji J
 - Model si nic nepamatuje: historii posíláš znovu a hlídáš kontextové okno.
 - Function calling: model žádá, skript spouští. Spolehlivý skript ošetřuje limity, časy a vadné odpovědi.
 
-### Jen Střední školy a gymnázia · Level 4: Advanced API Integration and Scripting: Stejný princip v TypeScriptu `#typescript`
+### Jen Střední školy a gymnázia · Level 8: Advanced API Integration and Scripting: Stejný princip v TypeScriptu `#typescript`
 
 Poskytovatelé nabízejí oficiální knihovny pro více jazyků, nejčastěji pro Python a TypeScript. Struktura požadavku zůstává stejná: model, zprávy s rolemi, parametry. Rozdíl je hlavně v tom, že TypeScript pracuje s asynchronními voláními (*await*) a typy pomáhají odhalit chybu ve struktuře zpráv ještě před spuštěním.
 
@@ -1119,7 +1729,7 @@ Další užitečnou technikou je **streamování**: odpověď přichází po č�
 
 ## Téma `developer`
 
-Používá: 2. stupeň ZŠ · Level 5: Custom AI Developer, Střední školy a gymnázia · Level 5: Custom AI Developer
+Používá: 2. stupeň ZŠ · Level 9: Custom AI Developer, Střední školy a gymnázia · Level 9: Custom AI Developer
 
 *Od nápadu „vylepším si chat“ ke skutečné aplikaci. Zjistíš, jak aplikaci navrhnout, jak poznat, že funguje dobře, a kdy dává smysl lokální model nebo doladění.*
 
@@ -1218,7 +1828,7 @@ Každý údaj, který aplikace sbírá, je potřeba chránit. Nejjednodušší o
 
 1. lepší prompt a jasnější instrukce,
 2. ukázkové příklady přímo v zadání,
-3. vyhledávání ve vlastních dokumentech (RAG, viz úroveň 6),
+3. vyhledávání ve vlastních dokumentech (RAG, viz úroveň 10),
 4. a teprve potom doladění.
 
 U malé aplikace se často obejdeš bez doladění i bez vektorového vyhledávání: dobře napsaný prompt a pár ukázek stačí.
@@ -1245,7 +1855,7 @@ Když aplikace něco doporučuje nebo rozhoduje, odpovědnost nese ten, kdo ji v
 - Kvalitu měříme testovací sadou, referenčními odpověďmi a metrikami.
 - Lokální model chrání data za cenu výkonu; doladění je až poslední krok.
 
-### Jen Střední školy a gymnázia · Level 5: Custom AI Developer: Jak doladění probíhá `#jak-doladeni`
+### Jen Střední školy a gymnázia · Level 9: Custom AI Developer: Jak doladění probíhá `#jak-doladeni`
 
 1. Připravíš páry vstup a očekávaný výstup ve stejném formátu, jaký bude aplikace používat.
 2. Část příkladů odložíš stranou jako ověřovací sadu, na které se model netrénuje.
@@ -1258,7 +1868,7 @@ Trénovací data nesmí obsahovat osobní údaje ani nic, co by model neměl poz
 
 ## Téma `architect`
 
-Používá: 2. stupeň ZŠ · Level 6: AI Systems Architect, Střední školy a gymnázia · Level 6: AI Systems Architect
+Používá: 2. stupeň ZŠ · Level 10: AI Systems Architect, Střední školy a gymnázia · Level 10: AI Systems Architect
 
 *Velké AI systémy nejsou jeden prompt. Skládají se z agentů, nástrojů, vlastních dat a pravidel. Naučíš se, jak takové systémy navrhovat, propojit s dokumenty a zabezpečit.*
 
@@ -1379,7 +1989,7 @@ Důležitá rozhodnutí si zapisuj: co jsi zvolil, jaké byly možnosti a proč.
 - RAG doplní do promptu úseky vlastních dokumentů nalezené podle významu.
 - Bezpečnost: nejmenší oprávnění, ochrana dokumentů, záznam akcí a schválení člověkem.
 
-### Jen Střední školy a gymnázia · Level 6: AI Systems Architect: Pravidla pro využití AI v organizaci `#podnik`
+### Jen Střední školy a gymnázia · Level 10: AI Systems Architect: Pravidla pro využití AI v organizaci `#podnik`
 
 Organizace, která AI systémy nasazuje, potřebuje jasná pravidla: které nástroje jsou schválené, jaká data se do nich smějí zadávat, kdo systémy spravuje a jak se hlásí chyby nebo incidenty.
 

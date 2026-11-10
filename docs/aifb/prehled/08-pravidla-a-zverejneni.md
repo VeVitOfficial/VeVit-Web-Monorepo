@@ -38,13 +38,13 @@ Ranky student / učitel, třídy a úpravy obsahu vznikly na výslovný pokyn vl
 | Obsah | Stav teď | Vývoj a náhled | Produkce |
 |---|---|---|---|
 | Lekce, levely, průvodci z plánu | originál | ano | ano |
-| Teorie (`aifb-theory.json`) | `draft` | ano, s poznámkou „čeká na odbornou kontrolu“ | **ano**, se stejnou poznámkou |
+| Teorie (`aifb-theory.json`) | `reviewed` (od 10. 11. 2026) | ano | ano, bez poznámky o kontrole |
 | Pilotní cvičení (`pupil-pilots.json`) | `draft` | ano, s upozorněním „Návrh ke schválení“ | **ne** |
 | Cvičení s AI | `draft` | ano (bez klíče jen uložené odpovědi) | **ne**, endpoint vrací 404 |
-| Online kurz (`aifb-kurz.json`) | `draft` | ano, s poznámkou | **ne** (admin ano): přehled ukáže „Online kurz se připravuje“, moduly a lekce 404 |
+| Online kurz (`aifb-kurz.json`) | `reviewed` (od 10. 11. 2026) | ano | ano |
 | Knihovna komponent `/aifb/ukazky` | – | ano | ne (404) |
 
-Teorie se na produkci ukazuje, protože je to výklad pro třídu, kterou vede učitel. Online kurz a pilotní cvičení jsou texty přímo pro děti bez učitele, proto zůstávají skryté do schválení.
+Online kurz a teorie jsou od 10. 11. 2026 zveřejněné (`reviewed`). Návrhem zůstává šest cvičení (čtyři s AI a dva citlivé rozhovory).
 
 Pozor: lokální `.env.local` stažený z produkce obsahuje `VERCEL_ENV="production"`; náhled lokálně funguje díky `NODE_ENV=development`. Produkční build (`npm run build && npm start`) návrhy neukáže, pokud není nastavené `AIFB_PREVIEW_DRAFTS=1`.
 
