@@ -533,3 +533,10 @@ html[data-theme="light"] .store-theme {
 .sf-main h1, .sf-main h2, .sf-hero h1 { font-weight: 700; }
 .sf-buybox > * { min-width: 0; }
 .sf-buy-row .sf-btn { min-width: 0; padding: 0 14px; white-space: normal; text-align: center; line-height: 1.2; }
+
+/* Zdroje informací (sloupec sources) */
+.sf-sources { margin-top: 16px; }
+.sf-sources h2 { font-size: 1rem; }
+.sf-sources ul { display: grid; gap: 6px; margin: 0; padding-left: 1.1rem; color: var(--sf-text-2); font-size: .85rem; }
+.sf-sources a { color: var(--sf-brand); text-underline-offset: 2px; }
+.sf-sources small { color: var(--sf-text-3); }

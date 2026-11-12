@@ -1,5 +1,7 @@
 import "server-only";
 
+export type StoreProductSource = { type?: string; url: string; note?: string; verified?: string };
+
 export type StoreProduct = {
   id: number;
   name: string;
@@ -12,6 +14,9 @@ export type StoreProduct = {
   stock: number | null;
   images: string[] | string | null;
   brand: string | null;
+  /** Parametry: {"Klíč":"hodnota"}, skupiny nebo pole – viz normalizeSpecs(). */
+  specs?: Record<string, unknown> | unknown[] | null;
+  sources?: StoreProductSource[] | null;
   variant_group?: string | null;
   variant_label?: string | null;
   /** Počet variant včetně této — vyplní getProducts při skupinování (Alza-style). */
@@ -55,7 +60,7 @@ async function dataApi<T>(table: string, params: URLSearchParams, revalidate = 3
 }
 
 const productSelect =
-  "id,name,slug,description,short_desc,price,sale_price,type,stock,images,brand,variant_group,variant_label,is_sellable,allow_backorder,featured,created_at,store_categories(name,slug)";
+  "id,name,slug,description,short_desc,price,sale_price,type,stock,images,brand,specs,sources,variant_group,variant_label,is_sellable,allow_backorder,featured,created_at,store_categories(name,slug)";
 
 export type ProductSpecGroup = { title: string; rows: { name: string; value: string }[] };
 
@@ -66,23 +71,16 @@ export type ProductDetails = {
   specs: ProductSpecGroup[];
 };
 
-/**
- * Doplňkové údaje pro detail produktu (kód, hmotnost, DPH a parametry).
- * Sloupec `specs` (JSONB) se načítá zvlášť, aby chybějící migrace nerozbila detail.
- */
-export async function getProductDetails(productId: number): Promise<ProductDetails> {
-  const base = new URLSearchParams({ select: "sku,weight_grams,vat_rate", id: `eq.${productId}`, limit: "1" });
-  const extra = new URLSearchParams({ select: "specs", id: `eq.${productId}`, limit: "1" });
-  const [[row], [specRow]] = await Promise.all([
-    dataApi<{ sku: string | null; weight_grams: number | null; vat_rate: number | string | null }>("store_products", base),
-    dataApi<{ specs: unknown }>("store_products", extra)
-  ]);
+/** Doplňkové údaje pro detail produktu (kód, hmotnost, DPH) + parametry ze sloupce `specs`. */
+export async function getProductDetails(product: StoreProduct): Promise<ProductDetails> {
+  const params = new URLSearchParams({ select: "sku,weight_grams,vat_rate", id: `eq.${product.id}`, limit: "1" });
+  const [row] = await dataApi<{ sku: string | null; weight_grams: number | null; vat_rate: number | string | null }>("store_products", params);
   const vat = Number(row?.vat_rate);
   return {
     sku: row?.sku ?? null,
     weight_grams: row?.weight_grams ?? null,
     vat_rate: Number.isFinite(vat) && vat >= 0 ? vat : 21,
-    specs: normalizeSpecs(specRow?.specs)
+    specs: normalizeSpecs(product.specs)
   };
 }
 

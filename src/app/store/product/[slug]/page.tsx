@@ -41,7 +41,7 @@ export default async function ProductPage({ params }: Props) {
   if (!product) notFound();
   const [variants, details, related] = await Promise.all([
     getVariantSiblings(product),
-    getProductDetails(product.id),
+    getProductDetails(product),
     product.store_categories?.slug ? getProducts({ category: product.store_categories.slug }) : Promise.resolve([])
   ]);
   const images = productImages(product);
@@ -144,6 +144,7 @@ export default async function ProductPage({ params }: Props) {
         <a href="#parametry">Parametry</a>
         <a href="#doprava">Doprava a vrácení</a>
         {similar.length ? <a href="#podobne">Podobné produkty</a> : null}
+        {product.sources?.length ? <a href="#zdroje">Zdroje</a> : null}
       </nav>
 
       <div className="sf-pdp-sections">
@@ -181,6 +182,24 @@ export default async function ProductPage({ params }: Props) {
           </dl>
         </section>
       </div>
+
+      {product.sources && product.sources.length > 0 && (
+        <section id="zdroje" className="sf-panel sf-sources" aria-labelledby="zdroje-title">
+          <h2 id="zdroje-title">Zdroje informací</h2>
+          <ul>
+            {product.sources.map((source, index) => (
+              <li key={`${source.url}-${index}`}>
+                {source.url.startsWith("http") ? (
+                  <a href={source.url} target="_blank" rel="noopener noreferrer nofollow">{source.note ?? source.url}</a>
+                ) : (
+                  <span>{source.note ?? source.url}</span>
+                )}
+                {source.verified ? <small> · ověřeno {source.verified}</small> : null}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       {similar.length > 0 && (
         <section id="podobne" className="sf-section" aria-labelledby="podobne-title">
