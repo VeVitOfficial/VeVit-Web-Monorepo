@@ -17,6 +17,7 @@
     "docs:aifb": "node scripts/aifb-docs.mjs",
     "store:import": "node scripts/store-import-sourcing.mjs",
     "store:apply": "node --env-file=.env.local scripts/store-import-sourcing.mjs --apply",
+    "store:enrich": "node --env-file=.env.local scripts/store-enrich.mjs",
     "test:e2e:aifb": "node --test tests/e2e/aifb.e2e.mjs"
   },
   "devDependencies": {

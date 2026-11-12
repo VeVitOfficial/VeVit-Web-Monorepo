@@ -1,5 +1,7 @@
 import "server-only";
 
+export type StoreProductSource = { type?: string; url: string; note?: string; verified?: string };
+
 export type StoreProduct = {
   id: number;
   name: string;
@@ -12,6 +14,8 @@ export type StoreProduct = {
   stock: number | null;
   images: string[] | string | null;
   brand: string | null;
+  specs?: Record<string, string> | null;
+  sources?: StoreProductSource[] | null;
   variant_group?: string | null;
   variant_label?: string | null;
   /** Počet variant včetně této — vyplní getProducts při skupinování (Alza-style). */
@@ -53,7 +57,7 @@ async function dataApi<T>(table: string, params: URLSearchParams, revalidate = 3
 }
 
 const productSelect =
-  "id,name,slug,description,short_desc,price,sale_price,type,stock,images,brand,variant_group,variant_label,featured,created_at,store_categories(name,slug)";
+  "id,name,slug,description,short_desc,price,sale_price,type,stock,images,brand,specs,sources,variant_group,variant_label,featured,created_at,store_categories(name,slug)";
 
 export async function getProducts(filters: Record<string, string | undefined> = {}) {
   const params = new URLSearchParams({ select: productSelect, is_active: "eq.true", limit: "1000" });
