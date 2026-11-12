@@ -10,6 +10,8 @@ import "@/styles/store.css";
 // Sdílený brand (.vv-app-brand) jako v ostatních aplikacích.
 import "../../../public/assets/shared/app-switcher.css";
 import "./store-design.css";
+// Storefront 2: tokeny pro světlý i tmavý režim + nové komponenty (sf-*).
+import "./storefront.css";
 
 export default function StoreLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (

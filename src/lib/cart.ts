@@ -6,6 +6,8 @@ export type CartItem = {
   type: "physical" | "digital";
   slug: string;
   qty: number;
+  /** Náhled produktu pro košík (nepovinné, starší položky ho nemají). */
+  image?: string | null;
 };
 
 export const cartKey = "vevit_cart";

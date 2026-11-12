@@ -49,49 +49,43 @@ export function StoreHeader() {
         <span>Doprava zdarma u objednávek nad 1&nbsp;000&nbsp;Kč<span className="announcement-bar__extra"> · Digitální produkty ihned po platbě</span></span>
       </div>
 
-      <header className="sticky top-0 z-50 bg-background/90  border-b border-outline-variant">
-        <nav className="hidden md:flex items-center justify-between w-full max-w-store mx-auto px-margin py-3" aria-label="Hlavní navigace">
+      <header className="sf-header">
+        <div className="sf-header__bar">
           <span className="vv-app-brand" aria-label="VeVit Store">
             <Link href="/">VeVit</Link>
             <Link href="/store">Store</Link>
           </span>
 
-          <div className="flex items-center gap-1">
-            {NAV_ITEMS.map((item) => (
-              <Link
-                key={item.key}
-                href={item.href}
-                className="px-3 py-2 rounded-md font-body-md font-semibold transition-colors duration-150 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </div>
+          <form method="get" action="/store/catalog" role="search" className="sf-header__search">
+            <label htmlFor="header-search-desktop" className="sr-only">Hledat produkty</label>
+            <Icon name="search" />
+            <input id="header-search-desktop" name="search" type="search" placeholder="Hledejte produkty, značky, kategorie…" autoComplete="off" />
+            <button type="submit" className="sf-btn sf-btn--buy">Hledat</button>
+          </form>
 
-          <div className="flex items-center gap-3">
-            <form method="get" action="/store/catalog" role="search" className="relative hidden lg:flex items-center group">
-              <label htmlFor="header-search-desktop" className="sr-only">Hledat produkty</label>
-              <Icon name="search" className="absolute left-3 text-on-surface-variant pointer-events-none group-focus-within:text-primary transition-colors text-[20px]" />
-              <input
-                id="header-search-desktop"
-                name="search"
-                type="search"
-                placeholder="Hledat produkty…"
-                autoComplete="off"
-                className="bg-surface-container border border-outline-variant rounded-xl pl-10 pr-4 py-2 text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary w-48 lg:w-60 transition-all duration-200 placeholder:text-on-surface-variant/50"
-              />
-            </form>
-
+          <div className="sf-header__actions">
             <ThemeToggle />
-            <Link href="/store/cart" aria-label="Košík" className="relative p-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors duration-150">
-              <Icon name="shopping_bag" className="text-[22px]" />
-              <CartBadge count={itemCount} />
-            </Link>
-
             <div className="flex items-center" aria-live="polite" aria-label="Stav přihlášení">
               <StoreSessionStatus />
             </div>
+            <Link href="/store/cart" className="sf-header__cart" aria-label={`Košík, ${itemCount} ks`}>
+              <span className="relative inline-flex"><Icon name="shopping_bag" className="text-[22px]" /><CartBadge count={itemCount} /></span>
+              <span className="sf-header__cart-label">Košík</span>
+            </Link>
           </div>
+        </div>
+
+        <nav className="sf-header__nav" aria-label="Hlavní navigace">
+          {NAV_ITEMS.map((item) => (
+            <Link key={item.key} href={item.href}>
+              <Icon name={item.icon} />
+              {item.label}
+            </Link>
+          ))}
+          <span className="sf-header__nav-spacer" />
+          {DRAWER_INFO.slice(1, 3).map((item) => (
+            <Link key={item.href} href={item.href} className="is-secondary">{item.label}</Link>
+          ))}
         </nav>
 
         <nav className="md:hidden flex items-center justify-between w-full px-4 py-3 relative" aria-label="Mobilní navigace">
@@ -119,6 +113,11 @@ export function StoreHeader() {
             </Link>
           </div>
         </nav>
+        <form method="get" action="/store/catalog" role="search" className="sf-header__search sf-header__search--mobile">
+          <label htmlFor="header-search-mobile" className="sr-only">Hledat produkty</label>
+          <Icon name="search" />
+          <input id="header-search-mobile" name="search" type="search" placeholder="Hledat produkty…" autoComplete="off" />
+        </form>
       </header>
       <div
         id="mobileDrawer"

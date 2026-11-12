@@ -16,6 +16,8 @@ export type StoreProduct = {
   variant_label?: string | null;
   /** Počet variant včetně této — vyplní getProducts při skupinování (Alza-style). */
   variant_count?: number;
+  is_sellable?: boolean | null;
+  allow_backorder?: boolean | null;
   featured: boolean | number;
   created_at: string;
   store_categories?: { name: string; slug: string } | null;
@@ -53,7 +55,82 @@ async function dataApi<T>(table: string, params: URLSearchParams, revalidate = 3
 }
 
 const productSelect =
-  "id,name,slug,description,short_desc,price,sale_price,type,stock,images,brand,variant_group,variant_label,featured,created_at,store_categories(name,slug)";
+  "id,name,slug,description,short_desc,price,sale_price,type,stock,images,brand,variant_group,variant_label,is_sellable,allow_backorder,featured,created_at,store_categories(name,slug)";
+
+export type ProductSpecGroup = { title: string; rows: { name: string; value: string }[] };
+
+export type ProductDetails = {
+  sku: string | null;
+  weight_grams: number | null;
+  vat_rate: number;
+  specs: ProductSpecGroup[];
+};
+
+/**
+ * Doplňkové údaje pro detail produktu (kód, hmotnost, DPH a parametry).
+ * Sloupec `specs` (JSONB) se načítá zvlášť, aby chybějící migrace nerozbila detail.
+ */
+export async function getProductDetails(productId: number): Promise<ProductDetails> {
+  const base = new URLSearchParams({ select: "sku,weight_grams,vat_rate", id: `eq.${productId}`, limit: "1" });
+  const extra = new URLSearchParams({ select: "specs", id: `eq.${productId}`, limit: "1" });
+  const [[row], [specRow]] = await Promise.all([
+    dataApi<{ sku: string | null; weight_grams: number | null; vat_rate: number | string | null }>("store_products", base),
+    dataApi<{ specs: unknown }>("store_products", extra)
+  ]);
+  const vat = Number(row?.vat_rate);
+  return {
+    sku: row?.sku ?? null,
+    weight_grams: row?.weight_grams ?? null,
+    vat_rate: Number.isFinite(vat) && vat >= 0 ? vat : 21,
+    specs: normalizeSpecs(specRow?.specs)
+  };
+}
+
+/**
+ * Přijímá parametry ve třech tvarech:
+ *  - `{"Klíč": "Hodnota"}` (jedna skupina „Parametry“),
+ *  - `{"Skupina": {"Klíč": "Hodnota"}}`,
+ *  - `[{"title": "Skupina", "rows": [{"name": "Klíč", "value": "Hodnota"}]}]`.
+ */
+export function normalizeSpecs(raw: unknown): ProductSpecGroup[] {
+  let value = raw;
+  if (typeof value === "string") {
+    try { value = JSON.parse(value); } catch { return []; }
+  }
+  const text = (input: unknown) => (typeof input === "string" || typeof input === "number" || typeof input === "boolean")
+    ? (typeof input === "boolean" ? (input ? "Ano" : "Ne") : String(input))
+    : Array.isArray(input) ? input.map(String).join(", ") : null;
+
+  if (Array.isArray(value)) {
+    return value.flatMap((group) => {
+      if (!group || typeof group !== "object") return [];
+      const { title, rows } = group as { title?: unknown; rows?: unknown };
+      if (!Array.isArray(rows)) return [];
+      const parsed = rows.flatMap((entry) => {
+        const { name, value: cell } = (entry ?? {}) as { name?: unknown; value?: unknown };
+        const formatted = text(cell);
+        return typeof name === "string" && formatted ? [{ name, value: formatted }] : [];
+      });
+      return parsed.length ? [{ title: typeof title === "string" ? title : "Parametry", rows: parsed }] : [];
+    });
+  }
+  if (!value || typeof value !== "object") return [];
+  const flat: ProductSpecGroup = { title: "Parametry", rows: [] };
+  const groups: ProductSpecGroup[] = [];
+  for (const [key, cell] of Object.entries(value as Record<string, unknown>)) {
+    if (cell && typeof cell === "object" && !Array.isArray(cell)) {
+      const rows = Object.entries(cell as Record<string, unknown>).flatMap(([name, inner]) => {
+        const formatted = text(inner);
+        return formatted ? [{ name, value: formatted }] : [];
+      });
+      if (rows.length) groups.push({ title: key, rows });
+    } else {
+      const formatted = text(cell);
+      if (formatted) flat.rows.push({ name: key, value: formatted });
+    }
+  }
+  return flat.rows.length ? [flat, ...groups] : groups;
+}
 
 export async function getProducts(filters: Record<string, string | undefined> = {}) {
   const params = new URLSearchParams({ select: productSelect, is_active: "eq.true", limit: "1000" });

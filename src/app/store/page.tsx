@@ -14,53 +14,123 @@ export default async function StorePage() {
     getBrands(),
     getCatalogStats()
   ]);
-  const featured = products.slice(0, 8);
+  const featured = products.slice(0, 10);
+  const deals = products.filter((product) => product.sale_price !== null).slice(0, 10);
+  const newest = [...products].sort((left, right) => right.created_at.localeCompare(left.created_at)).slice(0, 10);
+
   return (
-    <main className="store-main">
-      <section className="store-hero">
-        <div>
-          <p className="store-eyebrow">VeVit Store · sortiment od zdrojových výrobců</p>
-          <h1>Elektronika, školní a kancelářské vybavení za férové ceny.</h1>
-          <p>Vybrané značky s dodávkou z EU skladů a českou fakturou — pro lidi, firmy i školy.</p>
-          <div className="store-actions">
-            <Link className="store-button primary" href="/store/catalog">Přejít do katalogu</Link>
-            <Link className="store-button" href="/store/catalog?sort=newest">Novinky</Link>
+    <main className="sf-main" id="main-content">
+      <div className="sf-home-top">
+        <nav className="sf-catmenu" aria-label="Kategorie">
+          <p className="sf-catmenu__title">Kategorie</p>
+          <ul>
+            {categories.map((category) => (
+              <li key={category.slug}>
+                <Link href={`/store/catalog?category=${category.slug}`}>
+                  <span className="sf-catmenu__icon"><Icon name={category.icon ?? "storefront"} /></span>
+                  <span className="sf-catmenu__name">{category.name}</span>
+                  <span className="sf-catmenu__count">{category.count}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <Link className="sf-catmenu__all" href="/store/catalog">Celý katalog →</Link>
+        </nav>
+
+        <section className="sf-hero" aria-labelledby="hero-title">
+          <div className="sf-hero__copy">
+            <p className="sf-eyebrow">Pro domácnosti, firmy i školy</p>
+            <h1 id="hero-title">Elektronika a vybavení do kanceláře za férové ceny</h1>
+            <p>Ověřené značky, dodávka z EU skladů a česká faktura s DPH. Nakupujte jako jednotlivec nebo na firmu.</p>
+            <form className="sf-hero__search" method="get" action="/store/catalog" role="search">
+              <label htmlFor="hero-search" className="sr-only">Hledat produkty</label>
+              <Icon name="search" />
+              <input id="hero-search" name="search" type="search" placeholder="Co hledáte? Např. USB-C kabel, židle, NAS…" autoComplete="off" />
+              <button className="sf-btn sf-btn--buy" type="submit">Hledat</button>
+            </form>
           </div>
+          <dl className="sf-hero__stats">
+            <div><dt>Produktů</dt><dd>{stats.skus.toLocaleString("cs-CZ")}</dd></div>
+            <div><dt>Značek</dt><dd>{stats.brands}</dd></div>
+            <div><dt>Faktura</dt><dd>CZ · B2B</dd></div>
+          </dl>
+        </section>
+
+        <div className="sf-promos">
+          <Link className="sf-promo sf-promo--deal" href="/store/catalog?deals=1">
+            <Icon name="sell" />
+            <span><b>Slevy a akce</b>Zlevněné zboží na jednom místě</span>
+          </Link>
+          <Link className="sf-promo" href="/store/catalog?sort=newest">
+            <Icon name="new_releases" />
+            <span><b>Novinky</b>Čerstvě přidané produkty</span>
+          </Link>
+          <Link className="sf-promo" href="/store/catalog?type=digital">
+            <Icon name="download" />
+            <span><b>Digitální produkty</b>Ihned ke stažení</span>
+          </Link>
         </div>
-        <div className="store-hero-stats">
-          <div className="store-stat"><b>{stats.skus}</b><span>produktů v katalogu</span></div>
-          <div className="store-stat"><b>{stats.brands}</b><span>ověřených značek</span></div>
-          <div className="store-stat"><b>B2B</b><span>faktura a servis v češtině</span></div>
+      </div>
+
+      <ul className="sf-benefits" aria-label="Výhody nákupu">
+        <li><Icon name="local_shipping" /><span><b>Doprava zdarma</b> nad 1 000 Kč</span></li>
+        <li><Icon name="currency_exchange" /><span><b>Česká faktura</b> pro firmy i školy</span></li>
+        <li><Icon name="policy" /><span><b>Originální zboží</b> ověřených značek</span></li>
+        <li><Icon name="help" /><span><b>Podpora</b> v češtině</span></li>
+      </ul>
+
+      <section className="sf-section" aria-labelledby="featured-title">
+        <div className="sf-section__head">
+          <h2 id="featured-title">Doporučujeme</h2>
+          <Link href="/store/catalog">Zobrazit vše →</Link>
         </div>
+        {featured.length
+          ? <div className="sf-grid">{featured.map((product, index) => <ProductCard key={product.id} product={product} priority={index < 5} />)}</div>
+          : <div className="sf-empty">Katalog zatím nemá žádné produkty. Podívejte se sem prosím později.</div>}
       </section>
 
-      <div className="store-section-head"><h2>Shop podle kategorie</h2><Link href="/store/catalog">Všechny kategorie →</Link></div>
-      <div className="store-cat-tiles">
-        {categories.map((category) => (
-          <Link key={category.slug} href={`/store/catalog?category=${category.slug}`} className="store-cat-tile">
-            {category.icon ? <span className="store-cat-tile-icon"><Icon name={category.icon} /></span> : null}
-            <b>{category.name}</b>
-            <span>{category.count} produktů</span>
-          </Link>
-        ))}
-      </div>
+      {deals.length > 0 && (
+        <section className="sf-section sf-section--deal" aria-labelledby="deals-title">
+          <div className="sf-section__head">
+            <h2 id="deals-title"><Icon name="sell" /> Akční nabídka</h2>
+            <Link href="/store/catalog?deals=1">Všechny slevy →</Link>
+          </div>
+          <div className="sf-rail">{deals.map((product) => <ProductCard key={product.id} product={product} />)}</div>
+        </section>
+      )}
 
-      <div className="store-section-head"><h2>Doporučené produkty</h2><Link href="/store/catalog">Celý katalog →</Link></div>
-      {featured.length ? <div className="store-grid">{featured.map((product) => <ProductCard key={product.id} product={product} />)}</div> : <div className="store-empty">Katalog zatím nemá žádné produkty. Podívejte se sem prosím později.</div>}
+      {newest.length > 0 && (
+        <section className="sf-section" aria-labelledby="new-title">
+          <div className="sf-section__head">
+            <h2 id="new-title">Novinky v sortimentu</h2>
+            <Link href="/store/catalog?sort=newest">Všechny novinky →</Link>
+          </div>
+          <div className="sf-rail">{newest.map((product) => <ProductCard key={product.id} product={product} />)}</div>
+        </section>
+      )}
 
-      <div className="store-section-head"><h2>Podle značky</h2></div>
-      <div className="store-brand-strip">
-        {brands.map((brand) => (
-          <Link key={brand} href={`/store/catalog?brand=${encodeURIComponent(brand)}`} className="store-brand-chip">{brand}</Link>
-        ))}
-      </div>
+      {brands.length > 0 && (
+        <section className="sf-section" aria-labelledby="brands-title">
+          <div className="sf-section__head"><h2 id="brands-title">Značky</h2></div>
+          <div className="sf-chips">
+            {brands.map((brand) => (
+              <Link key={brand} href={`/store/catalog?brand=${encodeURIComponent(brand)}`} className="sf-chip">{brand}</Link>
+            ))}
+          </div>
+        </section>
+      )}
 
-      <div className="store-benefits">
-        <div className="store-benefit"><Icon name="local_shipping" /> Dodávka z EU skladů (CZ · DE · PL)</div>
-        <div className="store-benefit"><Icon name="currency_exchange" /> Česká faktura pro firmy i školy</div>
-        <div className="store-benefit"><Icon name="policy" /> Ověřená originalita značek</div>
-        <div className="store-benefit"><Icon name="check_circle" /> Podpora a servis v češtině</div>
-      </div>
+      <section className="sf-b2b" aria-labelledby="b2b-title">
+        <div>
+          <p className="sf-eyebrow">Firmy a školy</p>
+          <h2 id="b2b-title">Nakupujete na IČO?</h2>
+          <p>V pokladně vyplníte IČO a údaje doplníme z ARES. Fakturu s DPH dostanete e-mailem hned po zaplacení.</p>
+        </div>
+        <div className="sf-b2b__actions">
+          <Link className="sf-btn sf-btn--buy" href="/store/catalog">Začít nakupovat</Link>
+          <Link className="sf-btn sf-btn--ghost" href="/cs/store/contact.php">Poptávka pro školy</Link>
+        </div>
+      </section>
     </main>
   );
 }
