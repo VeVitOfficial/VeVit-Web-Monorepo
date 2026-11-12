@@ -1,289 +1,429 @@
 "use client";
 
-// Generátor faktury — React port legacy tools/assets/js/tools/invoice-gen.js.
-// pdf-lib + qrcode-generator (SPD QR platba). Dynamické řádky, wrapText, cs formátování.
-import { useCallback, useEffect, useState } from "react";
-import type { ToolComponentProps, ToolUiI18n } from "@/components/tools/registry/data";
+// Generátor faktur: vlevo formulář, vpravo živý náhled A4. Vše se počítá a ukládá lokálně v prohlížeči
+// (koncept v localStorage, export PDF přes pdf-lib, QR platba SPD). Na server se nic neodesílá.
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import type { ToolComponentProps } from "@/components/tools/registry/data";
+import { Icon, toastSuccess, useToolState } from "@/components/tools/tool-runtime";
 import {
-  useToolUi, loadScript, toastSuccess, Icon, useToolState,
-} from "@/components/tools/tool-runtime";
+  COLOR_PRESETS, CURRENCIES, calcLine, calcTotals, clearDraft, defaultInvoice, dueDate, emptyItem, fmtDate, formatSeriesNumber, invoiceNumber, loadDraft, loadTemplates,
+  mergeInvoice, mergeParty, money, saveDraft, saveTemplates, spdString, uid, validIban, variableSymbol,
+  type DiscountType, type Invoice, type Item, type Party, type PartyTemplate, type PayMethod, type Templates,
+} from "@/components/tools/invoice/model";
+import { InvoiceSheet, SheetViewport } from "@/components/tools/invoice/sheet";
+import { buildInvoicePdf } from "@/components/tools/invoice/pdf";
+import { dataUrlToBytes, qrPngDataUrl } from "@/components/tools/invoice/qr";
 
-interface PdfImg { width(): number; height(): number; }
-interface PdfPageMod { getWidth(): number; getHeight(): number; drawText(text: string, opts: unknown): void; drawImage(img: PdfImg, opts: unknown): void; moveTo(x: number, y: number): void; lineTo(x: number, y: number): void; line(opts: unknown): void; }
-interface PdfDoc {
-  create(): Promise<PdfDoc>;
-  addPage(size: [number, number]): PdfPageMod;
-  embedFont(f: unknown): Promise<unknown>;
-  embedPng(data: Uint8Array | ArrayBuffer): Promise<PdfImg>;
-  save(): Promise<Uint8Array>;
+// ── Drobné vstupy ──────────────────────────────────────────────────────────
+function Field({ id, label, children, hint, wide }: { id: string; label: string; children: React.ReactNode; hint?: string; wide?: boolean }) {
+  return (
+    <div className={`iv-field${wide ? " iv-wide" : ""}`}>
+      <label className="field-label" htmlFor={id}>{label}</label>
+      {children}
+      {hint ? <span className="iv-hint">{hint}</span> : null}
+    </div>
+  );
 }
-interface PdfLib { PDFDocument: PdfDocCtor; rgb: (r: number, g: number, b: number) => unknown; StandardFonts: { Helvetica: unknown; HelveticaBold: unknown }; }
-interface PdfDocCtor { create(): Promise<PdfDoc>; }
-interface QrCtor { new (typeNumber: number, errorCorrectionLevel: string): { addData(text: string): void; make(): void; getModuleCount(): number; isDark(r: number, c: number): boolean; }; }
-
-function pdfLib(): PdfLib { return (window as unknown as { PDFLib: PdfLib }).PDFLib; }
-function qrCtor(): QrCtor { return (window as unknown as { qrcode: QrCtor }).qrcode; }
-
-interface Row { qty: number; desc: string; price: number; }
-
-const today = () => { const d = new Date(); return `${String(d.getDate()).padStart(2, "0")}. ${String(d.getMonth() + 1).padStart(2, "0")}. ${d.getFullYear()}`; };
-const dueDate = () => { const d = new Date(); d.setDate(d.getDate() + 14); return `${String(d.getDate()).padStart(2, "0")}. ${String(d.getMonth() + 1).padStart(2, "0")}. ${d.getFullYear()}`; };
-const fmtN = (n: number) => n.toLocaleString("cs-CZ", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-const fmtC = (n: number) => `${n.toLocaleString("cs-CZ", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} Kč`;
-const csDateISO = (s: string) => { const m = /^(\d{1,2})\.\s*(\d{1,2})\.\s*(\d{4})$/.exec(s.trim()); if (!m) return ""; return `${m[3]}${m[2].padStart(2, "0")}${m[1].padStart(2, "0")}`; };
-
-// Zalomení textu na šířku (px) pro font dané velikosti (heuristika 0.5× size na znak).
-function wrapText(text: string, maxWidth: number, size: number): string[] {
-  const words = text.split(/\s+/);
-  const lines: string[] = [];
-  let cur = "";
-  for (const w of words) {
-    const test = cur ? `${cur} ${w}` : w;
-    if (test.length * size * 0.5 <= maxWidth) cur = test;
-    else { if (cur) lines.push(cur); cur = w; }
-  }
-  if (cur) lines.push(cur);
-  return lines;
+function Text({ id, label, value, onChange, placeholder, wide, hint, inputMode }: {
+  id: string; label: string; value: string; onChange: (v: string) => void; placeholder?: string; wide?: boolean; hint?: string; inputMode?: "numeric" | "email" | "tel" | "url" | "text";
+}) {
+  return (
+    <Field id={id} label={label} wide={wide} hint={hint}>
+      <input id={id} className="input" type="text" inputMode={inputMode} value={value} placeholder={placeholder} onChange={(e) => onChange(e.target.value)} autoComplete="off" />
+    </Field>
+  );
+}
+function Num({ id, label, value, onChange, min = 0, max, step = "any", wide }: {
+  id: string; label: string; value: number; onChange: (n: number) => void; min?: number; max?: number; step?: number | "any"; wide?: boolean;
+}) {
+  return (
+    <Field id={id} label={label} wide={wide}>
+      <input id={id} className="input" type="number" inputMode="decimal" min={min} max={max} step={step} value={Number.isFinite(value) ? value : 0}
+        onChange={(e) => { const n = parseFloat(e.target.value); onChange(Number.isFinite(n) ? Math.min(max ?? Infinity, Math.max(min, n)) : 0); }} />
+    </Field>
+  );
+}
+function Card({ title, tone, children, actions }: { title: string; tone: "inv" | "sup" | "cus" | "items" | "pay" | "misc"; children: React.ReactNode; actions?: React.ReactNode }) {
+  return (
+    <section className={`iv-card iv-card--${tone}`} aria-label={title}>
+      <header className="iv-card-head"><h3>{title}</h3>{actions}</header>
+      <div className="iv-card-body">{children}</div>
+    </section>
+  );
 }
 
-// Vykreslí QR kód do PNG byteArray (černobílé moduly, scale=1px) a vrátí PNG Uint8Array.
-function qrToPng(text: string, scale = 4): Uint8Array | null {
-  try {
-    const qr = qrCtor();
-    const inst = new qr(0, "M");
-    inst.addData(text); inst.make();
-    const count = inst.getModuleCount();
-    const size = count * scale;
-    // Vytvoříme canvas a vykreslíme moduly.
-    const c = document.createElement("canvas");
-    c.width = size; c.height = size;
-    const ctx = c.getContext("2d")!;
-    ctx.fillStyle = "#ffffff"; ctx.fillRect(0, 0, size, size);
-    ctx.fillStyle = "#000000";
-    for (let r = 0; r < count; r++) for (let cc = 0; cc < count; cc++) if (inst.isDark(r, cc)) ctx.fillRect(cc * scale, r * scale, scale, scale);
-    const dataUrl = c.toDataURL("image/png").split(",")[1];
-    return Uint8Array.from(atob(dataUrl), (ch) => ch.charCodeAt(0));
-  } catch { return null; }
+// ── Sekce dodavatel / odběratel (s uloženými šablonami) ────────────────────
+function PartyForm({ prefix, party, onChange, templates, onSaveTemplate, onLoadTemplate, onDeleteTemplate, showDic }: {
+  prefix: string; party: Party; onChange: (p: Party) => void; templates: PartyTemplate[];
+  onSaveTemplate: () => void; onLoadTemplate: (t: PartyTemplate) => void; onDeleteTemplate: (id: string) => void; showDic: boolean;
+}) {
+  const set = (k: keyof Party) => (v: string) => onChange({ ...party, [k]: v });
+  const [pick, setPick] = useState("");
+  return (
+    <>
+      <div className="iv-tpl">
+        <select className="select" aria-label="Načíst uloženou šablonu" value={pick}
+          onChange={(e) => { const t = templates.find((x) => x.id === e.target.value); setPick(e.target.value); if (t) onLoadTemplate(t); }}>
+          <option value="">Načíst uloženou šablonu…</option>
+          {templates.map((t) => <option key={t.id} value={t.id}>{t.label}</option>)}
+        </select>
+        <button type="button" className="btn btn-ghost btn-sm" onClick={onSaveTemplate} title="Uloží údaje jen v tomto prohlížeči">Uložit jako šablonu</button>
+        {pick ? <button type="button" className="btn btn-ghost btn-sm" onClick={() => { onDeleteTemplate(pick); setPick(""); }} aria-label="Smazat vybranou šablonu"><Icon name="X" size={14} /></button> : null}
+      </div>
+      <div className="iv-grid">
+        <Text id={`${prefix}-name`} label="Název / jméno" value={party.name} onChange={set("name")} wide />
+        <Text id={`${prefix}-street`} label="Ulice a č.p." value={party.street} onChange={set("street")} wide />
+        <Text id={`${prefix}-zip`} label="PSČ" value={party.zip} onChange={set("zip")} />
+        <Text id={`${prefix}-city`} label="Město" value={party.city} onChange={set("city")} />
+        <Text id={`${prefix}-country`} label="Země" value={party.country} onChange={set("country")} wide />
+        <Text id={`${prefix}-ico`} label="IČO" value={party.ico} onChange={set("ico")} inputMode="numeric" />
+        {showDic ? <Text id={`${prefix}-dic`} label="DIČ" value={party.dic} onChange={set("dic")} /> : null}
+        <Text id={`${prefix}-email`} label="E-mail" value={party.email} onChange={set("email")} inputMode="email" />
+        <Text id={`${prefix}-phone`} label="Telefon" value={party.phone} onChange={set("phone")} inputMode="tel" />
+        <Text id={`${prefix}-web`} label="Web" value={party.web} onChange={set("web")} inputMode="url" wide />
+        <Field id={`${prefix}-note`} label="Doplňující údaje (např. zápis v rejstříku)" wide>
+          <textarea id={`${prefix}-note`} className="textarea" rows={2} value={party.note} onChange={(e) => set("note")(e.target.value)} />
+        </Field>
+      </div>
+    </>
+  );
+}
+
+// ── Položka ────────────────────────────────────────────────────────────────
+function ItemEditor({ idx, item, inv, onChange, onRemove, canRemove }: {
+  idx: number; item: Item; inv: Invoice; onChange: (patch: Partial<Item>) => void; onRemove: () => void; canRemove: boolean;
+}) {
+  const c = calcLine(item, inv.vatPayer);
+  const cur = (n: number) => money(n, inv.currency, inv.lang);
+  const id = `iv-it-${item.id}`;
+  return (
+    <div className="iv-item">
+      <div className="iv-item-head">
+        <span className="iv-item-no">{idx + 1}</span>
+        <input id={`${id}-desc`} className="input" type="text" value={item.desc} placeholder="Popis položky" aria-label={`Popis položky ${idx + 1}`} onChange={(e) => onChange({ desc: e.target.value })} />
+        <button type="button" className="btn btn-ghost btn-icon-sm" disabled={!canRemove} aria-label={`Odebrat položku ${idx + 1}`} onClick={onRemove}><Icon name="X" size={16} /></button>
+      </div>
+      <div className="iv-item-grid">
+        <Num id={`${id}-qty`} label="Množství" value={item.qty} onChange={(n) => onChange({ qty: n })} />
+        <Text id={`${id}-unit`} label="Jednotka" value={item.unit} onChange={(v) => onChange({ unit: v })} />
+        <Num id={`${id}-price`} label={`Cena/j. (${inv.currency})`} value={item.price} onChange={(n) => onChange({ price: n })} />
+        <div className="iv-field">
+          <label className="field-label" htmlFor={`${id}-disc`}>Sleva</label>
+          <div className="iv-disc">
+            <input id={`${id}-disc`} className="input" type="number" inputMode="decimal" min={0} step="any" value={item.discount}
+              onChange={(e) => { const n = parseFloat(e.target.value); onChange({ discount: Number.isFinite(n) ? Math.max(0, n) : 0 }); }} />
+            <select className="select" aria-label="Typ slevy" value={item.discType} onChange={(e) => onChange({ discType: e.target.value as DiscountType })}>
+              <option value="pct">%</option>
+              <option value="abs">{inv.currency}</option>
+            </select>
+          </div>
+        </div>
+        {inv.vatPayer ? (
+          <Field id={`${id}-vat`} label="DPH (%)">
+            <input id={`${id}-vat`} className="input" type="number" inputMode="decimal" min={0} max={100} step="any" list="iv-vat-rates" value={item.vat}
+              onChange={(e) => { const n = parseFloat(e.target.value); onChange({ vat: Number.isFinite(n) ? Math.min(100, Math.max(0, n)) : 0 }); }} />
+          </Field>
+        ) : null}
+      </div>
+      <div className="iv-item-sum" aria-live="polite">
+        {c.discountAmt > 0 ? <span>Sleva −{cur(c.discountAmt)}</span> : null}
+        <span>Základ {cur(c.net)}</span>
+        {inv.vatPayer ? <span>DPH {cur(c.vat)}</span> : null}
+        <strong>Celkem {cur(c.total)}</strong>
+      </div>
+    </div>
+  );
+}
+
+function download(blob: Blob, name: string) {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = name;
+  document.body.appendChild(a); a.click(); a.remove();
+  window.setTimeout(() => URL.revokeObjectURL(url), 4000);
+}
+const safeName = (s: string) => s.replace(/[^\w.-]+/g, "_").replace(/^_+|_+$/g, "") || "faktura";
+
+// ── Editor ─────────────────────────────────────────────────────────────────
+function Editor({ initial, initialTemplates, restored }: { initial: Invoice; initialTemplates: Templates; restored: boolean }) {
+  const { setState: setToolState, rootRef } = useToolState("ready");
+  const [inv, setInv] = useState<Invoice>(initial);
+  const [templates, setTemplates] = useState<Templates>(initialTemplates);
+  const [busy, setBusy] = useState<"" | "pdf">("");
+  const [error, setError] = useState("");
+  const [savedAt, setSavedAt] = useState<Date | null>(null);
+  const [qr, setQr] = useState<{ text: string; url: string } | null>(null);
+  const fileRef = useRef<HTMLInputElement>(null);
+  const sheetRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => { rootRef.current = document.getElementById("tool-root") as HTMLDivElement | null; }, [rootRef]);
+
+  const totals = useMemo(() => calcTotals(inv), [inv]);
+  const number = invoiceNumber(inv);
+  const spd = useMemo(() => spdString(inv, totals), [inv, totals]);
+
+  // QR pro náhled (jen když je zapnutý a máme platný IBAN)
+  useEffect(() => {
+    if (!spd || !inv.showQr) return;
+    let alive = true;
+    void qrPngDataUrl(spd, 6, 2).then((url) => { if (alive && url) setQr({ text: spd, url }); });
+    return () => { alive = false; };
+  }, [spd, inv.showQr]);
+  const qrUrl = spd && inv.showQr && qr?.text === spd ? qr.url : null;
+
+  // Autosave konceptu
+  useEffect(() => {
+    const h = window.setTimeout(() => { saveDraft(inv); setSavedAt(new Date()); }, 400);
+    return () => window.clearTimeout(h);
+  }, [inv]);
+
+  const patch = useCallback((p: Partial<Invoice>) => setInv((v) => ({ ...v, ...p })), []);
+  const patchItem = (id: string, p: Partial<Item>) => setInv((v) => ({ ...v, items: v.items.map((it) => (it.id === id ? { ...it, ...p } : it)) }));
+  const patchPay = (p: Partial<Invoice["payment"]>) => setInv((v) => ({ ...v, payment: { ...v.payment, ...p } }));
+  const patchSeries = (p: Partial<Invoice["series"]>) => setInv((v) => ({ ...v, series: { ...v.series, ...p } }));
+
+  // Šablony
+  const updateTemplates = (next: Templates) => { setTemplates(next); saveTemplates(next); };
+  const saveParty = (kind: "suppliers" | "customers") => {
+    const party = kind === "suppliers" ? inv.supplier : inv.customer;
+    const label = party.name.trim();
+    if (!label) { setError("Před uložením šablony vyplňte název."); return; }
+    setError("");
+    const entry: PartyTemplate = { id: uid(), label, party, ...(kind === "suppliers" ? { vatPayer: inv.vatPayer, payment: inv.payment } : {}) };
+    const rest = templates[kind].filter((t) => t.label.toLowerCase() !== label.toLowerCase());
+    updateTemplates({ ...templates, [kind]: [...rest, entry].sort((a, b) => a.label.localeCompare(b.label, "cs")) });
+    toastSuccess("Šablona uložena v tomto prohlížeči");
+  };
+  const deleteParty = (kind: "suppliers" | "customers", id: string) => updateTemplates({ ...templates, [kind]: templates[kind].filter((t) => t.id !== id) });
+
+  // Akce
+  const exportPdf = async () => {
+    setError(""); setBusy("pdf"); setToolState("processing");
+    try {
+      const png = qrUrl ? dataUrlToBytes(qrUrl) : null;
+      const bytes = await buildInvoicePdf(inv, totals, png);
+      download(new Blob([bytes as BlobPart], { type: "application/pdf" }), `faktura-${safeName(number)}.pdf`);
+      setToolState("success"); toastSuccess("PDF faktury staženo");
+    } catch (e) {
+      const m = e instanceof Error ? e.message : "Export PDF se nepodařil.";
+      setError(m); setToolState("error");
+    } finally { setBusy(""); }
+  };
+  const printInvoice = () => {
+    const sheet = sheetRef.current?.querySelector(".iv-sheet");
+    if (!sheet) return;
+    const root = document.createElement("div");
+    root.id = "iv-print-root";
+    root.appendChild(sheet.cloneNode(true));
+    document.body.appendChild(root);
+    document.body.classList.add("iv-printing");
+    const cleanup = () => { document.body.classList.remove("iv-printing"); root.remove(); window.removeEventListener("afterprint", cleanup); };
+    window.addEventListener("afterprint", cleanup);
+    window.print();
+  };
+  const exportQr = async () => {
+    setError("");
+    if (!spd) { setError("QR platbu nelze vytvořit: vyplňte platný IBAN, způsob úhrady „Bankovní převod“ a nenulovou částku."); return; }
+    const url = await qrPngDataUrl(spd, 10, 4);
+    if (!url) { setError("QR kód se nepodařilo vytvořit."); return; }
+    download(new Blob([dataUrlToBytes(url) as BlobPart], { type: "image/png" }), `qr-platba-${safeName(number)}.png`);
+  };
+  const exportJson = () => {
+    const data = { app: "vevit-invoice", version: 1, invoice: inv };
+    download(new Blob([JSON.stringify(data, null, 2)], { type: "application/json" }), `faktura-${safeName(number)}.json`);
+  };
+  const importJson = async (file: File) => {
+    setError("");
+    try {
+      const data = JSON.parse(await file.text()) as { invoice?: unknown };
+      setInv(mergeInvoice(data.invoice ?? data));
+      toastSuccess("Faktura načtena ze souboru");
+    } catch { setError("Soubor se nepodařilo načíst, očekávám JSON exportovaný z tohoto nástroje."); }
+  };
+  const newInvoice = () => {
+    if (!window.confirm("Založit novou fakturu s dalším číslem? Odběratel a položky se vymažou, údaje dodavatele a platby zůstanou.")) return;
+    const fresh = defaultInvoice();
+    setInv((v) => ({
+      ...v, series: { ...v.series, next: v.numberAuto ? v.series.next + 1 : v.series.next }, number: "",
+      issue: fresh.issue, taxDate: fresh.taxDate, customer: mergeParty(null), items: [emptyItem()], note: "",
+      payment: { ...v.payment, vs: "" },
+    }));
+  };
+  const resetAll = () => {
+    if (!window.confirm("Smazat celý koncept i uložené šablony z tohoto prohlížeče?")) return;
+    clearDraft(); updateTemplates({ suppliers: [], customers: [] }); setInv(defaultInvoice());
+  };
+
+  const addItem = () => setInv((v) => ({ ...v, items: [...v.items, { ...emptyItem(), vat: v.items[v.items.length - 1]?.vat ?? 21 }] }));
+  const ibanBad = inv.payment.method === "transfer" && inv.payment.iban.trim() !== "" && !validIban(inv.payment.iban);
+  const cur = (n: number) => money(n, inv.currency, inv.lang);
+
+  return (
+    <div className="iv-layout">
+      <datalist id="iv-vat-rates"><option value="21" /><option value="12" /><option value="0" /></datalist>
+
+      <div className="iv-form">
+        {restored ? <p className="iv-restored" role="status">Obnoven rozpracovaný koncept z tohoto prohlížeče.</p> : null}
+
+        <Card title="Faktura" tone="inv">
+          <div className="iv-grid">
+            <Field id="iv-lang" label="Jazyk dokladu">
+              <select id="iv-lang" className="select" value={inv.lang} onChange={(e) => patch({ lang: e.target.value as Invoice["lang"] })}>
+                <option value="cs">Česky</option><option value="en">English</option>
+              </select>
+            </Field>
+            <Field id="iv-cur" label="Měna">
+              <select id="iv-cur" className="select" value={inv.currency} onChange={(e) => patch({ currency: e.target.value as Invoice["currency"] })}>
+                {CURRENCIES.map((c) => <option key={c} value={c}>{c}</option>)}
+              </select>
+            </Field>
+            <Field id="iv-color" label="Hlavní barva dokladu" wide>
+              <div className="iv-colors">
+                {COLOR_PRESETS.map((c) => (
+                  <button key={c.value} type="button" className="iv-swatch" style={{ background: c.value }} title={c.label} aria-label={c.label}
+                    aria-pressed={inv.color === c.value} onClick={() => patch({ color: c.value })} />
+                ))}
+                <input id="iv-color" type="color" className="iv-color-input" value={inv.color} aria-label="Vlastní barva" onChange={(e) => patch({ color: e.target.value })} />
+              </div>
+            </Field>
+            <label className="iv-check iv-wide">
+              <input id="iv-vatpayer" type="checkbox" checked={inv.vatPayer} onChange={(e) => patch({ vatPayer: e.target.checked })} />
+              <span>Dodavatel je plátce DPH</span>
+            </label>
+            {!inv.vatPayer ? <p className="iv-hint iv-wide">Na dokladu se uvede „Nejsem plátce DPH“ a DPH se nepočítá.</p> : null}
+
+            <Text id="iv-prefix" label="Řada (předpona)" value={inv.series.prefix} onChange={(v) => patchSeries({ prefix: v.slice(0, 12) })} placeholder="např. FV" />
+            <Num id="iv-next" label="Pořadové číslo" value={inv.series.next} min={1} step={1} onChange={(n) => patchSeries({ next: Math.max(1, Math.round(n)) })} />
+            <Num id="iv-pad" label="Počet číslic" value={inv.series.pad} min={1} max={8} step={1} onChange={(n) => patchSeries({ pad: Math.min(8, Math.max(1, Math.round(n))) })} />
+            <label className="iv-check">
+              <input id="iv-year" type="checkbox" checked={inv.series.year} onChange={(e) => patchSeries({ year: e.target.checked })} />
+              <span>Rok v čísle</span>
+            </label>
+            <label className="iv-check iv-wide">
+              <input id="iv-auto" type="checkbox" checked={inv.numberAuto} onChange={(e) => patch({ numberAuto: e.target.checked, number: e.target.checked ? inv.number : number })} />
+              <span>Číslovat automaticky ({formatSeriesNumber(inv.series, inv.issue)})</span>
+            </label>
+            {!inv.numberAuto ? <Text id="iv-number" label="Číslo faktury" value={inv.number} onChange={(v) => patch({ number: v })} wide /> : null}
+
+            <Field id="iv-issue" label="Datum vystavení">
+              <input id="iv-issue" className="input" type="date" value={inv.issue} onChange={(e) => patch({ issue: e.target.value || inv.issue })} />
+            </Field>
+            {inv.vatPayer ? (
+              <Field id="iv-tax" label="Datum zdan. plnění">
+                <input id="iv-tax" className="input" type="date" value={inv.taxDate} onChange={(e) => patch({ taxDate: e.target.value || inv.taxDate })} />
+              </Field>
+            ) : null}
+            <Num id="iv-days" label="Splatnost (dnů)" value={inv.dueDays} min={0} max={365} step={1} onChange={(n) => patch({ dueDays: Math.round(n) })} />
+            <Field id="iv-due" label="Datum splatnosti"><output id="iv-due" className="iv-output">{fmtDate(dueDate(inv), inv.lang)}</output></Field>
+          </div>
+        </Card>
+
+        <Card title="Dodavatel" tone="sup">
+          <PartyForm prefix="iv-sup" party={inv.supplier} onChange={(p) => patch({ supplier: p })} templates={templates.suppliers} showDic={inv.vatPayer}
+            onSaveTemplate={() => saveParty("suppliers")} onDeleteTemplate={(id) => deleteParty("suppliers", id)}
+            onLoadTemplate={(t) => setInv((v) => ({ ...v, supplier: t.party, vatPayer: t.vatPayer ?? v.vatPayer, payment: t.payment ?? v.payment }))} />
+        </Card>
+
+        <Card title="Odběratel" tone="cus">
+          <PartyForm prefix="iv-cus" party={inv.customer} onChange={(p) => patch({ customer: p })} templates={templates.customers} showDic
+            onSaveTemplate={() => saveParty("customers")} onDeleteTemplate={(id) => deleteParty("customers", id)}
+            onLoadTemplate={(t) => patch({ customer: t.party })} />
+        </Card>
+
+        <Card title="Položky" tone="items" actions={<button className="btn btn-ghost btn-sm" id="iv-add-row" type="button" onClick={addItem}><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><path d="M5 12h14" /><path d="M12 5v14" /></svg> Přidat položku</button>}>
+          <div className="iv-item-list" id="iv-rows">
+            {inv.items.map((it, i) => (
+              <ItemEditor key={it.id} idx={i} item={it} inv={inv} canRemove={inv.items.length > 1}
+                onChange={(p) => patchItem(it.id, p)} onRemove={() => setInv((v) => ({ ...v, items: v.items.filter((x) => x.id !== it.id) }))} />
+            ))}
+          </div>
+          <div className="iv-totals" aria-live="polite">
+            {totals.discount > 0 ? <div><span>Slevy celkem</span><span>−{cur(totals.discount)}</span></div> : null}
+            <div><span>{inv.vatPayer ? "Základ celkem" : "Mezisoučet"}</span><span>{cur(totals.base)}</span></div>
+            {inv.vatPayer ? totals.groups.map((g) => <div key={g.rate}><span>DPH {g.rate} % ze {cur(g.base)}</span><span>{cur(g.vat)}</span></div>) : null}
+            {totals.rounding !== 0 ? <div><span>Zaokrouhlení</span><span>{cur(totals.rounding)}</span></div> : null}
+            <div className="iv-total"><span>Celkem k úhradě</span><span>{cur(totals.payable)}</span></div>
+          </div>
+          <label className="iv-check">
+            <input id="iv-round" type="checkbox" checked={inv.roundTotal} onChange={(e) => patch({ roundTotal: e.target.checked })} />
+            <span>Zaokrouhlit celkovou částku na celé jednotky</span>
+          </label>
+        </Card>
+
+        <Card title="Platba" tone="pay">
+          <div className="iv-grid">
+            <Field id="iv-method" label="Způsob úhrady" wide>
+              <select id="iv-method" className="select" value={inv.payment.method} onChange={(e) => patchPay({ method: e.target.value as PayMethod })}>
+                <option value="transfer">Bankovní převod</option><option value="cash">Hotově</option><option value="card">Kartou</option><option value="cod">Dobírka</option>
+              </select>
+            </Field>
+            {inv.payment.method === "transfer" ? (
+              <>
+                <Text id="iv-bank" label="Banka" value={inv.payment.bank} onChange={(v) => patchPay({ bank: v })} wide />
+                <Text id="iv-account" label="Číslo účtu" value={inv.payment.account} onChange={(v) => patchPay({ account: v })} placeholder="123456789/0800" />
+                <Text id="iv-bic" label="BIC / SWIFT" value={inv.payment.bic} onChange={(v) => patchPay({ bic: v })} />
+                <Field id="iv-iban" label="IBAN" wide hint={ibanBad ? undefined : "Pro QR platbu je potřeba platný IBAN."}>
+                  <input id="iv-iban" className="input" type="text" value={inv.payment.iban} placeholder="CZ65 0800 0000 1920 0014 5399" aria-invalid={ibanBad} onChange={(e) => patchPay({ iban: e.target.value })} autoComplete="off" />
+                  {ibanBad ? <span className="iv-hint iv-hint--err">IBAN nemá platný tvar.</span> : null}
+                </Field>
+              </>
+            ) : null}
+            <Text id="iv-vs" label="Variabilní symbol" value={inv.payment.vs} onChange={(v) => patchPay({ vs: v.replace(/\D/g, "").slice(0, 10) })} placeholder={variableSymbol({ ...inv, payment: { ...inv.payment, vs: "" } })} inputMode="numeric" hint="Prázdný = číslo faktury" />
+            {inv.payment.method === "transfer" ? (
+              <>
+                <Text id="iv-ks" label="Konstantní symbol" value={inv.payment.ks} onChange={(v) => patchPay({ ks: v.replace(/\D/g, "").slice(0, 10) })} inputMode="numeric" />
+                <Text id="iv-ss" label="Specifický symbol" value={inv.payment.ss} onChange={(v) => patchPay({ ss: v.replace(/\D/g, "").slice(0, 10) })} inputMode="numeric" />
+              </>
+            ) : null}
+            <label className="iv-check iv-wide">
+              <input id="iv-qr" type="checkbox" checked={inv.showQr} onChange={(e) => patch({ showQr: e.target.checked })} />
+              <span>Zobrazit QR platbu na faktuře</span>
+            </label>
+          </div>
+        </Card>
+
+        <Card title="Poznámka" tone="misc">
+          <textarea id="iv-note" className="textarea" rows={3} value={inv.note} placeholder="Např. Děkujeme za spolupráci." onChange={(e) => patch({ note: e.target.value })} aria-label="Poznámka na faktuře" />
+        </Card>
+
+        <div className="iv-data-row">
+          <button type="button" className="btn btn-ghost btn-sm" onClick={newInvoice}>Nová faktura (další číslo)</button>
+          <button type="button" className="btn btn-ghost btn-sm" onClick={() => fileRef.current?.click()}>Načíst z JSON</button>
+          <button type="button" className="btn btn-ghost btn-sm" onClick={resetAll}>Smazat uložená data</button>
+          <input ref={fileRef} type="file" accept="application/json,.json" hidden onChange={(e) => { const f = e.target.files?.[0]; if (f) void importJson(f); e.target.value = ""; }} />
+        </div>
+      </div>
+
+      <aside className="iv-preview" aria-label="Náhled faktury">
+        <div className="iv-actions">
+          <button className="btn btn-primary btn-touch" id="iv-run" type="button" disabled={busy !== ""} onClick={exportPdf}>
+            <Icon name="Download" size={16} /> {busy ? "Připravuji PDF…" : "Stáhnout PDF"}
+          </button>
+          <button className="btn btn-ghost btn-sm" type="button" onClick={printInvoice}>Tisk</button>
+          <button className="btn btn-ghost btn-sm" type="button" onClick={exportQr} disabled={!spd} title={spd ? "" : "Vyplňte platný IBAN"}>QR (PNG)</button>
+          <button className="btn btn-ghost btn-sm" type="button" onClick={exportJson}>JSON</button>
+        </div>
+        {error ? <p className="error-text" role="alert">{error}</p> : null}
+        <div ref={sheetRef}>
+          <SheetViewport><InvoiceSheet inv={inv} totals={totals} qrUrl={qrUrl} /></SheetViewport>
+        </div>
+        <p className="iv-saved" role="status">{savedAt ? `Koncept uložen v tomto prohlížeči (${savedAt.toLocaleTimeString("cs-CZ", { hour: "2-digit", minute: "2-digit", second: "2-digit" })}).` : "Koncept se ukládá automaticky v tomto prohlížeči."}</p>
+        <div className="privacy-note">Faktura se počítá a vykresluje lokálně v prohlížeči. Údaje se neodesílají na server, koncept i šablony zůstávají jen v úložišti tohoto zařízení.</div>
+      </aside>
+    </div>
+  );
 }
 
 export default function InvoiceGen({ locale }: ToolComponentProps) {
-  const { t } = useToolUi(locale);
-  const { setState: setToolState, rootRef } = useToolState("idle");
-  const [sup, setSup] = useState({ name: "Moje s.r.o.", addr: "Ulice 123, 110 00 Praha", ico: "12345678", dic: "CZ12345678" });
-  const [cus, setCus] = useState({ name: "", addr: "", ico: "" });
-  const [num, setNum] = useState("2026001");
-  const [date, setDate] = useState(today());
-  const [taxDate, setTaxDate] = useState(today());
-  const [due, setDue] = useState(dueDate());
-  const [iban, setIban] = useState("CZ0708000000001234567");
-  const [vs, setVs] = useState("2026001");
-  const [ks, setKs] = useState("");
-  const [vat, setVat] = useState(21);
-  const [rows, setRows] = useState<Row[]>([{ qty: 1, desc: "Položka", price: 1000 }]);
-  const [qr, setQr] = useState(true);
-  const [progress, setProgress] = useState<{ pct: number; label: string } | null>(null);
-  const [error, setError] = useState<string>("");
-  const [done, setDone] = useState(false);
-  const [blobUrl, setBlobUrl] = useState("");
-
-  useEffect(() => { rootRef.current = document.getElementById("tool-root") as HTMLDivElement | null; return () => { if (blobUrl) URL.revokeObjectURL(blobUrl); }; }, [rootRef, blobUrl]);
-  const announce = useCallback((msg: string) => { const live = document.getElementById("tool-live-status"); if (!live) return; live.textContent = ""; window.setTimeout(() => { live.textContent = msg; }, 20); }, []);
-  const setState = useCallback((s: "idle" | "ready" | "processing" | "success" | "error", msg?: string) => { setToolState(s); announce(msg ?? t(`state_${s}` as keyof ToolUiI18n)); }, [setToolState, announce, t]);
-
-  const addRow = () => setRows((r) => [...r, { qty: 1, desc: "", price: 0 }]);
-  const removeRow = (idx: number) => setRows((r) => r.filter((_, i) => i !== idx));
-  const updateRow = (idx: number, key: keyof Row, val: string | number) => setRows((r) => r.map((row, i) => i === idx ? { ...row, [key]: key === "desc" ? String(val) : Number(val) || 0 } : row));
-
-  const subtotal = () => rows.reduce((s, r) => s + r.qty * r.price, 0);
-  const vatAmount = () => (subtotal() * vat) / 100;
-  const total = () => subtotal() + vatAmount();
-
-  const run = async () => {
-    setError(""); setDone(false); setState("processing"); setProgress({ pct: 5, label: "Načítám pdf-lib…" });
-    try {
-      await loadScript("/tools/assets/js/lib/pdf-lib.min.js");
-      if (qr) await loadScript("/tools/assets/js/lib/qrcode-generator.min.js");
-      const P = pdfLib();
-      const doc = await P.PDFDocument.create();
-      const font = await doc.embedFont(P.StandardFonts.Helvetica);
-      const bold = await doc.embedFont(P.StandardFonts.HelveticaBold);
-      const page = doc.addPage([595.28, 841.89]);
-      const W = page.getWidth();
-      const black = P.rgb(0, 0, 0);
-      const gray = P.rgb(0.4, 0.4, 0.4);
-      let y = 800;
-      // Hlavička
-      page.drawText("FAKTURA", { x: 40, y, size: 24, font: bold, color: black });
-      page.drawText(`č. ${num}`, { x: 200, y: y + 4, size: 14, font, color: gray });
-      y -= 40;
-      page.drawText(`Datum vystavení: ${date}`, { x: 40, y, size: 11, font, color: black });
-      page.drawText(`Datum zdanitelného plnění: ${taxDate}`, { x: 300, y, size: 11, font, color: black });
-      y -= 18;
-      page.drawText(`Splatnost: ${due}`, { x: 40, y, size: 11, font, color: black });
-      y -= 30;
-      // Dodavatel / Odběratel
-      page.drawText("Dodavatel", { x: 40, y, size: 12, font: bold, color: black });
-      page.drawText("Odběratel", { x: 320, y, size: 12, font: bold, color: black });
-      y -= 16;
-      const drawBlock = (lines: string[], x: number) => { for (const ln of lines) { page.drawText(ln, { x, y, size: 10, font, color: black }); y -= 13; } };
-      drawBlock([sup.name, sup.addr, `IČO: ${sup.ico}`, sup.dic ? `DIČ: ${sup.dic}` : ""], 40);
-      const yCus = y;
-      y = yCus;
-      drawBlock([cus.name || ", ", cus.addr || ", ", cus.ico ? `IČO: ${cus.ico}` : ""], 320);
-      y -= 20;
-      // Položky — tabulka
-      const tableY = y;
-      const colX = [40, 90, 320, 430, 510];
-      page.drawText("ks", { x: colX[0], y: tableY, size: 10, font: bold, color: black });
-      page.drawText("Popis", { x: colX[1], y: tableY, size: 10, font: bold, color: black });
-      page.drawText("Cena/ks", { x: colX[2], y: tableY, size: 10, font: bold, color: black });
-      page.drawText("Celkem", { x: colX[3], y: tableY, size: 10, font: bold, color: black });
-      y -= 6;
-      (page as unknown as { moveTo(x: number, y: number): void; lineTo(x: number, y: number): void; line(opts: unknown): void }).moveTo(40, y); (page as unknown as { lineTo(x: number, y: number): void }).lineTo(W - 40, y); (page as unknown as { line(opts: unknown): void }).line({ color: gray, thickness: 0.5 });
-      y -= 16;
-      rows.forEach((r) => {
-        const rowTotal = r.qty * r.price;
-        page.drawText(String(r.qty), { x: colX[0], y, size: 10, font, color: black });
-        const descLines = wrapText(r.desc || ", ", colX[2] - colX[1] - 10, 10);
-        descLines.slice(0, 2).forEach((ln, i) => page.drawText(ln, { x: colX[1], y: y - i * 12, size: 10, font, color: black }));
-        page.drawText(fmtN(r.price), { x: colX[2], y, size: 10, font, color: black });
-        page.drawText(fmtN(rowTotal), { x: colX[3], y, size: 10, font, color: black });
-        y -= Math.max(20, descLines.slice(0, 2).length * 12 + 8);
-      });
-      y -= 10;
-      // Součty
-      const sx = W - 200;
-      page.drawText(`Základ:`, { x: sx, y, size: 11, font, color: black });
-      page.drawText(fmtC(subtotal()), { x: W - 40 - 80, y, size: 11, font, color: black });
-      y -= 16;
-      page.drawText(`DPH ${vat}%:`, { x: sx, y, size: 11, font, color: black });
-      page.drawText(fmtC(vatAmount()), { x: W - 40 - 80, y, size: 11, font, color: black });
-      y -= 18;
-      page.drawText(`Celkem k úhradě:`, { x: sx, y, size: 13, font: bold, color: black });
-      page.drawText(fmtC(total()), { x: W - 40 - 80, y, size: 13, font: bold, color: black });
-      y -= 30;
-      // Platební údaje + QR
-      page.drawText("Platební údaje", { x: 40, y, size: 12, font: bold, color: black });
-      y -= 16;
-      page.drawText(`IBAN: ${iban}`, { x: 40, y, size: 10, font, color: black });
-      y -= 13;
-      page.drawText(`VS: ${vs}${ks ? ` · KS: ${ks}` : ""}`, { x: 40, y, size: 10, font, color: black });
-      y -= 13;
-      page.drawText(`Částka: ${fmtC(total())}`, { x: 40, y, size: 10, font, color: black });
-
-      if (qr) {
-        const spd = `SPD*1.0*ACC:${iban}*AM:${total().toFixed(2)}*CC:CZK*X-VS:${vs}${ks ? `*X-KS:${ks}` : ""}*DT:${csDateISO(due)}*MSG:FAKTURA ${num}`;
-        const png = qrToPng(spd, 6);
-        if (png) {
-          const img = await doc.embedPng(png);
-          page.drawImage(img, { x: W - 180, y: y - 40, width: 140, height: 140 });
-        }
-      }
-
-      setProgress({ pct: 95, label: "Ukládám PDF…" });
-      const bytes = await doc.save();
-      const blob = new Blob([bytes as BlobPart], { type: "application/pdf" });
-      setBlobUrl(URL.createObjectURL(blob));
-      setProgress({ pct: 100, label: "Hotovo" }); setProgress(null);
-      setDone(true); setState("success");
-      toastSuccess("Faktura byla vygenerována");
-    } catch (e) {
-      setProgress(null);
-      const m = (e as Error).message || "Generování faktury selhalo.";
-      setError(m); setState("error", m);
-    }
-  };
-
-  const download = () => { if (blobUrl) { const a = document.createElement("a"); a.href = blobUrl; a.download = `faktura-${num}.pdf`; document.body.appendChild(a); a.click(); a.remove(); } };
-
-  const input = (id: string, label: string, val: string, set: (v: string) => void, placeholder?: string) => (
-    <div>
-      <label className="field-label" htmlFor={id}>{label}</label>
-      <input id={id} className="input" type="text" value={val} placeholder={placeholder} onChange={(e) => set(e.target.value)} />
-    </div>
-  );
-
-  return (
-    <div className="stack" style={{ maxWidth: "48rem", margin: "0 auto" }}>
-      <div className="stack-sm" id="iv-sup">
-        <span className="field-label">Dodavatel</span>
-        <div className="grid-2">
-          {input("iv-sup-name", "Název", sup.name, (v) => setSup({ ...sup, name: v }))}
-          {input("iv-sup-addr", "Adresa", sup.addr, (v) => setSup({ ...sup, addr: v }))}
-          {input("iv-sup-ico", "IČO", sup.ico, (v) => setSup({ ...sup, ico: v }))}
-          {input("iv-sup-dic", "DIČ", sup.dic, (v) => setSup({ ...sup, dic: v }))}
-        </div>
-      </div>
-      <div className="stack-sm">
-        <span className="field-label">Odběratel</span>
-        <div className="grid-2">
-          {input("iv-cus-name", "Název", cus.name, (v) => setCus({ ...cus, name: v }), "Zadejte název")}
-          {input("iv-cus-addr", "Adresa", cus.addr, (v) => setCus({ ...cus, addr: v }), "Zadejte adresu")}
-          {input("iv-cus-ico", "IČO", cus.ico, (v) => setCus({ ...cus, ico: v }))}
-        </div>
-      </div>
-      <div className="stack-sm">
-        <span className="field-label">Faktura</span>
-        <div className="grid-3">
-          {input("iv-num", "Číslo faktury", num, setNum)}
-          {input("iv-date", "Datum vystavení", date, setDate)}
-          {input("iv-tax", "Datum zdan. plnění", taxDate, setTaxDate)}
-          {input("iv-due", "Splatnost", due, setDue)}
-          {input("iv-iban", "IBAN", iban, setIban)}
-          {input("iv-vs", "Variabilní symbol", vs, setVs)}
-          {input("iv-ks", "Konstantní symbol", ks, setKs)}
-          <div>
-            <label className="field-label" htmlFor="iv-vat">DPH (%)</label>
-            <input id="iv-vat" className="input" type="number" min={0} max={100} value={vat} onChange={(e) => setVat(Math.max(0, Math.min(100, +e.target.value || 0)))} />
-          </div>
-        </div>
-      </div>
-
-      <div className="stack-sm">
-        <div className="row" style={{ alignItems: "center", justifyContent: "space-between" }}>
-          <span className="field-label">Položky</span>
-          <button className="btn btn-ghost btn-sm" id="iv-add-row" type="button" onClick={addRow}><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M5 12h14" /><path d="M12 5v14" /></svg> Přidat řádek</button>
-        </div>
-        <div className="iv-rows" id="iv-rows">
-          {rows.map((r, idx) => (
-            <div className="iv-row" key={idx}>
-              <input className="input iv-col-qty" type="number" min={0} value={r.qty} aria-label="Množství" onChange={(e) => updateRow(idx, "qty", e.target.value)} />
-              <input className="input iv-col-desc" type="text" value={r.desc} placeholder="Popis položky" aria-label="Popis" onChange={(e) => updateRow(idx, "desc", e.target.value)} />
-              <input className="input iv-col-price" type="number" min={0} value={r.price} aria-label="Cena za ks" onChange={(e) => updateRow(idx, "price", e.target.value)} />
-              <span className="iv-col-total mono">{fmtN(r.qty * r.price)}</span>
-              <button type="button" className="btn btn-ghost btn-icon-sm" aria-label={t("remove_file", { name: `řádek ${idx + 1}` })} onClick={() => removeRow(idx)}><Icon name="X" size={16} /></button>
-            </div>
-          ))}
-        </div>
-        <div className="iv-totals">
-          <div><span>Základ:</span> <span className="mono">{fmtC(subtotal())}</span></div>
-          <div><span>DPH {vat}%:</span> <span className="mono">{fmtC(vatAmount())}</span></div>
-          <div className="iv-total"><span>Celkem k úhradě:</span> <span className="mono">{fmtC(total())}</span></div>
-        </div>
-      </div>
-
-      <label className="checkbox-row"><input id="iv-qr" type="checkbox" checked={qr} onChange={(e) => setQr(e.target.checked)} /> <span>Vygenerovat QR kód pro platbu (SPD)</span></label>
-
-      <div className="row" style={{ flexWrap: "wrap" }}>
-        <button className="btn btn-primary btn-touch" id="iv-run" type="button" onClick={run}>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2v6h6" /><path d="M4 4h10l6 6v10H4z" /></svg> Vygenerovat fakturu
-        </button>
-      </div>
-
-      {progress && (<><div className="progress-track" role="progressbar" aria-valuenow={progress.pct} aria-valuemin={0} aria-valuemax={100}><div className="progress-fill" style={{ width: `${progress.pct}%` }} /></div><p className="progress-label">{progress.label}</p></>)}
-      {error && <p className="error-text" role="alert">{error}</p>}
-
-      {done && blobUrl && (
-        <div className="result-card">
-          <span className="rc-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" /><path d="M14 2v5a1 1 0 0 0 1 1h5" /></svg></span>
-          <div className="rc-meta"><span className="rc-title">faktura-{num}.pdf</span><span className="rc-sub">{fmtC(total())} · {qr ? "s QR" : "bez QR"}</span></div>
-          <button className="btn btn-primary" type="button" onClick={download}><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><path d="M7 10l5 5 5-5" /><path d="M12 15V3" /></svg> Stáhnout</button>
-        </div>
-      )}
-
-      <div className="privacy-note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m9 12 2 2 4-4" /></svg> Faktura se generuje lokálně přes pdf-lib. Údaje se neodesílají na server.</div>
-    </div>
-  );
+  void locale;
+  const [boot, setBoot] = useState<{ inv: Invoice; tpl: Templates; restored: boolean } | null>(null);
+  useEffect(() => {
+    // localStorage čteme až v prohlížeči (SSR nezná koncept ani dnešní datum)
+    Promise.resolve().then(() => {
+      const draft = loadDraft();
+      setBoot({ inv: draft ?? defaultInvoice(), tpl: loadTemplates(), restored: draft !== null });
+    });
+  }, []);
+  if (!boot) return <p className="muted" role="status">Načítám editor faktury…</p>;
+  return <Editor initial={boot.inv} initialTemplates={boot.tpl} restored={boot.restored} />;
 }
-
-// Malý helper — csDateISO převádí dd. mm. rrrr na rrrrmmdd pro SPD QR.

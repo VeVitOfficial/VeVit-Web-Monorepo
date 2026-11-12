@@ -12,6 +12,14 @@ const securityHeaders = [
   // nerozbije Cloudflare Turnstile ani Google Fonts, které dnes fungují bez nich.
   { key: "Cross-Origin-Embedder-Policy", value: "credentialless" },
   { key: "X-DNS-Prefetch-Control", value: "on" },
+  // Enforced subset: no script-source restrictions yet, but plugins, <base> hijacking and framing are
+  // blocked outright. script-src keeps 'unsafe-inline' because Next.js streams RSC data in inline
+  // scripts on every page (tested in Chrome: SRI/hash mode does not remove them; only nonces would,
+  // and those need fully dynamic rendering).
+  {
+    key: "Content-Security-Policy",
+    value: ["object-src 'none'", "base-uri 'self'", "frame-ancestors 'self'"].join("; ")
+  },
   {
     key: "Content-Security-Policy-Report-Only",
     value: [

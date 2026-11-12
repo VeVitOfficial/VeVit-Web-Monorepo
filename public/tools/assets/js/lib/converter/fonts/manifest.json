@@ -1,0 +1,110 @@
+{
+ "version": 1,
+ "families": {
+  "Caladea": {
+   "license": "OFL-1.1",
+   "faces": {
+    "Bold": {
+     "file": "Caladea-Bold.woff2",
+     "bytes": 31832
+    },
+    "BoldItalic": {
+     "file": "Caladea-BoldItalic.woff2",
+     "bytes": 33268
+    },
+    "Italic": {
+     "file": "Caladea-Italic.woff2",
+     "bytes": 32964
+    },
+    "Regular": {
+     "file": "Caladea-Regular.woff2",
+     "bytes": 31664
+    }
+   }
+  },
+  "Carlito": {
+   "license": "OFL-1.1",
+   "faces": {
+    "Bold": {
+     "file": "Carlito-Bold.woff2",
+     "bytes": 198140
+    },
+    "BoldItalic": {
+     "file": "Carlito-BoldItalic.woff2",
+     "bytes": 206596
+    },
+    "Italic": {
+     "file": "Carlito-Italic.woff2",
+     "bytes": 201532
+    },
+    "Regular": {
+     "file": "Carlito-Regular.woff2",
+     "bytes": 190164
+    }
+   }
+  },
+  "Liberation Mono": {
+   "license": "OFL-1.1",
+   "faces": {
+    "Bold": {
+     "file": "LiberationMono-Bold.woff2",
+     "bytes": 123040
+    },
+    "BoldItalic": {
+     "file": "LiberationMono-BoldItalic.woff2",
+     "bytes": 117348
+    },
+    "Italic": {
+     "file": "LiberationMono-Italic.woff2",
+     "bytes": 114712
+    },
+    "Regular": {
+     "file": "LiberationMono-Regular.woff2",
+     "bytes": 126076
+    }
+   }
+  },
+  "Liberation Sans": {
+   "license": "OFL-1.1",
+   "faces": {
+    "Bold": {
+     "file": "LiberationSans-Bold.woff2",
+     "bytes": 148384
+    },
+    "BoldItalic": {
+     "file": "LiberationSans-BoldItalic.woff2",
+     "bytes": 151076
+    },
+    "Italic": {
+     "file": "LiberationSans-Italic.woff2",
+     "bytes": 152844
+    },
+    "Regular": {
+     "file": "LiberationSans-Regular.woff2",
+     "bytes": 146848
+    }
+   }
+  },
+  "Liberation Serif": {
+   "license": "OFL-1.1",
+   "faces": {
+    "Bold": {
+     "file": "LiberationSerif-Bold.woff2",
+     "bytes": 140772
+    },
+    "BoldItalic": {
+     "file": "LiberationSerif-BoldItalic.woff2",
+     "bytes": 147260
+    },
+    "Italic": {
+     "file": "LiberationSerif-Italic.woff2",
+     "bytes": 147376
+    },
+    "Regular": {
+     "file": "LiberationSerif-Regular.woff2",
+     "bytes": 146960
+    }
+   }
+  }
+ }
+}

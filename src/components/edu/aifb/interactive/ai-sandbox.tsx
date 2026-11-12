@@ -12,14 +12,14 @@ import { detectPersonalData } from "@/lib/edu/aifb/pii";
 import { splitSentences } from "@/lib/edu/aifb/interactive-logic";
 import type { AiSandboxConfig } from "@/lib/edu/aifb/pupil";
 
-type Answer = { source: "live" | "stored"; text: string; plantedErrors?: string[] };
+export type Answer = { source: "live" | "stored"; text: string; plantedErrors?: string[] };
 
-async function askAi(lessonId: string, prompt: string): Promise<{ ok: true; answer: Answer } | { ok: false; error: string; kind?: string }> {
+export async function askAi(lessonId: string, prompt: string, roundId?: string): Promise<{ ok: true; answer: Answer } | { ok: false; error: string; kind?: string }> {
   try {
     const response = await fetch("/edu/api/aifb/complete", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ lessonId, prompt }),
+      body: JSON.stringify({ lessonId, prompt, ...(roundId ? { roundId } : {}) }),
     });
     const data = (await response.json()) as { ok: boolean; source?: "live" | "stored"; text?: string; plantedErrors?: string[]; error?: string; kind?: string };
     if (data.ok && data.text && data.source) return { ok: true, answer: { source: data.source, text: data.text, plantedErrors: data.plantedErrors } };
@@ -207,27 +207,30 @@ function FactCheck({ lessonId, topicLabel }: { lessonId: string; topicLabel: str
   );
 }
 
-export function AiSandbox({ lessonId, categoryId, config }: { lessonId: string; categoryId: string; config: AiSandboxConfig }) {
+/** Upozornění na režim práce s modelem: SŠ samostatně, 2. stupeň pod vedením učitele, dokud nepotvrdí souhlas (R5). */
+export function AiModeNotice({ categoryId }: { categoryId: string }) {
   const { t } = useEduLang();
-  // SŠ: samostatný režim. 2. stupeň: režim učitele, dokud učitel nepotvrdí souhlas a pověřence (R5).
   const [individual, setIndividual] = useState(categoryId === "ss");
   const [confirmed, setConfirmed] = useState(false);
+  return individual ? (
+    <p className="aifb-muted">{t("aifb.ai.individualMode")}</p>
+  ) : (
+    <div className="aifb-callout" role="note">
+      <p className="aifb-callout__title">{t("aifb.ai.unlockTitle")}</p>
+      <p>{t("aifb.ai.teacherMode")}</p>
+      <label className="aifb-quiz__option">
+        <input type="checkbox" checked={confirmed} onChange={(event) => setConfirmed(event.target.checked)} />
+        <span>{t("aifb.ai.unlockCheck")}</span>
+      </label>
+      <button type="button" className="btn btn-ghost" disabled={!confirmed} onClick={() => setIndividual(true)}>{t("aifb.ai.unlockButton")}</button>
+    </div>
+  );
+}
 
+export function AiSandbox({ lessonId, categoryId, config }: { lessonId: string; categoryId: string; config: AiSandboxConfig }) {
   return (
     <div className="aifb-ai-wrap">
-      {individual ? (
-        <p className="aifb-muted">{t("aifb.ai.individualMode")}</p>
-      ) : (
-        <div className="aifb-callout" role="note">
-          <p className="aifb-callout__title">{t("aifb.ai.unlockTitle")}</p>
-          <p>{t("aifb.ai.teacherMode")}</p>
-          <label className="aifb-quiz__option">
-            <input type="checkbox" checked={confirmed} onChange={(event) => setConfirmed(event.target.checked)} />
-            <span>{t("aifb.ai.unlockCheck")}</span>
-          </label>
-          <button type="button" className="btn btn-ghost" disabled={!confirmed} onClick={() => setIndividual(true)}>{t("aifb.ai.unlockButton")}</button>
-        </div>
-      )}
+      <AiModeNotice categoryId={categoryId} />
       {config.mode === "prompt-rescue"
         ? <PromptRescue lessonId={lessonId} vaguePrompts={config.vaguePrompts} />
         : <FactCheck lessonId={lessonId} topicLabel={config.topicLabel} />}

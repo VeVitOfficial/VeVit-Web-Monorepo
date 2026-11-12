@@ -37,7 +37,7 @@ test("upravitelné jednotky a vynechané části", () => {
   const units = listUnits("zs1", zs1);
   assert.equal(units.filter((unit) => unit.depth === 2).length, 24, "4 bloky × 6 lekcí");
   assert.ok(units.some((unit) => unit.path === "guide/[g1]"));
-  assert.equal(listUnits("kurz", kurz).filter((unit) => unit.path.includes("/lessons/")).length, 24);
+  assert.equal(listUnits("kurz", kurz).filter((unit) => unit.path.includes("/lessons/")).length, 30);
 });
 
 test("úprava lekce mění jen tu lekci a nemění vstup", () => {

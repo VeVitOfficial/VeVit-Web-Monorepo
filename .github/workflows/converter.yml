@@ -1,0 +1,47 @@
+name: Converter Word ⇄ PDF
+
+on:
+  push:
+    paths:
+      - "src/lib/converter/**"
+      - "src/components/tools/converter-ui.tsx"
+      - "src/components/tools/tools/word-to-pdf.tsx"
+      - "src/components/tools/tools/pdf-to-word.tsx"
+      - "public/tools/assets/js/lib/converter/**"
+      - "tests/converter/**"
+      - "next.config.ts"
+      - "package.json"
+      - ".github/workflows/converter.yml"
+  pull_request:
+
+jobs:
+  converter:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      # poppler: render + text pro metriky; LibreOffice: neutrální render výsledného DOCX (PDF → DOCX).
+      - run: sudo apt-get update && sudo apt-get install -y --no-install-recommends poppler-utils libreoffice-writer-nogui
+      - run: npx playwright install --with-deps chromium firefox webkit
+      - name: Unit tests (layout, fonts, zip guard)
+        run: node --test "tests/converter/unit/*.test.mjs"
+      - name: Production build
+        run: npm run build
+      - name: Converter e2e (Chromium, Firefox, WebKit)
+        env:
+          CI: "1"
+        run: npx playwright test -c tests/converter/playwright.config.ts
+      - name: Metrics summary
+        if: always()
+        run: node tests/converter/tools/summary.mjs >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: converter-results
+          path: tests/converter/out/
+          retention-days: 14

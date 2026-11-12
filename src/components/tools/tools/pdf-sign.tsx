@@ -10,7 +10,7 @@ import {
   useToolUi, fmtSize, loadScript, toastSuccess, Icon, useToolState,
 } from "@/components/tools/tool-runtime";
 
-interface PdfImg { width(): number; height(): number; }
+interface PdfImg { width: number; height: number; }
 interface PdfPageMod {
   getWidth(): number;
   getHeight(): number;

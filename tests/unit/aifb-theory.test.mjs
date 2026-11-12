@@ -7,8 +7,8 @@ import { pupilVisible } from "../../src/lib/edu/aifb/pupil.ts";
 const file = JSON.parse(readFileSync(new URL("../../src/content/aifb/aifb-theory.json", import.meta.url), "utf8"));
 const levelIds = [
   "zs1-blok-a", "zs1-blok-b", "zs1-blok-c", "zs1-blok-d",
-  ...[1, 2, 3, 4, 5, 6].map((n) => `zs2-level-${n}`),
-  ...[1, 2, 3, 4, 5, 6].map((n) => `ss-level-${n}`),
+  ...[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((n) => `zs2-level-${n}`),
+  ...[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((n) => `ss-level-${n}`),
 ];
 
 test("každý blok a level má platnou teorii", () => {

@@ -89,10 +89,10 @@ test("seznamové zobrazení map a přepínač Karty / Tabulka", async () => {
     assert.equal(await page.locator(".aifb-level-card").count(), 4);
     await page.goto(`${root}/aifb/zs2`);
     await page.getByRole("button", { name: "Seznam" }).click();
-    assert.equal(await page.locator(".aifb-level-card").count(), 6);
+    assert.equal(await page.locator(".aifb-level-card").count(), 10);
     await page.goto(`${root}/aifb/ss`);
     await page.getByRole("button", { name: "Tabulka" }).click();
-    assert.equal(await page.locator("table.aifb-table--levels tbody tr").count(), 6);
+    assert.equal(await page.locator("table.aifb-table--levels tbody tr").count(), 10);
     assert.equal(await page.locator("table.aifb-table--levels th[scope='col']").count(), 6);
   });
 });
@@ -177,7 +177,7 @@ test("soukromí: žádné požadavky mimo vlastní doménu", async () => {
 
 test("žádný vodorovný posun na 360 px", async () => {
   await withPage(async (page) => {
-    const course = ["/kurz", "/kurz/m2", "/kurz/m6/teorie", "/kurz/m2/cv2", "/ucitel", "/upravy"];
+    const course = ["/kurz", "/kurz/m2", "/kurz/m6/teorie", "/kurz/m2/cv2", "/upravy"];
     for (const path of ["", "/aifb/zs1", "/aifb/zs2", "/aifb/ss", "/aifb/zs1/blok-a", "/aifb/zs1/blok-a/cv3", "/aifb/zs2/level-3/teorie", "/aifb/ss/level-6/teorie", ...course]) {
       await page.goto(`${root}${path}`);
       const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
@@ -202,7 +202,7 @@ test("online kurz: hub → kurz → modul → teorie → lekce s cvičením → 
     assert.ok(await page.locator(".th-figure").count() >= 1, "teorie má ilustraci");
     await page.getByRole("link", { name: /Pokračovat: Lekce 1/ }).click();
     await page.waitForURL(/\/kurz\/m4\/cv1$/);
-    const item = page.locator(".aifb-traffic__item").nth(1);
+    const item = page.locator(".aifb-traffic__item").first();
     await item.getByRole("button", { name: "Nepatří do AI" }).click();
     await assert.doesNotReject(item.getByRole("status").waitFor());
     await page.getByRole("link", { name: /Lekce 2: Rozřaď údaje/ }).click();
@@ -210,14 +210,13 @@ test("online kurz: hub → kurz → modul → teorie → lekce s cvičením → 
   });
 });
 
-test("produkce: veřejnost vidí u kurzu ve stavu návrhu jen zprávu, moduly 404", { skip: !production }, async () => {
+test("produkce: veřejnost vidí schválený kurz a jeho moduly", { skip: !production }, async () => {
   await withPage(async (page) => {
     await page.goto(root);
     await page.waitForURL(/\/kurz$/);
-    assert.equal(await page.locator("h1").innerText(), "Online kurz se připravuje");
-    assert.equal(await page.locator('a[href$="/edu/skoly"]').count(), 1);
+    assert.equal(await page.locator(".aifb-course-module").count(), 6);
     const response = await page.goto(`${root}/kurz/m1`);
-    assert.equal(response.status(), 404);
+    assert.equal(response.status(), 200);
   }, {}, null);
 });
 
@@ -227,7 +226,7 @@ test("produkce: žádné návrhy žákovských cvičení a AI endpoint nedostupn
     assert.equal(await page.getByText("Návrh ke schválení").count(), 0);
     assert.equal(await page.getByRole("heading", { name: "Vyzkoušej si" }).count(), 0);
     const result = await page.evaluate(async () => {
-      const r = await fetch("/edu/api/aifb/complete", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ lessonId: "zs2-level-2-cv1", prompt: "napiš něco" }) });
+      const r = await fetch("/edu/api/aifb/complete", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ lessonId: "zs2-level-2-cv1", roundId: "r1", prompt: "napiš něco" }) });
       return r.status;
     });
     assert.equal(result, 404);
@@ -240,10 +239,64 @@ test("AI endpoint: osobní údaje a lekce 1. stupně se odmítnou, veřejnost an
     headers: { "Content-Type": "application/json", ...(role ? { Cookie: `${ROLE_COOKIE}=${role}` } : {}) },
     body: JSON.stringify(body),
   });
-  assert.equal((await post({ lessonId: "zs2-level-2-cv1", prompt: "napiš na jan@example.com" }, "teacher")).status, 422);
+  assert.equal((await post({ lessonId: "zs2-level-2-cv1", roundId: "r1", prompt: "napiš na jan@example.com" }, "teacher")).status, 422);
   assert.equal((await post({ lessonId: "zs1-blok-a-cv1", prompt: "ahoj" }, "teacher")).status, 404);
-  assert.equal((await post({ lessonId: "zs2-level-2-cv1", prompt: "napiš něco o AI" })).status, 404, "veřejnost");
-  assert.equal((await post({ lessonId: "zs2-level-2-cv1", prompt: "napiš něco o AI" }, "student:zs2:zs2-level-2-teorie")).status, 404, "zamčená lekce");
+  assert.equal((await post({ lessonId: "zs2-level-2-cv1", roundId: "r1", prompt: "napiš něco o AI" })).status, 404, "veřejnost");
+  assert.equal((await post({ lessonId: "zs2-level-2-cv1", roundId: "r1", prompt: "napiš něco o AI" }, "student:zs2:zs2-level-2-teorie")).status, 404, "zamčená lekce");
+});
+
+test("PromptLab: zadání → odpověď → odškrtnuté podmínky → další kolo; systémový prompt není v prohlížeči", { skip: production }, async () => {
+  await withPage(async (page) => {
+    await page.goto(`${root}/aifb/zs2/level-2/cv1`);
+    const lab = page.locator(".aifb-lab");
+    await lab.waitFor();
+    assert.ok(!(await page.content()).includes("Jsi pomocník ve školním cvičení"), "systémový prompt se neposílá klientovi");
+    const box = lab.getByRole("textbox");
+    await box.fill("Napiš e-mail.");
+    await lab.getByRole("button", { name: "Zeptej se AI" }).click();
+    await lab.locator(".aifb-lab__checks li[data-ok='false']").first().waitFor();
+    assert.equal(await lab.getByRole("button", { name: /Další|Ukázat výsledek/ }).count(), 0, "vágní zadání kolo nevyřeší");
+    await box.fill("Napiš krátký e-mail učitelce, že v pátek nemůžu na kroužek, protože jdu k zubaři. Nejvýše 4 věty.");
+    await lab.getByRole("button", { name: "Zkus upravené zadání" }).click();
+    await lab.getByText("Splněno!").waitFor();
+    await lab.getByRole("button", { name: "Další" }).click();
+    await lab.getByText("Kolo 2 z 4").waitFor();
+    const mail = "jan@example.com";
+    await lab.getByRole("textbox").fill(`napiš na ${mail}`);
+    await lab.getByRole("button", { name: "Zeptej se AI" }).click();
+    await lab.getByRole("alert").waitFor();
+  }, {}, "teacher");
+});
+
+test("student u lekce s hrou nevidí projektové zadání, učitel ho má sbalené", { skip: production }, async () => {
+  await withPage(async (page) => {
+    await page.goto(`${root}/aifb/zs2/level-2/cv1`);
+    assert.equal(await page.getByRole("heading", { name: "Co má vzniknout" }).count() + await page.getByText("Zadání pro učitele").count(), 0);
+    await page.locator(".aifb-lab").waitFor();
+  }, {}, "student:zs2:zs2-level-2-teorie,zs2-level-2-cv1");
+  await withPage(async (page) => {
+    await page.goto(`${root}/aifb/zs2/level-2/cv1`);
+    await page.getByText("Zadání pro učitele").waitFor();
+  }, {}, "teacher");
+});
+
+test("spojovačka jde přepnout na kvíz, pexeso, pravdu/lež a kartičky", async () => {
+  await withPage(async (page) => {
+    await page.goto(`${root}/aifb/zs2/level-1/cv5`);
+    const games = page.locator(".aifb-pairgames");
+    await games.waitFor();
+    await games.getByRole("button", { name: "Kvíz" }).click();
+    await games.getByText(/Otázka 1 z/).waitFor();
+    await games.getByRole("button", { name: "Pexeso" }).click();
+    assert.ok(await games.locator(".aifb-memory__card").count() >= 6);
+    await games.locator(".aifb-memory__card").first().click();
+    await games.getByRole("button", { name: /Pravda, nebo lež/ }).click();
+    await games.getByRole("button", { name: "Pravda", exact: true }).click();
+    await games.getByRole("button", { name: /Další|Ukázat výsledek/ }).waitFor();
+    await games.getByRole("button", { name: "Kartičky" }).click();
+    await games.locator(".aifb-flash__card").click();
+    await games.getByRole("button", { name: /Věděl/ }).first().waitFor();
+  });
 });
 
 // ── Role a třídy ────────────────────────────────────────────────────────────
@@ -288,6 +341,7 @@ test("student bez třídy: výzva k zadání kódu", async () => {
     await page.goto(root);
     assert.equal(await page.getByText("Zatím nejsi v žádné třídě").count(), 1);
     assert.equal(await page.locator('a[href$="/edu/skoly"]').count(), 1);
+    assert.equal(await page.getByText("Zadat kód školy").count(), 1);
   }, {}, "student");
 });
 
@@ -295,9 +349,8 @@ test("učitel: všechny kategorie, metodika a Moje třídy, bez úprav obsahu", 
   await withPage(async (page) => {
     await page.goto(root);
     for (const id of ["zs1", "zs2", "ss"]) assert.equal(await page.locator(`a[href$="/aifb/${id}"]`).count(), 1, id);
-    await page.getByRole("link", { name: "Moje třídy a odemykání lekcí" }).click();
-    await page.waitForURL(/\/ucitel$/);
-    assert.equal(await page.locator("h1").innerText(), "Moje třídy");
+    // Třídy jsou v portálu VeVit Edu pro školy (testovací role tam neplatí, portál čte členství ve škole).
+    assert.match(await page.getByRole("link", { name: "Moje třídy a odemykání lekcí" }).getAttribute("href"), /\/edu\/school\/tridy$/);
     await page.goto(`${root}/aifb/zs1/blok-a`);
     assert.equal(await page.locator(".aifb-lesson-row--locked").count(), 0);
     assert.equal(await page.locator("summary", { hasText: "Pro učitele" }).count(), 1);
@@ -326,9 +379,9 @@ test("admin: odkazy Upravit a editor s texty i JSON", async () => {
 test("VeVit Edu pro školy: tlačítko na hlavním webu a zadání kódu", async () => {
   await withPage(async (page) => {
     await page.goto(`${base}/cs/home`);
-    assert.ok((await page.locator('a[href$="/edu/skoly#trida"]').count()) >= 1, "tlačítko VeVit Edu pro školy");
-    await page.goto(`${base}/cs/edu/skoly#trida`);
-    assert.equal(await page.getByRole("heading", { name: "Máš kód třídy?" }).count(), 1);
+    assert.ok((await page.locator('a[href*="/edu/skoly#"]').count()) >= 1, "tlačítko VeVit Edu pro školy");
+    await page.goto(`${base}/cs/edu/skoly#skola`);
+    assert.equal(await page.getByRole("heading", { name: "Máš kód školy?" }).count(), 1);
     const login = page.getByRole("link", { name: "Přihlásit se" });
     assert.match(await login.getAttribute("href"), /return_to=/);
   }, {}, null);

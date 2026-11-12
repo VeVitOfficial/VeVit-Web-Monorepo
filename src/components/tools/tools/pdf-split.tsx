@@ -1,13 +1,15 @@
 "use client";
+/* eslint-disable @next/next/no-img-element -- miniatury stran jsou dataURL z canvasu */
 
-// Rozdělení PDF — React port legacy tools/assets/js/tools/pdf-split.js.
-// Čistě client-side přes pdf-lib + JSZip (líně načtené z public URL). Markup
-// i logika 1:1 s legacy. Komponenta renderuje POUZE vnitřní tělo (.stack).
-import { useCallback, useEffect, useRef, useState } from "react";
+// Rozdělení PDF — vizuálně: náhledy stran s dělicími čarami mezi nimi (klik čáru zčervená = řez),
+// vpravo panel stahování (všechny části v ZIP, jednotlivé části, pole „Rozdělit po stránce“).
+// Čistě client-side přes pdf-lib + JSZip (líně načtené z public URL).
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { ToolComponentProps, ToolUiI18n } from "@/components/tools/registry/data";
 import {
-  useToolUi, fmtSize, loadScript, toastSuccess, Icon, useToolState,
+  useToolUi, fmtSize, loadScript, toastSuccess, useToolState,
 } from "@/components/tools/tool-runtime";
+import { PdfLightbox, openPdf, renderPdfPage } from "@/components/tools/file-preview";
 
 type PdfPage = unknown;
 interface PdfDoc {
@@ -32,41 +34,36 @@ function jszip(): { new (): JSZip } { return (window as unknown as { JSZip: { ne
 
 const ACCEPT = ".pdf,application/pdf";
 
-function parseRanges(text: string, pageCount: number): number[][] {
-  const parts = text.split(",").map((s) => s.trim()).filter(Boolean);
-  if (!parts.length) throw new Error("Zadejte alespoň jeden rozsah.");
-  const out: number[][] = [];
-  for (const p of parts) {
-    const m = p.match(/^(\d+)\s*-\s*(\d+)$/);
-    if (m) {
-      const a = +m[1], b = +m[2];
-      if (a < 1 || b > pageCount || a > b) throw new Error(`Neplatný rozsah "${p}".`);
-      out.push([a, b]);
-    } else if (/^\d+$/.test(p)) {
-      const n = +p;
-      if (n < 1 || n > pageCount) throw new Error(`Strana ${n} neexistuje (dokument má ${pageCount} stran).`);
-      out.push([n, n]);
-    } else {
-      throw new Error(`Neplatný zápis "${p}". Použijte tvar 1-3 nebo 4.`);
-    }
-  }
+const baseName = (n: string) => n.replace(/\.pdf$/i, "") || "dokument";
+const pagesWord = (n: number) => (n === 1 ? "strana" : n < 5 ? "strany" : "stran");
+
+interface Part { from: number; to: number } // 1-based, včetně
+const partsFrom = (cuts: number[], total: number): Part[] => {
+  const out: Part[] = []; let start = 1;
+  for (const c of [...cuts].sort((a, b) => a - b)) { out.push({ from: start, to: c }); start = c + 1; }
+  out.push({ from: start, to: total });
   return out;
-}
+};
+const partLabel = (p: Part) => (p.from === p.to ? `str. ${p.from}` : `str. ${p.from}–${p.to}`);
+const PART_COLORS = ["#3fd496", "#4aa3ff", "#f5a524", "#c084fc", "#ff7a90", "#2dd4bf"];
 
 export default function PdfSplit({ locale }: ToolComponentProps) {
   const { t } = useToolUi(locale);
   const { setState: setToolState, rootRef } = useToolState("idle");
   const [file, setFile] = useState<File | null>(null);
-  const [mode, setMode] = useState<"each" | "chunk" | "ranges">("each");
-  const [progress, setProgress] = useState<{ pct: number; label: string } | null>(null);
+  const [total, setTotal] = useState(0);
+  const [thumbs, setThumbs] = useState<Record<number, string>>({});
+  const [cuts, setCuts] = useState<number[]>([]);          // „rozdělit za stranou N“
+  const [afterText, setAfterText] = useState("");
+  const [picked, setPicked] = useState<number[]>([]);       // vybrané části (od 4 částí výš)
+  const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string>("");
-  const [result, setResult] = useState<{ sub: string } | null>(null);
-  const blobUrlRef = useRef<string>("");
+  const [open, setOpen] = useState<number | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const dragDepth = useRef(0);
   const [dragOver, setDragOver] = useState(false);
 
-  useEffect(() => { rootRef.current = document.getElementById("tool-root") as HTMLDivElement | null; return () => { if (blobUrlRef.current) URL.revokeObjectURL(blobUrlRef.current); }; }, [rootRef]);
+  useEffect(() => { rootRef.current = document.getElementById("tool-root") as HTMLDivElement | null; }, [rootRef]);
 
   const announce = useCallback((msg: string) => {
     const live = document.getElementById("tool-live-status");
@@ -76,80 +73,110 @@ export default function PdfSplit({ locale }: ToolComponentProps) {
     setToolState(s); announce(msg ?? t(`state_${s}` as keyof ToolUiI18n));
   }, [setToolState, announce, t]);
 
+  // Počet stran a miniatury (postupně, ať se stránka nezasekne u dlouhých dokumentů).
+  useEffect(() => {
+    if (!file) return;
+    let off = false;
+    (async () => {
+      try {
+        const doc = await openPdf(file);
+        if (off) return;
+        setTotal(doc.numPages);
+        for (let n = 1; n <= doc.numPages && n <= 400; n++) {
+          const url = await renderPdfPage(doc, n, 110, 150, 0.6);
+          if (off) return;
+          setThumbs((prev) => ({ ...prev, [n]: url }));
+        }
+      } catch {
+        if (!off) { setError("PDF se nepodařilo načíst (je poškozené nebo chráněné heslem)."); setState("error", "PDF se nepodařilo načíst."); }
+      }
+    })();
+    return () => { off = true; };
+  }, [file, setState]);
+
   const addFile = (arr: File[]) => {
     const f = arr.find((x) => x.name.toLowerCase().endsWith(".pdf") || x.type === "application/pdf");
     if (!f) { setError(t("invalid_type")); return; }
-    setFile(f); setError(""); setResult(null); setState("ready");
+    setFile(f); setTotal(0); setThumbs({}); setCuts([]); setAfterText(""); setPicked([]); setError(""); setState("ready");
   };
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => { if (e.target.files) addFile(Array.from(e.target.files)); e.target.value = ""; };
   const onDrop = (e: React.DragEvent) => { e.preventDefault(); e.stopPropagation(); setDragOver(false); dragDepth.current = 0; if (e.dataTransfer.files) addFile(Array.from(e.dataTransfer.files)); };
 
-  const clearAll = () => {
-    setFile(null); setError(""); setResult(null); setProgress(null);
-    if (blobUrlRef.current) { URL.revokeObjectURL(blobUrlRef.current); blobUrlRef.current = ""; }
-    setState("idle");
+  const clearAll = () => { setFile(null); setTotal(0); setThumbs({}); setCuts([]); setAfterText(""); setPicked([]); setError(""); setState("idle"); };
+
+  const toggleCut = (p: number) => { setCuts((c) => (c.includes(p) ? c.filter((x) => x !== p) : [...c, p].sort((a, b) => a - b))); setPicked([]); setError(""); };
+
+  // „Rozdělit po stránce“: číslo se po chvíli (nebo Enterem) automaticky označí jako řez.
+  const applyAfter = useCallback((text: string) => {
+    const v = text.trim();
+    if (!v) return;
+    const n = Number(v);
+    if (!/^\d+$/.test(v) || n < 1 || n >= total) {
+      setError(`Za stranou ${v} nelze dělit — zadejte číslo od 1 do ${Math.max(1, total - 1)}.`);
+      return;
+    }
+    setError("");
+    setCuts((c) => (c.includes(n) ? c : [...c, n].sort((a, b) => a - b)));
+    setPicked([]); setAfterText("");
+  }, [total]);
+  useEffect(() => {
+    if (!afterText.trim()) return;
+    const id = window.setTimeout(() => applyAfter(afterText), 700);
+    return () => window.clearTimeout(id);
+  }, [afterText, applyAfter]);
+
+  const parts = useMemo(() => (total ? partsFrom(cuts, total) : []), [cuts, total]);
+  const partOf = useCallback((page: number) => parts.findIndex((p) => page >= p.from && page <= p.to), [parts]);
+
+  // ── stažení ────────────────────────────────────────────────────────────
+  const saveBlob = (blob: Blob, name: string) => {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a"); a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove();
+    window.setTimeout(() => URL.revokeObjectURL(url), 30_000);
   };
 
-  const run = async () => {
+  const build = async (indices: number[]) => {
     if (!file) return;
-    setError(""); setResult(null); setState("processing");
-    setProgress({ pct: 5, label: "Načítám knihovny…" });
+    setBusy(true); setError(""); setState("processing");
     try {
-      await Promise.all([
-        loadScript("/tools/assets/js/lib/pdf-lib.min.js"),
-        loadScript("/tools/assets/js/lib/jszip.min.js"),
-      ]);
+      await Promise.all([loadScript("/tools/assets/js/lib/pdf-lib.min.js"), loadScript("/tools/assets/js/lib/jszip.min.js")]);
       const P = pdfLib();
-      const buf = await file.arrayBuffer();
-      const src = await P.PDFDocument.load(buf, { ignoreEncryption: true });
-      const pageCount = src.getPageCount();
-      let groups: number[][];
-      if (mode === "each") {
-        groups = []; for (let i = 0; i < pageCount; i++) groups.push([i]);
-      } else if (mode === "chunk") {
-        const nEl = document.getElementById("ps-n") as HTMLInputElement | null;
-        const n = Math.max(1, parseInt(nEl?.value ?? "1", 10) || 1);
-        groups = []; for (let j = 0; j < pageCount; j += n) { const g: number[] = []; for (let k = j; k < Math.min(j + n, pageCount); k++) g.push(k); groups.push(g); }
-      } else {
-        const rEl = document.getElementById("ps-ranges") as HTMLInputElement | null;
-        const ranges = parseRanges(rEl?.value ?? "", pageCount);
-        groups = ranges.map((r) => { const g: number[] = []; for (let p = r[0]; p <= r[1]; p++) g.push(p - 1); return g; });
-      }
-      const zip = new (jszip())();
-      let done = 0;
-      const step = async (i: number): Promise<Blob> => {
-        if (i >= groups.length) { setProgress({ pct: 92, label: "Balím ZIP…" }); return zip.generateAsync({ type: "blob" }); }
-        setProgress({ pct: 10 + Math.round((80 * done) / groups.length), label: `Vytvářím soubor ${i + 1}/${groups.length}` });
-        const idxs = groups[i];
+      const src = await P.PDFDocument.load(await file.arrayBuffer(), { ignoreEncryption: true });
+      const base = baseName(file.name);
+      const files: { name: string; bytes: Uint8Array }[] = [];
+      for (const i of indices) {
+        const part = parts[i];
         const ndoc = await P.PDFDocument.create();
-        const copied = await ndoc.copyPages(src, idxs);
-        copied.forEach((pg) => ndoc.addPage(pg));
-        const bytes = await ndoc.save();
-        const name = idxs.length === 1 ? `strana-${idxs[0] + 1}.pdf` : `strany-${idxs[0] + 1}-${idxs[idxs.length - 1] + 1}.pdf`;
-        zip.file(name, bytes);
-        done += 1;
-        return step(i + 1);
-      };
-      const blob = await step(0);
-      if (blobUrlRef.current) URL.revokeObjectURL(blobUrlRef.current);
-      blobUrlRef.current = URL.createObjectURL(blob);
-      setProgress({ pct: 100, label: "Hotovo" }); setProgress(null);
-      setResult({ sub: fmtSize(blob.size) });
+        const pageIdx: number[] = []; for (let p = part.from; p <= part.to; p++) pageIdx.push(p - 1);
+        (await ndoc.copyPages(src, pageIdx)).forEach((pg) => ndoc.addPage(pg));
+        files.push({ name: `${base}_cast-${i + 1}_str-${part.from}${part.to > part.from ? `-${part.to}` : ""}.pdf`, bytes: await ndoc.save() });
+      }
+      if (files.length === 1) {
+        saveBlob(new Blob([files[0].bytes as BlobPart], { type: "application/pdf" }), files[0].name);
+      } else {
+        const zip = new (jszip())();
+        files.forEach((f) => zip.file(f.name, f.bytes));
+        const blob = await zip.generateAsync({ type: "blob" });
+        saveBlob(blob, `${base}_rozdeleno.zip`);
+      }
       setState("success");
-      toastSuccess("PDF bylo rozděleno");
+      toastSuccess(files.length === 1 ? "Část PDF byla stažena" : "Části PDF byly staženy v ZIP");
     } catch (e) {
-      setProgress(null);
       const m = (e as Error).message || "Rozdělení selhalo.";
       setError(m); setState("error", m);
+    } finally {
+      setBusy(false);
     }
   };
 
-  const download = () => {
-    if (blobUrlRef.current) { const a = document.createElement("a"); a.href = blobUrlRef.current; a.download = "pdf-split.zip"; document.body.appendChild(a); a.click(); a.remove(); }
-  };
+  const nParts = parts.length;
+  const canSplit = !!file && total > 0 && nParts > 1 && !busy;
+  const allIdx = parts.map((_, i) => i);
+  const few = nParts >= 2 && nParts <= 3;
+  const togglePick = (i: number) => setPicked((p) => (p.includes(i) ? p.filter((x) => x !== i) : [...p, i].sort((a, b) => a - b)));
 
   return (
-    <div className="stack" style={{ maxWidth: "42rem", margin: "0 auto" }}>
+    <div className="stack" style={{ maxWidth: file ? "62rem" : "42rem", margin: "0 auto" }}>
       <div
         className={`dropzone${dragOver ? " dragover" : ""}`} id="ps-drop" role="button" tabIndex={0}
         aria-label="Přetáhněte sem PDF soubor"
@@ -161,66 +188,107 @@ export default function PdfSplit({ locale }: ToolComponentProps) {
         onDrop={onDrop}
       >
         <span className="dz-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><path d="M17 8l-5-5-5 5" /><path d="M12 3v12" /></svg></span>
-        <span className="dz-title">Přetáhněte sem PDF soubor</span>
-        <span className="dz-hint">nebo klikněte pro výběr</span>
+        <span className="dz-title">{file ? file.name : "Přetáhněte sem PDF soubor"}</span>
+        <span className="dz-hint">{file ? `${fmtSize(file.size)}${total ? ` · ${total} ${pagesWord(total)}` : ""} · klikněte pro výměnu souboru` : "nebo klikněte pro výběr"}</span>
         <span className="dz-accept">Pouze .pdf · jeden soubor</span>
         <input ref={inputRef} type="file" className="hidden" accept={ACCEPT} aria-hidden="true" onChange={onInputChange} />
       </div>
 
       {file && (
-        <div className="file-list" aria-label="Vybraný soubor">
-          <div className="file-item">
-            <span className="fi-ico"><Icon name="File" size={18} /></span>
-            <span className="fi-meta"><span className="fi-name">{file.name}</span><span className="fi-size">{fmtSize(file.size)}</span></span>
-            <button type="button" className="btn btn-ghost btn-icon-sm fi-remove" aria-label={t("remove_file", { name: file.name })} onClick={() => { setFile(null); setState("idle"); }}><Icon name="X" size={16} /></button>
+        <div className="split-layout">
+          <div className="split-pages-wrap">
+            <p className="muted split-hint">Klikněte na čáru mezi stránkami (zčervená) a tam se dokument rozdělí. Klik na náhled ho zvětší.</p>
+            <div className="split-pages" role="group" aria-label="Stránky dokumentu">
+              {Array.from({ length: total }, (_, k) => k + 1).map((n) => {
+                const pi = partOf(n);
+                const color = PART_COLORS[Math.max(0, pi) % PART_COLORS.length];
+                return (
+                  <div className="split-cell" key={n}>
+                    <button type="button" className="split-page" style={{ ["--pc" as string]: color }} onClick={() => setOpen(n)} aria-label={`Zvětšit stranu ${n}`}>
+                      {thumbs[n] ? <img src={thumbs[n]} alt="" draggable={false} /> : <span className="split-ph" />}
+                      <span className="split-num">{n}</span>
+                    </button>
+                    {n < total ? (
+                      <button type="button" className={`split-cut${cuts.includes(n) ? " is-on" : ""}`} aria-pressed={cuts.includes(n)}
+                        aria-label={`Rozdělit za stranou ${n}`} title={cuts.includes(n) ? `Zrušit dělení za stranou ${n}` : `Rozdělit za stranou ${n}`}
+                        onClick={() => toggleCut(n)}>
+                        <span className="split-cut-line" />
+                        <svg className="split-cut-ico" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3" /><path d="M8.12 8.12 12 12" /><path d="M20 4 8.12 15.88" /><circle cx="6" cy="18" r="3" /><path d="M14.8 14.8 20 20" /></svg>
+                      </button>
+                    ) : null}
+                  </div>
+                );
+              })}
+              {!total && !error ? <p className="muted">Načítám náhledy…</p> : null}
+            </div>
           </div>
-        </div>
-      )}
 
-      <div className="stack-sm">
-        <span className="field-label">Režim rozdělení</span>
-        <div className="seg" id="ps-mode" role="tablist">
-          {(["each", "chunk", "ranges"] as const).map((m) => (
-            <button key={m} type="button" className={mode === m ? "active" : ""} data-mode={m} role="tab" aria-selected={mode === m}
-              onClick={() => setMode(m)}>
-              {m === "each" ? "Každá stránka zvlášť" : m === "chunk" ? "Po N stranách" : "Vlastní rozsahy"}
+          <aside className="split-panel" aria-label="Stažení">
+            <div className="stack-sm">
+              <label className="field-label" htmlFor="ps-after">Rozdělit po stránce:</label>
+              <input className="input" id="ps-after" type="text" inputMode="numeric" autoComplete="off" placeholder={total > 1 ? `1 – ${total - 1}` : ""}
+                value={afterText} onChange={(e) => setAfterText(e.target.value.replace(/[^\d]/g, ""))}
+                onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); applyAfter(afterText); } }} disabled={total < 2} />
+              {cuts.length > 0 && (
+                <div className="split-chips" aria-label="Místa dělení">
+                  {cuts.map((c) => (
+                    <span className="split-chip" key={c}>
+                      {c}
+                      <button type="button" aria-label={`Zrušit dělení za stranou ${c}`} onClick={() => toggleCut(c)}>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+                      </button>
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <p className="muted split-count">
+              {nParts > 1 ? `${nParts} ${nParts < 5 ? "části" : "částí"}` : "Zatím žádné dělení"}
+            </p>
+
+            <button type="button" className="btn btn-primary btn-block" id="ps-zip" disabled={!canSplit} onClick={() => build(allIdx)}>
+              {nParts === 2 ? "Stáhnout obě části v .zip" : "Stáhnout všechny části v .zip"}
             </button>
-          ))}
-        </div>
-      </div>
 
-      {mode === "chunk" && (
-        <div className="stack-sm">
-          <label className="field-label" htmlFor="ps-n">Počet stránek v jednom souboru</label>
-          <input className="input" type="number" id="ps-n" min={1} defaultValue={1} style={{ width: "8rem" }} inputMode="numeric" />
+            {few && (
+              <div className="split-parts">
+                <button type="button" className="btn btn-outline" disabled={!canSplit} onClick={() => build([0])}>Stáhnout první část <small>{partLabel(parts[0])}</small></button>
+                <button type="button" className="btn btn-outline" disabled={!canSplit || nParts < 3} onClick={() => build([1])}>
+                  Stáhnout prostřední část {nParts === 3 ? <small>{partLabel(parts[1])}</small> : null}
+                </button>
+                <button type="button" className="btn btn-outline" disabled={!canSplit} onClick={() => build([nParts - 1])}>Stáhnout poslední část <small>{partLabel(parts[nParts - 1])}</small></button>
+              </div>
+            )}
+
+            {nParts >= 4 && (
+              <div className="stack-sm">
+                <div className="split-pick" role="group" aria-label="Vyberte části ke stažení">
+                  {parts.map((p, i) => (
+                    <label className="checkbox-row" key={i}>
+                      <input type="checkbox" checked={picked.includes(i)} onChange={() => togglePick(i)} />
+                      <span><span className="split-dot" style={{ background: PART_COLORS[i % PART_COLORS.length] }} />Část {i + 1} <small className="muted">{partLabel(p)}</small></span>
+                    </label>
+                  ))}
+                </div>
+                <div className="row" style={{ gap: ".4rem", flexWrap: "wrap" }}>
+                  <button type="button" className="btn btn-ghost btn-sm" onClick={() => setPicked(allIdx)}>Vybrat vše</button>
+                  <button type="button" className="btn btn-ghost btn-sm" disabled={!picked.length} onClick={() => setPicked([])}>Zrušit výběr</button>
+                </div>
+                <button type="button" className="btn btn-secondary btn-block" disabled={!canSplit || !picked.length} onClick={() => build(picked)}>
+                  {picked.length > 1 ? `Stáhnout vybrané (${picked.length}) v .zip` : picked.length === 1 ? `Stáhnout část ${picked[0] + 1}` : "Vyberte části ke stažení"}
+                </button>
+              </div>
+            )}
+
+            <button className="btn btn-ghost btn-block" id="ps-clear" type="button" onClick={clearAll}>Vyčistit</button>
+          </aside>
         </div>
       )}
-      {mode === "ranges" && (
-        <div className="stack-sm">
-          <label className="field-label" htmlFor="ps-ranges">Rozsahy stránek (např. 1-3, 4, 5-8)</label>
-          <input className="input" type="text" id="ps-ranges" placeholder="1-3, 4, 5-8" style={{ width: "100%" }} />
-        </div>
-      )}
 
-      <div className="row" style={{ flexWrap: "wrap" }}>
-        <button className="btn btn-primary btn-touch" id="ps-run" type="button" disabled={!file} onClick={run}>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="6" cy="6" r="3" /><path d="M8.12 8.12 12 12" /><path d="M20 4 8.12 15.88" /><circle cx="6" cy="18" r="3" /><path d="M14.8 14.8 20 20" /></svg> Rozdělit a zabalit (ZIP)
-        </button>
-        <button className="btn btn-ghost" id="ps-clear" type="button" disabled={!file} onClick={clearAll}>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" /><path d="M3 6h18" /><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" /></svg> Vyčistit
-        </button>
-      </div>
-
-      {progress && (<><div className="progress-track" role="progressbar" aria-valuenow={progress.pct} aria-valuemin={0} aria-valuemax={100}><div className="progress-fill" style={{ width: `${progress.pct}%` }} /></div><p className="progress-label">{progress.label}</p></>)}
       {error && <p className="error-text" role="alert">{error}</p>}
-
-      {result && (
-        <div className="result-card">
-          <span className="rc-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" /><path d="M14 2v5a1 1 0 0 0 1 1h5" /><path d="M10 9H8" /><path d="M16 13H8" /><path d="M16 17H8" /></svg></span>
-          <div className="rc-meta"><span className="rc-title">pdf-split.zip</span><span className="rc-sub">{result.sub}</span></div>
-          <button className="btn btn-primary" id="ps-download" type="button" onClick={download}><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><path d="M7 10l5 5 5-5" /><path d="M12 15V3" /></svg> Stáhnout ZIP</button>
-        </div>
-      )}
+      {busy && <p className="progress-label" role="status">Vytvářím PDF…</p>}
+      {file && open != null ? <PdfLightbox file={file} initialPage={open} locale={locale} onClose={() => setOpen(null)} /> : null}
 
       <div className="privacy-note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m9 12 2 2 4-4" /></svg> PDF se rozděluje lokálně přes pdf-lib a JSZip. Soubor se neodesílá na server.</div>
     </div>

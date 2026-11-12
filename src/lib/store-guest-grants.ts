@@ -1,3 +1,4 @@
+import { appSecret } from "@/lib/app-secret";
 import { createHmac, timingSafeEqual } from "node:crypto";
 import { cookies } from "next/headers";
 import "server-only";
@@ -24,9 +25,7 @@ const MAX_ENTRIES = 20;
 const MAX_COOKIE_BYTES = 3800; // RFC 6265 recommends ~4 KB per cookie
 
 function signPayload(payload: string): string {
-  const secret = process.env.VEVIT_APP_SECRET?.trim();
-  if (!secret) throw new Error("VEVIT_APP_SECRET is not configured");
-  return createHmac("sha256", secret).update(payload).digest("base64url");
+  return createHmac("sha256", appSecret("store-grant")).update(payload).digest("base64url");
 }
 
 function encodeCookie(entries: StoreGrant[]): string {

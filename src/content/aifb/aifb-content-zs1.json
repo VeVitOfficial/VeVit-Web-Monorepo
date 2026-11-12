@@ -413,7 +413,8 @@
     "Žák si zapamatuje pravidlo, že jméno, adresa a fotografie patří jen rodině a škole.",
     "Žák rozliší mezi tím, co umí počítač, a tím, na co stačí jen člověk.",
     "Žák vyzkouší roli zadavatele i roli poslušného stroje ve hře na robota.",
-    "Žák navrhne alespoň jedno pravidlo pro společnou práci s počítačem ve třídě."
+    "Žák navrhne alespoň jedno pravidlo pro společnou práci s počítačem ve třídě.",
+    "Žák vysvětlí, že chytrý program nic necítí a není kamarád, a řekne, za kým jde, když ho něco trápí."
    ],
    "hours": "6 až 7 hodin",
    "schedule": {
@@ -440,7 +441,7 @@
      ],
      [
       "Blok 4",
-      "Cvičení 5 (Malý vynálezce) a společné shrnutí bloku.",
+      "Cvičení 5 (Kamarád, nebo stroj?) a společné shrnutí bloku.",
       "1 až 2 hodiny"
      ]
     ]
@@ -548,14 +549,15 @@
      "id": "zs1-blok-a-cv5",
      "type": "exercise",
      "order": 5,
-     "title": "Malý vynálezce",
+     "title": "Kamarád, nebo stroj?",
      "teacher": {
       "description": [
-       "Každý žák nakreslí vynález, který by umělé inteligenci pomáhal ve škole: třeba mazací tabuli, která si sama pamatuje, co na ní bylo, nebo pomocníka, který přečte knížku slabozrakému spolužákovi. Kresbu pak v malých skupinách žáci představí a vybere se pět nejzajímavějších nápadů. Učitel u vybraných vynálezů na projektoru ukáže, jak by podobný návrh popsal konverzační nástroj, když ho o to požádáme, a třída porovná, co počítač vymyslel lépe a co naopak zůstalo jen na lidech. Vznikne tak první setkání s reálnou odpovědí modelu, které učitel plně řídí."
+       "Učitel položí doprostřed kruhu tři obrázky: kamaráda, plyšového medvídka a chytrý reproduktor nebo tablet. Čte krátké věty a děti si stoupnou k obrázku, ke kterému věta patří: obejme mě, když jsem smutný; odpoví mi i v noci; má radost z mého obrázku; nikdy ho nic nebolí; stýská se mu po mně; řekne mi, jaké bude počasí. U některých vět se děti rozdělí a právě o nich si třída povídá.",
+       "Učitel pak vysvětlí, že chytrý program umí mluvit mile, ale nic necítí: nemá radost, není mu smutno a neví, kdo jsme. Je to stroj, který vyrobili lidé. Na závěr každé dítě nakreslí, za kým jde, když ho něco trápí nebo se něčeho bojí, a třída si řekne společnou větu: s trápením jdu za člověkem."
       ],
-      "expectedOutput": "Galerie kreseb a společné porovnání pěti nápadů s odpovědí počítače.",
-      "form": "Kreslení, práce ve skupinách a společná ukázka vedená učitelem.",
-      "time": "30 až 45 minut"
+      "expectedOutput": "Obrázek „Za kým jdu, když mě něco trápí“ a společná věta třídy o tom, že stroj není kamarád.",
+      "form": "Pohybová hra v kruhu, povídání a kreslení.",
+      "time": "30 minut"
      },
      "pupil": {
       "status": "todo"
@@ -563,10 +565,10 @@
     }
    ],
    "teacherNotes": [
-    "U nejmladších žáků je hlavním rizikem poslechová únava, proto vše stavějte na pohybu a opakování, nikoli na výkladu. Názvy konkrétních služeb žákům neříkejte, protože je nepotřebují a mohly by je doma hledat; stačí říkat obecně počítač nebo chytrý pomocník. Ukázku ve cvičení 5 si vždy připravte předem a mějte k dispozici i uloženou odpověď pro případ výpadku internetu. Rodiče informujte dopisem o tom, že třída probírá téma umělé inteligence formou her, a že žáci s nástroji nepracují sami. K pravidlům z cvičení 4 se vracíme průběžně celý rok, ideálně vždy, když se ve výuce objeví nová aplikace nebo hračka."
+    "U nejmladších žáků je hlavním rizikem poslechová únava, proto vše stavějte na pohybu a opakování, nikoli na výkladu. Názvy konkrétních služeb žákům neříkejte, protože je nepotřebují a mohly by je doma hledat; stačí říkat obecně počítač nebo chytrý pomocník. Cvičení 5 pracuje s pocity: nikoho nenuťte mluvit o tom, co ho trápí, a obrázky dětí nekomentujte před třídou. Rodiče informujte dopisem o tom, že třída probírá téma umělé inteligence formou her, a že žáci s nástroji nepracují sami. K pravidlům z cvičení 4 se vracíme průběžně celý rok, ideálně vždy, když se ve výuce objeví nová aplikace nebo hračka."
    ],
    "derivedFrom": "Level 1 (základy)",
-   "themes": "Rozpoznávání umělé inteligence v okolním světě, hry bez počítače, první pravidla bezpečnosti.",
+   "themes": "Rozpoznávání umělé inteligence v okolním světě, hry bez počítače, stroj není kamarád, první pravidla bezpečnosti.",
    "visual": {
     "islandName": "Zátoka Objevitelů",
     "icon": "🔭",
@@ -595,7 +597,8 @@
     "Žák navrhne jednoduchý postup, kterým ověří, zda odpověď počítače odpovídá skutečnosti.",
     "Žák rozřadí úkoly na ty, ve kterých vyniká počítač, a ty, ve kterých vyniká člověk.",
     "Žák zformuluje otázku tak, aby na ni dostal srozumitelnou a použitelnou odpověď.",
-    "Žák vysvětlí, kdo nese odpovědnost za chybu, ke které dojde při použití počítačové odpovědi."
+    "Žák vysvětlí, kdo nese odpovědnost za chybu, ke které dojde při použití počítačové odpovědi.",
+    "Žák u jednoduchého úkolu rozhodne, zda je lepší pomocník vlastní hlava, kalkulačka, kniha, dospělý, nebo počítač."
    ],
    "hours": "7 až 8 hodin",
    "schedule": {
@@ -617,7 +620,7 @@
      ],
      [
       "Blok 3",
-      "Cvičení 3 (Tipovačka slov) a cvičení 4 (Člověk versus počítač).",
+      "Cvičení 3 (Tipovačka slov) a cvičení 4 (Kdy počítač nepotřebujeme).",
       "2 hodiny"
      ],
      [
@@ -713,12 +716,13 @@
      "id": "zs1-blok-b-cv4",
      "type": "exercise",
      "order": 4,
-     "title": "Člověk versus počítač",
+     "title": "Kdy počítač nepotřebujeme",
      "teacher": {
       "description": [
-       "Třída uspořádá soutěž mezi smíšenými družstvy a počítačem. Úkoly se volí tak, aby se střídaly silné stránky obou stran: zapamatovat si dvacet slov, vymyslet říkanku o třídě, spočítat příklad, rozeznat emoci na fotografii, navrhnout název pro školní akci a vysvětlit, proč se kamarádovi stýskalo. U počítačových úloh zadává úkoly učitel a odpovědi promítá. Výsledky se zapisují do tabulky na tabuli a závěrem třída pojmenuje situace, ve kterých se vyplatí počítač využít, a ty, ve kterých se nevyplatí."
+       "Třída uspořádá soutěž družstev. Učitel postupně vyhlašuje úkoly: spočítat příklad, zjistit, kolik je hodin, najít ve slovníku nebo encyklopedii význam slova, zapamatovat si dvacet slov, vymyslet říkanku o třídě, zjistit, co je dnes k obědu, a utěšit kamaráda, kterému se stýská. Družstva u každého úkolu nejdřív tipují, kdo ho zvládne nejlíp a nejrychleji: vlastní hlava, kalkulačka, kniha, dospělý, nebo chytrý program.",
+       "Tipy se pak vyzkoušejí. U úloh pro chytrý program zadává úkol učitel a odpověď promítá. Výsledky se zapisují do tabulky na tabuli. Děti zjistí, že na počítání je nejjistější kalkulačka, na oběd se stačí podívat na jídelníček a kamaráda utěší jen člověk. Závěrem třída vytvoří pravidlo: nejdřív si řeknu, co potřebuju, a potom vyberu pomocníka."
       ],
-      "expectedOutput": "Tabulka výsledků soutěže a seznam situací vhodných a nevhodných pro pomoc počítače.",
+      "expectedOutput": "Tabulka úkolů s nejlepším pomocníkem a třídní pravidlo, jak pomocníka vybírat.",
       "form": "Soutěž družstev s učitelem jako zadavatelem.",
       "time": "45 minut"
      },
@@ -748,7 +752,7 @@
     "Mezi žáky tímto věkem kolují různé představy, například že umělá inteligence vše vidí nebo že je živá; berme je vážně a rozklíčovávejme je konkrétními ukázkami, ne jen poučkou. U citlivějších dětí může téma sledujícího zařízení vyvolat nejistotu, proto vždy zdůrazněte, že si sami můžeme vybrat, co aplikacím dovolíme. Ukázky odpovědí modelu si připravujte předem a kontrolujte, že neobsahují nic, co by vás přinutilo improvizovaně vysvětlovat pojmy nad rámec plánu. Při tvorbě pravidel ve cvičení 5 nespěchejte: právě společně vytvořená formulace má pro žáky mnohem větší váhu než pravidlo, které předepsal dospělý."
    ],
    "derivedFrom": "Level 1 (principy)",
-   "themes": "Učení programu z příkladů, chyby a vymýšlení, odpovědnost člověka za výsledek.",
+   "themes": "Učení programu z příkladů, chyby a vymýšlení, kdy počítač nepotřebujeme, odpovědnost člověka za výsledek.",
    "visual": {
     "islandName": "Ostrov Robotů",
     "icon": "🤖",
@@ -778,7 +782,8 @@
     "Žák v odpovědi modelu najde případnou chybu nebo nesmysl a navrhne způsob ověření.",
     "Žák vybere z odpovědi modelu užitečné informace a převypráví je vlastními slovy.",
     "Žák dodržuje pravidla bezpečnosti při společné práci s umělou inteligencí ve třídě.",
-    "Žák vysvětlí, v kterých situacích je pomoc modelu přínosem a kdy práci spíše zdržuje."
+    "Žák vysvětlí, v kterých situacích je pomoc modelu přínosem a kdy práci spíše zdržuje.",
+    "Žák vyjmenuje, co do konverzace s AI nepatří, a ví, že s trápením jde za dospělým."
    ],
    "hours": "7 až 8 hodin",
    "schedule": {
@@ -795,7 +800,7 @@
      ],
      [
       "Blok 2",
-      "Cvičení 1 (Společný rozhovor) a cvičení 2 (Vypravěč).",
+      "Cvičení 1 (Společný rozhovor) a cvičení 2 (Co hostovi neříkáme).",
       "2 hodiny"
      ],
      [
@@ -862,13 +867,14 @@
      "id": "zs1-blok-c-cv2",
      "type": "exercise",
      "order": 2,
-     "title": "Vypravěč",
+     "title": "Co hostovi neříkáme",
      "teacher": {
       "description": [
-       "Třída nechá model napsat krátký příběh na zadané téma, například o kouzelné knihovně. Pak žáci navrhnou tři změny: jiného hlavního hrdinu, jiné prostředí a jiné zakončení, a model nechají příběh napsat znovu se zohledněním změn. Vzniklé verze se porovnají a žáci hledají, co se změnilo a co naopak zůstalo stejné, přestože zadání změnu požadovalo. Závěrem třída vybere nejlepší verzi, doplní ji vlastním zakončením a všechny tři verze sešije do knížky třídy, která se uschová ve čtenářském koutku."
+       "První část se věnuje tomu, co do konverzace s hostem nepatří. Skupiny dostanou kartičky s tím, co by někdo chtěl do nástroje napsat: celé jméno a adresu, otázku na koloběh vody, fotku spolužáka, heslo do hry, prosbu o nápad na dárek, název své školy a třídy, jméno kamaráda, se kterým se pohádal. Roztřídí je na „můžeme napsat“ a „hostovi neříkáme“ a u sporných karet vymyslí, jak větu upravit, aby v ní nikdo nebyl poznat. Učitel jednu upravenou větu zadá do nástroje a třída vidí, že host poradí i bez jmen.",
+       "Druhá část pracuje s vymyšlenými příběhy; nikdo nemluví o sobě. Učitel přečte tři krátké příběhy: Tomáš dostal pětku a bojí se to říct doma, Aničce se ve třídě posmívají, Kubovi je už dlouho smutno. Třída u každého hledá, za kým by měl jít: rodiče, paní učitelka, školní psycholog, Linka bezpečí 116 111. Učitel vysvětlí, že host AI neví, jak moc je to vážné, a nemůže přijít ani pomoci. Děti si zapíší jména dvou dospělých, kterým věří."
       ],
-      "expectedOutput": "Knížka třídy se třemi verzemi příběhu a vlastním zakončením žáků.",
-      "form": "Společná práce, následuje samostatné dopisování konce.",
+      "expectedOutput": "Roztříděné kartičky s upravenými větami a kartička „Za kým půjdu“ se dvěma dospělými a číslem 116 111.",
+      "form": "Skupinová práce, společné povídání nad vymyšlenými příběhy.",
       "time": "45 minut"
      },
      "pupil": {
@@ -928,10 +934,10 @@
     }
    ],
    "teacherNotes": [
-    "Veškerou práci s konverzačním nástrojem v tomto bloku vede výhradně učitel z vlastního účtu; žáci do počítače nezapisují nic. Před každou hodinou si projděte plánovanou konverzaci a vyzkoušejte zadání předem, protože odpovědi se liší a ukázka, která má ilustrovat chybu, někdy chybu neobsahuje. Veškerá jména ve zadání nahraďte vymyšlenými postavami a do konverzace nikdy nezadávejte fotografie, plány školy ani cokoli, co by bylo možné přiřadit konkrétnímu žákovi. Pro případ výpadku internetu mějte uložené ukázkové odpovědi z předchozích hodin; většina cvičení funguje i s nimi. K pravidlům z plakátu se vracejte na začátku každé hodiny bloku."
+    "Veškerou práci s konverzačním nástrojem v tomto bloku vede výhradně učitel z vlastního účtu; žáci do počítače nezapisují nic. Před každou hodinou si projděte plánovanou konverzaci a vyzkoušejte zadání předem, protože odpovědi se liší a ukázka, která má ilustrovat chybu, někdy chybu neobsahuje. Veškerá jména ve zadání nahraďte vymyšlenými postavami a do konverzace nikdy nezadávejte fotografie, plány školy ani cokoli, co by bylo možné přiřadit konkrétnímu žákovi. Pro případ výpadku internetu mějte uložené ukázkové odpovědi z předchozích hodin; většina cvičení funguje i s nimi. K pravidlům z plakátu se vracejte na začátku každé hodiny bloku. Před cvičením 2 informujte školního psychologa nebo výchovného poradce, pracujte jen s vymyšlenými příběhy a řekněte dětem, kde ve škole pomoc najdou."
    ],
    "derivedFrom": "Level 1 (praktická část)",
-   "themes": "První společné konverzace vedené učitelem, jasná zadání, ověřování odpovědí.",
+   "themes": "První společné konverzace vedené učitelem, jasná zadání, ověřování odpovědí, co do AI nepatří a kdy jít za dospělým.",
    "visual": {
     "islandName": "Přístav Hostů",
     "icon": "⚓",
@@ -960,7 +966,8 @@
     "Žák převede jednoduchou informaci do podoby tabulky nebo seznamu podle předem daných pravidel.",
     "Žák rozpozná, kdy je výstup modelu použitelný a kdy vyžaduje úpravu nebo úplné přepracování.",
     "Žák naplánuje a zrealizuje malý projekt s pomocí umělé inteligence a popíše svou roli v něm.",
-    "Žák přizná pomoc modelu tam, kde byla použita, a vysvětlí, v čem spočívala."
+    "Žák přizná pomoc modelu tam, kde byla použita, a vysvětlí, v čem spočívala.",
+    "Žák popíše, proč se obrázek, text nebo zpráva od AI nedají poznat jen pohledem, a ví, jak si je ověřit."
    ],
    "hours": "10 až 11 hodin",
    "schedule": {
@@ -982,7 +989,7 @@
      ],
      [
       "Blok 3",
-      "Cvičení 3 (Kvíz podle pravidel) a cvičení 4 (Opravář zadání).",
+      "Cvičení 3 (Člověk, nebo AI?) a cvičení 4 (Opravář zadání).",
       "2 hodiny"
      ],
      [
@@ -1061,13 +1068,14 @@
      "id": "zs1-blok-d-cv3",
      "type": "exercise",
      "order": 3,
-     "title": "Kvíz podle pravidel",
+     "title": "Člověk, nebo AI?",
      "teacher": {
       "description": [
-       "Skupiny dostanou jednu stránku učiva, například výklad o slovních druzích nebo o planetách sluneční soustavy. Jejich úkolem je sestavit přesné zadání, podle kterého model vytvoří kvíz zadané podoby: stanovený počet otázek, čtyři možnosti u každé, správné odpovědi uvedené na konci a jazyk odpovídající věku spolužáků. Skupina zadání vyzkouší, vyhodnotí, ve kterých požadavcích odpověď selhala, a zadání zpřesní. Hotové kvízy si skupiny vzájemně vymění a vyplní, čímž se ověří i srozumitelnost pro čtenáře."
+       "Třída hraje na detektivy. Učitel promítne šest obrázků, čtyři krátké texty a čtyři zprávy; u každého ví, jestli ho vytvořil člověk, nebo AI. Žáci tipují a zapisují, podle čeho se rozhodli. Po odhalení se spočítá, kolikrát se třída spletla. Učitel vysvětlí, že dnešní programy dělají obrázky i texty tak dobře, že se pouhým pohledem poznat nedají, a proto detektiv nehádá, ale ověřuje.",
+       "Skupiny pak sestaví detektivní postup pro tři případy. U obrázku: kdo ho zveřejnil a ukazují ho i jiné důvěryhodné stránky? U textu: dají se údaje v něm ověřit v knize nebo encyklopedii? U zprávy, která slibuje výhru, spěchá nebo chce kliknout na odkaz: neklikám, nic neposílám a řeknu to dospělému. Postup si třída vyzkouší na dvou nových ukázkách."
       ],
-      "expectedOutput": "Přesné zadání, finální kvíz splňující stanovená pravidla a zkušenost s vyplněním kvízu jiné skupiny.",
-      "form": "Skupinová práce se vzájemným testováním.",
+      "expectedOutput": "Tabulka tipů třídy a detektivní karta se třemi postupy: obrázek, text a podezřelá zpráva.",
+      "form": "Společná hra u projektoru, potom práce ve skupinách.",
       "time": "45 minut"
      },
      "pupil": {
@@ -1110,10 +1118,10 @@
     }
    ],
    "teacherNotes": [
-    "Projekt je smysluplný jen tehdy, když zůstane malý: jedna řada encyklopedie, deset stran deníku, jedna nástěnka. Před startem si stanovte termíny dílčích kroků a kontrolujte je, protože pátá třída snadno ztrácí přehled. Deník projektu, do kterého žáci zapisují pomoc modelu, je nejdůležitější částí cvičení: právě v něm se učí poctivosti a právě z něj budou čerpat při reflexi. Při prezentacích důsledně žádejte po skupinách, aby u každé části řekly, kdo nebo co ji vytvořil. Pokud někde pomoc modelu převažuje nad prací žáků, vraťte se k plánu a rozdělte role nově; projekt má být důkazem jejich práce, ukázkou jejich dovednosti model řídit, ne soutěží o nejlepší výstup modelu."
+    "Ve cvičení 3 nepoužívejte obrázky skutečných spolužáků ani učitelů a ukázky podvodných zpráv mějte jen vytištěné nebo promítnuté, bez funkčních odkazů. Projekt je smysluplný jen tehdy, když zůstane malý: jedna řada encyklopedie, deset stran deníku, jedna nástěnka. Před startem si stanovte termíny dílčích kroků a kontrolujte je, protože pátá třída snadno ztrácí přehled. Deník projektu, do kterého žáci zapisují pomoc modelu, je nejdůležitější částí cvičení: právě v něm se učí poctivosti a právě z něj budou čerpat při reflexi. Při prezentacích důsledně žádejte po skupinách, aby u každé části řekly, kdo nebo co ji vytvořil. Pokud někde pomoc modelu převažuje nad prací žáků, vraťte se k plánu a rozdělte role nově; projekt má být důkazem jejich práce, ukázkou jejich dovednosti model řídit, ne soutěží o nejlepší výstup modelu."
    ],
    "derivedFrom": "Level 2 (zjednodušeně)",
-   "themes": "Přesná zadání, strukturované výstupy, práce s příklady, vlastní projekt.",
+   "themes": "Přesná zadání, strukturované výstupy, práce s příklady, rozpoznávání výtvorů AI, vlastní projekt.",
    "visual": {
     "islandName": "Ostrov Pokladu",
     "icon": "💎",

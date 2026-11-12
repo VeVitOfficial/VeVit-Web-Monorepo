@@ -3,6 +3,7 @@
 // Collage z více obrázků v canvasu, čistě client-side.
 // Port legacy image-collage.js. Renderuje pouze vnitřní tělo .tool-tool.
 import { useCallback, useEffect, useRef, useState } from "react";
+import { SortableFileList } from "@/components/tools/file-preview";
 import type { ToolComponentProps } from "@/components/tools/registry/data";
 import { useToolUi, fmtSize } from "@/components/tools/tool-runtime";
 
@@ -124,7 +125,7 @@ export default function ImageCollage({ locale }: ToolComponentProps) {
   useEffect(() => { if (items.length) Promise.resolve().then(() => draw()); }, [items, draw]);
   useEffect(() => () => { itemsRef.current.forEach((it) => URL.revokeObjectURL(it.url)); }, []);
 
-  const pick = (list: FileList | null, append = false) => {
+  const pick = (list: FileList | File[] | null, append = false) => {
     if (!list || !list.length) return;
     const incoming = Array.from(list);
     const ok: File[] = [];
@@ -160,13 +161,6 @@ export default function ImageCollage({ locale }: ToolComponentProps) {
     if (!adding.length) { if (!append) { itemsRef.current = []; setItems([]); } }
   };
 
-  const remove = (id: number) => {
-    const it = itemsRef.current.find((x) => x.id === id);
-    if (it) URL.revokeObjectURL(it.url);
-    const next = itemsRef.current.filter((x) => x.id !== id);
-    itemsRef.current = next;
-    setItems(next);
-  };
 
   const onDrop = (e: React.DragEvent) => { e.preventDefault(); e.stopPropagation(); (e.currentTarget as HTMLElement).classList.remove("dragover"); pick(e.dataTransfer.files, true); };
   const onDragOver = (e: React.DragEvent) => { e.preventDefault(); e.stopPropagation(); (e.currentTarget as HTMLElement).classList.add("dragover"); };
@@ -191,17 +185,13 @@ export default function ImageCollage({ locale }: ToolComponentProps) {
 
       {items.length > 0 ? (
         <div id="cl-work">
-          <div className="file-list" id="cl-list">
-            {items.map((it) => (
-              <div key={it.id} className="file-row">
-                <img src={it.url} alt="" className="file-thumb" />
-                <span className="file-name">{it.name}</span>
-                <button type="button" className="btn btn-ghost file-remove" aria-label="Odebrat" onClick={() => remove(it.id)}>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12" /></svg>
-                </button>
-              </div>
-            ))}
-          </div>
+          <SortableFileList id="cl-list" files={items.map((it) => it.file)} locale={locale} onAddFiles={(fs) => pick(fs, true)}
+            onChange={(next) => {
+              const byFile = new Map(itemsRef.current.map((x) => [x.file, x]));
+              const arr = next.map((f) => byFile.get(f)).filter((x): x is ImgItem => !!x);
+              for (const it of itemsRef.current) if (!arr.includes(it)) URL.revokeObjectURL(it.url);
+              itemsRef.current = arr; setItems(arr);
+            }} />
           <div className="row" style={{ flexWrap: "wrap", gap: "0.5rem", marginTop: "0.75rem" }} id="cl-layout">
             {LAYOUTS.map((l) => (
               <button key={l.key} type="button" className={`btn ${layout === l.key ? "btn-primary" : "btn-ghost"}`} data-layout={l.key} onClick={() => setLayout(l.key)}>{l.label}</button>

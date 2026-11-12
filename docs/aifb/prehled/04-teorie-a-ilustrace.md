@@ -25,8 +25,8 @@ Plány pro učitele obsahují u „teorie“ jen metodiku (jak ji vést, opakova
 }
 ```
 
-- **topics** – 10 textů: `zs1-a`, `zs1-b`, `zs1-c`, `zs1-d`, `foundation`, `prompting`, `automation`, `scripting`, `developer`, `architect`.
-- **levels** – ke každému ze 16 bloků / levelů přiřadí téma. 2. stupeň a SŠ sdílí téma stejného levelu; SŠ může mít `extra` sekce, které se připojí na konec.
+- **topics** – 14 textů: `zs1-a`, `zs1-b`, `zs1-c`, `zs1-d`, `foundation`, `prompting`, `komunikace`, `nastroje`, `poznej-ai`, `svet-ai` (základní levely 1–6) a `automation`, `scripting`, `developer`, `architect` (rozšiřující levely 7–10).
+- **levels** – ke každému z 24 bloků / levelů přiřadí téma. 2. stupeň a SŠ sdílí téma stejného levelu; SŠ může mít `extra` sekce, které se připojí na konec.
 - `resolveTheory(file, levelId)` vrátí úvod, sekce (téma + extra), shrnutí a stav.
 
 ### Sekce a bloky

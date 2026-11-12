@@ -7,10 +7,11 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { ToolComponentProps, ToolUiI18n } from "@/components/tools/registry/data";
 import {
-  useToolUi, fmtSize, loadScript, toastSuccess, Icon, useToolState,
+  useToolUi, loadScript, toastSuccess, useToolState,
 } from "@/components/tools/tool-runtime";
+import { SortableFileList } from "@/components/tools/file-preview";
 
-interface PdfImg { width(): number; height(): number; }
+interface PdfImg { width: number; height: number; }
 interface PdfPageMod { drawImage(img: PdfImg, opts: unknown): void; }
 interface PdfDoc {
   addPage(size?: [number, number]): PdfPageMod;
@@ -40,21 +41,11 @@ export default function ScanToPdf({ locale }: ToolComponentProps) {
   const [error, setError] = useState<string>("");
   const [done, setDone] = useState(false);
   const [blobUrl, setBlobUrl] = useState("");
-  /** object URL náhledů pro seznam souborů (uvolňované při změně) */
-  const [thumbUrls, setThumbUrls] = useState<string[]>([]);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const dragDepth = useRef(0);
   const [dragOver, setDragOver] = useState(false);
-
-  useEffect(() => {
-    const urls = files.map((f) => URL.createObjectURL(f));
-    let cancelled = false;
-    // asynchronně — setState v efektu musí být mimo synchronní fázi (React Compiler)
-    Promise.resolve().then(() => { if (!cancelled) setThumbUrls(urls); });
-    return () => { cancelled = true; urls.forEach((u) => URL.revokeObjectURL(u)); };
-  }, [files]);
 
   useEffect(() => { rootRef.current = document.getElementById("tool-root") as HTMLDivElement | null; return () => { if (blobUrl) URL.revokeObjectURL(blobUrl); }; }, [rootRef, blobUrl]);
   const announce = useCallback((msg: string) => { const live = document.getElementById("tool-live-status"); if (!live) return; live.textContent = ""; window.setTimeout(() => { live.textContent = msg; }, 20); }, []);
@@ -115,8 +106,6 @@ export default function ScanToPdf({ locale }: ToolComponentProps) {
   };
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => { if (e.target.files) addFiles(Array.from(e.target.files)); e.target.value = ""; };
   const onDrop = (e: React.DragEvent) => { e.preventDefault(); e.stopPropagation(); setDragOver(false); dragDepth.current = 0; if (e.dataTransfer.files) addFiles(Array.from(e.dataTransfer.files)); };
-  const removeAt = (idx: number) => setFiles((prev) => prev.filter((_, i) => i !== idx));
-  const move = (from: number, to: number) => { if (to < 0 || to >= files.length) return; setFiles((prev) => { const n = [...prev]; const [it] = n.splice(from, 1); n.splice(to, 0, it); return n; }); };
   const clearAll = () => { setFiles([]); setError(""); setProgress(null); setDone(false); setBlobUrl(""); setState("idle"); };
 
   // Načte obrázek do canvasu (sjednocení formátů na PNG data). Vrací {canvas, w, h}.
@@ -149,7 +138,7 @@ export default function ScanToPdf({ locale }: ToolComponentProps) {
         const pngData = canvas.toDataURL("image/png").split(",")[1];
         const pngBytes = Uint8Array.from(atob(pngData), (c) => c.charCodeAt(0));
         const img = await doc.embedPng(pngBytes);
-        const iw = img.width(), ih = img.height();
+        const iw = img.width, ih = img.height;
         let pageW = iw, pageH = ih;
         if (fitA4) {
           const isLandscape = orient === "l" || (orient === "auto" && iw > ih);
@@ -216,21 +205,7 @@ export default function ScanToPdf({ locale }: ToolComponentProps) {
       </div>
 
       {files.length > 0 && (
-        <div className="file-list" id="sc-list" aria-label="Snímky k uložení">
-          {files.map((f, idx) => (
-            <div className="file-item" key={`${f.name}-${idx}`}>
-              <span className="fi-ico fi-ico-thumb">
-                {thumbUrls[idx] ? <img src={thumbUrls[idx]} alt="" style={{ width: "2.25rem", height: "2.25rem", objectFit: "cover", borderRadius: ".375rem" }} /> : <Icon name="File" size={18} />}
-              </span>
-              <span className="fi-meta"><span className="fi-name">{f.name}</span><span className="fi-size">{fmtSize(f.size)}</span></span>
-              <span className="fi-move">
-                <button type="button" className="btn btn-ghost btn-icon-sm" aria-label={t("move_up", { name: f.name })} disabled={idx === 0} onClick={() => move(idx, idx - 1)}><Icon name="Upload" size={14} /></button>
-                <button type="button" className="btn btn-ghost btn-icon-sm" aria-label={t("move_down", { name: f.name })} disabled={idx === files.length - 1} onClick={() => move(idx, idx + 1)}><span style={{ display: "inline-flex", transform: "rotate(180deg)" }}><Icon name="Upload" size={14} /></span></button>
-              </span>
-              <button type="button" className="btn btn-ghost btn-icon-sm fi-remove" aria-label={t("remove_file", { name: f.name })} onClick={() => removeAt(idx)}><Icon name="X" size={16} /></button>
-            </div>
-          ))}
-        </div>
+        <SortableFileList id="sc-list" files={files} onChange={setFiles} onAddFiles={addFiles} locale={locale} ariaLabel="Snímky k uložení" />
       )}
 
       <div className="stack-sm" id="sc-work">

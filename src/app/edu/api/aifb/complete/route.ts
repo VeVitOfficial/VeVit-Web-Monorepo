@@ -7,7 +7,7 @@ import { prepareAifb } from "@/lib/edu/aifb/viewer";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-// POST /edu/api/aifb/complete  { lessonId, prompt }
+// POST /edu/api/aifb/complete  { lessonId, roundId?, prompt }
 // Cvičení AIFB s modelem: jen lekce, kterou návštěvník smí otevřít (učitel, admin, student s lekcí
 // odemčenou učitelem), kontrola osobních údajů, limit na IP, žádné ukládání obsahu, uložená odpověď
 // při výpadku nebo bez nastavené služby. Systémový prompt a klíč zůstávají na serveru.
@@ -33,7 +33,7 @@ export async function POST(request: Request): Promise<Response> {
   }
   const raw = await request.text();
   if (raw.length > MAX_BODY_BYTES) return json({ ok: false, error: "too_large" }, 413);
-  let data: { lessonId?: unknown; prompt?: unknown };
+  let data: { lessonId?: unknown; roundId?: unknown; prompt?: unknown };
   try {
     data = JSON.parse(raw) as typeof data;
   } catch {
@@ -44,6 +44,7 @@ export async function POST(request: Request): Promise<Response> {
   const viewer = await prepareAifb();
   const result = await completeLesson({
     lessonId: data.lessonId,
+    roundId: data.roundId,
     prompt: data.prompt,
     ip,
     canOpen: (lessonId) => lessonUnlocked(viewer, lessonId),

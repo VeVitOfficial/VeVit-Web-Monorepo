@@ -1,4 +1,5 @@
 "use client";
+/* eslint-disable @next/next/no-img-element -- náhledy stran jsou dataURL z canvasu */
 
 // Komprese PDF — React port legacy tools/assets/js/tools/pdf-compress.js.
 // lossless: pdf-lib re-save (useObjectStreams). raster: pdf.js render → JPEG →
@@ -8,6 +9,7 @@ import type { ToolComponentProps, ToolUiI18n } from "@/components/tools/registry
 import {
   useToolUi, fmtSize, loadScript, toastSuccess, Icon, useToolState,
 } from "@/components/tools/tool-runtime";
+import { PdfLightbox, openPdf, renderPdfPage } from "@/components/tools/file-preview";
 
 type PdfPage = unknown;
 interface PdfDoc {
@@ -52,16 +54,32 @@ export default function PdfCompress({ locale }: ToolComponentProps) {
   const [progress, setProgress] = useState<{ pct: number; label: string } | null>(null);
   const [error, setError] = useState<string>("");
   const [result, setResult] = useState<{ sub: string } | null>(null);
-  const [showPreview, setShowPreview] = useState(false);
+  const [gray, setGray] = useState(false);
+  const [origImg, setOrigImg] = useState("");
+  const [resFile, setResFile] = useState<File | null>(null);
+  const [resImg, setResImg] = useState("");
+  const [lightbox, setLightbox] = useState<"orig" | "res" | null>(null);
   const blobUrlRef = useRef<string>("");
-  const origFrameRef = useRef<HTMLDivElement | null>(null);
-  const newFrameRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const dragDepth = useRef(0);
   const [dragOver, setDragOver] = useState(false);
   const origSizeRef = useRef(0);
 
   useEffect(() => { rootRef.current = document.getElementById("tool-root") as HTMLDivElement | null; return () => { if (blobUrlRef.current) URL.revokeObjectURL(blobUrlRef.current); }; }, [rootRef]);
+  // Náhled 1. strany původního souboru (a po komprimaci i výsledku).
+  useEffect(() => {
+    if (!file) return;
+    let off = false;
+    openPdf(file).then((d) => renderPdfPage(d, 1, 360, 440, 0.85)).then((u) => { if (!off) setOrigImg(u); }, () => { /* náhled je doplňkový */ });
+    return () => { off = true; };
+  }, [file]);
+  useEffect(() => {
+    if (!resFile) return;
+    let off = false;
+    openPdf(resFile).then((d) => renderPdfPage(d, 1, 360, 440, 0.85)).then((u) => { if (!off) setResImg(u); }, () => { /* náhled je doplňkový */ });
+    return () => { off = true; };
+  }, [resFile]);
+
   const announce = useCallback((msg: string) => { const live = document.getElementById("tool-live-status"); if (!live) return; live.textContent = ""; window.setTimeout(() => { live.textContent = msg; }, 20); }, []);
   const setState = useCallback((s: "idle" | "ready" | "processing" | "success" | "error", msg?: string) => { setToolState(s); announce(msg ?? t(`state_${s}` as keyof ToolUiI18n)); }, [setToolState, announce, t]);
 
@@ -74,36 +92,38 @@ export default function PdfCompress({ locale }: ToolComponentProps) {
   const addFile = (arr: File[]) => {
     const f = arr.find((x) => x.name.toLowerCase().endsWith(".pdf") || x.type === "application/pdf");
     if (!f) { setError(t("invalid_type")); return; }
-    setFile(f); origSizeRef.current = f.size; setError(""); setResult(null); setShowPreview(false); setState("ready");
+    setFile(f); origSizeRef.current = f.size; setOrigImg(""); setResFile(null); setResImg(""); setError(""); setResult(null); setState("ready");
   };
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => { if (e.target.files) addFile(Array.from(e.target.files)); e.target.value = ""; };
   const onDrop = (e: React.DragEvent) => { e.preventDefault(); e.stopPropagation(); setDragOver(false); dragDepth.current = 0; if (e.dataTransfer.files) addFile(Array.from(e.dataTransfer.files)); };
-  const clearAll = () => { setFile(null); setError(""); setResult(null); setProgress(null); setShowPreview(false); if (blobUrlRef.current) { URL.revokeObjectURL(blobUrlRef.current); blobUrlRef.current = ""; } setState("idle"); };
+  const clearAll = () => { setFile(null); setOrigImg(""); setResFile(null); setResImg(""); setError(""); setResult(null); setProgress(null); if (blobUrlRef.current) { URL.revokeObjectURL(blobUrlRef.current); blobUrlRef.current = ""; } setState("idle"); };
 
   const pct = (o: number, n: number) => { if (o <= 0) return ", "; const d = Math.round((1 - n / o) * 100); return d >= 0 ? `−${d} %` : `+${-d} %`; };
 
-  const appendThumb = (frame: HTMLDivElement, canvas: HTMLCanvasElement) => {
-    while (frame.firstChild) frame.removeChild(frame.firstChild);
-    const img = document.createElement("canvas");
-    img.width = canvas.width; img.height = canvas.height;
-    img.getContext("2d")!.drawImage(canvas, 0, 0);
-    img.style.maxWidth = "100%"; img.style.maxHeight = "24rem"; img.style.objectFit = "contain";
-    frame.appendChild(img);
+  /** Převede canvas na odstíny šedi (bez ctx.filter, ten Safari nepodporuje). */
+  const toGray = (canvas: HTMLCanvasElement) => {
+    const ctx = canvas.getContext("2d")!;
+    const img = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const d = img.data;
+    for (let i = 0; i < d.length; i += 4) {
+      const y = (d[i] * 299 + d[i + 1] * 587 + d[i + 2] * 114) / 1000;
+      d[i] = d[i + 1] = d[i + 2] = y;
+    }
+    ctx.putImageData(img, 0, 0);
   };
 
   const run = async () => {
     if (!file) return;
-    setError(""); setResult(null); setShowPreview(false);
-    if (origFrameRef.current) while (origFrameRef.current.firstChild) origFrameRef.current.removeChild(origFrameRef.current.firstChild);
-    if (newFrameRef.current) while (newFrameRef.current.firstChild) newFrameRef.current.removeChild(newFrameRef.current.firstChild);
+    setError(""); setResult(null); setResFile(null); setResImg("");
     setState("processing");
     setProgress({ pct: 5, label: "Načítám pdf-lib…" });
     try {
       await loadScript("/tools/assets/js/lib/pdf-lib.min.js");
-      const blob = mode === "lossless" ? await lossless() : await raster();
+      const blob = mode === "lossless" && !gray ? await lossless() : await raster();
       if (blobUrlRef.current) URL.revokeObjectURL(blobUrlRef.current);
       blobUrlRef.current = URL.createObjectURL(blob);
       setProgress({ pct: 100, label: "Hotovo" }); setProgress(null);
+      setResFile(new File([blob], "komprimovano.pdf", { type: "application/pdf" }));
       setResult({ sub: `${fmtSize(origSizeRef.current)} → ${fmtSize(blob.size)} · ${pct(origSizeRef.current, blob.size)}` });
       setState("success");
       toastSuccess("PDF bylo komprimováno");
@@ -143,13 +163,13 @@ export default function PdfCompress({ locale }: ToolComponentProps) {
       canvas.width = Math.ceil(viewport.width); canvas.height = Math.ceil(viewport.height);
       const ctx = canvas.getContext("2d")!;
       await page.render({ canvasContext: ctx, viewport }).promise;
+      if (gray) toGray(canvas);
       const blob: Blob = await new Promise<Blob>((res, rej) => canvas.toBlob((b) => b ? res(b) : rej(new Error("Rasterizace stránky selhala.")), "image/jpeg", QUAL));
       const jpgBuf = await blob.arrayBuffer();
       const img = await newDoc.embedJpg(jpgBuf);
       const wPt = (viewport.width / DPI) * 72; const hPt = (viewport.height / DPI) * 72;
       const pg = newDoc.addPage([wPt, hPt]);
       (pg as unknown as { drawImage: (i: PdfImg, o: unknown) => void }).drawImage(img, { x: 0, y: 0, width: wPt, height: hPt });
-      if (i === 1 && origFrameRef.current && newFrameRef.current) { appendThumb(origFrameRef.current, canvas); appendThumb(newFrameRef.current, canvas); setShowPreview(true); }
       return step(i + 1);
     };
     const bytes = await step(1);
@@ -191,6 +211,10 @@ export default function PdfCompress({ locale }: ToolComponentProps) {
           <button type="button" className={mode === "raster" ? "active" : ""} data-mode="raster" role="tab" aria-selected={mode === "raster"} onClick={() => setMode("raster")}>Silná komprese (rastr)</button>
         </div>
         <p className="muted" id="pc-mode-hint" style={{ fontSize: "0.8rem" }}>{HINTS[mode]}</p>
+        <label className="checkbox-row">
+          <input id="pc-gray" type="checkbox" checked={gray} onChange={(e) => { setGray(e.target.checked); if (e.target.checked) setMode("raster"); }} />
+          <span>Převést na černobílé <span className="muted">(strany se vyrenderují jako obrázky v odstínech šedi, text přestane být výběrný)</span></span>
+        </label>
       </div>
 
       {mode === "raster" && (
@@ -224,12 +248,23 @@ export default function PdfCompress({ locale }: ToolComponentProps) {
       {progress && (<><div className="progress-track" role="progressbar" aria-valuenow={progress.pct} aria-valuemin={0} aria-valuemax={100}><div className="progress-fill" style={{ width: `${progress.pct}%` }} /></div><p className="progress-label">{progress.label}</p></>)}
       {error && <p className="error-text" role="alert">{error}</p>}
 
-      {showPreview && (
+      {file && (origImg || resImg) && (
         <div className="before-after" id="pc-preview">
-          <div className="ba-pane"><span className="ba-label">Původní (1. strana)</span><div className="ba-frame" ref={origFrameRef} /></div>
-          <div className="ba-pane"><span className="ba-label">Komprimované (1. strana)</span><div className="ba-frame" ref={newFrameRef} /></div>
+          <div className="ba-pane">
+            <span className="ba-label">Původní (1. strana){origImg ? " · klik pro zvětšení" : ""}</span>
+            <div className="ba-frame">{origImg ? <button type="button" className="ba-zoom" onClick={() => setLightbox("orig")} aria-label="Zvětšit původní náhled"><img src={origImg} alt="Původní 1. strana" /></button> : null}</div>
+          </div>
+          <div className="ba-pane">
+            <span className="ba-label">{resImg ? "Komprimované (1. strana) · klik pro zvětšení" : gray ? "Náhled černobíle (před komprimací)" : "Výsledek se zobrazí po komprimaci"}</span>
+            <div className="ba-frame">
+              {resImg ? <button type="button" className="ba-zoom" onClick={() => setLightbox("res")} aria-label="Zvětšit výsledek"><img src={resImg} alt="Komprimovaná 1. strana" /></button>
+                : gray && origImg ? <img src={origImg} alt="Náhled černobíle" style={{ filter: "grayscale(1)" }} /> : null}
+            </div>
+          </div>
         </div>
       )}
+      {file && lightbox === "orig" ? <PdfLightbox file={file} locale={locale} onClose={() => setLightbox(null)} /> : null}
+      {resFile && lightbox === "res" ? <PdfLightbox file={resFile} locale={locale} onClose={() => setLightbox(null)} /> : null}
 
       {result && (
         <div className="result-card">

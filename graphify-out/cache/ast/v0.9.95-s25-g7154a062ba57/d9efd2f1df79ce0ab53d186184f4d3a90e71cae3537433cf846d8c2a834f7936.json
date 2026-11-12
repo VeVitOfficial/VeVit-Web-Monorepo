@@ -1,0 +1,1 @@
+{"nodes": [{"id": "$graphify-root$_tests_local_assets_test_php", "label": "local-assets-test.php", "file_type": "code", "source_file": "tests/local-assets-test.php", "source_location": "L1"}], "edges": [], "raw_calls": [], "php_type_table": {"path": "$graphify-root$/tests/local-assets-test.php", "table": {"files": "RecursiveIteratorIterator"}}}

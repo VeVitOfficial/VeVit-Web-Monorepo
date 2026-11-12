@@ -1,6 +1,8 @@
 // React port sdíleného footeru nástrojů (tools/includes/footer.php).
 // ClassName totožná s legacy, aby src/styles/tools.css styl fungoval.
 import type { Locale } from "@/components/tools/registry/data";
+import { ConsentSettingsButton } from "@/components/tools/consent-banner";
+import { termsFor } from "@/components/tools/terms-content";
 
 interface Props {
   locale: Locale;
@@ -22,6 +24,10 @@ export function SiteFooter({ locale, strings }: Props) {
             <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1Z" /><path d="m9 12 2 2 4-4" />
           </svg>{" "}
           {strings.privacy}
+        </span>
+        <span className="legal-links">
+          <a href={`/${locale}/tools/podminky-uziti`}>{termsFor(locale).title}</a>
+          <ConsentSettingsButton locale={locale} />
         </span>
         <p>{strings.copyright}</p>
       </div>

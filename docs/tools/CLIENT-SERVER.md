@@ -25,11 +25,12 @@ stávající backend neposkytuje).
 | Nástroj | Mechanismus |
 |---|---|
 | pdf-merge, pdf-split, pdf-organize, pdf-rotate, pdf-watermark, pdf-page-numbers, images-to-pdf, invoice-gen (+ QR) | pdf-lib (client-side) |
-| pdf-compress, pdf-to-images, pdf-extract-text, pdf-to-word | pdf.js render/extrakce + pdf-lib/JSZip + layout engine `src/lib/pdf-text-layout.ts` |
+| pdf-compress, pdf-to-images, pdf-extract-text | pdf.js render/extrakce + pdf-lib/JSZip + layout engine `src/lib/pdf-text-layout.ts` |
+| pdf-to-word | pdf.js 6 ve web workeru → rekonstrukce odstavců/tabulek (`src/lib/converter/pdf/`) → OOXML; OCR skenů přes tesseract.js; viz [docs/converter](../converter/README.md) |
 | pdf-password | qpdf WASM (`public/tools/assets/js/lib/qpdf/`) |
 | pdf-remove-pages, pdf-extract-pages, pdf-crop, pdf-redact, pdf-sign, pdf-forms, pdf-repair, scan-to-pdf, pdf-compare, pdf-edit | pdf-lib + pdf.js (nová iLovePDF sada) |
 | pdf-to-markdown | pdf.js + sdílený layout engine (`src/lib/pdf-text-layout.ts`) |
-| word-to-pdf | mammoth (DOCX→HTML) + html2canvas/jsPDF |
+| word-to-pdf | vetext (Rust → WASM) ve web workeru, fonty Carlito/Caladea/Liberation, volitelně PDF/A-2b; viz [docs/converter](../converter/README.md) |
 | excel-to-pdf, pdf-to-excel, csv-to-excel, excel-to-csv, split-excel | SheetJS (xlsx.full.min.js) |
 | pptx-to-pdf | JSZip (rozbalení PPTX) + jsPDF |
 | pdf-to-pptx | pdf.js render + pptxgenjs |

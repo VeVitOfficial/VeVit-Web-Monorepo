@@ -15,6 +15,7 @@ export function ProductCard({ product }: { product: StoreProduct }) {
         ) : (
           <span aria-hidden="true">VeVit</span>
         )}
+        {(product.variant_count ?? 0) > 1 && <span className="store-variant-badge">{product.variant_count} variant</span>}
       </Link>
       <div className="store-card-body">
         <p className="store-eyebrow">{product.store_categories?.name ?? product.type}</p>

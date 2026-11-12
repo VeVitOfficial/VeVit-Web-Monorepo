@@ -66,16 +66,32 @@ async function callProvider(config: AiLessonConfig, prompt: string): Promise<str
   }
 }
 
+/**
+ * Konfigurace dotazu: PromptLab bere systémový prompt a uloženou odpověď z vrstvy lekce (jen server),
+ * ostatní lekce ze statické mapy. Žáci 1. stupně sem nikdy nepíšou (R1), proto se zs1 odmítá vždy.
+ */
+function configFor(lessonId: string, roundId: unknown): AiLessonConfig | null {
+  if (lessonId.startsWith("zs1-")) return null;
+  const layer = getPupilLayer(lessonId);
+  if (layer?.component === "PromptLab") {
+    const round = typeof roundId === "string" ? layer.server?.rounds?.[roundId] : undefined;
+    if (!round) return null;
+    return { kind: "prompt-rescue", system: round.system, fallback: round.fallback, maxWords: round.maxWords };
+  }
+  return AI_LESSONS[lessonId] ?? null;
+}
+
 /** `canOpen`: návštěvník smí lekci otevřít (role a odemčení učitelem); `preview`: smí vidět návrhy. */
 export async function completeLesson(input: {
   lessonId: unknown;
+  roundId?: unknown;
   prompt: unknown;
   ip: string;
   canOpen: (lessonId: string) => boolean;
   preview: boolean;
 }): Promise<AiResult> {
   const lessonId = typeof input.lessonId === "string" ? input.lessonId : "";
-  const config = AI_LESSONS[lessonId];
+  const config = configFor(lessonId, input.roundId);
   if (!config || !input.canOpen(lessonId) || !aiLessonAvailable(getPupilLayer(lessonId), input.preview)) {
     return { status: 404, body: { ok: false, error: "unknown_lesson" } };
   }

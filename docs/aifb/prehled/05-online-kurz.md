@@ -17,7 +17,9 @@ Kurz je **směs všech tří kategorií**: z každé bere to nejdůležitější
 | 5 | AI jako pomocník | 50 min | 2. stupeň, SŠ | studijní parťák, formát výstupu, multimodalita, pracovní postup, člověk v okruhu, přiznat pomoc | Plán na opakování · Správný formát · Navrhni pracovní postup · Kdo má rozhodnout? |
 | 6 | Jak AI funguje uvnitř | 55 min | SŠ | kontextové okno, tokeny a cena, nástroje, RAG, agenti a prompt injection, měření kvality, cloud vs. počítač, kam dál | Co si model pamatuje · AI s vlastní knihovnou · Agent na výletě · Závěrečný test kurzu |
 
-Celkem asi 5 hodin, 6 teorií, 24 lekcí. Teorie modulů mají 6–8 sekcí a 610–775 slov (čtení 3–4 minuty).
+V listopadu 2026 přibyla do každého modulu pátá lekce a cvičení u všech lekcí: 1 Kdy AI nepotřebuješ, 2 Markdown a JSON, 3 Podezřelá zpráva, 4 O čem s AI mluvit, 5 Jaký druh AI na co, 6 Svět AI: firmy, API a MCP. Teorie modulů 1, 3, 4 a 6 dostala po jedné sekci (kdy AI nepotřebuješ; podezřelé zprávy a weby; osobní témata a chatbot; firmy, API, MCP a žebříčky).
+
+Celkem asi 6 hodin, 6 teorií, 30 lekcí. Teorie modulů mají 6–8 sekcí a 610–775 slov (čtení 3–4 minuty).
 
 ## Lekce kurzu
 
@@ -25,7 +27,7 @@ Každá lekce má:
 
 - **úvod** (o co jde),
 - **postup** (číslovaný seznam kroků),
-- volitelně **cvičení na stránce** („Vyzkoušej si“): kvíz (`QuizCard`), třídění karet (`CardSort`) nebo semafor s vlastními popisky (`TrafficLightCards`),
+- volitelně **cvičení na stránce** („Vyzkoušej si“): kterýkoli typ kromě cvičení s AI: kvíz, třídění karet, semafor, skládačka zadání, detektiv v textu, hra na jazykový model, přímka, rozhovor nebo spojovačka (kapitola 06),
 - volitelně **tip**,
 - **Co si odneseš** (výsledek lekce),
 - listování: předchozí lekce / teorie, zpět na modul, další lekce; poslední lekce modulu vede na teorii dalšího modulu, poslední lekce kurzu zpět na přehled.

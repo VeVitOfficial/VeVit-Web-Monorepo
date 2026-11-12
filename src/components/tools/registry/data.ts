@@ -16,7 +16,7 @@ import type { ComponentType } from "react";
 
 export type Category = "pdf" | "image" | "media" | "text" | "ai" | "dev" | "security" | "calc";
 export type ProcessingLocation = "client" | "vevit_server" | "external_ai" | "external";
-export type ToolStatus = "working" | "limited" | "experimental" | "coming_soon" | "broken";
+export type ToolStatus = "working" | "limited" | "experimental" | "coming_soon" | "broken" | "maintenance";
 export type Locale = "cs" | "en" | "de" | "es" | "uk" | "fr" | "sk";
 
 /** Props, které dostává každá komponenta nástroje od shellu. */
@@ -111,10 +111,10 @@ const RAW_TOOLS: RawTool[] = [
   ["pdf-merge", "Sloučení PDF", "Sloučí více PDF souborů do jednoho.", "pdf", "client", "Files", false],
   ["pdf-split", "Rozdělení PDF", "Rozdělí PDF na jednotlivé stránky.", "pdf", "client", "Scissors", false],
   ["pdf-compress", "Komprese PDF", "Zmenší velikost PDF souboru.", "pdf", "client", "Shrink", false],
-  ["pdf-to-word", "PDF → Word", "Vytáhne text z PDF a sestaví .docx.", "pdf", "client", "FileText", false],
-  ["html-to-pdf", "HTML → PDF", "Převede HTML kód na PDF (html2canvas+jsPDF).", "pdf", "client", "FileCode", false],
+  ["pdf-to-word", "PDF → Word", "Převede PDF na upravitelný dokument Word: odstavce, tabulky, obrázky, záhlaví i OCR skenů. Přímo v prohlížeči.", "pdf", "client", "FileText", true],
+  ["html-to-pdf", "HTML → PDF", "Převede HTML na PDF věrně jako prohlížeč: CSS (grid, flexbox, gradienty, stíny), fonty, SVG i JavaScript. Vykreslení v Chromiu na serveru, nebo lokálně v prohlížeči.", "pdf", "server", "FileCode", false],
   ["invoice-gen", "Faktura generátor", "Generujte profesionální faktury s QR kódem.", "pdf", "client", "Receipt", true],
-  ["pdf-to-images", "PDF → obrázky", "Převede stránky PDF na obrázky (PNG/JPEG ZIP).", "pdf", "client", "ImagePlus", true],
+  ["pdf-to-images", "PDF → obrázky", "Převede stránky PDF na obrázky (PNG, JPG, WebP, BMP, TIFF, GIF) s náhledem; každý obrázek se stáhne rovnou, bez ZIPu.", "pdf", "client", "ImagePlus", true],
   ["images-to-pdf", "Obrázky → PDF", "Spojí více obrázků do jednoho PDF.", "pdf", "client", "Files", true],
   ["pdf-rotate", "Otočení PDF", "Otočí nebo překlopí stránky PDF.", "pdf", "client", "RotateCw", true],
   ["pdf-organize", "Organizace PDF", "Odstraňte nebo přerovnejte stránky PDF.", "pdf", "client", "Maximize", true],
@@ -133,7 +133,7 @@ const RAW_TOOLS: RawTool[] = [
   ["scan-to-pdf", "Sken → PDF", "Vytvořte PDF z obrázků/snímů (kamera, soubory).", "pdf", "client", "ScanLine", true],
   ["pdf-compare", "Porovnání PDF", "Porovnejte text dvou PDF a zvýrazněte rozdíly.", "pdf", "client", "FileDiff", true],
   ["pdf-to-markdown", "PDF → Markdown", "Převeďte PDF na Markdown včetně tabulek.", "pdf", "client", "Hash", true],
-  ["word-to-pdf", "Word → PDF", "Převeďte .docx dokument na PDF.", "pdf", "client", "FileType", true],
+  ["word-to-pdf", "Word → PDF", "Převede dokument Word (.docx) na PDF se zachovaným vzhledem, fonty a tabulkami, volitelně PDF/A. Přímo v prohlížeči.", "pdf", "client", "FileType", true],
   ["excel-to-pdf", "Excel → PDF", "Převeďte tabulku .xlsx/.csv na PDF.", "pdf", "client", "Table", true],
   ["pdf-to-excel", "PDF → Excel", "Vytáhněte tabulky z PDF do .xlsx.", "pdf", "client", "Sheet", true],
   ["pptx-to-pdf", "PowerPoint → PDF", "Převeďte .pptx prezentaci na PDF.", "pdf", "client", "Presentation", true],
@@ -215,10 +215,10 @@ const RAW_TOOLS: RawTool[] = [
   ["business-name-generator", "AI názvy firmy", "Navrhněte názvy pro vaši firmu/projekt.", "text", "ai", "Building2", true],
   ["blog-outline-generator", "AI osnova blogu", "Vytvořte strukturu blogpostu.", "text", "ai", "ListTree", true],
   ["blog-post-ideas", "AI nápady na články", "Získejte témata pro vaše články.", "text", "ai", "Lightbulb", true],
-  ["instagram-caption", "AI Instagram popisky", "Vytvořte poutavé popisky a hashtagy.", "text", "ai", "Instagram", true],
-  ["linkedin-post", "AI LinkedIn příspěvek", "Napište profesionální LinkedIn post.", "text", "ai", "Linkedin", true],
+  ["instagram-caption", "AI Instagram popisky", "Vytvořte poutavé popisky a hashtagy.", "text", "ai", "Camera", true],
+  ["linkedin-post", "AI LinkedIn příspěvek", "Napište profesionální LinkedIn post.", "text", "ai", "BriefcaseBusiness", true],
   ["fb-headline-generator", "AI Facebook titulky", "Vygenerujte titulky pro Facebook.", "text", "ai", "Megaphone", true],
-  ["youtube-script", "AI YouTube scénář", "Napište scénář pro YouTube video.", "text", "ai", "Youtube", true],
+  ["youtube-script", "AI YouTube scénář", "Napište scénář pro YouTube video.", "text", "ai", "SquarePlay", true],
 
   // ── AI ─────────────────────────────────────────────────────────────────
   ["ai-chat", "AI asistent", "Chatujte s AI asistentem pro různé úkoly.", "ai", "ai", "MessageSquare", false],
@@ -315,6 +315,8 @@ function canonicalize(raw: RawTool): Tool {
   ]);
   if (COMING_SOON.has(slug)) status = "coming_soon";
   if (slug === "pdf-edit") status = "experimental";
+  // AI nástroje jsou dočasně v údržbě (nejdou otevřít); ty, které ještě nejsou hotové, zůstávají „Připravujeme“.
+  if (loc === "ai" && status !== "coming_soon") status = "maintenance";
 
   const slugWords = slug.split(/-+/);
   const keywords = Array.from(new Set([...slugWords, slug].filter(Boolean)));
@@ -340,10 +342,11 @@ export const TOOL_I18N: Partial<Record<Locale, Record<string, { name?: string; d
     "pdf-merge": { name: "Merge PDF", desc: "Merge multiple PDF files into one." },
     "pdf-split": { name: "Split PDF", desc: "Split a PDF into individual pages." },
     "pdf-compress": { name: "Compress PDF", desc: "Reduce the size of a PDF file." },
-    "pdf-to-word": { name: "PDF → Word", desc: "Extract text from PDF and build a .docx." },
-    "html-to-pdf": { name: "HTML → PDF", desc: "Convert HTML code to PDF (html2canvas+jsPDF)." },
+    "pdf-to-word": { name: "PDF → Word", desc: "Convert a PDF to an editable Word document: paragraphs, tables, images, headers and OCR for scans. In your browser." },
+    "word-to-pdf": { name: "Word → PDF", desc: "Convert a Word document (.docx) to PDF, keeping layout, fonts and tables; PDF/A optional. In your browser." },
+    "html-to-pdf": { name: "HTML → PDF", desc: "Converts HTML to PDF as faithfully as a browser: CSS (grid, flexbox, gradients, shadows), fonts, SVG and JavaScript. Rendered in Chromium on the server, or locally in your browser." },
     "invoice-gen": { name: "Invoice generator", desc: "Generate professional invoices with a QR code." },
-    "pdf-to-images": { name: "PDF → images", desc: "Convert PDF pages to images (PNG/JPEG ZIP)." },
+    "pdf-to-images": { name: "PDF → images", desc: "Convert PDF pages to images (PNG, JPG, WebP, BMP, TIFF, GIF) with preview; each image downloads directly, no ZIP." },
     "images-to-pdf": { name: "Images → PDF", desc: "Combine multiple images into one PDF." },
     "pdf-rotate": { name: "Rotate PDF", desc: "Rotate or flip PDF pages." },
     "pdf-organize": { name: "Organize PDF", desc: "Remove or reorder PDF pages." },
@@ -445,6 +448,28 @@ export const TOOL_I18N: Partial<Record<Locale, Record<string, { name?: string; d
     "iban-converter": { name: "IBAN converter", desc: "Convert a Czech account number to IBAN and back." },
     "birth-number-validator": { name: "Birth number validator", desc: "Verify format and checksum of a Czech birth number." },
   },
+  // Převodníky Word ⇄ PDF jsou plně lokalizované (src/lib/converter/i18n.ts); ostatní nástroje
+  // v těchto jazycích zatím padají zpět na češtinu.
+  de: {
+    "pdf-to-word": { name: "PDF → Word", desc: "PDF in ein bearbeitbares Word-Dokument umwandeln: Absätze, Tabellen, Bilder, Kopfzeilen und OCR für Scans. Direkt im Browser." },
+    "word-to-pdf": { name: "Word → PDF", desc: "Word-Dokument (.docx) in PDF umwandeln, mit Layout, Schriften und Tabellen; optional PDF/A. Direkt im Browser." },
+  },
+  es: {
+    "pdf-to-word": { name: "PDF → Word", desc: "Convierta un PDF en un documento de Word editable: párrafos, tablas, imágenes, encabezados y OCR de escaneos. En su navegador." },
+    "word-to-pdf": { name: "Word → PDF", desc: "Convierta un documento de Word (.docx) a PDF conservando diseño, fuentes y tablas; PDF/A opcional. En su navegador." },
+  },
+  uk: {
+    "pdf-to-word": { name: "PDF → Word", desc: "Перетворіть PDF на редагований документ Word: абзаци, таблиці, зображення, колонтитули й OCR сканів. Прямо в браузері." },
+    "word-to-pdf": { name: "Word → PDF", desc: "Перетворіть документ Word (.docx) на PDF зі збереженням вигляду, шрифтів і таблиць; за бажанням PDF/A. Прямо в браузері." },
+  },
+  fr: {
+    "pdf-to-word": { name: "PDF → Word", desc: "Convertissez un PDF en document Word modifiable : paragraphes, tableaux, images, en-têtes et OCR des numérisations. Dans votre navigateur." },
+    "word-to-pdf": { name: "Word → PDF", desc: "Convertissez un document Word (.docx) en PDF en conservant mise en page, polices et tableaux ; PDF/A en option. Dans votre navigateur." },
+  },
+  sk: {
+    "pdf-to-word": { name: "PDF → Word", desc: "Prevedie PDF na upraviteľný dokument Word: odseky, tabuľky, obrázky, hlavičky aj OCR skenov. Priamo v prehliadači." },
+    "word-to-pdf": { name: "Word → PDF", desc: "Prevedie dokument Word (.docx) na PDF so zachovaným vzhľadom, písmami a tabuľkami, voliteľne PDF/A. Priamo v prehliadači." },
+  },
 };
 
 // ── i18n: hub UI řetězce (z vv-hub-i18n bloku) ──────────────────────────
@@ -513,7 +538,7 @@ export interface HubI18n {
 }
 
 const HUB_CS: HubI18n = {
-  statuses: { limited: "Omezeně dostupný", experimental: "Experimentální", coming_soon: "Připravujeme", broken: "Dočasně nefunkční" },
+  statuses: { limited: "Omezeně dostupný", experimental: "Experimentální", coming_soon: "Připravujeme", broken: "Dočasně nefunkční", maintenance: "V údržbě" },
   loc: { client: "Lokálně", external_ai: "Přes AI", vevit_server: "Na serveru", external: "Třetí strana" },
   card_open: "Otevřít →",
   hero_eyebrow: "{count} nástrojů, zdarma, bez registrace",
@@ -562,7 +587,7 @@ const HUB_CS: HubI18n = {
   header_login: "Přihlásit se",
   header_login_title: "Přihlášení k účtu VeVit je volitelné, všechny nástroje fungují i bez něj.",
   footer_back: "Zpět na VeVit.cz",
-  footer_privacy: "Vše zpracováno lokálně v prohlížeči",
+  footer_privacy: "Většina nástrojů běží lokálně v prohlížeči",
   footer_copyright: "© 2026 VeVit Tools.",
   conv_video_title: "Konverze videa",
   conv_video_desc: "MP4, WebM, MOV, MKV — komprese i změna formátu přímo v prohlížeči.",
@@ -576,7 +601,7 @@ const HUB_CS: HubI18n = {
 };
 
 const HUB_EN: HubI18n = {
-  statuses: { limited: "Limited availability", experimental: "Experimental", coming_soon: "Coming soon", broken: "Temporarily broken" },
+  statuses: { limited: "Limited availability", experimental: "Experimental", coming_soon: "Coming soon", broken: "Temporarily broken", maintenance: "Under maintenance" },
   loc: { client: "Local", external_ai: "Via AI", vevit_server: "On server", external: "Third party" },
   card_open: "Open →",
   hero_eyebrow: "{count} tools, free, no sign-up",
@@ -625,7 +650,7 @@ const HUB_EN: HubI18n = {
   header_login: "Sign in",
   header_login_title: "A VeVit account is optional, all tools work without one.",
   footer_back: "Back to VeVit.cz",
-  footer_privacy: "Everything processed locally in the browser",
+  footer_privacy: "Most tools run locally in your browser",
   footer_copyright: "© 2026 VeVit Tools.",
   conv_video_title: "Video converter",
   conv_video_desc: "MP4, WebM, MOV, MKV — compress and convert right in the browser.",
@@ -653,6 +678,8 @@ export interface ToolUiI18n {
   cancel: string; retry: string; reset: string;
   download: string; result_ready: string;
   text_meta: string; file_format: string;
+  maintenance_note: string;
+  swap_direction: string;
 }
 
 const TOOL_UI_CS: ToolUiI18n = {
@@ -666,6 +693,8 @@ const TOOL_UI_CS: ToolUiI18n = {
   cancel: "Zrušit", retry: "Zkusit znovu", reset: "Začít znovu",
   download: "Stáhnout výsledek", result_ready: "Hotovo, výsledek je připraven",
   text_meta: "{characters} znaků · {lines} řádků", file_format: "{type} · {size}",
+  maintenance_note: "Nástroj je dočasně v údržbě a nelze ho použít. Zkuste to prosím později.",
+  swap_direction: "Obrátit převod",
 };
 
 const TOOL_UI_EN: ToolUiI18n = {
@@ -679,6 +708,8 @@ const TOOL_UI_EN: ToolUiI18n = {
   cancel: "Cancel", retry: "Try again", reset: "Start over",
   download: "Download result", result_ready: "Done, result is ready",
   text_meta: "{characters} characters · {lines} lines", file_format: "{type} · {size}",
+  maintenance_note: "This tool is temporarily under maintenance and cannot be used. Please try again later.",
+  swap_direction: "Reverse conversion",
 };
 
 export const TOOL_UI_I18N: Record<Locale, ToolUiI18n> = {
@@ -687,13 +718,13 @@ export const TOOL_UI_I18N: Record<Locale, ToolUiI18n> = {
 
 // ── Stavové labely (pro badge Stav v dropdownu a na kartách) ────────────
 export const STATUS_LABELS: Record<Locale, Record<ToolStatus, string>> = {
-  cs: { working: "Dostupné", limited: "Omezeně dostupné", experimental: "Experimentální", coming_soon: "Připravujeme", broken: "Nefunkční" },
-  en: { working: "Available", limited: "Limited", experimental: "Experimental", coming_soon: "Coming soon", broken: "Broken" },
-  de: { working: "Verfügbar", limited: "Eingeschränkt", experimental: "Experimentell", coming_soon: "In Vorbereitung", broken: "Defekt" },
-  es: { working: "Disponible", limited: "Limitado", experimental: "Experimental", coming_soon: "Próximamente", broken: "Roto" },
-  uk: { working: "Доступний", limited: "Обмежений", experimental: "Експериментальний", coming_soon: "Очікується", broken: "Зламаний" },
-  fr: { working: "Disponible", limited: "Limité", experimental: "Expérimental", coming_soon: "Bientôt", broken: "Cassé" },
-  sk: { working: "Dostupné", limited: "Obmedzene dostupné", experimental: "Experimentálne", coming_soon: "Pripravujeme", broken: "Nefunkčné" },
+  cs: { working: "Dostupné", limited: "Omezeně dostupné", experimental: "Experimentální", coming_soon: "Připravujeme", broken: "Nefunkční", maintenance: "V údržbě" },
+  en: { working: "Available", limited: "Limited", experimental: "Experimental", coming_soon: "Coming soon", broken: "Broken", maintenance: "Under maintenance" },
+  de: { working: "Verfügbar", limited: "Eingeschränkt", experimental: "Experimentell", coming_soon: "In Vorbereitung", broken: "Defekt", maintenance: "In Wartung" },
+  es: { working: "Disponible", limited: "Limitado", experimental: "Experimental", coming_soon: "Próximamente", broken: "Roto", maintenance: "En mantenimiento" },
+  uk: { working: "Доступний", limited: "Обмежений", experimental: "Експериментальний", coming_soon: "Очікується", broken: "Зламаний", maintenance: "На обслуговуванні" },
+  fr: { working: "Disponible", limited: "Limité", experimental: "Expérimental", coming_soon: "Bientôt", broken: "Cassé", maintenance: "En maintenance" },
+  sk: { working: "Dostupné", limited: "Obmedzene dostupné", experimental: "Experimentálne", coming_soon: "Pripravujeme", broken: "Nefunkčné", maintenance: "V údržbe" },
 };
 
 export const SUPPORTED_LOCALES: readonly Locale[] = ["cs", "en", "de", "es", "uk", "fr", "sk"];
@@ -729,6 +760,15 @@ export function localizeTool(tool: Tool, locale: Locale): { name: string; descri
     description: override?.desc ?? tool.description,
   };
 }
+
+/** Opačný směr převodu (šipka v nadpisu nástroje ho otevře). Jen dvojice, které opravdu existují. */
+const REVERSE_PAIRS: [string, string][] = [
+  ["pdf-to-word", "word-to-pdf"], ["pdf-to-excel", "excel-to-pdf"], ["pdf-to-pptx", "pptx-to-pdf"],
+  ["pdf-to-images", "images-to-pdf"], ["csv-to-excel", "excel-to-csv"], ["excel-to-xml", "xml-to-excel"],
+  ["xml-to-json", "json-to-xml"],
+];
+const REVERSE_TOOL: Record<string, string> = Object.fromEntries(REVERSE_PAIRS.flatMap(([a, b]) => [[a, b], [b, a]]));
+export const reverseSlug = (slug: string): string | undefined => REVERSE_TOOL[slug];
 
 /** Lokalizovaný label kategorie (fallback na cs). */
 export function categoryLabel(cat: Category, locale: Locale): string {

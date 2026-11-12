@@ -64,8 +64,27 @@ export function getProgressNow(): AifbProgress {
   return load();
 }
 
+// Žák ve škole (VeVit Edu pro školy): každá změna stavu jde i na server, aby ji viděl učitel.
+// Zapíná ji SchoolProgressSync; selhání odeslání nevadí, místní průběh platí dál.
+let serverSync: { csrfToken: string } | null = null;
+
+export function enableServerSync(csrfToken: string | null) {
+  serverSync = csrfToken ? { csrfToken } : null;
+}
+
+function pushToServer(lessonId: string, status: LessonStatus | null) {
+  if (!serverSync) return;
+  void fetch("/edu/api/school/prubeh", {
+    method: "POST",
+    credentials: "same-origin",
+    headers: { "Content-Type": "application/json", "x-csrf-token": serverSync.csrfToken },
+    body: JSON.stringify({ lesson_id: lessonId, status }),
+  }).catch(() => undefined);
+}
+
 export function setStatus(lessonId: string, status: LessonStatus | null) {
   save(setLessonStatus(load(), lessonId, status));
+  pushToServer(lessonId, status);
 }
 
 export function replaceProgress(next: AifbProgress) {

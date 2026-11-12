@@ -1,0 +1,55 @@
+/* VeVit Edu pro školy (/edu/school): rámec portálu s menu podle role. Staví na .aigram / .aifb
+   (tokeny z ai-gramotnost.css a aifb.css), vlastní barvy nezavádí. */
+.school-shell { display: grid; grid-template-columns: 15rem minmax(0, 1fr); gap: 2rem; align-items: start; }
+@media (max-width: 860px) { .school-shell { grid-template-columns: minmax(0, 1fr); gap: 1rem; } }
+
+.school-nav { position: sticky; top: 5rem; display: grid; gap: 1.25rem; }
+@media (max-width: 860px) { .school-nav { position: static; } }
+.school-nav__who { margin: 0; font-size: 0.85rem; color: var(--text-secondary); }
+.school-nav__who strong { display: block; font-size: 1rem; color: var(--text-primary); }
+.school-nav__group { display: grid; gap: 0.15rem; margin: 0; padding: 0; list-style: none; }
+.school-nav__label { margin: 0 0 0.25rem; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); }
+.school-nav__link { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; min-height: 40px; padding: 0.45rem 0.75rem; border-radius: var(--radius-md); font-size: 0.92rem; font-weight: 600; color: var(--text-secondary); }
+.school-nav__link:hover { background: var(--bg-elevated); color: var(--text-primary); }
+.school-nav__link[aria-current="page"] { background: var(--bg-elevated); color: var(--aifb-accent); box-shadow: inset 3px 0 0 var(--aifb-accent); }
+.school-nav__soon { font-size: 0.7rem; font-weight: 600; color: var(--text-muted); }
+@media (max-width: 860px) {
+  .school-nav__group { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .school-nav__link[aria-current="page"] { box-shadow: inset 0 -3px 0 var(--aifb-accent); }
+}
+
+.school-stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 11rem), 1fr)); gap: 0.75rem; margin: 0 0 2rem; padding: 0; list-style: none; }
+.school-stat { padding: 0.9rem 1rem; border-radius: var(--radius-md); background: var(--bg-surface); border: 1.5px solid var(--border-color); }
+.school-stat strong { display: block; font-size: 1.6rem; font-variant-numeric: tabular-nums; color: var(--text-primary); }
+.school-stat span { font-size: 0.85rem; color: var(--text-secondary); }
+
+.school-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem 1rem; }
+.school-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
+.aifb select, .aifb input[type="email"], .aifb input[type="date"], .aifb textarea.school-input {
+  min-height: 44px; padding: 0.55rem 0.8rem; font: inherit; font-size: 0.92rem; color: var(--text-primary);
+  background: var(--bg-elevated); border: 1px solid var(--border-color); border-radius: var(--radius-md);
+}
+.aifb input[type="email"], .aifb textarea.school-input { width: 100%; }
+.aifb select:focus, .aifb input[type="email"]:focus, .aifb input[type="date"]:focus, .aifb textarea.school-input:focus {
+  outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-glow);
+}
+
+/* Průběh žáků: tabulka žák × lekce */
+.school-matrix th, .school-matrix td { text-align: center; white-space: nowrap; }
+.school-matrix th:first-child, .school-matrix td:first-child { position: sticky; left: 0; text-align: left; background: var(--bg-surface); }
+.school-cell { display: inline-flex; align-items: center; justify-content: center; min-width: 2rem; padding: 0.1rem 0.4rem; border-radius: 6px; font-size: 0.8rem; font-weight: 700; }
+.school-cell[data-state="done"] { color: var(--aifb-on-accent); background: var(--aifb-accent); }
+.school-cell[data-state="started"] { color: var(--text-primary); background: var(--bg-elevated); border: 1px solid var(--border-color); }
+.school-cell[data-state="late"] { color: var(--error); border: 1px solid var(--error); }
+.school-cell[data-state="todo"] { color: var(--text-muted); }
+.school-legend { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; margin: 0 0 1rem; font-size: 0.85rem; color: var(--text-secondary); }
+
+.school-tasks { display: grid; gap: 0.6rem; padding: 0; list-style: none; }
+.school-task { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 0.25rem 1rem; padding: 0.8rem 1rem; border-radius: var(--radius-md); background: var(--bg-surface); border: 1.5px solid var(--border-color); }
+.school-task[data-state="late"] { border-color: var(--error); }
+.school-task__title { font-weight: 700; color: var(--text-primary); }
+.school-task__meta { grid-column: 1 / -1; margin: 0; font-size: 0.85rem; color: var(--text-secondary); }
+.school-task a { color: var(--aifb-accent); text-decoration: underline; text-underline-offset: 3px; }
+
+.school-pick { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr)); gap: 0.2rem 1rem; max-height: 20rem; overflow-y: auto; margin: 0; padding: 0.5rem 0.75rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); list-style: none; }
+.school-card { margin-bottom: 0.75rem; }

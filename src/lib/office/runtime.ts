@@ -1,6 +1,7 @@
 import "server-only";
 
 import { accountSupabase, clientIp } from "../account-auth.ts";
+import { appSecret } from "../app-secret.ts";
 import { loadAccountSession } from "../account-session.ts";
 import { sha256Hex } from "./crypto.ts";
 import type { OfficeDeps } from "./deps.ts";
@@ -42,7 +43,7 @@ export function officeDeps(): OfficeDeps {
     issuer: env.OFFICE_OIDC_ISSUER?.trim() || "https://vevit.cz/account",
     cloudRedirectUris: (env.OFFICE_CLOUD_REDIRECT_URIS ?? "").split(",").map((s) => s.trim()).filter(Boolean),
     sealKey: env.OFFICE_LINK_SEAL_KEY?.trim() || null,
-    ipSecret: env.OFFICE_AUDIT_IP_SECRET?.trim() || env.VEVIT_APP_SECRET?.trim() || "unset",
+    ipSecret: env.OFFICE_AUDIT_IP_SECRET?.trim() || appSecret("office-ip"),
     session: async (req) => {
       const s = await loadAccountSession(sessionToken(req));
       return s ? { userId: String(s.user.id), csrf: s.csrfToken } : null;

@@ -6,7 +6,8 @@
 import { useRef, useState } from "react";
 import type { ToolComponentProps } from "@/components/tools/registry/data";
 import { useToolUi, fmtSize, loadScript, toastSuccess } from "@/components/tools/tool-runtime";
-import { Dropzone, FileList, Progress, ResultArea, setToolState } from "@/components/tools/tools/audio-convert";
+import { SortableFileList } from "@/components/tools/file-preview";
+import { Dropzone, Progress, ResultArea, setToolState } from "@/components/tools/tools/audio-convert";
 
 // ── Typy UMD JSZip (líně načítaného) ─────────────────────────────────────
 interface JSZipLike {
@@ -52,7 +53,6 @@ export default function CreateZip({ locale }: ToolComponentProps) {
     setFiles((prev) => [...prev, ...arr]);
     setToolState("ready");
   };
-  const removeAt = (i: number) => setFiles((prev) => prev.filter((_, idx) => idx !== i));
 
   const run = async () => {
     if (!files.length) return;
@@ -113,11 +113,7 @@ export default function CreateZip({ locale }: ToolComponentProps) {
       </Dropzone>
 
       {files.length ? (
-        <FileList
-          files={files.map((f) => ({ name: f.name, size: f.size }))}
-          onRemove={removeAt}
-          locale={locale}
-        />
+        <SortableFileList files={files} onChange={setFiles} onAddFiles={onFiles} locale={locale} ariaLabel="Soubory do archivu" />
       ) : null}
 
       <div className={files.length ? "" : " hidden"} id="cz-work">

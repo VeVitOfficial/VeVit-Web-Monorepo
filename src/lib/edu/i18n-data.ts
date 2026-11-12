@@ -4,6 +4,7 @@
 // translate/lessonsUnit/lessonsLabel s ním — module-level stav se nepoužívá.
 
 import { aifbMessages } from "./aifb/messages.ts";
+import { schoolMessages } from "./school/messages.ts";
 
 export type EduLocale = "cs" | "en" | "es" | "de" | "uk" | "fr" | "sk";
 
@@ -838,7 +839,7 @@ export const dictionaries: Record<EduLocale, EduDictionary> = {
 };
 
 // Texty sekce AIFB žijí v ./aifb/messages.ts; sloučení do slovníků jednotlivých jazyků.
-for (const locale of EDU_SUPPORTED_LOCALES) Object.assign(dictionaries[locale], aifbMessages[locale]);
+for (const locale of EDU_SUPPORTED_LOCALES) Object.assign(dictionaries[locale], aifbMessages[locale], schoolMessages[locale]);
 
 // Čistá (stateless) verze t() — lang se předává explicitně z React kontextu.
 // Fallback na cs slovník, pokud klíč v lokalizovaném slovníku chybí.

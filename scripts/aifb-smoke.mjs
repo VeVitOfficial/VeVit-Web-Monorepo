@@ -1,4 +1,4 @@
-// Smoke test běžícího serveru: hub, 3 kategorie, 16 levelů (+ tisk), 16 teorií a 80 lekcí,
+// Smoke test běžícího serveru: hub, 3 kategorie, 24 levelů (+ tisk), 24 teorií a 120 lekcí,
 // průvodce, online kurz a stránky učitele a admina. Spuštění: `npm run smoke:aifb` (server na
 // BASE_URL, výchozí http://localhost:3000; potřebuje `npm run dev`, nebo `npm start` s AIFB_TEST_ROLES=1).
 // Obsah se prochází v roli admina (testovací cookie aifb_test_role) a každá stránka musí vrátit 200
@@ -43,7 +43,8 @@ const publicModuleStatus = course.status === "draft" && production ? 404 : 200;
 checks.push({ url: `${prefix}/kurz`, role: null, status: 200 });
 checks.push({ url: courseUrls[1], role: null, status: publicModuleStatus });
 
-admin(`${prefix}/ucitel`);
+// Třídy učitele se přestěhovaly do portálu VeVit Edu pro školy.
+checks.push({ url: `${prefix}/ucitel`, role: "admin", status: 307, location: /\/cs\/edu\/school\/tridy$/ });
 admin(`${prefix}/upravy`);
 admin(`${prefix}/upravy?doc=kurz&path=${encodeURIComponent("modules/[kurz-m1]")}`);
 admin(`${prefix}/upravy?doc=zs1&path=${encodeURIComponent("levels/[zs1-blok-a]/lessons/[zs1-blok-a-cv1]")}`);

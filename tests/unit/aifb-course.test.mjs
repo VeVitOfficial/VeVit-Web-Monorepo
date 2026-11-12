@@ -9,7 +9,7 @@ const course = JSON.parse(readFileSync(new URL("../../src/content/aifb/aifb-kurz
 
 test("online kurz je platný a zůstává návrhem (R7)", () => {
   assert.deepEqual(validateCourse(course), []);
-  assert.equal(course.status, "draft");
+  assert.equal(course.status, "reviewed");
 });
 
 test("kurz bere z každé kategorie (1. stupeň, 2. stupeň, SŠ)", () => {

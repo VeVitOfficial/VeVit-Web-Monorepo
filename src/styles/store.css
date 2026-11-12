@@ -928,3 +928,168 @@ html[data-theme="light"] {
 html[data-theme="light"] .vv-app-brand a:first-child { color: #0a7d54; }
 html[data-theme="light"] .vv-app-brand a + a { color: #0c141c; }
 
+
+/* ── Varianty produktu (Alza-style) ────────────────────────────────────────── */
+.store-variant-badge {
+  position: absolute;
+  left: 0.6rem;
+  bottom: 0.6rem;
+  z-index: 2;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: var(--clr-primary-soft);
+  color: var(--clr-primary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.store-variants { margin: 0.9rem 0; }
+.store-variants-label {
+  margin: 0 0 0.45rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--clr-text-dim);
+}
+.store-variants-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+.store-variant-chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--clr-outline, rgba(255, 255, 255, 0.18));
+  background: var(--clr-surface-raised);
+  color: var(--clr-text);
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: border-color 120ms ease, background 120ms ease;
+}
+.store-variant-chip:hover { border-color: var(--clr-primary); background: var(--clr-surface-high); }
+.store-variant-chip small { color: var(--clr-text-dim); font-size: 0.75rem; }
+.store-variant-chip.is-current {
+  background: var(--clr-primary-soft);
+  border-color: var(--clr-primary);
+  color: var(--clr-primary);
+  font-weight: 700;
+}
+.store-variant-chip.is-current small { color: inherit; }
+
+/* ── Home: hero statistiky, kategorie, značky, benefity ────────────────────── */
+.store-hero { align-items: center; justify-content: space-between; }
+.store-hero-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-width: 190px;
+}
+.store-stat {
+  background: var(--clr-surface-card);
+  border: 1px solid var(--clr-outline, rgba(255, 255, 255, 0.14));
+  border-radius: 10px;
+  padding: 0.7rem 1rem;
+}
+.store-stat b { display: block; font-size: 1.35rem; }
+.store-stat span { color: var(--clr-text-dim); font-size: 0.8rem; }
+
+.store-cat-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+  gap: 0.75rem;
+}
+.store-cat-tile {
+  display: block;
+  background: var(--clr-surface-card);
+  border: 1px solid var(--clr-outline, rgba(255, 255, 255, 0.14));
+  border-radius: 12px;
+  padding: 1rem;
+  text-decoration: none;
+  color: var(--clr-text);
+  box-shadow: var(--neo-shadow, 3px 3px 0 rgba(0, 0, 0, 0.45));
+  transition: transform 100ms ease, border-color 100ms ease;
+}
+.store-cat-tile:hover { transform: translate(-1px, -1px); border-color: var(--clr-primary); }
+.store-cat-tile b { display: block; margin: 0.55rem 0 0.2rem; font-size: 0.9rem; }
+.store-cat-tile span { color: var(--clr-text-dim); font-size: 0.75rem; line-height: 1.35; display: block; }
+.store-cat-tile-icon { color: var(--clr-primary); font-size: 1.4rem; }
+.store-cat-tile.is-active { border-color: var(--clr-primary); background: var(--clr-primary-soft); }
+.store-cat-tile.is-clear { color: var(--clr-danger); text-align: center; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 600; }
+
+.store-brand-strip { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.store-brand-chip {
+  background: var(--clr-surface-raised);
+  border: 1px solid var(--clr-outline, rgba(255, 255, 255, 0.14));
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  font-size: 0.82rem;
+  color: var(--clr-text-muted);
+  text-decoration: none;
+}
+.store-brand-chip:hover { border-color: var(--clr-primary); color: var(--clr-text); }
+
+.store-benefits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+.store-benefit {
+  display: flex;
+  gap: 0.65rem;
+  align-items: center;
+  background: var(--clr-surface-raised);
+  border: 1px solid var(--clr-outline, rgba(255, 255, 255, 0.14));
+  border-radius: 10px;
+  padding: 0.75rem 0.9rem;
+  font-size: 0.82rem;
+  color: var(--clr-text-muted);
+}
+.store-benefit svg { color: var(--clr-primary); flex: none; }
+
+/* ── Produktová galerie + parametry ────────────────────────────────────────── */
+.store-gallery { display: flex; flex-direction: column; gap: 0.6rem; }
+.store-gallery-main {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--clr-surface-card);
+}
+.store-gallery-thumbs { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.store-gallery-thumb {
+  position: relative;
+  width: 68px;
+  height: 68px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  background: var(--clr-surface-card);
+  cursor: pointer;
+  padding: 0;
+}
+.store-gallery-thumb.is-active { border-color: var(--clr-primary); }
+
+.store-specs { margin-top: 2.5rem; }
+.store-specs h2 { font-size: 1.1rem; margin: 0 0 0.8rem; }
+.store-specs table { border-collapse: collapse; width: 100%; max-width: 720px; }
+.store-specs th, .store-specs td {
+  text-align: left;
+  padding: 0.55rem 0.9rem;
+  border-bottom: 1px solid var(--clr-outline, rgba(255, 255, 255, 0.1));
+  font-size: 0.88rem;
+  vertical-align: top;
+}
+.store-specs th { color: var(--clr-text-dim); font-weight: 600; white-space: nowrap; width: 38%; }
+
+.store-sources { margin-top: 1.8rem; }
+.store-sources h2 { font-size: 0.95rem; margin: 0 0 0.5rem; }
+.store-sources ul { margin: 0; padding-left: 1.1rem; color: var(--clr-text-dim); font-size: 0.78rem; }
+.store-sources a { color: var(--clr-text-muted); text-decoration: underline; }
+.store-sources small { color: var(--clr-text-dim); }

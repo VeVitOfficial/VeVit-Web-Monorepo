@@ -1,4 +1,5 @@
 import { handleAccountRequest } from "@/lib/account-route";
+import { consumeRateLimit } from "@/lib/rate-limit";
 import { accountSupabase, verifyBcrypt } from "@/lib/account-auth";
 import { destroyedSessionResponse } from "@/lib/account-session-destroy";
 
@@ -11,6 +12,10 @@ export const dynamic = "force-dynamic";
 
 export async function POST(request: Request) {
   return handleAccountRequest(async (session) => {
+    // The current password is re-checked here: cap guesses per account (atomic, fail closed).
+    if ((await consumeRateLimit("delete_account", session.user.id, 5, 3600)) !== "ok") {
+      return Response.json({ error: "Příliš mnoho pokusů. Zkuste to za chvíli." }, { status: 429 });
+    }
     let body: Record<string, unknown> = {};
     try {
       body = (await request.json()) as Record<string, unknown>;

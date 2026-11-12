@@ -64,6 +64,27 @@ function activityMd(activity) {
     const labels = config.labels ?? { green: "Zelená: můžu říct", red: "Červená: tajemství" };
     out.push(`Tlačítka: zelená „${labels.green}“, červená „${labels.red}“.`);
     out.push(config.situations.map((s) => `- ${s.text} → **${s.answer ? labels[s.answer] : "nehodnotí se"}**${s.feedback ? ` (${s.feedback})` : ""}`).join("\n"));
+  } else if (component === "PromptBuilder") {
+    out.push(`*Úkol:* ${config.goal}`);
+    out.push(config.slots.map((slot) => `- **${slot.label}:** ${slot.options.map((o) => `${o.good ? "✅" : "▫️"} ${o.text}`).join(" · ")} (${slot.why})`).join("\n"));
+    out.push(`*Po dokončení:* ${config.success}`);
+  } else if (component === "TextDetective") {
+    const what = { errors: "chyby", signals: "varovné znaky", redact: "údaje, které do AI nepatří" }[config.mode];
+    out.push(`Žák v textu hledá: ${what}.${config.header ? ` Hlavička: ${Object.values(config.header).join(" · ")}.` : ""}`);
+    out.push(config.segments.map((seg) => (seg.target ? `- 🎯 **${seg.text}**${seg.replacement ? ` → „${seg.replacement}“` : ""} (${seg.explanation})` : `- ${seg.text}`)).join("\n"));
+  } else if (component === "NextWord") {
+    out.push(config.rounds.map((round) => `- „${round.start} …“: ${round.options.map((o) => `${o.word} ${o.percent} %`).join(", ")}. ${round.note}`).join("\n"));
+  } else if (component === "ScaleLine") {
+    const steps = config.steps ?? 5;
+    out.push(`Přímka o ${steps} pozicích: 1 = „${config.left}“, ${steps} = „${config.right}“.`);
+    out.push(config.items.map((item) => `- ${item.text} → **${item.min === item.max ? item.min : `${item.min}–${item.max}`}** (${item.feedback})`).join("\n"));
+  } else if (component === "ChatSim") {
+    out.push(`Rozhovor s: ${config.persona.name}.`);
+    out.push(config.steps.map((step, i) => `${i + 1}. „${step.message}“\n${step.choices.map((ch) => `   - ${ch.good ? "✅" : "▫️"} ${ch.text} (${ch.feedback})`).join("\n")}`).join("\n"));
+  } else if (component === "PairMatch") {
+    out.push(config.pairs.map((pair) => `- ${pair.left} ↔ **${pair.right}**`).join("\n"));
+  } else if (component === "PromptLab") {
+    out.push(config.rounds.map((round, i) => `${i + 1}. ${round.scenario} _(cíl: ${round.goal})_\n${round.promptChecks.map((c) => `   - zadání: ${c.label}`).join("\n")}${(round.answerChecks ?? []).map((c) => `\n   - odpověď: ${c.label}`).join("")}`).join("\n"));
   } else if (component === "AiSandbox") {
     out.push("```json\n" + JSON.stringify(config, null, 2) + "\n```");
   }

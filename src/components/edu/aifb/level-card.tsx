@@ -1,5 +1,5 @@
 // Karta levelu (seznamový pohled i podklad pro mapy): kód, název, podtitul, ročníky, hodiny,
-// počet lekcí, doporučení pro pokročilé a štítek certifikace („Připravuje se").
+// počet lekcí, označení rozšiřujících úrovní „Pro zájemce“ a štítek certifikace („Připravuje se").
 // Pracuje s LevelSummary (malý podstrom obsahu), aby se na klienta neposílal celý obsah.
 
 import Link from "next/link";
@@ -32,9 +32,9 @@ export type LevelSummary = {
   unlocked?: number;
 };
 
-/** Levely 4–6 (2. stupeň, SŠ) jsou určené pokročilým / kroužkům (recommendedPlacement). */
+/** Levely 1–6 (2. stupeň, SŠ) jsou praktické jádro pro všechny; levely 7–10 rozšíření pro zájemce (kroužky, semináře). */
 export function isAdvanced(level: Pick<Level, "order">, categoryId: string): boolean {
-  return categoryId !== "zs1" && level.order >= 4;
+  return categoryId !== "zs1" && level.order >= 7;
 }
 
 export function toLevelSummary(categoryId: CategoryId, level: Level): LevelSummary {

@@ -149,7 +149,7 @@ export default async function HomePage() {
                     </span>
                   </span>
                 </a>
-                <a className="dd-item" href={`${L}/edu/skoly#trida`} role="menuitem">
+                <a className="dd-item" href={`${L}/edu/skoly#skola`} role="menuitem">
                   <span className="dd-icon">
                     <Icon name="school" size={18} />
                   </span>
@@ -408,7 +408,7 @@ export default async function HomePage() {
             <a href={`${L}/edu`}>Edu</a>
           </li>
           <li>
-            <a href={`${L}/edu/skoly#trida`}>Edu pro školy</a>
+            <a href={`${L}/edu/skoly#skola`}>Edu pro školy</a>
           </li>
           <li>
             <a href={`${L}/services`}>Services</a>
@@ -497,7 +497,7 @@ export default async function HomePage() {
                   {/* Žák zadá kód třídy od učitele (rank student, AI gramotnost) */}
                   <a
                     className="btn btn-ghost"
-                    href={`${L}/edu/skoly#trida`}
+                    href={`${L}/edu/skoly#skola`}
                     data-track="hero:edu-schools"
                   >
                     <Icon name="school" size={16} />
@@ -1426,7 +1426,7 @@ export default async function HomePage() {
                   </a>
                 </li>
                 <li>
-                  <a href={`${L}/edu/skoly#trida`}>VeVit Edu pro školy</a>
+                  <a href={`${L}/edu/skoly#skola`}>VeVit Edu pro školy</a>
                 </li>
                 <li>
                   <a

@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 import { AccountBackendUnavailableError } from "@/lib/account-session";
-import { accountSupabase, logActivity } from "@/lib/account-auth";
+import { accountSupabase, checkRateLimit, clientIp, logActivity, registerPasswordError } from "@/lib/account-auth";
 import bcrypt from "bcryptjs";
 
 export const runtime = "nodejs";
@@ -8,12 +8,15 @@ export const dynamic = "force-dynamic";
 
 // Port of account/api/reset-password.php (token-based reset, no session):
 // verify the reset token, set the new bcrypt hash, clear the token and revoke
-// every session (force re-login everywhere). NOTE: password length ≥ 8 only —
-// the legacy endpoint applies no complexity rule here.
+// every session (force re-login everywhere). Applies the same password policy
+// as registration and change-password.
 
 export async function POST(request: Request) {
   // Token reset runs unauthenticated, so no handleAccountRequest() here.
   try {
+    if (!(await checkRateLimit(clientIp(request), "reset_password", 10, 60))) {
+      return Response.json({ error: "Příliš mnoho pokusů. Zkuste to za chvíli." }, { status: 429, headers: { "Retry-After": "3600" } });
+    }
     let body: Record<string, unknown> = {};
     try {
       body = (await request.json()) as Record<string, unknown>;
@@ -26,8 +29,9 @@ export async function POST(request: Request) {
     if (rawToken.length !== 64) {
       return Response.json({ error: "Neplatný nebo expirovaný odkaz." }, { status: 400 });
     }
-    if (newPass.length < 8) {
-      return Response.json({ error: "Heslo musí mít alespoň 8 znaků.", field: "new_password" }, { status: 422 });
+    const passwordError = registerPasswordError(newPass);
+    if (passwordError !== null) {
+      return Response.json({ error: passwordError, field: "new_password" }, { status: 422 });
     }
 
     const tokenHash = createHash("sha256").update(rawToken).digest("hex");

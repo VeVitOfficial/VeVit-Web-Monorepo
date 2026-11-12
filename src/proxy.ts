@@ -20,7 +20,7 @@ const HOST_REDIRECTS: Record<string, string> = {
 
 const locales = new Set(["cs", "en", "de", "es", "uk", "fr", "sk"]);
 const sections = new Set(["home", "account", "edu", "store", "tools", "services"]);
-const publicFile = /\.(?:css|js|mjs|json|map|png|jpe?g|webp|gif|svg|ico|woff2?|ttf|wasm|onnx|pdf|bin|data|mp3|wav|mp4|webm)$/i;
+const publicFile = /\.(?:css|js|mjs|json|map|png|jpe?g|webp|gif|svg|ico|woff2?|ttf|wasm|onnx|pdf|bin|data|traineddata|gz|bcmap|pfb|txt|mp3|wav|mp4|webm)$/i;
 // Statické HTML v public/, které se servíruje přímo (bez locale prefixu).
 const publicHtml = new Set(["/edu/sandbox-frame.html"]);
 

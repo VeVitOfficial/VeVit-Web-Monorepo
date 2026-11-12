@@ -1,9 +1,11 @@
+import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import {
   AccountBackendUnavailableError,
   loadSessionFromCookies,
   type AccountSession,
 } from "@/lib/account-session";
+import { isCrossSiteRequest } from "@/lib/request-origin";
 
 /** Error results share the PHP jsonErr() shape { error: string }. */
 class UnauthorizedAccountError extends Error {}
@@ -25,11 +27,17 @@ function jsonAccountError(error: Error, status: number): Response {
  * Shared plumbing for migrated account API routes: resolves the session from
  * the __Host-vvsession cookie, maps backend outages to 503 and unknown
  * failures to 500 — mirroring the PHP requireAuth()/jsonErr() error shape.
+ * Requests that a browser marks as cross-site are refused before the session
+ * is read (CSRF defence in depth on top of the SameSite=Lax cookie).
  */
 export async function handleAccountRequest(
   handler: (session: AccountSession) => Promise<Response>,
 ): Promise<Response> {
   try {
+    const incoming = new Request("https://account.invalid/", { headers: await headers() });
+    if (isCrossSiteRequest(incoming)) {
+      return NextResponse.json({ error: "Neplatný požadavek." }, { status: 403, headers: { "Cache-Control": "no-store" } });
+    }
     const session = await loadSessionFromCookies();
     if (!session) return jsonAccountError(new UnauthorizedAccountError(), 401);
     return await handler(session);

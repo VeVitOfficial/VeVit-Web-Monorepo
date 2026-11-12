@@ -30,9 +30,10 @@ const STATUS_BADGE_CLASS: Record<ToolStatus, string> = {
   experimental: "badge-status-experimental",
   coming_soon: "badge-status-coming-soon",
   broken: "badge-status-broken",
+  maintenance: "badge-status-maintenance",
 };
 
-const STATUSES: readonly ToolStatus[] = ["working", "limited", "experimental", "coming_soon", "broken"];
+const STATUSES: readonly ToolStatus[] = ["working", "limited", "experimental", "maintenance", "coming_soon", "broken"];
 const PROCESSINGS: readonly ProcessingLocation[] = ["client", "vevit_server", "external_ai", "external"];
 
 const PROCESSING_BADGE_CLASS: Record<ProcessingLocation, string> = {
@@ -45,7 +46,7 @@ const PROCESSING_BADGE_CLASS: Record<ProcessingLocation, string> = {
 // Karta je ztlumená a neklikatelná pro nástroje, které opravdu nejdou otevřít
 // (Fáze 2, bod 6) — "limited"/"experimental" fungují, jen s výhradou, proto
 // zůstávají plně klikatelné.
-const DIM_STATUSES: readonly ToolStatus[] = ["coming_soon", "broken"];
+const DIM_STATUSES: readonly ToolStatus[] = ["coming_soon", "broken", "maintenance"];
 
 // ── Redesign hlavní stránky (viz src/app/tools/page.tsx — .tools-hub scope) ──
 // Ikony kategorií pro dlaždice v hero sekci — stejné cesty jako v dodaném
