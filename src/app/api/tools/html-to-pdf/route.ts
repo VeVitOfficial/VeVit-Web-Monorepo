@@ -1,3 +1,5 @@
+import { clientIp } from "@/lib/account-auth";
+import { toolsRateLimit } from "@/lib/tools-rate-limit";
 import { RenderError, renderHtmlToPdf, validateOptions, type HtmlPdfOptions } from "@/lib/tools/html-pdf-render";
 import "server-only";
 
@@ -10,28 +12,11 @@ export const dynamic = "force-dynamic";
 export const maxDuration = 60;
 
 const MAX_BODY_BYTES = 2_600_000;
-const RATE_WINDOW_MS = 10 * 60_000;
+const RATE_WINDOW_SECONDS = 600;
 const RATE_MAX = 20;
-const hits = new Map<string, number[]>();
 
 function json(status: number, code: string, message: string): Response {
   return Response.json({ error: { code, message } }, { status, headers: { "Cache-Control": "no-store" } });
-}
-
-/** Klient podle posledního záznamu X-Forwarded-For (přidává ho naše proxy); první záznam může klient podvrhnout. */
-function clientKey(request: Request): string {
-  const xff = request.headers.get("x-forwarded-for")?.split(",").map((s) => s.trim()).filter(Boolean);
-  return xff?.length ? xff[xff.length - 1] : (request.headers.get("x-real-ip") ?? "local").trim();
-}
-
-function rateLimited(key: string): boolean {
-  const now = Date.now();
-  const list = (hits.get(key) ?? []).filter((t) => now - t < RATE_WINDOW_MS);
-  if (list.length >= RATE_MAX) { hits.set(key, list); return true; }
-  list.push(now);
-  hits.set(key, list);
-  if (hits.size > 5000) for (const [k, v] of hits) if (!v.some((t) => now - t < RATE_WINDOW_MS)) hits.delete(k);
-  return false;
 }
 
 /** Jen volání z vlastních stránek (ne z cizích webů). */
@@ -46,7 +31,10 @@ function sameOrigin(request: Request): boolean {
 
 export async function POST(request: Request): Promise<Response> {
   if (!sameOrigin(request)) return json(403, "forbidden", "Požadavek musí přijít z webu VeVit.");
-  if (rateLimited(clientKey(request))) return json(429, "rate_limited", "Příliš mnoho převodů, zkuste to za několik minut.");
+  // Sdílený atomický limit v databázi (paměť jedné instance by šla obejít zásahem jiné instance).
+  const rate = await toolsRateLimit(clientIp(request), "html-to-pdf", RATE_WINDOW_SECONDS, RATE_MAX);
+  if (!rate.available) return json(503, "unavailable", "Převod je dočasně nedostupný.");
+  if (!rate.allowed) return json(429, "rate_limited", "Příliš mnoho převodů, zkuste to za několik minut.");
   const length = Number(request.headers.get("content-length") ?? "0");
   if (length > MAX_BODY_BYTES) return json(413, "too_large", "HTML je příliš velké.");
 

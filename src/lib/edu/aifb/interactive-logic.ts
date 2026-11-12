@@ -91,3 +91,53 @@ export function splitSentences(text: string): string[] {
     .map((sentence) => sentence.trim())
     .filter((sentence) => sentence.length > 0);
 }
+
+// ─── Šablony nad dvojicemi (PairGames) ───
+// Promíchání je stálé (ne náhodné), aby se server a prohlížeč shodly a hra byla opakovatelná.
+
+/** FNV-1a s dodatečným promícháním bitů, aby se podobné texty („a-l“, „a-r“) neřadily vedle sebe. */
+function hashOf(text: string): number {
+  let hash = [...text].reduce((value, ch) => Math.imul(value ^ ch.charCodeAt(0), 16777619) >>> 0, 2166136261);
+  hash = Math.imul(hash ^ (hash >>> 16), 0x85ebca6b);
+  hash = Math.imul(hash ^ (hash >>> 13), 0xc2b2ae35);
+  return (hash ^ (hash >>> 16)) >>> 0;
+}
+
+/** Stálé promíchání podle textu a „soli“. */
+export function stableOrder<T>(items: readonly T[], keyOf: (item: T) => string, salt: string): T[] {
+  return [...items].sort((a, b) => hashOf(keyOf(a) + salt) - hashOf(keyOf(b) + salt) || keyOf(a).localeCompare(keyOf(b)));
+}
+
+/** Kvíz: správná pravá strana a až tři stálé nesprávné, ve stálém pořadí. Vrací id dvojic. */
+export function quizOptionIds(config: PairMatchConfig, pairId: string): string[] {
+  const others = stableOrder(config.pairs.filter((pair) => pair.id !== pairId), (pair) => pair.id, `q${pairId}`).slice(0, 3).map((pair) => pair.id);
+  return stableOrder([pairId, ...others], (id) => id, `o${pairId}`);
+}
+
+/** Pravda/lež: ke každé dvojici pravdivé nebo záměrně pomíchané tvrzení. `shownId` = čí pravá strana se ukáže. */
+export function truthStatements(config: PairMatchConfig): { pairId: string; shownId: string; isTrue: boolean }[] {
+  const ordered = stableOrder(config.pairs, (pair) => pair.id, "t");
+  return ordered.map((pair, index) => {
+    // Každé druhé tvrzení je pravdivé; nepravdivé bere pravou stranu sousední dvojice.
+    const isTrue = index % 2 === 0 || ordered.length < 2;
+    const other = ordered[(index + 1) % ordered.length];
+    return { pairId: pair.id, shownId: isTrue ? pair.id : other.id, isTrue };
+  });
+}
+
+export type MemoryCard = { key: string; pairId: string; text: string };
+
+/** Pexeso: nejvýše šest dvojic (12 karet), stálé pořadí. */
+export function memoryDeck(config: PairMatchConfig): MemoryCard[] {
+  const pairs = stableOrder(config.pairs, (pair) => pair.id, "m").slice(0, 6);
+  const cards = pairs.flatMap((pair) => [
+    { key: `${pair.id}-l`, pairId: pair.id, text: pair.left },
+    { key: `${pair.id}-r`, pairId: pair.id, text: pair.right },
+  ]);
+  return stableOrder(cards, (card) => card.key, "d");
+}
+
+/** Hvězdy za pexeso podle počtu tahů vzhledem k počtu dvojic. */
+export function memoryStars(moves: number, pairs: number): 1 | 2 | 3 {
+  return moves <= pairs + 2 ? 3 : moves <= pairs * 2 ? 2 : 1;
+}

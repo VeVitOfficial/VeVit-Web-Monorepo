@@ -639,3 +639,29 @@ ol.aifb-list { list-style: decimal; }
 .aifb-edit-units a { text-decoration: underline; text-underline-offset: 2px; }
 @media (max-width: 560px) { .aifb-editor__bar { position: static; } .aifb-edit-group { padding: 0.6rem; } }
 @media print { .aifb-edit-link { display: none !important; } }
+
+/* PromptLab: kola se zadáním pro AI a okamžitým odškrtáváním podmínek */
+.aifb .aifb-lab__top { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; flex-wrap: wrap; }
+.aifb .aifb-lab__streak { padding: 0.15rem 0.7rem; border-radius: 999px; font-weight: 700; background: color-mix(in srgb, var(--aifb-accent) 18%, var(--bg-surface)); border: 2px solid color-mix(in srgb, var(--aifb-accent) 50%, var(--border-color)); animation: aifb-pop 0.35s ease-out; }
+.aifb .aifb-lab__card { display: grid; gap: 0.9rem; }
+.aifb .aifb-lab__goal { margin: 0; padding: 0.6rem 0.9rem; border-radius: 0.8rem; background: color-mix(in srgb, var(--aifb-accent) 10%, var(--bg-surface)); }
+.aifb .aifb-lab__checks ul { list-style: none; margin: 0.3rem 0 0; padding: 0; display: grid; gap: 0.4rem; }
+.aifb .aifb-lab__checks li { display: grid; grid-template-columns: 1.6rem 1fr; gap: 0.4rem; align-items: start; padding: 0.45rem 0.7rem; border-radius: 0.7rem; border: 2px solid var(--border-color); background: var(--bg-surface); }
+.aifb .aifb-lab__checks li[data-ok="true"] { border-color: color-mix(in srgb, var(--success, #2e9d5b) 60%, var(--border-color)); background: color-mix(in srgb, var(--success, #2e9d5b) 10%, var(--bg-surface)); }
+.aifb .aifb-lab__checks li[data-ok="false"] { border-color: color-mix(in srgb, var(--error) 50%, var(--border-color)); background: color-mix(in srgb, var(--error) 8%, var(--bg-surface)); }
+.aifb .aifb-lab__checks li > span:first-child { font-weight: 800; }
+.aifb .aifb-lab__hint { display: block; font-style: normal; font-size: 0.92rem; color: var(--text-secondary); }
+@keyframes aifb-pop { from { transform: scale(0.8); } to { transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) { .aifb .aifb-lab__streak { animation: none; } }
+
+/* PairGames: přepínač šablon (jako Wordwall), pexeso a kartičky */
+.aifb .aifb-pairgames__tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.9rem; }
+.aifb .aifb-pairgames__tab { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.4rem 0.9rem; border-radius: 999px; border: 2px solid var(--border-color); background: var(--bg-surface); color: var(--text-primary); font: inherit; font-weight: 600; cursor: pointer; }
+.aifb .aifb-pairgames__tab[aria-pressed="true"] { border-color: var(--aifb-accent); background: color-mix(in srgb, var(--aifb-accent) 18%, var(--bg-surface)); }
+.aifb .aifb-pairgames__tab:focus-visible { outline: 3px solid var(--aifb-accent); outline-offset: 2px; }
+.aifb .aifb-memory__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr)); gap: 0.6rem; margin: 0.8rem 0; }
+.aifb .aifb-memory__card { min-height: 5.5rem; justify-content: center; text-align: center; font-weight: 600; }
+.aifb .aifb-memory__card[data-state="idle"] { font-size: 1.6rem; background: color-mix(in srgb, var(--aifb-accent) 14%, var(--bg-surface)); }
+.aifb .aifb-memory__card[data-state="open"] { border-color: var(--aifb-accent); }
+.aifb .aifb-flash__card { width: 100%; min-height: 9rem; flex-direction: column; justify-content: center; text-align: center; gap: 0.4rem; font-size: 1.2rem; font-weight: 700; }
+.aifb .aifb-flash__card small { font-weight: 400; color: var(--text-secondary); }

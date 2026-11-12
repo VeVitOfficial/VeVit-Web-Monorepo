@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { readEduLocale } from "@/lib/edu/locale";
 import { draftPreviewEnabled, getPupilLayer } from "@/lib/edu/aifb/content";
 import { AifbFrame } from "@/components/edu/aifb/frame";
+import { publicLayer } from "@/lib/edu/aifb/pupil";
 import { PupilLayerView } from "@/components/edu/aifb/interactive/pupil-layer";
 
 export const metadata: Metadata = { title: "Ukázky komponent AIFB", robots: { index: false } };
@@ -27,7 +28,7 @@ export default async function AifbShowcaseRoute() {
         return (
           <section key={id} className="aifb-section" aria-labelledby={`${id}-h`}>
             <h2 className="aifb-h2" id={`${id}-h`}>{layer.component}: {id}</h2>
-            <PupilLayerView lessonId={id} categoryId={categoryId} layer={layer} ctx={{ locale, categoryId }} />
+            <PupilLayerView lessonId={id} categoryId={categoryId} layer={publicLayer(layer)} ctx={{ locale, categoryId }} />
           </section>
         );
       })}

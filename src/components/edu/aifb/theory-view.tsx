@@ -13,6 +13,7 @@ import type { EduLocale } from "@/lib/edu/i18n-data";
 import { EditLink } from "./access-ui";
 import { Paragraphs } from "./blocks";
 import { Crumbs } from "./crumbs";
+import { publicLayer } from "@/lib/edu/aifb/pupil";
 import { PupilLayerView } from "./interactive/pupil-layer";
 import { LessonProgressControls } from "./lesson-progress";
 import { PrintButton } from "./print-button";
@@ -64,7 +65,7 @@ export function TheoryView({
           <section className="th-section" aria-labelledby="th-try">
             <h2 id="th-try">{t("aifb.theory.tryIt")}</h2>
             {layer.status === "draft" ? <p className="aifb-muted">{t("aifb.pupil.draftBanner")}</p> : null}
-            <PupilLayerView lessonId={lesson.id} categoryId={category.id} layer={layer} ctx={ctx} />
+            <PupilLayerView lessonId={lesson.id} categoryId={category.id} layer={publicLayer(layer)} ctx={ctx} />
           </section>
         ) : null}
 

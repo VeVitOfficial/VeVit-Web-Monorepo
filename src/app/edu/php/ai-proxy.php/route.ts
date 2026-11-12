@@ -1,4 +1,7 @@
+import { clientIp } from "@/lib/account-auth";
 import { phpMbSubstr } from "@/lib/edu-wikipedia-sanitize";
+import { isCrossSiteRequest } from "@/lib/request-origin";
+import { toolsRateLimit } from "@/lib/tools-rate-limit";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -12,6 +15,8 @@ const API_URL = process.env.EDU_AI_API_URL?.trim() || "https://api.openai.com/v1
 const API_KEY = process.env.EDU_AI_API_KEY?.trim() ?? "";
 const MODEL = process.env.EDU_AI_MODEL?.trim() || "gpt-4o-mini";
 const MAX_CTX = 12000;
+const RATE_WINDOW_SECONDS = 60;
+const RATE_MAX = 10;
 
 const RESPONSE_HEADERS: Record<string, string> = {
   "Content-Type": "application/json; charset=utf-8",
@@ -31,6 +36,12 @@ const SYSTEM_PROMPT = "Jsi asistent, který odpovídá na otázky výhradně na 
   + "Pokud v textu odpověď jednoznačně nenajdeš, vrať {\"answer_text\":\"\",\"exact_quote\":\"\"}.";
 
 export async function POST(request: Request): Promise<Response> {
+  // Paid upstream key: browser-only, per-IP limited, fail closed.
+  if (isCrossSiteRequest(request)) return jsonOut({ error: "forbidden" }, 403);
+  const rate = await toolsRateLimit(clientIp(request), "edu-ai-proxy", RATE_WINDOW_SECONDS, RATE_MAX);
+  if (!rate.available) return jsonOut({ error: "service unavailable" }, 503);
+  if (!rate.allowed) return jsonOut({ error: "rate limited" }, 429);
+
   let body: Record<string, unknown> = {};
   try {
     const parsed = JSON.parse(await request.text());
@@ -44,7 +55,7 @@ export async function POST(request: Request): Promise<Response> {
     return jsonOut({ error: "missing question/context" }, 400);
   }
   if (API_KEY === "") {
-    return jsonOut({ error: "API_KEY není nastaven v php/ai-proxy.php" }, 500);
+    return jsonOut({ error: "AI is not configured" }, 503);
   }
   context = phpMbSubstr(context, 0, MAX_CTX);
 
@@ -71,8 +82,8 @@ export async function POST(request: Request): Promise<Response> {
       body: JSON.stringify(payload),
     });
   } catch (error) {
-    const message = error instanceof Error ? error.message : "connection failed";
-    return jsonOut({ error: `upstream error: ${message}` }, 502);
+    console.error("[edu-ai-proxy] upstream request failed", error instanceof Error ? error.message : error);
+    return jsonOut({ error: "upstream error" }, 502);
   }
 
   let raw = "";
@@ -83,7 +94,8 @@ export async function POST(request: Request): Promise<Response> {
   }
   const code = response.status;
   if (code >= 400) {
-    return jsonOut({ error: `upstream HTTP ${code}`, upstream: phpMbSubstr(raw, 0, 500) }, 502);
+    console.error("[edu-ai-proxy] upstream HTTP error", code);
+    return jsonOut({ error: `upstream HTTP ${code}` }, 502);
   }
 
   let data: unknown = null;

@@ -5,11 +5,11 @@
 
 export type PupilComponent =
   | "CardSort" | "TrafficLightCards" | "QuizCard" | "AiSandbox"
-  | "PromptBuilder" | "TextDetective" | "NextWord" | "ScaleLine" | "ChatSim" | "PairMatch";
+  | "PromptBuilder" | "TextDetective" | "NextWord" | "ScaleLine" | "ChatSim" | "PairMatch" | "PromptLab";
 
 export const PUPIL_COMPONENTS: readonly PupilComponent[] = [
   "CardSort", "TrafficLightCards", "QuizCard", "AiSandbox",
-  "PromptBuilder", "TextDetective", "NextWord", "ScaleLine", "ChatSim", "PairMatch",
+  "PromptBuilder", "TextDetective", "NextWord", "ScaleLine", "ChatSim", "PairMatch", "PromptLab",
 ];
 
 /** Volitelný obrázek (emoji) u karty, hromádky, možnosti nebo situace; je jen ozdobný (čtečky ho nečtou). */
@@ -78,14 +78,55 @@ export type ChatSimConfig = {
   steps: { id: string; message: string; choices: { id: string; text: string; good?: boolean; feedback: string; reply?: string }[] }[];
 };
 
-/** Spojovačka: ke každé levé kartě patří právě jedna pravá. */
+/** Šablony her nad stejnými dvojicemi (jako ve Wordwallu): žák si může hru přepnout. */
+export const PAIR_TEMPLATES = ["match", "quiz", "memory", "truefalse", "flash"] as const;
+export type PairTemplate = (typeof PAIR_TEMPLATES)[number];
+
+/** Spojovačka: ke každé levé kartě patří právě jedna pravá. Stejné dvojice jdou hrát v několika šablonách. */
 export type PairMatchConfig = {
+  /** Šablona, ve které se hra otevře (výchozí `match`). */
+  template?: PairTemplate;
   pairs: ({ id: string; left: string; right: string } & WithEmoji)[];
 };
 
 export type AiSandboxConfig =
   | { mode: "prompt-rescue"; vaguePrompts: string[] }
   | { mode: "fact-check"; topicLabel: string };
+
+/** Podmínka, kterou aplikace hned vyhodnotí na zadání žáka (promptChecks) nebo na odpovědi AI (answerChecks). */
+export type LabCheck = {
+  id: string;
+  /** Krátký popis podmínky, ukazuje se jako odškrtávací řádek („Řekneš, pro koho to je“). */
+  label: string;
+  /** Rada, když podmínka není splněná („Napiš, kdo odpověď bude číst“). */
+  hint: string;
+  kind: "pattern" | "notPattern" | "minWords" | "maxWords" | "maxSentences" | "minBullets";
+  /** Regulární výraz (pattern/notPattern): bez rozlišení velikosti písmen i diakritiky. */
+  pattern?: string;
+  n?: number;
+};
+
+/**
+ * Trénink zadání s AI v krátkých kolech (styl Umíme to): žák napíše zadání, AI odpoví (živě, jinak
+ * uložená ukázka) a aplikace hned odškrtne splněné podmínky. Systémový prompt a uložená odpověď jsou
+ * jen na serveru (`PupilLayer.server`) a klientovi se nikdy neposílají.
+ */
+export type PromptLabConfig = {
+  rounds: {
+    id: string;
+    emoji?: string;
+    scenario: string;
+    /** Jak má vypadat dobrá odpověď (ukazuje se u kola). */
+    goal: string;
+    placeholder?: string;
+    promptChecks: LabCheck[];
+    answerChecks?: LabCheck[];
+  }[];
+};
+
+export type PromptLabServer = {
+  rounds: Record<string, { system: string; fallback: string; maxWords: number }>;
+};
 
 export type PupilLayer = {
   status: "draft" | "reviewed" | "published";
@@ -94,7 +135,9 @@ export type PupilLayer = {
   theme?: { emoji: string; title: string };
   text?: string[];
   config?: CardSortConfig | TrafficLightConfig | QuizConfig | AiSandboxConfig
-    | PromptBuilderConfig | TextDetectiveConfig | NextWordConfig | ScaleLineConfig | ChatSimConfig | PairMatchConfig;
+    | PromptBuilderConfig | TextDetectiveConfig | NextWordConfig | ScaleLineConfig | ChatSimConfig | PairMatchConfig | PromptLabConfig;
+  /** Jen server (PromptLab): systémové prompty a uložené odpovědi; z vrstvy se před odesláním klientovi odstraní (`publicLayer`). */
+  server?: PromptLabServer;
   /** Poznámky pro vlastníka (co je potřeba potvrdit); žákům se nikdy neukazují. */
   reviewNotes?: string[];
 };
@@ -222,17 +265,52 @@ export function validatePupilLayer(lessonId: string, layer: PupilLayer, options:
     const c = config as unknown as PairMatchConfig;
     const pairs = Array.isArray(c.pairs) ? c.pairs : [];
     if (pairs.length < 3 || !pairs.every((p) => isString(p.id) && isString(p.left) && isString(p.right)) || !unique(pairs.map((p) => p.id)) || !unique(pairs.map((p) => p.right))) errors.push(`${where}: aspoň tři dvojice s jedinečnou pravou stranou`);
+    if (c.template !== undefined && !PAIR_TEMPLATES.includes(c.template)) errors.push(`${where}: neznámá šablona "${String(c.template)}"`);
+  } else if (layer.component === "PromptLab") {
+    const c = config as unknown as PromptLabConfig;
+    const rounds = Array.isArray(c.rounds) ? c.rounds : [];
+    if (rounds.length === 0 || !unique(rounds.map((r) => r.id))) errors.push(`${where}: rounds`);
+    const checkErrors = (check: LabCheck) => {
+      if (!isString(check.id) || !isString(check.label) || !isString(check.hint)) return "id, label a hint";
+      if (!["pattern", "notPattern", "minWords", "maxWords", "maxSentences", "minBullets"].includes(check.kind)) return "druh podmínky";
+      if (check.kind === "pattern" || check.kind === "notPattern") {
+        if (!isString(check.pattern)) return "pattern";
+        try { new RegExp(check.pattern, "iu"); } catch { return "pattern (neplatný výraz)"; }
+      } else if (!Number.isFinite(check.n) || (check.n as number) < 1) return "n";
+      return null;
+    };
+    for (const round of rounds) {
+      if (!isString(round.id) || !isString(round.scenario) || !isString(round.goal)) errors.push(`${where}: kolo ${round.id} potřebuje id, scenario a goal`);
+      const promptChecks = Array.isArray(round.promptChecks) ? round.promptChecks : [];
+      const answerChecks = Array.isArray(round.answerChecks) ? round.answerChecks : [];
+      if (promptChecks.length === 0) errors.push(`${where}: kolo ${round.id} potřebuje aspoň jednu podmínku na zadání`);
+      for (const check of [...promptChecks, ...answerChecks]) {
+        const problem = checkErrors(check);
+        if (problem) errors.push(`${where}: kolo ${round.id}, podmínka ${check.id}: ${problem}`);
+      }
+      if (!unique([...promptChecks, ...answerChecks].map((check) => check.id))) errors.push(`${where}: kolo ${round.id} má opakované id podmínky`);
+      const server = layer.server?.rounds?.[round.id];
+      if (!server || !isString(server.system) || !isString(server.fallback) || !(server.maxWords >= 5 && server.maxWords <= 300)) errors.push(`${where}: kolo ${round.id} nemá na serveru system, fallback a maxWords (5–300)`);
+    }
   }
   return errors;
 }
 
+/** Vrstva pro prohlížeč: bez serverových částí (systémové prompty, uložené odpovědi). */
+export function publicLayer(layer: PupilLayer): PupilLayer {
+  if (layer.server === undefined) return layer;
+  const { server: _server, ...rest } = layer;
+  void _server;
+  return rest;
+}
+
 /**
  * Serverová brána AI cvičení: endpoint obslouží jen lekci, jejíž žákovská vrstva existuje, je typu
- * AiSandbox a je schválená (reviewed/published); návrh (draft) jen ve vývoji a náhledových nasazeních.
+ * AiSandbox nebo PromptLab a je schválená (reviewed/published); návrh (draft) jen ve vývoji a náhledových nasazeních.
  * Na produkci tak nikdo nevolá model dřív, než vlastník vrstvu schválí (pravidlo R7).
  */
 export function aiLessonAvailable(layer: { status: string; component?: string } | undefined, previewEnabled: boolean): boolean {
-  return layer !== undefined && layer.component === "AiSandbox" && (layer.status !== "draft" || previewEnabled);
+  return layer !== undefined && (layer.component === "AiSandbox" || layer.component === "PromptLab") && (layer.status !== "draft" || previewEnabled);
 }
 
 /** Text pro žáky z originálního obsahu (pupil.text) se zobrazí, jen když ho vlastník schválil (R7). */

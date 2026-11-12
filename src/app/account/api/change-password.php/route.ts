@@ -1,5 +1,6 @@
 import bcrypt from "bcryptjs";
 import { handleAccountRequest } from "@/lib/account-route";
+import { consumeRateLimit } from "@/lib/rate-limit";
 import {
   accountSupabase,
   logActivity,
@@ -15,6 +16,10 @@ export const dynamic = "force-dynamic";
 
 export async function POST(request: Request) {
   return handleAccountRequest(async (session) => {
+    // The current password is re-checked here: cap guesses per account (atomic, fail closed).
+    if ((await consumeRateLimit("change_password", session.user.id, 8, 900)) !== "ok") {
+      return Response.json({ error: "Příliš mnoho pokusů. Zkuste to za chvíli." }, { status: 429 });
+    }
     let body: Record<string, unknown> = {};
     try {
       body = (await request.json()) as Record<string, unknown>;

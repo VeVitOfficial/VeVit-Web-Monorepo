@@ -1,4 +1,5 @@
-import { accountSupabase } from "@/lib/account-auth";
+import { accountSupabase, clientIp } from "@/lib/account-auth";
+import { consumeRateLimit } from "@/lib/rate-limit";
 import { AccountBackendUnavailableError, loadSessionFromCookies } from "@/lib/account-session";
 import {
   OAUTH_STATE_TTL_SECONDS,
@@ -27,6 +28,11 @@ export async function GET(request: Request): Promise<Response> {
   if (!oauthProviderAllowed(provider)) return redirectToLogin(request, "oauth_configuration_error");
   const cfg = oauthProviderConfig(provider);
   if (cfg === null) return redirectToLogin(request, "oauth_configuration_error");
+
+  // Every start writes an oauth_attempts row: cap them per address (fail closed).
+  if ((await consumeRateLimit("oauth_start", clientIp(request), 30, 600)) !== "ok") {
+    return redirectToLogin(request, "oauth_exchange_failed");
+  }
 
   const mode = url.searchParams.get("mode") ?? "login";
   const rawAction = url.searchParams.get("twofa_action") ?? "";

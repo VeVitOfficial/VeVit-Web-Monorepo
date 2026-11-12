@@ -3,6 +3,7 @@ import "server-only";
 import { cookies } from "next/headers";
 import { createHash, createHmac } from "node:crypto";
 import { createClient } from "@supabase/supabase-js";
+import { appSecret } from "@/lib/app-secret";
 
 export const ACCOUNT_SESSION_COOKIE = "__Host-vvsession";
 export const ACCOUNT_LEGACY_SESSION_COOKIE = "__vvsession";
@@ -87,8 +88,7 @@ export async function loadAccountSession(rawToken: string | undefined) {
       if (error) console.warn("Account session touch failed", { code: error.code });
     });
 
-  const csrfSecret = process.env.VEVIT_APP_SECRET?.trim() || key;
-  const csrfToken = createHmac("sha256", csrfSecret)
+  const csrfToken = createHmac("sha256", appSecret("csrf"))
     .update(`${rawToken}|csrf`)
     .digest("hex");
 

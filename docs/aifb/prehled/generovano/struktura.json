@@ -206,7 +206,7 @@
               "id": "zs2-level-1-cv1",
               "type": "exercise",
               "title": "První konverzace s AI",
-              "pilot": "ChatSim"
+              "pilot": "PromptLab"
             },
             {
               "id": "zs2-level-1-cv2",
@@ -250,13 +250,13 @@
               "id": "zs2-level-2-cv1",
               "type": "exercise",
               "title": "Záchranář promptů",
-              "pilot": "AiSandbox"
+              "pilot": "PromptLab"
             },
             {
               "id": "zs2-level-2-cv2",
               "type": "exercise",
               "title": "Ukázkové příklady v praxi",
-              "pilot": "TextDetective"
+              "pilot": "PromptLab"
             },
             {
               "id": "zs2-level-2-cv3",
@@ -268,7 +268,7 @@
               "id": "zs2-level-2-cv4",
               "type": "exercise",
               "title": "Správná podoba odpovědi",
-              "pilot": "PairMatch"
+              "pilot": "PromptLab"
             },
             {
               "id": "zs2-level-2-cv5",
@@ -300,7 +300,7 @@
               "id": "zs2-level-3-cv2",
               "type": "exercise",
               "title": "Přepiš to bezpečně",
-              "pilot": "TextDetective"
+              "pilot": "PromptLab"
             },
             {
               "id": "zs2-level-3-cv3",
@@ -356,7 +356,7 @@
               "id": "zs2-level-4-cv4",
               "type": "exercise",
               "title": "AI jako pomocník na učení",
-              "pilot": "ChatSim"
+              "pilot": "PromptLab"
             },
             {
               "id": "zs2-level-4-cv5",
@@ -406,7 +406,7 @@
               "id": "zs2-level-5-cv5",
               "type": "exercise",
               "title": "Pomáhá, nebo dělá za mě?",
-              "pilot": "ScaleLine"
+              "pilot": "PromptLab"
             }
           ]
         },
@@ -450,7 +450,7 @@
               "id": "zs2-level-6-cv5",
               "type": "exercise",
               "title": "Můj průvodce AI",
-              "pilot": "PairMatch"
+              "pilot": "PromptLab"
             }
           ]
         },
@@ -488,7 +488,7 @@
               "id": "zs2-level-7-cv4",
               "type": "exercise",
               "title": "Zpracování JSON odpovědí",
-              "pilot": "PairMatch"
+              "pilot": "PromptLab"
             },
             {
               "id": "zs2-level-7-cv5",
@@ -514,7 +514,7 @@
               "id": "zs2-level-8-cv1",
               "type": "exercise",
               "title": "První skript volající model",
-              "pilot": "PromptBuilder"
+              "pilot": "PromptLab"
             },
             {
               "id": "zs2-level-8-cv2",
@@ -558,7 +558,7 @@
               "id": "zs2-level-9-cv1",
               "type": "exercise",
               "title": "Návrh vlastní aplikace",
-              "pilot": "PromptBuilder"
+              "pilot": "PromptLab"
             },
             {
               "id": "zs2-level-9-cv2",
@@ -653,7 +653,7 @@
               "id": "ss-level-1-cv1",
               "type": "exercise",
               "title": "První konverzace s AI",
-              "pilot": "ChatSim"
+              "pilot": "PromptLab"
             },
             {
               "id": "ss-level-1-cv2",
@@ -697,13 +697,13 @@
               "id": "ss-level-2-cv1",
               "type": "exercise",
               "title": "Záchranář promptů",
-              "pilot": "AiSandbox"
+              "pilot": "PromptLab"
             },
             {
               "id": "ss-level-2-cv2",
               "type": "exercise",
               "title": "Few-shot v praxi",
-              "pilot": "TextDetective"
+              "pilot": "PromptLab"
             },
             {
               "id": "ss-level-2-cv3",
@@ -715,7 +715,7 @@
               "id": "ss-level-2-cv4",
               "type": "exercise",
               "title": "Strukturovaný výstup: Markdown a JSON",
-              "pilot": "TextDetective"
+              "pilot": "PromptLab"
             },
             {
               "id": "ss-level-2-cv5",
@@ -747,7 +747,7 @@
               "id": "ss-level-3-cv2",
               "type": "exercise",
               "title": "Co do AI nepatří",
-              "pilot": "TextDetective"
+              "pilot": "PromptLab"
             },
             {
               "id": "ss-level-3-cv3",
@@ -803,7 +803,7 @@
               "id": "ss-level-4-cv4",
               "type": "exercise",
               "title": "AI při studiu",
-              "pilot": "ChatSim"
+              "pilot": "PromptLab"
             },
             {
               "id": "ss-level-4-cv5",
@@ -853,7 +853,7 @@
               "id": "ss-level-5-cv5",
               "type": "exercise",
               "title": "Seminárka poctivě",
-              "pilot": "ScaleLine"
+              "pilot": "PromptLab"
             }
           ]
         },
@@ -879,7 +879,7 @@
               "id": "ss-level-6-cv2",
               "type": "exercise",
               "title": "API a MCP bez programování",
-              "pilot": "PairMatch"
+              "pilot": "PromptLab"
             },
             {
               "id": "ss-level-6-cv3",
@@ -935,7 +935,7 @@
               "id": "ss-level-7-cv4",
               "type": "exercise",
               "title": "Zpracování JSON odpovědí",
-              "pilot": "PairMatch"
+              "pilot": "PromptLab"
             },
             {
               "id": "ss-level-7-cv5",
@@ -961,7 +961,7 @@
               "id": "ss-level-8-cv1",
               "type": "exercise",
               "title": "První skript volající model",
-              "pilot": "PromptBuilder"
+              "pilot": "PromptLab"
             },
             {
               "id": "ss-level-8-cv2",
@@ -1005,7 +1005,7 @@
               "id": "ss-level-9-cv1",
               "type": "exercise",
               "title": "Návrh vlastní aplikace",
-              "pilot": "PromptBuilder"
+              "pilot": "PromptLab"
             },
             {
               "id": "ss-level-9-cv2",

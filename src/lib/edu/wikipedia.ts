@@ -140,14 +140,28 @@ function cleanText(text: string | null | undefined): string {
   return (text ?? "").replace(/\s+/g, " ").trim();
 }
 
+/** Minimal fail-closed fallback: drops executable/embedding elements, event handlers and script URLs. */
+export function stripActiveContent(doc: Document): Document {
+  doc.querySelectorAll("script,iframe,frame,frameset,object,embed,applet,style,link,meta,base,form,svg,math,template,noscript").forEach((el) => el.remove());
+  doc.querySelectorAll("*").forEach((el) => {
+    for (const attr of Array.from(el.attributes)) {
+      const name = attr.name.toLowerCase();
+      const value = attr.value.replace(/[\s\u0000-\u001f]+/g, "").toLowerCase();
+      if (name.startsWith("on") || name === "srcdoc" || name === "style" || /^(?:javascript|vbscript|data):/.test(value)) el.removeAttribute(attr.name);
+    }
+  });
+  return doc;
+}
+
 // Sanitizace + příprava obsahu článku.
 // Vyžaduje window.VeVitContentSanitizer (globální sanitizer z assets/js).
 export function parseArticle(html: string, fallbackTitle?: string, lang: WikiLang = "cs"): ParsedArticle {
   // DOMPurify with RETURN_DOM hands back the <body> element, not a Document;
-  // without the sanitizer script we fall back to the parsed document's body.
+  // without the sanitizer script (not loaded yet) the parsed body is still run through
+  // stripActiveContent, so a failed script load never leaves raw HTML in the page.
   const sanitizer = (window as unknown as { VeVitContentSanitizer?: { sanitizeWikipedia: (html: string) => Element | Document } }).VeVitContentSanitizer;
   const doc = new DOMParser().parseFromString(html, "text/html");
-  const clean = sanitizer ? sanitizer.sanitizeWikipedia(html) : doc;
+  const clean = sanitizer ? sanitizer.sanitizeWikipedia(html) : stripActiveContent(doc);
   const cleanRoot: Element | null = clean instanceof Document ? clean.body : clean;
   const root: Element | null = cleanRoot?.querySelector(".mw-parser-output") ?? cleanRoot ?? null;
   const empty = { infoboxHtml: "", hatnotes: [], readingMinutes: 0 };

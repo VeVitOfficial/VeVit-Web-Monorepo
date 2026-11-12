@@ -4,6 +4,7 @@ import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { NextResponse } from "next/server";
 import { createHash, randomBytes } from "node:crypto";
 import bcrypt from "bcryptjs";
+import { consumeRateLimit } from "@/lib/rate-limit";
 
 /**
  * Next.js-side port of the VeVit account auth (account/lib/* + shared/auth/session.php).
@@ -169,6 +170,9 @@ export function antiBotPassed(body: Record<string, unknown>): boolean {
 // production, so only the IP-scoped limit is ported here.
 
 export function clientIp(request: Request): string {
+  // Set by the Vercel edge itself; a client cannot forge it.
+  const vercel = request.headers.get("x-vercel-forwarded-for")?.split(",")[0]?.trim();
+  if (vercel) return vercel;
   const xff = request.headers.get("x-forwarded-for");
   if (xff) return xff.split(",")[0]!.trim();
   return request.headers.get("x-real-ip") ?? "unknown";
@@ -182,16 +186,14 @@ function isoFromMs(ms: number): string {
   return new Date(Date.now() + ms).toISOString();
 }
 
+/**
+ * Counts this attempt and reports whether it is still within the limit. The
+ * count is bumped atomically in the database (see src/lib/rate-limit.ts), so a
+ * burst of parallel requests cannot all pass. Fails CLOSED when the counter is
+ * unreachable. recordAttempt() below only keeps the audit trail.
+ */
 export async function checkRateLimit(ip: string, action: string, maxAttempts = 10, minutes = 15): Promise<boolean> {
-  const since = isoFromMs(-minutes * 60 * 1000);
-  const { count, error } = await accountSupabase()
-    .from("login_attempts")
-    .select("*", { count: "exact", head: true })
-    .eq("ip_address", ip)
-    .eq("action", action)
-    .gt("attempt_time", since);
-  if (error) return true; // fail open, matching the edge function
-  return (count ?? 0) < maxAttempts;
+  return (await consumeRateLimit(`attempt:${action}`, ip, maxAttempts, minutes * 60)) === "ok";
 }
 
 export async function recordAttempt(ip: string, action: string): Promise<void> {
@@ -206,18 +208,10 @@ function identifierHash(identifier: Identifier): string {
   return createHash("sha256").update(`${identifier.kind}:${identifier.value}`).digest("hex");
 }
 
-export async function identifierAllowed(identifier: Identifier, maxFailures = 8, minutes = 15): Promise<boolean> {
-  const { count, error } = await accountSupabase()
-    .from("login_attempts")
-    .select("*", { count: "exact", head: true })
-    .eq("identifier_hash", identifierHash(identifier))
-    .eq("action", "login_identifier")
-    .gt("attempt_time", isoFromMs(-minutes * 60 * 1000));
-  if (error) {
-    console.error("[auth] identifier backoff lookup failed");
-    return true;
-  }
-  return (count ?? 0) < maxFailures;
+export async function identifierAllowed(identifier: Identifier, maxFailures = 10, minutes = 15): Promise<boolean> {
+  // Counts every login attempt for this identifier (atomically, before the password is checked), so parallel
+  // guesses cannot all run before the first failure is recorded. Fails closed.
+  return (await consumeRateLimit("login_identifier", identifierHash(identifier), maxFailures, minutes * 60)) === "ok";
 }
 
 export async function recordIdentifierFailure(identifier: Identifier, ip: string): Promise<void> {

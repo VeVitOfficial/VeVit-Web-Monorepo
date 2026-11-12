@@ -8,7 +8,7 @@ import { getPupilLayer } from "@/lib/edu/aifb/content";
 import { lessonEditPath } from "@/lib/edu/aifb/edits";
 import { DATA_PROTECTION_ANCHOR, showsDataProtection } from "@/lib/edu/aifb/guide";
 import { aifbT } from "@/lib/edu/aifb/i18n";
-import { pupilVisible } from "@/lib/edu/aifb/pupil";
+import { publicLayer, pupilVisible } from "@/lib/edu/aifb/pupil";
 import { categoryPath, guidePath, hubPath, lessonPath, lessonSlug, levelPath, levelSlug } from "@/lib/edu/aifb/routes";
 import type { AifbContent, ExerciseLesson, Level } from "@/lib/edu/aifb/types";
 import type { EduLocale } from "@/lib/edu/i18n-data";
@@ -42,7 +42,7 @@ export function LessonView({
 
   const layer = getPupilLayer(lesson.id);
   // R1: žáci 1. stupně AI nikdy nepíšou; R7: návrhy (draft) se na produkci nezobrazují.
-  const layerAllowed = layer !== undefined && !(catId === "zs1" && layer.component === "AiSandbox");
+  const layerAllowed = layer !== undefined && !(catId === "zs1" && (layer.component === "AiSandbox" || layer.component === "PromptLab"));
   const showLayer = layerAllowed && (layer.status !== "draft" || preview);
 
   return (
@@ -78,14 +78,22 @@ export function LessonView({
             ) : null}
           </SectionCallout>
         ) : null}
-        <ExerciseBody lesson={lesson} ctx={ctx} t={t} />
+        {/* Žák má před sebou hru; zadání projektu (výstup, forma) je pro učitele, takže se u lekce s hrou schová. */}
+        {showLayer && !isStaff(viewer) ? null : showLayer ? (
+          <details className="aifb-details">
+            <summary><h2 className="aifb-h2">{t("aifb.lesson.teacherAssignment")}</h2></summary>
+            <ExerciseBody lesson={lesson} ctx={ctx} t={t} headingLevel={3} />
+          </details>
+        ) : (
+          <ExerciseBody lesson={lesson} ctx={ctx} t={t} />
+        )}
         {pupilVisible(lesson.pupil) ? <Paragraphs items={lesson.pupil.text ?? []} ctx={ctx} /> : null}
         {showLayer && layer ? (
           <section aria-labelledby="aifb-try">
             <h2 className="aifb-h2" id="aifb-try">{t("aifb.lesson.tryIt")}</h2>
             {layer.status === "draft" ? <p className="aifb-muted">{t("aifb.pupil.draftBanner")}</p> : null}
             <p><EditLink role={viewer.role} locale={locale} doc="pilots" path={`lessons/${lesson.id}`} t={t} /></p>
-            <PupilLayerView lessonId={lesson.id} categoryId={catId} layer={layer} ctx={ctx} />
+            <PupilLayerView lessonId={lesson.id} categoryId={catId} layer={publicLayer(layer)} ctx={ctx} />
           </section>
         ) : null}
       </article>

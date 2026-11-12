@@ -28,10 +28,11 @@ const CONFETTI = ["⭐", "🎉", "✨", "🌟", "🎊", "⭐", "✨", "🎉"];
 
 /** Závěrečná karta: hvězdičky podle počtu odpovědí napoprvé (bez hodnocení jen pochvala a zpráva). */
 export function Result({
-  t, correct, total, message, onRestart, children,
-}: { t: T; correct?: number; total?: number; message?: string; onRestart: () => void; children?: ReactNode }) {
-  const graded = correct !== undefined && total !== undefined && total > 0;
-  const stars = graded ? starsFor(correct, total) : 3;
+  t, correct, total, stars: fixedStars, message, onRestart, children,
+}: { t: T; correct?: number; total?: number; stars?: 1 | 2 | 3; message?: string; onRestart: () => void; children?: ReactNode }) {
+  const counted = correct !== undefined && total !== undefined && total > 0;
+  const graded = counted || fixedStars !== undefined;
+  const stars = fixedStars ?? (counted ? starsFor(correct, total) : 3);
   return (
     <div className="aifb-game__result" role="status">
       <div className="aifb-game__confetti" aria-hidden="true">
@@ -46,7 +47,7 @@ export function Result({
         </p>
       ) : null}
       <p className="aifb-game__result-title">{message ?? t(`aifb.game.result.${stars}`)}</p>
-      {graded ? <p className="aifb-game__result-score">{t("aifb.game.firstTry", { correct, total })}</p> : null}
+      {counted ? <p className="aifb-game__result-score">{t("aifb.game.firstTry", { correct, total })}</p> : null}
       {children}
       <button type="button" className="btn btn-primary" onClick={onRestart}>{t("aifb.game.again")}</button>
     </div>

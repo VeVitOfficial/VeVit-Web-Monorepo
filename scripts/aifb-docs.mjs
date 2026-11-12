@@ -83,6 +83,8 @@ function activityMd(activity) {
     out.push(config.steps.map((step, i) => `${i + 1}. „${step.message}“\n${step.choices.map((ch) => `   - ${ch.good ? "✅" : "▫️"} ${ch.text} (${ch.feedback})`).join("\n")}`).join("\n"));
   } else if (component === "PairMatch") {
     out.push(config.pairs.map((pair) => `- ${pair.left} ↔ **${pair.right}**`).join("\n"));
+  } else if (component === "PromptLab") {
+    out.push(config.rounds.map((round, i) => `${i + 1}. ${round.scenario} _(cíl: ${round.goal})_\n${round.promptChecks.map((c) => `   - zadání: ${c.label}`).join("\n")}${(round.answerChecks ?? []).map((c) => `\n   - odpověď: ${c.label}`).join("")}`).join("\n"));
   } else if (component === "AiSandbox") {
     out.push("```json\n" + JSON.stringify(config, null, 2) + "\n```");
   }

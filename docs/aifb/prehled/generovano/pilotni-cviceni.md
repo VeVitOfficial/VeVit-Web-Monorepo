@@ -556,27 +556,34 @@ Přímka o 5 pozicích: 1 = „Poctivé“, 5 = „Nepoctivé“.
 
 - Návrh cvičení k lekci (listopad 2026). Texty, správné odpovědi a vysvětlení čekají na přečtení vlastníkem.
 
-## `zs2-level-1-cv1` · ChatSim · stav reviewed
+## `zs2-level-1-cv1` · PromptLab · stav draft
 
-Píšeš si s AI asistentem. Vyber zprávu, po které dostaneš lepší odpověď.
+Teď to zkusíš naostro. V každém kole napíšeš AI zadání a hned uvidíš, jestli zabralo.
 
-**Cvičení na stránce: ChatSim**
+**Cvičení na stránce: PromptLab**
 
-Rozhovor s: AI asistent.
-
-1. „Ahoj! S čím ti můžu pomoct?“
-   - ▫️ zlomky (Jedno slovo nestačí. Asistent neví, co se zlomky chceš.)
-   - ✅ Vysvětli mi sčítání zlomků tak, aby to pochopil šesťák. (Řekl jsi, co chceš a pro koho.)
-2. „Chceš k tomu ještě něco?“
-   - ✅ Dej mi tři příklady na procvičení a výsledky napiš až na konec. (Přesně řekneš, co má vzniknout a v jaké podobě.)
-   - ▫️ Ještě něco. (Z toho asistent nepozná, co potřebuješ.)
-3. „U třetího příkladu jsem napsal výsledek 7/8.“
-   - ▫️ Věřím ti, opíšu to. (Asistent se v počítání plete. Výsledek si přepočítej.)
-   - ✅ Přepočítám si to sám a porovnám. (Odpověď AI je návrh. Kontrola je na tobě.)
+1. Chceš vědět, proč je nebe modré. Zeptej se AI tak, aby ti rozuměl žák šesté třídy. _(cíl: Krátké vysvětlení, kterému rozumí šesťák.)_
+   - zadání: Řekneš, pro koho má být odpověď
+   - zadání: Zadání má aspoň 4 slova
+   - odpověď: Odpověď má nejvýše 120 slov
+2. Potřebuješ tři tipy, jak se rychle naučit slovíčka. Chceš je přečíst za pár vteřin. _(cíl: Tři krátké body, ne souvislý výklad.)_
+   - zadání: Řekneš, kolik tipů chceš
+   - zadání: Řekneš, jak má odpověď vypadat
+   - odpověď: Odpověď má aspoň 3 odrážky
+   - odpověď: Odpověď má nejvýše 80 slov
+3. AI často píše moc dlouho. Zeptej se na rozdíl mezi sopkou a gejzírem a vynuť si nejvýše tři věty. _(cíl: Odpověď o nejvýše třech větách.)_
+   - zadání: Omezíš délku odpovědi
+   - zadání: Zeptáš se na sopku a gejzír
+   - odpověď: Odpověď má nejvýše 3 věty
+4. Učebnice zní nudně. Řekni AI, ať ti vysvětlí, co je internet, jako kamarád, a nepoužívá složitá slova. _(cíl: Vysvětlení v lidské řeči.)_
+   - zadání: Řekneš, jakým stylem má psát
+   - zadání: Zeptáš se na internet
+   - odpověď: Odpověď má nejvýše 100 slov
 
 **K potvrzení vlastníkem**
 
-- Návrh cvičení k lekci (listopad 2026). Texty, správné odpovědi a vysvětlení čekají na přečtení vlastníkem.
+- Cvičení s živým modelem: bez nastaveného AIFB_AI_API_KEY ukazuje uloženou ukázku a hodnotí jen zadání.
+- Podmínky (regulární výrazy) a uložené odpovědi je potřeba projít a zkusit s reálným modelem.
 
 ## `zs2-level-1-cv2` · AiSandbox · stav draft
 
@@ -646,52 +653,72 @@ Spoj pojem s vysvětlením.
 
 - Návrh cvičení k lekci (listopad 2026). Texty, správné odpovědi a vysvětlení čekají na přečtení vlastníkem.
 
-## `zs2-level-2-cv1` · AiSandbox · stav draft
+## `zs2-level-2-cv1` · PromptLab · stav draft
 
-Dostaneš pět nepřesných zadání. Každé přepiš tak, aby v něm byla role pro model, kontext, přesný úkol a popis výstupu (rozsah, struktura, tón).
+Špatné zadání dostane špatnou odpověď. V každém kole napiš zadání, které AI pomůže dát odpověď, jakou opravdu chceš.
 
-Obě verze si vyzkoušej, porovnej odpovědi a do poznámky napiš, co se změnilo.
+**Cvičení na stránce: PromptLab**
 
-**Cvičení na stránce: AiSandbox**
-
-```json
-{
-  "mode": "prompt-rescue",
-  "vaguePrompts": [
-    "napiš něco o ekologii",
-    "udělej mi přehled knihy",
-    "pomoz mi s úkolem",
-    "řekni mi něco o zvířatech",
-    "napiš příběh"
-  ]
-}
-```
-
-**K potvrzení vlastníkem**
-
-- Teacher text uvádí jen dvě vágní zadání (ekologie, přehled knihy). Zbylá tři (pomoz mi s úkolem, zvířata, příběh) jsem doplnil já; potvrdit nebo nahradit.
-- Stavba cvičení vychází z textu plánu (5 zadání, 3 sloupce tabulky). Prototyp aifb-cviceni-detektiv-halucinaci.html řeší příbuzný postup (5 stavebních kamenů, zpětná vazba trenéra); zde je z něj převzata kontrola osobních údajů a omezení délky odpovědi, ne celý průběh.
-- Živý model jen přes server (kontrola osobních údajů, limit, žádné ukládání). Bez nastavené služby se zobrazuje uložená ukázková odpověď.
-
-## `zs2-level-2-cv2` · TextDetective · stav reviewed
-
-V zadání s ukázkami se schovaly dvě špatné ukázky. Model by je napodobil. Najdi je.
-
-**Cvičení na stránce: TextDetective**
-
-Žák v textu hledá: chyby.
-
-- Urči, jestli je věta fakt, nebo názor.
-- Praha je hlavní město Česka. → fakt
-- 🎯 **Zmrzlina je nejlepší jídlo na světě. → fakt** (Tohle je názor. Model by se podle ukázky naučil chybu.)
-- Voda mrzne při 0 °C. → fakt
-- Pondělí je nejhorší den. → názor
-- 🎯 **Rok má 12 měsíců. → názor** (Tohle je fakt, ukázka je označená špatně.)
-- Pes je savec. →
+1. Musíš napsat e-mail učitelce, že v pátek nemůžeš na kroužek, protože jdeš k zubaři. Zadej to AI. _(cíl: Krátký slušný e-mail, který můžeš poslat.)_
+   - zadání: Řekneš, že jde o e-mail
+   - zadání: Napíšeš, o co jde (kroužek, pátek, zubař)
+   - zadání: Omezíš délku
+   - odpověď: E-mail má nejvýše 90 slov
+   - odpověď: Je tam oslovení nebo pozdrav
+2. Máš si ve škole vysvětlit fotosyntézu. Zadej AI, aby to bylo pro tebe, ne pro biologa. _(cíl: Výklad pro sedmáka v pár bodech.)_
+   - zadání: Řekneš, pro koho to je
+   - zadání: Řekneš, jak má odpověď vypadat
+   - odpověď: Odpověď má aspoň 3 body
+   - odpověď: Odpověď má nejvýše 100 slov
+3. Hledáš knihu na víkend. Řekni AI, co tě baví, a ať ti nabídne tři tipy. _(cíl: Tři tipy podle toho, co tě baví.)_
+   - zadání: Napíšeš, co tě baví
+   - zadání: Řekneš, kolik tipů chceš
+   - odpověď: V odpovědi jsou aspoň 3 tipy
+4. Chceš opravit chyby ve větě „Včera jsme jely do školi a zapoměli sešit.“ Ale AI nesmí větu celou přepsat. _(cíl: Označené chyby a opravená věta.)_
+   - zadání: Vložíš větu k opravě
+   - zadání: Řekneš, že má opravit jen chyby
+   - odpověď: Odpověď má nejvýše 60 slov
 
 **K potvrzení vlastníkem**
 
-- Návrh cvičení k lekci (listopad 2026). Texty, správné odpovědi a vysvětlení čekají na přečtení vlastníkem.
+- Cvičení s živým modelem: bez nastaveného AIFB_AI_API_KEY ukazuje uloženou ukázku a hodnotí jen zadání.
+- Podmínky (regulární výrazy) a uložené odpovědi je potřeba projít a zkusit s reálným modelem.
+
+## `zs2-level-2-cv2` · PromptLab · stav draft
+
+Když AI ukážeš dva tři příklady, pochopí, co chceš. V každém kole napiš zadání s ukázkami.
+
+**Cvičení na stránce: PromptLab**
+
+1. AI má poznat, jestli je recenze knížky pozitivní, nebo negativní. Dej jí dvě ukázky a pak recenzi: „Nemohl jsem přestat číst.“ _(cíl: Jedno slovo: pozitivní, nebo negativní.)_
+   - zadání: Dáš aspoň dvě ukázky
+   - zadání: Řekneš, jaké odpovědi chceš (pozitivní / negativní)
+   - zadání: Zadání má aspoň 12 slov
+   - odpověď: Odpověď má nejvýše 12 slov
+   - odpověď: Odpověď obsahuje pozitivní nebo negativní
+2. AI má třídit školní oznámení na důležité a nedůležité. Ukaž jí příklady a zadej: „Zítra se odevzdávají přihlášky.“ _(cíl: Jedno slovo: důležité, nebo nedůležité.)_
+   - zadání: Dáš aspoň dvě ukázky
+   - zadání: Řekneš, jaké štítky má použít
+   - zadání: Zadání má aspoň 12 slov
+   - odpověď: Odpověď má nejvýše 12 slov
+   - odpověď: Odpověď obsahuje důležité
+3. AI má zařadit zvíře mezi savce, ptáky a ryby. Ukaž jí, jak má odpovídat, a zeptej se na delfína. _(cíl: Jedno slovo pro každé zvíře.)_
+   - zadání: Dáš aspoň dvě ukázky
+   - zadání: Zeptáš se na delfína
+   - zadání: Uvedeš možné štítky
+   - odpověď: Odpověď má nejvýše 12 slov
+   - odpověď: Odpověď říká savec
+4. AI má přepisovat věty zdvořile. Ukaž jí dva příklady a pak zadej: „Dej mi sešit!“ _(cíl: Zdvořilá věta ve stejném stylu jako příklady.)_
+   - zadání: Dáš aspoň dvě ukázky
+   - zadání: Zadáš větu „Dej mi sešit“
+   - zadání: Zadání má aspoň 15 slov
+   - odpověď: Odpověď má nejvýše 25 slov
+   - odpověď: Je tam zdvořilé slovo
+
+**K potvrzení vlastníkem**
+
+- Cvičení s živým modelem: bez nastaveného AIFB_AI_API_KEY ukazuje uloženou ukázku a hodnotí jen zadání.
+- Podmínky (regulární výrazy) a uložené odpovědi je potřeba projít a zkusit s reálným modelem.
 
 ## `zs2-level-2-cv3` · ChatSim · stav reviewed
 
@@ -716,22 +743,35 @@ Rozhovor s: AI asistent.
 
 - Návrh cvičení k lekci (listopad 2026). Texty, správné odpovědi a vysvětlení čekají na přečtení vlastníkem.
 
-## `zs2-level-2-cv4` · PairMatch · stav reviewed
+## `zs2-level-2-cv4` · PromptLab · stav draft
 
-Spoj zápis s tím, co znamená.
+AI umí odpovědět skoro jakkoli. Když jí napíšeš, jak má odpověď vypadat, dostaneš ji hned použitelnou.
 
-**Cvičení na stránce: PairMatch**
+**Cvičení na stránce: PromptLab**
 
-- ## Rozvrh ↔ **Nadpis v Markdownu**
-- - sešit ↔ **Odrážka v Markdownu**
-- **pozor** ↔ **Tučný text v Markdownu**
-- "den": "středa" ↔ **Klíč a hodnota v JSON**
-- { … } ↔ **Objekt v JSON: skupina údajů**
-- [ "notebook", "pero" ] ↔ **Seznam hodnot v JSON**
+1. Chceš čtyři věci do školy v odrážkách. Zadej AI, ať je napíše pod sebe. _(cíl: Čtyři odrážky, bez úvodu.)_
+   - zadání: Řekneš, že chceš odrážky nebo seznam
+   - zadání: Řekneš, kolik jich má být
+   - odpověď: Odpověď má aspoň 4 odrážky
+   - odpověď: Odpověď má nejvýše 40 slov
+2. Chceš porovnat dva domácí mazlíčky, psa a kočku, v tabulce o dvou sloupcích. _(cíl: Tabulka se dvěma sloupci.)_
+   - zadání: Řekneš, že chceš tabulku
+   - zadání: Napíšeš, co se porovnává
+   - odpověď: Odpověď je tabulka
+3. Potřebuješ postup, jak si zavázat tkaničky, v očíslovaných krocích. _(cíl: Čtyři až pět očíslovaných kroků.)_
+   - zadání: Řekneš, že chceš kroky
+   - zadání: Napíšeš téma (tkaničky)
+   - odpověď: Odpověď má aspoň 4 kroky
+4. Chceš shrnutí pohádky o Červené karkulce v jedné větě, bez úvodu a bez omluv. _(cíl: Opravdu jedna věta.)_
+   - zadání: Řekneš, že chceš jednu větu
+   - zadání: Napíšeš, co se má shrnout
+   - odpověď: Odpověď má jednu větu
+   - odpověď: Odpověď má nejvýše 35 slov
 
 **K potvrzení vlastníkem**
 
-- Návrh cvičení k lekci (listopad 2026). Texty, správné odpovědi a vysvětlení čekají na přečtení vlastníkem.
+- Cvičení s živým modelem: bez nastaveného AIFB_AI_API_KEY ukazuje uloženou ukázku a hodnotí jen zadání.
+- Podmínky (regulární výrazy) a uložené odpovědi je potřeba projít a zkusit s reálným modelem.
 
 ## `zs2-level-2-cv5` · PromptBuilder · stav reviewed
 
@@ -771,26 +811,36 @@ Přímka o 5 pozicích: 1 = „Klidně napíšu“, 5 = „Nikdy nenapíšu“.
 
 - Návrh cvičení k lekci (listopad 2026). Texty, správné odpovědi a vysvětlení čekají na přečtení vlastníkem.
 
-## `zs2-level-3-cv2` · TextDetective · stav reviewed
+## `zs2-level-3-cv2` · PromptLab · stav draft
 
-Zpráva má jít do AI. Klikni na vše, podle čeho by šlo poznat konkrétního člověka.
+AI poradí i bez jmen, adres a hesel. V každém kole přepiš zadání tak, aby v něm nezůstalo nic osobního.
 
-**Cvičení na stránce: TextDetective**
+**Cvičení na stránce: PromptLab**
 
-Žák v textu hledá: údaje, které do AI nepatří.
-
-- 🎯 **Tereza Nováková** → „Spolužačka“ (Celé jméno do AI nepatří.)
-- 🎯 **z 8. B** → „ze třídy“ (Třída spolu se jménem prozradí, o koho jde.)
-- o mně napsala do skupiny,
-- že jsem ukradl mobil
-- 🎯 **Matěji Dvořákovi.** → „jednomu klukovi.“ (Další jméno, o kterém nerozhoduješ ty.)
-- Není to pravda.
-- 🎯 **Chodíme na ZŠ Komenského v Mělníku.** → „Chodíme na stejnou školu.“ (Název školy a město zužují okruh na pár lidí.)
-- Jak mám klidně reagovat?
+1. Kamarád napsal: „Jsem Tomáš Dvořák z Kolína, bydlím v Lipové 12. Poraď dárek pro moji kamarádku Aničku, bude jí 13.“ Zeptej se na totéž bez osobních údajů. _(cíl: Tipy na dárek, a AI neví, kdo jsi.)_
+   - zadání: Ptáš se na dárek
+   - zadání: Necháš, co AI potřebuje (věk)
+   - zadání: Nejsou tam jména ani adresa
+   - odpověď: Odpověď má nejvýše 110 slov
+2. Na fotce z výletu na Sněžku jsi ty, Klára Veselá a Jirka Novotný ze ZŠ Komenského v Brně. Chceš od AI vtipný popisek. Kdo na fotce je, AI vědět nemusí. _(cíl: Krátký popisek k fotce z hor.)_
+   - zadání: Chceš popisek k fotce z výletu
+   - zadání: Necháš místo nebo náladu
+   - zadání: Nejsou tam jména ani škola
+   - odpověď: Popisek má nejvýše 40 slov
+3. Zapomněl jsi heslo do školního systému. Kamarád by napsal: „Můj login je tomas.d a heslo bylo Micka2012.“ Zeptej se, jak heslo obnovit, bez loginu a hesla. _(cíl: Postup, jak obnovit heslo.)_
+   - zadání: Ptáš se na obnovu hesla
+   - zadání: Ptáš se na postup
+   - zadání: Není tam login ani heslo
+   - odpověď: Odpověď má nejvýše 100 slov
+4. Bolí tě v krku. Kamarád by napsal: „Jmenuju se Ema Králová, chodím do 7.B na ZŠ Husova a bolí mě v krku.“ Zeptej se, co pomáhá, bez osobních údajů. _(cíl: Obecné rady a připomínka, že se máš zeptat dospělého.)_
+   - zadání: Ptáš se na bolest v krku
+   - zadání: Není tam jméno, třída ani škola
+   - odpověď: Odpověď má nejvýše 100 slov
 
 **K potvrzení vlastníkem**
 
-- Jména a škola jsou vymyšlené.
+- Cvičení s živým modelem: bez nastaveného AIFB_AI_API_KEY ukazuje uloženou ukázku a hodnotí jen zadání.
+- Podmínky (regulární výrazy) a uložené odpovědi je potřeba projít a zkusit s reálným modelem.
 
 ## `zs2-level-3-cv3` · ChatSim · stav reviewed
 
@@ -904,27 +954,36 @@ Děláte třídní časopis. Spoj krok s druhem nástroje, který pomůže.
 
 - Návrh cvičení k lekci (listopad 2026). Texty, správné odpovědi a vysvětlení čekají na přečtení vlastníkem.
 
-## `zs2-level-4-cv4` · ChatSim · stav reviewed
+## `zs2-level-4-cv4` · PromptLab · stav draft
 
-Zítra píšeš test z dějepisu. Jak AI použiješ, aby ses to opravdu naučil?
+AI má umět učit, ne dělat úkoly za tebe. V každém kole vymysli zadání, po kterém se něco naučíš.
 
-**Cvičení na stránce: ChatSim**
+**Cvičení na stránce: PromptLab**
 
-Rozhovor s: AI asistent.
-
-1. „Ahoj, co potřebuješ?“
-   - ▫️ Napiš mi výpisky o Karlu IV., ať se nemusím učit. (Výpisky, které jsi nepsal ani nečetl, tě nic nenaučí.)
-   - ✅ Zítra píšu test o Karlu IV. Polož mi pět otázek a odpovědi neprozrazuj. (Necháš se vyzkoušet a přemýšlíš ty.)
-2. „Na druhou otázku jsi odpověděl špatně. Mám ti říct správnou odpověď?“
-   - ✅ Napověz mi, zkusím to znovu. (Nápověda tě donutí přemýšlet. To se pamatuje líp.)
-   - ▫️ Jo, řekni mi všechny odpovědi. (Tím přeskočíš tu část, při které se učíš.)
-3. „Karlův most byl založen roku 1857.“
-   - ▫️ Dobře, zapíšu si to. (Rok je špatně: 1357. Fakta od AI si ověř v učebnici.)
-   - ✅ To nesedí. Ověřím to v učebnici. (Model si spletl rok. Data, jména a čísla vždy ověřuj.)
+1. Nerozumíš zlomkům. Požádej AI, ať ti je vysvětlí a pak ti dá jeden příklad na zkoušku. _(cíl: Krátké vysvětlení a jeden příklad bez řešení.)_
+   - zadání: Chceš vysvětlení
+   - zadání: Chceš příklad na procvičení
+   - zadání: Napíšeš téma (zlomky)
+   - odpověď: Odpověď má nejvýše 100 slov
+2. Chceš si před testem ze zeměpisu zkusit, co umíš. Požádej AI o tři otázky bez odpovědí. _(cíl: Tři otázky, odpovědi ti AI neprozradí.)_
+   - zadání: Chceš otázky
+   - zadání: Řekneš, kolik otázek
+   - zadání: Řekneš, že nechceš odpovědi
+   - odpověď: Odpověď má aspoň 3 otázky
+   - odpověď: V odpovědi nejsou odpovědi
+3. Odpověděl jsi: „Fotosyntéza je, když rostlina dýchá kyslík.“ Chceš, aby AI zkontrolovala, jestli to je správně. _(cíl: Zpětná vazba k tvé odpovědi.)_
+   - zadání: Vložíš svoji odpověď
+   - zadání: Chceš zkontrolovat a opravit
+   - odpověď: Odpověď má nejvýše 80 slov
+4. Máš napsat slohovou práci o prázdninách. Požádej AI o pomoc s osnovou, ne o celý text. _(cíl: Osnova nebo nápady, text napíšeš sám.)_
+   - zadání: Chceš osnovu nebo nápady
+   - zadání: Nechceš celý text
+   - odpověď: Odpověď má aspoň 3 body
 
 **K potvrzení vlastníkem**
 
-- Záměrná chyba: Karlův most 1357, ne 1857.
+- Cvičení s živým modelem: bez nastaveného AIFB_AI_API_KEY ukazuje uloženou ukázku a hodnotí jen zadání.
+- Podmínky (regulární výrazy) a uložené odpovědi je potřeba projít a zkusit s reálným modelem.
 
 ## `zs2-level-4-cv5` · ChatSim · stav reviewed
 
@@ -1034,24 +1093,35 @@ Hledáš informace o zdravé výživě a narazíš na tenhle web. Najdi čtyři 
 
 - Vymyšlený web.
 
-## `zs2-level-5-cv5` · ScaleLine · stav reviewed
+## `zs2-level-5-cv5` · PromptLab · stav draft
 
-Kam na přímce patří tahle situace?
+Poctivě použitá AI ti pomůže, a práce zůstane tvoje. V každém kole napiš zadání, které tě něco naučí.
 
-**Cvičení na stránce: ScaleLine**
+**Cvičení na stránce: PromptLab**
 
-Přímka o 5 pozicích: 1 = „Poctivá pomoc“, 5 = „Dělá to za mě“.
-
-- Nechám si vysvětlit látku, které nerozumím. → **1** (Vysvětlení je přesně to, k čemu se AI hodí.)
-- Nechám si napsat sloh a odevzdám ho jako svůj. → **5** (Sloh měl trénovat tvoje psaní. A vydávat cizí text za svůj není poctivé.)
-- Nechám si zkontrolovat pravopis ve vlastním textu. → **1–2** (Text je tvůj. Když to učitel chce, uveď, že ti AI pomohla.)
-- Opíšu řešení příkladu, kterému nerozumím. → **4–5** (Výsledek máš, ale nic neumíš.)
-- Nechám si navrhnout osnovu a text napíšu sám. → **1–3** (Záleží na úkolu a na učiteli. Použití AI přiznej.)
-- Celý úkol z angličtiny si nechám přeložit. → **4–5** (Úkol má trénovat tvoji angličtinu.)
+1. Píšeš referát o sopkách a nerozumíš slovu „magma“. Požádej o vysvětlení, ne o referát. _(cíl: Krátké vysvětlení pojmu.)_
+   - zadání: Chceš vysvětlení
+   - zadání: Ptáš se na magma
+   - zadání: Nechceš napsat referát
+   - odpověď: Odpověď má nejvýše 80 slov
+2. Napsal jsi: „Sopki chrlí lávu a popel vyletí visoko.“ Chceš vědět, kde jsou chyby, ale opravit je chceš sám. _(cíl: AI chyby jen ukáže, neopraví.)_
+   - zadání: Vložíš svoji větu
+   - zadání: Chceš chyby ukázat
+   - zadání: Řekneš, že opravíš sám
+   - odpověď: Odpověď má nejvýše 60 slov
+3. AI ti pomohla s nápady na referát. Zeptej se jí, jak to máš poctivě uvést. _(cíl: Rada, jak přiznat pomoc AI.)_
+   - zadání: Ptáš se, jak pomoc uvést
+   - zadání: Zmíníš, že šlo o AI
+   - odpověď: Odpověď má nejvýše 80 slov
+4. AI tvrdí: „Nejvyšší sopka v Evropě je Etna.“ Nevíš, jestli je to pravda. Zeptej se, kde si to máš ověřit. _(cíl: Tipy, kde tvrzení ověřit.)_
+   - zadání: Ptáš se na ověření
+   - zadání: Uvedeš tvrzení
+   - odpověď: Odpověď má nejvýše 90 slov
 
 **K potvrzení vlastníkem**
 
-- Návrh cvičení k lekci (listopad 2026). Texty, správné odpovědi a vysvětlení čekají na přečtení vlastníkem.
+- Cvičení s živým modelem: bez nastaveného AIFB_AI_API_KEY ukazuje uloženou ukázku a hodnotí jen zadání.
+- Podmínky (regulární výrazy) a uložené odpovědi je potřeba projít a zkusit s reálným modelem.
 
 ## `zs2-level-6-cv1` · PairMatch · stav reviewed
 
@@ -1130,22 +1200,34 @@ Přečti si zprávu o AI. Najdi čtyři místa, kvůli kterým jí nemáš hned 
 
 - Vymyšlený článek.
 
-## `zs2-level-6-cv5` · PairMatch · stav reviewed
+## `zs2-level-6-cv5` · PromptLab · stav draft
 
-Shrnutí šesti úrovní. Spoj otázku s radou, kterou dáš někomu, kdo s AI začíná.
+Nejlíp AI poznáš, když se jí ptáš na ni samotnou. V každém kole polož otázku tak, aby odpověď byla krátká a jasná.
 
-**Cvičení na stránce: PairMatch**
+**Cvičení na stránce: PromptLab**
 
-- Proč se AI plete? ↔ **Skládá slova, která se hodí. Neví, co je pravda**
-- Jak jí zadat úkol? ↔ **Řekni kdo, co a v jaké podobě**
-- Co jí nepsat? ↔ **Osobní údaje, hesla a nic o druhých**
-- Kdy ji nepoužít? ↔ **Když stačí kalkulačka, mapa nebo vyhledávač**
-- Jak nenaletět? ↔ **Ptej se na původ a ověř to jinde**
-- Jak zůstat v obraze? ↔ **Sleduj pár zdrojů a ptej se, z kdy údaj je**
+1. AI nezná včerejší zprávy. Zeptej se jí, proč nemusí vědět, co se stalo minulý týden. Chceš nejvýše tři věty. _(cíl: Krátké vysvětlení, odkud AI bere znalosti.)_
+   - zadání: Ptáš se na aktuálnost znalostí
+   - zadání: Omezíš délku
+   - odpověď: Odpověď má nejvýše 3 věty
+2. Jaký je rozdíl mezi chatbotem a agentem? Chceš dvě věty pro spolužáka. _(cíl: Dvě věty, žádná přednáška.)_
+   - zadání: Ptáš se na chatbota a agenta
+   - zadání: Omezíš délku
+   - odpověď: Odpověď má nejvýše 2 věty
+3. Vybíráš si AI nástroj na učení. Požádej o tři otázky, které si máš před výběrem položit. _(cíl: Tři otázky v odrážkách.)_
+   - zadání: Chceš otázky
+   - zadání: Řekneš, kolik jich má být
+   - zadání: Jde o výběr nástroje
+   - odpověď: Odpověď má aspoň 3 otázky
+4. Zeptej se AI, kdy se nejčastěji plete, a chtěj to v odrážkách. _(cíl: Seznam situací, kdy AI dělá chyby.)_
+   - zadání: Ptáš se na chyby AI
+   - zadání: Chceš odrážky
+   - odpověď: Odpověď má aspoň 3 odrážky
 
 **K potvrzení vlastníkem**
 
-- Návrh cvičení k lekci (listopad 2026). Texty, správné odpovědi a vysvětlení čekají na přečtení vlastníkem.
+- Cvičení s živým modelem: bez nastaveného AIFB_AI_API_KEY ukazuje uloženou ukázku a hodnotí jen zadání.
+- Podmínky (regulární výrazy) a uložené odpovědi je potřeba projít a zkusit s reálným modelem.
 
 ## `zs2-level-7-cv1` · PairMatch · stav reviewed
 
@@ -1203,21 +1285,35 @@ Spolužák chce sdílet svůj první skript. Klikni na vše, co musí před sdí
 
 - Návrh cvičení k lekci (listopad 2026). Texty, správné odpovědi a vysvětlení čekají na přečtení vlastníkem.
 
-## `zs2-level-7-cv4` · PairMatch · stav reviewed
+## `zs2-level-7-cv4` · PromptLab · stav draft
 
-Služba odpověděla stavovým kódem. Spoj kód s tím, co znamená.
+Program potřebuje odpověď, kterou umí přečíst. V každém kole si vynuť čistý JSON.
 
-**Cvičení na stránce: PairMatch**
+**Cvičení na stránce: PromptLab**
 
-- 200 ↔ **V pořádku, odpověď je v těle zprávy**
-- 401 ↔ **Chybí nebo je špatný API klíč**
-- 404 ↔ **Adresa neexistuje**
-- 429 ↔ **Příliš mnoho požadavků, je potřeba počkat**
-- 500 ↔ **Chyba na straně služby**
+1. Chceš údaje o knize Babička (autorka Božena Němcová, rok 1855) jako JSON objekt s klíči nazev, autor, rok. Nic dalšího. _(cíl: Jeden JSON objekt, žádný text okolo.)_
+   - zadání: Chceš JSON
+   - zadání: Vyjmenuješ klíče
+   - zadání: Chceš jen JSON
+   - odpověď: Odpověď je JSON objekt
+   - odpověď: Není tam úvod
+2. Chceš seznam tří úkolů (nakoupit, uklidit, napsat úkol) jako JSON pole objektů s klíči ukol a hotovo (true/false). _(cíl: JSON pole se třemi objekty.)_
+   - zadání: Chceš JSON pole
+   - zadání: Vyjmenuješ klíče
+   - zadání: Řekneš typ hodnoty
+   - odpověď: Odpověď je JSON pole
+   - odpověď: Jsou tam hodnoty true/false
+3. Tenhle JSON je rozbitý: {jmeno: 'Eva', vek: 17,} Požádej AI, ať ho opraví a vrátí jen platný JSON. _(cíl: Platný JSON s uvozovkami a bez čárky navíc.)_
+   - zadání: Vložíš rozbitý JSON
+   - zadání: Chceš opravu
+   - zadání: Chceš jen JSON
+   - odpověď: Klíče jsou v uvozovkách
+   - odpověď: Není tam čárka navíc
 
 **K potvrzení vlastníkem**
 
-- Návrh cvičení k lekci (listopad 2026). Texty, správné odpovědi a vysvětlení čekají na přečtení vlastníkem.
+- Cvičení s živým modelem: bez nastaveného AIFB_AI_API_KEY ukazuje uloženou ukázku a hodnotí jen zadání.
+- Podmínky (regulární výrazy) a uložené odpovědi je potřeba projít a zkusit s reálným modelem.
 
 ## `zs2-level-7-cv5` · ScaleLine · stav reviewed
 
@@ -1237,24 +1333,33 @@ Přímka o 5 pozicích: 1 = „Stačí letmá kontrola“, 5 = „Vždy zkontrol
 
 - Návrh cvičení k lekci (listopad 2026). Texty, správné odpovědi a vysvětlení čekají na přečtení vlastníkem.
 
-## `zs2-level-8-cv1` · PromptBuilder · stav reviewed
+## `zs2-level-8-cv1` · PromptLab · stav draft
 
-Poskládej první požadavek na model ze skriptu.
+AI napíše kód přesně podle zadání. Dobré zadání říká jazyk, co má kód dělat a v jaké podobě ho chceš.
 
-**Cvičení na stránce: PromptBuilder**
+**Cvičení na stránce: PromptLab**
 
-*Úkol:* Skript má modelu poslat otázku a dostat krátkou odpověď pro žáka.
-
-- **Model:** ✅ Malý rychlý model · ▫️ Největší model, jaký existuje (Na jednoduchý úkol stačí menší a levnější model.)
-- **Systémová instrukce:** ✅ Odpovídej stručně a srozumitelně pro žáka 9. třídy. · ▫️ (žádná) (Systémová instrukce nastavuje chování pro celý rozhovor.)
-- **Zpráva uživatele:** ✅ Vysvětli, co je HTTP stavový kód 404. · ▫️ 404 (Model nezná nic, co mu nepošleš.)
-- **Omezení:** ✅ Nejvýš 150 tokenů odpovědi · ▫️ Bez omezení (Limit délky chrání před dlouhou a drahou odpovědí.)
-
-*Po dokončení:* Požadavek je složený: model, systémová instrukce, zpráva uživatele a omezení délky.
+1. Chceš krátký skript v Pythonu, který sečte čísla v seznamu. Má mít komentáře. _(cíl: Krátký kód s komentáři.)_
+   - zadání: Řekneš jazyk
+   - zadání: Řekneš, co má dělat
+   - zadání: Chceš komentáře
+   - odpověď: V odpovědi je kód
+   - odpověď: Kód má komentář
+2. Nerozumíš řádku print(len('ahoj')). Požádej AI o vysvětlení po částech, pro začátečníka. _(cíl: Vysvětlení krok za krokem.)_
+   - zadání: Vložíš kód
+   - zadání: Chceš vysvětlení
+   - zadání: Řekneš, že jsi začátečník
+   - odpověď: Odpověď má nejvýše 90 slov
+3. Chceš ukázku volání API v Pythonu. Klíč nesmí být v kódu: má se načíst z proměnné prostředí. _(cíl: Ukázka, kde klíč není napsaný natvrdo.)_
+   - zadání: Jde o volání API
+   - zadání: Řekneš, odkud se bere klíč
+   - odpověď: Kód čte klíč z prostředí
+   - odpověď: V kódu není klíč
 
 **K potvrzení vlastníkem**
 
-- Návrh cvičení k lekci (listopad 2026). Texty, správné odpovědi a vysvětlení čekají na přečtení vlastníkem.
+- Cvičení s živým modelem: bez nastaveného AIFB_AI_API_KEY ukazuje uloženou ukázku a hodnotí jen zadání.
+- Podmínky (regulární výrazy) a uložené odpovědi je potřeba projít a zkusit s reálným modelem.
 
 ## `zs2-level-8-cv2` · TextDetective · stav reviewed
 
@@ -1332,24 +1437,34 @@ Volání selhalo. Spoj chybu se správnou reakcí skriptu.
 
 - Návrh cvičení k lekci (listopad 2026). Texty, správné odpovědi a vysvětlení čekají na přečtení vlastníkem.
 
-## `zs2-level-9-cv1` · PromptBuilder · stav reviewed
+## `zs2-level-9-cv1` · PromptLab · stav draft
 
-Než začneš programovat, poskládej návrh aplikace.
+Aplikace s AI stojí na zadání, které uživatel nevidí. V každém kole takové zadání napiš a AI ti řekne, co mu chybí.
 
-**Cvičení na stránce: PromptBuilder**
+**Cvičení na stránce: PromptLab**
 
-*Úkol:* Aplikace má spolužákům pomáhat s opakováním slovíček.
-
-- **Uživatel:** ✅ Žáci 8. třídy, kteří se učí anglická slovíčka · ▫️ Všichni (Konkrétní uživatel určuje jazyk i náročnost.)
-- **Jádro:** ✅ Zkouší ze slovíček, která žák vloží · ▫️ Umí všechno o angličtině (Jedna jasná funkce je lepší než deset napůl.)
-- **Hranice:** ✅ Neukládá jména ani odpovědi žáků · ▫️ Ukládá vše pro jistotu (Aplikace má říct, co nedělá, a chránit údaje.)
-- **Měření:** ✅ Dvacet zkušebních vstupů se správnými výsledky · ▫️ Vyzkouším to jednou a uvidím (Bez testovací sady nepoznáš, jestli se změnou něco zlepšilo.)
-
-*Po dokončení:* Návrh je hotový: víš pro koho, co přesně aplikace dělá, co nedělá a jak poznáš, že funguje.
+1. Navrhni systémové zadání pro chatbota školní knihovny: kdo je, s čím pomáhá a co dělat nesmí. _(cíl: Zadání s rolí, úkolem a zákazem.)_
+   - zadání: Určíš roli
+   - zadání: Jde o knihovnu
+   - zadání: Řekneš, co nesmí
+   - zadání: Zadání má aspoň 15 slov
+   - odpověď: Zpětná vazba má nejvýše 90 slov
+2. Napiš zadání pro hodnotiče recenzí: z recenze má vrátit jen číslo 1 až 5. Přidej recenzi „Jídlo bylo studené, ale obsluha milá.“ _(cíl: Jediné číslo, nic dalšího.)_
+   - zadání: Uvedeš stupnici
+   - zadání: Chceš jen číslo
+   - zadání: Vložíš recenzi
+   - odpověď: Odpověď má nejvýše 3 slova
+   - odpověď: Odpověď je číslo 1–5
+3. Hodnotič dostane nesmysl: „asdf qwer“. Napiš zadání, které řekne, co má vrátit, když recenzi nejde ohodnotit. _(cíl: Jasné pravidlo pro hraniční případ.)_
+   - zadání: Popíšeš podmínku
+   - zadání: Řekneš, co vrátit
+   - zadání: Vložíš text
+   - odpověď: Odpověď má nejvýše 5 slov
 
 **K potvrzení vlastníkem**
 
-- Návrh cvičení k lekci (listopad 2026). Texty, správné odpovědi a vysvětlení čekají na přečtení vlastníkem.
+- Cvičení s živým modelem: bez nastaveného AIFB_AI_API_KEY ukazuje uloženou ukázku a hodnotí jen zadání.
+- Podmínky (regulární výrazy) a uložené odpovědi je potřeba projít a zkusit s reálným modelem.
 
 ## `zs2-level-9-cv2` · TextDetective · stav reviewed
 
@@ -1514,27 +1629,35 @@ Při obhajobě závěrečného projektu přijdou otázky. Spoj otázku s tím, �
 
 - Návrh cvičení k lekci (listopad 2026). Texty, správné odpovědi a vysvětlení čekají na přečtení vlastníkem.
 
-## `ss-level-1-cv1` · ChatSim · stav reviewed
+## `ss-level-1-cv1` · PromptLab · stav draft
 
-Vedeš rozhovor s AI asistentem. V každém kroku vyber zprávu, která povede k použitelnému výsledku.
+Teď to zkusíš naostro. V každém kole napíšeš zadání a hned uvidíš, jestli zabralo.
 
-**Cvičení na stránce: ChatSim**
+**Cvičení na stránce: PromptLab**
 
-Rozhovor s: AI asistent.
-
-1. „Dobrý den, s čím mohu pomoci?“
-   - ▫️ ekonomie referát (Model neví rozsah, úroveň ani účel. Odpoví obecně.)
-   - ✅ Připravuju pětiminutový referát o inflaci pro spolužáky ve 2. ročníku. Navrhni osnovu o pěti bodech. (Kontext, úkol i podoba výstupu jsou jasné.)
-2. „Osnova je hotová. Mám rovnou napsat celý referát?“
-   - ▫️ Ano, napiš ho celý, přečtu ho z papíru. (Referát má ukázat, že tématu rozumíš ty.)
-   - ✅ Ne. Rozveď bod 3 a polož mi k němu dvě kontrolní otázky. (Model pomáhá porozumět, práci děláš ty.)
-3. „Mimochodem, inflace v Česku loni dosáhla přesně 4,7 %.“
-   - ▫️ Použiju to v referátu. (Model nemusí mít aktuální data a čísla si vymýšlí. Bez zdroje to použít nelze.)
-   - ✅ Ověřím to na webu statistického úřadu. (Čísla a data ověřuj u primárního zdroje a uveď ho.)
+1. Potřebuješ pochopit rozdíl mezi umělou inteligencí a strojovým učením. Zeptej se tak, aby to pochopil maturant bez znalosti informatiky. _(cíl: Krátké vysvětlení pro laika.)_
+   - zadání: Řekneš, pro koho to je
+   - zadání: Omezíš délku
+   - odpověď: Odpověď má nejvýše 110 slov
+2. Chceš naplánovat školní projekt o recyklaci. Zadej AI, ať úlohu rozloží na kroky, které zvládneš za týden. _(cíl: Plán v krocích, ne souvislý text.)_
+   - zadání: Požádáš o kroky nebo plán
+   - zadání: Řekneš časový rámec
+   - zadání: Napíšeš téma (recyklace)
+   - odpověď: Odpověď má aspoň 4 kroky
+3. AI může vymýšlet fakta. Zeptej se na historii Karlova mostu a vynuť si, aby přiznala nejistotu. _(cíl: Odpověď, ve které AI sama upozorní, co si má člověk ověřit.)_
+   - zadání: Zeptáš se na Karlův most
+   - zadání: Požádáš, aby uvedla nejistotu nebo co ověřit
+   - odpověď: Odpověď má nejvýše 120 slov
+4. Chceš vysvětlení slova „inflace“ v jedné větě, srozumitelné pro čtrnáctiletého. _(cíl: Jedna věta, žádný odborný žargon.)_
+   - zadání: Řekneš, že chceš jednu větu
+   - zadání: Napíšeš pojem (inflace)
+   - zadání: Řekneš, pro koho to je
+   - odpověď: Odpověď má jednu větu
 
 **K potvrzení vlastníkem**
 
-- Číslo 4,7 % je vymyšlené záměrně.
+- Cvičení s živým modelem: bez nastaveného AIFB_AI_API_KEY ukazuje uloženou ukázku a hodnotí jen zadání.
+- Podmínky (regulární výrazy) a uložené odpovědi je potřeba projít a zkusit s reálným modelem.
 
 ## `ss-level-1-cv2` · AiSandbox · stav draft
 
@@ -1611,52 +1734,75 @@ Spoj pojem s vysvětlením, kterému porozumí i člověk mimo obor.
 
 - Návrh cvičení k lekci (listopad 2026). Texty, správné odpovědi a vysvětlení čekají na přečtení vlastníkem.
 
-## `ss-level-2-cv1` · AiSandbox · stav draft
+## `ss-level-2-cv1` · PromptLab · stav draft
 
-Dostaneš pět nepřesných zadání. Každé přepiš tak, aby v něm byla role pro model, kontext, přesný úkol a popis výstupu (rozsah, struktura, tón).
+Dobré zadání má roli, kontext, úkol a formu. V každém kole napiš zadání, které dá použitelný výsledek.
 
-Obě verze si vyzkoušej, porovnej odpovědi a do poznámky napiš, co se změnilo.
+**Cvičení na stránce: PromptLab**
 
-**Cvičení na stránce: AiSandbox**
-
-```json
-{
-  "mode": "prompt-rescue",
-  "vaguePrompts": [
-    "napiš něco o ekologii",
-    "udělej mi přehled knihy",
-    "pomoz mi s úkolem",
-    "řekni mi něco o zvířatech",
-    "napiš příběh"
-  ]
-}
-```
-
-**K potvrzení vlastníkem**
-
-- Teacher text uvádí jen dvě vágní zadání (ekologie, přehled knihy). Zbylá tři (pomoz mi s úkolem, zvířata, příběh) jsem doplnil já; potvrdit nebo nahradit.
-- Stavba cvičení vychází z textu plánu (5 zadání, 3 sloupce tabulky). Prototyp aifb-cviceni-detektiv-halucinaci.html řeší příbuzný postup (5 stavebních kamenů, zpětná vazba trenéra); zde je z něj převzata kontrola osobních údajů a omezení délky odpovědi, ne celý průběh.
-- Živý model jen přes server (kontrola osobních údajů, limit, žádné ukládání). Bez nastavené služby se zobrazuje uložená ukázková odpověď.
-
-## `ss-level-2-cv2` · TextDetective · stav reviewed
-
-V zadání s ukázkami pro třídění oznámení jsou dvě chybné ukázky. Model by je napodobil. Najdi je.
-
-**Cvičení na stránce: TextDetective**
-
-Žák v textu hledá: chyby.
-
-- Urči prioritu školního oznámení: vysoká, střední, nízká.
-- Zítra odpadá první hodina. → vysoká
-- 🎯 **Dnes ve 12:00 cvičný požární poplach, všichni opustí budovu. → nízká** (Oznámení na dnešek, které se týká všech, má vysokou prioritu.)
-- V jídelně bude od příštího měsíce nový jídelníček. → nízká
-- Do pátku odevzdejte přihlášky na lyžařský kurz. → střední
-- 🎯 **Na nástěnce visí fotky z loňského plesu. → vysoká** (Informace bez termínu a bez dopadu má nízkou prioritu.)
-- Maturitní zkoušky začínají v pondělí v 8:00. →
+1. Chceš poslat zprávu majiteli kavárny, že máš zájem o brigádu o víkendech. Zadej AI, ať ji napíše. _(cíl: Krátká slušná zpráva, kterou lze odeslat.)_
+   - zadání: Napíšeš, o co jde (brigáda, víkendy)
+   - zadání: Řekneš, jaký má mít tón
+   - zadání: Omezíš délku
+   - odpověď: Zpráva má nejvýše 100 slov
+   - odpověď: Obsahuje oslovení
+2. Máš shrnout článek o změně klimatu pro spolužáka, který nemá čas ho číst. Zadej to AI. _(cíl: Shrnutí do tří bodů.)_
+   - zadání: Řekneš formu (body)
+   - zadání: Řekneš, pro koho to je
+   - zadání: Napíšeš téma
+   - odpověď: Odpověď má aspoň 3 body
+   - odpověď: Odpověď má nejvýše 90 slov
+3. Chceš, aby ti AI pomohla procvičit pohovor na brigádu. Zadej jí roli a pravidla hry. _(cíl: AI hraje zaměstnavatele a ptá se po jedné otázce.)_
+   - zadání: Přidělíš AI roli
+   - zadání: Řekneš pravidlo (po jedné otázce)
+   - zadání: Jde o pohovor
+   - odpověď: Odpověď má nejvýše 50 slov
+   - odpověď: AI se ptá
+4. Chceš shrnout dlouhý text, ale jen věci, které se hodí do prezentace. Zadej AI, co má vynechat a co ponechat. _(cíl: Shrnutí s jasným výběrem.)_
+   - zadání: Řekneš, co ponechat
+   - zadání: Řekneš, co vynechat
+   - zadání: Omezíš délku
+   - odpověď: Odpověď má nejvýše 80 slov
 
 **K potvrzení vlastníkem**
 
-- Návrh cvičení k lekci (listopad 2026). Texty, správné odpovědi a vysvětlení čekají na přečtení vlastníkem.
+- Cvičení s živým modelem: bez nastaveného AIFB_AI_API_KEY ukazuje uloženou ukázku a hodnotí jen zadání.
+- Podmínky (regulární výrazy) a uložené odpovědi je potřeba projít a zkusit s reálným modelem.
+
+## `ss-level-2-cv2` · PromptLab · stav draft
+
+Několik ukázek ve vstupu často zabere víc než dlouhý popis. V každém kole napiš zadání s ukázkami.
+
+**Cvičení na stránce: PromptLab**
+
+1. AI má třídit zprávy zákazníků na dotaz, stížnost a pochvalu. Dej jí ukázky a zadej: „Balík přišel rozbitý.“ _(cíl: Jeden štítek: dotaz, stížnost, nebo pochvala.)_
+   - zadání: Dáš aspoň dvě ukázky
+   - zadání: Uvedeš štítky
+   - zadání: Zadání má aspoň 18 slov
+   - odpověď: Odpověď má nejvýše 8 slov
+   - odpověď: Odpověď říká stížnost
+2. AI má z věty vytáhnout jméno a věk do formátu JSON. Ukaž jí jeden příklad a zadej: „Jana je o rok starší než Petr, kterému je 17.“ _(cíl: Platný JSON s jménem a věkem.)_
+   - zadání: Dáš příklad vstupu a výstupu
+   - zadání: Řekneš, že chceš JSON
+   - zadání: Zadání má aspoň 20 slov
+   - odpověď: Odpověď vypadá jako JSON
+   - odpověď: Odpověď obsahuje Janu
+3. AI má psát věty stejným stylem jako tvoje ukázky. Dej jí dvě ukázky stručných popisků a zadej téma „knihovna“. _(cíl: Popisek ve stejném stylu jako ukázky.)_
+   - zadání: Dáš aspoň dvě ukázky
+   - zadání: Zadáš téma knihovna
+   - zadání: Zadání má aspoň 18 slov
+   - odpověď: Odpověď má nejvýše 25 slov
+4. Zadání bez ukázky nestačí: AI má rozhodnout, jestli je e-mail phishing. Dej jí dvě ukázky (bezpečný, podvodný) a zadej: „Vaše heslo vyprší, klikněte na odkaz.“ _(cíl: Jeden štítek: bezpečný, nebo podezřelý.)_
+   - zadání: Dáš aspoň dvě ukázky
+   - zadání: Uvedeš štítky
+   - zadání: Zadání má aspoň 20 slov
+   - odpověď: Odpověď má nejvýše 12 slov
+   - odpověď: Odpověď říká podezřelý
+
+**K potvrzení vlastníkem**
+
+- Cvičení s živým modelem: bez nastaveného AIFB_AI_API_KEY ukazuje uloženou ukázku a hodnotí jen zadání.
+- Podmínky (regulární výrazy) a uložené odpovědi je potřeba projít a zkusit s reálným modelem.
 
 ## `ss-level-2-cv3` · ChatSim · stav reviewed
 
@@ -1681,26 +1827,38 @@ Rozhovor s: AI asistent.
 
 - Návrh cvičení k lekci (listopad 2026). Texty, správné odpovědi a vysvětlení čekají na přečtení vlastníkem.
 
-## `ss-level-2-cv4` · TextDetective · stav reviewed
+## `ss-level-2-cv4` · PromptLab · stav draft
 
-Model vrátil JSON se třemi syntaktickými chybami. Program by ho nepřečetl. Najdi je.
+Odpověď, kterou jde rovnou vložit do tabulky nebo programu, šetří čas. V každém kole předepiš podobu výstupu.
 
-**Cvičení na stránce: TextDetective**
+**Cvičení na stránce: PromptLab**
 
-Žák v textu hledá: chyby.
-
-- {
-- "pojem": "token",
-- 🎯 **"vysvetleni": "kousek textu"** (Chybí čárka za hodnotou. Mezi dvojicemi klíč–hodnota musí být čárka.)
-- "priklady": ["slovo", "část slova"],
-- 🎯 **uroven: "základní",** (Klíč musí být v uvozovkách: "uroven".)
-- "overeno": true,
-- 🎯 **"zdroje": ["učebnice", "dokumentace"** (Chybí uzavírací hranatá závorka seznamu.)
-- }
+1. Chceš porovnat tři telefony podle ceny, baterie a fotoaparátu v Markdown tabulce. _(cíl: Markdown tabulka.)_
+   - zadání: Požádáš o tabulku
+   - zadání: Vyjmenuješ sloupce
+   - zadání: Uvedeš aspoň dva další sloupce
+   - odpověď: Odpověď je tabulka
+2. Potřebuješ třikrát jméno a oblíbenou barvu z textu „Eva má ráda modrou, Tomáš zelenou, Aneta žlutou“ jako JSON seznam. _(cíl: Platný JSON seznam se třemi objekty.)_
+   - zadání: Požádáš o JSON
+   - zadání: Pojmenuješ klíče (jméno, barva)
+   - zadání: Řekneš, že chceš jen JSON
+   - odpověď: Odpověď vypadá jako JSON seznam
+   - odpověď: V odpovědi není úvod
+3. Chceš osnovu referátu o Marii Curie-Skłodowské s nadpisy a podnadpisy v Markdownu. _(cíl: Osnova s nadpisy začínajícími křížky.)_
+   - zadání: Požádáš o Markdown a nadpisy
+   - zadání: Napíšeš téma
+   - odpověď: Odpověď má nadpisy s křížkem
+4. Chceš z věty „Sraz je ve čtvrtek v 15:30 u školy, vezmi si svačinu“ vytáhnout den, čas a místo do tří odrážek. _(cíl: Tři odrážky: den, čas, místo.)_
+   - zadání: Vložíš větu
+   - zadání: Požádáš o tři odrážky
+   - zadání: Vyjmenuješ položky
+   - odpověď: Odpověď má aspoň 3 odrážky
+   - odpověď: V odpovědi je čtvrtek
 
 **K potvrzení vlastníkem**
 
-- Cvičení na čtení a opravu JSON, ne na programování.
+- Cvičení s živým modelem: bez nastaveného AIFB_AI_API_KEY ukazuje uloženou ukázku a hodnotí jen zadání.
+- Podmínky (regulární výrazy) a uložené odpovědi je potřeba projít a zkusit s reálným modelem.
 
 ## `ss-level-2-cv5` · PromptBuilder · stav reviewed
 
@@ -1742,27 +1900,36 @@ Poskládej znovupoužitelnou instrukci pro práci na seminárce: AI má dávat z
 
 - Vymyšlená služba a podmínky.
 
-## `ss-level-3-cv2` · TextDetective · stav reviewed
+## `ss-level-3-cv2` · PromptLab · stav draft
 
-Na brigádě chceš, aby ti AI pomohla s odpovědí zákaznici. Klikni na vše, co musí před vložením pryč.
+Citlivé údaje do zadání nepatří, a AI přesto může pomoct. V každém kole napiš zadání, které obejde vše osobní.
 
-**Cvičení na stránce: TextDetective**
+**Cvičení na stránce: PromptLab**
 
-Žák v textu hledá: údaje, které do AI nepatří. Hlavička: zákaznice · Reklamace objednávky.
-
-- Dobrý den,
-- 🎯 **jmenuji se Jana Horáková,** → „jsem zákaznice,“ (Jméno zákazníka je osobní údaj třetí osoby.)
-- objednala jsem u vás kávovar
-- 🎯 **(objednávka č. 2026-48817)** → „(číslo objednávky)“ (Číslo objednávky vede ke konkrétní osobě.)
-- a přišel poškozený.
-- 🎯 **Volejte mi na 604 555 019** → „Kontaktujte mě telefonicky“ (Telefonní číslo do veřejného nástroje nepatří.)
-- 🎯 **nebo pište na Polní 7, Kolín.** → „nebo písemně.“ (Adresa zákaznice.)
-- Žádám výměnu.
-- 🎯 **Váš vedoucí mi slíbil slevu 40 %, kterou běžně nedáváte.** → „Byla mi slíbena sleva.“ (Interní informace firmy. Důvěrné věci zaměstnavatele do soukromého účtu nepatří.)
+1. Chceš zpětnou vazbu k větě z motivačního dopisu: „Jmenuji se Jan Malý, bydlím v Olomouci a hlásím se na brigádu.“ Vlož ji se zástupkami typu [JMÉNO]. _(cíl: Zpětná vazba k větě, bez skutečných údajů.)_
+   - zadání: Použiješ zástupku v hranatých závorkách
+   - zadání: Chceš zpětnou vazbu k dopisu
+   - zadání: Není tam skutečné jméno ani město
+   - odpověď: Odpověď má nejvýše 120 slov
+2. Spolužák Petr Kříž má dyslexii a chceš vědět, jak mu pomoct s učením. Zeptej se obecně, bez jména. _(cíl: Rady, jak pomoct někomu s dyslexií.)_
+   - zadání: Ptáš se na pomoc při dyslexii
+   - zadání: Mluvíš obecně (spolužák, kamarád)
+   - zadání: Není tam jméno
+   - odpověď: Odpověď má nejvýše 120 slov
+3. Na brigádě píšeš zápis z porady. Je v něm zákazník Alfa Stavby a cena 480 000 Kč. Požádej AI jen o šablonu zápisu, bez firemních dat. _(cíl: Obecná šablona zápisu z porady.)_
+   - zadání: Chceš šablonu nebo strukturu
+   - zadání: Jde o zápis z porady
+   - zadání: Nejsou tam firemní data
+   - odpověď: Šablona má aspoň 3 body
+4. Chceš silnější hesla. Zeptej se AI na pravidla pro tvorbu hesla. Své heslo neuváděj a nenech si žádné vymyslet. _(cíl: Pravidla, podle kterých si heslo vymyslíš sám.)_
+   - zadání: Ptáš se na pravidla nebo zásady
+   - zadání: Neuvádíš heslo a nechceš ho vymyslet
+   - odpověď: Odpověď má aspoň 3 body
 
 **K potvrzení vlastníkem**
 
-- Vymyšlené údaje.
+- Cvičení s živým modelem: bez nastaveného AIFB_AI_API_KEY ukazuje uloženou ukázku a hodnotí jen zadání.
+- Podmínky (regulární výrazy) a uložené odpovědi je potřeba projít a zkusit s reálným modelem.
 
 ## `ss-level-3-cv3` · ChatSim · stav reviewed
 
@@ -1880,27 +2047,37 @@ Spoj úlohu s typem nástroje, který na ni stačí.
 
 - Návrh cvičení k lekci (listopad 2026). Texty, správné odpovědi a vysvětlení čekají na přečtení vlastníkem.
 
-## `ss-level-4-cv4` · ChatSim · stav reviewed
+## `ss-level-4-cv4` · PromptLab · stav draft
 
-Za týden píšeš velký test z biologie. Použij AI tak, abys látku opravdu uměl.
+Kdo nechá AI dělat úkoly za sebe, nic se nenaučí. V každém kole zadej AI tak, aby ti pomohla učit se.
 
-**Cvičení na stránce: ChatSim**
+**Cvičení na stránce: PromptLab**
 
-Rozhovor s: AI asistent.
-
-1. „S čím ti pomůžu?“
-   - ▫️ Udělej mi výpisky z celé kapitoly o buňce. (Hotové výpisky ti ušetří čas, ale ne učení.)
-   - ✅ Tady jsou moje výpisky o buňce. Najdi v nich mezery a polož mi šest otázek bez odpovědí. (Vycházíš z vlastní práce a necháš se zkoušet.)
-2. „Odpověděl jsi na čtyři ze šesti. Chceš plán na zbytek týdne?“
-   - ✅ Ano: krátké opakování každý den a ve čtvrtek mě vyzkoušej znovu. (Rozložené opakování se zkoušením funguje líp než jedno dlouhé čtení.)
-   - ▫️ Ne, stačí, když si to den předem celé přečtu. (Jedno čtení dává pocit, že látku umíš. Zkoušení ukáže, co doopravdy víš.)
-3. „Mitochondrie obsahuje chlorofyl, díky kterému probíhá fotosyntéza.“
-   - ▫️ Zapíšu si to. (Chlorofyl je v chloroplastech, ne v mitochondriích.)
-   - ✅ To neodpovídá učebnici: chlorofyl je v chloroplastech. (Model chybuje i v základní látce. Učebnice má přednost.)
+1. Chceš pochopit derivace. Požádej AI, ať ti je vysvětlí tak, jako by to vysvětlovala spolužákovi, a pak ti dá jeden příklad. _(cíl: Vysvětlení a příklad bez řešení.)_
+   - zadání: Chceš vysvětlení
+   - zadání: Chceš příklad
+   - zadání: Napíšeš téma (derivace)
+   - odpověď: Odpověď má nejvýše 130 slov
+2. Před maturitou z dějepisu si chceš otestovat znalosti. Požádej AI o pět otázek bez odpovědí, o které se můžeš opřít o učebnici. _(cíl: Pět otázek, odpovědi AI nesdělí.)_
+   - zadání: Chceš otázky
+   - zadání: Řekneš počet
+   - zadání: Zakážeš odpovědi
+   - odpověď: Odpověď má aspoň 5 otázek
+   - odpověď: V odpovědi nejsou odpovědi
+3. Máš napsanou odpověď na otázku o fotosyntéze. Požádej AI o zpětnou vazbu, ne o přepsání. _(cíl: Konkrétní komentář: co je dobře, co opravit.)_
+   - zadání: Vložíš svůj text
+   - zadání: Chceš zpětnou vazbu, ne přepsání
+   - zadání: Nežádáš celé přepsání
+   - odpověď: Odpověď má nejvýše 100 slov
+4. Máš napsat seminární práci. Požádej AI o pomoc s hledáním zdrojů a ověřením faktů, ne o napsání textu. _(cíl: Rady, kde hledat a jak ověřit.)_
+   - zadání: Chceš pomoc s hledáním nebo ověřením
+   - zadání: Nechceš napsaný text
+   - odpověď: Odpověď má aspoň 3 body
 
 **K potvrzení vlastníkem**
 
-- Záměrná chyba: chlorofyl je v chloroplastech.
+- Cvičení s živým modelem: bez nastaveného AIFB_AI_API_KEY ukazuje uloženou ukázku a hodnotí jen zadání.
+- Podmínky (regulární výrazy) a uložené odpovědi je potřeba projít a zkusit s reálným modelem.
 
 ## `ss-level-4-cv5` · TextDetective · stav reviewed
 
@@ -2008,24 +2185,35 @@ Vybíráš notebook a najdeš tenhle „recenzní“ web. Najdi pět znaků, že
 
 - Vymyšlený web.
 
-## `ss-level-5-cv5` · ScaleLine · stav reviewed
+## `ss-level-5-cv5` · PromptLab · stav draft
 
-Kam patří tohle využití AI v seminární práci? Řiď se běžnými pravidly; pravidla tvé školy mají přednost.
+AI může být oponent, korektor i rádce. Autor jsi ale ty. V každém kole ji použij tak, aby práce zůstala tvoje.
 
-**Cvičení na stránce: ScaleLine**
+**Cvičení na stránce: PromptLab**
 
-Přímka o 3 pozicích: 1 = „V pořádku bez uvedení“, 3 = „Nepřípustné“.
-
-- Nápady na téma práce. → **1–2** (Inspirace je běžně v pořádku. Některé školy chtějí uvést i tu.)
-- Jazyková korektura vlastního textu. → **1–2** (Text je tvůj. Uvedení záleží na pravidlech školy.)
-- Přeformulování celých odstavců. → **2** (Zásah do textu je potřeba uvést: nástroj, účel a rozsah.)
-- Napsání celé kapitoly. → **3** (Vydávat text modelu za vlastní práci je nepřípustné.)
-- Vymyšlení citací a zdrojů. → **3** (Smyšlené zdroje jsou podvod a snadno se odhalí.)
-- Překlad cizojazyčného zdroje, který pak cituješ. → **2** (Uveď, že jsi použil strojový překlad, a klíčová místa ověř v originále.)
+1. Píšeš seminárku o vlivu sociálních sítí na spánek. Požádej o návrh osnovy, text napíšeš sám. _(cíl: Osnova v bodech.)_
+   - zadání: Chceš osnovu
+   - zadání: Uvedeš téma
+   - zadání: Nechceš celý text
+   - odpověď: Osnova má aspoň 4 body
+2. Tvůj argument zní: „Sociální sítě škodí všem.“ Požádej AI, ať v něm najde slabá místa. _(cíl: Protiargumenty, které tě donutí argument zpřesnit.)_
+   - zadání: Chceš kritiku nebo protiargumenty
+   - zadání: Vložíš svůj argument
+   - odpověď: Odpověď má aspoň 2 body
+3. Při psaní jsi použil AI na kontrolu stylu. Zeptej se, jak to v práci správně uvést. _(cíl: Rada, jak deklarovat použití AI.)_
+   - zadání: Ptáš se, jak použití uvést
+   - zadání: Zmíníš AI
+   - odpověď: Odpověď má nejvýše 110 slov
+4. Máš vlastní parafrázi odstavce z článku. Požádej AI, ať posoudí, jestli není příliš blízko originálu. Přepisovat ji nemá. _(cíl: Posouzení, ne nový text.)_
+   - zadání: Jde o parafrázi
+   - zadání: Chceš posouzení
+   - zadání: Nechceš, aby ji přepsala
+   - odpověď: Odpověď má nejvýše 100 slov
 
 **K potvrzení vlastníkem**
 
-- Zařazení odpovídá obvyklým pravidlům; pravidla konkrétní školy se mohou lišit.
+- Cvičení s živým modelem: bez nastaveného AIFB_AI_API_KEY ukazuje uloženou ukázku a hodnotí jen zadání.
+- Podmínky (regulární výrazy) a uložené odpovědi je potřeba projít a zkusit s reálným modelem.
 
 ## `ss-level-6-cv1` · PairMatch · stav reviewed
 
@@ -2044,21 +2232,36 @@ Spoj firmu s tím, čím je známá. Stav z podzimu 2026: ověř si, co platí d
 
 - Názvy firem a nástrojů jsou předmětem lekce (výjimka z R8). Ověřit aktuálnost.
 
-## `ss-level-6-cv2` · PairMatch · stav reviewed
+## `ss-level-6-cv2` · PromptLab · stav draft
 
-Spoj pojem s tím, co pro tebe jako uživatele znamená.
+Kdo umí pojem vysvětlit laikovi, opravdu mu rozumí. V každém kole si nech pojem vysvětlit přesně v podobě, jakou zadáš.
 
-**Cvičení na stránce: PairMatch**
+**Cvičení na stránce: PromptLab**
 
-- API ↔ **Rozhraní, přes které aplikace posílá tvůj text výrobci modelu**
-- Aplikace postavená na cizím modelu ↔ **Tvoje data putují ke dvěma firmám, ne k jedné**
-- MCP ↔ **Standard, kterým se k AI připojují nástroje a zdroje dat**
-- Připojený kalendář ↔ **AI může číst a někdy i měnit tvé události**
-- Cena za tokeny ↔ **Platí se podle délky vstupu a výstupu**
+1. Chceš pochopit, co je API. Požádej o přirovnání z běžného života, nejvýše tři věty. _(cíl: Přirovnání ve třech větách.)_
+   - zadání: Ptáš se na API
+   - zadání: Chceš přirovnání
+   - zadání: Omezíš délku
+   - odpověď: Odpověď má nejvýše 3 věty
+2. Chceš srovnat API a MCP v tabulce: k čemu slouží a kdo je používá. _(cíl: Tabulka se dvěma řádky.)_
+   - zadání: Chceš tabulku
+   - zadání: Uvedeš API i MCP
+   - odpověď: Odpověď je tabulka
+3. Co je token a kolik jich asi má jedna věta? Chceš odpověď pro laika. _(cíl: Vysvětlení bez žargonu.)_
+   - zadání: Ptáš se na token
+   - zadání: Řekneš, pro koho to je
+   - odpověď: Odpověď má nejvýše 90 slov
+4. Chceš si ověřit, jestli rozumíš AI agentům. Požádej o tři kontrolní otázky bez odpovědí. _(cíl: Tři otázky, odpovědi si najdeš sám.)_
+   - zadání: Chceš otázky
+   - zadání: Jde o agenty
+   - zadání: Nechceš odpovědi
+   - odpověď: Odpověď má aspoň 3 otázky
+   - odpověď: V odpovědi nejsou odpovědi
 
 **K potvrzení vlastníkem**
 
-- Návrh cvičení k lekci (listopad 2026). Texty, správné odpovědi a vysvětlení čekají na přečtení vlastníkem.
+- Cvičení s živým modelem: bez nastaveného AIFB_AI_API_KEY ukazuje uloženou ukázku a hodnotí jen zadání.
+- Podmínky (regulární výrazy) a uložené odpovědi je potřeba projít a zkusit s reálným modelem.
 
 ## `ss-level-6-cv3` · ChatSim · stav reviewed
 
@@ -2181,21 +2384,35 @@ Spolužák chce sdílet svůj první skript. Klikni na vše, co musí před sdí
 
 - Návrh cvičení k lekci (listopad 2026). Texty, správné odpovědi a vysvětlení čekají na přečtení vlastníkem.
 
-## `ss-level-7-cv4` · PairMatch · stav reviewed
+## `ss-level-7-cv4` · PromptLab · stav draft
 
-Služba odpověděla stavovým kódem. Spoj kód s tím, co znamená.
+Program potřebuje odpověď, kterou umí přečíst. V každém kole si vynuť čistý JSON.
 
-**Cvičení na stránce: PairMatch**
+**Cvičení na stránce: PromptLab**
 
-- 200 ↔ **V pořádku, odpověď je v těle zprávy**
-- 401 ↔ **Chybí nebo je špatný API klíč**
-- 404 ↔ **Adresa neexistuje**
-- 429 ↔ **Příliš mnoho požadavků, je potřeba počkat**
-- 500 ↔ **Chyba na straně služby**
+1. Chceš údaje o knize Babička (autorka Božena Němcová, rok 1855) jako JSON objekt s klíči nazev, autor, rok. Nic dalšího. _(cíl: Jeden JSON objekt, žádný text okolo.)_
+   - zadání: Chceš JSON
+   - zadání: Vyjmenuješ klíče
+   - zadání: Chceš jen JSON
+   - odpověď: Odpověď je JSON objekt
+   - odpověď: Není tam úvod
+2. Chceš seznam tří úkolů (nakoupit, uklidit, napsat úkol) jako JSON pole objektů s klíči ukol a hotovo (true/false). _(cíl: JSON pole se třemi objekty.)_
+   - zadání: Chceš JSON pole
+   - zadání: Vyjmenuješ klíče
+   - zadání: Řekneš typ hodnoty
+   - odpověď: Odpověď je JSON pole
+   - odpověď: Jsou tam hodnoty true/false
+3. Tenhle JSON je rozbitý: {jmeno: 'Eva', vek: 17,} Požádej AI, ať ho opraví a vrátí jen platný JSON. _(cíl: Platný JSON s uvozovkami a bez čárky navíc.)_
+   - zadání: Vložíš rozbitý JSON
+   - zadání: Chceš opravu
+   - zadání: Chceš jen JSON
+   - odpověď: Klíče jsou v uvozovkách
+   - odpověď: Není tam čárka navíc
 
 **K potvrzení vlastníkem**
 
-- Návrh cvičení k lekci (listopad 2026). Texty, správné odpovědi a vysvětlení čekají na přečtení vlastníkem.
+- Cvičení s živým modelem: bez nastaveného AIFB_AI_API_KEY ukazuje uloženou ukázku a hodnotí jen zadání.
+- Podmínky (regulární výrazy) a uložené odpovědi je potřeba projít a zkusit s reálným modelem.
 
 ## `ss-level-7-cv5` · ScaleLine · stav reviewed
 
@@ -2215,24 +2432,33 @@ Přímka o 5 pozicích: 1 = „Stačí letmá kontrola“, 5 = „Vždy zkontrol
 
 - Návrh cvičení k lekci (listopad 2026). Texty, správné odpovědi a vysvětlení čekají na přečtení vlastníkem.
 
-## `ss-level-8-cv1` · PromptBuilder · stav reviewed
+## `ss-level-8-cv1` · PromptLab · stav draft
 
-Poskládej první požadavek na model ze skriptu.
+AI napíše kód přesně podle zadání. Dobré zadání říká jazyk, co má kód dělat a v jaké podobě ho chceš.
 
-**Cvičení na stránce: PromptBuilder**
+**Cvičení na stránce: PromptLab**
 
-*Úkol:* Skript má modelu poslat otázku a dostat krátkou odpověď pro žáka.
-
-- **Model:** ✅ Malý rychlý model · ▫️ Největší model, jaký existuje (Na jednoduchý úkol stačí menší a levnější model.)
-- **Systémová instrukce:** ✅ Odpovídej stručně a srozumitelně pro žáka 9. třídy. · ▫️ (žádná) (Systémová instrukce nastavuje chování pro celý rozhovor.)
-- **Zpráva uživatele:** ✅ Vysvětli, co je HTTP stavový kód 404. · ▫️ 404 (Model nezná nic, co mu nepošleš.)
-- **Omezení:** ✅ Nejvýš 150 tokenů odpovědi · ▫️ Bez omezení (Limit délky chrání před dlouhou a drahou odpovědí.)
-
-*Po dokončení:* Požadavek je složený: model, systémová instrukce, zpráva uživatele a omezení délky.
+1. Chceš krátký skript v Pythonu, který sečte čísla v seznamu. Má mít komentáře. _(cíl: Krátký kód s komentáři.)_
+   - zadání: Řekneš jazyk
+   - zadání: Řekneš, co má dělat
+   - zadání: Chceš komentáře
+   - odpověď: V odpovědi je kód
+   - odpověď: Kód má komentář
+2. Nerozumíš řádku print(len('ahoj')). Požádej AI o vysvětlení po částech, pro začátečníka. _(cíl: Vysvětlení krok za krokem.)_
+   - zadání: Vložíš kód
+   - zadání: Chceš vysvětlení
+   - zadání: Řekneš, že jsi začátečník
+   - odpověď: Odpověď má nejvýše 90 slov
+3. Chceš ukázku volání API v Pythonu. Klíč nesmí být v kódu: má se načíst z proměnné prostředí. _(cíl: Ukázka, kde klíč není napsaný natvrdo.)_
+   - zadání: Jde o volání API
+   - zadání: Řekneš, odkud se bere klíč
+   - odpověď: Kód čte klíč z prostředí
+   - odpověď: V kódu není klíč
 
 **K potvrzení vlastníkem**
 
-- Návrh cvičení k lekci (listopad 2026). Texty, správné odpovědi a vysvětlení čekají na přečtení vlastníkem.
+- Cvičení s živým modelem: bez nastaveného AIFB_AI_API_KEY ukazuje uloženou ukázku a hodnotí jen zadání.
+- Podmínky (regulární výrazy) a uložené odpovědi je potřeba projít a zkusit s reálným modelem.
 
 ## `ss-level-8-cv2` · TextDetective · stav reviewed
 
@@ -2310,24 +2536,34 @@ Volání selhalo. Spoj chybu se správnou reakcí skriptu.
 
 - Návrh cvičení k lekci (listopad 2026). Texty, správné odpovědi a vysvětlení čekají na přečtení vlastníkem.
 
-## `ss-level-9-cv1` · PromptBuilder · stav reviewed
+## `ss-level-9-cv1` · PromptLab · stav draft
 
-Než začneš programovat, poskládej návrh aplikace.
+Aplikace s AI stojí na zadání, které uživatel nevidí. V každém kole takové zadání napiš a AI ti řekne, co mu chybí.
 
-**Cvičení na stránce: PromptBuilder**
+**Cvičení na stránce: PromptLab**
 
-*Úkol:* Aplikace má spolužákům pomáhat s opakováním slovíček.
-
-- **Uživatel:** ✅ Žáci 8. třídy, kteří se učí anglická slovíčka · ▫️ Všichni (Konkrétní uživatel určuje jazyk i náročnost.)
-- **Jádro:** ✅ Zkouší ze slovíček, která žák vloží · ▫️ Umí všechno o angličtině (Jedna jasná funkce je lepší než deset napůl.)
-- **Hranice:** ✅ Neukládá jména ani odpovědi žáků · ▫️ Ukládá vše pro jistotu (Aplikace má říct, co nedělá, a chránit údaje.)
-- **Měření:** ✅ Dvacet zkušebních vstupů se správnými výsledky · ▫️ Vyzkouším to jednou a uvidím (Bez testovací sady nepoznáš, jestli se změnou něco zlepšilo.)
-
-*Po dokončení:* Návrh je hotový: víš pro koho, co přesně aplikace dělá, co nedělá a jak poznáš, že funguje.
+1. Navrhni systémové zadání pro chatbota školní knihovny: kdo je, s čím pomáhá a co dělat nesmí. _(cíl: Zadání s rolí, úkolem a zákazem.)_
+   - zadání: Určíš roli
+   - zadání: Jde o knihovnu
+   - zadání: Řekneš, co nesmí
+   - zadání: Zadání má aspoň 15 slov
+   - odpověď: Zpětná vazba má nejvýše 90 slov
+2. Napiš zadání pro hodnotiče recenzí: z recenze má vrátit jen číslo 1 až 5. Přidej recenzi „Jídlo bylo studené, ale obsluha milá.“ _(cíl: Jediné číslo, nic dalšího.)_
+   - zadání: Uvedeš stupnici
+   - zadání: Chceš jen číslo
+   - zadání: Vložíš recenzi
+   - odpověď: Odpověď má nejvýše 3 slova
+   - odpověď: Odpověď je číslo 1–5
+3. Hodnotič dostane nesmysl: „asdf qwer“. Napiš zadání, které řekne, co má vrátit, když recenzi nejde ohodnotit. _(cíl: Jasné pravidlo pro hraniční případ.)_
+   - zadání: Popíšeš podmínku
+   - zadání: Řekneš, co vrátit
+   - zadání: Vložíš text
+   - odpověď: Odpověď má nejvýše 5 slov
 
 **K potvrzení vlastníkem**
 
-- Návrh cvičení k lekci (listopad 2026). Texty, správné odpovědi a vysvětlení čekají na přečtení vlastníkem.
+- Cvičení s živým modelem: bez nastaveného AIFB_AI_API_KEY ukazuje uloženou ukázku a hodnotí jen zadání.
+- Podmínky (regulární výrazy) a uložené odpovědi je potřeba projít a zkusit s reálným modelem.
 
 ## `ss-level-9-cv2` · TextDetective · stav reviewed
 

@@ -115,7 +115,7 @@ Adresa `/edu/ai-gramotnost/aifb/zs2/level-1` · rozsah 7 až 8 hodin · teorie: 
 | Lekce | Název | Čas | Co má vzniknout | Interaktivní pilot |
 |---|---|---|---|---|
 | Teorie | Teorie | – | – | – |
-| Lekce 1 | První konverzace s AI | 45 minut | Krátký přehled tří zjištění: která zadání fungovala dobře, kde odpověď selhala a jeden konkrétní tip pro lepší zadání. | ChatSim (reviewed) |
+| Lekce 1 | První konverzace s AI | 45 minut | Krátký přehled tří zjištění: která zadání fungovala dobře, kde odpověď selhala a jeden konkrétní tip pro lepší zadání. | PromptLab (draft) |
 | Lekce 2 | Detektiv halucinací | 45 minut | Označený dokument se seznamem nalezených nepřesností a postupem ověření u každé z nich. | AiSandbox (draft) |
 | Lekce 3 | Hra na jazykový model | 45 minut | Tabulka se třemi větami, nejčastějšími odpověďmi třídy a odpovědí modelu; jedna věta vlastními slovy, proč model umí napsat i to, co neví. | NextWord (reviewed) |
 | Lekce 4 | Co AI umí a co ne | 45 minut | Roztříděné karty, záznam tří ověřených úloh a společný seznam „na tohle si u AI dám pozor“. | ScaleLine (reviewed) |
@@ -136,10 +136,10 @@ Adresa `/edu/ai-gramotnost/aifb/zs2/level-2` · rozsah 7 až 8 hodin · teorie: 
 | Lekce | Název | Čas | Co má vzniknout | Interaktivní pilot |
 |---|---|---|---|---|
 | Teorie | Teorie | – | – | – |
-| Lekce 1 | Záchranář promptů | 45 minut | Tabulka s pěti páry zadání (původní a vylepšené) a poznámkou o rozdílu ve výstupu. | AiSandbox (draft) |
-| Lekce 2 | Ukázkové příklady v praxi | 45 minut | Oba výstupy, srovnávací statistika a závěrečné hodnocení přínosu ukázkových příkladů v zadání. | TextDetective (reviewed) |
+| Lekce 1 | Záchranář promptů | 45 minut | Tabulka s pěti páry zadání (původní a vylepšené) a poznámkou o rozdílu ve výstupu. | PromptLab (draft) |
+| Lekce 2 | Ukázkové příklady v praxi | 45 minut | Oba výstupy, srovnávací statistika a závěrečné hodnocení přínosu ukázkových příkladů v zadání. | PromptLab (draft) |
 | Lekce 3 | Ladění na třikrát | 45 minut | Deník ladění se třemi koly úprav a závěr: která jedna změna zlepšila odpověď nejvíc. | ChatSim (reviewed) |
-| Lekce 4 | Správná podoba odpovědi | 45 až 90 minut | Tři odpovědi ve zvolené podobě se zdůvodněním výběru, zobrazený dokument v Markdownu a popis jednoho zápisu v JSON. | PairMatch (reviewed) |
+| Lekce 4 | Správná podoba odpovědi | 45 až 90 minut | Tři odpovědi ve zvolené podobě se zdůvodněním výběru, zobrazený dokument v Markdownu a popis jednoho zápisu v JSON. | PromptLab (draft) |
 | Lekce 5 | Moje šablona zadání | 45 až 90 minut (prezentaci lze vést ve skupinách souběžně) | Finální instrukce, tři testovací vstupy s výstupy a shrnutí provedených úprav. | PromptBuilder (reviewed) |
 
 **Cíle**
@@ -159,7 +159,7 @@ Adresa `/edu/ai-gramotnost/aifb/zs2/level-3` · rozsah 7 až 8 hodin · teorie: 
 |---|---|---|---|---|
 | Teorie | Teorie | – | – | – |
 | Lekce 1 | Patří to do AI? | 45 minut | Roztříděné karty se zdůvodněními a společný seznam pravidel bezpečného zadávání dat. | ScaleLine (reviewed) |
-| Lekce 2 | Přepiš to bezpečně | 45 minut | Pět zpráv s podtrženými údaji a jejich bezpečné verze; u jedné zprávy doporučení, za kým jít. | TextDetective (reviewed) |
+| Lekce 2 | Přepiš to bezpečně | 45 minut | Pět zpráv s podtrženými údaji a jejich bezpečné verze; u jedné zprávy doporučení, za kým jít. | PromptLab (draft) |
 | Lekce 3 | AI není kamarád | 45 minut | Dvousloupcové porovnání chatbota a kamaráda a tři věty: s čím mi AI pomoci může a s čím ne. | ChatSim (reviewed) |
 | Lekce 4 | Když mě něco trápí | 45 minut | Mapa pomoci se čtyřmi příběhy a konkrétními kontakty školy; kartička s číslem 116 111, kterou si žák odnese. | ChatSim (draft) |
 | Lekce 5 | Třídní dohoda o povídání s AI | 45 minut | Plakát s nejvýš osmi třídními pravidly a kontakty, kam se obrátit. | PairMatch (reviewed) |
@@ -182,7 +182,7 @@ Adresa `/edu/ai-gramotnost/aifb/zs2/level-4` · rozsah 7 až 8 hodin · teorie: 
 | Lekce 1 | AI, nebo něco jednoduššího? | 45 minut | Přiřazené karty s pěti zdůvodněními a společně sepsané tři otázky, podle kterých se nástroj vybírá. | PairMatch (reviewed) |
 | Lekce 2 | Souboj nástrojů | 45 minut | Tabulka čtyř úkolů s časem, správností a vítězem; jedna věta závěru ke každému úkolu. | ScaleLine (reviewed) |
 | Lekce 3 | Jeden úkol, různé druhy AI | 45 minut | Plán projektu rozepsaný na kroky s přiřazeným nástrojem a poznámkou, co zkontrolovat. | PairMatch (reviewed) |
-| Lekce 4 | AI jako pomocník na učení | 45 minut | Záznam učení: co jsem věděl před, pět otázek s vlastními odpověďmi, co se změnilo po a jedna nalezená nepřesnost. | ChatSim (reviewed) |
+| Lekce 4 | AI jako pomocník na učení | 45 minut | Záznam učení: co jsem věděl před, pět otázek s vlastními odpověďmi, co se změnilo po a jedna nalezená nepřesnost. | PromptLab (draft) |
 | Lekce 5 | Rozhodovací strom: sáhnu po AI? | 45 až 90 minut | Rozhodovací strom na plakátu, otestovaný na pěti úkolech. | ChatSim (reviewed) |
 
 **Cíle**
@@ -204,7 +204,7 @@ Adresa `/edu/ai-gramotnost/aifb/zs2/level-5` · rozsah 7 až 8 hodin · teorie: 
 | Lekce 2 | Kdo to psal? | 45 minut | Tabulka tipů a výsledků třídy, výsledky detektoru a tři závěry vlastními slovy. | ScaleLine (reviewed) |
 | Lekce 3 | Podezřelá zpráva | 45 minut | Roztříděné zprávy s označenými znaky a třídní postup „tři kroky, když si nejsem jistý“. | TextDetective (reviewed) |
 | Lekce 4 | Dá se tomu webu věřit? | 45 minut | Vyplněný kontrolní seznam pro čtyři weby s hodnocením a pět otázek pro každodenní použití. | TextDetective (reviewed) |
-| Lekce 5 | Pomáhá, nebo dělá za mě? | 45 minut | Přímka s dvanácti situacemi, vzorová poznámka o použití AI a třídní dohoda o jejím psaní. | ScaleLine (reviewed) |
+| Lekce 5 | Pomáhá, nebo dělá za mě? | 45 minut | Přímka s dvanácti situacemi, vzorová poznámka o použití AI a třídní dohoda o jejím psaní. | PromptLab (draft) |
 
 **Cíle**
 
@@ -225,7 +225,7 @@ Adresa `/edu/ai-gramotnost/aifb/zs2/level-6` · rozsah 7 až 8 hodin · teorie: 
 | Lekce 2 | Chatbot, nebo agent? | 45 minut | Rozepsaný plán agenta s vyznačenými kroky, které musí schválit člověk, a definice agenta vlastními slovy. | ChatSim (reviewed) |
 | Lekce 3 | Jak se programy domlouvají | 45 minut | Nákres scénky s popisem rolí, vlastní vysvětlení API a MCP jednou větou a rozbor šesti aplikací. | PairMatch (reviewed) |
 | Lekce 4 | Novinka, nebo reklama? | 45 minut | Odpovědi na tři otázky z přehledu modelů, rozbor tří titulků a osobní seznam dvou zdrojů. | TextDetective (reviewed) |
-| Lekce 5 | Můj průvodce AI | 90 minut a domácí příprava | Průvodce o šesti částech s poznámkou o použití AI a krátká prezentace před třídou. | PairMatch (reviewed) |
+| Lekce 5 | Můj průvodce AI | 90 minut a domácí příprava | Průvodce o šesti částech s poznámkou o použití AI a krátká prezentace před třídou. | PromptLab (draft) |
 
 **Cíle**
 
@@ -246,7 +246,7 @@ Adresa `/edu/ai-gramotnost/aifb/zs2/level-7` · rozsah 8 až 10 hodin · teorie:
 | Lekce 1 | Návrh pracovního postupu na papíře | 45 minut | Nakreslené schéma procesu s označením automatizovatelných kroků a krátkou obhajobou návrhu. | PairMatch (reviewed) |
 | Lekce 2 | Společná první automatizace | 90 minut | Spuštěný a doložený postup včetně stručné dokumentace ošetřených chyb. | ScaleLine (reviewed) |
 | Lekce 3 | Práce s API klíči a požadavky | 45 až 90 minut | Funkční požadavek s odpovědí a krátký záznam o podmínkách využití vybraného API. | TextDetective (reviewed) |
-| Lekce 4 | Zpracování JSON odpovědí | 45 minut | Přehledová tabulka vybraných údajů a návrh zjednodušené podoby výstupu pro další zpracování. | PairMatch (reviewed) |
+| Lekce 4 | Zpracování JSON odpovědí | 45 minut | Přehledová tabulka vybraných údajů a návrh zjednodušené podoby výstupu pro další zpracování. | PromptLab (draft) |
 | Lekce 5 | Multimodální úloha | 45 až 90 minut | Zadání, výstup modelu a krátké kritické zhodnocení spolehlivosti včetně poznámky k bezpečnosti dat. | ScaleLine (reviewed) |
 
 **Cíle**
@@ -265,7 +265,7 @@ Adresa `/edu/ai-gramotnost/aifb/zs2/level-8` · rozsah 10 až 11 hodin · teorie
 | Lekce | Název | Čas | Co má vzniknout | Interaktivní pilot |
 |---|---|---|---|---|
 | Teorie | Teorie | – | – | – |
-| Lekce 1 | První skript volající model | 90 minut | Funkční skript s parametry a ukázka tří výstupů pro různá nastavení. | PromptBuilder (reviewed) |
+| Lekce 1 | První skript volající model | 90 minut | Funkční skript s parametry a ukázka tří výstupů pro různá nastavení. | PromptLab (draft) |
 | Lekce 2 | Správa konverzačního kontextu | 90 minut | Skript s pamětí konverzace, dvě ukázky chování a komentář srovnávající strategie zkracování. | TextDetective (reviewed) |
 | Lekce 3 | Function calling v praxi | 90 minut | Skript s definicemi funkcí a ukázky tří scénářů: volání funkce, opravené volání a odpověď bez funkce. | ChatSim (reviewed) |
 | Lekce 4 | Tokeny a cena | 45 minut | Rozbor nákladů pro tři prompty s návrhem optimalizace a porovnáním dvou modelů. | ScaleLine (reviewed) |
@@ -287,7 +287,7 @@ Adresa `/edu/ai-gramotnost/aifb/zs2/level-9` · rozsah 9 až 13 hodin · teorie:
 | Lekce | Název | Čas | Co má vzniknout | Interaktivní pilot |
 |---|---|---|---|---|
 | Teorie | Teorie | – | – | – |
-| Lekce 1 | Návrh vlastní aplikace | 45 minut | Jednostránkový návrh aplikace s vyznačenou rolí modelu a hranicemi použití. | PromptBuilder (reviewed) |
+| Lekce 1 | Návrh vlastní aplikace | 45 minut | Jednostránkový návrh aplikace s vyznačenou rolí modelu a hranicemi použití. | PromptLab (draft) |
 | Lekce 2 | Jednoduchá aplikace s modelem | 90 až 180 minut | Spustitelná aplikace s návodem a záznamem jedné opravy po testování spolužákem. | TextDetective (reviewed) |
 | Lekce 3 | Vyhodnocování kvality modelu | 90 minut | Testovací sada, dvě měření a krátká zpráva o dopadu provedené změny. | ScaleLine (reviewed) |
 | Lekce 4 | Lokální model přes Ollamu | 45 až 90 minut | Porovnání lokálního a cloudového modelu na stejné sadě vstupů včetně poznámky o hardwaru. | ScaleLine (reviewed) |
@@ -337,7 +337,7 @@ Adresa `/edu/ai-gramotnost/aifb/ss/level-1` · rozsah 7 až 8 hodin · teorie: t
 | Lekce | Název | Čas | Co má vzniknout | Interaktivní pilot |
 |---|---|---|---|---|
 | Teorie | Teorie | – | – | – |
-| Lekce 1 | První konverzace s AI | 45 minut | Krátký přehled tří zjištění: která zadání fungovala dobře, kde odpověď selhala a jeden konkrétní tip pro lepší zadání. | ChatSim (reviewed) |
+| Lekce 1 | První konverzace s AI | 45 minut | Krátký přehled tří zjištění: která zadání fungovala dobře, kde odpověď selhala a jeden konkrétní tip pro lepší zadání. | PromptLab (draft) |
 | Lekce 2 | Detektiv halucinací | 45 minut | Označený dokument se seznamem nalezených nepřesností a postupem ověření u každé z nich. | AiSandbox (draft) |
 | Lekce 3 | Tokeny a kontextové okno v praxi | 45 minut | Tabulka odhadů a skutečných počtů tokenů a záznam pokusu: kdy model pravidlo porušil a který způsob nápravy fungoval. | TextDetective (reviewed) |
 | Lekce 4 | Odkud model ví, co ví | 45 minut | Tabulka čtyř otázek s hodnocením odpovědi a způsobem ověření; tři obecná zjištění o hranicích znalostí modelu. | ScaleLine (reviewed) |
@@ -358,10 +358,10 @@ Adresa `/edu/ai-gramotnost/aifb/ss/level-2` · rozsah 7 až 8 hodin · teorie: t
 | Lekce | Název | Čas | Co má vzniknout | Interaktivní pilot |
 |---|---|---|---|---|
 | Teorie | Teorie | – | – | – |
-| Lekce 1 | Záchranář promptů | 45 minut | Tabulka s pěti páry zadání (původní a vylepšené) a poznámkou o rozdílu ve výstupu. | AiSandbox (draft) |
-| Lekce 2 | Few-shot v praxi | 45 minut | Oba výstupy, srovnávací statistika a závěrečné hodnocení přínosu příkladů v promptu. | TextDetective (reviewed) |
+| Lekce 1 | Záchranář promptů | 45 minut | Tabulka s pěti páry zadání (původní a vylepšené) a poznámkou o rozdílu ve výstupu. | PromptLab (draft) |
+| Lekce 2 | Few-shot v praxi | 45 minut | Oba výstupy, srovnávací statistika a závěrečné hodnocení přínosu příkladů v promptu. | PromptLab (draft) |
 | Lekce 3 | Iterace: od prvního pokusu k použitelnému výsledku | 45 minut | Deník čtyř iterací s hypotézou a výsledkem, hodnocení podle vlastních kritérií a závěr o nejúčinnější úpravě. | ChatSim (reviewed) |
-| Lekce 4 | Strukturovaný výstup: Markdown a JSON | 45 až 90 minut | Opravený dokument v Markdownu, platný zápis v JSON podle zadané struktury a opravený zápis se třemi chybami. | TextDetective (reviewed) |
+| Lekce 4 | Strukturovaný výstup: Markdown a JSON | 45 až 90 minut | Opravený dokument v Markdownu, platný zápis v JSON podle zadané struktury a opravený zápis se třemi chybami. | PromptLab (draft) |
 | Lekce 5 | Dlouhá úloha po krocích | 90 minut | Postup o pěti až šesti krocích s rozdělením práce a kontrolou, výstup jedné části a znovupoužitelná instrukce otestovaná na druhém tématu. | PromptBuilder (reviewed) |
 
 **Cíle**
@@ -380,7 +380,7 @@ Adresa `/edu/ai-gramotnost/aifb/ss/level-3` · rozsah 7 až 8 hodin · teorie: t
 |---|---|---|---|---|
 | Teorie | Teorie | – | – | – |
 | Lekce 1 | Kam putují moje data | 45 minut | Vyplněná tabulka šesti otázek s odkazem na příslušnou část podmínek a společné srovnání nástrojů. | TextDetective (reviewed) |
-| Lekce 2 | Co do AI nepatří | 45 minut | Roztříděné karty se zdůvodněními a společný seznam pravidel bezpečného zadávání dat. | TextDetective (reviewed) |
+| Lekce 2 | Co do AI nepatří | 45 minut | Roztříděné karty se zdůvodněními a společný seznam pravidel bezpečného zadávání dat. | PromptLab (draft) |
 | Lekce 3 | Chatbot jako důvěrník | 45 minut | Rozbor dvou rozhovorů a seznam pěti signálů, že rozhovory s chatbotem začínají nahrazovat lidi. | ChatSim (reviewed) |
 | Lekce 4 | Těžká témata: kde AI pomůže a kde ne | 45 až 90 minut | Tabulka pěti situací se třemi sloupci a třídní mapa pomoci s konkrétními kontakty. | ChatSim (draft) |
 | Lekce 5 | Osobní zásady | 45 minut | Osobní zásady o nejvýš deseti bodech (neodevzdávají se) a společný třídní seznam. | ScaleLine (reviewed) |
@@ -403,7 +403,7 @@ Adresa `/edu/ai-gramotnost/aifb/ss/level-4` · rozsah 7 až 8 hodin · teorie: t
 | Lekce 1 | AI, vyhledávač, tabulka, nebo skript? | 45 minut | Přiřazení dvaceti úloh a osm zdůvodnění podle spolehlivosti, času a ceny. | PairMatch (reviewed) |
 | Lekce 2 | Stejný úkol, tři nástroje | 45 až 90 minut | Protokol tří pokusů s časem, správností a nalezenými chybami a závěr pro každý typ úlohy. | ScaleLine (reviewed) |
 | Lekce 3 | Výběr modelu podle úkolu a ceny | 45 minut | Srovnání bezplatné a placené verze dvou nástrojů s datem zjištění a tabulka šesti úloh s doporučeným typem nástroje. | PairMatch (reviewed) |
-| Lekce 4 | AI při studiu | 45 minut | Záznam studia: výchozí stav, otázky s vlastními odpověďmi, nalezená nepřesnost, plán opakování a krátká reflexe. | ChatSim (reviewed) |
+| Lekce 4 | AI při studiu | 45 minut | Záznam studia: výchozí stav, otázky s vlastními odpověďmi, nalezená nepřesnost, plán opakování a krátká reflexe. | PromptLab (draft) |
 | Lekce 5 | AI na brigádě a v praxi | 90 minut | Čtyři zpracované úlohy se seznamem odstraněných údajů a provedených kontrol; seznam otázek na pravidla zaměstnavatele. | TextDetective (reviewed) |
 
 **Cíle**
@@ -425,7 +425,7 @@ Adresa `/edu/ai-gramotnost/aifb/ss/level-5` · rozsah 7 až 8 hodin · teorie: t
 | Lekce 2 | Text od člověka, nebo od AI? Limity detektorů | 45 minut | Tabulka výsledků tipování a detektorů s počtem chyb obou druhů a tři závěry pro školní praxi. | ScaleLine (reviewed) |
 | Lekce 3 | Phishing nové generace | 45 minut | Rozbor osmi případů (cíl, nátlak, znak, ověření) a osobní seznam tří opatření. | TextDetective (reviewed) |
 | Lekce 4 | Web vygenerovaný AI | 45 minut | Vyhodnocení pěti webů podle kontrolního seznamu a třídní seznam šesti otázek. | TextDetective (reviewed) |
-| Lekce 5 | Seminárka poctivě | 90 minut | Roztříděných patnáct způsobů využití, krátký odborný text s ověřenými zdroji a prohlášení o použití AI. | ScaleLine (reviewed) |
+| Lekce 5 | Seminárka poctivě | 90 minut | Roztříděných patnáct způsobů využití, krátký odborný text s ověřenými zdroji a prohlášení o použití AI. | PromptLab (draft) |
 
 **Cíle**
 
@@ -443,7 +443,7 @@ Adresa `/edu/ai-gramotnost/aifb/ss/level-6` · rozsah 7 až 8 hodin · teorie: t
 |---|---|---|---|---|
 | Teorie | Teorie | – | – | – |
 | Lekce 1 | Mapa trhu AI | 45 až 90 minut | Profily firem se zdroji a daty a společná mapa trhu se třemi zjištěními. | PairMatch (reviewed) |
-| Lekce 2 | API a MCP bez programování | 45 až 90 minut | Nákres cesty dat u tří aplikací a tabulka pěti připojení: co umožní, k čemu dá přístup, povolit nebo ne. | PairMatch (reviewed) |
+| Lekce 2 | API a MCP bez programování | 45 až 90 minut | Nákres cesty dat u tří aplikací a tabulka pěti připojení: co umožní, k čemu dá přístup, povolit nebo ne. | PromptLab (draft) |
 | Lekce 3 | Agenti: co jim svěřit | 45 až 90 minut | Návrh agenta o čtyřech částech, seznam rizik od jiné skupiny a upravená verze s omezenými oprávněními. | ChatSim (reviewed) |
 | Lekce 4 | Žebříčky a benchmarky | 45 minut | Slovníček sloupců přehledu, tři zdůvodněné výběry modelu a seznam čtyř mezí benchmarků. | TextDetective (reviewed) |
 | Lekce 5 | AI, pravidla a budoucnost práce | 90 minut | Přiřazení deseti systémů k úrovním rizika, jednostránkový přehled „AI v mém oboru“ a osobní plán sledování oboru. | ScaleLine (reviewed) |
@@ -467,7 +467,7 @@ Adresa `/edu/ai-gramotnost/aifb/ss/level-7` · rozsah 8 až 10 hodin · teorie: 
 | Lekce 1 | Návrh pracovního postupu na papíře | 45 minut | Nakreslené schéma procesu s označením automatizovatelných kroků a krátkou obhajobou návrhu. | PairMatch (reviewed) |
 | Lekce 2 | První automatizace v n8n nebo Make | 90 minut | Spuštěný a doložený workflow včetně stručné dokumentace ošetřených chyb. | ScaleLine (reviewed) |
 | Lekce 3 | Práce s API klíči a požadavky | 45 až 90 minut | Funkční požadavek s odpovědí a krátký záznam o podmínkách využití vybraného API. | TextDetective (reviewed) |
-| Lekce 4 | Zpracování JSON odpovědí | 45 minut | Přehledová tabulka vybraných údajů a návrh zjednodušené podoby výstupu pro další zpracování. | PairMatch (reviewed) |
+| Lekce 4 | Zpracování JSON odpovědí | 45 minut | Přehledová tabulka vybraných údajů a návrh zjednodušené podoby výstupu pro další zpracování. | PromptLab (draft) |
 | Lekce 5 | Multimodální úloha | 45 až 90 minut | Zadání, výstup modelu a krátké kritické zhodnocení spolehlivosti včetně poznámky k bezpečnosti dat. | ScaleLine (reviewed) |
 
 **Cíle**
@@ -486,7 +486,7 @@ Adresa `/edu/ai-gramotnost/aifb/ss/level-8` · rozsah 10 až 11 hodin · teorie:
 | Lekce | Název | Čas | Co má vzniknout | Interaktivní pilot |
 |---|---|---|---|---|
 | Teorie | Teorie | – | – | – |
-| Lekce 1 | První skript volající model | 90 minut | Funkční skript s parametry a ukázka tří výstupů pro různá nastavení. | PromptBuilder (reviewed) |
+| Lekce 1 | První skript volající model | 90 minut | Funkční skript s parametry a ukázka tří výstupů pro různá nastavení. | PromptLab (draft) |
 | Lekce 2 | Správa konverzačního kontextu | 90 minut | Skript s pamětí konverzace, dvě ukázky chování a komentář srovnávající strategie zkracování. | TextDetective (reviewed) |
 | Lekce 3 | Function calling v praxi | 90 minut | Skript s definicemi funkcí a ukázky tří scénářů: volání funkce, opravené volání a odpověď bez funkce. | ChatSim (reviewed) |
 | Lekce 4 | Tokeny a cena | 45 minut | Rozbor nákladů pro tři prompty s návrhem optimalizace a porovnáním dvou modelů. | ScaleLine (reviewed) |
@@ -508,7 +508,7 @@ Adresa `/edu/ai-gramotnost/aifb/ss/level-9` · rozsah 9 až 13 hodin · teorie: 
 | Lekce | Název | Čas | Co má vzniknout | Interaktivní pilot |
 |---|---|---|---|---|
 | Teorie | Teorie | – | – | – |
-| Lekce 1 | Návrh vlastní aplikace | 45 minut | Jednostránkový návrh aplikace s vyznačenou rolí modelu a hranicemi použití. | PromptBuilder (reviewed) |
+| Lekce 1 | Návrh vlastní aplikace | 45 minut | Jednostránkový návrh aplikace s vyznačenou rolí modelu a hranicemi použití. | PromptLab (draft) |
 | Lekce 2 | Jednoduchá aplikace s modelem | 90 až 180 minut | Spustitelná aplikace s návodem a záznamem jedné opravy po testování spolužákem. | TextDetective (reviewed) |
 | Lekce 3 | Vyhodnocování kvality modelu | 90 minut | Testovací sada, dvě měření a krátká zpráva o dopadu provedené změny. | ScaleLine (reviewed) |
 | Lekce 4 | Lokální model přes Ollamu | 45 až 90 minut | Porovnání lokálního a cloudového modelu na stejné sadě vstupů včetně poznámky o hardwaru. | ScaleLine (reviewed) |
