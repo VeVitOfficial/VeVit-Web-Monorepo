@@ -1,0 +1,2305 @@
+{
+  "brand": "LDNIO",
+  "verified": "2026-11-13",
+  "groups": [
+    {
+      "variantGroup": "ldnio-100w-cable",
+      "variants": {
+        "ldnio-100w-cable-b2b": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO 100W cable (B2B) — kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Kabely · B2B",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO 100W cable (B2B)",
+          "unresolvedReason": "Typové označení se na oficiálním webu LDNIO nepodařilo dohledat nebo jde o obecný název."
+        }
+      }
+    },
+    {
+      "variantGroup": "ldnio-45w-car-charger",
+      "variants": {
+        "ldnio-45w-car-charger-b2b": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO 45W car charger (B2B) — auto elektronika ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Auto elektronika · B2B",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO 45W car charger (B2B)",
+          "unresolvedReason": "Typové označení se na oficiálním webu LDNIO nepodařilo dohledat nebo jde o obecný název."
+        }
+      }
+    },
+    {
+      "variantGroup": "ldnio-65w-cable",
+      "variants": {
+        "ldnio-65w-cable-b2b": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO 65W cable (B2B) — kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Kabely · B2B",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO 65W cable (B2B)",
+          "unresolvedReason": "Typové označení se na oficiálním webu LDNIO nepodařilo dohledat nebo jde o obecný název."
+        }
+      }
+    },
+    {
+      "variantGroup": "ldnio-a1508c",
+      "variants": {
+        "ldnio-a1508c-eu-plug": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO A1508C (EU plug) — nabíječky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Nabíječky · EU plug",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO A1508C (EU plug)",
+          "unresolvedReason": "LDNIO A1508C vyrábí jen s americkou vidlicí (US)."
+        },
+        "ldnio-a1508c-uk-plug": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO A1508C (UK plug) — nabíječky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Nabíječky · UK plug",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO A1508C (UK plug)",
+          "unresolvedReason": "LDNIO A1508C vyrábí jen s americkou vidlicí (US)."
+        },
+        "ldnio-a1508c-us-plug": {
+          "officialName": "LDNIO A1508C 30W USB-C PD nabíječka (US)",
+          "shortDesc": "Nabíječka 30 W s jedním portem USB-C (PD), americká vidlice",
+          "description": "Kompaktní nabíječka LDNIO A1508C s jedním portem USB-C a výkonem 30 W (PD) nabije telefon i menší notebook. Tělo je z nehořlavého PC plastu. V balení je nabíjecí kabel.",
+          "specs": {
+            "Parametry": {
+              "Výkon": "30 W",
+              "Port": "1× USB-C",
+              "PD výstup": "5V/3A, 9V/3A, 12V/2,5A, 15V/2A, 20V/1,5A",
+              "PPS": "3,3–11 V / 3 A",
+              "QC výstup": "18 W",
+              "Vstup": "100–240 V, 50–60 Hz, 0,7 A",
+              "Vidlice": "US"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.ldnio.com/product/30w-us-single-usb-pd-fast-charger-a1508c.html",
+              "note": "LDNIO – oficiální produktová stránka a specifikace",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Přiřazeno podle typového označení výrobce.",
+          "imageNote": "Výrobce nemá fotografie verze s vidlicí US – ponechán obrázek značky."
+        }
+      }
+    },
+    {
+      "variantGroup": "ldnio-a2317c",
+      "variants": {
+        "ldnio-a2317c-eu-plug": {
+          "officialName": "LDNIO A2317C 30W PD/QC nabíječka (EU)",
+          "shortDesc": "Nabíječka 30 W se dvěma porty (PD/QC), nabije i notebook",
+          "description": "Nabíječka LDNIO A2317C s výkonem 30 W podporuje PD i QC, zvládne telefony i notebooky s USB-C. Tělo z nehořlavého PC plastu, devět stupňů ochrany. V balení je nabíjecí kabel.",
+          "specs": {
+            "Parametry": {
+              "Celkový výkon": "30 W",
+              "PD výstup": "5V/3A, 9V/3A, 12V/2,5A, 15V/2A, 20V/1,5A (30 W)",
+              "PPS": "3,3–11 V / 3 A",
+              "QC výstup": "18 W",
+              "Oba porty": "5 V / 3,6 A",
+              "Vstup": "100–240 V, 50–60 Hz, 0,7 A",
+              "Vidlice": "EU"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.ldnio.com/product/30w-pdqc-fast-charger-a2317c.html",
+              "note": "LDNIO – oficiální produktová stránka a specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.ldnio.com/product/30w-pdqc-fast-charger-a2317c.html",
+              "note": "Fotografie: oficiální web výrobce (LDNIO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Přiřazeno podle typového označení výrobce.",
+          "images": [
+            "/store/img/products/ldnio-a2317c-eu/1.webp",
+            "/store/img/products/ldnio-a2317c-eu/2.webp",
+            "/store/img/products/ldnio-a2317c-eu/3.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/ldnio-a2317c-eu/1.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/638ee270add0e.jpg",
+              "size": "600x600"
+            },
+            {
+              "file": "/store/img/products/ldnio-a2317c-eu/2.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/638ee270adefa.jpg",
+              "size": "600x600"
+            },
+            {
+              "file": "/store/img/products/ldnio-a2317c-eu/3.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/638ee270ae0f4.jpg",
+              "size": "600x600"
+            }
+          ]
+        },
+        "ldnio-a2317c-uk-plug": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO A2317C (UK plug) — nabíječky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Nabíječky · UK plug",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO A2317C (UK plug)",
+          "unresolvedReason": "LDNIO A2317C se dodává jen s vidlicí EU nebo US."
+        },
+        "ldnio-a2317c-us-plug": {
+          "officialName": "LDNIO A2317C 30W PD/QC nabíječka (US)",
+          "shortDesc": "Nabíječka 30 W se dvěma porty (PD/QC), nabije i notebook",
+          "description": "Nabíječka LDNIO A2317C s výkonem 30 W podporuje PD i QC, zvládne telefony i notebooky s USB-C. Tělo z nehořlavého PC plastu, devět stupňů ochrany. V balení je nabíjecí kabel.",
+          "specs": {
+            "Parametry": {
+              "Celkový výkon": "30 W",
+              "PD výstup": "5V/3A, 9V/3A, 12V/2,5A, 15V/2A, 20V/1,5A (30 W)",
+              "PPS": "3,3–11 V / 3 A",
+              "QC výstup": "18 W",
+              "Oba porty": "5 V / 3,6 A",
+              "Vstup": "100–240 V, 50–60 Hz, 0,7 A",
+              "Vidlice": "US"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.ldnio.com/product/30w-pdqc-fast-charger-a2317c.html",
+              "note": "LDNIO – oficiální produktová stránka a specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.ldnio.com/product/30w-pdqc-fast-charger-a2317c.html",
+              "note": "Fotografie: oficiální web výrobce (LDNIO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Přiřazeno podle typového označení výrobce.",
+          "images": [
+            "/store/img/products/ldnio-a2317c-us/1.webp",
+            "/store/img/products/ldnio-a2317c-us/2.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/ldnio-a2317c-us/1.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/638ee270ad6ad.jpg",
+              "size": "600x600"
+            },
+            {
+              "file": "/store/img/products/ldnio-a2317c-us/2.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/638ee270ad8fe.jpg",
+              "size": "600x600"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "ldnio-a2526c",
+      "variants": {
+        "ldnio-a2526c-eu-plug": {
+          "officialName": "LDNIO A2526C 45W dvouportová nabíječka PD+QC (EU)",
+          "shortDesc": "Dvouportová nabíječka 45 W (PD + QC 4.0)",
+          "description": "Nabíječka LDNIO A2526C se dvěma porty dodá až 45 W přes PD – dost i pro notebook. QC výstup 22,5 W, tělo z nehořlavého PC plastu, v balení nabíjecí kabel.",
+          "specs": {
+            "Parametry": {
+              "Celkový výkon": "45 W",
+              "PD výstup": "až 45 W (20 V / 2,25 A)",
+              "PPS": "3,3–15 V / 3 A, 3,3–20 V / 2,25 A",
+              "QC výstup": "22,5 W",
+              "Vstup": "100–240 V, 50/60 Hz, 1,2 A",
+              "Vidlice": "EU"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.ldnio.com/product/45w-dual-usb-qc40-super-fast-charger-a2526c.html",
+              "note": "LDNIO – oficiální produktová stránka a specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.ldnio.com/product/45w-dual-usb-qc40-super-fast-charger-a2526c.html",
+              "note": "Fotografie: oficiální web výrobce (LDNIO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Přiřazeno podle typového označení výrobce.",
+          "images": [
+            "/store/img/products/ldnio-a2526c-eu/1.webp",
+            "/store/img/products/ldnio-a2526c-eu/2.webp",
+            "/store/img/products/ldnio-a2526c-eu/3.webp",
+            "/store/img/products/ldnio-a2526c-eu/4.webp",
+            "/store/img/products/ldnio-a2526c-eu/5.webp",
+            "/store/img/products/ldnio-a2526c-eu/6.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/ldnio-a2526c-eu/1.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/635217c51dc65.jpg",
+              "size": "400x400"
+            },
+            {
+              "file": "/store/img/products/ldnio-a2526c-eu/2.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/635217c51da29.jpg",
+              "size": "400x400"
+            },
+            {
+              "file": "/store/img/products/ldnio-a2526c-eu/3.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/635217c51de53.jpg",
+              "size": "400x400"
+            },
+            {
+              "file": "/store/img/products/ldnio-a2526c-eu/4.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/635217c51e053.jpg",
+              "size": "400x400"
+            },
+            {
+              "file": "/store/img/products/ldnio-a2526c-eu/5.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/635217c51e254.jpg",
+              "size": "400x400"
+            },
+            {
+              "file": "/store/img/products/ldnio-a2526c-eu/6.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/635217c51e42d.jpg",
+              "size": "400x400"
+            }
+          ]
+        },
+        "ldnio-a2526c-uk-plug": {
+          "officialName": "LDNIO A2526C 45W dvouportová nabíječka PD+QC (UK)",
+          "shortDesc": "Dvouportová nabíječka 45 W (PD + QC 4.0)",
+          "description": "Nabíječka LDNIO A2526C se dvěma porty dodá až 45 W přes PD – dost i pro notebook. QC výstup 22,5 W, tělo z nehořlavého PC plastu, v balení nabíjecí kabel.",
+          "specs": {
+            "Parametry": {
+              "Celkový výkon": "45 W",
+              "PD výstup": "až 45 W (20 V / 2,25 A)",
+              "PPS": "3,3–15 V / 3 A, 3,3–20 V / 2,25 A",
+              "QC výstup": "22,5 W",
+              "Vstup": "100–240 V, 50/60 Hz, 1,2 A",
+              "Vidlice": "UK"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.ldnio.com/product/45w-dual-usb-qc40-super-fast-charger-a2526c.html",
+              "note": "LDNIO – oficiální produktová stránka a specifikace",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Přiřazeno podle typového označení výrobce.",
+          "imageNote": "Výrobce nemá fotografie verze s vidlicí UK – ponechán obrázek značky."
+        },
+        "ldnio-a2526c-us-plug": {
+          "officialName": "LDNIO A2526C 45W dvouportová nabíječka PD+QC (US)",
+          "shortDesc": "Dvouportová nabíječka 45 W (PD + QC 4.0)",
+          "description": "Nabíječka LDNIO A2526C se dvěma porty dodá až 45 W přes PD – dost i pro notebook. QC výstup 22,5 W, tělo z nehořlavého PC plastu, v balení nabíjecí kabel.",
+          "specs": {
+            "Parametry": {
+              "Celkový výkon": "45 W",
+              "PD výstup": "až 45 W (20 V / 2,25 A)",
+              "PPS": "3,3–15 V / 3 A, 3,3–20 V / 2,25 A",
+              "QC výstup": "22,5 W",
+              "Vstup": "100–240 V, 50/60 Hz, 1,2 A",
+              "Vidlice": "US"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.ldnio.com/product/45w-dual-usb-qc40-super-fast-charger-a2526c.html",
+              "note": "LDNIO – oficiální produktová stránka a specifikace",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Přiřazeno podle typového označení výrobce.",
+          "imageNote": "Výrobce nemá fotografie verze s vidlicí US – ponechán obrázek značky."
+        }
+      }
+    },
+    {
+      "variantGroup": "ldnio-a303q",
+      "variants": {
+        "ldnio-a303q-eu-plug": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO A303Q (EU plug) — nabíječky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Nabíječky · EU plug",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO A303Q (EU plug)",
+          "unresolvedReason": "Typové označení se na oficiálním webu LDNIO nepodařilo dohledat nebo jde o obecný název."
+        },
+        "ldnio-a303q-uk-plug": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO A303Q (UK plug) — nabíječky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Nabíječky · UK plug",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO A303Q (UK plug)",
+          "unresolvedReason": "Typové označení se na oficiálním webu LDNIO nepodařilo dohledat nebo jde o obecný název."
+        },
+        "ldnio-a303q-us-plug": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO A303Q (US plug) — nabíječky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Nabíječky · US plug",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO A303Q (US plug)",
+          "unresolvedReason": "Typové označení se na oficiálním webu LDNIO nepodařilo dohledat nebo jde o obecný název."
+        }
+      }
+    },
+    {
+      "variantGroup": "ldnio-a3510q-charger",
+      "variants": {
+        "ldnio-a3510q-charger-eu": {
+          "officialName": "LDNIO A3510Q 32W nabíječka PD+QC (3 porty)",
+          "shortDesc": "Nabíječka 32 W se třemi porty (1× USB-C, 2× USB-A), EU vidlice",
+          "description": "Kompaktní nabíječka LDNIO A3510Q má tři porty – USB-C PD 20 W, USB-A QC 3.0 18 W a USB-A Auto-ID – s celkovým výkonem 32 W. Evropská vidlice, v balení nabíjecí kabel.",
+          "specs": {
+            "Parametry": {
+              "Celkový výkon": "32 W",
+              "Porty": "1× USB-C, 2× USB-A",
+              "PD výstup": "20 W",
+              "QC 3.0 výstup": "18 W",
+              "Auto-ID": "5 V / 2,4 A",
+              "Vstup": "100–240 V, 50–60 Hz, 0,7 A",
+              "Vidlice": "EU"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.ldnio.com/product/32w-pdqc-quick-charger-a3510q.html",
+              "note": "LDNIO – oficiální produktová stránka a specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.ldnio.com/product/32w-pdqc-quick-charger-a3510q.html",
+              "note": "Fotografie: oficiální web výrobce (LDNIO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Přiřazeno podle typového označení výrobce.",
+          "images": [
+            "/store/img/products/ldnio-a3510q/1.webp",
+            "/store/img/products/ldnio-a3510q/2.webp",
+            "/store/img/products/ldnio-a3510q/3.webp",
+            "/store/img/products/ldnio-a3510q/4.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/ldnio-a3510q/1.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/6389b0d63a9e0.jpg",
+              "size": "600x600"
+            },
+            {
+              "file": "/store/img/products/ldnio-a3510q/2.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/6389b0d63ac39.jpg",
+              "size": "600x600"
+            },
+            {
+              "file": "/store/img/products/ldnio-a3510q/3.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/6389b0d63ae5f.jpg",
+              "size": "600x600"
+            },
+            {
+              "file": "/store/img/products/ldnio-a3510q/4.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/6389b0d63b079.jpg",
+              "size": "600x600"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "ldnio-a4808q",
+      "variants": {
+        "ldnio-a4808q-eu-plug": {
+          "officialName": "LDNIO A4808Q 70W stolní nabíječka (EU)",
+          "shortDesc": "Stolní nabíječka 70 W, 2× USB-C + 2× USB-A, LED displej",
+          "description": "Stolní nabíječka LDNIO A4808Q má čtyři porty (2× USB-C, 2× USB-A) s celkovým výkonem 70 W a LED displej s informacemi o nabíjení. Podporuje PD 3.0 i QC 3.0 a nabije MacBook, iPad i telefony.",
+          "specs": {
+            "Parametry": {
+              "Celkový výkon": "70 W",
+              "Porty": "2× USB-C, 2× USB-A",
+              "USB-C": "až 70 W (20 V / 3,5 A)",
+              "USB-A": "až 30 W",
+              "Displej": "LED",
+              "Vstup": "100–240 V, 50–60 Hz, 1,5 A",
+              "Vidlice": "EU"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.ldnio.com/product/70w-desktop-fast-charger-a4808q.html",
+              "note": "LDNIO – oficiální produktová stránka a specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.ldnio.com/product/70w-desktop-fast-charger-a4808q.html",
+              "note": "Fotografie: oficiální web výrobce (LDNIO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Přiřazeno podle typového označení výrobce.",
+          "images": [
+            "/store/img/products/ldnio-a4808q/1.webp",
+            "/store/img/products/ldnio-a4808q/2.webp",
+            "/store/img/products/ldnio-a4808q/3.webp",
+            "/store/img/products/ldnio-a4808q/4.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/ldnio-a4808q/1.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/696ba4ca96dbe.jpg",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/ldnio-a4808q/2.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/696ba4ca96b81.jpg",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/ldnio-a4808q/3.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/696ba4ca9684c.jpg",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/ldnio-a4808q/4.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/696ba4ca962e5.jpg",
+              "size": "1600x1600"
+            }
+          ]
+        },
+        "ldnio-a4808q-uk-plug": {
+          "officialName": "LDNIO A4808Q 70W stolní nabíječka (UK)",
+          "shortDesc": "Stolní nabíječka 70 W, 2× USB-C + 2× USB-A, LED displej",
+          "description": "Stolní nabíječka LDNIO A4808Q má čtyři porty (2× USB-C, 2× USB-A) s celkovým výkonem 70 W a LED displej s informacemi o nabíjení. Podporuje PD 3.0 i QC 3.0 a nabije MacBook, iPad i telefony.",
+          "specs": {
+            "Parametry": {
+              "Celkový výkon": "70 W",
+              "Porty": "2× USB-C, 2× USB-A",
+              "USB-C": "až 70 W (20 V / 3,5 A)",
+              "USB-A": "až 30 W",
+              "Displej": "LED",
+              "Vstup": "100–240 V, 50–60 Hz, 1,5 A",
+              "Vidlice": "UK"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.ldnio.com/product/70w-desktop-fast-charger-a4808q.html",
+              "note": "LDNIO – oficiální produktová stránka a specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.ldnio.com/product/70w-desktop-fast-charger-a4808q.html",
+              "note": "Fotografie: oficiální web výrobce (LDNIO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Přiřazeno podle typového označení výrobce.",
+          "images": [
+            "/store/img/products/ldnio-a4808q/1.webp",
+            "/store/img/products/ldnio-a4808q/2.webp",
+            "/store/img/products/ldnio-a4808q/3.webp",
+            "/store/img/products/ldnio-a4808q/4.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/ldnio-a4808q/1.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/696ba4ca96dbe.jpg",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/ldnio-a4808q/2.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/696ba4ca96b81.jpg",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/ldnio-a4808q/3.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/696ba4ca9684c.jpg",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/ldnio-a4808q/4.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/696ba4ca962e5.jpg",
+              "size": "1600x1600"
+            }
+          ]
+        },
+        "ldnio-a4808q-us-plug": {
+          "officialName": "LDNIO A4808Q 70W stolní nabíječka (US)",
+          "shortDesc": "Stolní nabíječka 70 W, 2× USB-C + 2× USB-A, LED displej",
+          "description": "Stolní nabíječka LDNIO A4808Q má čtyři porty (2× USB-C, 2× USB-A) s celkovým výkonem 70 W a LED displej s informacemi o nabíjení. Podporuje PD 3.0 i QC 3.0 a nabije MacBook, iPad i telefony.",
+          "specs": {
+            "Parametry": {
+              "Celkový výkon": "70 W",
+              "Porty": "2× USB-C, 2× USB-A",
+              "USB-C": "až 70 W (20 V / 3,5 A)",
+              "USB-A": "až 30 W",
+              "Displej": "LED",
+              "Vstup": "100–240 V, 50–60 Hz, 1,5 A",
+              "Vidlice": "US"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.ldnio.com/product/70w-desktop-fast-charger-a4808q.html",
+              "note": "LDNIO – oficiální produktová stránka a specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.ldnio.com/product/70w-desktop-fast-charger-a4808q.html",
+              "note": "Fotografie: oficiální web výrobce (LDNIO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Přiřazeno podle typového označení výrobce.",
+          "images": [
+            "/store/img/products/ldnio-a4808q/1.webp",
+            "/store/img/products/ldnio-a4808q/2.webp",
+            "/store/img/products/ldnio-a4808q/3.webp",
+            "/store/img/products/ldnio-a4808q/4.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/ldnio-a4808q/1.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/696ba4ca96dbe.jpg",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/ldnio-a4808q/2.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/696ba4ca96b81.jpg",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/ldnio-a4808q/3.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/696ba4ca9684c.jpg",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/ldnio-a4808q/4.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/696ba4ca962e5.jpg",
+              "size": "1600x1600"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "ldnio-a6140c-charger",
+      "variants": {
+        "ldnio-a6140c-charger-eu": {
+          "officialName": "LDNIO A6140C 140W GaN stolní nabíječka",
+          "shortDesc": "Stolní GaN nabíječka 140 W, 3× USB-C (až 100 W) + 3× USB-A, LED displej",
+          "description": "Stolní nabíječka LDNIO A6140C s technologií GaN nabije až šest zařízení – tři porty USB-C (každý až 100 W) a tři USB-A (až 30 W) – s celkovým výkonem 140 W. LED displej ukazuje stav nabíjení.",
+          "specs": {
+            "Parametry": {
+              "Celkový výkon": "140 W",
+              "Porty": "3× USB-C, 3× USB-A",
+              "USB-C": "až 100 W (20 V / 5 A), PPS 3,3–21 V",
+              "USB-A": "až 30 W",
+              "Technologie": "GaN",
+              "Displej": "LED",
+              "Vstup": "100–240 V, 50–60 Hz, 2,5 A"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.ldnio.com/product/140w-gan-super-fast-desktop-charger-a6140c.html",
+              "note": "LDNIO – oficiální produktová stránka a specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.ldnio.com/product/140w-gan-super-fast-desktop-charger-a6140c.html",
+              "note": "Fotografie: oficiální web výrobce (LDNIO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Přiřazeno podle typového označení výrobce.",
+          "images": [
+            "/store/img/products/ldnio-a6140c/1.webp",
+            "/store/img/products/ldnio-a6140c/2.webp",
+            "/store/img/products/ldnio-a6140c/3.webp",
+            "/store/img/products/ldnio-a6140c/4.webp",
+            "/store/img/products/ldnio-a6140c/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/ldnio-a6140c/1.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/64df212fa9a9c.jpg",
+              "size": "600x600"
+            },
+            {
+              "file": "/store/img/products/ldnio-a6140c/2.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/64df212fa906f.jpg",
+              "size": "600x600"
+            },
+            {
+              "file": "/store/img/products/ldnio-a6140c/3.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/64df212fa882f.jpg",
+              "size": "600x600"
+            },
+            {
+              "file": "/store/img/products/ldnio-a6140c/4.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/64df212fa8cfd.jpg",
+              "size": "600x600"
+            },
+            {
+              "file": "/store/img/products/ldnio-a6140c/5.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/64df212fa93f5.jpg",
+              "size": "600x600"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "ldnio-ds-101-hub",
+      "variants": {
+        "ldnio-ds-101-hub-usb-c": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO DS-101 hub (USB-C) — huby a docking stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Huby a docking stanice · USB-C",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO DS-101 hub (USB-C)",
+          "unresolvedReason": "Typové označení se na oficiálním webu LDNIO nepodařilo dohledat nebo jde o obecný název."
+        }
+      }
+    },
+    {
+      "variantGroup": "ldnio-ds-104u-hub",
+      "variants": {
+        "ldnio-ds-104u-hub-b2b": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO DS-104U hub (B2B) — huby a docking stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Huby a docking stanice · B2B",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO DS-104U hub (B2B)",
+          "unresolvedReason": "Typové označení se na oficiálním webu LDNIO nepodařilo dohledat nebo jde o obecný název."
+        }
+      }
+    },
+    {
+      "variantGroup": "ldnio-lc101-cable",
+      "variants": {
+        "ldnio-lc101-cable-1m": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO LC101 cable (1m) — kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Kabely · 1m",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO LC101 cable (1m)",
+          "unresolvedReason": "Typové označení se na oficiálním webu LDNIO nepodařilo dohledat nebo jde o obecný název."
+        }
+      }
+    },
+    {
+      "variantGroup": "ldnio-lc102-cable",
+      "variants": {
+        "ldnio-lc102-cable-2m": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO LC102 cable (2m) — kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Kabely · 2m",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO LC102 cable (2m)",
+          "unresolvedReason": "Typové označení se na oficiálním webu LDNIO nepodařilo dohledat nebo jde o obecný název."
+        }
+      }
+    },
+    {
+      "variantGroup": "ldnio-lc441c-c15",
+      "variants": {
+        "ldnio-lc441c-c15-1m": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO LC441C-C15 (1m) — kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Kabely · 1m",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO LC441C-C15 (1m)",
+          "unresolvedReason": "Typové označení se na oficiálním webu LDNIO nepodařilo dohledat nebo jde o obecný název."
+        },
+        "ldnio-lc441c-c15-2m": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO LC441C-C15 (2m) — kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Kabely · 2m",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO LC441C-C15 (2m)",
+          "unresolvedReason": "Typové označení se na oficiálním webu LDNIO nepodařilo dohledat nebo jde o obecný název."
+        },
+        "ldnio-lc441c-c15-3m": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO LC441C-C15 (3m) — kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Kabely · 3m",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO LC441C-C15 (3m)",
+          "unresolvedReason": "Typové označení se na oficiálním webu LDNIO nepodařilo dohledat nebo jde o obecný název."
+        }
+      }
+    },
+    {
+      "variantGroup": "ldnio-ls851",
+      "variants": {
+        "ldnio-ls851-1m": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO LS851 (1m) — kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Kabely · 1m",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO LS851 (1m)",
+          "unresolvedReason": "Kabel LS851/LS852 má varianty konektorů (USB-C/micro/Lightning) a délky jen 1/2 m – sourcing neurčuje konektor."
+        },
+        "ldnio-ls851-2m": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO LS851 (2m) — kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Kabely · 2m",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO LS851 (2m)",
+          "unresolvedReason": "Kabel LS851/LS852 má varianty konektorů (USB-C/micro/Lightning) a délky jen 1/2 m – sourcing neurčuje konektor."
+        },
+        "ldnio-ls851-3m": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO LS851 (3m) — kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Kabely · 3m",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO LS851 (3m)",
+          "unresolvedReason": "Kabel LS851/LS852 má varianty konektorů (USB-C/micro/Lightning) a délky jen 1/2 m – sourcing neurčuje konektor."
+        }
+      }
+    },
+    {
+      "variantGroup": "ldnio-ls901",
+      "variants": {
+        "ldnio-ls901-1m": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO LS901 (1m) — kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Kabely · 1m",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO LS901 (1m)",
+          "unresolvedReason": "Kabely LS901/LS902 se liší konektorem a délkou (1/2 m) – sourcing neurčuje konektor."
+        },
+        "ldnio-ls901-2m": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO LS901 (2m) — kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Kabely · 2m",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO LS901 (2m)",
+          "unresolvedReason": "Kabely LS901/LS902 se liší konektorem a délkou (1/2 m) – sourcing neurčuje konektor."
+        },
+        "ldnio-ls901-3m": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO LS901 (3m) — kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Kabely · 3m",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO LS901 (3m)",
+          "unresolvedReason": "Kabely LS901/LS902 se liší konektorem a délkou (1/2 m) – sourcing neurčuje konektor."
+        }
+      }
+    },
+    {
+      "variantGroup": "ldnio-ls902",
+      "variants": {
+        "ldnio-ls902-1m": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO LS902 (1m) — kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Kabely · 1m",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO LS902 (1m)",
+          "unresolvedReason": "Kabely LS901/LS902 se liší konektorem a délkou (1/2 m) – sourcing neurčuje konektor."
+        },
+        "ldnio-ls902-2m": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO LS902 (2m) — kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Kabely · 2m",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO LS902 (2m)",
+          "unresolvedReason": "Kabely LS901/LS902 se liší konektorem a délkou (1/2 m) – sourcing neurčuje konektor."
+        },
+        "ldnio-ls902-3m": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO LS902 (3m) — kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Kabely · 3m",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO LS902 (3m)",
+          "unresolvedReason": "Kabely LS901/LS902 se liší konektorem a délkou (1/2 m) – sourcing neurčuje konektor."
+        }
+      }
+    },
+    {
+      "variantGroup": "ldnio-n01-neckband",
+      "variants": {
+        "ldnio-n01-neckband-b2b": {
+          "officialName": "LDNIO N01 Bluetooth sluchátka (neckband)",
+          "shortDesc": "Bezdrátová sluchátka s krčním páskem, Bluetooth 5.3, výdrž cca 50 h",
+          "description": "Bezdrátová sluchátka LDNIO N01 s krčním páskem a Bluetooth 5.3. Baterie 500 mAh vydrží přibližně 50 hodin, mikrofon s potlačením hluku pro hovory, nabíjení přes USB-C.",
+          "specs": {
+            "Parametry": {
+              "Bluetooth": "5.3 + BR/EDR",
+              "Dosah": "≥ 10 m",
+              "Měniče": "13 mm, 32 Ω",
+              "Frekvenční rozsah": "60 Hz – 20 kHz",
+              "Baterie": "500 mAh",
+              "Výdrž": "cca 50 h (při 80% hlasitosti)",
+              "Nabíjení": "USB-C"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.ldnio.com/product/wireless-stereo-headset-neckband-bluetooth-headset-n01.html",
+              "note": "LDNIO – oficiální produktová stránka a specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.ldnio.com/product/wireless-stereo-headset-neckband-bluetooth-headset-n01.html",
+              "note": "Fotografie: oficiální web výrobce (LDNIO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Přiřazeno podle typového označení výrobce.",
+          "images": [
+            "/store/img/products/ldnio-n01/1.webp",
+            "/store/img/products/ldnio-n01/2.webp",
+            "/store/img/products/ldnio-n01/3.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/ldnio-n01/1.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/66f8c88c1fd7c.jpg",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/ldnio-n01/2.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/66f8c88c20410.jpg",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/ldnio-n01/3.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/66f8c88c200e4.jpg",
+              "size": "1600x1600"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "ldnio-n05-neckband",
+      "variants": {
+        "ldnio-n05-neckband-b2b": {
+          "officialName": "LDNIO N05 Bluetooth sluchátka (neckband)",
+          "shortDesc": "Bezdrátová sluchátka s krčním páskem, Bluetooth 5.4, baterie 1 000 mAh, IPX3",
+          "description": "Bezdrátová sluchátka LDNIO N05 s krčním páskem a Bluetooth 5.4 mají baterii 1 000 mAh pro dlouhý poslech, silikonové tělo a odolnost proti potu a stříkající vodě (IPX3). Mikrofon pro hovory, nabíjení přes USB-C.",
+          "specs": {
+            "Parametry": {
+              "Bluetooth": "5.4 + BR/EDR",
+              "Dosah": "≤ 10 m",
+              "Frekvenční rozsah": "60 Hz – 20 kHz",
+              "Baterie": "1 000 mAh",
+              "Odolnost": "IPX3",
+              "Nabíjení": "USB-C",
+              "Barva": "černá"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.ldnio.com/product/neckband-headphones-n05.html",
+              "note": "LDNIO – oficiální produktová stránka a specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.ldnio.com/product/neckband-headphones-n05.html",
+              "note": "Fotografie: oficiální web výrobce (LDNIO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Přiřazeno podle typového označení výrobce.",
+          "images": [
+            "/store/img/products/ldnio-n05/1.webp",
+            "/store/img/products/ldnio-n05/2.webp",
+            "/store/img/products/ldnio-n05/3.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/ldnio-n05/1.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/690c38185c28e.jpg",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/ldnio-n05/2.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/690c38185c583.jpg",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/ldnio-n05/3.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/690c38185c035.jpg",
+              "size": "1600x1600"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "ldnio-pq27-power-bank",
+      "variants": {
+        "ldnio-pq27-power-bank-10000mah": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO PQ27 power bank (10000mAh) — power banky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Power banky · 10000mAh",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO PQ27 power bank (10000mAh)",
+          "unresolvedReason": "Sourcing uvádí 10 000 mAh, oficiální LDNIO PQ27 má 20 000 mAh – rozpor, nelze přiřadit."
+        }
+      }
+    },
+    {
+      "variantGroup": "ldnio-pq28-5000mah-magnetic",
+      "variants": {
+        "ldnio-pq28-5000mah-magnetic-b2b": {
+          "officialName": "LDNIO PQ28 magnetická powerbanka 5000mAh",
+          "shortDesc": "Ultralehká magnetická powerbanka 5 000 mAh, 15 W bezdrátově, 20 W PD (119 g)",
+          "description": "Ultralehká magnetická powerbanka LDNIO PQ28 váží jen 119 g. Bezdrátově nabíjí výkonem až 15 W, přes USB-C dodá až 20 W PD.",
+          "specs": {
+            "Parametry": {
+              "Kapacita": "5 000 mAh / 19,25 Wh",
+              "Bezdrátový výstup": "5 / 7,5 / 10 / 15 W",
+              "USB-C výstup": "až 20 W",
+              "USB-C vstup": "až 18 W",
+              "Hmotnost": "119 g",
+              "Barva": "černá"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.ldnio.com/product/ultralight-5000mah15w-wireless-fast-charger-pq28.html",
+              "note": "LDNIO – oficiální produktová stránka a specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.ldnio.com/product/ultralight-5000mah15w-wireless-fast-charger-pq28.html",
+              "note": "Fotografie: oficiální web výrobce (LDNIO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Přiřazeno podle typového označení výrobce.",
+          "images": [
+            "/store/img/products/ldnio-pq28/1.webp",
+            "/store/img/products/ldnio-pq28/2.webp",
+            "/store/img/products/ldnio-pq28/3.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/ldnio-pq28/1.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/67e75ecc69280.jpg",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/ldnio-pq28/2.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/67e75ecc6909e.jpg",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/ldnio-pq28/3.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/67e75ecc68e8a.jpg",
+              "size": "1600x1600"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "ldnio-pq30-power-bank",
+      "variants": {
+        "ldnio-pq30-power-bank-10000mah": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO PQ30 power bank (10000mAh) — power banky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Power banky · 10000mAh",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO PQ30 power bank (10000mAh)",
+          "unresolvedReason": "Sourcing uvádí 10 000 mAh, oficiální LDNIO PQ30 má 30 000 mAh – rozpor, nelze přiřadit."
+        }
+      }
+    },
+    {
+      "variantGroup": "ldnio-q1415",
+      "variants": {
+        "ldnio-q1415-eu-plug": {
+          "officialName": "LDNIO Q1415 45W USB-C PD nabíječka (EU)",
+          "shortDesc": "Nabíječka 45 W s jedním portem USB-C (PD, PPS)",
+          "description": "Nabíječka LDNIO Q1415 s jedním portem USB-C dodá až 45 W, takže nabije i notebook. Podporuje PPS, tělo z nehořlavého PC plastu, v balení nabíjecí kabel.",
+          "specs": {
+            "Parametry": {
+              "Výkon": "45 W",
+              "Port": "1× USB-C",
+              "Výstup": "5V/3A, 9V/3A, 15V/3A, 20V/2,25A",
+              "PPS": "3,3–11 V / 5 A, 3,3–21 V / 2,25 A",
+              "Vstup": "100–240 V, 50–60 Hz, 1 A",
+              "Vidlice": "EU"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.ldnio.com/product/45w-pd-super-fast-charger-q1415.html",
+              "note": "LDNIO – oficiální produktová stránka a specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.ldnio.com/product/45w-pd-super-fast-charger-q1415.html",
+              "note": "Fotografie: oficiální web výrobce (LDNIO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Přiřazeno podle typového označení výrobce.",
+          "images": [
+            "/store/img/products/ldnio-q1415-eu/1.webp",
+            "/store/img/products/ldnio-q1415-eu/2.webp",
+            "/store/img/products/ldnio-q1415-eu/3.webp",
+            "/store/img/products/ldnio-q1415-eu/4.webp",
+            "/store/img/products/ldnio-q1415-eu/5.webp",
+            "/store/img/products/ldnio-q1415-eu/6.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/ldnio-q1415-eu/1.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/6788a54be65ed.png",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/ldnio-q1415-eu/2.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/6788a54be617d.png",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/ldnio-q1415-eu/3.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/6788a54be5dd7.png",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/ldnio-q1415-eu/4.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/6788a54be5b67.png",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/ldnio-q1415-eu/5.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/6788a54be581a.png",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/ldnio-q1415-eu/6.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/6788a54be547e.png",
+              "size": "1600x1600"
+            }
+          ]
+        },
+        "ldnio-q1415-uk-plug": {
+          "officialName": "LDNIO Q1415 45W USB-C PD nabíječka (UK)",
+          "shortDesc": "Nabíječka 45 W s jedním portem USB-C (PD, PPS)",
+          "description": "Nabíječka LDNIO Q1415 s jedním portem USB-C dodá až 45 W, takže nabije i notebook. Podporuje PPS, tělo z nehořlavého PC plastu, v balení nabíjecí kabel.",
+          "specs": {
+            "Parametry": {
+              "Výkon": "45 W",
+              "Port": "1× USB-C",
+              "Výstup": "5V/3A, 9V/3A, 15V/3A, 20V/2,25A",
+              "PPS": "3,3–11 V / 5 A, 3,3–21 V / 2,25 A",
+              "Vstup": "100–240 V, 50–60 Hz, 1 A",
+              "Vidlice": "UK"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.ldnio.com/product/45w-pd-super-fast-charger-q1415.html",
+              "note": "LDNIO – oficiální produktová stránka a specifikace",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Přiřazeno podle typového označení výrobce.",
+          "imageNote": "Výrobce nemá fotografie verze s vidlicí UK – ponechán obrázek značky."
+        },
+        "ldnio-q1415-us-plug": {
+          "officialName": "LDNIO Q1415 45W USB-C PD nabíječka (US)",
+          "shortDesc": "Nabíječka 45 W s jedním portem USB-C (PD, PPS)",
+          "description": "Nabíječka LDNIO Q1415 s jedním portem USB-C dodá až 45 W, takže nabije i notebook. Podporuje PPS, tělo z nehořlavého PC plastu, v balení nabíjecí kabel.",
+          "specs": {
+            "Parametry": {
+              "Výkon": "45 W",
+              "Port": "1× USB-C",
+              "Výstup": "5V/3A, 9V/3A, 15V/3A, 20V/2,25A",
+              "PPS": "3,3–11 V / 5 A, 3,3–21 V / 2,25 A",
+              "Vstup": "100–240 V, 50–60 Hz, 1 A",
+              "Vidlice": "US"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.ldnio.com/product/45w-pd-super-fast-charger-q1415.html",
+              "note": "LDNIO – oficiální produktová stránka a specifikace",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Přiřazeno podle typového označení výrobce.",
+          "imageNote": "Výrobce nemá fotografie verze s vidlicí US – ponechán obrázek značky."
+        }
+      }
+    },
+    {
+      "variantGroup": "ldnio-q408-charger",
+      "variants": {
+        "ldnio-q408-charger-eu": {
+          "officialName": "LDNIO Q408 100W GaN nabíječka",
+          "shortDesc": "GaN nabíječka 100 W: 3× USB-C + 1× USB-A, výměnné vidlice",
+          "description": "Nabíječka LDNIO Q408 s technologií GaN má čtyři porty (3× USB-C, 1× USB-A) s celkovým výkonem 100 W – dva porty USB-C dodají až 100 W. Výměnné vidlice EU/UK/US.",
+          "specs": {
+            "Parametry": {
+              "Celkový výkon": "100 W",
+              "Porty": "3× USB-C, 1× USB-A",
+              "USB-C1 / USB-C2": "až 100 W",
+              "USB-C3": "až 30 W",
+              "USB-A": "až 30 W",
+              "Technologie": "GaN",
+              "Vstup": "100–240 V, 50–60 Hz, 2 A",
+              "Vidlice": "výměnné (EU/UK/US)"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.ldnio.com/product/100w-gan-supper-fast-charger-q408.html",
+              "note": "LDNIO – oficiální produktová stránka a specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.ldnio.com/product/100w-gan-supper-fast-charger-q408.html",
+              "note": "Fotografie: oficiální web výrobce (LDNIO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Přiřazeno podle typového označení výrobce.",
+          "images": [
+            "/store/img/products/ldnio-q408/1.webp",
+            "/store/img/products/ldnio-q408/2.webp",
+            "/store/img/products/ldnio-q408/3.webp",
+            "/store/img/products/ldnio-q408/4.webp",
+            "/store/img/products/ldnio-q408/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/ldnio-q408/1.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/6572e556ad40e.jpg",
+              "size": "600x600"
+            },
+            {
+              "file": "/store/img/products/ldnio-q408/2.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/658a30d28b7f6.jpg",
+              "size": "600x600"
+            },
+            {
+              "file": "/store/img/products/ldnio-q408/3.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/6572e556ade1c.jpg",
+              "size": "600x600"
+            },
+            {
+              "file": "/store/img/products/ldnio-q408/4.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/6572e556ae4e0.jpg",
+              "size": "600x600"
+            },
+            {
+              "file": "/store/img/products/ldnio-q408/5.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/6572e556ae173.jpg",
+              "size": "600x600"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "ldnio-q5",
+      "variants": {
+        "ldnio-q5-eu-plug": {
+          "officialName": "LDNIO Q5 33W nabíječka USB-C/A (EU)",
+          "shortDesc": "Nabíječka 33 W s porty USB-C a USB-A",
+          "description": "Nabíječka LDNIO Q5 dodá až 33 W přes USB-C (PD, PPS) nebo 30 W přes USB-A, při použití obou portů 18 W. Tělo z nehořlavého PC plastu.",
+          "specs": {
+            "Parametry": {
+              "USB-C": "až 33 W (PD, PPS)",
+              "USB-A": "až 30 W",
+              "Oba porty": "5 V / 3,6 A (18 W)",
+              "Vstup": "100–240 V, 50/60 Hz, 0,7 A",
+              "Vidlice": "EU"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.ldnio.com/product/33w-usb-ca-super-fast-charger-q5.html",
+              "note": "LDNIO – oficiální produktová stránka a specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.ldnio.com/product/33w-usb-ca-super-fast-charger-q5.html",
+              "note": "Fotografie: oficiální web výrobce (LDNIO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Přiřazeno podle typového označení výrobce.",
+          "images": [
+            "/store/img/products/ldnio-q5-eu/1.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/ldnio-q5-eu/1.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/686c9d2b091e3.jpg",
+              "size": "1600x1600"
+            }
+          ]
+        },
+        "ldnio-q5-uk-plug": {
+          "officialName": "LDNIO Q5 33W nabíječka USB-C/A (UK)",
+          "shortDesc": "Nabíječka 33 W s porty USB-C a USB-A",
+          "description": "Nabíječka LDNIO Q5 dodá až 33 W přes USB-C (PD, PPS) nebo 30 W přes USB-A, při použití obou portů 18 W. Tělo z nehořlavého PC plastu.",
+          "specs": {
+            "Parametry": {
+              "USB-C": "až 33 W (PD, PPS)",
+              "USB-A": "až 30 W",
+              "Oba porty": "5 V / 3,6 A (18 W)",
+              "Vstup": "100–240 V, 50/60 Hz, 0,7 A",
+              "Vidlice": "UK"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.ldnio.com/product/33w-usb-ca-super-fast-charger-q5.html",
+              "note": "LDNIO – oficiální produktová stránka a specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.ldnio.com/product/33w-usb-ca-super-fast-charger-q5.html",
+              "note": "Fotografie: oficiální web výrobce (LDNIO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Přiřazeno podle typového označení výrobce.",
+          "images": [
+            "/store/img/products/ldnio-q5-uk/1.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/ldnio-q5-uk/1.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/686c9d2b08fb5.jpg",
+              "size": "1600x1600"
+            }
+          ]
+        },
+        "ldnio-q5-us-plug": {
+          "officialName": "LDNIO Q5 33W nabíječka USB-C/A (US)",
+          "shortDesc": "Nabíječka 33 W s porty USB-C a USB-A",
+          "description": "Nabíječka LDNIO Q5 dodá až 33 W přes USB-C (PD, PPS) nebo 30 W přes USB-A, při použití obou portů 18 W. Tělo z nehořlavého PC plastu.",
+          "specs": {
+            "Parametry": {
+              "USB-C": "až 33 W (PD, PPS)",
+              "USB-A": "až 30 W",
+              "Oba porty": "5 V / 3,6 A (18 W)",
+              "Vstup": "100–240 V, 50/60 Hz, 0,7 A",
+              "Vidlice": "US"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.ldnio.com/product/33w-usb-ca-super-fast-charger-q5.html",
+              "note": "LDNIO – oficiální produktová stránka a specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.ldnio.com/product/33w-usb-ca-super-fast-charger-q5.html",
+              "note": "Fotografie: oficiální web výrobce (LDNIO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Přiřazeno podle typového označení výrobce.",
+          "images": [
+            "/store/img/products/ldnio-q5-us/1.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/ldnio-q5-us/1.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/686c9d2b0988e.jpg",
+              "size": "1600x1600"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "ldnio-sc3604c",
+      "variants": {
+        "ldnio-sc3604c-eu": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO SC3604C (EU) — prodlužovače a smart zásuvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Prodlužovače a smart zásuvky · EU",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO SC3604C (EU)",
+          "unresolvedReason": "Typové označení se na oficiálním webu LDNIO nepodařilo dohledat nebo jde o obecný název."
+        },
+        "ldnio-sc3604c-office": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO SC3604C (office) — prodlužovače a smart zásuvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Prodlužovače a smart zásuvky · office",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO SC3604C (office)",
+          "unresolvedReason": "Typové označení se na oficiálním webu LDNIO nepodařilo dohledat nebo jde o obecný název."
+        },
+        "ldnio-sc3604c-travel": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO SC3604C (travel) — prodlužovače a smart zásuvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Prodlužovače a smart zásuvky · travel",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO SC3604C (travel)",
+          "unresolvedReason": "Typové označení se na oficiálním webu LDNIO nepodařilo dohledat nebo jde o obecný název."
+        }
+      }
+    },
+    {
+      "variantGroup": "ldnio-sc4383",
+      "variants": {
+        "ldnio-sc4383-eu": {
+          "officialName": "LDNIO SC4383 stolní zásuvkový adaptér 70W",
+          "shortDesc": "Zásuvkový adaptér 2500 W s USB-C 70 W a USB-A, kabel 2 m",
+          "description": "Stolní zásuvkový adaptér LDNIO SC4383 kombinuje zásuvky do 2 500 W s nabíjecími porty 2× USB-C (až 70 W, PD 3.0) a USB-A (až 30 W). Napájecí kabel 2 m.",
+          "specs": {
+            "Parametry": {
+              "Zásuvky": "max. 2 500 W, 10 A",
+              "USB-C": "až 70 W (PD 3.0, PPS)",
+              "USB-A": "až 30 W",
+              "Celkem USB": "70 W",
+              "Kabel": "2 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.ldnio.com/product/70w-multifunctional-universal-desktop-power-adapter-sc4383.html",
+              "note": "LDNIO – oficiální produktová stránka a specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.ldnio.com/product/70w-multifunctional-universal-desktop-power-adapter-sc4383.html",
+              "note": "Fotografie: oficiální web výrobce (LDNIO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Přiřazeno podle typového označení výrobce.",
+          "images": [
+            "/store/img/products/ldnio-sc4383/1.webp",
+            "/store/img/products/ldnio-sc4383/2.webp",
+            "/store/img/products/ldnio-sc4383/3.webp",
+            "/store/img/products/ldnio-sc4383/4.webp",
+            "/store/img/products/ldnio-sc4383/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/ldnio-sc4383/1.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/6662817cec5f0.jpg",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/ldnio-sc4383/2.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/6662817cec8ec.jpg",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/ldnio-sc4383/3.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/6662817cecbb0.jpg",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/ldnio-sc4383/4.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/6662817cec1e1.jpg",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/ldnio-sc4383/5.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/6662817cece7e.jpg",
+              "size": "1600x1600"
+            }
+          ]
+        },
+        "ldnio-sc4383-office": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO SC4383 (office) — prodlužovače a smart zásuvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Prodlužovače a smart zásuvky · office",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO SC4383 (office)",
+          "unresolvedReason": "Varianta „office“ není u výrobce rozlišena (smyšlená varianta ze sourcingu)."
+        },
+        "ldnio-sc4383-travel": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO SC4383 (travel) — prodlužovače a smart zásuvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Prodlužovače a smart zásuvky · travel",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO SC4383 (travel)",
+          "unresolvedReason": "Varianta „travel“ není u výrobce rozlišena (smyšlená varianta ze sourcingu)."
+        }
+      }
+    },
+    {
+      "variantGroup": "ldnio-sc5319",
+      "variants": {
+        "ldnio-sc5319-eu": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO SC5319 (EU) — prodlužovače a smart zásuvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Prodlužovače a smart zásuvky · EU",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO SC5319 (EU)",
+          "unresolvedReason": "Typové označení se na oficiálním webu LDNIO nepodařilo dohledat nebo jde o obecný název."
+        },
+        "ldnio-sc5319-office": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO SC5319 (office) — prodlužovače a smart zásuvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Prodlužovače a smart zásuvky · office",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO SC5319 (office)",
+          "unresolvedReason": "Typové označení se na oficiálním webu LDNIO nepodařilo dohledat nebo jde o obecný název."
+        },
+        "ldnio-sc5319-travel": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO SC5319 (travel) — prodlužovače a smart zásuvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Prodlužovače a smart zásuvky · travel",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO SC5319 (travel)",
+          "unresolvedReason": "Typové označení se na oficiálním webu LDNIO nepodařilo dohledat nebo jde o obecný název."
+        }
+      }
+    },
+    {
+      "variantGroup": "ldnio-sc5614-power-strip",
+      "variants": {
+        "ldnio-sc5614-power-strip-eu": {
+          "officialName": "LDNIO SC5614 prodlužovací lišta 5 zásuvek + 6× USB",
+          "shortDesc": "Prodlužovací lišta s 5 univerzálními zásuvkami a 6 porty USB, kabel 2 m",
+          "description": "Prodlužovací lišta LDNIO SC5614 s pěti univerzálními zásuvkami (max. 2 500 W) a šesti porty USB Auto-ID (celkem 17 W). Napájecí kabel 2 m.",
+          "specs": {
+            "Parametry": {
+              "Zásuvky": "5× univerzální, max. 2 500 W, 10 A",
+              "USB": "6× Auto-ID, celkem 17 W",
+              "Kabel": "2 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.ldnio.com/product/5-ac-outlets-universal-power-strip-sc5614.html",
+              "note": "LDNIO – oficiální produktová stránka a specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.ldnio.com/product/5-ac-outlets-universal-power-strip-sc5614.html",
+              "note": "Fotografie: oficiální web výrobce (LDNIO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Přiřazeno podle typového označení výrobce.",
+          "images": [
+            "/store/img/products/ldnio-sc5614/1.webp",
+            "/store/img/products/ldnio-sc5614/2.webp",
+            "/store/img/products/ldnio-sc5614/3.webp",
+            "/store/img/products/ldnio-sc5614/4.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/ldnio-sc5614/1.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/635f30f980c94.jpg",
+              "size": "400x400"
+            },
+            {
+              "file": "/store/img/products/ldnio-sc5614/2.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/635f30f980a98.jpg",
+              "size": "400x400"
+            },
+            {
+              "file": "/store/img/products/ldnio-sc5614/3.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/635f30f9812dd.jpg",
+              "size": "400x400"
+            },
+            {
+              "file": "/store/img/products/ldnio-sc5614/4.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/635f30f9814df.jpg",
+              "size": "400x400"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "ldnio-scw1050-smart-plug",
+      "variants": {
+        "ldnio-scw1050-smart-plug-b2b": {
+          "officialName": "LDNIO SCW1050 chytrá Wi-Fi zásuvka",
+          "shortDesc": "Chytrá zásuvka Wi-Fi s časovačem a ovládáním z aplikace",
+          "description": "Chytrá zásuvka LDNIO SCW1050 se připojí k Wi-Fi (2,4 GHz) a umožní zapínat spotřebiče z aplikace, nastavovat časovače a připomínky. Bezpečnostní clonky, nehořlavý PC plast, max. 2 500 W.",
+          "specs": {
+            "Parametry": {
+              "Max. zátěž": "2 500 W, 10 A, 250 V",
+              "Wi-Fi": "2,4 GHz",
+              "Funkce": "časovač, ovládání aplikací, připomínky",
+              "Vidlice": "EU (dle fotografií)"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.ldnio.com/product/wi-fi-smart-power-socket-scw1050.html",
+              "note": "LDNIO – oficiální produktová stránka a specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.ldnio.com/product/wi-fi-smart-power-socket-scw1050.html",
+              "note": "Fotografie: oficiální web výrobce (LDNIO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Přiřazeno podle typového označení výrobce.",
+          "images": [
+            "/store/img/products/ldnio-scw1050/1.webp",
+            "/store/img/products/ldnio-scw1050/2.webp",
+            "/store/img/products/ldnio-scw1050/3.webp",
+            "/store/img/products/ldnio-scw1050/4.webp",
+            "/store/img/products/ldnio-scw1050/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/ldnio-scw1050/1.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/62fda25c1716d.jpg",
+              "size": "400x400"
+            },
+            {
+              "file": "/store/img/products/ldnio-scw1050/2.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/62fda25c16e0e.jpg",
+              "size": "400x400"
+            },
+            {
+              "file": "/store/img/products/ldnio-scw1050/3.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/62fda25c16f34.jpg",
+              "size": "400x400"
+            },
+            {
+              "file": "/store/img/products/ldnio-scw1050/4.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/62fda25c17049.jpg",
+              "size": "400x400"
+            },
+            {
+              "file": "/store/img/products/ldnio-scw1050/5.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/62fda25c16cd1.jpg",
+              "size": "400x400"
+            }
+          ],
+          "dataNote": "Oficiální tabulka parametrů uvádí chybně model SCW3451 – použity jen údaje shodné s popisem."
+        }
+      }
+    },
+    {
+      "variantGroup": "ldnio-se2337",
+      "variants": {
+        "ldnio-se2337-eu": {
+          "officialName": "LDNIO SE2337 zásuvkový adaptér 2× EU + USB-C 20W",
+          "shortDesc": "Adaptér se 2 zásuvkami, USB-C PD 20 W, 2× USB-A a nočním světlem",
+          "description": "Kompaktní zásuvkový adaptér LDNIO SE2337 přidá dvě zásuvky (max. 2 500 W) a porty USB-C PD 20 W a 2× USB-A. Dotykové noční světlo.",
+          "specs": {
+            "Parametry": {
+              "Zásuvky": "2× EU, max. 2 500 W, 10 A",
+              "USB-C": "PD až 20 W",
+              "USB-A": "QC 3.0 18 W + 12 W",
+              "Celkem USB": "20 W",
+              "Noční světlo": "ano (LED)"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.ldnio.com/product/portable-electrical-extension-socket-se2337.html",
+              "note": "LDNIO – oficiální produktová stránka a specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.ldnio.com/product/portable-electrical-extension-socket-se2337.html",
+              "note": "Fotografie: oficiální web výrobce (LDNIO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Přiřazeno podle typového označení výrobce.",
+          "images": [
+            "/store/img/products/ldnio-se2337/1.webp",
+            "/store/img/products/ldnio-se2337/2.webp",
+            "/store/img/products/ldnio-se2337/3.webp",
+            "/store/img/products/ldnio-se2337/4.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/ldnio-se2337/1.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/65768190f29e8.jpg",
+              "size": "600x600"
+            },
+            {
+              "file": "/store/img/products/ldnio-se2337/2.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/65768190f30d8.jpg",
+              "size": "600x600"
+            },
+            {
+              "file": "/store/img/products/ldnio-se2337/3.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/65768190f3824.jpg",
+              "size": "600x600"
+            },
+            {
+              "file": "/store/img/products/ldnio-se2337/4.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/65768190f34c8.jpg",
+              "size": "600x600"
+            }
+          ]
+        },
+        "ldnio-se2337-office": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO SE2337 (office) — prodlužovače a smart zásuvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Prodlužovače a smart zásuvky · office",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO SE2337 (office)",
+          "unresolvedReason": "Varianta „office“ není u výrobce rozlišena (smyšlená varianta ze sourcingu)."
+        },
+        "ldnio-se2337-travel": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO SE2337 (travel) — prodlužovače a smart zásuvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Prodlužovače a smart zásuvky · travel",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO SE2337 (travel)",
+          "unresolvedReason": "Varianta „travel“ není u výrobce rozlišena (smyšlená varianta ze sourcingu)."
+        }
+      }
+    },
+    {
+      "variantGroup": "ldnio-se3436",
+      "variants": {
+        "ldnio-se3436-eu": {
+          "officialName": "LDNIO SE3436 prodlužovací lišta 3 zásuvky + 4× USB",
+          "shortDesc": "Prodlužovací lišta se 3 zásuvkami EU a 4 porty USB, kabel 2 m",
+          "description": "Prodlužovací lišta LDNIO SE3436 se třemi zásuvkami (max. 2 500 W) a čtyřmi porty USB s přepěťovou ochranou. Napájecí kabel 2 m.",
+          "specs": {
+            "Parametry": {
+              "Zásuvky": "3× EU, max. 2 500 W, 10 A",
+              "USB": "4 porty",
+              "Kabel": "2 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.ldnio.com/product/3-ac-outlets-4-usb-power-strip-se3436.html",
+              "note": "LDNIO – oficiální produktová stránka a specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.ldnio.com/product/3-ac-outlets-4-usb-power-strip-se3436.html",
+              "note": "Fotografie: oficiální web výrobce (LDNIO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Přiřazeno podle typového označení výrobce.",
+          "images": [
+            "/store/img/products/ldnio-se3436/1.webp",
+            "/store/img/products/ldnio-se3436/2.webp",
+            "/store/img/products/ldnio-se3436/3.webp",
+            "/store/img/products/ldnio-se3436/4.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/ldnio-se3436/1.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/64ba4e89deb16.jpg",
+              "size": "600x600"
+            },
+            {
+              "file": "/store/img/products/ldnio-se3436/2.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/64ba4e89df6d5.jpg",
+              "size": "600x600"
+            },
+            {
+              "file": "/store/img/products/ldnio-se3436/3.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/64ba4e89deeff.jpg",
+              "size": "600x600"
+            },
+            {
+              "file": "/store/img/products/ldnio-se3436/4.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/64ba4e89df321.jpg",
+              "size": "600x600"
+            }
+          ]
+        },
+        "ldnio-se3436-office": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO SE3436 (office) — prodlužovače a smart zásuvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Prodlužovače a smart zásuvky · office",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO SE3436 (office)",
+          "unresolvedReason": "Varianta „office“ není u výrobce rozlišena (smyšlená varianta ze sourcingu)."
+        },
+        "ldnio-se3436-travel": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO SE3436 (travel) — prodlužovače a smart zásuvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Prodlužovače a smart zásuvky · travel",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO SE3436 (travel)",
+          "unresolvedReason": "Varianta „travel“ není u výrobce rozlišena (smyšlená varianta ze sourcingu)."
+        }
+      }
+    },
+    {
+      "variantGroup": "ldnio-se3631c",
+      "variants": {
+        "ldnio-se3631c-eu": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO SE3631C (EU) — prodlužovače a smart zásuvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Prodlužovače a smart zásuvky · EU",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO SE3631C (EU)",
+          "unresolvedReason": "Typové označení se na oficiálním webu LDNIO nepodařilo dohledat nebo jde o obecný název."
+        },
+        "ldnio-se3631c-office": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO SE3631C (office) — prodlužovače a smart zásuvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Prodlužovače a smart zásuvky · office",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO SE3631C (office)",
+          "unresolvedReason": "Typové označení se na oficiálním webu LDNIO nepodařilo dohledat nebo jde o obecný název."
+        },
+        "ldnio-se3631c-travel": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO SE3631C (travel) — prodlužovače a smart zásuvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Prodlužovače a smart zásuvky · travel",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO SE3631C (travel)",
+          "unresolvedReason": "Typové označení se na oficiálním webu LDNIO nepodařilo dohledat nebo jde o obecný název."
+        }
+      }
+    },
+    {
+      "variantGroup": "ldnio-se6403-power-strip",
+      "variants": {
+        "ldnio-se6403-power-strip-eu": {
+          "officialName": "LDNIO SE6403 prodlužovací lišta 6 zásuvek + 4× USB",
+          "shortDesc": "Prodlužovací lišta se 6 zásuvkami EU a 4 porty USB (17 W), kabel 2 m",
+          "description": "Prodlužovací lišta LDNIO SE6403 se šesti zásuvkami EU (max. 2 500 W) a čtyřmi porty USB Auto-ID (celkem 17 W). Napájecí kabel 2 m.",
+          "specs": {
+            "Parametry": {
+              "Zásuvky": "6× EU, max. 2 500 W, 10 A",
+              "USB": "4× Auto-ID, celkem 17 W",
+              "Kabel": "2 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.ldnio.com/product/6-ac-outlets-eu-power-strip-se6403.html",
+              "note": "LDNIO – oficiální produktová stránka a specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.ldnio.com/product/6-ac-outlets-eu-power-strip-se6403.html",
+              "note": "Fotografie: oficiální web výrobce (LDNIO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Přiřazeno podle typového označení výrobce.",
+          "images": [
+            "/store/img/products/ldnio-se6403/1.webp",
+            "/store/img/products/ldnio-se6403/2.webp",
+            "/store/img/products/ldnio-se6403/3.webp",
+            "/store/img/products/ldnio-se6403/4.webp",
+            "/store/img/products/ldnio-se6403/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/ldnio-se6403/1.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/636235da484c7.jpg",
+              "size": "400x400"
+            },
+            {
+              "file": "/store/img/products/ldnio-se6403/2.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/636235da486f3.jpg",
+              "size": "400x400"
+            },
+            {
+              "file": "/store/img/products/ldnio-se6403/3.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/636235da482cf.jpg",
+              "size": "400x400"
+            },
+            {
+              "file": "/store/img/products/ldnio-se6403/4.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/636235da48062.jpg",
+              "size": "400x400"
+            },
+            {
+              "file": "/store/img/products/ldnio-se6403/5.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/636235da48aea.jpg",
+              "size": "400x400"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "ldnio-sew3452",
+      "variants": {
+        "ldnio-sew3452-eu": {
+          "officialName": "LDNIO SEW3452 chytrá Wi-Fi lišta 3 zásuvky + USB",
+          "shortDesc": "Chytrá Wi-Fi prodlužovací lišta se 3 zásuvkami EU, USB-C PD 30 W a 3× USB-A",
+          "description": "Chytrá prodlužovací lišta LDNIO SEW3452 se třemi zásuvkami EU ovládanými přes aplikaci. Nabíjecí porty USB-C PD až 30 W, USB-A QC 3.0 a 2× Auto-ID. Napájecí kabel 2 m.",
+          "specs": {
+            "Parametry": {
+              "Zásuvky": "3× EU, max. 2 500 W, 10 A",
+              "USB-C": "PD až 30 W",
+              "USB-A": "QC 3.0 18 W + 2× Auto-ID",
+              "Celkem USB": "30 W",
+              "Ovládání": "Wi-Fi 2,4 GHz, aplikace",
+              "Kabel": "2 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.ldnio.com/product/3-ac-outlets-wi-fi-smart-power-strip-sew3452.html",
+              "note": "LDNIO – oficiální produktová stránka a specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.ldnio.com/product/3-ac-outlets-wi-fi-smart-power-strip-sew3452.html",
+              "note": "Fotografie: oficiální web výrobce (LDNIO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Přiřazeno podle typového označení výrobce.",
+          "images": [
+            "/store/img/products/ldnio-sew3452/1.webp",
+            "/store/img/products/ldnio-sew3452/2.webp",
+            "/store/img/products/ldnio-sew3452/3.webp",
+            "/store/img/products/ldnio-sew3452/4.webp",
+            "/store/img/products/ldnio-sew3452/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/ldnio-sew3452/1.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/62fdef626b3ba.jpg",
+              "size": "400x400"
+            },
+            {
+              "file": "/store/img/products/ldnio-sew3452/2.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/62fdef626b2ba.jpg",
+              "size": "400x400"
+            },
+            {
+              "file": "/store/img/products/ldnio-sew3452/3.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/62fdef626b1b4.jpg",
+              "size": "400x400"
+            },
+            {
+              "file": "/store/img/products/ldnio-sew3452/4.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/62fdef626b0b6.jpg",
+              "size": "400x400"
+            },
+            {
+              "file": "/store/img/products/ldnio-sew3452/5.webp",
+              "source": "https://ldnio.usa72.wondercdn.com/uploads/image/62fdef626af81.jpg",
+              "size": "400x400"
+            }
+          ],
+          "dataNote": "Oficiální tabulka parametrů uvádí chybně model SCW3451 – použity jen údaje shodné s popisem."
+        },
+        "ldnio-sew3452-office": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO SEW3452 (office) — prodlužovače a smart zásuvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Prodlužovače a smart zásuvky · office",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO SEW3452 (office)",
+          "unresolvedReason": "Varianta „office“ není u výrobce rozlišena (smyšlená varianta ze sourcingu)."
+        },
+        "ldnio-sew3452-travel": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO SEW3452 (travel) — prodlužovače a smart zásuvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Prodlužovače a smart zásuvky · travel",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO SEW3452 (travel)",
+          "unresolvedReason": "Varianta „travel“ není u výrobce rozlišena (smyšlená varianta ze sourcingu)."
+        }
+      }
+    },
+    {
+      "variantGroup": "ldnio-sew4485",
+      "variants": {
+        "ldnio-sew4485-eu": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO SEW4485 (EU) — prodlužovače a smart zásuvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Prodlužovače a smart zásuvky · EU",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO SEW4485 (EU)",
+          "unresolvedReason": "Typové označení se na oficiálním webu LDNIO nepodařilo dohledat nebo jde o obecný název."
+        },
+        "ldnio-sew4485-office": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO SEW4485 (office) — prodlužovače a smart zásuvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Prodlužovače a smart zásuvky · office",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO SEW4485 (office)",
+          "unresolvedReason": "Typové označení se na oficiálním webu LDNIO nepodařilo dohledat nebo jde o obecný název."
+        },
+        "ldnio-sew4485-travel": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO SEW4485 (travel) — prodlužovače a smart zásuvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Prodlužovače a smart zásuvky · travel",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO SEW4485 (travel)",
+          "unresolvedReason": "Typové označení se na oficiálním webu LDNIO nepodařilo dohledat nebo jde o obecný název."
+        }
+      }
+    },
+    {
+      "variantGroup": "ldnio-sk4396",
+      "variants": {
+        "ldnio-sk4396-eu": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO SK4396 (EU) — prodlužovače a smart zásuvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Prodlužovače a smart zásuvky · EU",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO SK4396 (EU)",
+          "unresolvedReason": "SK4396 je britská verze (UK zásuvky) – neodpovídá variantám EU/office/travel."
+        },
+        "ldnio-sk4396-office": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO SK4396 (office) — prodlužovače a smart zásuvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Prodlužovače a smart zásuvky · office",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO SK4396 (office)",
+          "unresolvedReason": "SK4396 je britská verze (UK zásuvky) – neodpovídá variantám EU/office/travel."
+        },
+        "ldnio-sk4396-travel": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO SK4396 (travel) — prodlužovače a smart zásuvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Prodlužovače a smart zásuvky · travel",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO SK4396 (travel)",
+          "unresolvedReason": "SK4396 je britská verze (UK zásuvky) – neodpovídá variantám EU/office/travel."
+        }
+      }
+    },
+    {
+      "variantGroup": "ldnio-skw6457",
+      "variants": {
+        "ldnio-skw6457-eu": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO SKW6457 (EU) — prodlužovače a smart zásuvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Prodlužovače a smart zásuvky · EU",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO SKW6457 (EU)",
+          "unresolvedReason": "SKW6457 je verze s britskými zásuvkami pro 100–120 V – neodpovídá variantám EU."
+        },
+        "ldnio-skw6457-office": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO SKW6457 (office) — prodlužovače a smart zásuvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Prodlužovače a smart zásuvky · office",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO SKW6457 (office)",
+          "unresolvedReason": "SKW6457 je verze s britskými zásuvkami pro 100–120 V – neodpovídá variantám EU."
+        },
+        "ldnio-skw6457-travel": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO SKW6457 (travel) — prodlužovače a smart zásuvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Prodlužovače a smart zásuvky · travel",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO SKW6457 (travel)",
+          "unresolvedReason": "SKW6457 je verze s britskými zásuvkami pro 100–120 V – neodpovídá variantám EU."
+        }
+      }
+    },
+    {
+      "variantGroup": "ldnio-sn5311",
+      "variants": {
+        "ldnio-sn5311-eu": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO SN5311 (EU) — prodlužovače a smart zásuvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Prodlužovače a smart zásuvky · EU",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO SN5311 (EU)",
+          "unresolvedReason": "SN5311 má americké zásuvky a vstup 100–120 V – pro EU nevhodné."
+        },
+        "ldnio-sn5311-office": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO SN5311 (office) — prodlužovače a smart zásuvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Prodlužovače a smart zásuvky · office",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO SN5311 (office)",
+          "unresolvedReason": "SN5311 má americké zásuvky a vstup 100–120 V – pro EU nevhodné."
+        },
+        "ldnio-sn5311-travel": {
+          "reset": true,
+          "resetFrom": {
+            "description": "LDNIO SN5311 (travel) — prodlužovače a smart zásuvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "LDNIO · Prodlužovače a smart zásuvky · travel",
+            "images": [
+              "/store/img/brand/ldnio.jpg"
+            ]
+          },
+          "officialName": "LDNIO SN5311 (travel)",
+          "unresolvedReason": "SN5311 má americké zásuvky a vstup 100–120 V – pro EU nevhodné."
+        }
+      }
+    }
+  ]
+}
