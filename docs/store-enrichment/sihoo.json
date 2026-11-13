@@ -1,0 +1,1301 @@
+{
+  "brand": "SIHOO",
+  "verified": "2026-11-13",
+  "groups": [
+    {
+      "variantGroup": "sihoo-b100",
+      "variants": {
+        "sihoo-b100-black-footrest": {
+          "officialName": "SIHOO B100 (černá, s podnožkou)",
+          "shortDesc": "Ergonomická síťová kancelářská židle s oporou křížové kosti, sklopnými područkami a sklonem 135° – s podnožkou",
+          "description": "SIHOO B100 je ergonomická kancelářská židle s prodyšnou síťovinou v opěradle i sedáku. Cílená opora křížové kosti udržuje přirozené zakřivení páteře, sklopné područky umožní přisunout židli až ke stolu a opěradlo se sklápí až do 135°.\n\nProvedení s výsuvnou podnožkou pro odpočinek nohou.",
+          "specs": {
+            "Konstrukce": {
+              "Opěradlo": "prodyšná síťovina",
+              "Sedák": "síťovina",
+              "Opora zad": "cílená opora křížové kosti"
+            },
+            "Nastavení": {
+              "Područky": "sklopné",
+              "Sklon opěradla": "až 135°"
+            },
+            "Provedení": {
+              "Barva": "černá",
+              "Podnožka": "výsuvná"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://sihoooffice.com/products/sihoo-b100-ergonomic-office-chair",
+              "note": "SIHOO Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://sihoooffice.com/products/sihoo-b100-ergonomic-office-chair",
+              "note": "Fotografie: oficiální galerie výrobce (SIHOO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/sihoo-b100-black-footrest/1.webp",
+            "/store/img/products/sihoo-b100-black-footrest/2.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/sihoo-b100-black-footrest/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0632/8192/2264/files/B100-B-JT-01.webp",
+              "size": "1500x1500"
+            },
+            {
+              "file": "/store/img/products/sihoo-b100-black-footrest/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0632/8192/2264/files/B100-B-JT-03.webp",
+              "size": "1500x1500"
+            }
+          ]
+        },
+        "sihoo-b100-black-premium-armrest": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO B100 (black, premium armrest) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · black, premium armrest",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO B100 (black, premium armrest)",
+          "unresolvedReason": "Varianta „premium armrest“ není v oficiální nabídce SIHOO."
+        },
+        "sihoo-b100-black-standard": {
+          "officialName": "SIHOO B100 (černá)",
+          "shortDesc": "Ergonomická síťová kancelářská židle s oporou křížové kosti, sklopnými područkami a sklonem 135°",
+          "description": "SIHOO B100 je ergonomická kancelářská židle s prodyšnou síťovinou v opěradle i sedáku. Cílená opora křížové kosti udržuje přirozené zakřivení páteře, sklopné područky umožní přisunout židli až ke stolu a opěradlo se sklápí až do 135°.",
+          "specs": {
+            "Konstrukce": {
+              "Opěradlo": "prodyšná síťovina",
+              "Sedák": "síťovina",
+              "Opora zad": "cílená opora křížové kosti"
+            },
+            "Nastavení": {
+              "Područky": "sklopné",
+              "Sklon opěradla": "až 135°"
+            },
+            "Provedení": {
+              "Barva": "černá"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://sihoooffice.com/products/sihoo-b100-ergonomic-office-chair",
+              "note": "SIHOO Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://sihoooffice.com/products/sihoo-b100-ergonomic-office-chair",
+              "note": "Fotografie: oficiální galerie výrobce (SIHOO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/sihoo-b100-black-standard/1.webp",
+            "/store/img/products/sihoo-b100-black-standard/2.webp",
+            "/store/img/products/sihoo-b100-black-standard/3.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/sihoo-b100-black-standard/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0632/8192/2264/files/B100-B-01.webp",
+              "size": "1500x1500"
+            },
+            {
+              "file": "/store/img/products/sihoo-b100-black-standard/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0632/8192/2264/files/B100-B-02.webp",
+              "size": "1500x1500"
+            },
+            {
+              "file": "/store/img/products/sihoo-b100-black-standard/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0632/8192/2264/files/B100-B-03.webp",
+              "size": "1500x1500"
+            }
+          ]
+        },
+        "sihoo-b100-grey-footrest": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO B100 (grey, footrest) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · grey, footrest",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO B100 (grey, footrest)",
+          "unresolvedReason": "SIHOO tento model v šedé barvě nenabízí."
+        },
+        "sihoo-b100-grey-premium-armrest": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO B100 (grey, premium armrest) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · grey, premium armrest",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO B100 (grey, premium armrest)",
+          "unresolvedReason": "Varianta „premium armrest“ není v oficiální nabídce SIHOO."
+        },
+        "sihoo-b100-grey-standard": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO B100 (grey, standard) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · grey, standard",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO B100 (grey, standard)",
+          "unresolvedReason": "SIHOO tento model v šedé barvě nenabízí."
+        }
+      }
+    },
+    {
+      "variantGroup": "sihoo-c300",
+      "variants": {
+        "sihoo-c300-black-footrest": {
+          "officialName": "SIHOO Doro C300 (černá, s podnožkou)",
+          "shortDesc": "Ergonomická židle s adaptivní bederní oporou, 4D područkami a samovyvažovacím sklonem – s podnožkou",
+          "description": "SIHOO Doro C300 je ergonomická kancelářská židle s bederní oporou, která se dynamicky přizpůsobuje pohybu zad. Opěradlo kopíruje tvar páteře, široká opěrka hlavy se nastavuje v několika směrech a 4D područky se přizpůsobí každé poloze rukou.\n\nMechanismus houpání reaguje na hmotnost sedícího, takže se opěradlo sklápí plynule bez ručního dotahování. Sedák s tvarovanou přední hranou („vodopád“) snižuje tlak na stehna.\n\nProvedení s výsuvnou podnožkou pro odpočinek nohou.",
+          "specs": {
+            "Konstrukce": {
+              "Bederní opora": "ergonomická, dynamicky se přizpůsobuje",
+              "Opěrka hlavy": "široká, vícesměrně nastavitelná",
+              "Sedák": "tvarovaný („waterfall“)"
+            },
+            "Nastavení": {
+              "Područky": "4D",
+              "Houpací mechanismus": "s automatickou reakcí na hmotnost"
+            },
+            "Provedení": {
+              "Barva": "černá",
+              "Podnožka": "výsuvná"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://sihoooffice.com/products/sihoo-doro-c300-ergonomic-office-chair",
+              "note": "SIHOO Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://sihoooffice.com/products/sihoo-doro-c300-ergonomic-office-chair",
+              "note": "Fotografie: oficiální galerie výrobce (SIHOO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/sihoo-c300-black-footrest/1.webp",
+            "/store/img/products/sihoo-c300-black-footrest/2.webp",
+            "/store/img/products/sihoo-c300-black-footrest/3.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/sihoo-c300-black-footrest/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0632/8192/2264/files/c300-jt-b.webp",
+              "size": "1080x1080"
+            },
+            {
+              "file": "/store/img/products/sihoo-c300-black-footrest/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0632/8192/2264/files/1_ed343ae7-d93a-43e3-8bc5-9ff72b5f936b.webp",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/sihoo-c300-black-footrest/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0632/8192/2264/files/4_c432efb5-c282-4981-97d5-1dab3f011aaa.webp",
+              "size": "1600x1600"
+            }
+          ]
+        },
+        "sihoo-c300-black-premium-armrest": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO C300 (black, premium armrest) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · black, premium armrest",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO C300 (black, premium armrest)",
+          "unresolvedReason": "Varianta „premium armrest“ není v oficiální nabídce SIHOO."
+        },
+        "sihoo-c300-black-standard": {
+          "officialName": "SIHOO Doro C300 (černá)",
+          "shortDesc": "Ergonomická židle s adaptivní bederní oporou, 4D područkami a samovyvažovacím sklonem",
+          "description": "SIHOO Doro C300 je ergonomická kancelářská židle s bederní oporou, která se dynamicky přizpůsobuje pohybu zad. Opěradlo kopíruje tvar páteře, široká opěrka hlavy se nastavuje v několika směrech a 4D područky se přizpůsobí každé poloze rukou.\n\nMechanismus houpání reaguje na hmotnost sedícího, takže se opěradlo sklápí plynule bez ručního dotahování. Sedák s tvarovanou přední hranou („vodopád“) snižuje tlak na stehna.",
+          "specs": {
+            "Konstrukce": {
+              "Bederní opora": "ergonomická, dynamicky se přizpůsobuje",
+              "Opěrka hlavy": "široká, vícesměrně nastavitelná",
+              "Sedák": "tvarovaný („waterfall“)"
+            },
+            "Nastavení": {
+              "Područky": "4D",
+              "Houpací mechanismus": "s automatickou reakcí na hmotnost"
+            },
+            "Provedení": {
+              "Barva": "černá"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://sihoooffice.com/products/sihoo-doro-c300-ergonomic-office-chair",
+              "note": "SIHOO Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://sihoooffice.com/products/sihoo-doro-c300-ergonomic-office-chair",
+              "note": "Fotografie: oficiální galerie výrobce (SIHOO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/sihoo-c300-black-standard/1.webp",
+            "/store/img/products/sihoo-c300-black-standard/2.webp",
+            "/store/img/products/sihoo-c300-black-standard/3.webp",
+            "/store/img/products/sihoo-c300-black-standard/4.webp",
+            "/store/img/products/sihoo-c300-black-standard/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/sihoo-c300-black-standard/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0632/8192/2264/files/C300-b.webp",
+              "size": "1080x1080"
+            },
+            {
+              "file": "/store/img/products/sihoo-c300-black-standard/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0632/8192/2264/files/15.webp",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/sihoo-c300-black-standard/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0632/8192/2264/files/16.webp",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/sihoo-c300-black-standard/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0632/8192/2264/files/11.webp",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/sihoo-c300-black-standard/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0632/8192/2264/files/1_ed343ae7-d93a-43e3-8bc5-9ff72b5f936b.webp",
+              "size": "1600x1600"
+            }
+          ]
+        },
+        "sihoo-c300-grey-footrest": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO C300 (grey, footrest) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · grey, footrest",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO C300 (grey, footrest)",
+          "unresolvedReason": "SIHOO tento model v šedé barvě nenabízí."
+        },
+        "sihoo-c300-grey-premium-armrest": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO C300 (grey, premium armrest) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · grey, premium armrest",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO C300 (grey, premium armrest)",
+          "unresolvedReason": "Varianta „premium armrest“ není v oficiální nabídce SIHOO."
+        },
+        "sihoo-c300-grey-standard": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO C300 (grey, standard) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · grey, standard",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO C300 (grey, standard)",
+          "unresolvedReason": "SIHOO tento model v šedé barvě nenabízí."
+        }
+      }
+    },
+    {
+      "variantGroup": "sihoo-m105",
+      "variants": {
+        "sihoo-m105-black-footrest": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO M105 (black, footrest) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · black, footrest",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO M105 (black, footrest)",
+          "unresolvedReason": "Model SIHOO M105 není v oficiálních obchodech SIHOO dostupný – nelze ověřit fotografie ani parametry."
+        },
+        "sihoo-m105-black-premium-armrest": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO M105 (black, premium armrest) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · black, premium armrest",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO M105 (black, premium armrest)",
+          "unresolvedReason": "Model SIHOO M105 není v oficiálních obchodech SIHOO dostupný – nelze ověřit fotografie ani parametry."
+        },
+        "sihoo-m105-black-standard": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO M105 (black, standard) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · black, standard",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO M105 (black, standard)",
+          "unresolvedReason": "Model SIHOO M105 není v oficiálních obchodech SIHOO dostupný – nelze ověřit fotografie ani parametry."
+        },
+        "sihoo-m105-grey-footrest": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO M105 (grey, footrest) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · grey, footrest",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO M105 (grey, footrest)",
+          "unresolvedReason": "Model SIHOO M105 není v oficiálních obchodech SIHOO dostupný – nelze ověřit fotografie ani parametry."
+        },
+        "sihoo-m105-grey-premium-armrest": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO M105 (grey, premium armrest) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · grey, premium armrest",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO M105 (grey, premium armrest)",
+          "unresolvedReason": "Model SIHOO M105 není v oficiálních obchodech SIHOO dostupný – nelze ověřit fotografie ani parametry."
+        },
+        "sihoo-m105-grey-standard": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO M105 (grey, standard) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · grey, standard",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO M105 (grey, standard)",
+          "unresolvedReason": "Model SIHOO M105 není v oficiálních obchodech SIHOO dostupný – nelze ověřit fotografie ani parametry."
+        }
+      }
+    },
+    {
+      "variantGroup": "sihoo-m18",
+      "variants": {
+        "sihoo-m18-black-footrest": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO M18 (black, footrest) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · black, footrest",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO M18 (black, footrest)",
+          "unresolvedReason": "Verze s podnožkou není u tohoto modelu v oficiální nabídce SIHOO."
+        },
+        "sihoo-m18-black-premium-armrest": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO M18 (black, premium armrest) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · black, premium armrest",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO M18 (black, premium armrest)",
+          "unresolvedReason": "Varianta „premium armrest“ není v oficiální nabídce SIHOO."
+        },
+        "sihoo-m18-black-standard": {
+          "officialName": "SIHOO M18 (černá)",
+          "shortDesc": "Ergonomická židle se síťovým opěradlem, dvojitě nastavitelnou bederní oporou a sklonem 126°",
+          "description": "SIHOO M18 je cenově dostupná ergonomická židle s opěrkou hlavy. Trojdílná opora zad podpírá krční páteř, hrudník i bedra, bederní opora se nastavuje výškou i hloubkou.\n\nProdyšné síťové opěradlo doplňuje měkký čalouněný sedák. Područky se nastavují výškově, opěradlo se sklápí až do 126°. Židle unese 150 kg a má certifikaci BIFMA.",
+          "specs": {
+            "Konstrukce": {
+              "Opěradlo": "prodyšná síťovina",
+              "Sedák": "čalouněný",
+              "Bederní opora": "dvojitě nastavitelná"
+            },
+            "Nastavení": {
+              "Područky": "výškově nastavitelné",
+              "Sklon opěradla": "až 126°"
+            },
+            "Parametry": {
+              "Nosnost": "150 kg (330 lbs)",
+              "Certifikace": "BIFMA"
+            },
+            "Provedení": {
+              "Barva": "černá"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://sihoooffice.com/products/m18-ergonomic-chair",
+              "note": "SIHOO Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://sihoooffice.com/products/m18-ergonomic-chair",
+              "note": "Fotografie: oficiální galerie výrobce (SIHOO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/sihoo-m18-black-standard/1.webp",
+            "/store/img/products/sihoo-m18-black-standard/2.webp",
+            "/store/img/products/sihoo-m18-black-standard/3.webp",
+            "/store/img/products/sihoo-m18-black-standard/4.webp",
+            "/store/img/products/sihoo-m18-black-standard/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/sihoo-m18-black-standard/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0632/8192/2264/files/1482.webp",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/sihoo-m18-black-standard/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0632/8192/2264/files/1481.webp",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/sihoo-m18-black-standard/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0632/8192/2264/files/1_0004__0684.webp",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/sihoo-m18-black-standard/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0632/8192/2264/files/1_0000__0694.webp",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/sihoo-m18-black-standard/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0632/8192/2264/files/m18-m152.webp",
+              "size": "1600x1600"
+            }
+          ]
+        },
+        "sihoo-m18-grey-footrest": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO M18 (grey, footrest) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · grey, footrest",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO M18 (grey, footrest)",
+          "unresolvedReason": "SIHOO tento model v šedé barvě nenabízí."
+        },
+        "sihoo-m18-grey-premium-armrest": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO M18 (grey, premium armrest) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · grey, premium armrest",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO M18 (grey, premium armrest)",
+          "unresolvedReason": "Varianta „premium armrest“ není v oficiální nabídce SIHOO."
+        },
+        "sihoo-m18-grey-standard": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO M18 (grey, standard) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · grey, standard",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO M18 (grey, standard)",
+          "unresolvedReason": "SIHOO tento model v šedé barvě nenabízí."
+        }
+      }
+    },
+    {
+      "variantGroup": "sihoo-m57",
+      "variants": {
+        "sihoo-m57-black-footrest": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO M57 (black, footrest) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · black, footrest",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO M57 (black, footrest)",
+          "unresolvedReason": "Verze s podnožkou není u tohoto modelu v oficiální nabídce SIHOO."
+        },
+        "sihoo-m57-black-premium-armrest": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO M57 (black, premium armrest) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · black, premium armrest",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO M57 (black, premium armrest)",
+          "unresolvedReason": "Varianta „premium armrest“ není v oficiální nabídce SIHOO."
+        },
+        "sihoo-m57-black-standard": {
+          "officialName": "SIHOO M57 (černá)",
+          "shortDesc": "Celosíťová ergonomická židle s 3D područkami, nastavitelnou bederní oporou a nosností 150 kg",
+          "description": "SIHOO M57 je ergonomická kancelářská židle z prodyšné síťoviny – sedák i opěradlo dobře větrají i při celodenním sezení. Nastavit lze opěrku hlavy, bederní oporu i 3D područky.\n\nOpěradlo se sklápí až do 126°, židle unese 150 kg a má certifikace BIFMA a SGS.",
+          "specs": {
+            "Konstrukce": {
+              "Sedák a opěradlo": "prodyšná síťovina",
+              "Bederní opora": "nastavitelná",
+              "Opěrka hlavy": "nastavitelná"
+            },
+            "Nastavení": {
+              "Područky": "3D",
+              "Sklon opěradla": "až 126°"
+            },
+            "Parametry": {
+              "Nosnost": "150 kg (330 lbs)",
+              "Certifikace": "BIFMA, SGS"
+            },
+            "Provedení": {
+              "Barva": "černá"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://sihoooffice.com/products/m57-ergonomic-chair",
+              "note": "SIHOO Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://sihoooffice.com/products/m57-ergonomic-chair",
+              "note": "Fotografie: oficiální galerie výrobce (SIHOO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/sihoo-m57-black-standard/1.webp",
+            "/store/img/products/sihoo-m57-black-standard/2.webp",
+            "/store/img/products/sihoo-m57-black-standard/3.webp",
+            "/store/img/products/sihoo-m57-black-standard/4.webp",
+            "/store/img/products/sihoo-m57-black-standard/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/sihoo-m57-black-standard/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0632/8192/2264/files/B2_ab2f6195-8a31-4a6b-8f41-6c74b1f7ce33.webp",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/sihoo-m57-black-standard/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0632/8192/2264/files/1_1_6c15aaa8-ff5e-42e5-bd62-9fb0c53412ba.webp",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/sihoo-m57-black-standard/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0632/8192/2264/files/0668.webp",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/sihoo-m57-black-standard/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0632/8192/2264/files/0666.webp",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/sihoo-m57-black-standard/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0632/8192/2264/files/0667.webp",
+              "size": "1000x1000"
+            }
+          ]
+        },
+        "sihoo-m57-grey-footrest": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO M57 (grey, footrest) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · grey, footrest",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO M57 (grey, footrest)",
+          "unresolvedReason": "SIHOO tento model v šedé barvě nenabízí."
+        },
+        "sihoo-m57-grey-premium-armrest": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO M57 (grey, premium armrest) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · grey, premium armrest",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO M57 (grey, premium armrest)",
+          "unresolvedReason": "Varianta „premium armrest“ není v oficiální nabídce SIHOO."
+        },
+        "sihoo-m57-grey-standard": {
+          "officialName": "SIHOO M57 (šedá)",
+          "shortDesc": "Celosíťová ergonomická židle s 3D područkami, nastavitelnou bederní oporou a nosností 150 kg",
+          "description": "SIHOO M57 je ergonomická kancelářská židle z prodyšné síťoviny – sedák i opěradlo dobře větrají i při celodenním sezení. Nastavit lze opěrku hlavy, bederní oporu i 3D područky.\n\nOpěradlo se sklápí až do 126°, židle unese 150 kg a má certifikace BIFMA a SGS.",
+          "specs": {
+            "Konstrukce": {
+              "Sedák a opěradlo": "prodyšná síťovina",
+              "Bederní opora": "nastavitelná",
+              "Opěrka hlavy": "nastavitelná"
+            },
+            "Nastavení": {
+              "Područky": "3D",
+              "Sklon opěradla": "až 126°"
+            },
+            "Parametry": {
+              "Nosnost": "150 kg (330 lbs)",
+              "Certifikace": "BIFMA, SGS"
+            },
+            "Provedení": {
+              "Barva": "šedá"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://sihoooffice.com/products/m57-ergonomic-chair",
+              "note": "SIHOO Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://sihoooffice.com/products/m57-ergonomic-chair",
+              "note": "Fotografie: oficiální galerie výrobce (SIHOO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/sihoo-m57-grey-standard/1.webp",
+            "/store/img/products/sihoo-m57-grey-standard/2.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/sihoo-m57-grey-standard/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0632/8192/2264/files/gray1.webp",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/sihoo-m57-grey-standard/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0632/8192/2264/files/09.webp",
+              "size": "1000x1000"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "sihoo-m59as",
+      "variants": {
+        "sihoo-m59as-black-footrest": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO M59AS (black, footrest) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · black, footrest",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO M59AS (black, footrest)",
+          "unresolvedReason": "Verze s podnožkou není u tohoto modelu v oficiální nabídce SIHOO."
+        },
+        "sihoo-m59as-black-premium-armrest": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO M59AS (black, premium armrest) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · black, premium armrest",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO M59AS (black, premium armrest)",
+          "unresolvedReason": "Varianta „premium armrest“ není v oficiální nabídce SIHOO."
+        },
+        "sihoo-m59as-black-standard": {
+          "officialName": "SIHOO M59AS (černá)",
+          "shortDesc": "Prostorově úsporná síťová židle s děleným opěradlem a sklopnými 3D područkami",
+          "description": "SIHOO M59AS je síťová ergonomická židle s děleným dvoudílným opěradlem a dynamickou bederní oporou. Sklopné 3D područky šetří místo – židli lze zasunout až pod stůl.\n\nDvoukloubová opěrka hlavy přesně podepře krk, sedák tvaru sedla je pohodlný i při dlouhém sezení. Celosíťová konstrukce dobře větrá a snadno se udržuje.",
+          "specs": {
+            "Konstrukce": {
+              "Opěradlo": "dělené dvoudílné, síťovina",
+              "Bederní opora": "dynamická",
+              "Opěrka hlavy": "dvoukloubová",
+              "Sedák": "tvar sedla"
+            },
+            "Nastavení": {
+              "Područky": "3D, sklopné"
+            },
+            "Provedení": {
+              "Barva": "černá"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://sihoooffice.com/products/sihoo-m59as-ergonomic-office-chair",
+              "note": "SIHOO Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://sihoooffice.com/products/sihoo-m59as-ergonomic-office-chair",
+              "note": "Fotografie: oficiální galerie výrobce (SIHOO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/sihoo-m59as-black-standard/1.webp",
+            "/store/img/products/sihoo-m59as-black-standard/2.webp",
+            "/store/img/products/sihoo-m59as-black-standard/3.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/sihoo-m59as-black-standard/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0632/8192/2264/files/144d8ce8bb7e33ec895e13fe75f60ba5.webp",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/sihoo-m59as-black-standard/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0632/8192/2264/files/3a35514800767682c2bd96de32ccab98.webp",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/sihoo-m59as-black-standard/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0632/8192/2264/files/M59.webp",
+              "size": "1200x1200"
+            }
+          ]
+        },
+        "sihoo-m59as-grey-footrest": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO M59AS (grey, footrest) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · grey, footrest",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO M59AS (grey, footrest)",
+          "unresolvedReason": "SIHOO tento model v šedé barvě nenabízí."
+        },
+        "sihoo-m59as-grey-premium-armrest": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO M59AS (grey, premium armrest) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · grey, premium armrest",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO M59AS (grey, premium armrest)",
+          "unresolvedReason": "Varianta „premium armrest“ není v oficiální nabídce SIHOO."
+        },
+        "sihoo-m59as-grey-standard": {
+          "officialName": "SIHOO M59AS (šedá)",
+          "shortDesc": "Prostorově úsporná síťová židle s děleným opěradlem a sklopnými 3D područkami",
+          "description": "SIHOO M59AS je síťová ergonomická židle s děleným dvoudílným opěradlem a dynamickou bederní oporou. Sklopné 3D područky šetří místo – židli lze zasunout až pod stůl.\n\nDvoukloubová opěrka hlavy přesně podepře krk, sedák tvaru sedla je pohodlný i při dlouhém sezení. Celosíťová konstrukce dobře větrá a snadno se udržuje.",
+          "specs": {
+            "Konstrukce": {
+              "Opěradlo": "dělené dvoudílné, síťovina",
+              "Bederní opora": "dynamická",
+              "Opěrka hlavy": "dvoukloubová",
+              "Sedák": "tvar sedla"
+            },
+            "Nastavení": {
+              "Područky": "3D, sklopné"
+            },
+            "Provedení": {
+              "Barva": "šedá"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://sihoooffice.com/products/sihoo-m59as-ergonomic-office-chair",
+              "note": "SIHOO Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://sihoooffice.com/products/sihoo-m59as-ergonomic-office-chair",
+              "note": "Fotografie: oficiální galerie výrobce (SIHOO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/sihoo-m59as-grey-standard/1.webp",
+            "/store/img/products/sihoo-m59as-grey-standard/2.webp",
+            "/store/img/products/sihoo-m59as-grey-standard/3.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/sihoo-m59as-grey-standard/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0632/8192/2264/files/33eb04dca434bcd0046beda759158838.webp",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/sihoo-m59as-grey-standard/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0632/8192/2264/files/69c105c0ce6883dd27a723902e5da9d8.webp",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/sihoo-m59as-grey-standard/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0632/8192/2264/files/1ea5e2546d005f31af182afa7ae24665.webp",
+              "size": "1600x1600"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "sihoo-m76a",
+      "variants": {
+        "sihoo-m76a-black-footrest": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO M76A (black, footrest) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · black, footrest",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO M76A (black, footrest)",
+          "unresolvedReason": "Model SIHOO M76A není v oficiálních obchodech SIHOO dostupný – nelze ověřit fotografie ani parametry."
+        },
+        "sihoo-m76a-black-premium-armrest": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO M76A (black, premium armrest) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · black, premium armrest",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO M76A (black, premium armrest)",
+          "unresolvedReason": "Model SIHOO M76A není v oficiálních obchodech SIHOO dostupný – nelze ověřit fotografie ani parametry."
+        },
+        "sihoo-m76a-black-standard": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO M76A (black, standard) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · black, standard",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO M76A (black, standard)",
+          "unresolvedReason": "Model SIHOO M76A není v oficiálních obchodech SIHOO dostupný – nelze ověřit fotografie ani parametry."
+        },
+        "sihoo-m76a-grey-footrest": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO M76A (grey, footrest) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · grey, footrest",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO M76A (grey, footrest)",
+          "unresolvedReason": "Model SIHOO M76A není v oficiálních obchodech SIHOO dostupný – nelze ověřit fotografie ani parametry."
+        },
+        "sihoo-m76a-grey-premium-armrest": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO M76A (grey, premium armrest) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · grey, premium armrest",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO M76A (grey, premium armrest)",
+          "unresolvedReason": "Model SIHOO M76A není v oficiálních obchodech SIHOO dostupný – nelze ověřit fotografie ani parametry."
+        },
+        "sihoo-m76a-grey-standard": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO M76A (grey, standard) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · grey, standard",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO M76A (grey, standard)",
+          "unresolvedReason": "Model SIHOO M76A není v oficiálních obchodech SIHOO dostupný – nelze ověřit fotografie ani parametry."
+        }
+      }
+    },
+    {
+      "variantGroup": "sihoo-s100",
+      "variants": {
+        "sihoo-s100-black-footrest": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO S100 (black, footrest) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · black, footrest",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO S100 (black, footrest)",
+          "unresolvedReason": "Verze s podnožkou není u tohoto modelu v oficiální nabídce SIHOO."
+        },
+        "sihoo-s100-black-premium-armrest": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO S100 (black, premium armrest) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · black, premium armrest",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO S100 (black, premium armrest)",
+          "unresolvedReason": "Varianta „premium armrest“ není v oficiální nabídce SIHOO."
+        },
+        "sihoo-s100-black-standard": {
+          "officialName": "SIHOO Doro S100 (černá)",
+          "shortDesc": "Ergonomická židle s dvojitou dynamickou bederní oporou, 4D područkami a sklonem 135°",
+          "description": "SIHOO Doro S100 má dvojitou dynamickou bederní oporu, která se pohybuje spolu se zády a podpírá je v každé poloze. Nastavit lze 4D područky i opěrku hlavy.\n\nSíťové opěradlo a sedák s tvarovanou přední hranou zajistí pohodlí i při dlouhé práci. Opěradlo se sklápí až do 135°, nosnost je 150 kg a židle má certifikace BIFMA a SGS.",
+          "specs": {
+            "Konstrukce": {
+              "Bederní opora": "dvojitá dynamická",
+              "Sedák": "síťovina, tvarovaný („waterfall“)",
+              "Opěrka hlavy": "nastavitelná"
+            },
+            "Nastavení": {
+              "Područky": "4D",
+              "Sklon opěradla": "až 135°"
+            },
+            "Parametry": {
+              "Nosnost": "150 kg (330 lbs)",
+              "Certifikace": "BIFMA, SGS"
+            },
+            "Provedení": {
+              "Barva": "černá"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://sihoooffice.com/products/sihoo-doro-s100-ergonomic-office-chair-with-dual-dynamic-lumbar-support",
+              "note": "SIHOO Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://sihoooffice.com/products/sihoo-doro-s100-ergonomic-office-chair-with-dual-dynamic-lumbar-support",
+              "note": "Fotografie: oficiální galerie výrobce (SIHOO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/sihoo-s100-black-standard/1.webp",
+            "/store/img/products/sihoo-s100-black-standard/2.webp",
+            "/store/img/products/sihoo-s100-black-standard/3.webp",
+            "/store/img/products/sihoo-s100-black-standard/4.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/sihoo-s100-black-standard/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0632/8192/2264/files/S100-b.webp",
+              "size": "1080x1080"
+            },
+            {
+              "file": "/store/img/products/sihoo-s100-black-standard/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0632/8192/2264/files/12_dd21b5f3-bb79-4ab1-b14c-30936aa84fef.webp",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/sihoo-s100-black-standard/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0632/8192/2264/files/21.webp",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/sihoo-s100-black-standard/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0632/8192/2264/files/20.webp",
+              "size": "1600x1600"
+            }
+          ]
+        },
+        "sihoo-s100-grey-footrest": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO S100 (grey, footrest) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · grey, footrest",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO S100 (grey, footrest)",
+          "unresolvedReason": "SIHOO tento model v šedé barvě nenabízí."
+        },
+        "sihoo-s100-grey-premium-armrest": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO S100 (grey, premium armrest) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · grey, premium armrest",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO S100 (grey, premium armrest)",
+          "unresolvedReason": "Varianta „premium armrest“ není v oficiální nabídce SIHOO."
+        },
+        "sihoo-s100-grey-standard": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO S100 (grey, standard) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · grey, standard",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO S100 (grey, standard)",
+          "unresolvedReason": "SIHOO tento model v šedé barvě nenabízí."
+        }
+      }
+    },
+    {
+      "variantGroup": "sihoo-s300",
+      "variants": {
+        "sihoo-s300-black-footrest": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO S300 (black, footrest) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · black, footrest",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO S300 (black, footrest)",
+          "unresolvedReason": "Verze s podnožkou není u tohoto modelu v oficiální nabídce SIHOO."
+        },
+        "sihoo-s300-black-premium-armrest": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO S300 (black, premium armrest) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · black, premium armrest",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO S300 (black, premium armrest)",
+          "unresolvedReason": "Varianta „premium armrest“ není v oficiální nabídce SIHOO."
+        },
+        "sihoo-s300-black-standard": {
+          "officialName": "SIHOO Doro S300 (černá)",
+          "shortDesc": "Prémiová ergonomická židle s mechanismem Anti-Gravity, 6D područkami a nosností 150 kg",
+          "description": "SIHOO Doro S300 je prémiová ergonomická židle pro dlouhé pracovní dny. Mechanismus Anti-Gravity zajišťuje lehký, plynulý záklon, dvojitá dynamická bederní opora se přizpůsobí každému pohybu a 6D područky nabízejí maximum nastavení.\n\nSíťovina s italským velurem je měkká a prodyšná, široká opěrka hlavy podepře krk i ramena. Nosnost 150 kg, certifikace BIFMA a SGS.",
+          "specs": {
+            "Konstrukce": {
+              "Mechanismus": "Anti-Gravity",
+              "Bederní opora": "dvojitá dynamická",
+              "Potah": "síťovina s italským velurem",
+              "Opěrka hlavy": "široká"
+            },
+            "Nastavení": {
+              "Područky": "6D"
+            },
+            "Parametry": {
+              "Nosnost": "150 kg (330 lbs)",
+              "Certifikace": "BIFMA, SGS"
+            },
+            "Provedení": {
+              "Barva": "černá"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://sihoooffice.com/products/sihoo-doro-s300-gravity-defying-ergonomic-chair",
+              "note": "SIHOO Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://sihoooffice.com/products/sihoo-doro-s300-gravity-defying-ergonomic-chair",
+              "note": "Fotografie: oficiální galerie výrobce (SIHOO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/sihoo-s300-black-standard/1.webp",
+            "/store/img/products/sihoo-s300-black-standard/2.webp",
+            "/store/img/products/sihoo-s300-black-standard/3.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/sihoo-s300-black-standard/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0632/8192/2264/files/S300-B.webp",
+              "size": "1080x1080"
+            },
+            {
+              "file": "/store/img/products/sihoo-s300-black-standard/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0632/8192/2264/files/S300__0032_2_9ed789df-df81-41a5-978f-ed243e43ab10.webp",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/sihoo-s300-black-standard/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0632/8192/2264/files/S300__0018_16_02bc9f4b-b95c-48cc-9234-d5cd47806ca4.webp",
+              "size": "1600x1600"
+            }
+          ]
+        },
+        "sihoo-s300-grey-footrest": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO S300 (grey, footrest) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · grey, footrest",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO S300 (grey, footrest)",
+          "unresolvedReason": "SIHOO tento model v šedé barvě nenabízí."
+        },
+        "sihoo-s300-grey-premium-armrest": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO S300 (grey, premium armrest) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · grey, premium armrest",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO S300 (grey, premium armrest)",
+          "unresolvedReason": "Varianta „premium armrest“ není v oficiální nabídce SIHOO."
+        },
+        "sihoo-s300-grey-standard": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO S300 (grey, standard) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · grey, standard",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO S300 (grey, standard)",
+          "unresolvedReason": "SIHOO tento model v šedé barvě nenabízí."
+        }
+      }
+    },
+    {
+      "variantGroup": "sihoo-v1",
+      "variants": {
+        "sihoo-v1-black-footrest": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO V1 (black, footrest) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · black, footrest",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO V1 (black, footrest)",
+          "unresolvedReason": "Model SIHOO V1 není v oficiálních obchodech SIHOO dostupný – nelze ověřit fotografie ani parametry."
+        },
+        "sihoo-v1-black-premium-armrest": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO V1 (black, premium armrest) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · black, premium armrest",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO V1 (black, premium armrest)",
+          "unresolvedReason": "Model SIHOO V1 není v oficiálních obchodech SIHOO dostupný – nelze ověřit fotografie ani parametry."
+        },
+        "sihoo-v1-black-standard": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO V1 (black, standard) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · black, standard",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO V1 (black, standard)",
+          "unresolvedReason": "Model SIHOO V1 není v oficiálních obchodech SIHOO dostupný – nelze ověřit fotografie ani parametry."
+        },
+        "sihoo-v1-grey-footrest": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO V1 (grey, footrest) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · grey, footrest",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO V1 (grey, footrest)",
+          "unresolvedReason": "Model SIHOO V1 není v oficiálních obchodech SIHOO dostupný – nelze ověřit fotografie ani parametry."
+        },
+        "sihoo-v1-grey-premium-armrest": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO V1 (grey, premium armrest) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · grey, premium armrest",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO V1 (grey, premium armrest)",
+          "unresolvedReason": "Model SIHOO V1 není v oficiálních obchodech SIHOO dostupný – nelze ověřit fotografie ani parametry."
+        },
+        "sihoo-v1-grey-standard": {
+          "reset": true,
+          "resetFrom": {
+            "description": "SIHOO V1 (grey, standard) — ergonomické židle ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "SIHOO · Ergonomické židle · grey, standard",
+            "images": [
+              "/store/img/brand/sihoo.png"
+            ]
+          },
+          "officialName": "SIHOO V1 (grey, standard)",
+          "unresolvedReason": "Model SIHOO V1 není v oficiálních obchodech SIHOO dostupný – nelze ověřit fotografie ani parametry."
+        }
+      }
+    }
+  ]
+}

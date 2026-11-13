@@ -1,0 +1,635 @@
+{
+  "brand": "PETKIT",
+  "verified": "2026-11-13",
+  "groups": [
+    {
+      "variantGroup": "petkit-2-in-1-trimmer",
+      "variants": {
+        "petkit-2-in-1-trimmer-cat-dog": {
+          "reset": true,
+          "resetFrom": {
+            "description": "PETKIT 2-in-1 trimmer (cat/dog) — chytré vybavení pro mazlíčky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "PETKIT · Chytré vybavení pro mazlíčky · cat/dog",
+            "images": [
+              "/store/img/brand/petkit.jpg"
+            ]
+          },
+          "officialName": "PETKIT 2-in-1 trimmer (cat/dog)",
+          "unresolvedReason": "Obecný název bez typového označení – v oficiální nabídce PETKIT nelze produkt jednoznačně dohledat."
+        }
+      }
+    },
+    {
+      "variantGroup": "petkit-76l-litter-box",
+      "variants": {
+        "petkit-76l-litter-box-app": {
+          "reset": true,
+          "resetFrom": {
+            "description": "PETKIT 76L litter box (app) — chytré vybavení pro mazlíčky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "PETKIT · Chytré vybavení pro mazlíčky · app",
+            "images": [
+              "/store/img/brand/petkit.jpg"
+            ]
+          },
+          "officialName": "PETKIT 76L litter box (app)",
+          "unresolvedReason": "Obecný název bez typového označení – v oficiální nabídce PETKIT nelze produkt jednoznačně dohledat."
+        }
+      }
+    },
+    {
+      "variantGroup": "petkit-feeding-mat",
+      "variants": {
+        "petkit-feeding-mat-silicone": {
+          "reset": true,
+          "resetFrom": {
+            "description": "PETKIT feeding mat (silicone) — chytré vybavení pro mazlíčky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "PETKIT · Chytré vybavení pro mazlíčky · silicone",
+            "images": [
+              "/store/img/brand/petkit.jpg"
+            ]
+          },
+          "officialName": "PETKIT feeding mat (silicone)",
+          "unresolvedReason": "Obecný název bez typového označení – v oficiální nabídce PETKIT nelze produkt jednoznačně dohledat."
+        }
+      }
+    },
+    {
+      "variantGroup": "petkit-grooming-brush",
+      "variants": {
+        "petkit-grooming-brush": {
+          "reset": true,
+          "resetFrom": {
+            "description": "PETKIT grooming brush — chytré vybavení pro mazlíčky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "PETKIT · Chytré vybavení pro mazlíčky",
+            "images": [
+              "/store/img/brand/petkit.jpg"
+            ]
+          },
+          "officialName": "PETKIT grooming brush",
+          "unresolvedReason": "Obecný název bez typového označení – v oficiální nabídce PETKIT nelze produkt jednoznačně dohledat."
+        }
+      }
+    },
+    {
+      "variantGroup": "petkit-grooming-dryer-box",
+      "variants": {
+        "petkit-grooming-dryer-box-63l": {
+          "reset": true,
+          "resetFrom": {
+            "description": "PETKIT grooming dryer box (63L) — chytré vybavení pro mazlíčky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "PETKIT · Chytré vybavení pro mazlíčky · 63L",
+            "images": [
+              "/store/img/brand/petkit.jpg"
+            ]
+          },
+          "officialName": "PETKIT grooming dryer box (63L)",
+          "unresolvedReason": "Oficiální sušicí box AirSalon Max má 60 l, sourcing uvádí 63 l – nelze potvrdit shodu."
+        }
+      }
+    },
+    {
+      "variantGroup": "petkit-litter-deodorizer",
+      "variants": {
+        "petkit-litter-deodorizer-refill": {
+          "officialName": "PETKIT Purifying Liquid Refill (4 lahvičky)",
+          "shortDesc": "Náplň čisticí tekutiny proti zápachu a bakteriím pro toalety PETKIT s modulem čističky",
+          "description": "Náhradní náplň pro modul čističky vzduchu v samočisticích toaletách PETKIT. Netoxická tekutina potlačuje zápach a bakterie a udržuje okolí kočičí toalety svěží. Balení obsahuje 4 lahvičky.\n\nKompatibilita: PETKIT PuraX, PuraMax a PuraMax 2.",
+          "specs": {
+            "Parametry": {
+              "Balení": "4 lahvičky",
+              "Účinek": "potlačení zápachu a bakterií",
+              "Bezpečnost": "netoxické"
+            },
+            "Kompatibilita": {
+              "Toalety": "PuraX, PuraMax, PuraMax 2"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.petkit.com/products/pura-x-pura-max-purifying-refill-4-bottles",
+              "note": "PETKIT Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.petkit.com/products/pura-x-pura-max-purifying-refill-4-bottles",
+              "note": "Fotografie: oficiální galerie výrobce (PETKIT)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/petkit-litter-deodorizer/1.webp",
+            "/store/img/products/petkit-litter-deodorizer/2.webp",
+            "/store/img/products/petkit-litter-deodorizer/3.webp",
+            "/store/img/products/petkit-litter-deodorizer/4.webp",
+            "/store/img/products/petkit-litter-deodorizer/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/petkit-litter-deodorizer/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0569/0526/9388/files/purifying-liquid-refill-with-compatible-petkit-litter-boxes.png",
+              "size": "1500x1500"
+            },
+            {
+              "file": "/store/img/products/petkit-litter-deodorizer/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0569/0526/9388/files/purifying-liquid-refill-in-litter-box-use.jpg",
+              "size": "1500x1500"
+            },
+            {
+              "file": "/store/img/products/petkit-litter-deodorizer/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0569/0526/9388/files/purifying-liquid-refill-odor-germ-removal.jpg",
+              "size": "1500x1500"
+            },
+            {
+              "file": "/store/img/products/petkit-litter-deodorizer/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0569/0526/9388/files/purifying-liquid-refill-safe-for-pets.jpg",
+              "size": "1500x1500"
+            },
+            {
+              "file": "/store/img/products/petkit-litter-deodorizer/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0569/0526/9388/files/purifying-liquid-refill-4-bottles-display.png",
+              "size": "1500x1500"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "petkit-litter-pad-max",
+      "variants": {
+        "petkit-litter-pad-max-accessory": {
+          "officialName": "PETKIT High Performance Cat Litter Pad (PuraMax)",
+          "shortDesc": "Náhradní podložka válce pro samočisticí toaletu PETKIT PuraMax – voděodolná a nelepivá",
+          "description": "Náhradní podložka do válce samočisticí kočičí toalety PETKIT PuraMax. Materiál je odolný proti poškrábání, voděodolný a nepřilnavý, takže se na něj nelepí stelivo a snadno se čistí.\n\nPodložka se jednoduše vymění a je určena výhradně pro toaletu PETKIT PuraMax.",
+          "specs": {
+            "Parametry": {
+              "Rozměry": "cca 40,6 × 39,9 × 2 cm (16 × 15,7 × 0,8 in)",
+              "Vlastnosti": "odolná proti poškrábání, voděodolná, nepřilnavá"
+            },
+            "Kompatibilita": {
+              "Toaleta": "PETKIT PuraMax"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.petkit.com/products/cat-litter-pat",
+              "note": "PETKIT Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.petkit.com/products/cat-litter-pat",
+              "note": "Fotografie: oficiální galerie výrobce (PETKIT)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/petkit-litter-pad-max/1.webp",
+            "/store/img/products/petkit-litter-pad-max/2.webp",
+            "/store/img/products/petkit-litter-pad-max/3.webp",
+            "/store/img/products/petkit-litter-pad-max/4.webp",
+            "/store/img/products/petkit-litter-pad-max/5.webp",
+            "/store/img/products/petkit-litter-pad-max/6.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/petkit-litter-pad-max/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0569/0526/9388/files/puramax-high-performance-cat-litter-pad-product-display.png",
+              "size": "1500x1500"
+            },
+            {
+              "file": "/store/img/products/petkit-litter-pad-max/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0569/0526/9388/products/puramax-high-performance-cat-litter-pad-exclusive.jpg",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/petkit-litter-pad-max/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0569/0526/9388/products/puramax-high-performance-cat-litter-pad-litter-capacity-reminder.jpg",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/petkit-litter-pad-max/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0569/0526/9388/products/puramax-high-performance-cat-litter-pad-quick-installation.jpg",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/petkit-litter-pad-max/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0569/0526/9388/products/puramax-high-performance-cat-litter-pad-material-comfort.jpg",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/petkit-litter-pad-max/6.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0569/0526/9388/products/puramax-high-performance-cat-litter-pad-waterproof-detail.jpg",
+              "size": "1000x1000"
+            }
+          ],
+          "mappingNote": "Sourcing: „litter pad Max (accessory)“ – přiřazeno k oficiální podložce pro PuraMax."
+        }
+      }
+    },
+    {
+      "variantGroup": "petkit-paw-cleaner",
+      "variants": {
+        "petkit-paw-cleaner-portable": {
+          "reset": true,
+          "resetFrom": {
+            "description": "PETKIT paw cleaner (portable) — chytré vybavení pro mazlíčky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "PETKIT · Chytré vybavení pro mazlíčky · portable",
+            "images": [
+              "/store/img/brand/petkit.jpg"
+            ]
+          },
+          "officialName": "PETKIT paw cleaner (portable)",
+          "unresolvedReason": "Obecný název bez typového označení – v oficiální nabídce PETKIT nelze produkt jednoznačně dohledat."
+        }
+      }
+    },
+    {
+      "variantGroup": "petkit-pet-carrier",
+      "variants": {
+        "petkit-pet-carrier-air-circulation": {
+          "officialName": "PETKIT Breezy 2 Cat Carrier (krémově bílý)",
+          "shortDesc": "Batoh pro kočky s vestavěným tichým ventilátorem, osvětlením a větracími otvory",
+          "description": "PETKIT Breezy 2 je prostorný batoh pro přenášení koček s vestavěným tichým ventilátorem, který vymění vzduch v celém batohu přibližně za 20 sekund. Více větracích otvorů zajišťuje proudění vzduchu, rychlost ventilátoru a osvětlení se nastavují mechanickými tlačítky.\n\nSamosvorný zip zabrání úniku zvířete, polstrovaná záda s větranou výplní EVA ulehčí nošení. Boční kapsa je určena pro powerbanku napájející ventilátor.",
+          "specs": {
+            "Parametry": {
+              "Ventilace": "vestavěný tichý ventilátor + větrací otvory",
+              "Osvětlení": "vestavěné, nastavitelné",
+              "Zip": "samosvorný",
+              "Záda": "polstrovaná, větraná výplň EVA",
+              "Barva": "krémově bílá"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.petkit.com/products/petkit-breezy-dome-2-cream-white",
+              "note": "PETKIT Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.petkit.com/products/petkit-breezy-dome-2-cream-white",
+              "note": "Fotografie: oficiální galerie výrobce (PETKIT)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/petkit-pet-carrier/1.webp",
+            "/store/img/products/petkit-pet-carrier/2.webp",
+            "/store/img/products/petkit-pet-carrier/3.webp",
+            "/store/img/products/petkit-pet-carrier/4.webp",
+            "/store/img/products/petkit-pet-carrier/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/petkit-pet-carrier/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0569/0526/9388/products/breezy-2-cat-carrier-cream-white-product-display.png",
+              "size": "1500x1500"
+            },
+            {
+              "file": "/store/img/products/petkit-pet-carrier/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0569/0526/9388/products/breezy-2-cat-carrier-cream-white-wearing.jpg",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/petkit-pet-carrier/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0569/0526/9388/products/breezy-2-cat-carrier-built-in-ventilation-fan.jpg",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/petkit-pet-carrier/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0569/0526/9388/products/breezy-2-cat-carrier-adjustable-wind-speed-lighting.jpg",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/petkit-pet-carrier/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0569/0526/9388/products/breezy-2-cat-carrier-cream-white-home-scene.jpg",
+              "size": "1000x1000"
+            }
+          ],
+          "mappingNote": "Sourcing: „pet carrier (air circulation)“ – přiřazeno k batohu Breezy 2 s ventilátorem; použita krémově bílá barva."
+        }
+      }
+    },
+    {
+      "variantGroup": "petkit-pura-max-2-litter-box",
+      "variants": {
+        "petkit-pura-max-2-litter-box": {
+          "reset": true,
+          "resetFrom": {
+            "description": "PETKIT PURA MAX 2 litter box — chytré vybavení pro mazlíčky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "PETKIT · Chytré vybavení pro mazlíčky",
+            "images": [
+              "/store/img/brand/petkit.jpg"
+            ]
+          },
+          "officialName": "PETKIT PURA MAX 2 litter box",
+          "unresolvedReason": "PuraMax 2 v oficiálním obchodě PETKIT není dostupná."
+        }
+      }
+    },
+    {
+      "variantGroup": "petkit-purobot-max-pro-litter-box",
+      "variants": {
+        "petkit-purobot-max-pro-litter-box": {
+          "reset": true,
+          "resetFrom": {
+            "description": "PETKIT Purobot Max Pro litter box — chytré vybavení pro mazlíčky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "PETKIT · Chytré vybavení pro mazlíčky",
+            "images": [
+              "/store/img/brand/petkit.jpg"
+            ]
+          },
+          "officialName": "PETKIT Purobot Max Pro litter box",
+          "unresolvedReason": "Oficiální obchod nabízí jen Purobot Max Pro 2 (jiná generace)."
+        }
+      }
+    },
+    {
+      "variantGroup": "petkit-replacement-filters",
+      "variants": {
+        "petkit-replacement-filters-4-pack": {
+          "reset": true,
+          "resetFrom": {
+            "description": "PETKIT replacement filters (4-pack) — chytré vybavení pro mazlíčky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "PETKIT · Chytré vybavení pro mazlíčky · 4-pack",
+            "images": [
+              "/store/img/brand/petkit.jpg"
+            ]
+          },
+          "officialName": "PETKIT replacement filters (4-pack)",
+          "unresolvedReason": "Oficiální filtry PETKIT se prodávají po 5 ks, ne 4/8 ks."
+        },
+        "petkit-replacement-filters-8-pack": {
+          "reset": true,
+          "resetFrom": {
+            "description": "PETKIT replacement filters (8-pack) — chytré vybavení pro mazlíčky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "PETKIT · Chytré vybavení pro mazlíčky · 8-pack",
+            "images": [
+              "/store/img/brand/petkit.jpg"
+            ]
+          },
+          "officialName": "PETKIT replacement filters (8-pack)",
+          "unresolvedReason": "Oficiální filtry PETKIT se prodávají po 5 ks, ne 4/8 ks."
+        }
+      }
+    },
+    {
+      "variantGroup": "petkit-smart-bowl",
+      "variants": {
+        "petkit-smart-bowl-scale": {
+          "reset": true,
+          "resetFrom": {
+            "description": "PETKIT smart bowl (scale) — chytré vybavení pro mazlíčky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "PETKIT · Chytré vybavení pro mazlíčky · scale",
+            "images": [
+              "/store/img/brand/petkit.jpg"
+            ]
+          },
+          "officialName": "PETKIT smart bowl (scale)",
+          "unresolvedReason": "Obecný název bez typového označení – v oficiální nabídce PETKIT nelze produkt jednoznačně dohledat."
+        }
+      }
+    },
+    {
+      "variantGroup": "petkit-smart-feeder",
+      "variants": {
+        "petkit-smart-feeder-3l": {
+          "reset": true,
+          "resetFrom": {
+            "description": "PETKIT smart feeder (3L) — chytré vybavení pro mazlíčky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "PETKIT · Chytré vybavení pro mazlíčky · 3L",
+            "images": [
+              "/store/img/brand/petkit.jpg"
+            ]
+          },
+          "officialName": "PETKIT smart feeder (3L)",
+          "unresolvedReason": "Sourcing neuvádí model krmítka (3 l / 5 l) – nelze jednoznačně určit."
+        },
+        "petkit-smart-feeder-5l": {
+          "reset": true,
+          "resetFrom": {
+            "description": "PETKIT smart feeder (5L) — chytré vybavení pro mazlíčky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "PETKIT · Chytré vybavení pro mazlíčky · 5L",
+            "images": [
+              "/store/img/brand/petkit.jpg"
+            ]
+          },
+          "officialName": "PETKIT smart feeder (5L)",
+          "unresolvedReason": "Sourcing neuvádí model krmítka (3 l / 5 l) – nelze jednoznačně určit."
+        },
+        "petkit-smart-feeder-camera": {
+          "officialName": "PETKIT YumShare Solo 2 s kamerou",
+          "shortDesc": "Chytré automatické krmítko s AI kamerou, rozpoznáváním mazlíčků a aplikací",
+          "description": "PETKIT YumShare Solo 2 je automatické krmítko s AI kamerou. Podle nastaveného rozvrhu dávkuje krmivo až pro 15 mazlíčků, pomocí rozpoznávání obličejů sleduje stravovací návyky každého z nich a v aplikaci PETKIT nabízí živý přenos videa.\n\nKamera hlídá i v noci, aplikace upozorní, když některý mazlíček vynechá jídlo nebo je miska plná.",
+          "specs": {
+            "Funkce": {
+              "Kamera": "AI kamera s živým přenosem",
+              "Rozpoznávání": "obličeje mazlíčků (až 15)",
+              "Ovládání": "aplikace PETKIT",
+              "Dávkování": "podle rozvrhu"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.petkit.com/products/yumshare-solo-2-automatic-feeder-with-camera",
+              "note": "PETKIT Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.petkit.com/products/yumshare-solo-2-automatic-feeder-with-camera",
+              "note": "Fotografie: oficiální galerie výrobce (PETKIT)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/petkit-smart-feeder-camera/1.webp",
+            "/store/img/products/petkit-smart-feeder-camera/2.webp",
+            "/store/img/products/petkit-smart-feeder-camera/3.webp",
+            "/store/img/products/petkit-smart-feeder-camera/4.webp",
+            "/store/img/products/petkit-smart-feeder-camera/5.webp",
+            "/store/img/products/petkit-smart-feeder-camera/6.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/petkit-smart-feeder-camera/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0569/0526/9388/files/yumshare-solo-2-automatic-cat-feeder-app-control-2-year-warranty.png",
+              "size": "1500x1500"
+            },
+            {
+              "file": "/store/img/products/petkit-smart-feeder-camera/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0569/0526/9388/files/yumshare-solo-2-pet-feeder-camera-live-monitoring-day-night.jpg",
+              "size": "1500x1500"
+            },
+            {
+              "file": "/store/img/products/petkit-smart-feeder-camera/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0569/0526/9388/files/yumshare-solo-2-feeding-timeline-app-meal-tracking.jpg",
+              "size": "1500x1500"
+            },
+            {
+              "file": "/store/img/products/petkit-smart-feeder-camera/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0569/0526/9388/files/yumshare-solo-2-ai-pet-facial-recognition-multi-pet.png",
+              "size": "1500x1500"
+            },
+            {
+              "file": "/store/img/products/petkit-smart-feeder-camera/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0569/0526/9388/files/yumshare-solo-2-smart-app-features-audio-treats-sharing.jpg",
+              "size": "1500x1500"
+            },
+            {
+              "file": "/store/img/products/petkit-smart-feeder-camera/6.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0569/0526/9388/files/yumshare-solo-2-smart-bowl-monitoring-auto-pause.jpg",
+              "size": "1500x1500"
+            }
+          ],
+          "mappingNote": "Sourcing: „smart feeder (camera)“ – přiřazeno k aktuálnímu krmítku PETKIT s kamerou (YumShare Solo 2)."
+        }
+      }
+    },
+    {
+      "variantGroup": "petkit-waste-bags",
+      "variants": {
+        "petkit-waste-bags-refill": {
+          "officialName": "PETKIT Automatic Litter Box Trash Bag (5 rolí)",
+          "shortDesc": "Pevné sáčky se stahovací šňůrkou pro samočisticí toalety PETKIT",
+          "description": "Náhradní sáčky do odpadní nádoby samočisticích toalet PETKIT. Jsou odolné proti protržení a mají stahovací šňůrku pro hygienické vyjmutí odpadu. Balení obsahuje 5 rolí.\n\nKompatibilita: PETKIT PuraX, PuraMax, PuraMax 2 a Purobot Max 3.",
+          "specs": {
+            "Parametry": {
+              "Balení": "5 rolí",
+              "Vlastnosti": "odolné proti protržení, stahovací šňůrka"
+            },
+            "Kompatibilita": {
+              "Toalety": "PuraX, PuraMax, PuraMax 2, Purobot Max 3"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.petkit.com/products/pura-x-pura-max-trash-bag",
+              "note": "PETKIT Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.petkit.com/products/pura-x-pura-max-trash-bag",
+              "note": "Fotografie: oficiální galerie výrobce (PETKIT)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/petkit-waste-bags/1.webp",
+            "/store/img/products/petkit-waste-bags/2.webp",
+            "/store/img/products/petkit-waste-bags/3.webp",
+            "/store/img/products/petkit-waste-bags/4.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/petkit-waste-bags/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0569/0526/9388/files/automatic-litter-box-trash-bag-with-purax-puramax-puramax2-purobotmax3.png",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/petkit-waste-bags/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0569/0526/9388/files/purax-automatic-litter-box-trash-bag-detail-fit.jpg",
+              "size": "1500x1500"
+            },
+            {
+              "file": "/store/img/products/petkit-waste-bags/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0569/0526/9388/files/automatic-litter-box-trash-bag-5-rolls-display.jpg",
+              "size": "1500x1500"
+            },
+            {
+              "file": "/store/img/products/petkit-waste-bags/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0569/0526/9388/products/automatic-litter-box-trash-bag-package-5-roll-display.png",
+              "size": "1500x1500"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "petkit-water-fountain",
+      "variants": {
+        "petkit-water-fountain-stainless": {
+          "reset": true,
+          "resetFrom": {
+            "description": "PETKIT water fountain (stainless) — chytré vybavení pro mazlíčky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "PETKIT · Chytré vybavení pro mazlíčky · stainless",
+            "images": [
+              "/store/img/brand/petkit.jpg"
+            ]
+          },
+          "officialName": "PETKIT water fountain (stainless)",
+          "unresolvedReason": "Neurčený model fontány z nerezové oceli."
+        },
+        "petkit-water-fountain-wireless-pump": {
+          "officialName": "PETKIT EverSweet 3 Pro (UVC)",
+          "shortDesc": "Fontána pro mazlíčky s bezdrátovým čerpadlem, UV-C sterilizací a 4stupňovou filtrací",
+          "description": "PETKIT EverSweet 3 Pro (UVC) je pítko-fontána pro kočky a psy. Bezdrátové čerpadlo nemá ve vodě žádné kabely, UV-C světlo sterilizuje vodu a čtyřstupňová filtrace zachytí chlupy a nečistoty.\n\nFontána nabízí různé pracovní a sterilizační režimy.",
+          "specs": {
+            "Funkce": {
+              "Čerpadlo": "bezdrátové",
+              "Sterilizace": "UV-C",
+              "Filtrace": "4stupňová",
+              "Režimy": "volitelné pracovní a sterilizační režimy"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.petkit.com/products/eversweet-3-pro-wireless-pump-uvc",
+              "note": "PETKIT Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.petkit.com/products/eversweet-3-pro-wireless-pump-uvc",
+              "note": "Fotografie: oficiální galerie výrobce (PETKIT)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/petkit-water-fountain-wireless-pump/1.webp",
+            "/store/img/products/petkit-water-fountain-wireless-pump/2.webp",
+            "/store/img/products/petkit-water-fountain-wireless-pump/3.webp",
+            "/store/img/products/petkit-water-fountain-wireless-pump/4.webp",
+            "/store/img/products/petkit-water-fountain-wireless-pump/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/petkit-water-fountain-wireless-pump/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0569/0526/9388/files/eversweet-3-pro-uvc-pet-water-fountain-app-control.png",
+              "size": "1500x1500"
+            },
+            {
+              "file": "/store/img/products/petkit-water-fountain-wireless-pump/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0569/0526/9388/files/eversweet-3-pro-uvc-pet-water-fountain-cat-drinking.jpg",
+              "size": "1500x1500"
+            },
+            {
+              "file": "/store/img/products/petkit-water-fountain-wireless-pump/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0569/0526/9388/files/eversweet-3-pro-uvc-wireless-pump-disinfection.jpg",
+              "size": "1500x1500"
+            },
+            {
+              "file": "/store/img/products/petkit-water-fountain-wireless-pump/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0569/0526/9388/files/eversweet-3-pro-uvc-detachable-water-fountain-design.jpg",
+              "size": "1500x1500"
+            },
+            {
+              "file": "/store/img/products/petkit-water-fountain-wireless-pump/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0569/0526/9388/files/eversweet-3-pro-uvc-pet-water-fountain-package-contents.jpg",
+              "size": "1500x1500"
+            }
+          ],
+          "mappingNote": "Sourcing: „water fountain (wireless pump)“ – přiřazeno k fontáně EverSweet 3 Pro s bezdrátovým čerpadlem."
+        }
+      }
+    }
+  ]
+}
