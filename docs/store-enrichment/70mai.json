@@ -1,0 +1,1055 @@
+{
+  "brand": "70mai",
+  "verified": "2026-11-13",
+  "groups": [
+    {
+      "variantGroup": "70mai-1s",
+      "officialName": "70mai Dash Cam 1S",
+      "shortDesc": "Kompaktní autokamera 1080p se zorným úhlem 130°, Wi-Fi aplikací a hlasovým ovládáním",
+      "description": "70mai Dash Cam 1S je malá autokamera, která natáčí ve Full HD 1080p se snímačem Sony IMX307. Zorný úhel 130° pokryje až tři jízdní pruhy a technologie 70mai Night Owl Vision zlepšuje čitelnost záznamu v noci.\n\nKamera nemá displej – ovládá se přes aplikaci 70mai (vestavěná Wi-Fi), kde si přehrajete záznamy, stáhnete videa do telefonu a změníte nastavení. Za jízdy lze fotit a ukládat nouzová videa hlasovými povely. G-senzor při nárazu automaticky uzamkne záznam proti přepsání, smyčkové nahrávání průběžně přepisuje nejstarší soubory.",
+      "specs": {
+        "Kamera": {
+          "Rozlišení videa": "1920 × 1080 (Full HD)",
+          "Snímkování": "30 fps",
+          "Obrazový snímač": "Sony IMX307",
+          "Objektiv / clona": "2G2P, F2.2",
+          "Zorný úhel": "130°"
+        },
+        "Funkce": {
+          "Noční režim": "70mai Night Owl Vision, WDR",
+          "Ovládání": "aplikace 70mai (Wi-Fi), hlasové povely",
+          "Záznam": "smyčkový, nouzový (G-senzor), fotografie, sdílení videí"
+        },
+        "Napájení a provoz": {
+          "Baterie": "240 mAh",
+          "Provozní teplota": "−10 až 60 °C"
+        },
+        "Rozměry": {
+          "Rozměry": "91 × 52,5 × 31,5 mm"
+        }
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://70mai.store/products/1s-dash-cam",
+          "note": "70mai Official Store – produktová stránka a specifikace",
+          "verified": "2026-11-13"
+        },
+        {
+          "type": "images",
+          "url": "https://70mai.store/products/1s-dash-cam",
+          "note": "Fotografie: oficiální galerie výrobce (70mai)",
+          "verified": "2026-11-13"
+        }
+      ],
+      "images": [
+        "/store/img/products/70mai-1s/1.webp",
+        "/store/img/products/70mai-1s/2.webp",
+        "/store/img/products/70mai-1s/3.webp",
+        "/store/img/products/70mai-1s/4.webp",
+        "/store/img/products/70mai-1s/5.webp"
+      ],
+      "imageSources": [
+        {
+          "file": "/store/img/products/70mai-1s/1.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai-dash-cam-smart-1s_2.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-1s/2.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/1S-dash-cam-gray.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-1s/3.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/1s-dash-cam-sony-imx307.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-1s/4.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/1s-dash-cam-1080p.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-1s/5.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/1s-dash-cam-voice-control.jpg",
+          "size": "1024x1024"
+        }
+      ]
+    },
+    {
+      "variantGroup": "70mai-a200-dash-cam",
+      "officialName": "70mai Dash Cam A200",
+      "shortDesc": "Autokamera 1080p/60 fps s HDR, 2\" displejem a podporou zadní kamery",
+      "description": "70mai Dash Cam A200 natáčí ve Full HD 1080p při plynulých 60 snímcích za sekundu, takže i rychlé děje na silnici zůstanou ostré. HDR s algoritmem MaiColor Vivid+ vyrovnává světla a stíny a zlepšuje čitelnost značek a SPZ, noční režim 70mai Night Owl Vision pomáhá ve tmě.\n\nKamera má 2palcový IPS displej a podporuje dvoukanálové nahrávání se zadní kamerou (vpředu 1080p HDR, vzadu 1080p). S hardwire kitem UP02 (prodává se samostatně) hlídá auto i při parkování – G-senzor při otřesu nebo nárazu spustí záznam. K dispozici je také časosběrné nahrávání a ovládání přes aplikaci.",
+      "specs": {
+        "Kamera": {
+          "Rozlišení videa": "1920 × 1080",
+          "Snímkování": "60 / 30 fps",
+          "Obrazový snímač": "GC2093",
+          "Clona": "F2.0",
+          "Zorný úhel": "130°",
+          "Dvoukanálový záznam": "přední 1080p HDR + zadní 1080p (zadní kamera samostatně)"
+        },
+        "Displej": {
+          "Úhlopříčka": "2\" IPS",
+          "Rozlišení displeje": "480 × 360"
+        },
+        "Funkce": {
+          "Obraz": "HDR, MaiColor Vivid+, 70mai Night Owl Vision",
+          "Hlídání při parkování": "24 h (vyžaduje hardwire kit UP02)",
+          "Záznam": "nouzový (G-senzor), časosběrný",
+          "Ovládání": "aplikace 70mai"
+        },
+        "Napájení a provoz": {
+          "Baterie": "500 mAh",
+          "Provozní teplota": "−10 až 60 °C"
+        },
+        "Rozměry": {
+          "Rozměry": "47,5 × 35 × 20 mm"
+        }
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://70mai.store/products/a200-dash-cam",
+          "note": "70mai Official Store – produktová stránka a specifikace",
+          "verified": "2026-11-13"
+        },
+        {
+          "type": "images",
+          "url": "https://70mai.store/products/a200-dash-cam",
+          "note": "Fotografie: oficiální galerie výrobce (70mai)",
+          "verified": "2026-11-13"
+        }
+      ],
+      "images": [
+        "/store/img/products/70mai-a200-dash-cam/1.webp",
+        "/store/img/products/70mai-a200-dash-cam/2.webp",
+        "/store/img/products/70mai-a200-dash-cam/3.webp",
+        "/store/img/products/70mai-a200-dash-cam/4.webp",
+        "/store/img/products/70mai-a200-dash-cam/5.webp"
+      ],
+      "imageSources": [
+        {
+          "file": "/store/img/products/70mai-a200-dash-cam/1.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai_Dashcam_A200_-_front.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-a200-dash-cam/2.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai_Dashcam_A200_-_cam.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-a200-dash-cam/3.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai_Dashcam_A200_-_dual_channel.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-a200-dash-cam/4.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai_Dashcam_A200_-_1080P.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-a200-dash-cam/5.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai_Dashcam_A200_-_night_vision.jpg",
+          "size": "1024x1024"
+        }
+      ]
+    },
+    {
+      "variantGroup": "70mai-a400",
+      "officialName": "70mai Dash Cam A400",
+      "shortDesc": "Autokamera 1440p QHD se zorným úhlem 145°, 2\" displejem a podporou zadní kamery RC09",
+      "description": "70mai Dash Cam A400 natáčí v rozlišení Quad HD 2560 × 1440 a díky zornému úhlu 145° zabere nejméně tři jízdní pruhy. Noční režim 70mai Night Owl Vision a funkce WDR a 3DNR zlepšují obraz při slabém světle.\n\nS volitelnou zadní kamerou RC09 nahrává A400 dvoukanálově. Vestavěný G-senzor hlídá auto i při parkování (s hardwire kitem) a při nárazu automaticky spustí nouzový záznam. Kameru ovládáte 2palcovým IPS displejem nebo aplikací 70mai.",
+      "specs": {
+        "Kamera": {
+          "Rozlišení videa": "2560 × 1440 (QHD)",
+          "Snímkování": "30 fps",
+          "Obrazový snímač": "GC4653",
+          "Objektiv / clona": "3G3P + IR, F2.0",
+          "Zorný úhel": "145°"
+        },
+        "Displej": {
+          "Úhlopříčka": "2\" IPS",
+          "Rozlišení displeje": "640 × 360"
+        },
+        "Funkce": {
+          "Obraz": "70mai Night Owl Vision, WDR, 3DNR",
+          "Dvoukanálový záznam": "se zadní kamerou RC09 (samostatně)",
+          "Hlídání při parkování": "24 h (vyžaduje hardwire kit)",
+          "Záznam": "smyčkový, nouzový (G-senzor), fotografie",
+          "Ovládání": "aplikace 70mai"
+        },
+        "Napájení a provoz": {
+          "Baterie": "500 mAh",
+          "Provozní teplota": "−10 až 60 °C"
+        },
+        "Rozměry": {
+          "Rozměry": "77,2 × 72,2 × 22 mm"
+        }
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://70mai.store/products/a400-dashcam",
+          "note": "70mai Official Store – produktová stránka a specifikace",
+          "verified": "2026-11-13"
+        },
+        {
+          "type": "images",
+          "url": "https://70mai.store/products/a400-dashcam",
+          "note": "Fotografie: oficiální galerie výrobce (70mai), černé provedení",
+          "verified": "2026-11-13"
+        }
+      ],
+      "images": [
+        "/store/img/products/70mai-a400/1.webp",
+        "/store/img/products/70mai-a400/2.webp",
+        "/store/img/products/70mai-a400/3.webp",
+        "/store/img/products/70mai-a400/4.webp",
+        "/store/img/products/70mai-a400/5.webp"
+      ],
+      "imageSources": [
+        {
+          "file": "/store/img/products/70mai-a400/1.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai_Dash_Cam_A400_-_bk_screen.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-a400/2.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai_Dash_Cam_A400_-_bk.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-a400/3.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai_Dashcam_A400_-_1440P_QHD.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-a400/4.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai_Dashcam_A400_-_dual_channel.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-a400/5.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai_Dashcam_A400_-_night_vision.jpg",
+          "size": "1024x1024"
+        }
+      ]
+    },
+    {
+      "variantGroup": "70mai-a500s",
+      "officialName": "70mai Dash Cam A500S",
+      "shortDesc": "Autokamera 2,7K (1944p) se snímačem Sony IMX335, GPS, ADAS a 2\" displejem",
+      "description": "70mai Dash Cam A500S zaznamenává v rozlišení 2592 × 1944 se snímačem Sony IMX335 a zorným úhlem 140°. Vestavěná GPS ukládá trasu a rychlost, asistenční systém ADAS upozorní na vyjetí z pruhu nebo blízké vozidlo.\n\nKamera podporuje dvoukanálový záznam se zadní kamerou, 24hodinové hlídání při parkování (s hardwire kitem), nouzový a časosběrný záznam. Ovládá se 2palcovým IPS displejem nebo aplikací 70mai.",
+      "specs": {
+        "Kamera": {
+          "Rozlišení videa": "2592 × 1944",
+          "Snímkování": "30 fps",
+          "Obrazový snímač": "Sony IMX335",
+          "Objektiv / clona": "2G4P, F1.8",
+          "Zorný úhel": "140°"
+        },
+        "Displej": {
+          "Úhlopříčka": "2\" IPS",
+          "Rozlišení displeje": "480 × 360"
+        },
+        "Funkce": {
+          "Navigace a asistence": "vestavěná GPS, ADAS, záznam trasy",
+          "Obraz": "70mai Night Owl Vision, WDR, 3DNR",
+          "Hlídání při parkování": "24 h (vyžaduje hardwire kit)",
+          "Záznam": "smyčkový, nouzový (G-senzor), časosběrný, fotografie",
+          "Ovládání": "aplikace 70mai"
+        },
+        "Napájení a provoz": {
+          "Baterie": "500 mAh Li-ion",
+          "Provozní teplota": "−10 až 60 °C"
+        },
+        "Rozměry": {
+          "Rozměry": "83 × 60,5 × 37,9 mm"
+        }
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://70mai.store/products/a500s-dash-cam",
+          "note": "70mai Official Store – produktová stránka a specifikace",
+          "verified": "2026-11-13"
+        },
+        {
+          "type": "images",
+          "url": "https://70mai.store/products/a500s-dash-cam",
+          "note": "Fotografie: oficiální galerie výrobce (70mai)",
+          "verified": "2026-11-13"
+        }
+      ],
+      "images": [
+        "/store/img/products/70mai-a500s/1.webp",
+        "/store/img/products/70mai-a500s/2.webp",
+        "/store/img/products/70mai-a500s/3.webp",
+        "/store/img/products/70mai-a500s/4.webp",
+        "/store/img/products/70mai-a500s/5.webp"
+      ],
+      "imageSources": [
+        {
+          "file": "/store/img/products/70mai-a500s/1.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai-a500s-dash-cam_1.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-a500s/2.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai-a500s-dash-cam_10_ef4741a2-771b-4823-b7c8-14708f62c707.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-a500s/3.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/a500s-1944p-hd_ae0f5211-8fbb-45e3-85d2-83ada8bd6acb.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-a500s/4.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/a500s-dual-channel-recording_27086775-6430-4a4b-8d03-d82b2c8a8511.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-a500s/5.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/a500s-night-vision_59a73586-160a-4865-af96-028ef6033789.jpg",
+          "size": "1024x1024"
+        }
+      ]
+    },
+    {
+      "variantGroup": "70mai-a510-dash-cam",
+      "officialName": "70mai Dash Cam A510",
+      "shortDesc": "Autokamera 1944p se snímačem Sony STARVIS 2 IMX675, HDR, GPS, ADAS a podporou 4G",
+      "description": "70mai Dash Cam A510 natáčí v rozlišení 2592 × 1944 (5 Mpx) se snímačem Sony STARVIS 2 IMX675, který přináší širší dynamický rozsah a výrazně lepší záznam při slabém světle. HDR a noční režim 70mai Night Owl Vision zlepšují čitelnost SPZ a značek ve dne i v noci.\n\nSe zadní kamerou RC12 zvládá dvoukanálový HDR záznam. Vestavěná GPS ukládá trasu, ADAS hlasově upozorňuje na rizika. Nouzový záznam ukládá 5 s před a 25 s po nárazu, 24hodinové hlídání při parkování využívá časosběrný záznam. Připojení 4G vyžaduje samostatně prodávaný 4G hardwire kit (dostupný jen v některých zemích).",
+      "specs": {
+        "Kamera": {
+          "Rozlišení videa": "2592 × 1944 / 2560 × 1440",
+          "Snímkování": "30 fps",
+          "Obrazový snímač": "Sony STARVIS 2 IMX675",
+          "Objektiv / clona": "2G4P, F1.8",
+          "Zorný úhel": "140°"
+        },
+        "Displej": {
+          "Úhlopříčka": "2\" IPS",
+          "Rozlišení displeje": "480 × 360"
+        },
+        "Funkce": {
+          "Obraz": "HDR, 70mai Night Owl Vision, WDR, 3DNR",
+          "Dvoukanálový záznam": "se zadní kamerou RC12 (samostatně)",
+          "Navigace a asistence": "vestavěná GPS, ADAS",
+          "Nouzový záznam": "5 s před a 25 s po nárazu",
+          "Hlídání při parkování": "24 h, časosběrný záznam",
+          "Konektivita": "Wi-Fi (aplikace 70mai), volitelně 4G s 4G hardwire kitem"
+        },
+        "Úložiště": {
+          "Paměťová karta": "microSD 32–256 GB (není součástí)"
+        },
+        "Napájení a provoz": {
+          "Baterie": "500 mAh Li-ion",
+          "Napájení": "5 V / 2 A",
+          "Provozní teplota": "−20 až 70 °C"
+        },
+        "Rozměry": {
+          "Rozměry": "83 × 60,5 × 37,9 mm"
+        }
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://70mai.store/products/a510-dash-cam",
+          "note": "70mai Official Store – produktová stránka, specifikace a FAQ",
+          "verified": "2026-11-13"
+        },
+        {
+          "type": "images",
+          "url": "https://70mai.store/products/a510-dash-cam",
+          "note": "Fotografie: oficiální galerie výrobce (70mai)",
+          "verified": "2026-11-13"
+        }
+      ],
+      "images": [
+        "/store/img/products/70mai-a510-dash-cam/1.webp",
+        "/store/img/products/70mai-a510-dash-cam/2.webp",
+        "/store/img/products/70mai-a510-dash-cam/3.webp",
+        "/store/img/products/70mai-a510-dash-cam/4.webp",
+        "/store/img/products/70mai-a510-dash-cam/5.webp"
+      ],
+      "imageSources": [
+        {
+          "file": "/store/img/products/70mai-a510-dash-cam/1.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai_Dash_Cam_A510_-_front_1.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-a510-dash-cam/2.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai_Dash_Cam_A510-_front_badge.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-a510-dash-cam/3.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai_Dashcam_A510_-_dual_channel.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-a510-dash-cam/4.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai_Dashcam_A510-_chip.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-a510-dash-cam/5.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai_Dashcam_A510_-_night_vision.jpg",
+          "size": "1024x1024"
+        }
+      ]
+    },
+    {
+      "variantGroup": "70mai-a800s",
+      "officialName": "70mai Dash Cam A800S",
+      "shortDesc": "4K autokamera se snímačem Sony IMX415, 3\" displejem, GPS a ADAS",
+      "description": "70mai Dash Cam A800S natáčí v rozlišení 4K UHD (3840 × 2160) se snímačem Sony IMX415 a zorným úhlem 140°. Velký 3palcový displej usnadňuje kontrolu záznamu přímo v autě.\n\nVestavěná GPS zaznamenává trasu a rychlost, ADAS upozorňuje na rizikové situace. Kamera podporuje dvoukanálový záznam se zadní kamerou, chytré hlídání při parkování, nouzový a časosběrný záznam a ovládání přes aplikaci 70mai.",
+      "specs": {
+        "Kamera": {
+          "Rozlišení videa": "3840 × 2160 (4K UHD)",
+          "Snímkování": "30 fps",
+          "Obrazový snímač": "Sony IMX415",
+          "Objektiv / clona": "7G, F1.8",
+          "Zorný úhel": "140°"
+        },
+        "Displej": {
+          "Úhlopříčka": "3\"",
+          "Rozlišení displeje": "854 × 480"
+        },
+        "Funkce": {
+          "Navigace a asistence": "vestavěná GPS, ADAS, záznam trasy",
+          "Obraz": "70mai Night Owl Vision, 3D redukce šumu",
+          "Hlídání při parkování": "ano (vyžaduje hardwire kit)",
+          "Záznam": "smyčkový, nouzový (G-senzor), časosběrný, fotografie",
+          "Dvoukanálový záznam": "se zadní kamerou (samostatně)"
+        },
+        "Napájení a provoz": {
+          "Baterie": "500 mAh",
+          "Provozní teplota": "−10 až 60 °C"
+        },
+        "Rozměry": {
+          "Rozměry": "88,8 × 59,8 × 36,3 mm"
+        }
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://70mai.store/products/a800s-dash-cam",
+          "note": "70mai Official Store – produktová stránka a specifikace",
+          "verified": "2026-11-13"
+        },
+        {
+          "type": "images",
+          "url": "https://70mai.store/products/a800s-dash-cam",
+          "note": "Fotografie: oficiální galerie výrobce (70mai)",
+          "verified": "2026-11-13"
+        }
+      ],
+      "images": [
+        "/store/img/products/70mai-a800s/1.webp",
+        "/store/img/products/70mai-a800s/2.webp",
+        "/store/img/products/70mai-a800s/3.webp",
+        "/store/img/products/70mai-a800s/4.webp",
+        "/store/img/products/70mai-a800s/5.webp"
+      ],
+      "imageSources": [
+        {
+          "file": "/store/img/products/70mai-a800s/1.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai_Dash_Cam_A800S_-_front_1.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-a800s/2.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai_Dash_Cam_A800S_-_front.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-a800s/3.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai_Dashcam_A800S_-_4K_UHD.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-a800s/4.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai_Dashcam_A800S_-_dual_channel.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-a800s/5.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai_Dashcam_A800S_-_night_vision.jpg",
+          "size": "1024x1024"
+        }
+      ]
+    },
+    {
+      "variantGroup": "70mai-a810",
+      "officialName": "70mai Dash Cam 4K A810",
+      "shortDesc": "4K HDR autokamera se snímačem Sony STARVIS 2 IMX678, 3\" displejem, GPS a podporou 4G",
+      "description": "70mai Dash Cam 4K A810 natáčí v rozlišení 3840 × 2160 se snímačem Sony STARVIS 2 IMX678 a zorným úhlem 150°. HDR s algoritmem MaiColor Vivid+ a noční režim 70mai Night Owl Vision zajišťují čitelný obraz ve dne i v noci, v nižším rozlišení umí natáčet až 60 fps.\n\nKamera podporuje dvoukanálový HDR záznam se zadní kamerou, vestavěnou GPS, ADAS a chytrý parkovací režim s detekcí pohybu a nárazu pomocí AI. Ovládá se 3palcovým IPS displejem nebo aplikací, 4G připojení vyžaduje samostatný 4G hardwire kit.",
+      "specs": {
+        "Kamera": {
+          "Rozlišení videa": "3840 × 2160 (4K)",
+          "Snímkování": "25 / 60 fps",
+          "Obrazový snímač": "Sony STARVIS 2 IMX678",
+          "Objektiv / clona": "4G3P + IR, F1.8",
+          "Zorný úhel": "150°"
+        },
+        "Displej": {
+          "Úhlopříčka": "3\" IPS",
+          "Rozlišení displeje": "640 × 360"
+        },
+        "Funkce": {
+          "Obraz": "HDR, MaiColor Vivid+, 70mai Night Owl Vision, 3DNR",
+          "Navigace a asistence": "vestavěná GPS, ADAS, záznam trasy",
+          "Parkovací režim": "Smart Parking Guardian, AI detekce pohybu a nárazu",
+          "Záznam": "smyčkový, nouzový (G-senzor), časosběrný, fotografie",
+          "Konektivita": "Wi-Fi (aplikace 70mai), volitelně 4G s 4G hardwire kitem"
+        },
+        "Napájení a provoz": {
+          "Baterie": "500 mAh Li-ion",
+          "Provozní teplota": "−10 až 60 °C"
+        },
+        "Rozměry": {
+          "Rozměry": "88 × 59,8 × 36,3 mm"
+        }
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://70mai.store/products/dash-cam-a810",
+          "note": "70mai Official Store – produktová stránka a specifikace",
+          "verified": "2026-11-13"
+        },
+        {
+          "type": "images",
+          "url": "https://70mai.store/products/dash-cam-a810",
+          "note": "Fotografie: oficiální galerie výrobce (70mai)",
+          "verified": "2026-11-13"
+        }
+      ],
+      "images": [
+        "/store/img/products/70mai-a810/1.webp",
+        "/store/img/products/70mai-a810/2.webp",
+        "/store/img/products/70mai-a810/3.webp",
+        "/store/img/products/70mai-a810/4.webp",
+        "/store/img/products/70mai-a810/5.webp"
+      ],
+      "imageSources": [
+        {
+          "file": "/store/img/products/70mai-a810/1.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai_Dash_Cam_A810_-_front.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-a810/2.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai_Dashcam_A810_-_4K.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-a810/3.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai_Dashcam_A810_-_Sony_STARVIS_2.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-a810/4.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai_Dashcam_A810_-_HDR_Dual_recording.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-a810/5.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai_Dashcam_A810_-_Night_Vision.jpg",
+          "size": "1024x1024"
+        }
+      ]
+    },
+    {
+      "variantGroup": "70mai-m310",
+      "officialName": "70mai Dash Cam M310",
+      "shortDesc": "Kompaktní autokamera 2K (1296p) bez displeje, s USB-C napájením a hlídáním při parkování",
+      "description": "70mai Dash Cam M310 je nenápadná autokamera bez displeje, která natáčí v rozlišení 2304 × 1296 (3 Mpx) se zorným úhlem 130°. Stav nahrávání ukazuje LED indikátor, nastavení a záznamy spravujete v aplikaci 70mai.\n\nKamera se napájí přes USB-C, podporuje microSD karty 16–256 GB, hlasové ovládání a 24hodinové hlídání při parkování s detekcí kolize. Menu je mimo jiné v češtině.",
+      "specs": {
+        "Kamera": {
+          "Rozlišení videa": "2304 × 1296",
+          "Snímkování": "30 fps",
+          "Procesor": "SSC337",
+          "Obrazový snímač": "SC3336P",
+          "Objektiv / clona": "2G2P + IR, F2.0",
+          "Zorný úhel": "130°"
+        },
+        "Funkce": {
+          "Obraz": "70mai Night Owl Vision, WDR, 3DNR",
+          "Hlídání při parkování": "24 h, detekce kolize",
+          "Záznam": "smyčkový, nouzový (G-senzor), časosběrný, fotografie",
+          "Ovládání": "aplikace 70mai, hlasové povely",
+          "Jazyky": "mj. čeština, angličtina, němčina, polština"
+        },
+        "Úložiště": {
+          "Paměťová karta": "microSD 16–256 GB"
+        },
+        "Napájení a provoz": {
+          "Napájení": "USB-C, kabel 3,5 m",
+          "Baterie": "300 mAh",
+          "Provozní teplota": "−20 až 60 °C"
+        },
+        "Rozměry": {
+          "Rozměry": "100,3 × 52,5 × 36,1 mm"
+        }
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://70mai.store/products/m310-dash-cam",
+          "note": "70mai Official Store – produktová stránka a specifikace",
+          "verified": "2026-11-13"
+        },
+        {
+          "type": "images",
+          "url": "https://70mai.store/products/m310-dash-cam",
+          "note": "Fotografie: oficiální galerie výrobce (70mai)",
+          "verified": "2026-11-13"
+        }
+      ],
+      "images": [
+        "/store/img/products/70mai-m310/1.webp",
+        "/store/img/products/70mai-m310/2.webp",
+        "/store/img/products/70mai-m310/3.webp",
+        "/store/img/products/70mai-m310/4.webp",
+        "/store/img/products/70mai-m310/5.webp"
+      ],
+      "imageSources": [
+        {
+          "file": "/store/img/products/70mai-m310/1.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai_Dashcam_M310_-_front.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-m310/2.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/m310-dash-cam-showcase_4.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-m310/3.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai_Dashcam_M310_-_design.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-m310/4.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai_Dashcam_M310_-_130_wide.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-m310/5.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai_Dashcam_M310_-_2K_QHD.jpg",
+          "size": "1024x1024"
+        }
+      ]
+    },
+    {
+      "variantGroup": "70mai-omni-dash-cam",
+      "officialName": "70mai Dash Cam Omni",
+      "shortDesc": "Otočná 360° autokamera 1080p s vestavěnou pamětí eMMC, AI detekcí a GPS",
+      "description": "70mai Dash Cam Omni je první autokamera s otočným tělem: krokový motor ji natočí v rozsahu 340° a spolu se zorným úhlem 140° tak pokryje okolí vozu bez slepých míst. Natáčí ve Full HD 1080p s clonou F1.5, technologie HDR a 70mai Night Owl Vision zlepšují záznam v noci.\n\nPři hlídání zaparkovaného auta (vyžaduje hardwire kit) AI rozpozná směr nárazu, natočí se k němu a sleduje pohyb podezřelých osob. Záznamy ukládá do vestavěné paměti eMMC, takže nepotřebuje microSD kartu. Dále nabízí vestavěnou GPS, ADAS s varováním před chodci a hlasové ovládání.",
+      "specs": {
+        "Kamera": {
+          "Rozlišení videa": "1920 × 1080",
+          "Snímkování": "30 / 60 fps",
+          "Obrazový snímač": "OS02K10",
+          "Objektiv / clona": "2G4P + IR, F1.5",
+          "Zorný úhel objektivu": "140°",
+          "Otáčení": "340° (krokový motor)"
+        },
+        "Displej": {
+          "Úhlopříčka": "1,2\" IPS",
+          "Rozlišení displeje": "240 × 240"
+        },
+        "Úložiště": {
+          "Paměť": "vestavěná eMMC (32 / 64 / 128 GB podle verze)"
+        },
+        "Funkce": {
+          "Obraz": "HDR, MaiColor Vivid+, 70mai Night Owl Vision, 3DNR",
+          "Hlídání při parkování": "24 h, AI detekce pohybu a nárazu (vyžaduje hardwire kit)",
+          "Navigace a asistence": "vestavěná GPS, ADAS (vč. chodců)",
+          "Ovládání": "aplikace 70mai, hlasové povely",
+          "Konektivita": "volitelně 4G s 4G hardwire kitem"
+        },
+        "Napájení a provoz": {
+          "Baterie": "300 mAh",
+          "Provozní teplota": "−10 až 60 °C"
+        },
+        "Rozměry": {
+          "Rozměry": "51,5 × 51,5 × 93,2 mm"
+        }
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://70mai.store/products/omni-dashcam",
+          "note": "70mai Official Store – produktová stránka a specifikace",
+          "verified": "2026-11-13"
+        },
+        {
+          "type": "images",
+          "url": "https://70mai.store/products/omni-dashcam",
+          "note": "Fotografie: oficiální galerie výrobce (70mai), černé provedení",
+          "verified": "2026-11-13"
+        }
+      ],
+      "images": [
+        "/store/img/products/70mai-omni-dash-cam/1.webp",
+        "/store/img/products/70mai-omni-dash-cam/2.webp",
+        "/store/img/products/70mai-omni-dash-cam/3.webp",
+        "/store/img/products/70mai-omni-dash-cam/4.webp",
+        "/store/img/products/70mai-omni-dash-cam/5.webp"
+      ],
+      "imageSources": [
+        {
+          "file": "/store/img/products/70mai-omni-dash-cam/1.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/products/70mai_Dash_Cam_Omni_-_bkfront.jpg",
+          "size": "1600x1600"
+        },
+        {
+          "file": "/store/img/products/70mai-omni-dash-cam/2.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/products/70mai-dash-cam-omni-black_5.jpg",
+          "size": "1600x1600"
+        },
+        {
+          "file": "/store/img/products/70mai-omni-dash-cam/3.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai_Dashcam_Omni_-_360_full_view.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-omni-dash-cam/4.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai_Dashcam_Omni_-_1080P.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-omni-dash-cam/5.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai_Dashcam_Omni_-_eMMC.jpg",
+          "size": "1024x1024"
+        }
+      ]
+    },
+    {
+      "variantGroup": "70mai-rc09-rear-camera",
+      "officialName": "70mai Rear Camera RC09",
+      "shortDesc": "Zadní kamera 1080p se zorným úhlem 130° pro autokamery 70mai A510, A500S, A400 a A200",
+      "description": "Zadní kamera 70mai RC09 doplní kompatibilní autokameru 70mai o dvoukanálový záznam. Natáčí ve Full HD 1080p se zorným úhlem 130°, objektiv s IR filtrem a clonou F2.0 zlepšuje záznam za šera.\n\nKompatibilita podle výrobce: 70mai Dash Cam A510, A500S, A400 a A200.",
+      "specs": {
+        "Kamera": {
+          "Rozlišení": "1920 × 1080",
+          "Čip": "Fullhan 8536",
+          "Snímač": "SOIF23",
+          "Objektiv / clona": "2G2P + IR, F2.0",
+          "Zorný úhel": "130°"
+        },
+        "Kompatibilita": {
+          "Autokamery 70mai": "A510, A500S, A400, A200"
+        },
+        "Provoz": {
+          "Provozní teplota": "−10 až 60 °C"
+        }
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://70mai.store/products/rear-camera-rc09",
+          "note": "70mai Official Store – produktová stránka a specifikace",
+          "verified": "2026-11-13"
+        },
+        {
+          "type": "images",
+          "url": "https://70mai.store/products/rear-camera-rc09",
+          "note": "Fotografie: oficiální galerie výrobce (70mai)",
+          "verified": "2026-11-13"
+        }
+      ],
+      "images": [
+        "/store/img/products/70mai-rc09-rear-camera/1.webp",
+        "/store/img/products/70mai-rc09-rear-camera/2.webp",
+        "/store/img/products/70mai-rc09-rear-camera/3.webp"
+      ],
+      "imageSources": [
+        {
+          "file": "/store/img/products/70mai-rc09-rear-camera/1.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai-rc09-rear-dash-cam_2.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-rc09-rear-camera/2.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai-rc09-rear-dash-cam_3.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-rc09-rear-camera/3.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai-rc09-rear-dash-cam_4.jpg",
+          "size": "1024x1024"
+        }
+      ]
+    },
+    {
+      "variantGroup": "70mai-rear-camera-rc11",
+      "officialName": "70mai Rear Camera RC11",
+      "shortDesc": "Zadní / interiérová kamera 1080p se zorným úhlem 130° a kabelem 5,5 m",
+      "description": "70mai RC11 je zadní kamera, kterou lze použít i pro záznam interiéru. Natáčí ve Full HD 1920 × 1080 s clonou F2.0 a zorným úhlem 130°. Kabel o délce 5,5 m a kompaktní tvar usnadňují instalaci svépomocí.\n\nUpozornění výrobce: autokamery 70mai podporují nejvýše dva kanály – zadní a interiérovou kameru nelze připojit současně.",
+      "specs": {
+        "Kamera": {
+          "Rozlišení": "1920 × 1080",
+          "Clona": "F2.0",
+          "Zorný úhel": "130°"
+        },
+        "Instalace": {
+          "Délka kabelu": "5,5 m",
+          "Použití": "zadní okno nebo interiér"
+        },
+        "Kompatibilita": {
+          "Autokamery 70mai": "A510, A810, A800S, A500S, A400, A200, S500"
+        }
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://70mai.store/products/rc11-rear-cam",
+          "note": "70mai Official Store – produktová stránka",
+          "verified": "2026-11-13"
+        },
+        {
+          "type": "images",
+          "url": "https://70mai.store/products/rc11-rear-cam",
+          "note": "Fotografie: oficiální galerie výrobce (70mai)",
+          "verified": "2026-11-13"
+        }
+      ],
+      "images": [
+        "/store/img/products/70mai-rear-camera-rc11/1.webp",
+        "/store/img/products/70mai-rear-camera-rc11/2.webp",
+        "/store/img/products/70mai-rear-camera-rc11/3.webp",
+        "/store/img/products/70mai-rear-camera-rc11/4.webp"
+      ],
+      "imageSources": [
+        {
+          "file": "/store/img/products/70mai-rear-camera-rc11/1.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai-dash-cam-rc11-rc12-rearcam_1.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-rear-camera-rc11/2.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai-dash-cam-rc11-rc12-rearcam_04.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-rear-camera-rc11/3.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai-dash-cam-rc11-rc12-rearcam_02.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-rear-camera-rc11/4.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai-dash-cam-rc11-rc12-rearcam_03.jpg",
+          "size": "1024x1024"
+        }
+      ]
+    },
+    {
+      "variantGroup": "70mai-cpl-filter",
+      "officialName": "70mai CPL Filter",
+      "shortDesc": "Polarizační CPL filtr proti odleskům čelního skla pro autokamery 70mai",
+      "description": "Kruhový polarizační filtr (CPL) se nasazuje na objektiv autokamery a omezuje odlesky palubní desky na čelním skle i oslnění sluncem. Záznam má sytější a věrnější barvy a filtr zároveň chrání objektiv před otisky prstů, poškrábáním a prachem.\n\nPodle výrobce je filtr kompatibilní s autokamerami 70mai A510, A800S, A500S a Lite 2. Tónovací fólie na čelním skle může účinnost CPL filtru snížit.",
+      "specs": {
+        "Vlastnosti": {
+          "Typ": "kruhový polarizační filtr (CPL)",
+          "Funkce": "potlačení odlesků, sytější barvy, ochrana objektivu"
+        },
+        "Kompatibilita": {
+          "Autokamery 70mai": "A510, A800S, A500S, Lite 2 (dle názvu výrobce také A410, A800SE)"
+        }
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://70mai.store/products/cpl-filter",
+          "note": "70mai Official Store – produktová stránka",
+          "verified": "2026-11-13"
+        },
+        {
+          "type": "images",
+          "url": "https://70mai.store/products/cpl-filter",
+          "note": "Fotografie: oficiální galerie výrobce (70mai)",
+          "verified": "2026-11-13"
+        }
+      ],
+      "mappingNote": "Záznam ze sourcingu („CPL filter“) neuvádí model – přiřazeno k univerzálnímu CPL filtru 70mai pro řady A510/A500S/A800S; u modelů 4K T800/Omni/A810 se používají jiné filtry.",
+      "images": [
+        "/store/img/products/70mai-cpl-filter/1.webp",
+        "/store/img/products/70mai-cpl-filter/2.webp",
+        "/store/img/products/70mai-cpl-filter/3.webp",
+        "/store/img/products/70mai-cpl-filter/4.webp"
+      ],
+      "imageSources": [
+        {
+          "file": "/store/img/products/70mai-cpl-filter/1.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai-cpf-filter-for-a800s_3.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-cpl-filter/2.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai-cpf-filter-for-a800s_4.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-cpl-filter/3.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai-cpf-filter-for-a800s_5.jpg",
+          "size": "1024x1024"
+        },
+        {
+          "file": "/store/img/products/70mai-cpl-filter/4.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai-cpf-filter-for-a800s_6.jpg",
+          "size": "1024x1024"
+        }
+      ]
+    },
+    {
+      "variantGroup": "70mai-gps-module",
+      "officialName": "70mai External GPS Module (Lite 2)",
+      "shortDesc": "Externí GPS modul (GPS/GLONASS/BeiDou) s kabelem 2 m pro autokameru 70mai Lite 2",
+      "description": "Externí GPS modul doplní autokameru o záznam polohy, trasy a rychlosti. Přijímá signály GPS, GLONASS i BeiDou, má anténu 25 × 25 mm a pevně připojený kabel o délce 2 m.\n\nOficiální obchod výrobce uvádí modul pro autokameru 70mai Dash Cam Lite 2.",
+      "specs": {
+        "Parametry": {
+          "Systémy": "GPS / GLONASS / BeiDou",
+          "Anténa": "25 × 25 mm",
+          "Kabel": "2 m (pevně připojený)"
+        },
+        "Kompatibilita": {
+          "Autokamera": "70mai Dash Cam Lite 2"
+        }
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://70mai.store/products/70mai-external-gps-module-for-dash-cam-lite-2",
+          "note": "70mai Official Store – produktová stránka",
+          "verified": "2026-11-13"
+        },
+        {
+          "type": "images",
+          "url": "https://70mai.store/products/70mai-external-gps-module-for-dash-cam-lite-2",
+          "note": "Fotografie: oficiální galerie výrobce (70mai)",
+          "verified": "2026-11-13"
+        }
+      ],
+      "mappingNote": "Sourcing uvádí jen „GPS module“ – v oficiálním obchodě je jediný externí GPS modul (pro Lite 2). Ověřit u dodavatele.",
+      "images": [
+        "/store/img/products/70mai-gps-module/1.webp"
+      ],
+      "imageSources": [
+        {
+          "file": "/store/img/products/70mai-gps-module/1.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/External-GPSModule-cord.jpg",
+          "size": "1024x1024"
+        }
+      ]
+    },
+    {
+      "variantGroup": "70mai-4g-hardwire-kit",
+      "officialName": "70mai 4G Hardwire Kit",
+      "shortDesc": "4G hardwire kit pro 24h hlídání při parkování, živé sledování a GPS lokalizaci vozu",
+      "description": "4G hardwire kit připojí autokameru 70mai přímo k autobaterii a umožní 24hodinové hlídání při parkování. Díky 4G LTE navíc posílá okamžitá upozornění do aplikace, umožňuje živé sledování a lokalizaci vozu pomocí GPS.\n\nKompatibilita podle výrobce: 70mai A510, A810, Omni, 4K Omni a 4K T800. Výrobce dodává 4G kit v regionálních verzích (UP04 pro Austrálii a Koreu, UP05 pro USA) – SIM karta není součástí a dostupnost 4G služby v ČR je třeba ověřit.",
+      "specs": {
+        "Funkce": {
+          "Hlídání při parkování": "24 h (detekce ACC)",
+          "4G LTE": "okamžitá upozornění, živé sledování, GPS lokalizace vozu",
+          "SIM karta": "není součástí balení"
+        },
+        "Kompatibilita": {
+          "Autokamery 70mai": "A510, A810, Omni, 4K Omni, 4K T800"
+        },
+        "Verze": {
+          "Regionální verze výrobce": "UP04 (Austrálie, Korea), UP05 (USA)"
+        }
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://70mai.store/products/4g-hardwire-kit",
+          "note": "70mai Official Store – produktová stránka (varianty UP03/UP05/UP06)",
+          "verified": "2026-11-13"
+        },
+        {
+          "type": "images",
+          "url": "https://70mai.store/products/4g-hardwire-kit",
+          "note": "Fotografie: oficiální galerie výrobce, varianta 4G UP05",
+          "verified": "2026-11-13"
+        }
+      ],
+      "mappingNote": "Výrobce 4G kit pro EU neuvádí (UP04 = AU/KR, UP05 = USA) – před naskladněním ověřit regionální verzi a podporu operátorů v ČR.",
+      "images": [
+        "/store/img/products/70mai-4g-hardwire-kit/1.webp"
+      ],
+      "imageSources": [
+        {
+          "file": "/store/img/products/70mai-4g-hardwire-kit/1.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/20260408-155035.jpg",
+          "size": "1024x1024"
+        }
+      ]
+    },
+    {
+      "variantGroup": "70mai-up03-hardwire-kit",
+      "officialName": "70mai Hardwire Kit UP03",
+      "shortDesc": "Hardwire kit UP03 s konektorem USB-C pro 24h hlídání zaparkovaného auta",
+      "description": "Hardwire kit 70mai UP03 napájí autokameru přímo z autobaterie, takže kamera může hlídat zaparkované auto 24 hodin denně. Po vypnutí motoru (detekce ACC) se automaticky přepne do parkovacího režimu, po nastartování zpět do běžného záznamu.\n\nUP03 je určen pro autokamery 70mai s konektorem USB-C a výrobce jej uvádí pro všechny země. Pro kamery s konektorem micro USB je určen model UP02.",
+      "specs": {
+        "Funkce": {
+          "Hlídání při parkování": "24 h, automatické přepnutí podle ACC",
+          "Region": "pro všechny země (dle výrobce)"
+        },
+        "Kompatibilita": {
+          "Konektor": "USB-C",
+          "Autokamery 70mai": "modely s napájením USB-C (např. A510, A810, M310, Omni)"
+        }
+      },
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://70mai.store/products/4g-hardwire-kit",
+          "note": "70mai Official Store – produktová stránka (varianta UP03)",
+          "verified": "2026-11-13"
+        },
+        {
+          "type": "images",
+          "url": "https://70mai.store/products/4g-hardwire-kit",
+          "note": "Fotografie: oficiální galerie výrobce, varianta UP03",
+          "verified": "2026-11-13"
+        }
+      ],
+      "images": [
+        "/store/img/products/70mai-up03-hardwire-kit/1.webp"
+      ],
+      "imageSources": [
+        {
+          "file": "/store/img/products/70mai-up03-hardwire-kit/1.webp",
+          "source": "https://cdn.shopify.com/s/files/1/0039/4500/5102/files/70mai-hardwire-kit-up03-for-dash-cam-omni-a810-m500_2.jpg",
+          "size": "1024x1024"
+        }
+      ]
+    }
+  ],
+  "unresolved": [
+    {
+      "variantGroup": "70mai-64gb-bundle",
+      "reason": "Název „64GB bundle“ neurčuje, jaké produkty sada obsahuje – výrobce nabízí řadu různých balíčků."
+    },
+    {
+      "variantGroup": "70mai-128gb-bundle",
+      "reason": "Název „128GB bundle“ neurčuje, jaké produkty sada obsahuje."
+    },
+    {
+      "variantGroup": "70mai-hardwire-kit",
+      "reason": "Obecný „hardwire kit“ – výrobce má UP02 (micro USB), UP03 a UP06 (USB-C); bez typového označení nelze jednoznačně určit."
+    }
+  ]
+}

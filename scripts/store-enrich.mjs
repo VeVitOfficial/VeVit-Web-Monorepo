@@ -15,10 +15,14 @@
 //     "specs": { "Klíč": "hodnota" },
 //     "images": ["/store/img/products/…/1.jpg"],
 //     "sources": [{ "type": "official", "url": "https://…", "note": "…", "verified": "2026-11-12" }],
-//     "imagesByVariant": { "slug": ["/…"] }   // volitelné přepisy po variantě
-//   }]
+//     "imagesByVariant": { "slug": ["/…"] },  // volitelné přepisy po variantě
+//     "officialName": "70mai Dash Cam A510",  // volitelné: oficiální název; varianta se připojí v závorce
+//     "imageSources": [{ "file": "/…", "source": "https://…" }]  // evidence původu fotek (do DB se nezapisuje)
+//   }],
+//   "unresolved": [{ "variantGroup": "…", "reason": "…" }]  // neidentifikované produkty (jen dokumentace)
 // }
-// Aktualizace jsou PATCH po variant_group (a po slugu pro imagesByVariant).
+// Skupina = variant_group, u produktů bez variant_group jejich slug.
+// Aktualizace jsou PATCH po skupině (a po slugu pro imagesByVariant a officialName).
 
 import { readdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
@@ -38,10 +42,16 @@ async function main() {
   const key = process.env.SUPABASE_SECRET_KEY;
   if (!url || !key) throw new Error("Chybí SUPABASE_URL/SUPABASE_SECRET_KEY (node --env-file=.env.local …)");
 
-  const patch = (filter, body) =>
-    fetch(`${url}/rest/v1/store_products?variant_group=eq.${encodeURIComponent(filter)}`, {
+  // Skupina: variant_group, nebo slug u produktu bez variant_group.
+  const groupFilter = (group) => {
+    const value = `"${group.replaceAll('"', '\\"')}"`;
+    return `or=(variant_group.eq.${encodeURIComponent(value)},and(variant_group.is.null,slug.eq.${encodeURIComponent(value)}))`;
+  };
+
+  const patch = (group, body) =>
+    fetch(`${url}/rest/v1/store_products?${groupFilter(group)}&select=slug,variant_label`, {
       method: "PATCH",
-      headers: { apikey: key, Authorization: `Bearer ${key}`, "Content-Type": "application/json", Prefer: "return=minimal" },
+      headers: { apikey: key, Authorization: `Bearer ${key}`, "Content-Type": "application/json", Prefer: "return=representation" },
       body: JSON.stringify(body)
     });
 
@@ -52,7 +62,7 @@ async function main() {
       body: JSON.stringify(body)
     });
 
-  const summary = { groups: 0, patched: 0, skipped: 0, variantOverrides: 0, errors: [] };
+  const summary = { groups: 0, patched: 0, products: 0, skipped: 0, variantOverrides: 0, errors: [] };
   for (const file of files) {
     const payload = JSON.parse(await readFile(file, "utf8"));
     for (const group of payload.groups ?? []) {
@@ -70,7 +80,20 @@ async function main() {
         summary.errors.push(`${group.variantGroup}: PATCH ${response.status} ${(await response.text()).slice(0, 200)}`);
         continue;
       }
+      const rows = await response.json();
+      if (!rows.length) {
+        summary.errors.push(`${group.variantGroup}: žádný produkt v DB`);
+        continue;
+      }
       summary.patched += 1;
+      summary.products += rows.length;
+      if (group.officialName) {
+        for (const row of rows) {
+          const name = row.variant_label ? `${group.officialName} (${row.variant_label})` : group.officialName;
+          const nameResponse = await patchSlug(row.slug, { name: name.slice(0, 255) });
+          if (!nameResponse.ok) summary.errors.push(`${row.slug}: název PATCH ${nameResponse.status}`);
+        }
+      }
       for (const [slug, images] of Object.entries(group.imagesByVariant ?? {})) {
         const slugResponse = await patchSlug(slug, { images });
         if (slugResponse.ok) summary.variantOverrides += 1;
@@ -78,7 +101,7 @@ async function main() {
       }
     }
   }
-  console.log(`Skupin: ${summary.groups}, aktualizováno: ${summary.patched}, přeskočeno: ${summary.skipped}, variantní přepisy: ${summary.variantOverrides}`);
+  console.log(`Skupin: ${summary.groups}, aktualizováno: ${summary.patched} (${summary.products} produktů), přeskočeno: ${summary.skipped}, variantní přepisy: ${summary.variantOverrides}`);
   if (summary.errors.length) {
     console.log("Chyby:");
     for (const error of summary.errors) console.log(`  - ${error}`);
