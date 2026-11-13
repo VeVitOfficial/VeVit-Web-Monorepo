@@ -1,7 +1,8 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import { headers } from "next/headers";
-import { accountT, type AccountLocale } from "@/lib/account-i18n";
+import { accountDictFor, accountT, type AccountLocale } from "@/lib/account-i18n-server";
+import { AccountI18n } from "@/components/account/i18n-provider";
 import { Verify2faForm } from "@/components/account/auth/verify-2fa-form";
 
 // Verify-2fa má vlastní standalonový design (žádný styles.css) — viz verify-2fa.css.
@@ -21,8 +22,10 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Verify2faPage() {
   const locale = await readLocale();
   return (
-    <Suspense fallback={null}>
-      <Verify2faForm locale={locale} />
-    </Suspense>
+    <AccountI18n dicts={accountDictFor(locale)}>
+      <Suspense fallback={null}>
+        <Verify2faForm locale={locale} />
+      </Suspense>
+    </AccountI18n>
   );
 }

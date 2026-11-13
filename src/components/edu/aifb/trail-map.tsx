@@ -3,12 +3,11 @@
 // certifikace („Připravuje se"); rozšiřující levely 7–10 mají štítek „Pro zájemce".
 
 import Link from "next/link";
-import { aifbT } from "@/lib/edu/aifb/i18n";
+import { useEduLang } from "../i18n";
 import { levelPath } from "@/lib/edu/aifb/routes";
 import type { CategoryId } from "@/lib/edu/aifb/types";
 import type { EduLocale } from "@/lib/edu/i18n-data";
 import type { LevelProgress } from "./adventure-map";
-import { lessonsLabel } from "@/lib/edu/i18n-data";
 import type { LevelSummary } from "./level-card";
 import { LockBadge } from "./access-ui";
 import { CertBadge, ProgressBadge } from "./shared";
@@ -27,7 +26,8 @@ export function XpMeter({ label, value, max, unit }: { label: string; value: num
 export function TrailMap({
   locale, categoryId, levels, progress, xp, xpMax,
 }: { locale: EduLocale; categoryId: CategoryId; levels: LevelSummary[]; progress?: LevelProgress; xp: number; xpMax: number }) {
-  const t = aifbT(locale);
+  // Renderuje se jen uvnitř klientské LevelsOverview: texty z kontextu (slovník jen pro aktuální jazyk).
+  const { t, lessonsLabel } = useEduLang();
   const isDone = (level: LevelSummary) => {
     const p = progress?.[level.id];
     return p !== undefined && p.total > 0 && p.done >= p.total;
@@ -53,7 +53,7 @@ export function TrailMap({
                 <span className="aifb-level-card__title">{level.title}</span>
                 {level.subtitle ? <span className="aifb-level-card__sub">{level.subtitle}</span> : null}
                 <span className="aifb-level-card__meta">
-                  {level.grades ?? level.recommendedPlacement ?? ""}{" · "}{level.hours}{" · "}{t("aifb.level.structure", { lessons: lessonsLabel(level.lessonCount - 1, locale) })}
+                  {level.grades ?? level.recommendedPlacement ?? ""}{" · "}{level.hours}{" · "}{t("aifb.level.structure", { lessons: lessonsLabel(level.lessonCount - 1) })}
                 </span>
                 <span className="aifb-level-card__badges">
                   {level.advanced ? <span className="aifb-badge">{t("aifb.level.advanced")}</span> : null}

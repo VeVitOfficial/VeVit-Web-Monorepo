@@ -2,10 +2,10 @@
 // a popisek pro čtečky, postup je tenký ukazatel u každého levelu.
 
 import Link from "next/link";
-import { aifbT } from "@/lib/edu/aifb/i18n";
+import { useEduLang } from "../i18n";
 import { levelPath } from "@/lib/edu/aifb/routes";
 import type { CategoryId } from "@/lib/edu/aifb/types";
-import { lessonsLabel, type EduLocale } from "@/lib/edu/i18n-data";
+import type { EduLocale } from "@/lib/edu/i18n-data";
 import type { LevelProgress } from "./adventure-map";
 import { LevelCard, type LevelSummary } from "./level-card";
 import { LockBadge } from "./access-ui";
@@ -14,7 +14,8 @@ import { CertBadge, ProgressBadge } from "./shared";
 export function CleanOverview({
   locale, categoryId, levels, progress, view,
 }: { locale: EduLocale; categoryId: CategoryId; levels: LevelSummary[]; progress?: LevelProgress; view: "cards" | "table" }) {
-  const t = aifbT(locale);
+  // Renderuje se jen uvnitř klientské LevelsOverview: texty z kontextu (slovník jen pro aktuální jazyk).
+  const { t, lessonsLabel } = useEduLang();
   const statusOf = (level: LevelSummary) => {
     const p = progress?.[level.id];
     if (!p || p.done === 0) return t("aifb.status.todo");
@@ -61,7 +62,7 @@ export function CleanOverview({
                 <td>
                   <strong>{level.title}</strong>
                   {level.subtitle ? <><br />{level.subtitle}</> : null}
-                  <br />{t("aifb.level.structure", { lessons: lessonsLabel(level.lessonCount - 1, locale) })}
+                  <br />{t("aifb.level.structure", { lessons: lessonsLabel(level.lessonCount - 1) })}
                 </td>
                 <td>{level.hours}</td>
                 <td>{level.grades ?? level.recommendedPlacement ?? ""}{level.advanced ? <><br /><span className="aifb-badge">{t("aifb.level.advanced")}</span></> : null}</td>

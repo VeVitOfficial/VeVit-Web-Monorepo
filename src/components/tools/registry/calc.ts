@@ -1,24 +1,26 @@
 // Registr kalkulaček — viz konvence v pdf.ts / index.ts.
 // Referenční implementace BMI je zaregistrována jiným agentem; tento soubor
 // přidávám (calc batch agent) — bmi-calc nechávám beze změny.
+import dynamic from "next/dynamic";
 import type { ToolComponent } from "@/components/tools/registry/data";
-import BmiCalc from "@/components/tools/tools/bmi-calc";
-import BirthNumberValidator from "@/components/tools/tools/birth-number-validator";
-import BmrCalc from "@/components/tools/tools/bmr-calc";
-import ColorConverter from "@/components/tools/tools/color-converter";
-import CompoundInterestCalc from "@/components/tools/tools/compound-interest-calc";
-import DateDiffCalc from "@/components/tools/tools/date-diff-calc";
-import DiscountCalc from "@/components/tools/tools/discount-calc";
-import FuelConsumptionCalc from "@/components/tools/tools/fuel-consumption-calc";
-import GradeAverageCalc from "@/components/tools/tools/grade-average-calc";
-import IbanConverter from "@/components/tools/tools/iban-converter";
-import LoanCalc from "@/components/tools/tools/loan-calc";
-import NetSalaryCalc from "@/components/tools/tools/net-salary-calc";
-import NumberBaseConverter from "@/components/tools/tools/number-base-converter";
-import PercentageCalc from "@/components/tools/tools/percentage-calc";
-import TimeCalc from "@/components/tools/tools/time-calc";
-import UnitConverter from "@/components/tools/tools/unit-converter";
-import VatCalc from "@/components/tools/tools/vat-calc";
+import { ToolBodySkeleton } from "@/components/tools/tool-skeleton";
+const BmiCalc = dynamic(() => import("@/components/tools/tools/bmi-calc"), { loading: ToolBodySkeleton });
+const BirthNumberValidator = dynamic(() => import("@/components/tools/tools/birth-number-validator"), { loading: ToolBodySkeleton });
+const BmrCalc = dynamic(() => import("@/components/tools/tools/bmr-calc"), { loading: ToolBodySkeleton });
+const ColorConverter = dynamic(() => import("@/components/tools/tools/color-converter"), { loading: ToolBodySkeleton });
+const CompoundInterestCalc = dynamic(() => import("@/components/tools/tools/compound-interest-calc"), { loading: ToolBodySkeleton });
+const DateDiffCalc = dynamic(() => import("@/components/tools/tools/date-diff-calc"), { loading: ToolBodySkeleton });
+const DiscountCalc = dynamic(() => import("@/components/tools/tools/discount-calc"), { loading: ToolBodySkeleton });
+const FuelConsumptionCalc = dynamic(() => import("@/components/tools/tools/fuel-consumption-calc"), { loading: ToolBodySkeleton });
+const GradeAverageCalc = dynamic(() => import("@/components/tools/tools/grade-average-calc"), { loading: ToolBodySkeleton });
+const IbanConverter = dynamic(() => import("@/components/tools/tools/iban-converter"), { loading: ToolBodySkeleton });
+const LoanCalc = dynamic(() => import("@/components/tools/tools/loan-calc"), { loading: ToolBodySkeleton });
+const NetSalaryCalc = dynamic(() => import("@/components/tools/tools/net-salary-calc"), { loading: ToolBodySkeleton });
+const NumberBaseConverter = dynamic(() => import("@/components/tools/tools/number-base-converter"), { loading: ToolBodySkeleton });
+const PercentageCalc = dynamic(() => import("@/components/tools/tools/percentage-calc"), { loading: ToolBodySkeleton });
+const TimeCalc = dynamic(() => import("@/components/tools/tools/time-calc"), { loading: ToolBodySkeleton });
+const UnitConverter = dynamic(() => import("@/components/tools/tools/unit-converter"), { loading: ToolBodySkeleton });
+const VatCalc = dynamic(() => import("@/components/tools/tools/vat-calc"), { loading: ToolBodySkeleton });
 
 const CALC: Record<string, ToolComponent | undefined> = {
   "bmi-calc": BmiCalc,

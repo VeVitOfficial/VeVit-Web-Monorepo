@@ -6,24 +6,9 @@
 import { aifbMessages } from "./aifb/messages.ts";
 import { schoolMessages } from "./school/messages.ts";
 
-export type EduLocale = "cs" | "en" | "es" | "de" | "uk" | "fr" | "sk";
+import { EDU_SUPPORTED_LOCALES, lessonsLabelIn, lessonsUnitIn, translateIn, type EduDictionary, type EduDicts, type EduLocale, type EduVars } from "./i18n-core.ts";
 
-export const EDU_SUPPORTED_LOCALES: readonly EduLocale[] = [
-  "cs", "en", "es", "de", "uk", "fr", "sk",
-];
-
-export const languages = [
-  { code: "cs", label: "Čeština", flag: "🇨🇿" },
-  { code: "en", label: "English", flag: "🇬🇧" },
-  { code: "es", label: "Español", flag: "🇪🇸" },
-  { code: "de", label: "Deutsch", flag: "🇩🇪" },
-  { code: "uk", label: "Українська", flag: "🇺🇦" },
-  { code: "fr", label: "Français", flag: "🇫🇷" },
-  { code: "sk", label: "Slovenčina", flag: "🇸🇰" },
-] as const;
-
-export type EduDictionary = Record<string, string>;
-export type EduVars = Record<string, string | number>;
+export * from "./i18n-core.ts";
 
 export const dictionaries: Record<EduLocale, EduDictionary> = {
   cs: {
@@ -841,37 +826,20 @@ export const dictionaries: Record<EduLocale, EduDictionary> = {
 // Texty sekce AIFB žijí v ./aifb/messages.ts; sloučení do slovníků jednotlivých jazyků.
 for (const locale of EDU_SUPPORTED_LOCALES) Object.assign(dictionaries[locale], aifbMessages[locale], schoolMessages[locale]);
 
-// Čistá (stateless) verze t() — lang se předává explicitně z React kontextu.
-// Fallback na cs slovník, pokud klíč v lokalizovaném slovníku chybí.
+// Serverová (plná) verze: všechny jazyky. Klient používá translateIn nad slovníkem z eduDictFor.
 export function translate(lang: EduLocale, key: string, vars?: EduVars): string {
-  const dict: EduDictionary = dictionaries[lang] || dictionaries.cs;
-  let text = dict[key] || dictionaries.cs[key] || key;
-  if (vars) {
-    for (const [k, v] of Object.entries(vars)) {
-      text = text.replace(`{{${k}}}`, String(v));
-    }
-  }
-  return text;
+  return translateIn(dictionaries, lang, key, vars);
 }
 
-// Vrati samotnou jednotku pro pocet lekcí (bez cisla) – napr. "lekcí", "lekce", "lessons"
 export function lessonsUnit(count: number, lang: EduLocale = "cs"): string {
-  const l = lang || "cs";
-  const key =
-    count === 1 ? "course.lessons_one" : l === "cs" || l === "uk"
-      ? count >= 2 && count <= 4 ? "course.lessons_few" : "course.lessons_many"
-      : "course.lessons_many";
-  return translate(l, key, { count }).replace(/^\d+\s*/, "");
+  return lessonsUnitIn(dictionaries, count, lang);
 }
 
-// Česká/plurální formace pro počet lekcí (cs/uk mají one/few/many; ostatní few/many)
 export function lessonsLabel(count: number, lang: EduLocale = "cs"): string {
-  const l = lang || "cs";
-  const key =
-    count === 1 ? "course.lessons_one" : l === "cs" || l === "uk"
-      ? count >= 2 && count <= 4
-        ? "course.lessons_few"
-        : "course.lessons_many"
-      : "course.lessons_many";
-  return translate(l, key, { count });
+  return lessonsLabelIn(dictionaries, count, lang);
+}
+
+/** Slovník pro klienta: jen daný jazyk + cs (fallback chybějících klíčů). */
+export function eduDictFor(locale: EduLocale): EduDicts {
+  return locale === "cs" ? { cs: dictionaries.cs } : { cs: dictionaries.cs, [locale]: dictionaries[locale] };
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
-import { accountT, type AccountLocale } from "@/lib/account-i18n";
+import { accountDictFor, accountT, type AccountLocale } from "@/lib/account-i18n-server";
+import { AccountI18n } from "@/components/account/i18n-provider";
 import { ForgotForm } from "@/components/account/auth/forgot-form";
 
 // Legacy auth design: tokens + komponenty (.btn/.input).
@@ -21,5 +22,5 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function ForgotPasswordPage() {
   const locale = await readLocale();
-  return <ForgotForm locale={locale} />;
+  return <AccountI18n dicts={accountDictFor(locale)}><ForgotForm locale={locale} /></AccountI18n>;
 }

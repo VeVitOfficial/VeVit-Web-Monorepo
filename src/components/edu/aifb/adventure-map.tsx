@@ -5,7 +5,7 @@
 // data jsou dostupná v seznamovém zobrazení.
 
 import Link from "next/link";
-import { aifbT } from "@/lib/edu/aifb/i18n";
+import { useEduLang } from "../i18n";
 import { levelPath } from "@/lib/edu/aifb/routes";
 import type { CategoryId } from "@/lib/edu/aifb/types";
 import type { EduLocale } from "@/lib/edu/i18n-data";
@@ -71,7 +71,8 @@ function ChestIcon() {
 export function AdventureMap({
   locale, categoryId, levels, progress,
 }: { locale: EduLocale; categoryId: CategoryId; levels: LevelSummary[]; progress?: LevelProgress }) {
-  const t = aifbT(locale);
+  // Renderuje se jen uvnitř klientské LevelsOverview: texty z kontextu (slovník jen pro aktuální jazyk).
+  const { t } = useEduLang();
   const points = islandPoints(levels);
   const done = (level: LevelSummary) => {
     const p = progress?.[level.id];

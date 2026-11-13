@@ -13,18 +13,20 @@
 //
 // certificate-info: legacy volá /tools/api/ssl-check.php (PHP endpoint na VPS),
 // který nebyl portován na Vercel — fetch zůstává 1:1, ale endpoint vrací 404.
+import dynamic from "next/dynamic";
 import type { ToolComponent } from "@/components/tools/registry/data";
+import { ToolBodySkeleton } from "@/components/tools/tool-skeleton";
 
-import CertificateInfo from "@/components/tools/tools/certificate-info";
-import EncryptDecrypt from "@/components/tools/tools/encrypt-decrypt";
-import FileEncryption from "@/components/tools/tools/file-encryption";
-import HashGen from "@/components/tools/tools/hash-gen";
-import PasswordBreachCheck from "@/components/tools/tools/password-breach-check";
-import PasswordGen from "@/components/tools/tools/password-gen";
-import PasswordStrength from "@/components/tools/tools/password-strength";
-import Steganography from "@/components/tools/tools/steganography";
-import TokenGenerator from "@/components/tools/tools/token-generator";
-import TotpGenerator from "@/components/tools/tools/totp-generator";
+const CertificateInfo = dynamic(() => import("@/components/tools/tools/certificate-info"), { loading: ToolBodySkeleton });
+const EncryptDecrypt = dynamic(() => import("@/components/tools/tools/encrypt-decrypt"), { loading: ToolBodySkeleton });
+const FileEncryption = dynamic(() => import("@/components/tools/tools/file-encryption"), { loading: ToolBodySkeleton });
+const HashGen = dynamic(() => import("@/components/tools/tools/hash-gen"), { loading: ToolBodySkeleton });
+const PasswordBreachCheck = dynamic(() => import("@/components/tools/tools/password-breach-check"), { loading: ToolBodySkeleton });
+const PasswordGen = dynamic(() => import("@/components/tools/tools/password-gen"), { loading: ToolBodySkeleton });
+const PasswordStrength = dynamic(() => import("@/components/tools/tools/password-strength"), { loading: ToolBodySkeleton });
+const Steganography = dynamic(() => import("@/components/tools/tools/steganography"), { loading: ToolBodySkeleton });
+const TokenGenerator = dynamic(() => import("@/components/tools/tools/token-generator"), { loading: ToolBodySkeleton });
+const TotpGenerator = dynamic(() => import("@/components/tools/tools/totp-generator"), { loading: ToolBodySkeleton });
 
 const SECURITY: Record<string, ToolComponent | undefined> = {
   "certificate-info": CertificateInfo,

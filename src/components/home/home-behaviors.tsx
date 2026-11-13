@@ -20,7 +20,7 @@ const LEGACY_SCRIPTS = [
 // parsování, shodně s legacy chováním).
 const LEGACY_MODULE_SCRIPTS = [
   "/assets/shared/app-switcher.js?v=20260928b",
-  "/assets/shared/localization.js?v=20260928b",
+  "/assets/shared/localization.js?v=20261113a",
   "/assets/shared/session.js?v=20260928a",
 ] as const;
 

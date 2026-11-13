@@ -1,7 +1,8 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import { headers } from "next/headers";
-import { accountT, type AccountLocale } from "@/lib/account-i18n";
+import { accountDictFor, accountT, type AccountLocale } from "@/lib/account-i18n-server";
+import { AccountI18n } from "@/components/account/i18n-provider";
 import { LoginForm } from "@/components/account/auth/login-form";
 
 // Legacy auth design: tokens (-‑‑bg/--card/--primary…) + komponenty (.btn/.input).
@@ -23,8 +24,10 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function LoginPage() {
   const locale = await readLocale();
   return (
-    <Suspense fallback={null}>
-      <LoginForm locale={locale} />
-    </Suspense>
+    <AccountI18n dicts={accountDictFor(locale)}>
+      <Suspense fallback={null}>
+        <LoginForm locale={locale} />
+      </Suspense>
+    </AccountI18n>
   );
 }

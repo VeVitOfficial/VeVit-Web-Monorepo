@@ -5,7 +5,7 @@ import { SiteFooter } from "@/components/tools/site-footer";
 import { Toaster } from "@/components/tools/tool-runtime";
 import { RecordRecent } from "@/components/tools/record-recent";
 import { ToolIcon } from "@/components/tools/tool-icons";
-import { TOOL_COMPONENTS } from "@/components/tools/registry";
+import { ToolHost } from "@/components/tools/tool-host";
 import {
   getTool, TOOLS, HUB_I18N, TOOL_UI_I18N, SUPPORTED_LOCALES, CATEGORY_COLORS, CATEGORY_LABELS,
   statusLabel, locationMeta, localizeTool, reverseSlug, type Locale, type ToolStatus,
@@ -79,10 +79,8 @@ export default async function ToolPage({ params }: Props) {
   const color = CATEGORY_COLORS[tool.category];
   const loc = locationMeta(tool.processing_location, locale);
   const L = localizeTool(tool, locale);
-  const Component = TOOL_COMPONENTS[tool.slug];
   // V údržbě: nástroj se nespouští, jen informace (i když implementace existuje).
   const maintenance = tool.status === "maintenance";
-  const hasImpl = Component != null && !maintenance;
 
   return (
     <>
@@ -130,14 +128,12 @@ export default async function ToolPage({ params }: Props) {
           data-tool-category={tool.category}
           data-processing-location={tool.processing_location}
         >
-          {hasImpl && Component ? (
-            <div className="tool-tool" id="tool-root" data-tool-state="idle" aria-busy="false">
-              <p className="sr-only" id="tool-live-status" role="status" aria-live="polite" aria-atomic="true">{uiStrings.state_ready}</p>
-              <Component locale={locale} />
-              <Toaster />
-              <RecordRecent slug={tool.slug} />
-            </div>
-          ) : (
+          <ToolHost
+            slug={tool.slug}
+            locale={locale}
+            disabled={maintenance}
+            readyLabel={uiStrings.state_ready}
+            fallback={
             <div className="tool-placeholder tool-info-only">
               <div className="tool-info-icon">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -156,7 +152,11 @@ export default async function ToolPage({ params }: Props) {
               </div>
               {tool.note ? <p className="sr-only">{tool.note}</p> : null}
             </div>
-          )}
+            }
+          >
+            <Toaster />
+            <RecordRecent slug={tool.slug} />
+          </ToolHost>
         </div>
 
         <aside className="tool-trust" aria-label={strings.doc_title}>

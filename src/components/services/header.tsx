@@ -8,7 +8,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 // Sdílené moduly (jazyk, přepínač aplikací, účet) — stejné jako v Tools a Edu.
 const MODULE_SCRIPTS = [
   "/assets/shared/app-switcher.js?v=20260928b",
-  "/assets/shared/localization.js?v=20260928b",
+  "/assets/shared/localization.js?v=20261113a",
   "/assets/shared/session.js?v=20260928a",
 ] as const;
 

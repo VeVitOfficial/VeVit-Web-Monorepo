@@ -6,7 +6,8 @@ import { loadSessionFromCookies, AccountBackendUnavailableError } from "@/lib/ac
 import { AccountShell } from "@/components/account/account-shell";
 import { SessionProvider, type AccountUser } from "@/components/account/session";
 import { AccountLocaleProvider } from "@/components/account/locale-context";
-import { accountT, type AccountLocale } from "@/lib/account-i18n";
+import { accountDictFor, accountT, type AccountLocale } from "@/lib/account-i18n-server";
+import { AccountI18n } from "@/components/account/i18n-provider";
 
 // Design systém v pořadí podle legacy account/index.php:
 // fonty → účtové styly → session (bootstrap states) → app switcher → pill.
@@ -68,10 +69,12 @@ export default async function AccountLayout({ children }: Readonly<{ children: R
   }
 
   return (
-    <AccountLocaleProvider locale={locale}>
-      <SessionProvider user={user} csrfToken={csrfToken}>
-        <AccountShell showConsole={showConsole}>{children}</AccountShell>
-      </SessionProvider>
-    </AccountLocaleProvider>
+    <AccountI18n dicts={accountDictFor(locale)}>
+      <AccountLocaleProvider locale={locale}>
+        <SessionProvider user={user} csrfToken={csrfToken}>
+          <AccountShell showConsole={showConsole}>{children}</AccountShell>
+        </SessionProvider>
+      </AccountLocaleProvider>
+    </AccountI18n>
   );
 }

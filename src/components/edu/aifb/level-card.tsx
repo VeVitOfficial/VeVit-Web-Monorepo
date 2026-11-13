@@ -4,10 +4,12 @@
 
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { aifbT, countWord } from "@/lib/edu/aifb/i18n";
+import type { AifbT } from "@/lib/edu/aifb/i18n";
+import { countWord } from "@/lib/edu/aifb/count-word";
+import { useEduLang } from "../i18n";
 import { levelPath, levelSlug } from "@/lib/edu/aifb/routes";
 import type { Certification, CategoryId, Level, Visual } from "@/lib/edu/aifb/types";
-import { lessonsLabel, type EduLocale } from "@/lib/edu/i18n-data";
+import type { EduLocale } from "@/lib/edu/i18n-data";
 import { LockBadge } from "./access-ui";
 import { CertBadge } from "./shared";
 
@@ -59,7 +61,8 @@ export function toLevelSummary(categoryId: CategoryId, level: Level): LevelSumma
 export function LevelCard({
   locale, categoryId, level, progress,
 }: { locale: EduLocale; categoryId: CategoryId; level: LevelSummary; progress?: ReactNode }) {
-  const t = aifbT(locale);
+  // Renderuje se jen uvnitř klientské LevelsOverview: texty z kontextu (slovník jen pro aktuální jazyk).
+  const { t, lessonsLabel } = useEduLang();
   return (
     <li className="aifb-level-card">
       <Link href={levelPath(locale, categoryId, level.slug)}>
@@ -71,7 +74,7 @@ export function LevelCard({
           {" · "}
           {level.hours}
           {" · "}
-          {t("aifb.level.structure", { lessons: lessonsLabel(level.lessonCount - 1, locale) })}
+          {t("aifb.level.structure", { lessons: lessonsLabel(level.lessonCount - 1) })}
         </span>
         <span className="aifb-level-card__badges">
           {level.advanced ? <span className="aifb-badge">{t("aifb.level.advanced")}</span> : null}
@@ -84,6 +87,6 @@ export function LevelCard({
   );
 }
 
-export function levelUnitCount(t: ReturnType<typeof aifbT>, unit: "Blok" | "Level", n: number): string {
+export function levelUnitCount(t: AifbT, unit: "Blok" | "Level", n: number): string {
   return countWord(t, `aifb.unit.${unit}`, n);
 }

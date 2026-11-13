@@ -11,13 +11,14 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState, t
 import {
   EDU_SUPPORTED_LOCALES,
   languages,
-  lessonsLabel as lessonsLabelFor,
-  lessonsUnit as lessonsUnitFor,
-  translate,
+  lessonsLabelIn,
+  lessonsUnitIn,
+  translateIn,
+  type EduDicts,
   type EduLocale,
-} from "@/lib/edu/i18n-data";
+} from "@/lib/edu/i18n-core";
 
-export type { EduLocale } from "@/lib/edu/i18n-data";
+export type { EduLocale } from "@/lib/edu/i18n-core";
 
 export const EDU_LANG_COOKIE = "vevit-lang";
 export const EDU_LANG_STORAGE = "vevit-lang";
@@ -49,10 +50,13 @@ function writeCookie(name: string, value: string): void {
 
 export function EduLangProvider({
   locale,
+  dicts,
   children,
 }: {
-  /** Locale z hlavičky x-vv-locale (server page → await headers()). */
+  /** Locale z cesty /edu/<locale>/ (server page → params). */
   locale: EduLocale;
+  /** Slovník od serveru: jen aktuální jazyk + cs (do bundlu se nedostávají všechny jazyky). */
+  dicts: EduDicts;
   children: ReactNode;
 }) {
   const [lang, setLangState] = useState<EduLocale>(() => valid(locale));
@@ -80,12 +84,12 @@ export function EduLangProvider({
     () => ({
       lang,
       setLang,
-      t: (key, vars) => translate(lang, key, vars),
-      lessonsUnit: (count: number) => lessonsUnitFor(count, lang),
-      lessonsLabel: (count: number) => lessonsLabelFor(count, lang),
+      t: (key, vars) => translateIn(dicts, lang, key, vars),
+      lessonsUnit: (count: number) => lessonsUnitIn(dicts, count, lang),
+      lessonsLabel: (count: number) => lessonsLabelIn(dicts, count, lang),
       languages,
     }),
-    [lang, setLang],
+    [lang, setLang, dicts],
   );
 
   return <EduLangContext.Provider value={value}>{children}</EduLangContext.Provider>;
@@ -100,4 +104,4 @@ export function useEduLang(): EduLangContextValue {
   return ctx;
 }
 
-export { languages } from "@/lib/edu/i18n-data";
+export { languages } from "@/lib/edu/i18n-core";

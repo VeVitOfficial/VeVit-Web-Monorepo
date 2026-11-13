@@ -6,10 +6,14 @@
 // POUZE vnitřní tělo nástroje (obsah .tool-tool) — shell (header, breadcrumb,
 // tool-header, tool-trust, footer) dodává stránka src/app/tools/[tool]/page.tsx.
 //
-// Registrace: komponenta se importuje a přidá do příslušného kategoriového
-// part souboru (pdf.ts / image.ts / media.ts / text.ts / ai.ts / dev.ts /
-// security.ts / calc.ts) jako:
+// Registrace: komponenta se načte líně přes next/dynamic a přidá do příslušného
+// kategoriového part souboru (pdf.ts / image.ts / media.ts / text.ts / ai.ts /
+// dev.ts / security.ts / calc.ts) jako:
+//   const BmiCalc = dynamic(() => import("@/components/tools/tools/bmi-calc"), { loading: ToolBodySkeleton });
 //   "bmi-calc": BmiCalc,
+// Díky tomu stránka nástroje stahuje jen kód toho jednoho nástroje. Registr se
+// importuje jen z klientské komponenty tool-host.tsx (next/dynamic v server
+// komponentě kód nerozdělí).
 //
 // Tento soubor (index.ts) NIKDY needitujte — jen agreguje part soubory,
 // aby paralelní agenti pracovali izolovaně. ClassName zůstávají totožné

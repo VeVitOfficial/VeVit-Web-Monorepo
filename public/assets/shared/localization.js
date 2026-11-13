@@ -9,7 +9,7 @@
 // → session.user.language → cs. URL prefix je kanonický (per-locale routing).
 // Pro server-side (PHP sekce) se nastavuje cookie `vevit-lang` (path=/; 1 rok).
 
-import { loadSession } from '/assets/shared/session.js?v=20260809c';
+import { loadSession } from '/assets/shared/session.js?v=20260928a';
 
 export const SUPPORTED_LOCALES = Object.freeze([
   { code: 'cs', label: 'Čeština', flag: '🇨🇿' }, { code: 'en', label: 'English', flag: '🇬🇧' },

@@ -1,31 +1,33 @@
 // Registr obrazových nástrojů — viz konvence v pdf.ts.
+import dynamic from "next/dynamic";
 import type { ToolComponent } from "@/components/tools/registry/data";
-import BgRemover from "@/components/tools/tools/bg-remover";
-import FaviconGenerator from "@/components/tools/tools/favicon-generator";
-import GifMaker from "@/components/tools/tools/gif-maker";
-import ImageCollage from "@/components/tools/tools/image-collage";
-import ImageConvert from "@/components/tools/tools/image-convert";
-import ImageCrop from "@/components/tools/tools/image-crop";
-import ImageExif from "@/components/tools/tools/image-exif";
-import ImageFilters from "@/components/tools/tools/image-filters";
-import ImageRotateFlip from "@/components/tools/tools/image-rotate-flip";
-import ImageWatermark from "@/components/tools/tools/image-watermark";
-import ImgCompress from "@/components/tools/tools/img-compress";
-import ImgUpscaler from "@/components/tools/tools/img-upscaler";
-import MemeGenerator from "@/components/tools/tools/meme-generator";
-import ScreenshotTool from "@/components/tools/tools/screenshot-tool";
+import { ToolBodySkeleton } from "@/components/tools/tool-skeleton";
+const BgRemover = dynamic(() => import("@/components/tools/tools/bg-remover"), { loading: ToolBodySkeleton });
+const FaviconGenerator = dynamic(() => import("@/components/tools/tools/favicon-generator"), { loading: ToolBodySkeleton });
+const GifMaker = dynamic(() => import("@/components/tools/tools/gif-maker"), { loading: ToolBodySkeleton });
+const ImageCollage = dynamic(() => import("@/components/tools/tools/image-collage"), { loading: ToolBodySkeleton });
+const ImageConvert = dynamic(() => import("@/components/tools/tools/image-convert"), { loading: ToolBodySkeleton });
+const ImageCrop = dynamic(() => import("@/components/tools/tools/image-crop"), { loading: ToolBodySkeleton });
+const ImageExif = dynamic(() => import("@/components/tools/tools/image-exif"), { loading: ToolBodySkeleton });
+const ImageFilters = dynamic(() => import("@/components/tools/tools/image-filters"), { loading: ToolBodySkeleton });
+const ImageRotateFlip = dynamic(() => import("@/components/tools/tools/image-rotate-flip"), { loading: ToolBodySkeleton });
+const ImageWatermark = dynamic(() => import("@/components/tools/tools/image-watermark"), { loading: ToolBodySkeleton });
+const ImgCompress = dynamic(() => import("@/components/tools/tools/img-compress"), { loading: ToolBodySkeleton });
+const ImgUpscaler = dynamic(() => import("@/components/tools/tools/img-upscaler"), { loading: ToolBodySkeleton });
+const MemeGenerator = dynamic(() => import("@/components/tools/tools/meme-generator"), { loading: ToolBodySkeleton });
+const ScreenshotTool = dynamic(() => import("@/components/tools/tools/screenshot-tool"), { loading: ToolBodySkeleton });
 
 
-import ImageResize from "@/components/tools/tools/image-resize";
-import ImageAddText from "@/components/tools/tools/image-add-text";
-import ImageBorder from "@/components/tools/tools/image-border";
-import ImagePixelate from "@/components/tools/tools/image-pixelate";
-import ImageRound from "@/components/tools/tools/image-round";
-import ImageSplitter from "@/components/tools/tools/image-splitter";
-import ChartMaker from "@/components/tools/tools/chart-maker";
-import ImageBw from "@/components/tools/tools/image-bw";
-import BlurBackground from "@/components/tools/tools/blur-background";
-import HeicToJpg from "@/components/tools/tools/heic-to-jpg";
+const ImageResize = dynamic(() => import("@/components/tools/tools/image-resize"), { loading: ToolBodySkeleton });
+const ImageAddText = dynamic(() => import("@/components/tools/tools/image-add-text"), { loading: ToolBodySkeleton });
+const ImageBorder = dynamic(() => import("@/components/tools/tools/image-border"), { loading: ToolBodySkeleton });
+const ImagePixelate = dynamic(() => import("@/components/tools/tools/image-pixelate"), { loading: ToolBodySkeleton });
+const ImageRound = dynamic(() => import("@/components/tools/tools/image-round"), { loading: ToolBodySkeleton });
+const ImageSplitter = dynamic(() => import("@/components/tools/tools/image-splitter"), { loading: ToolBodySkeleton });
+const ChartMaker = dynamic(() => import("@/components/tools/tools/chart-maker"), { loading: ToolBodySkeleton });
+const ImageBw = dynamic(() => import("@/components/tools/tools/image-bw"), { loading: ToolBodySkeleton });
+const BlurBackground = dynamic(() => import("@/components/tools/tools/blur-background"), { loading: ToolBodySkeleton });
+const HeicToJpg = dynamic(() => import("@/components/tools/tools/heic-to-jpg"), { loading: ToolBodySkeleton });
 
 const IMAGE: Record<string, ToolComponent | undefined> = {
   "bg-remover": BgRemover,

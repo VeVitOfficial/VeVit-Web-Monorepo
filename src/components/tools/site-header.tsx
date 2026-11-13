@@ -32,7 +32,7 @@ const CATEGORY_DOT_LABEL: Record<Category, string> = {
 // přímo z JSX.
 const MODULE_SCRIPTS = [
   "/assets/shared/app-switcher.js?v=20260928b",
-  "/assets/shared/localization.js?v=20260928b",
+  "/assets/shared/localization.js?v=20261113a",
   "/assets/shared/session.js?v=20260928a",
 ] as const;
 const SESSION_CSS = "/assets/shared/session.css?v=20260928a";

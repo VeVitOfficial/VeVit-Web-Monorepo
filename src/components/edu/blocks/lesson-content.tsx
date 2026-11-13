@@ -8,6 +8,7 @@
 // legacy neaplikoval; KaTeX je bezpečný renderer, takže chování zachováno beze
 // změny / oslabení).
 
+import { useEffect, useState } from "react";
 import { CodeBlock } from "./code-block";
 import { Icon } from "./icon";
 
@@ -73,7 +74,34 @@ function renderMath(latex: string, display: boolean): { html: string; error: boo
   return { html: "", error: true };
 }
 
+// KaTeX (~76 kB) se stahuje až pro lekci, která vzorec opravdu obsahuje, ne na každé stránce Edu.
+const KATEX_SRC = "/assets/vendor/katex/katex.min.js";
+let katexLoading: Promise<void> | null = null;
+function loadKatex(): Promise<void> {
+  if ((window as unknown as { katex?: KatexGlobal }).katex) return Promise.resolve();
+  katexLoading ??= new Promise<void>((resolve, reject) => {
+    const script = document.createElement("script");
+    script.src = KATEX_SRC;
+    script.onload = () => resolve();
+    script.onerror = () => { katexLoading = null; reject(new Error("katex")); };
+    document.head.appendChild(script);
+  });
+  return katexLoading;
+}
+
+function useKatexReady(): boolean {
+  const [ready, setReady] = useState(false);
+  useEffect(() => {
+    let cancelled = false;
+    loadKatex().then(() => { if (!cancelled) setReady(true); }, () => {});
+    return () => { cancelled = true; };
+  }, []);
+  return ready;
+}
+
 function MathBlock({ latex, display }: { latex: string; display: boolean }) {
+  const ready = useKatexReady();
+  if (!ready) return <span className="text-[var(--color-text-muted)]">{latex}</span>;
   const { html, error } = renderMath(latex, display);
   if (error) {
     return <span className="text-danger-text">{latex}</span>;

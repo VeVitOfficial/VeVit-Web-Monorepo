@@ -6,12 +6,14 @@
 // .tool-placeholder.tool-info-only). Shell (src/app/tools/[tool]/page.tsx)
 // placeholder vykreslí sám, když je komponenta undefined, proto se zde
 // registruje jako undefined.
+import dynamic from "next/dynamic";
 import type { ToolComponent } from "@/components/tools/registry/data";
-import AiChat from "@/components/tools/tools/ai-chat";
-import AiSeo from "@/components/tools/tools/ai-seo";
-import AiSqlGen from "@/components/tools/tools/ai-sql-gen";
-import AiTextQa from "@/components/tools/tools/ai-text-qa";
-import AiVision from "@/components/tools/tools/ai-vision";
+import { ToolBodySkeleton } from "@/components/tools/tool-skeleton";
+const AiChat = dynamic(() => import("@/components/tools/tools/ai-chat"), { loading: ToolBodySkeleton });
+const AiSeo = dynamic(() => import("@/components/tools/tools/ai-seo"), { loading: ToolBodySkeleton });
+const AiSqlGen = dynamic(() => import("@/components/tools/tools/ai-sql-gen"), { loading: ToolBodySkeleton });
+const AiTextQa = dynamic(() => import("@/components/tools/tools/ai-text-qa"), { loading: ToolBodySkeleton });
+const AiVision = dynamic(() => import("@/components/tools/tools/ai-vision"), { loading: ToolBodySkeleton });
 
 const AI: Record<string, ToolComponent | undefined> = {
   "ai-chat": AiChat,

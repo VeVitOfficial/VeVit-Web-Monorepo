@@ -3,7 +3,11 @@
 // Chyba načtení obsahu AIFB (výpadek sítě, chyba serveru): srozumitelná zpráva a tlačítko
 // „Zkusit znovu" místo prázdné stránky. Hranice chyb leží nad EduRoot, proto jazyk z <html lang>.
 
-import { translate, EDU_SUPPORTED_LOCALES, type EduLocale } from "@/lib/edu/i18n-data";
+import { EDU_SUPPORTED_LOCALES, translateIn, type EduLocale } from "@/lib/edu/i18n-core";
+// Jen texty AIFB, ne celé slovníky Edu (ty se do klienta nebundlují).
+import { aifbMessages } from "@/lib/edu/aifb/messages";
+
+const translate = (locale: EduLocale, key: string) => translateIn(aifbMessages, locale, key);
 
 function currentLocale(): EduLocale {
   const lang = typeof document !== "undefined" ? document.documentElement.lang : "cs";

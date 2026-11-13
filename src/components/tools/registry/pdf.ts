@@ -10,42 +10,44 @@
 // qrcode-generator, html-pdf-sanitize) se načítají líně z /tools/assets/js/lib/
 // přes loadScript() — žádné npm závislosti.
 //
+import dynamic from "next/dynamic";
 import type { ToolComponent } from "@/components/tools/registry/data";
+import { ToolBodySkeleton } from "@/components/tools/tool-skeleton";
 
-import PdfMerge from "@/components/tools/tools/pdf-merge";
-import PdfPassword from "@/components/tools/tools/pdf-password";
-import PdfSplit from "@/components/tools/tools/pdf-split";
-import PdfCompress from "@/components/tools/tools/pdf-compress";
-import PdfRotate from "@/components/tools/tools/pdf-rotate";
-import PdfOrganize from "@/components/tools/tools/pdf-organize";
-import PdfWatermark from "@/components/tools/tools/pdf-watermark";
-import PdfPageNumbers from "@/components/tools/tools/pdf-page-numbers";
-import PdfExtractText from "@/components/tools/tools/pdf-extract-text";
-import PdfToImages from "@/components/tools/tools/pdf-to-images";
-import PdfToWord from "@/components/tools/tools/pdf-to-word";
-import ImagesToPdf from "@/components/tools/tools/images-to-pdf";
-import HtmlToPdf from "@/components/tools/tools/html-to-pdf";
-import InvoiceGen from "@/components/tools/tools/invoice-gen";
+const PdfMerge = dynamic(() => import("@/components/tools/tools/pdf-merge"), { loading: ToolBodySkeleton });
+const PdfPassword = dynamic(() => import("@/components/tools/tools/pdf-password"), { loading: ToolBodySkeleton });
+const PdfSplit = dynamic(() => import("@/components/tools/tools/pdf-split"), { loading: ToolBodySkeleton });
+const PdfCompress = dynamic(() => import("@/components/tools/tools/pdf-compress"), { loading: ToolBodySkeleton });
+const PdfRotate = dynamic(() => import("@/components/tools/tools/pdf-rotate"), { loading: ToolBodySkeleton });
+const PdfOrganize = dynamic(() => import("@/components/tools/tools/pdf-organize"), { loading: ToolBodySkeleton });
+const PdfWatermark = dynamic(() => import("@/components/tools/tools/pdf-watermark"), { loading: ToolBodySkeleton });
+const PdfPageNumbers = dynamic(() => import("@/components/tools/tools/pdf-page-numbers"), { loading: ToolBodySkeleton });
+const PdfExtractText = dynamic(() => import("@/components/tools/tools/pdf-extract-text"), { loading: ToolBodySkeleton });
+const PdfToImages = dynamic(() => import("@/components/tools/tools/pdf-to-images"), { loading: ToolBodySkeleton });
+const PdfToWord = dynamic(() => import("@/components/tools/tools/pdf-to-word"), { loading: ToolBodySkeleton });
+const ImagesToPdf = dynamic(() => import("@/components/tools/tools/images-to-pdf"), { loading: ToolBodySkeleton });
+const HtmlToPdf = dynamic(() => import("@/components/tools/tools/html-to-pdf"), { loading: ToolBodySkeleton });
+const InvoiceGen = dynamic(() => import("@/components/tools/tools/invoice-gen"), { loading: ToolBodySkeleton });
 
 
-import PdfRemovePages from "@/components/tools/tools/pdf-remove-pages";
-import PdfExtractPages from "@/components/tools/tools/pdf-extract-pages";
-import PdfCrop from "@/components/tools/tools/pdf-crop";
-import PdfRedact from "@/components/tools/tools/pdf-redact";
-import PdfSign from "@/components/tools/tools/pdf-sign";
-import PdfForms from "@/components/tools/tools/pdf-forms";
-import PdfRepair from "@/components/tools/tools/pdf-repair";
-import ScanToPdf from "@/components/tools/tools/scan-to-pdf";
-import PdfCompare from "@/components/tools/tools/pdf-compare";
-import PdfToMarkdown from "@/components/tools/tools/pdf-to-markdown";
-import WordToPdf from "@/components/tools/tools/word-to-pdf";
-import ExcelToPdf from "@/components/tools/tools/excel-to-pdf";
-import PdfToExcel from "@/components/tools/tools/pdf-to-excel";
-import PptxToPdf from "@/components/tools/tools/pptx-to-pdf";
-import PdfToPptx from "@/components/tools/tools/pdf-to-pptx";
-import TranslatePdf from "@/components/tools/tools/translate-pdf";
-import OcrPdf from "@/components/tools/tools/ocr-pdf";
-import PdfEdit from "@/components/tools/tools/pdf-edit";
+const PdfRemovePages = dynamic(() => import("@/components/tools/tools/pdf-remove-pages"), { loading: ToolBodySkeleton });
+const PdfExtractPages = dynamic(() => import("@/components/tools/tools/pdf-extract-pages"), { loading: ToolBodySkeleton });
+const PdfCrop = dynamic(() => import("@/components/tools/tools/pdf-crop"), { loading: ToolBodySkeleton });
+const PdfRedact = dynamic(() => import("@/components/tools/tools/pdf-redact"), { loading: ToolBodySkeleton });
+const PdfSign = dynamic(() => import("@/components/tools/tools/pdf-sign"), { loading: ToolBodySkeleton });
+const PdfForms = dynamic(() => import("@/components/tools/tools/pdf-forms"), { loading: ToolBodySkeleton });
+const PdfRepair = dynamic(() => import("@/components/tools/tools/pdf-repair"), { loading: ToolBodySkeleton });
+const ScanToPdf = dynamic(() => import("@/components/tools/tools/scan-to-pdf"), { loading: ToolBodySkeleton });
+const PdfCompare = dynamic(() => import("@/components/tools/tools/pdf-compare"), { loading: ToolBodySkeleton });
+const PdfToMarkdown = dynamic(() => import("@/components/tools/tools/pdf-to-markdown"), { loading: ToolBodySkeleton });
+const WordToPdf = dynamic(() => import("@/components/tools/tools/word-to-pdf"), { loading: ToolBodySkeleton });
+const ExcelToPdf = dynamic(() => import("@/components/tools/tools/excel-to-pdf"), { loading: ToolBodySkeleton });
+const PdfToExcel = dynamic(() => import("@/components/tools/tools/pdf-to-excel"), { loading: ToolBodySkeleton });
+const PptxToPdf = dynamic(() => import("@/components/tools/tools/pptx-to-pdf"), { loading: ToolBodySkeleton });
+const PdfToPptx = dynamic(() => import("@/components/tools/tools/pdf-to-pptx"), { loading: ToolBodySkeleton });
+const TranslatePdf = dynamic(() => import("@/components/tools/tools/translate-pdf"), { loading: ToolBodySkeleton });
+const OcrPdf = dynamic(() => import("@/components/tools/tools/ocr-pdf"), { loading: ToolBodySkeleton });
+const PdfEdit = dynamic(() => import("@/components/tools/tools/pdf-edit"), { loading: ToolBodySkeleton });
 
 const PDF: Record<string, ToolComponent | undefined> = {
   "pdf-merge": PdfMerge,

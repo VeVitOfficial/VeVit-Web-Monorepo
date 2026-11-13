@@ -155,6 +155,7 @@ export function AccountShell({ children, showConsole = false }: { children: Reac
       <header className="account-topbar">
         <div className="account-topbar__inner">
           <span className="vv-app-brand" aria-label={accountT("section.eyebrow", locale)}>
+            {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- jiná aplikace, proxy přesměruje na /<locale>/home; plná navigace záměrně */}
             <a href="/home">VeVit</a>
             <a href="/account">Account</a>
           </span>
