@@ -18,7 +18,9 @@
     "store:import": "node scripts/store-import-sourcing.mjs",
     "store:apply": "node --env-file=.env.local scripts/store-import-sourcing.mjs --apply",
     "store:enrich": "node --env-file=.env.local scripts/store-enrich.mjs",
-    "test:e2e:aifb": "node --test tests/e2e/aifb.e2e.mjs"
+    "test:e2e:aifb": "node --test tests/e2e/aifb.e2e.mjs",
+    "analyze": "next analyze",
+    "perf:sizes": "node scripts/perf/route-sizes.mjs ."
   },
   "devDependencies": {
     "@playwright/test": "1.63.0",
