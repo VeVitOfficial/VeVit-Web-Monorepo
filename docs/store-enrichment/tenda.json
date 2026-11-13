@@ -1,0 +1,1626 @@
+{
+  "brand": "Tenda",
+  "verified": "2026-11-13",
+  "groups": [
+    {
+      "variantGroup": "tenda-16-port-gigabit-switch",
+      "variants": {
+        "tenda-16-port-gigabit-switch": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Tenda 16-port gigabit switch — síťové prvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Tenda · Síťové prvky",
+            "images": [
+              "/store/img/brand/tenda.jpg"
+            ]
+          },
+          "officialName": "Tenda 16-port gigabit switch",
+          "unresolvedReason": "Obecný název bez typového označení (switch, mesh, adaptér…) – odpovídá více modelům Tenda."
+        }
+      }
+    },
+    {
+      "variantGroup": "tenda-16-port-poe",
+      "variants": {
+        "tenda-16-port-poe": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Tenda 16-port PoE — síťové prvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Tenda · Síťové prvky",
+            "images": [
+              "/store/img/brand/tenda.jpg"
+            ]
+          },
+          "officialName": "Tenda 16-port PoE",
+          "unresolvedReason": "Obecný název bez typového označení (switch, mesh, adaptér…) – odpovídá více modelům Tenda."
+        }
+      }
+    },
+    {
+      "variantGroup": "tenda-24-port-gigabit-switch",
+      "variants": {
+        "tenda-24-port-gigabit-switch": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Tenda 24-port gigabit switch — síťové prvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Tenda · Síťové prvky",
+            "images": [
+              "/store/img/brand/tenda.jpg"
+            ]
+          },
+          "officialName": "Tenda 24-port gigabit switch",
+          "unresolvedReason": "Obecný název bez typového označení (switch, mesh, adaptér…) – odpovídá více modelům Tenda."
+        }
+      }
+    },
+    {
+      "variantGroup": "tenda-4g-lte-router",
+      "variants": {
+        "tenda-4g-lte-router": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Tenda 4G LTE router — síťové prvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Tenda · Síťové prvky",
+            "images": [
+              "/store/img/brand/tenda.jpg"
+            ]
+          },
+          "officialName": "Tenda 4G LTE router",
+          "unresolvedReason": "Obecný název bez typového označení (switch, mesh, adaptér…) – odpovídá více modelům Tenda."
+        }
+      }
+    },
+    {
+      "variantGroup": "tenda-5-port-gigabit-switch",
+      "variants": {
+        "tenda-5-port-gigabit-switch": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Tenda 5-port gigabit switch — síťové prvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Tenda · Síťové prvky",
+            "images": [
+              "/store/img/brand/tenda.jpg"
+            ]
+          },
+          "officialName": "Tenda 5-port gigabit switch",
+          "unresolvedReason": "Obecný název bez typového označení (switch, mesh, adaptér…) – odpovídá více modelům Tenda."
+        }
+      }
+    },
+    {
+      "variantGroup": "tenda-5-port-poe-switch",
+      "variants": {
+        "tenda-5-port-poe-switch": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Tenda 5-port PoE switch — síťové prvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Tenda · Síťové prvky",
+            "images": [
+              "/store/img/brand/tenda.jpg"
+            ]
+          },
+          "officialName": "Tenda 5-port PoE switch",
+          "unresolvedReason": "Obecný název bez typového označení (switch, mesh, adaptér…) – odpovídá více modelům Tenda."
+        }
+      }
+    },
+    {
+      "variantGroup": "tenda-8-port-gigabit-switch",
+      "variants": {
+        "tenda-8-port-gigabit-switch": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Tenda 8-port gigabit switch — síťové prvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Tenda · Síťové prvky",
+            "images": [
+              "/store/img/brand/tenda.jpg"
+            ]
+          },
+          "officialName": "Tenda 8-port gigabit switch",
+          "unresolvedReason": "Obecný název bez typového označení (switch, mesh, adaptér…) – odpovídá více modelům Tenda."
+        }
+      }
+    },
+    {
+      "variantGroup": "tenda-8-port-poe",
+      "variants": {
+        "tenda-8-port-poe": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Tenda 8-port PoE — síťové prvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Tenda · Síťové prvky",
+            "images": [
+              "/store/img/brand/tenda.jpg"
+            ]
+          },
+          "officialName": "Tenda 8-port PoE",
+          "unresolvedReason": "Obecný název bez typového označení (switch, mesh, adaptér…) – odpovídá více modelům Tenda."
+        }
+      }
+    },
+    {
+      "variantGroup": "tenda-ac6",
+      "variants": {
+        "tenda-ac6-home": {
+          "officialName": "Tenda AC6 v5.0 AC1200 Smart Dual-band Wi-Fi router (home)",
+          "shortDesc": "Dvoupásmový Wi-Fi router AC1200 (867 + 300 Mb/s), 4 antény 6 dBi",
+          "description": "Tenda AC6 je dvoupásmový Wi-Fi router AC1200 pro domácnosti: v pásmu 5 GHz dosahuje až 867 Mb/s, ve 2,4 GHz až 300 Mb/s. Čtyři externí antény 6 dBi zajišťují dobré pokrytí bytu i menšího domu.\n\nPodporuje režimy router, opakovač (Universal Repeater), WISP a AP. Porty WAN a LAN jsou 10/100 Mb/s.",
+          "specs": {
+            "Wi-Fi": {
+              "Standard": "802.11ac/a/n (5 GHz), 802.11b/g/n (2,4 GHz)",
+              "Rychlost": "5 GHz až 867 Mb/s, 2,4 GHz až 300 Mb/s",
+              "Antény": "4× externí 6 dBi",
+              "Zabezpečení": "WPA2-PSK"
+            },
+            "Hardware": {
+              "CPU": "600 MHz",
+              "RAM": "32 MB",
+              "Porty": "1× WAN 10/100 Mb/s, 3× LAN 10/100 Mb/s",
+              "Napájení": "DC 9 V / 1 A",
+              "Rozměry": "220 × 141,5 × 49 mm"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/AC6v5",
+              "note": "Tenda Global – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/specification/AC6v5",
+              "note": "Tenda Global – specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.tendacn.com/product/AC6v5",
+              "note": "Fotografie: oficiální web výrobce (Tenda)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Varianty „home/office/school“ jsou jen segmenty ze sourcingu – výrobek je stejný.",
+          "images": [
+            "/store/img/products/tenda-ac6/1.webp",
+            "/store/img/products/tenda-ac6/2.webp",
+            "/store/img/products/tenda-ac6/3.webp",
+            "/store/img/products/tenda-ac6/4.webp",
+            "/store/img/products/tenda-ac6/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/tenda-ac6/1.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/UserFiles/Info/image/20210225/20210225143734_0155.jpg",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/tenda-ac6/2.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/pro_pictures/AC6v5/1.png",
+              "size": "472x455"
+            },
+            {
+              "file": "/store/img/products/tenda-ac6/3.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/UserFiles/Info/image/20210225/20210225143751_5933.jpg",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/tenda-ac6/4.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/UserFiles/Info/image/20210225/20210225143742_5158.jpg",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/tenda-ac6/5.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/UserFiles/Info/image/20210225/20210225143759_1180.jpg",
+              "size": "1000x1000"
+            }
+          ]
+        },
+        "tenda-ac6-office": {
+          "officialName": "Tenda AC6 v5.0 AC1200 Smart Dual-band Wi-Fi router (office)",
+          "shortDesc": "Dvoupásmový Wi-Fi router AC1200 (867 + 300 Mb/s), 4 antény 6 dBi",
+          "description": "Tenda AC6 je dvoupásmový Wi-Fi router AC1200 pro domácnosti: v pásmu 5 GHz dosahuje až 867 Mb/s, ve 2,4 GHz až 300 Mb/s. Čtyři externí antény 6 dBi zajišťují dobré pokrytí bytu i menšího domu.\n\nPodporuje režimy router, opakovač (Universal Repeater), WISP a AP. Porty WAN a LAN jsou 10/100 Mb/s.",
+          "specs": {
+            "Wi-Fi": {
+              "Standard": "802.11ac/a/n (5 GHz), 802.11b/g/n (2,4 GHz)",
+              "Rychlost": "5 GHz až 867 Mb/s, 2,4 GHz až 300 Mb/s",
+              "Antény": "4× externí 6 dBi",
+              "Zabezpečení": "WPA2-PSK"
+            },
+            "Hardware": {
+              "CPU": "600 MHz",
+              "RAM": "32 MB",
+              "Porty": "1× WAN 10/100 Mb/s, 3× LAN 10/100 Mb/s",
+              "Napájení": "DC 9 V / 1 A",
+              "Rozměry": "220 × 141,5 × 49 mm"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/AC6v5",
+              "note": "Tenda Global – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/specification/AC6v5",
+              "note": "Tenda Global – specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.tendacn.com/product/AC6v5",
+              "note": "Fotografie: oficiální web výrobce (Tenda)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Varianty „home/office/school“ jsou jen segmenty ze sourcingu – výrobek je stejný.",
+          "images": [
+            "/store/img/products/tenda-ac6/1.webp",
+            "/store/img/products/tenda-ac6/2.webp",
+            "/store/img/products/tenda-ac6/3.webp",
+            "/store/img/products/tenda-ac6/4.webp",
+            "/store/img/products/tenda-ac6/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/tenda-ac6/1.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/UserFiles/Info/image/20210225/20210225143734_0155.jpg",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/tenda-ac6/2.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/pro_pictures/AC6v5/1.png",
+              "size": "472x455"
+            },
+            {
+              "file": "/store/img/products/tenda-ac6/3.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/UserFiles/Info/image/20210225/20210225143751_5933.jpg",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/tenda-ac6/4.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/UserFiles/Info/image/20210225/20210225143742_5158.jpg",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/tenda-ac6/5.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/UserFiles/Info/image/20210225/20210225143759_1180.jpg",
+              "size": "1000x1000"
+            }
+          ]
+        },
+        "tenda-ac6-school": {
+          "officialName": "Tenda AC6 v5.0 AC1200 Smart Dual-band Wi-Fi router (school)",
+          "shortDesc": "Dvoupásmový Wi-Fi router AC1200 (867 + 300 Mb/s), 4 antény 6 dBi",
+          "description": "Tenda AC6 je dvoupásmový Wi-Fi router AC1200 pro domácnosti: v pásmu 5 GHz dosahuje až 867 Mb/s, ve 2,4 GHz až 300 Mb/s. Čtyři externí antény 6 dBi zajišťují dobré pokrytí bytu i menšího domu.\n\nPodporuje režimy router, opakovač (Universal Repeater), WISP a AP. Porty WAN a LAN jsou 10/100 Mb/s.",
+          "specs": {
+            "Wi-Fi": {
+              "Standard": "802.11ac/a/n (5 GHz), 802.11b/g/n (2,4 GHz)",
+              "Rychlost": "5 GHz až 867 Mb/s, 2,4 GHz až 300 Mb/s",
+              "Antény": "4× externí 6 dBi",
+              "Zabezpečení": "WPA2-PSK"
+            },
+            "Hardware": {
+              "CPU": "600 MHz",
+              "RAM": "32 MB",
+              "Porty": "1× WAN 10/100 Mb/s, 3× LAN 10/100 Mb/s",
+              "Napájení": "DC 9 V / 1 A",
+              "Rozměry": "220 × 141,5 × 49 mm"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/AC6v5",
+              "note": "Tenda Global – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/specification/AC6v5",
+              "note": "Tenda Global – specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.tendacn.com/product/AC6v5",
+              "note": "Fotografie: oficiální web výrobce (Tenda)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Varianty „home/office/school“ jsou jen segmenty ze sourcingu – výrobek je stejný.",
+          "images": [
+            "/store/img/products/tenda-ac6/1.webp",
+            "/store/img/products/tenda-ac6/2.webp",
+            "/store/img/products/tenda-ac6/3.webp",
+            "/store/img/products/tenda-ac6/4.webp",
+            "/store/img/products/tenda-ac6/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/tenda-ac6/1.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/UserFiles/Info/image/20210225/20210225143734_0155.jpg",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/tenda-ac6/2.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/pro_pictures/AC6v5/1.png",
+              "size": "472x455"
+            },
+            {
+              "file": "/store/img/products/tenda-ac6/3.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/UserFiles/Info/image/20210225/20210225143751_5933.jpg",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/tenda-ac6/4.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/UserFiles/Info/image/20210225/20210225143742_5158.jpg",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/tenda-ac6/5.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/UserFiles/Info/image/20210225/20210225143759_1180.jpg",
+              "size": "1000x1000"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "tenda-ac8",
+      "variants": {
+        "tenda-ac8-home": {
+          "officialName": "Tenda AC8 AC1200 dual-band gigabitový router (home)",
+          "shortDesc": "Dvoupásmový gigabitový Wi-Fi router AC1200 s MU-MIMO, 4 antény 6 dBi",
+          "description": "Tenda AC8 je dvoupásmový Wi-Fi router AC1200 s gigabitovými porty – vhodný pro rychlé optické a kabelové připojení. V pásmu 5 GHz dosahuje až 867 Mb/s, technologie MU-MIMO a beamforming zlepšují výkon při více připojených zařízeních.\n\nDvoujádrový procesor 1 GHz, čtyři antény 6 dBi, porty 1× WAN a 2× LAN 1 Gb/s. Aktuální hardwarová revize v6.0.",
+          "specs": {
+            "Wi-Fi": {
+              "Standard": "802.11ac/a/n (5 GHz), 802.11b/g/n (2,4 GHz)",
+              "Rychlost": "5 GHz až 867 Mb/s, 2,4 GHz až 300 Mb/s",
+              "Antény": "4× externí 6 dBi",
+              "Technologie": "MU-MIMO, beamforming"
+            },
+            "Hardware": {
+              "CPU": "dvoujádrový 1 GHz",
+              "RAM": "64 MB",
+              "Porty": "1× WAN + 2× LAN 10/100/1000 Mb/s",
+              "Napájení": "DC 12 V / 1 A",
+              "Rozměry": "200 × 127 × 33,6 mm",
+              "Revize": "v6.0"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/AC8V6",
+              "note": "Tenda Global – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/specification/AC8V6",
+              "note": "Tenda Global – specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.tendacn.com/product/AC8V6",
+              "note": "Fotografie: oficiální web výrobce (Tenda)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Varianty „home/office/school“ jsou jen segmenty ze sourcingu – výrobek je stejný.",
+          "images": [
+            "/store/img/products/tenda-ac8/1.webp",
+            "/store/img/products/tenda-ac8/2.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/tenda-ac8/1.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/UserFiles/Info/image/20230914/20230914164756_1260.jpg",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/tenda-ac8/2.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/pro_pictures/AC8V5/bg1-960.webp",
+              "size": "960x1350"
+            }
+          ]
+        },
+        "tenda-ac8-office": {
+          "officialName": "Tenda AC8 AC1200 dual-band gigabitový router (office)",
+          "shortDesc": "Dvoupásmový gigabitový Wi-Fi router AC1200 s MU-MIMO, 4 antény 6 dBi",
+          "description": "Tenda AC8 je dvoupásmový Wi-Fi router AC1200 s gigabitovými porty – vhodný pro rychlé optické a kabelové připojení. V pásmu 5 GHz dosahuje až 867 Mb/s, technologie MU-MIMO a beamforming zlepšují výkon při více připojených zařízeních.\n\nDvoujádrový procesor 1 GHz, čtyři antény 6 dBi, porty 1× WAN a 2× LAN 1 Gb/s. Aktuální hardwarová revize v6.0.",
+          "specs": {
+            "Wi-Fi": {
+              "Standard": "802.11ac/a/n (5 GHz), 802.11b/g/n (2,4 GHz)",
+              "Rychlost": "5 GHz až 867 Mb/s, 2,4 GHz až 300 Mb/s",
+              "Antény": "4× externí 6 dBi",
+              "Technologie": "MU-MIMO, beamforming"
+            },
+            "Hardware": {
+              "CPU": "dvoujádrový 1 GHz",
+              "RAM": "64 MB",
+              "Porty": "1× WAN + 2× LAN 10/100/1000 Mb/s",
+              "Napájení": "DC 12 V / 1 A",
+              "Rozměry": "200 × 127 × 33,6 mm",
+              "Revize": "v6.0"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/AC8V6",
+              "note": "Tenda Global – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/specification/AC8V6",
+              "note": "Tenda Global – specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.tendacn.com/product/AC8V6",
+              "note": "Fotografie: oficiální web výrobce (Tenda)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Varianty „home/office/school“ jsou jen segmenty ze sourcingu – výrobek je stejný.",
+          "images": [
+            "/store/img/products/tenda-ac8/1.webp",
+            "/store/img/products/tenda-ac8/2.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/tenda-ac8/1.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/UserFiles/Info/image/20230914/20230914164756_1260.jpg",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/tenda-ac8/2.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/pro_pictures/AC8V5/bg1-960.webp",
+              "size": "960x1350"
+            }
+          ]
+        },
+        "tenda-ac8-school": {
+          "officialName": "Tenda AC8 AC1200 dual-band gigabitový router (school)",
+          "shortDesc": "Dvoupásmový gigabitový Wi-Fi router AC1200 s MU-MIMO, 4 antény 6 dBi",
+          "description": "Tenda AC8 je dvoupásmový Wi-Fi router AC1200 s gigabitovými porty – vhodný pro rychlé optické a kabelové připojení. V pásmu 5 GHz dosahuje až 867 Mb/s, technologie MU-MIMO a beamforming zlepšují výkon při více připojených zařízeních.\n\nDvoujádrový procesor 1 GHz, čtyři antény 6 dBi, porty 1× WAN a 2× LAN 1 Gb/s. Aktuální hardwarová revize v6.0.",
+          "specs": {
+            "Wi-Fi": {
+              "Standard": "802.11ac/a/n (5 GHz), 802.11b/g/n (2,4 GHz)",
+              "Rychlost": "5 GHz až 867 Mb/s, 2,4 GHz až 300 Mb/s",
+              "Antény": "4× externí 6 dBi",
+              "Technologie": "MU-MIMO, beamforming"
+            },
+            "Hardware": {
+              "CPU": "dvoujádrový 1 GHz",
+              "RAM": "64 MB",
+              "Porty": "1× WAN + 2× LAN 10/100/1000 Mb/s",
+              "Napájení": "DC 12 V / 1 A",
+              "Rozměry": "200 × 127 × 33,6 mm",
+              "Revize": "v6.0"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/AC8V6",
+              "note": "Tenda Global – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/specification/AC8V6",
+              "note": "Tenda Global – specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.tendacn.com/product/AC8V6",
+              "note": "Fotografie: oficiální web výrobce (Tenda)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Varianty „home/office/school“ jsou jen segmenty ze sourcingu – výrobek je stejný.",
+          "images": [
+            "/store/img/products/tenda-ac8/1.webp",
+            "/store/img/products/tenda-ac8/2.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/tenda-ac8/1.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/UserFiles/Info/image/20230914/20230914164756_1260.jpg",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/tenda-ac8/2.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/pro_pictures/AC8V5/bg1-960.webp",
+              "size": "960x1350"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "tenda-ax1800-mesh-node",
+      "variants": {
+        "tenda-ax1800-mesh-node": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Tenda AX1800 mesh node — síťové prvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Tenda · Síťové prvky",
+            "images": [
+              "/store/img/brand/tenda.jpg"
+            ]
+          },
+          "officialName": "Tenda AX1800 mesh node",
+          "unresolvedReason": "Obecný název bez typového označení (switch, mesh, adaptér…) – odpovídá více modelům Tenda."
+        }
+      }
+    },
+    {
+      "variantGroup": "tenda-ax3000-mesh-node",
+      "variants": {
+        "tenda-ax3000-mesh-node": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Tenda AX3000 mesh node — síťové prvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Tenda · Síťové prvky",
+            "images": [
+              "/store/img/brand/tenda.jpg"
+            ]
+          },
+          "officialName": "Tenda AX3000 mesh node",
+          "unresolvedReason": "Obecný název bez typového označení (switch, mesh, adaptér…) – odpovídá více modelům Tenda."
+        }
+      }
+    },
+    {
+      "variantGroup": "tenda-ceiling-ap",
+      "variants": {
+        "tenda-ceiling-ap": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Tenda ceiling AP — síťové prvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Tenda · Síťové prvky",
+            "images": [
+              "/store/img/brand/tenda.jpg"
+            ]
+          },
+          "officialName": "Tenda ceiling AP",
+          "unresolvedReason": "Obecný název bez typového označení (switch, mesh, adaptér…) – odpovídá více modelům Tenda."
+        }
+      }
+    },
+    {
+      "variantGroup": "tenda-f3",
+      "variants": {
+        "tenda-f3-home": {
+          "officialName": "Tenda F3 N300 Wi-Fi router (home)",
+          "shortDesc": "Jednoduchý Wi-Fi router N300 (2,4 GHz), 3 antény 5 dBi",
+          "description": "Tenda F3 je jednoduchý Wi-Fi router pro menší byty a základní připojení. Pracuje v pásmu 2,4 GHz s rychlostí až 300 Mb/s, má tři antény 5 dBi a režimy router, opakovač, WISP a AP. Rodičovská kontrola omezí přístup podle času.",
+          "specs": {
+            "Wi-Fi": {
+              "Standard": "802.11b/g/n (2,4 GHz)",
+              "Rychlost": "až 300 Mb/s",
+              "Antény": "3× externí 5 dBi",
+              "Zabezpečení": "WPA/WPA2"
+            },
+            "Hardware": {
+              "CPU": "400 MHz",
+              "RAM": "8 MB",
+              "Porty": "1× WAN + 3× LAN 10/100 Mb/s",
+              "Napájení": "DC 9 V / 0,6 A",
+              "Rozměry": "185,6 × 118,4 × 31,2 mm"
+            },
+            "Funkce": {
+              "Režimy": "router, opakovač, WISP, AP",
+              "Rodičovská kontrola": "ano"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/F3",
+              "note": "Tenda Global – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/specification/F3",
+              "note": "Tenda Global – specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.tendacn.com/product/F3",
+              "note": "Fotografie: oficiální web výrobce (Tenda)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Varianty „home/office/school“ jsou jen segmenty ze sourcingu – výrobek je stejný.",
+          "images": [
+            "/store/img/products/tenda-f3/1.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/tenda-f3/1.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/UserFiles/Image/Product/2015527/201552711259526.jpg",
+              "size": "1000x1000"
+            }
+          ]
+        },
+        "tenda-f3-office": {
+          "officialName": "Tenda F3 N300 Wi-Fi router (office)",
+          "shortDesc": "Jednoduchý Wi-Fi router N300 (2,4 GHz), 3 antény 5 dBi",
+          "description": "Tenda F3 je jednoduchý Wi-Fi router pro menší byty a základní připojení. Pracuje v pásmu 2,4 GHz s rychlostí až 300 Mb/s, má tři antény 5 dBi a režimy router, opakovač, WISP a AP. Rodičovská kontrola omezí přístup podle času.",
+          "specs": {
+            "Wi-Fi": {
+              "Standard": "802.11b/g/n (2,4 GHz)",
+              "Rychlost": "až 300 Mb/s",
+              "Antény": "3× externí 5 dBi",
+              "Zabezpečení": "WPA/WPA2"
+            },
+            "Hardware": {
+              "CPU": "400 MHz",
+              "RAM": "8 MB",
+              "Porty": "1× WAN + 3× LAN 10/100 Mb/s",
+              "Napájení": "DC 9 V / 0,6 A",
+              "Rozměry": "185,6 × 118,4 × 31,2 mm"
+            },
+            "Funkce": {
+              "Režimy": "router, opakovač, WISP, AP",
+              "Rodičovská kontrola": "ano"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/F3",
+              "note": "Tenda Global – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/specification/F3",
+              "note": "Tenda Global – specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.tendacn.com/product/F3",
+              "note": "Fotografie: oficiální web výrobce (Tenda)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Varianty „home/office/school“ jsou jen segmenty ze sourcingu – výrobek je stejný.",
+          "images": [
+            "/store/img/products/tenda-f3/1.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/tenda-f3/1.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/UserFiles/Image/Product/2015527/201552711259526.jpg",
+              "size": "1000x1000"
+            }
+          ]
+        },
+        "tenda-f3-school": {
+          "officialName": "Tenda F3 N300 Wi-Fi router (school)",
+          "shortDesc": "Jednoduchý Wi-Fi router N300 (2,4 GHz), 3 antény 5 dBi",
+          "description": "Tenda F3 je jednoduchý Wi-Fi router pro menší byty a základní připojení. Pracuje v pásmu 2,4 GHz s rychlostí až 300 Mb/s, má tři antény 5 dBi a režimy router, opakovač, WISP a AP. Rodičovská kontrola omezí přístup podle času.",
+          "specs": {
+            "Wi-Fi": {
+              "Standard": "802.11b/g/n (2,4 GHz)",
+              "Rychlost": "až 300 Mb/s",
+              "Antény": "3× externí 5 dBi",
+              "Zabezpečení": "WPA/WPA2"
+            },
+            "Hardware": {
+              "CPU": "400 MHz",
+              "RAM": "8 MB",
+              "Porty": "1× WAN + 3× LAN 10/100 Mb/s",
+              "Napájení": "DC 9 V / 0,6 A",
+              "Rozměry": "185,6 × 118,4 × 31,2 mm"
+            },
+            "Funkce": {
+              "Režimy": "router, opakovač, WISP, AP",
+              "Rodičovská kontrola": "ano"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/F3",
+              "note": "Tenda Global – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/specification/F3",
+              "note": "Tenda Global – specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.tendacn.com/product/F3",
+              "note": "Fotografie: oficiální web výrobce (Tenda)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Varianty „home/office/school“ jsou jen segmenty ze sourcingu – výrobek je stejný.",
+          "images": [
+            "/store/img/products/tenda-f3/1.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/tenda-f3/1.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/UserFiles/Image/Product/2015527/201552711259526.jpg",
+              "size": "1000x1000"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "tenda-f6",
+      "variants": {
+        "tenda-f6-home": {
+          "officialName": "Tenda F6 N300 Easy Setup Wi-Fi router (home)",
+          "shortDesc": "Wi-Fi router N300 (2,4 GHz) se 4 anténami 5 dBi a snadným nastavením",
+          "description": "Tenda F6 je Wi-Fi router N300 pro domácnosti se snadným nastavením. V pásmu 2,4 GHz dosahuje až 300 Mb/s, čtyři antény 5 dBi zlepšují dosah. Podporuje režimy router, opakovač, WISP a AP a rodičovskou kontrolu.",
+          "specs": {
+            "Wi-Fi": {
+              "Standard": "802.11b/g/n (2,4 GHz)",
+              "Rychlost": "až 300 Mb/s",
+              "Antény": "4× externí 5 dBi",
+              "Zabezpečení": "WPA/WPA2"
+            },
+            "Hardware": {
+              "CPU": "400 MHz",
+              "RAM": "8 MB",
+              "Porty": "1× WAN + 3× LAN 10/100 Mb/s",
+              "Napájení": "DC 9 V / 0,6 A"
+            },
+            "Funkce": {
+              "Režimy": "router, opakovač, WISP, AP",
+              "Rodičovská kontrola": "ano"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/F6",
+              "note": "Tenda Global – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/specification/F6",
+              "note": "Tenda Global – specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.tendacn.com/product/F6",
+              "note": "Fotografie: oficiální web výrobce (Tenda)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Varianty „home/office/school“ jsou jen segmenty ze sourcingu – výrobek je stejný.",
+          "images": [
+            "/store/img/products/tenda-f6/1.webp",
+            "/store/img/products/tenda-f6/2.webp",
+            "/store/img/products/tenda-f6/3.webp",
+            "/store/img/products/tenda-f6/4.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/tenda-f6/1.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/UserFiles/Image/Product/2019530/201905301524596092.jpg",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/tenda-f6/2.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/pro_pictures/F6V4/1-0.png",
+              "size": "889x1060"
+            },
+            {
+              "file": "/store/img/products/tenda-f6/3.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/pro_pictures/f6v4/5.jpg",
+              "size": "1600x652"
+            },
+            {
+              "file": "/store/img/products/tenda-f6/4.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/pro_pictures/f6v4/6.jpg",
+              "size": "1600x900"
+            }
+          ]
+        },
+        "tenda-f6-office": {
+          "officialName": "Tenda F6 N300 Easy Setup Wi-Fi router (office)",
+          "shortDesc": "Wi-Fi router N300 (2,4 GHz) se 4 anténami 5 dBi a snadným nastavením",
+          "description": "Tenda F6 je Wi-Fi router N300 pro domácnosti se snadným nastavením. V pásmu 2,4 GHz dosahuje až 300 Mb/s, čtyři antény 5 dBi zlepšují dosah. Podporuje režimy router, opakovač, WISP a AP a rodičovskou kontrolu.",
+          "specs": {
+            "Wi-Fi": {
+              "Standard": "802.11b/g/n (2,4 GHz)",
+              "Rychlost": "až 300 Mb/s",
+              "Antény": "4× externí 5 dBi",
+              "Zabezpečení": "WPA/WPA2"
+            },
+            "Hardware": {
+              "CPU": "400 MHz",
+              "RAM": "8 MB",
+              "Porty": "1× WAN + 3× LAN 10/100 Mb/s",
+              "Napájení": "DC 9 V / 0,6 A"
+            },
+            "Funkce": {
+              "Režimy": "router, opakovač, WISP, AP",
+              "Rodičovská kontrola": "ano"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/F6",
+              "note": "Tenda Global – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/specification/F6",
+              "note": "Tenda Global – specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.tendacn.com/product/F6",
+              "note": "Fotografie: oficiální web výrobce (Tenda)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Varianty „home/office/school“ jsou jen segmenty ze sourcingu – výrobek je stejný.",
+          "images": [
+            "/store/img/products/tenda-f6/1.webp",
+            "/store/img/products/tenda-f6/2.webp",
+            "/store/img/products/tenda-f6/3.webp",
+            "/store/img/products/tenda-f6/4.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/tenda-f6/1.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/UserFiles/Image/Product/2019530/201905301524596092.jpg",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/tenda-f6/2.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/pro_pictures/F6V4/1-0.png",
+              "size": "889x1060"
+            },
+            {
+              "file": "/store/img/products/tenda-f6/3.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/pro_pictures/f6v4/5.jpg",
+              "size": "1600x652"
+            },
+            {
+              "file": "/store/img/products/tenda-f6/4.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/pro_pictures/f6v4/6.jpg",
+              "size": "1600x900"
+            }
+          ]
+        },
+        "tenda-f6-school": {
+          "officialName": "Tenda F6 N300 Easy Setup Wi-Fi router (school)",
+          "shortDesc": "Wi-Fi router N300 (2,4 GHz) se 4 anténami 5 dBi a snadným nastavením",
+          "description": "Tenda F6 je Wi-Fi router N300 pro domácnosti se snadným nastavením. V pásmu 2,4 GHz dosahuje až 300 Mb/s, čtyři antény 5 dBi zlepšují dosah. Podporuje režimy router, opakovač, WISP a AP a rodičovskou kontrolu.",
+          "specs": {
+            "Wi-Fi": {
+              "Standard": "802.11b/g/n (2,4 GHz)",
+              "Rychlost": "až 300 Mb/s",
+              "Antény": "4× externí 5 dBi",
+              "Zabezpečení": "WPA/WPA2"
+            },
+            "Hardware": {
+              "CPU": "400 MHz",
+              "RAM": "8 MB",
+              "Porty": "1× WAN + 3× LAN 10/100 Mb/s",
+              "Napájení": "DC 9 V / 0,6 A"
+            },
+            "Funkce": {
+              "Režimy": "router, opakovač, WISP, AP",
+              "Rodičovská kontrola": "ano"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/F6",
+              "note": "Tenda Global – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/specification/F6",
+              "note": "Tenda Global – specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.tendacn.com/product/F6",
+              "note": "Fotografie: oficiální web výrobce (Tenda)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Varianty „home/office/school“ jsou jen segmenty ze sourcingu – výrobek je stejný.",
+          "images": [
+            "/store/img/products/tenda-f6/1.webp",
+            "/store/img/products/tenda-f6/2.webp",
+            "/store/img/products/tenda-f6/3.webp",
+            "/store/img/products/tenda-f6/4.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/tenda-f6/1.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/UserFiles/Image/Product/2019530/201905301524596092.jpg",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/tenda-f6/2.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/pro_pictures/F6V4/1-0.png",
+              "size": "889x1060"
+            },
+            {
+              "file": "/store/img/products/tenda-f6/3.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/pro_pictures/f6v4/5.jpg",
+              "size": "1600x652"
+            },
+            {
+              "file": "/store/img/products/tenda-f6/4.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/pro_pictures/f6v4/6.jpg",
+              "size": "1600x900"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "tenda-i27-ax3000",
+      "variants": {
+        "tenda-i27-ax3000-home": {
+          "officialName": "Tenda i27 AX3000 Wi-Fi 6 stropní přístupový bod (home)",
+          "shortDesc": "Stropní Wi-Fi 6 přístupový bod AX3000 s napájením PoE (802.3at)",
+          "description": "Tenda i27 je stropní přístupový bod Wi-Fi 6 (AX3000) pro kanceláře, školy a provozovny. Dosahuje až 574 Mb/s ve 2,4 GHz a 2 402 Mb/s v 5 GHz, podporuje OFDMA, beamforming a rychlý roaming. Napájí se přes PoE 802.3at, doporučeno pro 60 klientů (max. 254).",
+          "specs": {
+            "Wi-Fi": {
+              "Standard": "802.11a/b/g/n/ac/ax (Wi-Fi 6)",
+              "Rychlost": "2,4 GHz až 574 Mb/s, 5 GHz až 2 402 Mb/s",
+              "Šířka kanálu": "20/40/80/160 MHz",
+              "Technologie": "OFDMA, beamforming, rychlý roaming",
+              "SSID": "až 8 na pásmo"
+            },
+            "Hardware": {
+              "Port": "1× 10/100/1000 Mb/s (PoE)",
+              "Napájení": "PoE 802.3at",
+              "Max. spotřeba": "14,04 W",
+              "Klienti": "doporučeno 60, max. 254",
+              "Režimy": "AP / Client+AP"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/i27",
+              "note": "Tenda Global – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/specification/i27",
+              "note": "Tenda Global – specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.tendacn.com/product/i27",
+              "note": "Fotografie: oficiální web výrobce (Tenda)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Varianty „home/office/school“ jsou jen segmenty ze sourcingu – výrobek je stejný.",
+          "images": [
+            "/store/img/products/tenda-i27/1.webp",
+            "/store/img/products/tenda-i27/2.webp",
+            "/store/img/products/tenda-i27/3.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/tenda-i27/1.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/UserFiles/Info/image/20221222/20221222152358_7701.jpg",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/tenda-i27/2.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/pro_pictures/i27/bg1-960.webp",
+              "size": "960x1153"
+            },
+            {
+              "file": "/store/img/products/tenda-i27/3.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/pro_pictures/i27/bg1-1920.webp",
+              "size": "1600x867"
+            }
+          ]
+        },
+        "tenda-i27-ax3000-office": {
+          "officialName": "Tenda i27 AX3000 Wi-Fi 6 stropní přístupový bod (office)",
+          "shortDesc": "Stropní Wi-Fi 6 přístupový bod AX3000 s napájením PoE (802.3at)",
+          "description": "Tenda i27 je stropní přístupový bod Wi-Fi 6 (AX3000) pro kanceláře, školy a provozovny. Dosahuje až 574 Mb/s ve 2,4 GHz a 2 402 Mb/s v 5 GHz, podporuje OFDMA, beamforming a rychlý roaming. Napájí se přes PoE 802.3at, doporučeno pro 60 klientů (max. 254).",
+          "specs": {
+            "Wi-Fi": {
+              "Standard": "802.11a/b/g/n/ac/ax (Wi-Fi 6)",
+              "Rychlost": "2,4 GHz až 574 Mb/s, 5 GHz až 2 402 Mb/s",
+              "Šířka kanálu": "20/40/80/160 MHz",
+              "Technologie": "OFDMA, beamforming, rychlý roaming",
+              "SSID": "až 8 na pásmo"
+            },
+            "Hardware": {
+              "Port": "1× 10/100/1000 Mb/s (PoE)",
+              "Napájení": "PoE 802.3at",
+              "Max. spotřeba": "14,04 W",
+              "Klienti": "doporučeno 60, max. 254",
+              "Režimy": "AP / Client+AP"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/i27",
+              "note": "Tenda Global – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/specification/i27",
+              "note": "Tenda Global – specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.tendacn.com/product/i27",
+              "note": "Fotografie: oficiální web výrobce (Tenda)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Varianty „home/office/school“ jsou jen segmenty ze sourcingu – výrobek je stejný.",
+          "images": [
+            "/store/img/products/tenda-i27/1.webp",
+            "/store/img/products/tenda-i27/2.webp",
+            "/store/img/products/tenda-i27/3.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/tenda-i27/1.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/UserFiles/Info/image/20221222/20221222152358_7701.jpg",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/tenda-i27/2.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/pro_pictures/i27/bg1-960.webp",
+              "size": "960x1153"
+            },
+            {
+              "file": "/store/img/products/tenda-i27/3.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/pro_pictures/i27/bg1-1920.webp",
+              "size": "1600x867"
+            }
+          ]
+        },
+        "tenda-i27-ax3000-school": {
+          "officialName": "Tenda i27 AX3000 Wi-Fi 6 stropní přístupový bod (school)",
+          "shortDesc": "Stropní Wi-Fi 6 přístupový bod AX3000 s napájením PoE (802.3at)",
+          "description": "Tenda i27 je stropní přístupový bod Wi-Fi 6 (AX3000) pro kanceláře, školy a provozovny. Dosahuje až 574 Mb/s ve 2,4 GHz a 2 402 Mb/s v 5 GHz, podporuje OFDMA, beamforming a rychlý roaming. Napájí se přes PoE 802.3at, doporučeno pro 60 klientů (max. 254).",
+          "specs": {
+            "Wi-Fi": {
+              "Standard": "802.11a/b/g/n/ac/ax (Wi-Fi 6)",
+              "Rychlost": "2,4 GHz až 574 Mb/s, 5 GHz až 2 402 Mb/s",
+              "Šířka kanálu": "20/40/80/160 MHz",
+              "Technologie": "OFDMA, beamforming, rychlý roaming",
+              "SSID": "až 8 na pásmo"
+            },
+            "Hardware": {
+              "Port": "1× 10/100/1000 Mb/s (PoE)",
+              "Napájení": "PoE 802.3at",
+              "Max. spotřeba": "14,04 W",
+              "Klienti": "doporučeno 60, max. 254",
+              "Režimy": "AP / Client+AP"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/i27",
+              "note": "Tenda Global – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/specification/i27",
+              "note": "Tenda Global – specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.tendacn.com/product/i27",
+              "note": "Fotografie: oficiální web výrobce (Tenda)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Varianty „home/office/school“ jsou jen segmenty ze sourcingu – výrobek je stejný.",
+          "images": [
+            "/store/img/products/tenda-i27/1.webp",
+            "/store/img/products/tenda-i27/2.webp",
+            "/store/img/products/tenda-i27/3.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/tenda-i27/1.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/UserFiles/Info/image/20221222/20221222152358_7701.jpg",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/tenda-i27/2.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/pro_pictures/i27/bg1-960.webp",
+              "size": "960x1153"
+            },
+            {
+              "file": "/store/img/products/tenda-i27/3.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/pro_pictures/i27/bg1-1920.webp",
+              "size": "1600x867"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "tenda-mesh-2-pack",
+      "variants": {
+        "tenda-mesh-2-pack": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Tenda mesh 2-pack — síťové prvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Tenda · Síťové prvky",
+            "images": [
+              "/store/img/brand/tenda.jpg"
+            ]
+          },
+          "officialName": "Tenda mesh 2-pack",
+          "unresolvedReason": "Obecný název bez typového označení (switch, mesh, adaptér…) – odpovídá více modelům Tenda."
+        }
+      }
+    },
+    {
+      "variantGroup": "tenda-mesh-3-pack",
+      "variants": {
+        "tenda-mesh-3-pack": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Tenda mesh 3-pack — síťové prvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Tenda · Síťové prvky",
+            "images": [
+              "/store/img/brand/tenda.jpg"
+            ]
+          },
+          "officialName": "Tenda mesh 3-pack",
+          "unresolvedReason": "Obecný název bez typového označení (switch, mesh, adaptér…) – odpovídá více modelům Tenda."
+        }
+      }
+    },
+    {
+      "variantGroup": "tenda-o1",
+      "variants": {
+        "tenda-o1-home": {
+          "officialName": "Tenda O1 2,4 GHz 8 dBi venkovní CPE (home)",
+          "shortDesc": "Venkovní CPE 2,4 GHz, 300 Mb/s, anténa 8 dBi, IP65, pasivní PoE",
+          "description": "Tenda O1 je venkovní bezdrátová jednotka (CPE) pro propojení budov nebo připojení k poskytovateli (WISP). Pracuje v pásmu 2,4 GHz s rychlostí až 300 Mb/s, má dvojitě polarizovanou anténu 8 dBi a krytí IP65. Napájí se pasivním PoE.",
+          "specs": {
+            "Wi-Fi": {
+              "Standard": "802.11b/g/n (2,4 GHz)",
+              "Rychlost": "až 300 Mb/s",
+              "Anténa": "8 dBi, dvojitá polarizace, 60° × 60°"
+            },
+            "Hardware": {
+              "Port": "1× 10/100 Mb/s",
+              "Napájení": "pasivní PoE 9 V / 0,6 A nebo DC",
+              "Spotřeba": "2,6 W",
+              "Krytí": "IP65",
+              "Režimy": "AP / Station / WISP"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/O1",
+              "note": "Tenda Global – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/specification/O1",
+              "note": "Tenda Global – specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.tendacn.com/product/O1",
+              "note": "Fotografie: oficiální web výrobce (Tenda)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Varianty „home/office/school“ jsou jen segmenty ze sourcingu – výrobek je stejný.",
+          "images": [
+            "/store/img/products/tenda-o1/1.webp",
+            "/store/img/products/tenda-o1/2.webp",
+            "/store/img/products/tenda-o1/3.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/tenda-o1/1.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/UserFiles/Image/Product/2018417/201804171429479582.jpg",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/tenda-o1/2.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/pro_pictures/o1/1.png",
+              "size": "420x505"
+            },
+            {
+              "file": "/store/img/products/tenda-o1/3.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/pro_pictures/O1/4.png",
+              "size": "457x406"
+            }
+          ]
+        },
+        "tenda-o1-office": {
+          "officialName": "Tenda O1 2,4 GHz 8 dBi venkovní CPE (office)",
+          "shortDesc": "Venkovní CPE 2,4 GHz, 300 Mb/s, anténa 8 dBi, IP65, pasivní PoE",
+          "description": "Tenda O1 je venkovní bezdrátová jednotka (CPE) pro propojení budov nebo připojení k poskytovateli (WISP). Pracuje v pásmu 2,4 GHz s rychlostí až 300 Mb/s, má dvojitě polarizovanou anténu 8 dBi a krytí IP65. Napájí se pasivním PoE.",
+          "specs": {
+            "Wi-Fi": {
+              "Standard": "802.11b/g/n (2,4 GHz)",
+              "Rychlost": "až 300 Mb/s",
+              "Anténa": "8 dBi, dvojitá polarizace, 60° × 60°"
+            },
+            "Hardware": {
+              "Port": "1× 10/100 Mb/s",
+              "Napájení": "pasivní PoE 9 V / 0,6 A nebo DC",
+              "Spotřeba": "2,6 W",
+              "Krytí": "IP65",
+              "Režimy": "AP / Station / WISP"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/O1",
+              "note": "Tenda Global – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/specification/O1",
+              "note": "Tenda Global – specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.tendacn.com/product/O1",
+              "note": "Fotografie: oficiální web výrobce (Tenda)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Varianty „home/office/school“ jsou jen segmenty ze sourcingu – výrobek je stejný.",
+          "images": [
+            "/store/img/products/tenda-o1/1.webp",
+            "/store/img/products/tenda-o1/2.webp",
+            "/store/img/products/tenda-o1/3.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/tenda-o1/1.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/UserFiles/Image/Product/2018417/201804171429479582.jpg",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/tenda-o1/2.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/pro_pictures/o1/1.png",
+              "size": "420x505"
+            },
+            {
+              "file": "/store/img/products/tenda-o1/3.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/pro_pictures/O1/4.png",
+              "size": "457x406"
+            }
+          ]
+        },
+        "tenda-o1-school": {
+          "officialName": "Tenda O1 2,4 GHz 8 dBi venkovní CPE (school)",
+          "shortDesc": "Venkovní CPE 2,4 GHz, 300 Mb/s, anténa 8 dBi, IP65, pasivní PoE",
+          "description": "Tenda O1 je venkovní bezdrátová jednotka (CPE) pro propojení budov nebo připojení k poskytovateli (WISP). Pracuje v pásmu 2,4 GHz s rychlostí až 300 Mb/s, má dvojitě polarizovanou anténu 8 dBi a krytí IP65. Napájí se pasivním PoE.",
+          "specs": {
+            "Wi-Fi": {
+              "Standard": "802.11b/g/n (2,4 GHz)",
+              "Rychlost": "až 300 Mb/s",
+              "Anténa": "8 dBi, dvojitá polarizace, 60° × 60°"
+            },
+            "Hardware": {
+              "Port": "1× 10/100 Mb/s",
+              "Napájení": "pasivní PoE 9 V / 0,6 A nebo DC",
+              "Spotřeba": "2,6 W",
+              "Krytí": "IP65",
+              "Režimy": "AP / Station / WISP"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/O1",
+              "note": "Tenda Global – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/specification/O1",
+              "note": "Tenda Global – specifikace",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.tendacn.com/product/O1",
+              "note": "Fotografie: oficiální web výrobce (Tenda)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Varianty „home/office/school“ jsou jen segmenty ze sourcingu – výrobek je stejný.",
+          "images": [
+            "/store/img/products/tenda-o1/1.webp",
+            "/store/img/products/tenda-o1/2.webp",
+            "/store/img/products/tenda-o1/3.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/tenda-o1/1.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/UserFiles/Image/Product/2018417/201804171429479582.jpg",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/tenda-o1/2.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/pro_pictures/o1/1.png",
+              "size": "420x505"
+            },
+            {
+              "file": "/store/img/products/tenda-o1/3.webp",
+              "source": "https://static.tenda.com.cn/tdeweb/pro_pictures/O1/4.png",
+              "size": "457x406"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "tenda-o3s",
+      "variants": {
+        "tenda-o3s-home": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Tenda O3S (home) — routery a síťové prvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Tenda · Routery a síťové prvky · home",
+            "images": [
+              "/store/img/brand/tenda.jpg"
+            ]
+          },
+          "officialName": "Tenda O3S (home)",
+          "unresolvedReason": "Model O3S Tenda nevyrábí (existuje O3 – 2,4 GHz a OS3 – 5 GHz); nelze jednoznačně určit."
+        },
+        "tenda-o3s-office": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Tenda O3S (office) — routery a síťové prvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Tenda · Routery a síťové prvky · office",
+            "images": [
+              "/store/img/brand/tenda.jpg"
+            ]
+          },
+          "officialName": "Tenda O3S (office)",
+          "unresolvedReason": "Model O3S Tenda nevyrábí (existuje O3 – 2,4 GHz a OS3 – 5 GHz); nelze jednoznačně určit."
+        },
+        "tenda-o3s-school": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Tenda O3S (school) — routery a síťové prvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Tenda · Routery a síťové prvky · school",
+            "images": [
+              "/store/img/brand/tenda.jpg"
+            ]
+          },
+          "officialName": "Tenda O3S (school)",
+          "unresolvedReason": "Model O3S Tenda nevyrábí (existuje O3 – 2,4 GHz a OS3 – 5 GHz); nelze jednoznačně určit."
+        }
+      }
+    },
+    {
+      "variantGroup": "tenda-outdoor-ap-5ghz",
+      "variants": {
+        "tenda-outdoor-ap-5ghz": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Tenda outdoor AP 5GHz — síťové prvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Tenda · Síťové prvky",
+            "images": [
+              "/store/img/brand/tenda.jpg"
+            ]
+          },
+          "officialName": "Tenda outdoor AP 5GHz",
+          "unresolvedReason": "Obecný název bez typového označení (switch, mesh, adaptér…) – odpovídá více modelům Tenda."
+        }
+      }
+    },
+    {
+      "variantGroup": "tenda-tx9-ax3000",
+      "variants": {
+        "tenda-tx9-ax3000-home": {
+          "officialName": "Tenda TX9 AX3000 Wi-Fi 6 router (home)",
+          "shortDesc": "Dvoupásmový gigabitový Wi-Fi 6 router AX3000 s WPA3 a podporou Mesh",
+          "description": "Tenda TX9 je dvoupásmový Wi-Fi 6 router AX3000 s rychlostí až 2 402 Mb/s v 5 GHz a 574 Mb/s v 2,4 GHz. Dvoujádrový procesor 1,6 GHz, gigabitové porty (1× WAN, 3× LAN), čtyři antény 6 dBi, podpora WPA3, IPv6 a sítě Mesh.\n\nVýrobce vede model jako ukončený (EOL) – před objednáním ověřte dostupnost.",
+          "specs": {
+            "Wi-Fi": {
+              "Standard": "Wi-Fi 6 (802.11ax), AX3000",
+              "Rychlost": "5 GHz až 2 402 Mb/s, 2,4 GHz až 574 Mb/s",
+              "Antény": "4× externí 6 dBi",
+              "Zabezpečení": "WPA3"
+            },
+            "Hardware": {
+              "CPU": "dvoujádrový 1,6 GHz",
+              "Porty": "1× WAN + 3× LAN 10/100/1000 Mb/s"
+            },
+            "Funkce": {
+              "Mesh": "ano (one-click Mesh)",
+              "IPv6": "ano",
+              "Stav": "EOL (ukončený model)"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/TX9.html",
+              "note": "Tenda Global – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/support/TX9",
+              "note": "Tenda Global – podpora TX9 (EOL)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Varianty „home/office/school“ jsou jen segmenty ze sourcingu – výrobek je stejný.",
+          "imageNote": "Oficiální stránka (EOL) nemá produktovou fotografii – ponechán obrázek značky."
+        },
+        "tenda-tx9-ax3000-office": {
+          "officialName": "Tenda TX9 AX3000 Wi-Fi 6 router (office)",
+          "shortDesc": "Dvoupásmový gigabitový Wi-Fi 6 router AX3000 s WPA3 a podporou Mesh",
+          "description": "Tenda TX9 je dvoupásmový Wi-Fi 6 router AX3000 s rychlostí až 2 402 Mb/s v 5 GHz a 574 Mb/s v 2,4 GHz. Dvoujádrový procesor 1,6 GHz, gigabitové porty (1× WAN, 3× LAN), čtyři antény 6 dBi, podpora WPA3, IPv6 a sítě Mesh.\n\nVýrobce vede model jako ukončený (EOL) – před objednáním ověřte dostupnost.",
+          "specs": {
+            "Wi-Fi": {
+              "Standard": "Wi-Fi 6 (802.11ax), AX3000",
+              "Rychlost": "5 GHz až 2 402 Mb/s, 2,4 GHz až 574 Mb/s",
+              "Antény": "4× externí 6 dBi",
+              "Zabezpečení": "WPA3"
+            },
+            "Hardware": {
+              "CPU": "dvoujádrový 1,6 GHz",
+              "Porty": "1× WAN + 3× LAN 10/100/1000 Mb/s"
+            },
+            "Funkce": {
+              "Mesh": "ano (one-click Mesh)",
+              "IPv6": "ano",
+              "Stav": "EOL (ukončený model)"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/TX9.html",
+              "note": "Tenda Global – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/support/TX9",
+              "note": "Tenda Global – podpora TX9 (EOL)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Varianty „home/office/school“ jsou jen segmenty ze sourcingu – výrobek je stejný.",
+          "imageNote": "Oficiální stránka (EOL) nemá produktovou fotografii – ponechán obrázek značky."
+        },
+        "tenda-tx9-ax3000-school": {
+          "officialName": "Tenda TX9 AX3000 Wi-Fi 6 router (school)",
+          "shortDesc": "Dvoupásmový gigabitový Wi-Fi 6 router AX3000 s WPA3 a podporou Mesh",
+          "description": "Tenda TX9 je dvoupásmový Wi-Fi 6 router AX3000 s rychlostí až 2 402 Mb/s v 5 GHz a 574 Mb/s v 2,4 GHz. Dvoujádrový procesor 1,6 GHz, gigabitové porty (1× WAN, 3× LAN), čtyři antény 6 dBi, podpora WPA3, IPv6 a sítě Mesh.\n\nVýrobce vede model jako ukončený (EOL) – před objednáním ověřte dostupnost.",
+          "specs": {
+            "Wi-Fi": {
+              "Standard": "Wi-Fi 6 (802.11ax), AX3000",
+              "Rychlost": "5 GHz až 2 402 Mb/s, 2,4 GHz až 574 Mb/s",
+              "Antény": "4× externí 6 dBi",
+              "Zabezpečení": "WPA3"
+            },
+            "Hardware": {
+              "CPU": "dvoujádrový 1,6 GHz",
+              "Porty": "1× WAN + 3× LAN 10/100/1000 Mb/s"
+            },
+            "Funkce": {
+              "Mesh": "ano (one-click Mesh)",
+              "IPv6": "ano",
+              "Stav": "EOL (ukončený model)"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/TX9.html",
+              "note": "Tenda Global – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "official",
+              "url": "https://www.tendacn.com/product/support/TX9",
+              "note": "Tenda Global – podpora TX9 (EOL)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Varianty „home/office/school“ jsou jen segmenty ze sourcingu – výrobek je stejný.",
+          "imageNote": "Oficiální stránka (EOL) nemá produktovou fotografii – ponechán obrázek značky."
+        }
+      }
+    },
+    {
+      "variantGroup": "tenda-usb-wifi-adapter",
+      "variants": {
+        "tenda-usb-wifi-adapter": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Tenda USB WiFi adapter — síťové prvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Tenda · Síťové prvky",
+            "images": [
+              "/store/img/brand/tenda.jpg"
+            ]
+          },
+          "officialName": "Tenda USB WiFi adapter",
+          "unresolvedReason": "Obecný název bez typového označení (switch, mesh, adaptér…) – odpovídá více modelům Tenda."
+        }
+      }
+    },
+    {
+      "variantGroup": "tenda-wifi6-repeater",
+      "variants": {
+        "tenda-wifi6-repeater": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Tenda WiFi6 repeater — síťové prvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Tenda · Síťové prvky",
+            "images": [
+              "/store/img/brand/tenda.jpg"
+            ]
+          },
+          "officialName": "Tenda WiFi6 repeater",
+          "unresolvedReason": "Obecný název bez typového označení (switch, mesh, adaptér…) – odpovídá více modelům Tenda."
+        }
+      }
+    }
+  ]
+}
