@@ -1,0 +1,2515 @@
+{
+  "brand": "Baseus",
+  "verified": "2026-11-13",
+  "groups": [
+    {
+      "variantGroup": "baseus-10-in-1",
+      "variants": {
+        "baseus-10-in-1": {
+          "officialName": "Baseus 10-in-1 Dual Display USB-C Hub",
+          "shortDesc": "USB-C hub 10 v 1 pro připojení dvou monitorů",
+          "description": "USB-C hub Baseus 10 v 1 umožní k notebooku připojit dva externí displeje a další příslušenství přes jediný port USB-C.",
+          "specs": {
+            "Parametry": {
+              "Připojení": "USB-C",
+              "Počet rozhraní": "10 v 1",
+              "Monitory": "podpora dvou displejů"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.baseus.com/products/10-in-1-dual-display-usb-c-hub",
+              "note": "Baseus Official Store (US) – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.baseus.com/products/10-in-1-dual-display-usb-c-hub",
+              "note": "Fotografie: oficiální galerie výrobce (Baseus)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídajícímu oficiálnímu produktu Baseus.",
+          "images": [
+            "/store/img/products/baseus-10-in-1/1.webp",
+            "/store/img/products/baseus-10-in-1/2.webp",
+            "/store/img/products/baseus-10-in-1/3.webp",
+            "/store/img/products/baseus-10-in-1/4.webp",
+            "/store/img/products/baseus-10-in-1/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/baseus-10-in-1/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_10_in_1_Dual_Display_USB-C_Hub.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-10-in-1/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_10_in_1_Dual_Display_USB-C_Hub_1.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-10-in-1/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_10_in_1_Dual_Display_USB-C_Hub_2.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-10-in-1/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_10_in_1_Dual_Display_USB-C_Hub_3.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-10-in-1/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_10_in_1_Dual_Display_USB-C_Hub_4.jpg",
+              "size": "1200x1200"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-100w-4-port",
+      "variants": {
+        "baseus-100w-4-port": {
+          "officialName": "Baseus GaN2 100W 4-Port nabíječka",
+          "shortDesc": "GaN nabíječka 100 W se 4 porty pro notebooky i telefony",
+          "description": "Nabíječka Baseus GaN2 s výkonem 100 W nabije až čtyři zařízení současně, včetně notebooků s USB-C – MacBook Pro 16\" (96 W) podle výrobce nabije za 2 hodiny. Kompatibilní s notebooky Lenovo, Dell, HP, Surface, Chromebooky a dalšími.",
+          "specs": {
+            "Parametry": {
+              "Celkový výkon": "100 W",
+              "Porty": "4",
+              "Technologie": "GaN II"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.baseus.com/products/gan2-4-ports-fast-charger-100w",
+              "note": "Baseus Official Store (US) – produktová stránka",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídajícímu oficiálnímu produktu Baseus.",
+          "imageNote": "Oficiální fotografie existují jen pro americkou verzi (US vidlice/zásuvky) – nepoužito, ponechán obrázek značky."
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-120w-car-charger",
+      "variants": {
+        "baseus-120w-car-charger": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Baseus 120W car charger — auto elektronika ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Baseus · Auto elektronika",
+            "images": [
+              "/store/img/brand/baseus.jpg"
+            ]
+          },
+          "officialName": "Baseus 120W car charger",
+          "unresolvedReason": "V oficiální nabídce Baseus není produkt s těmito parametry."
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-140w-3-port",
+      "variants": {
+        "baseus-140w-3-port": {
+          "officialName": "Baseus PowerMega 140W 3-Port nabíječka",
+          "shortDesc": "GaN nabíječka 140 W (2× USB-C, 1× USB-A) s podporou PD 3.1",
+          "description": "Nabíječka Baseus PowerMega s výkonem 140 W a podporou USB PD 3.1 nabije i výkonné notebooky. Má dva porty USB-C a jeden USB-A, v balení je kabel USB-C 240 W (1 m).",
+          "specs": {
+            "Parametry": {
+              "Celkový výkon": "140 W",
+              "Porty": "2× USB-C, 1× USB-A",
+              "Protokoly": "PD 3.1 / PD 3.0 / PPS / QC 5.0 / QC 4.0+ / QC 3.0",
+              "Vstup": "AC 110–240 V, 50–60 Hz",
+              "Rozdělení výkonu (3 porty)": "100 W + 30 W + 18 W"
+            },
+            "Obsah balení": {
+              "Balení": "nabíječka, kabel USB-C 240 W (1 m), návod"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.baseus.com/products/powermega-3-ports-fast-charger-140w",
+              "note": "Baseus Official Store (US) – produktová stránka",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídajícímu oficiálnímu produktu Baseus.",
+          "imageNote": "Oficiální fotografie existují jen pro americkou verzi (US vidlice/zásuvky) – nepoužito, ponechán obrázek značky."
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-20w-1c",
+      "variants": {
+        "baseus-20w-1c": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Baseus 20W 1C — nabíječky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Baseus · Nabíječky",
+            "images": [
+              "/store/img/brand/baseus.jpg"
+            ]
+          },
+          "officialName": "Baseus 20W 1C",
+          "unresolvedReason": "V oficiální nabídce Baseus není produkt s těmito parametry."
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-3-in-1-retractable",
+      "variants": {
+        "baseus-3-in-1-retractable": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Baseus 3-in-1 retractable — kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Baseus · Kabely",
+            "images": [
+              "/store/img/brand/baseus.jpg"
+            ]
+          },
+          "officialName": "Baseus 3-in-1 retractable",
+          "unresolvedReason": "Obecný název bez typového označení – odpovídá více různým produktům Baseus, nelze jednoznačně přiřadit."
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-30w-2-port",
+      "variants": {
+        "baseus-30w-2-port": {
+          "officialName": "Baseus Super Si Pro 30W dvouportová nabíječka",
+          "shortDesc": "Kompaktní nabíječka 30 W s porty USB-C a USB-A",
+          "description": "Kompaktní nabíječka Baseus Super Si Pro s výkonem 30 W rychle nabije iPhone (iPhone 13 Pro z 0 na 60 % za 30 minut) i iPad. Při současném nabíjení dvou zařízení dodává 18 W z USB-C a 12 W z USB-A.",
+          "specs": {
+            "Parametry": {
+              "Celkový výkon": "30 W",
+              "Porty": "1× USB-C, 1× USB-A",
+              "Dva porty současně": "18 W + 12 W"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.baseus.com/products/super-si-pro-dual-port-fast-charger-30w",
+              "note": "Baseus Official Store (US) – produktová stránka",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídajícímu oficiálnímu produktu Baseus.",
+          "imageNote": "Oficiální fotografie existují jen pro americkou verzi (US vidlice/zásuvky) – nepoužito, ponechán obrázek značky."
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-40w-car-charger",
+      "variants": {
+        "baseus-40w-car-charger": {
+          "officialName": "Baseus autonabíječka USB-A + USB-C 40W",
+          "shortDesc": "Autonabíječka 40 W s porty USB-C a USB-A pro 12–24 V",
+          "description": "Autonabíječka Baseus s porty USB-C a USB-A nabije dvě zařízení současně s celkovým výkonem 40 W. Podporuje PD 3.0, QC 3.0 a další protokoly a hodí se do aut i nákladních vozů s napětím 12–24 V.",
+          "specs": {
+            "Parametry": {
+              "Celkový výkon": "40 W",
+              "Porty": "1× USB-C, 1× USB-A",
+              "Protokoly": "PD 3.0, QC 3.0/2.0, AFC, FCP",
+              "Napájení": "12–24 V"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.baseus.com/products/usb-a-usb-c-car-charger-40w",
+              "note": "Baseus Official Store (US) – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.baseus.com/products/usb-a-usb-c-car-charger-40w",
+              "note": "Fotografie: oficiální galerie výrobce (Baseus)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídajícímu oficiálnímu produktu Baseus.",
+          "images": [
+            "/store/img/products/baseus-40w-car-charger/1.webp",
+            "/store/img/products/baseus-40w-car-charger/2.webp",
+            "/store/img/products/baseus-40w-car-charger/3.webp",
+            "/store/img/products/baseus-40w-car-charger/4.webp",
+            "/store/img/products/baseus-40w-car-charger/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/baseus-40w-car-charger/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_USB-A_USB-C_Car_Charger_40W_Gray_1_front.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-40w-car-charger/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_USB-A_USB-C_Car_Charger_40W_Gray_2_side.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-40w-car-charger/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_USB-A_USB-C_Car_Charger_40W_Gray_3-bottom_view.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-40w-car-charger/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_USB-A_USB-C_Car_Charger_40W_Gray_4_side.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-40w-car-charger/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_USB-A_USB-C_Car_Charger_40W_Gray_5_inside.jpg",
+              "size": "1200x1200"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-45w-2c1a",
+      "variants": {
+        "baseus-45w-2c1a": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Baseus 45W 2C1A — nabíječky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Baseus · Nabíječky",
+            "images": [
+              "/store/img/brand/baseus.jpg"
+            ]
+          },
+          "officialName": "Baseus 45W 2C1A",
+          "unresolvedReason": "V oficiální nabídce Baseus není produkt s těmito parametry."
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-6-in-1",
+      "variants": {
+        "baseus-6-in-1": {
+          "officialName": "Baseus 6-in-1 USB-C Hub",
+          "shortDesc": "USB-C hub 6 v 1: HDMI 4K, USB 3.0, SD/TF, 3,5 mm jack a PD 60 W",
+          "description": "USB-C hub Baseus 6 v 1 je navržený pro iPad Pro a Air i notebooky. Nabízí výstup HDMI 4K, port USB 3.0, čtečku karet SD/TF, audio jack 3,5 mm a nabíjecí port USB-C PD s příkonem až 60 W.",
+          "specs": {
+            "Parametry": {
+              "Připojení": "USB-C",
+              "Rozhraní": "HDMI 4K, USB 3.0, SD, TF, 3,5 mm jack, USB-C PD",
+              "Napájení PD": "až 60 W",
+              "Hmotnost": "cca 65 g (2,29 oz)"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.baseus.com/products/6-in-1-usb-c-hub",
+              "note": "Baseus Official Store (US) – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.baseus.com/products/6-in-1-usb-c-hub",
+              "note": "Fotografie: oficiální galerie výrobce (Baseus)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídajícímu oficiálnímu produktu Baseus.",
+          "images": [
+            "/store/img/products/baseus-6-in-1/1.webp",
+            "/store/img/products/baseus-6-in-1/2.webp",
+            "/store/img/products/baseus-6-in-1/3.webp",
+            "/store/img/products/baseus-6-in-1/4.webp",
+            "/store/img/products/baseus-6-in-1/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/baseus-6-in-1/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_6_in_1_USB_C_Hub_1_front_Side.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-6-in-1/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_6_in_1_USB_C_Hub_2_side.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-6-in-1/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_6_in_1_USB_C_Hub_3_side.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-6-in-1/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_6_in_1_USB_C_Hub_4_back.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-6-in-1/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_6_in_1_USB_C_Hub_5_type_c.jpg",
+              "size": "1200x1200"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-65w-2c1a",
+      "variants": {
+        "baseus-65w-2c1a": {
+          "officialName": "Baseus GaN2 65W 3-Port nabíječka",
+          "shortDesc": "GaN nabíječka 65 W se třemi porty (2× USB-C, 1× USB-A)",
+          "description": "Nabíječka Baseus GaN2 s celkovým výkonem 65 W nabije notebook, tablet i telefon. MacBook Pro 13\" podle výrobce plně nabije za 2 hodiny, podporuje PD 3.0, PPS a QC 3.0 a Samsung Super Fast Charging 45 W.",
+          "specs": {
+            "Parametry": {
+              "Celkový výkon": "65 W",
+              "Porty": "2× USB-C, 1× USB-A",
+              "Protokoly": "PD 3.0, PPS, QC 3.0"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.baseus.com/products/gan2-3-ports-fast-charger-65w",
+              "note": "Baseus Official Store (US) – produktová stránka",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídajícímu oficiálnímu produktu Baseus.",
+          "imageNote": "Oficiální fotografie existují jen pro americkou verzi (US vidlice/zásuvky) – nepoužito, ponechán obrázek značky."
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-65w-car-charger",
+      "variants": {
+        "baseus-65w-car-charger": {
+          "officialName": "Baseus autonabíječka USB-A + USB-C 65W",
+          "shortDesc": "Autonabíječka 65 W, nabije i notebook (USB-C 65 W, USB-A 30 W)",
+          "description": "Autonabíječka Baseus nabije přes USB-C notebook výkonem až 65 W, port USB-A dodá až 30 W. Při nabíjení dvou zařízení dodává 45 W + 18 W. Pro auta 12–24 V.",
+          "specs": {
+            "Parametry": {
+              "USB-C": "až 65 W",
+              "USB-A": "až 30 W",
+              "Dva porty současně": "45 W + 18 W (celkem 63 W)",
+              "Protokoly": "PPS, PD 3.0, QC 4.0+, AFC, FCP",
+              "Napájení": "12–24 V"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.baseus.com/products/usb-a-usb-c-car-charger-65w",
+              "note": "Baseus Official Store (US) – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.baseus.com/products/usb-a-usb-c-car-charger-65w",
+              "note": "Fotografie: oficiální galerie výrobce (Baseus)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídajícímu oficiálnímu produktu Baseus.",
+          "images": [
+            "/store/img/products/baseus-65w-car-charger/1.webp",
+            "/store/img/products/baseus-65w-car-charger/2.webp",
+            "/store/img/products/baseus-65w-car-charger/3.webp",
+            "/store/img/products/baseus-65w-car-charger/4.webp",
+            "/store/img/products/baseus-65w-car-charger/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/baseus-65w-car-charger/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_USB-A_USB-C_Car_Charger_65W_1_front.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-65w-car-charger/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_USB-A_USB-C_Car_Charger_65W_2_side.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-65w-car-charger/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_USB-A_USB-C_Car_Charger_65W_3_side.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-65w-car-charger/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_USB-A_USB-C_Car_Charger_65W_4_inside.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-65w-car-charger/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_USB-A_USB-C_Car_Charger_65W_5_bottom_view.jpg",
+              "size": "1200x1200"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-67w-desktop",
+      "variants": {
+        "baseus-67w-desktop": {
+          "officialName": "Baseus GaN5 67W 4-Port nabíjecí stanice",
+          "shortDesc": "Stolní GaN nabíjecí stanice 67 W se 4 porty",
+          "description": "Stolní nabíjecí stanice Baseus GaN5 s výkonem 67 W nabije čtyři zařízení najednou – tablety, telefony, Nintendo Switch nebo Steam Deck. Port USB-A nepodporuje rychlonabíjení.",
+          "specs": {
+            "Parametry": {
+              "Celkový výkon": "67 W",
+              "Porty": "4",
+              "Technologie": "GaN5"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.baseus.com/products/gan5-4-ports-charging-sation-67w",
+              "note": "Baseus Official Store (US) – produktová stránka",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídajícímu oficiálnímu produktu Baseus.",
+          "imageNote": "Oficiální fotografie existují jen pro americkou verzi (US vidlice/zásuvky) – nepoužito, ponechán obrázek značky."
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-7-in-1",
+      "variants": {
+        "baseus-7-in-1": {
+          "officialName": "Baseus Joystar 7-in-1 USB-C Hub",
+          "shortDesc": "USB-C hub 7 v 1 s datovým portem 5 Gb/s, čtečkou karet a PD 100 W",
+          "description": "USB-C hub Baseus Joystar 7 v 1 přidá k notebooku datový port 5 Gb/s, dvojitou čtečku karet a průchozí napájení Power Delivery až 100 W.",
+          "specs": {
+            "Parametry": {
+              "Připojení": "USB-C",
+              "Počet rozhraní": "7 v 1",
+              "Přenos dat": "5 Gb/s",
+              "Napájení PD": "až 100 W"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.baseus.com/products/joystar-7-in-1-usb-c-hub",
+              "note": "Baseus Official Store (US) – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.baseus.com/products/joystar-7-in-1-usb-c-hub",
+              "note": "Fotografie: oficiální galerie výrobce (Baseus)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídajícímu oficiálnímu produktu Baseus.",
+          "images": [
+            "/store/img/products/baseus-7-in-1/1.webp",
+            "/store/img/products/baseus-7-in-1/2.webp",
+            "/store/img/products/baseus-7-in-1/3.webp",
+            "/store/img/products/baseus-7-in-1/4.webp",
+            "/store/img/products/baseus-7-in-1/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/baseus-7-in-1/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_Joystar_7_in_1_USB-C_Hub_1.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-7-in-1/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_Joystar_7_in_1_USB-C_Hub_2.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-7-in-1/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_Joystar_7_in_1_USB-C_Hub_3.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-7-in-1/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_Joystar_7_in_1_USB-C_Hub_4.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-7-in-1/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_Joystar_7_in_1_USB-C_Hub_5.jpg",
+              "size": "1200x1200"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-8-in-1",
+      "variants": {
+        "baseus-8-in-1": {
+          "officialName": "Baseus Joystar 8-in-1 USB-C Hub",
+          "shortDesc": "USB-C hub 8 v 1: HDMI 4K@30 Hz, 5 Gb/s, Gigabit Ethernet, SD/TF",
+          "description": "USB-C hub Baseus Joystar 8 v 1 nabízí výstup HDMI 4K@30 Hz, obousměrný přenos dat 5 Gb/s, gigabitový Ethernet a čtečku karet SD a TF s rychlostí až 60 MB/s.",
+          "specs": {
+            "Parametry": {
+              "Připojení": "USB-C",
+              "Výstup obrazu": "HDMI 4K@30 Hz",
+              "Přenos dat": "5 Gb/s",
+              "Síť": "1000 Mb/s Ethernet",
+              "Čtečka karet": "SD + TF současně, až 60 MB/s"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.baseus.com/products/joystar-8-in-1-usb-c-hub",
+              "note": "Baseus Official Store (US) – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.baseus.com/products/joystar-8-in-1-usb-c-hub",
+              "note": "Fotografie: oficiální galerie výrobce (Baseus)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídajícímu oficiálnímu produktu Baseus.",
+          "images": [
+            "/store/img/products/baseus-8-in-1/1.webp",
+            "/store/img/products/baseus-8-in-1/2.webp",
+            "/store/img/products/baseus-8-in-1/3.webp",
+            "/store/img/products/baseus-8-in-1/4.webp",
+            "/store/img/products/baseus-8-in-1/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/baseus-8-in-1/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Joystar_8_in_1_USB-C_Hub_1.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-8-in-1/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Joystar_8_in_1_USB-C_Hub_2.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-8-in-1/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Joystar_8_in_1_USB-C_Hub_3.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-8-in-1/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Joystar_8_in_1_USB-C_Hub_4.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-8-in-1/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Joystar_8_in_1_USB-C_Hub_5.jpg",
+              "size": "1200x1200"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-9-in-1",
+      "variants": {
+        "baseus-9-in-1": {
+          "officialName": "Baseus Joystar 9-in-1 USB-C Hub",
+          "shortDesc": "USB-C hub 9 v 1 se dvěma HDMI, až 4K@120 Hz",
+          "description": "USB-C hub Baseus Joystar 9 v 1 má dva výstupy HDMI. Při jednom displeji zvládne HDMI 1 až 4K@120 Hz (vyžaduje USB-C s DP 1.4 a monitor 120 Hz), HDMI 2 až 4K@30 Hz.",
+          "specs": {
+            "Parametry": {
+              "Připojení": "USB-C",
+              "Počet rozhraní": "9 v 1",
+              "Výstup obrazu": "HDMI 1 až 4K@120 Hz, HDMI 2 až 4K@30 Hz"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.baseus.com/products/joystar-9-in-1-usb-c-hub",
+              "note": "Baseus Official Store (US) – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.baseus.com/products/joystar-9-in-1-usb-c-hub",
+              "note": "Fotografie: oficiální galerie výrobce (Baseus)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídajícímu oficiálnímu produktu Baseus.",
+          "images": [
+            "/store/img/products/baseus-9-in-1/1.webp",
+            "/store/img/products/baseus-9-in-1/2.webp",
+            "/store/img/products/baseus-9-in-1/3.webp",
+            "/store/img/products/baseus-9-in-1/4.webp",
+            "/store/img/products/baseus-9-in-1/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/baseus-9-in-1/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Metal_Gleam_9_in_1_USB_C_Hub_1_front_side.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-9-in-1/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Metal_Gleam_9_in_1_USB_C_Hub_2_front.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-9-in-1/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_Metal_Gleam_9_in_1_USB_C_Hub_3_back-side.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-9-in-1/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_Metal_Gleam_9_in_1_USB_C_Hub_4_front_side.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-9-in-1/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_Metal_Gleam_9_in_1_USB_C_Hub_5_inside.jpg",
+              "size": "1200x1200"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-adaman-10000-22-5w",
+      "variants": {
+        "baseus-adaman-10000-22-5w": {
+          "officialName": "Baseus Adaman Power Bank 10000mAh 22,5W",
+          "shortDesc": "Powerbanka 10 000 mAh, 22,5 W, s displejem a 5 porty",
+          "description": "Kovová powerbanka Baseus Adaman s kapacitou 10 000 mAh podporuje rychlonabíjení SCP 22,5 W i PD 20 W pro iPhone. Má až pět portů včetně USB-C, Lightning a micro USB, iPhone nabije na 50 % za 25–30 minut.",
+          "specs": {
+            "Parametry": {
+              "Kapacita": "10 000 mAh",
+              "Max. výkon": "22,5 W",
+              "USB-C": "5V/3A, 9V/2A (18 W)",
+              "Vstupy": "USB-C, Lightning, micro USB",
+              "Nabití powerbanky": "cca 3 h (nabíječka 20 W)"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.baseus.com/products/adaman-power-bank-22-5w-10000mah",
+              "note": "Baseus Official Store (US) – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.baseus.com/products/adaman-power-bank-22-5w-10000mah",
+              "note": "Fotografie: oficiální galerie výrobce (Baseus)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídajícímu oficiálnímu produktu Baseus.",
+          "images": [
+            "/store/img/products/baseus-adaman-10000-22-5w/1.webp",
+            "/store/img/products/baseus-adaman-10000-22-5w/2.webp",
+            "/store/img/products/baseus-adaman-10000-22-5w/3.webp",
+            "/store/img/products/baseus-adaman-10000-22-5w/4.webp",
+            "/store/img/products/baseus-adaman-10000-22-5w/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/baseus-adaman-10000-22-5w/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Adaman_Power_Bank_22.5W_10000mAh_1_front.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-adaman-10000-22-5w/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Adaman_Power_Bank_22.5W_10000mAh_2_front_side.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-adaman-10000-22-5w/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Adaman_Power_Bank_22.5W_10000mAh_3_in_hand.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-adaman-10000-22-5w/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Adaman_Power_Bank_22.5W_10000mAh_4_thin.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-adaman-10000-22-5w/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Adaman_Power_Bank_22.5W_10000mAh_5_two_packs.jpg",
+              "size": "1200x1200"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-adaman2-10000-30w",
+      "variants": {
+        "baseus-adaman2-10000-30w": {
+          "officialName": "Baseus Adaman2 Power Bank 10000mAh 30W",
+          "shortDesc": "Powerbanka 10 000 mAh, 30 W, nabije i MacBook Air",
+          "description": "Powerbanka Baseus Adaman2 s kapacitou 10 000 mAh a výkonem až 30 W nabije MacBook Air, iPady i iPhone (iPhone 13 Pro Max 27 W). Sama se nabije přibližně za 2 h 45 min nabíječkou 18 W a více.",
+          "specs": {
+            "Parametry": {
+              "Kapacita": "10 000 mAh",
+              "Max. výkon": "30 W",
+              "Nabití powerbanky": "cca 2 h 45 min (PD ≥ 18 W)"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.baseus.com/products/adaman2-power-bank-30w-10000mah",
+              "note": "Baseus Official Store (US) – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.baseus.com/products/adaman2-power-bank-30w-10000mah",
+              "note": "Fotografie: oficiální galerie výrobce (Baseus)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídajícímu oficiálnímu produktu Baseus.",
+          "images": [
+            "/store/img/products/baseus-adaman2-10000-30w/1.webp",
+            "/store/img/products/baseus-adaman2-10000-30w/2.webp",
+            "/store/img/products/baseus-adaman2-10000-30w/3.webp",
+            "/store/img/products/baseus-adaman2-10000-30w/4.webp",
+            "/store/img/products/baseus-adaman2-10000-30w/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/baseus-adaman2-10000-30w/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Adaman2_Power_Bank_30W_10000mAh_1_front.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-adaman2-10000-30w/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Adaman2_Power_Bank_30W_10000mAh_2_top_view.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-adaman2-10000-30w/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Adaman2_Power_Bank_30W_10000mAh_3_front_side.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-adaman2-10000-30w/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Adaman2_Power_Bank_30W_10000mAh_4_ports.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-adaman2-10000-30w/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Adaman2_Power_Bank_30W_10000mAh_5_side.jpg",
+              "size": "1200x1200"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-airpow-20000-20w",
+      "variants": {
+        "baseus-airpow-20000-20w": {
+          "officialName": "Baseus Airpow Power Bank 20000mAh 20W",
+          "shortDesc": "Powerbanka 20 000 mAh, 20 W PD, tři porty",
+          "description": "Powerbanka Baseus Airpow s kapacitou 20 000 mAh nabije iPhone 13 přibližně čtyřikrát. Má tři nabíjecí porty a rychlonabíjení PD 20 W, při nabíjení dvou zařízení dodává celkem 15 W.",
+          "specs": {
+            "Parametry": {
+              "Kapacita": "20 000 mAh",
+              "Max. výkon": "20 W (PD)",
+              "Porty": "3",
+              "Dvě zařízení": "celkem 15 W",
+              "Nabití powerbanky": "cca 6 h"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.baseus.com/products/airpow-power-bank-20w-20000mah",
+              "note": "Baseus Official Store (US) – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.baseus.com/products/airpow-power-bank-20w-20000mah",
+              "note": "Fotografie: oficiální galerie výrobce (Baseus)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídajícímu oficiálnímu produktu Baseus.",
+          "images": [
+            "/store/img/products/baseus-airpow-20000-20w/1.webp",
+            "/store/img/products/baseus-airpow-20000-20w/2.webp",
+            "/store/img/products/baseus-airpow-20000-20w/3.webp",
+            "/store/img/products/baseus-airpow-20000-20w/4.webp",
+            "/store/img/products/baseus-airpow-20000-20w/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/baseus-airpow-20000-20w/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Airpow_Power_Bank_20W_20000mAh_1_front_side.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-airpow-20000-20w/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Airpow_Power_Bank_20W_20000mAh_2_top_view.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-airpow-20000-20w/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Airpow_Power_Bank_20W_20000mAh_3_top_side.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-airpow-20000-20w/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Airpow_Power_Bank_20W_20000mAh_4_side.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-airpow-20000-20w/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Airpow_Power_Bank_20W_20000mAh_5_button.jpg",
+              "size": "1200x1200"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-amblight-30000-65w",
+      "variants": {
+        "baseus-amblight-30000-65w": {
+          "officialName": "Baseus Amblight Power Bank 30000mAh 65W",
+          "shortDesc": "Powerbanka 30 000 mAh, 65 W, LED displej, 5 výstupů",
+          "description": "Velkokapacitní powerbanka Baseus Amblight 30 000 mAh s výkonem 65 W nabije notebook (Mac 12\" za 2 hodiny). Má pět výstupů a tři vstupy, LED displej zobrazuje stav baterie, napětí a proud. V balení je kabel USB-C 100 W.",
+          "specs": {
+            "Parametry": {
+              "Kapacita": "30 000 mAh",
+              "Výstup PD": "až 65 W",
+              "Výstup QC": "až 30 W",
+              "Vstup PD": "60 W",
+              "Porty": "5 výstupů, 3 vstupy (vč. Lightning 18 W)",
+              "Displej": "LED (kapacita, napětí, proud)"
+            },
+            "Obsah balení": {
+              "Kabel": "USB-C ↔ USB-C 100 W"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.baseus.com/products/amblight-power-bank-65w-30000mah",
+              "note": "Baseus Official Store (US) – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.baseus.com/products/amblight-power-bank-65w-30000mah",
+              "note": "Fotografie: oficiální galerie výrobce (Baseus)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídajícímu oficiálnímu produktu Baseus.",
+          "images": [
+            "/store/img/products/baseus-amblight-30000-65w/1.webp",
+            "/store/img/products/baseus-amblight-30000-65w/2.webp",
+            "/store/img/products/baseus-amblight-30000-65w/3.webp",
+            "/store/img/products/baseus-amblight-30000-65w/4.webp",
+            "/store/img/products/baseus-amblight-30000-65w/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/baseus-amblight-30000-65w/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Amblight_Power_Bank_65W_30000mAh_Black_1_front_Side.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-amblight-30000-65w/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Amblight_Power_Bank_65W_30000mAh_Black_2_back_Side.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-amblight-30000-65w/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Amblight_Power_Bank_65W_30000mAh_Black_3_5_devices.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-amblight-30000-65w/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Amblight_Power_Bank_65W_30000mAh_Black_4_inside.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-amblight-30000-65w/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Amblight_Power_Bank_65W_30000mAh_Black_5_for_phone.jpg",
+              "size": "1200x1200"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-battery-camera",
+      "variants": {
+        "baseus-battery-camera": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Baseus battery camera — bezpečnostní kamery ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Baseus · Bezpečnostní kamery",
+            "images": [
+              "/store/img/brand/baseus.jpg"
+            ]
+          },
+          "officialName": "Baseus battery camera",
+          "unresolvedReason": "Obecný název bez typového označení – odpovídá více různým produktům Baseus, nelze jednoznačně přiřadit."
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-blade-20000-100w",
+      "variants": {
+        "baseus-blade-20000-100w": {
+          "officialName": "Baseus Blade Laptop Power Bank 20000mAh 100W",
+          "shortDesc": "Tenká powerbanka 20 000 mAh pro notebooky, výstup 100 W, displej",
+          "description": "Plochá powerbanka Baseus Blade s kapacitou 20 000 mAh a výstupem 100 W nabije notebooky s USB-C – za 30 minut z 0 na 36 %. Digitální displej ukazuje stav nabití, vstup USB-C 65 W ji rychle dobije. Ocenění Baseus Design Award 2022.",
+          "specs": {
+            "Parametry": {
+              "Kapacita": "20 000 mAh",
+              "Max. výstup": "100 W (USB-C)",
+              "Vstup": "65 W (USB-C)",
+              "Displej": "digitální"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.baseus.com/products/blade-laptop-power-bank-100w-20000mah",
+              "note": "Baseus Official Store (US) – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.baseus.com/products/blade-laptop-power-bank-100w-20000mah",
+              "note": "Fotografie: oficiální galerie výrobce (Baseus)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídajícímu oficiálnímu produktu Baseus.",
+          "images": [
+            "/store/img/products/baseus-blade-20000-100w/1.webp",
+            "/store/img/products/baseus-blade-20000-100w/2.webp",
+            "/store/img/products/baseus-blade-20000-100w/3.webp",
+            "/store/img/products/baseus-blade-20000-100w/4.webp",
+            "/store/img/products/baseus-blade-20000-100w/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/baseus-blade-20000-100w/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Blade_Laptop_Power_Bank_100W_20000mAh_1_front_side.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-blade-20000-100w/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Blade_Laptop_Power_Bank_100W_20000mAh_2_back.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-blade-20000-100w/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Blade_Laptop_Power_Bank_100W_20000mAh_3_side.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-blade-20000-100w/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Blade_Laptop_Power_Bank_100W_20000mAh_4_top_view.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-blade-20000-100w/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Blade_Laptop_Power_Bank_100W_20000mAh_5_ports.jpg",
+              "size": "1200x1200"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-bowie-anc-tws",
+      "variants": {
+        "baseus-bowie-anc-tws": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Baseus Bowie ANC TWS — audio ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Baseus · Audio",
+            "images": [
+              "/store/img/brand/baseus.jpg"
+            ]
+          },
+          "officialName": "Baseus Bowie ANC TWS",
+          "unresolvedReason": "Obecný název bez typového označení – odpovídá více různým produktům Baseus, nelze jednoznačně přiřadit."
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-bowie-open-ear",
+      "variants": {
+        "baseus-bowie-open-ear": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Baseus Bowie open-ear — audio ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Baseus · Audio",
+            "images": [
+              "/store/img/brand/baseus.jpg"
+            ]
+          },
+          "officialName": "Baseus Bowie open-ear",
+          "unresolvedReason": "Obecný název bez typového označení – odpovídá více různým produktům Baseus, nelze jednoznačně přiřadit."
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-bowie-tws",
+      "variants": {
+        "baseus-bowie-tws": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Baseus Bowie TWS — audio ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Baseus · Audio",
+            "images": [
+              "/store/img/brand/baseus.jpg"
+            ]
+          },
+          "officialName": "Baseus Bowie TWS",
+          "unresolvedReason": "Obecný název bez typového označení – odpovídá více různým produktům Baseus, nelze jednoznačně přiřadit."
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-cable-organizer",
+      "variants": {
+        "baseus-cable-organizer-mid": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Baseus cable organizer (mid) — příslušenství ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Baseus · Příslušenství · mid",
+            "images": [
+              "/store/img/brand/baseus.jpg"
+            ]
+          },
+          "officialName": "Baseus cable organizer (mid)",
+          "unresolvedReason": "Obecný název bez typového označení – odpovídá více různým produktům Baseus, nelze jednoznačně přiřadit."
+        },
+        "baseus-cable-organizer-premium": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Baseus cable organizer (premium) — příslušenství ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Baseus · Příslušenství · premium",
+            "images": [
+              "/store/img/brand/baseus.jpg"
+            ]
+          },
+          "officialName": "Baseus cable organizer (premium)",
+          "unresolvedReason": "Obecný název bez typového označení – odpovídá více různým produktům Baseus, nelze jednoznačně přiřadit."
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-car-vacuum",
+      "variants": {
+        "baseus-car-vacuum": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Baseus car vacuum — auto elektronika ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Baseus · Auto elektronika",
+            "images": [
+              "/store/img/brand/baseus.jpg"
+            ]
+          },
+          "officialName": "Baseus car vacuum",
+          "unresolvedReason": "Obecný název bez typového označení – odpovídá více různým produktům Baseus, nelze jednoznačně přiřadit."
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-desktop-eu-6-port",
+      "variants": {
+        "baseus-desktop-eu-6-port": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Baseus desktop EU 6-port — prodlužovače a smart zásuvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Baseus · Prodlužovače a smart zásuvky",
+            "images": [
+              "/store/img/brand/baseus.jpg"
+            ]
+          },
+          "officialName": "Baseus desktop EU 6-port",
+          "unresolvedReason": "Obecný název bez typového označení – odpovídá více různým produktům Baseus, nelze jednoznačně přiřadit."
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-dual-monitor-dock",
+      "variants": {
+        "baseus-dual-monitor-dock": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Baseus dual monitor dock — huby a docking stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Baseus · Huby a docking stanice",
+            "images": [
+              "/store/img/brand/baseus.jpg"
+            ]
+          },
+          "officialName": "Baseus dual monitor dock",
+          "unresolvedReason": "Obecný název bez typového označení – odpovídá více různým produktům Baseus, nelze jednoznačně přiřadit."
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-elf-20000-65w",
+      "variants": {
+        "baseus-elf-20000-65w": {
+          "officialName": "Baseus Elf Power Bank 20000mAh 65W",
+          "shortDesc": "Powerbanka 20 000 mAh, 65 W, vestavěný kabel USB-C",
+          "description": "Powerbanka Baseus Elf s kapacitou 20 000 mAh má pevný kabel USB-C (výrobce uvádí 10 000 ohybů) a další dva porty USB-C. Výstup 65 W PD nabije běžné notebooky, vstup 65 W ji dobije za 1,5 hodiny.",
+          "specs": {
+            "Parametry": {
+              "Kapacita": "20 000 mAh",
+              "Max. výstup": "65 W PD",
+              "Vstup": "65 W (nabití cca 1,5 h)",
+              "Porty": "vestavěný kabel USB-C + 2× USB-C"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.baseus.com/products/elf-power-bank-65w-20000mah",
+              "note": "Baseus Official Store (US) – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.baseus.com/products/elf-power-bank-65w-20000mah",
+              "note": "Fotografie: oficiální galerie výrobce (Baseus)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídajícímu oficiálnímu produktu Baseus.",
+          "images": [
+            "/store/img/products/baseus-elf-20000-65w/1.webp",
+            "/store/img/products/baseus-elf-20000-65w/2.webp",
+            "/store/img/products/baseus-elf-20000-65w/3.webp",
+            "/store/img/products/baseus-elf-20000-65w/4.webp",
+            "/store/img/products/baseus-elf-20000-65w/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/baseus-elf-20000-65w/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Elf_Power_Bank_65W_20000mAh_1_front_side.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-elf-20000-65w/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Elf_Power_Bank_65W_20000mAh_2_top_view.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-elf-20000-65w/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Elf_Power_Bank_65W_20000mAh_3_back.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-elf-20000-65w/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Elf_Power_Bank_65W_20000mAh_4_front.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-elf-20000-65w/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Elf_Power_Bank_65W_20000mAh_5_cable.jpg",
+              "size": "1200x1200"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-gan-2-in-1-10000-45w",
+      "variants": {
+        "baseus-gan-2-in-1-10000-45w": {
+          "officialName": "Baseus GaN 2v1 Power Bank & nabíječka 10000mAh 45W",
+          "shortDesc": "Powerbanka 10 000 mAh a síťová nabíječka 45 W v jednom",
+          "description": "Baseus GaN 2v1 je zároveň síťová nabíječka a powerbanka s kapacitou 10 000 mAh. USB-C dodá až 45 W, USB-A až 30 W, při použití obou portů 30 W + 15 W.",
+          "specs": {
+            "Parametry": {
+              "Kapacita": "10 000 mAh",
+              "USB-C": "až 45 W",
+              "USB-A": "až 30 W",
+              "Oba porty": "30 W + 15 W",
+              "Vstup": "AC 100–240 V, 50/60 Hz"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.baseus.com/products/gan-2-in-1-power-bank-45w-10000mah",
+              "note": "Baseus Official Store (US) – produktová stránka",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídajícímu oficiálnímu produktu Baseus.",
+          "imageNote": "Oficiální fotografie existují jen pro americkou verzi (US vidlice/zásuvky) – nepoužito, ponechán obrázek značky."
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-gan3-pro-100w",
+      "variants": {
+        "baseus-gan3-pro-100w": {
+          "officialName": "Baseus GaN3 Pro 100W stolní nabíječka",
+          "shortDesc": "Stolní GaN3 nabíječka 100 W se 4 porty a kabelem USB-C 100 W",
+          "description": "Stolní nabíječka Baseus GaN3 Pro s výkonem 100 W nabije MacBook Pro 16\" za 2 hodiny. V balení je prodlužovací napájecí kabel (1,5 m) a kabel USB-C ↔ USB-C 100 W (1 m).",
+          "specs": {
+            "Parametry": {
+              "Celkový výkon": "100 W",
+              "Porty": "4",
+              "Technologie": "GaN3"
+            },
+            "Obsah balení": {
+              "Balení": "nabíječka s napájecím kabelem 1,5 m, kabel USB-C 100 W 1 m, návod"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.baseus.com/products/gan3-pro-4-ports-desktop-charger-100w",
+              "note": "Baseus Official Store (US) – produktová stránka",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídajícímu oficiálnímu produktu Baseus.",
+          "imageNote": "Oficiální fotografie existují jen pro americkou verzi (US vidlice/zásuvky) – nepoužito, ponechán obrázek značky."
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-gan3-pro-65w",
+      "variants": {
+        "baseus-gan3-pro-65w": {
+          "officialName": "Baseus GaN3 Pro 65W stolní nabíječka",
+          "shortDesc": "Stolní GaN3 nabíječka 65 W se 4 porty a kabelem USB-C 100 W",
+          "description": "Stolní nabíječka Baseus GaN3 Pro s výkonem 65 W nabije MacBook za 2 hodiny a díky technologii BPS nabíjí čtyři zařízení současně. Podporuje PD 20 W pro iPhone, QC a Samsung AFC. V balení kabel USB-C 100 W (1 m).",
+          "specs": {
+            "Parametry": {
+              "Celkový výkon": "65 W",
+              "Porty": "4",
+              "Technologie": "GaN3, BPS",
+              "Protokoly": "PD, QC, Samsung AFC"
+            },
+            "Obsah balení": {
+              "Kabel": "USB-C ↔ USB-C 100 W, 1 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.baseus.com/products/gan3-pro-4-ports-desktop-charger-65w",
+              "note": "Baseus Official Store (US) – produktová stránka",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídajícímu oficiálnímu produktu Baseus.",
+          "imageNote": "Oficiální fotografie existují jen pro americkou verzi (US vidlice/zásuvky) – nepoužito, ponechán obrázek značky."
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-laptop-stand",
+      "variants": {
+        "baseus-laptop-stand-black": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Baseus laptop stand (black) — příslušenství ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Baseus · Příslušenství · black",
+            "images": [
+              "/store/img/brand/baseus.jpg"
+            ]
+          },
+          "officialName": "Baseus laptop stand (black)",
+          "unresolvedReason": "Obecný název bez typového označení – odpovídá více různým produktům Baseus, nelze jednoznačně přiřadit."
+        },
+        "baseus-laptop-stand-mid": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Baseus laptop stand (mid) — příslušenství ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Baseus · Příslušenství · mid",
+            "images": [
+              "/store/img/brand/baseus.jpg"
+            ]
+          },
+          "officialName": "Baseus laptop stand (mid)",
+          "unresolvedReason": "Obecný název bez typového označení – odpovídá více různým produktům Baseus, nelze jednoznačně přiřadit."
+        },
+        "baseus-laptop-stand-premium": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Baseus laptop stand (premium) — příslušenství ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Baseus · Příslušenství · premium",
+            "images": [
+              "/store/img/brand/baseus.jpg"
+            ]
+          },
+          "officialName": "Baseus laptop stand (premium)",
+          "unresolvedReason": "Obecný název bez typového označení – odpovídá více různým produktům Baseus, nelze jednoznačně přiřadit."
+        },
+        "baseus-laptop-stand-white": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Baseus laptop stand (white) — příslušenství ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Baseus · Příslušenství · white",
+            "images": [
+              "/store/img/brand/baseus.jpg"
+            ]
+          },
+          "officialName": "Baseus laptop stand (white)",
+          "unresolvedReason": "Obecný název bez typového označení – odpovídá více různým produktům Baseus, nelze jednoznačně přiřadit."
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-magnetic-10000-20w",
+      "variants": {
+        "baseus-magnetic-10000-20w": {
+          "officialName": "Baseus Magnetic Power Bank 10000mAh 20W",
+          "shortDesc": "Magnetická powerbanka 10 000 mAh pro iPhone 12 a novější, USB-C 20 W",
+          "description": "Magnetická powerbanka Baseus s kapacitou 10 000 mAh se přichytí na zadní stranu iPhonu (řada 12 a novější) a nabíjí ho bezdrátově. Port USB-C umožňuje rychlé kabelové nabíjení 20 W. Ocenění Red Dot 2021.",
+          "specs": {
+            "Parametry": {
+              "Kapacita": "10 000 mAh",
+              "Kabelové nabíjení": "USB-C až 20 W",
+              "Bezdrátové nabíjení": "magnetické",
+              "Kompatibilita": "iPhone 12 a novější"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.baseus.com/products/magnetic-power-bank-20w-10000mah",
+              "note": "Baseus Official Store (US) – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.baseus.com/products/magnetic-power-bank-20w-10000mah",
+              "note": "Fotografie: oficiální galerie výrobce (Baseus)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídajícímu oficiálnímu produktu Baseus.",
+          "images": [
+            "/store/img/products/baseus-magnetic-10000-20w/1.webp",
+            "/store/img/products/baseus-magnetic-10000-20w/2.webp",
+            "/store/img/products/baseus-magnetic-10000-20w/3.webp",
+            "/store/img/products/baseus-magnetic-10000-20w/4.webp",
+            "/store/img/products/baseus-magnetic-10000-20w/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/baseus-magnetic-10000-20w/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Magnetic_Power_Bank_20W_10000mAh_Blue1_front_side.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-magnetic-10000-20w/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Magnetic_Power_Bank_20W_10000mAh_Blue2_back.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-magnetic-10000-20w/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Magnetic_Power_Bank_20W_10000mAh_Blue3_Side.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-magnetic-10000-20w/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Magnetic_Power_Bank_20W_10000mAh_Blue4_front.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-magnetic-10000-20w/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_Magnetic_Power_Bank_20W_10000mAh_Blue5_details.jpg",
+              "size": "1200x1200"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-magnetic-100w",
+      "variants": {
+        "baseus-magnetic-100w": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Baseus magnetic 100W — kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Baseus · Kabely",
+            "images": [
+              "/store/img/brand/baseus.jpg"
+            ]
+          },
+          "officialName": "Baseus magnetic 100W",
+          "unresolvedReason": "V oficiální nabídce Baseus není produkt s těmito parametry."
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-n1",
+      "variants": {
+        "baseus-n1": {
+          "officialName": "Baseus Security N1 Outdoor Camera",
+          "shortDesc": "Venkovní bezpečnostní kamera Baseus N1 (2K)",
+          "description": "Bezdrátová venkovní bezpečnostní kamera Baseus Security N1 pro hlídání domu a zahrady s ovládáním přes aplikaci.",
+          "specs": {
+            "Parametry": {
+              "Typ": "venkovní bezpečnostní kamera",
+              "Rozlišení": "2K"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.baseus.com/products/n1-outdoor-security-camera",
+              "note": "Baseus Official Store (US) – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.baseus.com/products/n1-outdoor-security-camera",
+              "note": "Fotografie: oficiální galerie výrobce (Baseus)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídajícímu oficiálnímu produktu Baseus.",
+          "images": [
+            "/store/img/products/baseus-n1/1.webp",
+            "/store/img/products/baseus-n1/2.webp",
+            "/store/img/products/baseus-n1/3.webp",
+            "/store/img/products/baseus-n1/4.webp",
+            "/store/img/products/baseus-n1/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/baseus-n1/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_Security_N1_Outdoor_Camera_1_2-Cam_Kit.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-n1/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_Security_N1_Outdoor_Camera_2_camera.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-n1/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_Security_N1_Outdoor_Camera_3_homebase.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-n1/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_Security_N1_Outdoor_Camera_4.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-n1/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_Security_N1_Outdoor_Camera_5_Side.jpg",
+              "size": "1200x1200"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-office-headset",
+      "variants": {
+        "baseus-office-headset": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Baseus office headset — audio ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Baseus · Audio",
+            "images": [
+              "/store/img/brand/baseus.jpg"
+            ]
+          },
+          "officialName": "Baseus office headset",
+          "unresolvedReason": "Obecný název bez typového označení – odpovídá více různým produktům Baseus, nelze jednoznačně přiřadit."
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-over-ear-anc",
+      "variants": {
+        "baseus-over-ear-anc": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Baseus over-ear ANC — audio ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Baseus · Audio",
+            "images": [
+              "/store/img/brand/baseus.jpg"
+            ]
+          },
+          "officialName": "Baseus over-ear ANC",
+          "unresolvedReason": "Obecný název bez typového označení – odpovídá více různým produktům Baseus, nelze jednoznačně přiřadit."
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-phone-mount",
+      "variants": {
+        "baseus-phone-mount": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Baseus phone mount — auto elektronika ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Baseus · Auto elektronika",
+            "images": [
+              "/store/img/brand/baseus.jpg"
+            ]
+          },
+          "officialName": "Baseus phone mount",
+          "unresolvedReason": "Obecný název bez typového označení – odpovídá více různým produktům Baseus, nelze jednoznačně přiřadit."
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-phone-stand",
+      "variants": {
+        "baseus-phone-stand-black": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Baseus phone stand (black) — příslušenství ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Baseus · Příslušenství · black",
+            "images": [
+              "/store/img/brand/baseus.jpg"
+            ]
+          },
+          "officialName": "Baseus phone stand (black)",
+          "unresolvedReason": "Obecný název bez typového označení – odpovídá více různým produktům Baseus, nelze jednoznačně přiřadit."
+        },
+        "baseus-phone-stand-mid": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Baseus phone stand (mid) — příslušenství ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Baseus · Příslušenství · mid",
+            "images": [
+              "/store/img/brand/baseus.jpg"
+            ]
+          },
+          "officialName": "Baseus phone stand (mid)",
+          "unresolvedReason": "Obecný název bez typového označení – odpovídá více různým produktům Baseus, nelze jednoznačně přiřadit."
+        },
+        "baseus-phone-stand-premium": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Baseus phone stand (premium) — příslušenství ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Baseus · Příslušenství · premium",
+            "images": [
+              "/store/img/brand/baseus.jpg"
+            ]
+          },
+          "officialName": "Baseus phone stand (premium)",
+          "unresolvedReason": "Obecný název bez typového označení – odpovídá více různým produktům Baseus, nelze jednoznačně přiřadit."
+        },
+        "baseus-phone-stand-white": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Baseus phone stand (white) — příslušenství ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Baseus · Příslušenství · white",
+            "images": [
+              "/store/img/brand/baseus.jpg"
+            ]
+          },
+          "officialName": "Baseus phone stand (white)",
+          "unresolvedReason": "Obecný název bez typového označení – odpovídá více různým produktům Baseus, nelze jednoznačně přiřadit."
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-picogo-qi2-10000",
+      "variants": {
+        "baseus-picogo-qi2-10000": {
+          "officialName": "Baseus PicoGo AM41 Ultra-Slim Qi2 Power Bank 10000mAh 27W",
+          "shortDesc": "Tenká magnetická powerbanka Qi2 10 000 mAh, USB-C až 27 W",
+          "description": "Ultratenká magnetická powerbanka Baseus PicoGo AM41 s certifikací Qi2 pro efektivní bezdrátové nabíjení iPhonu. Kapacita 10 000 mAh, obousměrný port USB-C až 27 W.",
+          "specs": {
+            "Parametry": {
+              "Kapacita": "10 000 mAh",
+              "Bezdrátové nabíjení": "Qi2 (certifikováno)",
+              "USB-C": "obousměrný, až 27 W"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.baseus.com/products/picogo-ultra-slim-qi2-magnetic-power-bank-10000mah",
+              "note": "Baseus Official Store (US) – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.baseus.com/products/picogo-ultra-slim-qi2-magnetic-power-bank-10000mah",
+              "note": "Fotografie: oficiální galerie výrobce (Baseus)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídajícímu oficiálnímu produktu Baseus.",
+          "images": [
+            "/store/img/products/baseus-picogo-qi2-10000/1.webp",
+            "/store/img/products/baseus-picogo-qi2-10000/2.webp",
+            "/store/img/products/baseus-picogo-qi2-10000/3.webp",
+            "/store/img/products/baseus-picogo-qi2-10000/4.webp",
+            "/store/img/products/baseus-picogo-qi2-10000/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/baseus-picogo-qi2-10000/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_PicoGo_Ultra-Slim_Qi2_Magnetic_Power_Bank_10000mAh_1.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-picogo-qi2-10000/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_PicoGo_Ultra-Slim_Qi2_Magnetic_Power_Bank_10000mAh_2.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-picogo-qi2-10000/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_PicoGo_Ultra-Slim_Qi2_Magnetic_Power_Bank_10000mAh_3.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-picogo-qi2-10000/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_PicoGo_Ultra-Slim_Qi2_Magnetic_Power_Bank_10000mAh_4.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-picogo-qi2-10000/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_PicoGo_Ultra-Slim_Qi2_Magnetic_Power_Bank_10000mAh__black_3.jpg",
+              "size": "1200x1200"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-powercombo-pro-40w",
+      "variants": {
+        "baseus-powercombo-pro-40w": {
+          "officialName": "Baseus PowerCombo Pro 40W 6-Port",
+          "shortDesc": "Nabíjecí stanice 6 v 1 s USB-C PD až 40 W a přepěťovou ochranou",
+          "description": "Nabíjecí lišta Baseus PowerCombo Pro 6 v 1 kombinuje zásuvky a porty USB s rychlonabíjením PD 3.0 až 40 W. Technologie GaN5, sedmistupňová ochrana a přepěťová ochrana 1 200 J.",
+          "specs": {
+            "Parametry": {
+              "Max. výkon USB": "40 W (PD 3.0)",
+              "Počet portů": "6",
+              "Technologie": "GaN5",
+              "Přepěťová ochrana": "1 200 J"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.baseus.com/products/powercombo-pro-6-ports-power-strip-40w",
+              "note": "Baseus Official Store (US) – produktová stránka",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídajícímu oficiálnímu produktu Baseus.",
+          "imageNote": "Oficiální fotografie existují jen pro americkou verzi (US vidlice/zásuvky) – nepoužito, ponechán obrázek značky."
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-retractable-100w",
+      "variants": {
+        "baseus-retractable-100w": {
+          "officialName": "Baseus Free2Pull navíjecí kabel USB-C 100W",
+          "shortDesc": "Navíjecí kabel USB-C ↔ USB-C, až 100 W",
+          "description": "Navíjecí kabel Baseus Free2Pull s konektory USB-C nabíjí výkonem až 100 W. Navíjecí mechanismus zabrání zamotání kabelu v tašce.",
+          "specs": {
+            "Parametry": {
+              "Konektory": "USB-C – USB-C",
+              "Max. výkon": "100 W",
+              "Provedení": "navíjecí"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.baseus.com/products/free2pull-retractable-charing-cable-100w-mkt-cpc",
+              "note": "Baseus Official Store (US) – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.baseus.com/products/free2pull-retractable-charing-cable-100w-mkt-cpc",
+              "note": "Fotografie: oficiální galerie výrobce (Baseus)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídajícímu oficiálnímu produktu Baseus.",
+          "images": [
+            "/store/img/products/baseus-retractable-100w/1.webp",
+            "/store/img/products/baseus-retractable-100w/2.webp",
+            "/store/img/products/baseus-retractable-100w/3.webp",
+            "/store/img/products/baseus-retractable-100w/4.webp",
+            "/store/img/products/baseus-retractable-100w/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/baseus-retractable-100w/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_Free2Draw_Mini_Retractable_USB-C_Cable_100W_Black_1_af3c1e12-7ded-4c90-9caf-c255c3801fa1.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-retractable-100w/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_Free2Draw_Mini_Retractable_USB-C_Cable_100W_Black_2_59d5258c-d1b1-4aff-ad55-574a9edbec75.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-retractable-100w/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_Free2Draw_Mini_Retractable_USB-C_Cable_100W_Black_3_71bf6aa2-6928-49a5-8170-fefdfb870053.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-retractable-100w/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_Free2Draw_Mini_Retractable_USB-C_Cable_100W_Black_4_09ff689c-22de-48f0-9949-005245aa5af3.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-retractable-100w/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_Free2Draw_Mini_Retractable_USB-C_Cable_100W_Black_5_2ce2623a-9ef5-4c05-aa59-20deb2a53dbb.jpg",
+              "size": "1200x1200"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-retractable-car-charger",
+      "variants": {
+        "baseus-retractable-car-charger": {
+          "officialName": "Baseus Enjoyment Pro autonabíječka s navíjecím USB-C kabelem 60W",
+          "shortDesc": "Autonabíječka 60 W s navíjecím kabelem USB-C",
+          "description": "Autonabíječka Baseus Enjoyment Pro má navíjecí kabel USB-C, takže v autě nemáte volně ležící kabely. Výkon až 60 W.",
+          "specs": {
+            "Parametry": {
+              "Max. výkon": "60 W",
+              "Kabel": "navíjecí USB-C"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.baseus.com/products/enjoyment-pro-retractable-usb-c-car-charger-60w",
+              "note": "Baseus Official Store (US) – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.baseus.com/products/enjoyment-pro-retractable-usb-c-car-charger-60w",
+              "note": "Fotografie: oficiální galerie výrobce (Baseus)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídajícímu oficiálnímu produktu Baseus.",
+          "images": [
+            "/store/img/products/baseus-retractable-car-charger/1.webp",
+            "/store/img/products/baseus-retractable-car-charger/2.webp",
+            "/store/img/products/baseus-retractable-car-charger/3.webp",
+            "/store/img/products/baseus-retractable-car-charger/4.webp",
+            "/store/img/products/baseus-retractable-car-charger/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/baseus-retractable-car-charger/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_Enjoyment_Pro_Retractable_USB-C_Car_Charger_60W_1.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-retractable-car-charger/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_Enjoyment_Pro_Retractable_USB-C_Car_Charger_60W_2.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-retractable-car-charger/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_Enjoyment_Pro_Retractable_USB-C_Car_Charger_60W_3.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-retractable-car-charger/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_Enjoyment_Pro_Retractable_USB-C_Car_Charger_60W_4.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-retractable-car-charger/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_Enjoyment_Pro_Retractable_USB-C_Car_Charger_60W_5.jpg",
+              "size": "1200x1200"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-s1-pro",
+      "variants": {
+        "baseus-s1-pro": {
+          "officialName": "Baseus S1 Pro Outdoor Security Camera",
+          "shortDesc": "Venkovní bezpečnostní kamera Baseus S1 Pro se solárním napájením",
+          "description": "Bezdrátová venkovní kamera Baseus S1 Pro se solárním panelem pro nepřetržité hlídání domu, s ovládáním přes aplikaci.",
+          "specs": {
+            "Parametry": {
+              "Typ": "venkovní bezpečnostní kamera",
+              "Napájení": "baterie + solární panel"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.baseus.com/products/s1-pro-outdoor-security-camera",
+              "note": "Baseus Official Store (US) – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.baseus.com/products/s1-pro-outdoor-security-camera",
+              "note": "Fotografie: oficiální galerie výrobce (Baseus)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídajícímu oficiálnímu produktu Baseus.",
+          "images": [
+            "/store/img/products/baseus-s1-pro/1.webp",
+            "/store/img/products/baseus-s1-pro/2.webp",
+            "/store/img/products/baseus-s1-pro/3.webp",
+            "/store/img/products/baseus-s1-pro/4.webp",
+            "/store/img/products/baseus-s1-pro/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/baseus-s1-pro/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_Security_S1_Pro_Security_Outdoor_Camera_2-Cam_Kit_1.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-s1-pro/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_Security_S1_Pro_Security_Outdoor_Camera_2-Cam_Kit_2.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-s1-pro/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_Security_S1_Pro_Security_Outdoor_Camera_2-Cam_Kit_3.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-s1-pro/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_Security_S1_Pro_Security_Outdoor_Camera_2-Cam_Kit_4.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-s1-pro/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_Security_S1_Pro_Security_Outdoor_Camera_2-Cam_Kit_5.jpg",
+              "size": "1200x1200"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-solar-camera",
+      "variants": {
+        "baseus-solar-camera": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Baseus solar camera — bezpečnostní kamery ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Baseus · Bezpečnostní kamery",
+            "images": [
+              "/store/img/brand/baseus.jpg"
+            ]
+          },
+          "officialName": "Baseus solar camera",
+          "unresolvedReason": "Obecný název bez typového označení – odpovídá více různým produktům Baseus, nelze jednoznačně přiřadit."
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-spacemate-rd1-pro",
+      "variants": {
+        "baseus-spacemate-rd1-pro": {
+          "officialName": "Baseus Spacemate RD1 Pro 15-in-1 Docking Station",
+          "shortDesc": "Dokovací stanice 15 v 1: dva 4K displeje, 10 Gb/s a bezdrátová nabíječka Qi 2.2",
+          "description": "Dokovací stanice Baseus Spacemate RD1 Pro nabízí 15 portů, podporu dvou 4K displejů, přenos dat 10 Gb/s a integrovanou bezdrátovou nabíječku Qi 2.2.",
+          "specs": {
+            "Parametry": {
+              "Počet portů": "15",
+              "Monitory": "2× 4K",
+              "Přenos dat": "10 Gb/s",
+              "Bezdrátové nabíjení": "Qi 2.2"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.baseus.com/products/spacemate-rd1-pro-15-in-1-win-docking-station",
+              "note": "Baseus Official Store (US) – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.baseus.com/products/spacemate-rd1-pro-15-in-1-win-docking-station",
+              "note": "Fotografie: oficiální galerie výrobce (Baseus)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídajícímu oficiálnímu produktu Baseus.",
+          "images": [
+            "/store/img/products/baseus-spacemate-rd1-pro/1.webp",
+            "/store/img/products/baseus-spacemate-rd1-pro/2.webp",
+            "/store/img/products/baseus-spacemate-rd1-pro/3.webp",
+            "/store/img/products/baseus-spacemate-rd1-pro/4.webp",
+            "/store/img/products/baseus-spacemate-rd1-pro/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/baseus-spacemate-rd1-pro/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_Spacemate_RD1_Pro_15_in_1__WIN__Docking_Station_1.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-spacemate-rd1-pro/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_Spacemate_RD1_Pro_15_in_1__WIN__Docking_Station_2.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-spacemate-rd1-pro/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_Spacemate_RD1_Pro_15_in_1__WIN__Docking_Station_3.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-spacemate-rd1-pro/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_Spacemate_RD1_Pro_15_in_1__WIN__Docking_Station_5.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-spacemate-rd1-pro/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_Spacemate_RD1_Pro_15_in_1__WIN__Docking_Station_6.jpg",
+              "size": "1200x1200"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-tablet-stand",
+      "variants": {
+        "baseus-tablet-stand-black": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Baseus tablet stand (black) — příslušenství ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Baseus · Příslušenství · black",
+            "images": [
+              "/store/img/brand/baseus.jpg"
+            ]
+          },
+          "officialName": "Baseus tablet stand (black)",
+          "unresolvedReason": "Obecný název bez typového označení – odpovídá více různým produktům Baseus, nelze jednoznačně přiřadit."
+        },
+        "baseus-tablet-stand-mid": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Baseus tablet stand (mid) — příslušenství ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Baseus · Příslušenství · mid",
+            "images": [
+              "/store/img/brand/baseus.jpg"
+            ]
+          },
+          "officialName": "Baseus tablet stand (mid)",
+          "unresolvedReason": "Obecný název bez typového označení – odpovídá více různým produktům Baseus, nelze jednoznačně přiřadit."
+        },
+        "baseus-tablet-stand-premium": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Baseus tablet stand (premium) — příslušenství ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Baseus · Příslušenství · premium",
+            "images": [
+              "/store/img/brand/baseus.jpg"
+            ]
+          },
+          "officialName": "Baseus tablet stand (premium)",
+          "unresolvedReason": "Obecný název bez typového označení – odpovídá více různým produktům Baseus, nelze jednoznačně přiřadit."
+        },
+        "baseus-tablet-stand-white": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Baseus tablet stand (white) — příslušenství ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Baseus · Příslušenství · white",
+            "images": [
+              "/store/img/brand/baseus.jpg"
+            ]
+          },
+          "officialName": "Baseus tablet stand (white)",
+          "unresolvedReason": "Obecný název bez typového označení – odpovídá více různým produktům Baseus, nelze jednoznačně přiřadit."
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-travel-adapter-70w",
+      "variants": {
+        "baseus-travel-adapter-70w": {
+          "officialName": "Baseus EnerCore CG11 univerzální cestovní adaptér 70W",
+          "shortDesc": "Cestovní adaptér pro celý svět: 2× AC, 2× USB-A, 2× USB-C, 70 W",
+          "description": "Univerzální cestovní adaptér Baseus EnerCore CG11 se hodí do zásuvek po celém světě. Nabízí dvě zásuvky AC, dva porty USB-A a dva USB-C s celkovým výkonem 70 W.",
+          "specs": {
+            "Parametry": {
+              "Zásuvky": "2× AC",
+              "USB": "2× USB-A, 2× USB-C",
+              "Celkový výkon USB": "70 W",
+              "Použití": "univerzální (celosvětové zásuvky)"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.baseus.com/products/enercore-cg11-universal-travel-adapter-with-retractable-cable-2ac-2u-2c-70w",
+              "note": "Baseus Official Store (US) – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.baseus.com/products/enercore-cg11-universal-travel-adapter-with-retractable-cable-2ac-2u-2c-70w",
+              "note": "Fotografie: oficiální galerie výrobce (Baseus)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídajícímu oficiálnímu produktu Baseus.",
+          "images": [
+            "/store/img/products/baseus-travel-adapter-70w/1.webp",
+            "/store/img/products/baseus-travel-adapter-70w/2.webp",
+            "/store/img/products/baseus-travel-adapter-70w/3.webp",
+            "/store/img/products/baseus-travel-adapter-70w/4.webp",
+            "/store/img/products/baseus-travel-adapter-70w/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/baseus-travel-adapter-70w/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_EnerCore_CG11_Universal_Travel_Adapter_2AC_2U_2C_70W_Black_01_4d04768e-ae57-4601-bb99-a8a4d19366cf.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-travel-adapter-70w/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_EnerCore_CG11_Universal_Travel_Adapter_2AC_2U_2C_70W_Black_02.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-travel-adapter-70w/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_EnerCore_CG11_Universal_Travel_Adapter_2AC_2U_2C_70W_Black_03.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-travel-adapter-70w/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_EnerCore_CG11_Universal_Travel_Adapter_2AC_2U_2C_70W_Black_04.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-travel-adapter-70w/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_EnerCore_CG11_Universal_Travel_Adapter_2AC_2U_2C_70W_Black_05.jpg",
+              "size": "1200x1200"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-travel-strip",
+      "variants": {
+        "baseus-travel-strip": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Baseus travel strip — prodlužovače a smart zásuvky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Baseus · Prodlužovače a smart zásuvky",
+            "images": [
+              "/store/img/brand/baseus.jpg"
+            ]
+          },
+          "officialName": "Baseus travel strip",
+          "unresolvedReason": "Obecný název bez typového označení – odpovídá více různým produktům Baseus, nelze jednoznačně přiřadit."
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-usb-c-100w-1m",
+      "variants": {
+        "baseus-usb-c-100w-1m": {
+          "officialName": "Baseus kabel USB-C ↔ USB-C 100W (1 m)",
+          "shortDesc": "Kovový kabel USB-C na USB-C, 100 W, 480 Mb/s",
+          "description": "Kabel Baseus USB-C na USB-C v kovovém provedení nabije telefony, tablety i notebooky výkonem až 100 W bez přehřívání. 8 vláken s 324 jádry snižuje ztráty, data přenáší rychlostí až 480 Mb/s.",
+          "specs": {
+            "Parametry": {
+              "Konektory": "USB-C – USB-C",
+              "Max. výkon": "100 W",
+              "Přenos dat": "480 Mb/s",
+              "Délka": "1 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.baseus.com/products/usb-c-to-usb-c-cable-100w",
+              "note": "Baseus Official Store (US) – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.baseus.com/products/usb-c-to-usb-c-cable-100w",
+              "note": "Fotografie: oficiální galerie výrobce (Baseus)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídajícímu oficiálnímu produktu Baseus.",
+          "images": [
+            "/store/img/products/baseus-usb-c-to-usb-c-cable-100w/1.webp",
+            "/store/img/products/baseus-usb-c-to-usb-c-cable-100w/2.webp",
+            "/store/img/products/baseus-usb-c-to-usb-c-cable-100w/3.webp",
+            "/store/img/products/baseus-usb-c-to-usb-c-cable-100w/4.webp",
+            "/store/img/products/baseus-usb-c-to-usb-c-cable-100w/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/baseus-usb-c-to-usb-c-cable-100w/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_USB-C_to_USB-C_Cable_100W_3.3ft_1_front.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-usb-c-to-usb-c-cable-100w/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_USB-C_to_USB-C_Cable_100W_3.3ft_2_ports.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-usb-c-to-usb-c-cable-100w/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_USB-C_to_USB-C_Cable_100W_3.3ft_3_side.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-usb-c-to-usb-c-cable-100w/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_USB-C_to_USB-C_Cable_100W_3.3ft_4_back.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-usb-c-to-usb-c-cable-100w/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_USB-C_to_USB-C_Cable_100W_3.3ft_5_inside.jpg",
+              "size": "1200x1200"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-usb-c-100w-2m",
+      "variants": {
+        "baseus-usb-c-100w-2m": {
+          "officialName": "Baseus kabel USB-C ↔ USB-C 100W (2 m)",
+          "shortDesc": "Kovový kabel USB-C na USB-C, 100 W, 480 Mb/s",
+          "description": "Kabel Baseus USB-C na USB-C v kovovém provedení nabije telefony, tablety i notebooky výkonem až 100 W bez přehřívání. 8 vláken s 324 jádry snižuje ztráty, data přenáší rychlostí až 480 Mb/s.",
+          "specs": {
+            "Parametry": {
+              "Konektory": "USB-C – USB-C",
+              "Max. výkon": "100 W",
+              "Přenos dat": "480 Mb/s",
+              "Délka": "2 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.baseus.com/products/usb-c-to-usb-c-cable-100w",
+              "note": "Baseus Official Store (US) – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.baseus.com/products/usb-c-to-usb-c-cable-100w",
+              "note": "Fotografie: oficiální galerie výrobce (Baseus)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídajícímu oficiálnímu produktu Baseus.",
+          "images": [
+            "/store/img/products/baseus-usb-c-to-usb-c-cable-100w/1.webp",
+            "/store/img/products/baseus-usb-c-to-usb-c-cable-100w/2.webp",
+            "/store/img/products/baseus-usb-c-to-usb-c-cable-100w/3.webp",
+            "/store/img/products/baseus-usb-c-to-usb-c-cable-100w/4.webp",
+            "/store/img/products/baseus-usb-c-to-usb-c-cable-100w/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/baseus-usb-c-to-usb-c-cable-100w/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_USB-C_to_USB-C_Cable_100W_3.3ft_1_front.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-usb-c-to-usb-c-cable-100w/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_USB-C_to_USB-C_Cable_100W_3.3ft_2_ports.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-usb-c-to-usb-c-cable-100w/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_USB-C_to_USB-C_Cable_100W_3.3ft_3_side.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-usb-c-to-usb-c-cable-100w/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_USB-C_to_USB-C_Cable_100W_3.3ft_4_back.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-usb-c-to-usb-c-cable-100w/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/products/Baseus_USB-C_to_USB-C_Cable_100W_3.3ft_5_inside.jpg",
+              "size": "1200x1200"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-usb-c-240w-1m",
+      "variants": {
+        "baseus-usb-c-240w-1m": {
+          "officialName": "Baseus kabel USB-C ↔ USB-C 240W PD 3.1 (1 m)",
+          "shortDesc": "Kabel USB-C na USB-C, 240 W (48 V / 5 A), PD 3.1",
+          "description": "Kabel Baseus s podporou USB PD 3.1 přenese až 240 W (48 V / 5 A) pro nejvýkonnější notebooky. Má 316 vodivých jader.",
+          "specs": {
+            "Parametry": {
+              "Konektory": "USB-C – USB-C",
+              "Max. výkon": "240 W (48 V / 5 A)",
+              "Standard": "USB PD 3.1",
+              "Délka": "1 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.baseus.com/products/usb-c-fast-charging-cable-240w",
+              "note": "Baseus Official Store (US) – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.baseus.com/products/usb-c-fast-charging-cable-240w",
+              "note": "Fotografie: oficiální galerie výrobce (Baseus)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídajícímu oficiálnímu produktu Baseus.",
+          "images": [
+            "/store/img/products/baseus-usb-c-fast-charging-cable-240w/1.webp",
+            "/store/img/products/baseus-usb-c-fast-charging-cable-240w/2.webp",
+            "/store/img/products/baseus-usb-c-fast-charging-cable-240w/3.webp",
+            "/store/img/products/baseus-usb-c-fast-charging-cable-240w/4.webp",
+            "/store/img/products/baseus-usb-c-fast-charging-cable-240w/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/baseus-usb-c-fast-charging-cable-240w/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_USB-C_Fast_Charging_Cable_240W_1.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-usb-c-fast-charging-cable-240w/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_USB-C_Fast_Charging_Cable_240W_2.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-usb-c-fast-charging-cable-240w/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_USB-C_Fast_Charging_Cable_240W_3.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-usb-c-fast-charging-cable-240w/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_USB-C_Fast_Charging_Cable_240W_4.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-usb-c-fast-charging-cable-240w/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_USB-C_Fast_Charging_Cable_240W_5.jpg",
+              "size": "1200x1200"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-usb-c-240w-2m",
+      "variants": {
+        "baseus-usb-c-240w-2m": {
+          "officialName": "Baseus kabel USB-C ↔ USB-C 240W PD 3.1 (2 m)",
+          "shortDesc": "Kabel USB-C na USB-C, 240 W (48 V / 5 A), PD 3.1",
+          "description": "Kabel Baseus s podporou USB PD 3.1 přenese až 240 W (48 V / 5 A) pro nejvýkonnější notebooky. Má 316 vodivých jader.",
+          "specs": {
+            "Parametry": {
+              "Konektory": "USB-C – USB-C",
+              "Max. výkon": "240 W (48 V / 5 A)",
+              "Standard": "USB PD 3.1",
+              "Délka": "2 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.baseus.com/products/usb-c-fast-charging-cable-240w",
+              "note": "Baseus Official Store (US) – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.baseus.com/products/usb-c-fast-charging-cable-240w",
+              "note": "Fotografie: oficiální galerie výrobce (Baseus)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídajícímu oficiálnímu produktu Baseus.",
+          "images": [
+            "/store/img/products/baseus-usb-c-fast-charging-cable-240w/1.webp",
+            "/store/img/products/baseus-usb-c-fast-charging-cable-240w/2.webp",
+            "/store/img/products/baseus-usb-c-fast-charging-cable-240w/3.webp",
+            "/store/img/products/baseus-usb-c-fast-charging-cable-240w/4.webp",
+            "/store/img/products/baseus-usb-c-fast-charging-cable-240w/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/baseus-usb-c-fast-charging-cable-240w/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_USB-C_Fast_Charging_Cable_240W_1.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-usb-c-fast-charging-cable-240w/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_USB-C_Fast_Charging_Cable_240W_2.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-usb-c-fast-charging-cable-240w/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_USB-C_Fast_Charging_Cable_240W_3.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-usb-c-fast-charging-cable-240w/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_USB-C_Fast_Charging_Cable_240W_4.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-usb-c-fast-charging-cable-240w/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_USB-C_Fast_Charging_Cable_240W_5.jpg",
+              "size": "1200x1200"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-usb-c-60w-1m",
+      "variants": {
+        "baseus-usb-c-60w-1m": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Baseus USB-C 60W 1m — kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Baseus · Kabely",
+            "images": [
+              "/store/img/brand/baseus.jpg"
+            ]
+          },
+          "officialName": "Baseus USB-C 60W 1m",
+          "unresolvedReason": "V oficiální nabídce Baseus není produkt s těmito parametry."
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-usb-c-lightning",
+      "variants": {
+        "baseus-usb-c-lightning": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Baseus USB-C→Lightning — kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Baseus · Kabely",
+            "images": [
+              "/store/img/brand/baseus.jpg"
+            ]
+          },
+          "officialName": "Baseus USB-C→Lightning",
+          "unresolvedReason": "V oficiální nabídce Baseus není produkt s těmito parametry."
+        }
+      }
+    },
+    {
+      "variantGroup": "baseus-x1-pro-dual",
+      "variants": {
+        "baseus-x1-pro-dual": {
+          "officialName": "Baseus Security X1 Pro Outdoor Dual Camera",
+          "shortDesc": "Venkovní duální kamera 3K s pokrytím až 300°, IP65",
+          "description": "Venkovní bezpečnostní kamera Baseus Security X1 Pro se dvěma objektivy pokryje díky otáčení až 300° okolí, natáčí v rozlišení 3K a má krytí IP65.",
+          "specs": {
+            "Parametry": {
+              "Rozlišení": "3K",
+              "Pokrytí": "až 300° (otáčení)",
+              "Krytí": "IP65",
+              "Objektivy": "2"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.baseus.com/products/security-x1-pro-outdoor-dual-camera",
+              "note": "Baseus Official Store (US) – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://www.baseus.com/products/security-x1-pro-outdoor-dual-camera",
+              "note": "Fotografie: oficiální galerie výrobce (Baseus)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídajícímu oficiálnímu produktu Baseus.",
+          "images": [
+            "/store/img/products/baseus-x1-pro-dual/1.webp",
+            "/store/img/products/baseus-x1-pro-dual/2.webp",
+            "/store/img/products/baseus-x1-pro-dual/3.webp",
+            "/store/img/products/baseus-x1-pro-dual/4.webp",
+            "/store/img/products/baseus-x1-pro-dual/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/baseus-x1-pro-dual/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_Security_X1_Pro_Outdoor_Dual_Camera_1_7ea51750-ab1f-4796-bdee-b9805e560727.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-x1-pro-dual/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_Security_X1_Pro_Outdoor_Dual_Camera_2_01f3d963-62f3-4468-bafa-37cf6cbc5525.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-x1-pro-dual/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_Security_X1_Pro_Outdoor_Dual_Camera_3_9ee945d2-58f2-4601-a12e-ca82cb868b0c.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-x1-pro-dual/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_Security_X1_Pro_Outdoor_Dual_Camera_4_4bda06af-4882-4b80-b3a6-47db5a4e54e2.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/baseus-x1-pro-dual/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0555/8432/5709/files/Baseus_X1_Pro_Security_Camera_32_GB_SDCard.jpg",
+              "size": "1200x1200"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
