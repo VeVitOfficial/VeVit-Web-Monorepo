@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { connection } from "next/server";
 import { notFound } from "next/navigation";
 import { getProduct, getProductDetails, getProducts, getVariantSiblings, productImages, type ProductSpecGroup, type StoreProduct } from "@/lib/store-data";
 import { availability, discountPercent, money, priceWithoutVat } from "@/lib/store-format";
@@ -10,6 +9,15 @@ import { ProductGallery } from "@/components/store/product-gallery";
 import { Icon } from "@/components/store/icon";
 
 type Props = { params: Promise<{ slug: string }> };
+
+// ISR: katalog se čte přes fetch s revalidate 300 s (lib/store-data.ts), stránka se obnovuje ve stejném intervalu.
+// Ceny a sklad při objednávce ověřuje server zvlášť (create-checkout), tady jde jen o zobrazení.
+export const revalidate = 300;
+
+// Detaily se generují při první návštěvě a pak cachují (bez předgenerování celého katalogu při buildu).
+export async function generateStaticParams() {
+  return [];
+}
 
 export async function generateMetadata({ params }: Props) {
   const product = await getProduct((await params).slug);
@@ -36,7 +44,6 @@ function buildSpecs(product: StoreProduct, details: Awaited<ReturnType<typeof ge
 }
 
 export default async function ProductPage({ params }: Props) {
-  await connection();
   const product = await getProduct((await params).slug);
   if (!product) notFound();
   const [variants, details, related] = await Promise.all([

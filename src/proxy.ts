@@ -84,11 +84,11 @@ export function proxy(request: NextRequest) {
     return NextResponse.rewrite(url);
   }
   if (section === "tools") {
-    // Celá tools sekce běží na React routách /tools + /tools/<tool>,
-    // locale se předává hlavičkou x-vv-locale (stejný vzor jako account).
+    // Celá tools sekce běží na React routách /tools/<locale> + /tools/<locale>/<tool>.
+    // Locale je segment cesty (statické generování per jazyk), hlavička zůstává pro zpětnou kompatibilitu.
     const tool = suffix.replace(/\.php$/, "").replace(/\.html$/, "");
     const url = request.nextUrl.clone();
-    url.pathname = `/tools${tool ? `/${tool}` : ""}`;
+    url.pathname = `/tools/${locale}${tool ? `/${tool}` : ""}`;
     const requestHeaders = new Headers(request.headers);
     requestHeaders.set("x-vv-locale", locale);
     return NextResponse.rewrite(url, { request: { headers: requestHeaders } });
@@ -97,7 +97,7 @@ export function proxy(request: NextRequest) {
     const soon = /^soon\/(mail|office|services|search|store)$/.exec(suffix);
     const page = soon ? soon[0] : suffix === "support" || suffix === "support.html" ? "support" : "";
     const url = request.nextUrl.clone();
-    url.pathname = `/home${page ? `/${page}` : ""}`;
+    url.pathname = `/home/${locale}${page ? `/${page}` : ""}`;
     const requestHeaders = new Headers(request.headers);
     requestHeaders.set("x-vv-locale", locale);
     return NextResponse.rewrite(url, { request: { headers: requestHeaders } });
@@ -121,10 +121,10 @@ export function proxy(request: NextRequest) {
     return NextResponse.rewrite(url, { request: { headers: requestHeaders } });
   }
   if (section === "edu") {
-    // Edu React: /edu + podstránky (dashboard, programovani, kurzy, lekce, hledat,
-    // ai-gramotnost), locale se předává hlavičkou x-vv-locale.
+    // Edu React: /edu/<locale> + podstránky (dashboard, programovani, kurzy, lekce, hledat,
+    // ai-gramotnost). Locale je segment cesty, hlavička zůstává pro zpětnou kompatibilitu.
     const url = request.nextUrl.clone();
-    url.pathname = `/edu${suffix ? `/${suffix}` : ""}`;
+    url.pathname = `/edu/${locale}${suffix ? `/${suffix}` : ""}`;
     const requestHeaders = new Headers(request.headers);
     requestHeaders.set("x-vv-locale", locale);
     return NextResponse.rewrite(url, { request: { headers: requestHeaders } });

@@ -1,13 +1,15 @@
 import Link from "next/link";
-import { connection } from "next/server";
 import { ProductCard } from "@/components/store/product-card";
 import { Icon } from "@/components/store/icon";
 import { getBrands, getCatalogStats, getProducts, getTopCategories } from "@/lib/store-data";
 
+// ISR: katalog se čte přes fetch s revalidate 300 s (lib/store-data.ts), stránka se obnovuje ve stejném intervalu.
+// Ceny a sklad při objednávce ověřuje server zvlášť (create-checkout), tady jde jen o zobrazení.
+export const revalidate = 300;
+
 export const metadata = { title: "VeVit Store", description: "Elektronika, školní a kancelářské vybavení od ověřených značek s EU sklady a českou fakturou." };
 
 export default async function StorePage() {
-  await connection();
   const [products, categories, brands, stats] = await Promise.all([
     getProducts(),
     getTopCategories(),

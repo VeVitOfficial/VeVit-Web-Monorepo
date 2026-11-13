@@ -11,7 +11,8 @@ import { analyticsAllowed, subscribeConsent } from "@/lib/consent";
 const PAYMENT_PAGES = /(?:^|\/)(?:store\/checkout\/platba|account\/billing\/(?:platba|karta))(?:\/|$)/;
 
 // AI gramotnost (AIFB) je určená i dětem a škole: žádná analytika třetích stran (pravidlo R3).
-const NO_ANALYTICS_PAGES = /(?:^|\/)edu\/ai-gramotnost(?:\/|$)/;
+// Interní cesta je /edu/<locale>/ai-gramotnost (src/proxy.ts), veřejná /<locale>/edu/ai-gramotnost.
+const NO_ANALYTICS_PAGES = /(?:^|\/)edu\/(?:[a-z]{2}\/)?ai-gramotnost(?:\/|$)/;
 
 // Nástroje: analytika až po souhlasu v cookie liště (ConsentBanner, „Přijmout vše“).
 const CONSENT_PAGES = /(?:^|\/)tools(?:\/|$)/;

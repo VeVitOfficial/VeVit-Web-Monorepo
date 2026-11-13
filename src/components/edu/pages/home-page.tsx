@@ -74,8 +74,20 @@ function getFirstTextPreview(blocks: unknown[] | undefined): string {
   return "Vlastní lekce";
 }
 
-/** `school`: přihlášený je ve škole (VeVit Edu pro školy), tlačítko se mění na „Vstoupit do třídy“. */
-export function EduHomePage({ locale, aifbLessons, school = null }: { locale: string; aifbLessons: number; school?: { name: string; href: string } | null }) {
+/**
+ * `school`: přihlášený je ve škole (VeVit Edu pro školy), tlačítko se mění na „Vstoupit do třídy“.
+ * Stránka je statická, proto se členství načítá na klientu z /edu/api/school/entry.
+ */
+export function EduHomePage({ locale, aifbLessons }: { locale: string; aifbLessons: number }) {
+  const [school, setSchool] = useState<{ name: string; href: string } | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    fetch(`/edu/api/school/entry?locale=${encodeURIComponent(locale)}`, { credentials: "same-origin" })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d: { entry?: { name: string; href: string } | null } | null) => { if (!cancelled && d?.entry) setSchool(d.entry); })
+      .catch(() => {});
+    return () => { cancelled = true; };
+  }, [locale]);
   // locale z x-vv-locale hlavičky — useEduLang() ho inicializuje a nabízí t/lessonsUnit.
   void locale;
   const { t, lang, lessonsLabel } = useEduLang();

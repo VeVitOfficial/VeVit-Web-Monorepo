@@ -43,8 +43,8 @@ export function Navbar() {
   const { breadcrumbs } = useEduBreadcrumbs();
   const pathname = usePathname() ?? "/edu";
 
-  // Edu React routy začínají /edu/... — pro aktivní stav ořezeme prefix.
-  const rel = pathname.startsWith("/edu") ? pathname.slice(4) : pathname;
+  // Edu React routy: /<locale>/edu/..., interně /edu/<locale>/... — pro aktivní stav ořezeme prefix i locale.
+  const rel = pathname.replace(/^(?:\/[a-z]{2})?\/edu(?:\/[a-z]{2}(?=\/|$))?/, "");
   const isDashboard = rel === "/dashboard" || rel === "/" || rel === "";
   const isProgramming = rel.startsWith("/programovani");
   const isSearch = rel.startsWith("/hledat");

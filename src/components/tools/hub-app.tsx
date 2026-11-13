@@ -20,7 +20,6 @@ import { useFavorites, useToolsLibrary } from "@/lib/tools-recents";
 
 interface Props {
   locale: Locale;
-  initialSearchParams: { [key: string]: string | string[] | undefined };
   strings: HubI18n;
 }
 
@@ -89,16 +88,26 @@ const SEARCH_SUGGESTIONS: readonly { label: string; term: string }[] = [
   { label: "Odstranit pozadí", term: "odstranit pozadí" },
 ];
 
-export function HubApp({ locale, initialSearchParams, strings }: Props) {
-  const [state, setState] = useState<HubState>(() => parseState(initialSearchParams));
+export function HubApp({ locale, strings }: Props) {
+  // Stránka je statická: filtry z URL (?q=, ?cat=…) se načtou až po hydrataci.
+  const [state, setState] = useState<HubState>(() => parseState({}));
   const [activeIndex, setActiveIndex] = useState(-1);
   const [searchOpen, setSearchOpen] = useState(false);
   const searchRef = useRef<HTMLInputElement | null>(null);
   const resultsRef = useRef<HTMLDivElement | null>(null);
   const router = useRouter();
 
-  // Synchronizace URL při změně stavu (parita s search-core.js serializeState).
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    // setState v promise callbacku (ne synchronně v těle effectu), stejně jako edu stránky.
+    if (params.size > 0) void Promise.resolve().then(() => setState(parseState(params)));
+  }, []);
+
+  // Synchronizace URL při změně stavu (parita s search-core.js serializeState).
+  // První běh se přeskočí, jinak by výchozí stav smazal filtry z URL dřív, než se načtou.
+  const skipUrlSync = useRef(true);
+  useEffect(() => {
+    if (skipUrlSync.current) { skipUrlSync.current = false; return; }
     const url = `${window.location.pathname}${serializeState(state)}${window.location.hash}`;
     window.history.replaceState(null, "", url);
   }, [state]);
