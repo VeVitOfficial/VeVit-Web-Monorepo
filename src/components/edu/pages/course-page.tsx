@@ -4,6 +4,7 @@
 // seznam kapitol s lekcemi, gamifikace a „proč se učit". Třídy identické
 // s legacy (src/styles/edu.css). Navigace přes next/link na /<lang>/edu/...
 
+import { EduCourseSkeleton } from "@/components/edu/skeletons";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useEduBreadcrumbs } from "../breadcrumbs";
@@ -81,7 +82,7 @@ export function EduCoursePage({ locale, slug }: { locale: string; slug: string }
   void progressTick;
 
   if (data === "loading") {
-    return <div className="max-w-3xl mx-auto p-16 text-center text-muted">Načítám kurz…</div>;
+    return <EduCourseSkeleton />;
   }
   if (data === "error" || data === null) {
     return (

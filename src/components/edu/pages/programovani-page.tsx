@@ -6,6 +6,7 @@
 // Chování, class names i texty 1:1 s legacy (renderProgramovani).
 // Imperativní DOM (innerHTML/$/bindPills/renderIcons) nahraženo React stavem.
 
+import { Skeleton, SkeletonGrid, SkeletonRegion } from "@/components/ui/skeleton";
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useEduLang } from "../i18n";
@@ -126,13 +127,8 @@ export function EduProgramovaniPage({ locale }: { locale: string }) {
     );
   }
 
-  if (!index || !progress) {
-    return (
-      <div className="max-w-3xl mx-auto p-20 text-center text-[var(--color-text-muted)]">
-        <span className="ai-spinner" /> Načítám…
-      </div>
-    );
-  }
+  // Hero a filtry se vykreslí hned, mřížka kurzů má do načtení indexu skeleton.
+  const loading = !index || !progress;
 
   return (
     <div className="min-h-screen bg-[var(--color-background)]">
@@ -144,7 +140,14 @@ export function EduProgramovaniPage({ locale }: { locale: string }) {
               <span>{t("programming.heroAccent")}</span>
             </h1>
             <p className="eh-lead">{t("programming.heroSubtitle")}</p>
-            <ResumePanel resume={resume} />
+            {loading ? (
+              <div className="eh-resume" aria-hidden="true">
+                <Skeleton width="2.75rem" height="2.75rem" radius="0.75rem" />
+                <div className="eh-resume__text" style={{ flex: 1 }}><Skeleton width="60%" height="1rem" /><Skeleton width="80%" height="0.85rem" style={{ marginTop: "6px" }} /></div>
+              </div>
+            ) : (
+              <ResumePanel resume={resume} />
+            )}
           </div>
           <div className="eh-art" aria-hidden="true">
             <div className="eh-hex eh-hex--ring" />
@@ -168,7 +171,11 @@ export function EduProgramovaniPage({ locale }: { locale: string }) {
           pillCount={pillCount}
           t={t}
         />
-        <Grid courses={filtered} t={t} lessonsLabel={lessonsLabel} />
+        {loading ? (
+          <SkeletonRegion><SkeletonGrid count={6} minWidth="18rem" card={{ lines: 3 }} /></SkeletonRegion>
+        ) : (
+          <Grid courses={filtered} t={t} lessonsLabel={lessonsLabel} />
+        )}
         <Gamification t={t} />
         <WhySection t={t} />
       </main>

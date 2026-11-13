@@ -8,10 +8,10 @@ import { toolAlternates } from "@/lib/tools-seo";
 
 // Legacy CSS — className v komponentách zůstávají totožné s legacy HTML,
 // aby src/styles/tools.css a vevit-fonts.css styl fungoval.
-import "../../../public/assets/fonts/vevit-fonts.css";
+import "../../../../public/assets/fonts/vevit-fonts.css";
 import "@/styles/tools.css";
 // Přepínač aplikací (data-vevit-app-switcher) — stejné styly jako ostatní aplikace.
-import "../../../public/assets/shared/app-switcher.css";
+import "../../../../public/assets/shared/app-switcher.css";
 
 async function readLocale(): Promise<Locale> {
   const h = (await headers()).get("x-vv-locale");

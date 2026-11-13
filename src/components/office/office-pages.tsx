@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState, type FormEvent } from "react";
+import { Skeleton, SkeletonRegion, SkeletonText } from "@/components/ui/skeleton";
 
 // Pages of the VeVit Office integration (pairing, consent, device code, device management). Plain forms over the
 // JSON endpoints in src/app/api/office and src/app/account/oidc; the session cookie and the CSRF token come from me.php.
@@ -74,6 +75,15 @@ async function call(method: string, url: string, csrf: string, body?: unknown): 
   return { status: r.status, data };
 }
 
+function LoadingBody({ label }: { label: string }) {
+  return (
+    <SkeletonRegion label={label}>
+      <SkeletonText lines={2} lastLineWidth="70%" />
+      <Skeleton height="2.75rem" radius="10px" style={{ marginTop: 16 }} />
+    </SkeletonRegion>
+  );
+}
+
 function Shell({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <main style={{ maxWidth: 560, margin: "64px auto", padding: "0 20px" }}>
@@ -115,7 +125,7 @@ export function LinkPage() {
   const [display, setDisplay] = useState("");
   const [msg, setMsg] = useState<string | null>(null);
   const [host, setHost] = useState<string | null>(null);
-  if (csrf === null) return <Shell title={t.linkTitle}><p>{t.loading}</p></Shell>;
+  if (csrf === null) return <Shell title={t.linkTitle}><LoadingBody label={t.loading} /></Shell>;
   const submit = async (e: FormEvent) => {
     e.preventDefault();
     setMsg(null);
@@ -168,7 +178,7 @@ export function ConsentPage() {
     if (status === 200 && typeof to === "string") window.location.assign(to);
     else { setInfo("gone"); setBusy(false); }
   }, [csrf, req]);
-  if (info === null) return <Shell title={t.consentTitle}><p>{t.loading}</p></Shell>;
+  if (info === null) return <Shell title={t.consentTitle}><LoadingBody label={t.loading} /></Shell>;
   if (info === "gone") return <Shell title={t.consentTitle}><p>{t.consentGone}</p></Shell>;
   return (
     <Shell title={t.consentTitle}>
@@ -191,7 +201,7 @@ export function DevicePage() {
   const [code, setCode] = useState(() => (typeof window === "undefined" ? "" : new URLSearchParams(window.location.search).get("code") ?? ""));
   const [state, setState] = useState<"form" | "approved" | "denied">("form");
   const [msg, setMsg] = useState<string | null>(null);
-  if (csrf === null) return <Shell title={t.deviceTitle}><p>{t.loading}</p></Shell>;
+  if (csrf === null) return <Shell title={t.deviceTitle}><LoadingBody label={t.loading} /></Shell>;
   const send = async (decision: "allow" | "deny") => {
     setMsg(null);
     const { status } = await call("POST", "/account/oidc/device/approve", csrf, { user_code: code, decision });
@@ -230,7 +240,7 @@ export function DevicesPage() {
   }, []);
   // eslint-disable-next-line react-hooks/set-state-in-effect -- loads the lists once the session is known
   useEffect(() => { if (csrf !== null) void reload(csrf); }, [csrf, reload]);
-  if (csrf === null || devices === null || consents === null) return <Shell title={t.devicesTitle}><p>{t.loading}</p></Shell>;
+  if (csrf === null || devices === null || consents === null) return <Shell title={t.devicesTitle}><LoadingBody label={t.loading} /></Shell>;
   return (
     <Shell title={t.devicesTitle}>
       {!verified && csrf ? <EmailNotice t={t} csrf={csrf} /> : null}

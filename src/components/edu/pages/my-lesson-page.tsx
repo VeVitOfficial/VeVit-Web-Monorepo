@@ -5,6 +5,7 @@
 // toast + navigate na dashboard). Třídy identické s legacy. Vše přes JSX
 // (auto-escape), žádný dangerouslySetInnerHTML.
 
+import { EduLessonSkeleton } from "@/components/edu/skeletons";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useEduBreadcrumbs } from "../breadcrumbs";
@@ -79,7 +80,7 @@ export function EduMyLessonPage({ locale, query }: { locale: string; query: stri
   }
 
   if (lesson === "loading") {
-    return <div className="max-w-3xl mx-auto p-16 text-center text-muted">Načítám lekci…</div>;
+    return <EduLessonSkeleton />;
   }
   if (lesson === "notfound" || !lesson) {
     return (

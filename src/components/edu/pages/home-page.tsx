@@ -197,19 +197,13 @@ export function EduHomePage({ locale, aifbLessons, school = null }: { locale: st
     );
   }
 
-  if (!index || !progress) {
-    return (
-      <div className="max-w-3xl mx-auto p-20 text-center text-[var(--color-text-muted)]">
-        <span className="ai-spinner" /> Načítám…
-      </div>
-    );
-  }
-
+  // Hero, kategorie a „nově přidané“ nezávisí na datech, vykreslí se hned (LCP).
+  // Na index čeká jen našeptávač a sekce „Pokračovat“, která se ukáže po načtení.
   return (
     <div className="min-h-screen bg-[var(--color-background)]">
       <main className="max-w-6xl mx-auto px-6 py-10">
         <HeroSearch
-          index={index}
+          index={index ?? []}
           recentlyAdded={RECENTLY_ADDED}
           customLessons={customLessons}
           placeholder={t("landing.searchPlaceholder")}

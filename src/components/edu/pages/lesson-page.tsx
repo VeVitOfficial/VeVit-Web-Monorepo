@@ -6,6 +6,7 @@
 // s legacy. setLastVisited + completeLesson/completeExercise procházejí přes
 // src/lib/edu/progress.ts (stejný localStorage tvar).
 
+import { EduLessonSkeleton } from "@/components/edu/skeletons";
 import { useEffect, useState, type CSSProperties } from "react";
 import Link from "next/link";
 import { useEduBreadcrumbs } from "../breadcrumbs";
@@ -87,7 +88,7 @@ export function EduLessonPage({ locale, id }: { locale: string; id: string }) {
   void tick;
 
   if (ctx === "loading") {
-    return <div className="max-w-3xl mx-auto p-16 text-center text-muted">Načítám lekci…</div>;
+    return <EduLessonSkeleton />;
   }
   if (ctx === "error" || ctx === null) {
     return (
