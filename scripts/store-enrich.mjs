@@ -17,7 +17,9 @@
 //     "sources": [{ "type": "official", "url": "https://…", "note": "…", "verified": "2026-11-12" }],
 //     "imagesByVariant": { "slug": ["/…"] },  // volitelné přepisy po variantě
 //     "officialName": "70mai Dash Cam A510",  // volitelné: oficiální název; varianta se připojí v závorce
-//     "imageSources": [{ "file": "/…", "source": "https://…" }]  // evidence původu fotek (do DB se nezapisuje)
+//     "imageSources": [{ "file": "/…", "source": "https://…" }],  // evidence původu fotek (do DB se nezapisuje)
+//     "variants": { "slug": { …stejná pole jako skupina… } }  // volitelné: data jen pro konkrétní SKU;
+//                 // "reset": true vrátí SKU na data ze sourcingu (resetFrom: description/shortDesc/images) a smaže specs/sources
 //   }],
 //   "unresolved": [{ "variantGroup": "…", "reason": "…" }]  // neidentifikované produkty (jen dokumentace)
 // }
@@ -62,7 +64,27 @@ async function main() {
       body: JSON.stringify(body)
     });
 
-  const summary = { groups: 0, patched: 0, products: 0, skipped: 0, variantOverrides: 0, errors: [] };
+  const bodyOf = (item) => {
+    const body = {};
+    if (item.description) body.description = item.description;
+    if (item.shortDesc) body.short_desc = item.shortDesc.slice(0, 255);
+    if (item.specs) body.specs = item.specs;
+    if (item.sources) body.sources = item.sources;
+    if (item.images?.length) body.images = item.images;
+    if (item.officialName) body.name = item.officialName.slice(0, 255);
+    if (item.reset) {
+      body.specs = null;
+      body.sources = null;
+      if (item.resetFrom) {
+        body.description = item.resetFrom.description;
+        body.short_desc = item.resetFrom.shortDesc;
+        body.images = item.resetFrom.images;
+      }
+    }
+    return body;
+  };
+
+  const summary = { groups: 0, patched: 0, products: 0, skipped: 0, variantOverrides: 0, variantPatches: 0, errors: [] };
   for (const file of files) {
     const payload = JSON.parse(await readFile(file, "utf8"));
     for (const group of payload.groups ?? []) {
@@ -74,8 +96,13 @@ async function main() {
       if (group.specs) body.specs = group.specs;
       if (group.sources) body.sources = group.sources;
       if (group.images?.length) body.images = group.images;
-      if (!Object.keys(body).length) { summary.skipped += 1; continue; }
-      const response = await patch(group.variantGroup, body);
+      if (!Object.keys(body).length && !group.variants) { summary.skipped += 1; continue; }
+      // Bez dat pro celou skupinu jen ověříme, že skupina v DB existuje.
+      const response = Object.keys(body).length
+        ? await patch(group.variantGroup, body)
+        : await fetch(`${url}/rest/v1/store_products?${groupFilter(group.variantGroup)}&select=slug,variant_label`, {
+            headers: { apikey: key, Authorization: `Bearer ${key}` }
+          });
       if (!response.ok) {
         summary.errors.push(`${group.variantGroup}: PATCH ${response.status} ${(await response.text()).slice(0, 200)}`);
         continue;
@@ -94,6 +121,11 @@ async function main() {
           if (!nameResponse.ok) summary.errors.push(`${row.slug}: název PATCH ${nameResponse.status}`);
         }
       }
+      for (const [slug, variant] of Object.entries(group.variants ?? {})) {
+        const variantResponse = await patchSlug(slug, bodyOf(variant));
+        if (variantResponse.ok) summary.variantPatches += 1;
+        else summary.errors.push(`${slug}: varianta PATCH ${variantResponse.status} ${(await variantResponse.text()).slice(0, 200)}`);
+      }
       for (const [slug, images] of Object.entries(group.imagesByVariant ?? {})) {
         const slugResponse = await patchSlug(slug, { images });
         if (slugResponse.ok) summary.variantOverrides += 1;
@@ -101,7 +133,7 @@ async function main() {
       }
     }
   }
-  console.log(`Skupin: ${summary.groups}, aktualizováno: ${summary.patched} (${summary.products} produktů), přeskočeno: ${summary.skipped}, variantní přepisy: ${summary.variantOverrides}`);
+  console.log(`Skupin: ${summary.groups}, aktualizováno: ${summary.patched} (${summary.products} produktů), přeskočeno: ${summary.skipped}, variantní přepisy: ${summary.variantOverrides}, SKU zvlášť: ${summary.variantPatches}`);
   if (summary.errors.length) {
     console.log("Chyby:");
     for (const error of summary.errors) console.log(`  - ${error}`);
