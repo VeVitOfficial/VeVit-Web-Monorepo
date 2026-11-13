@@ -1,0 +1,2351 @@
+{
+  "brand": "ORICO",
+  "verified": "2026-11-13",
+  "groups": [
+    {
+      "variantGroup": "orico-hdd-ssd-dock",
+      "variants": {
+        "orico-hdd-ssd-dock-1-bay-nas-das": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO HDD/SSD dock (1-bay, NAS/DAS) — doky a úložné stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Doky a úložné stanice · 1-bay, NAS/DAS",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO HDD/SSD dock (1-bay, NAS/DAS)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-hdd-ssd-dock-1-bay-offline-clone": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO HDD/SSD dock (1-bay, offline clone) — doky a úložné stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Doky a úložné stanice · 1-bay, offline clone",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO HDD/SSD dock (1-bay, offline clone)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-hdd-ssd-dock-1-bay-raid": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO HDD/SSD dock (1-bay, RAID) — doky a úložné stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Doky a úložné stanice · 1-bay, RAID",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO HDD/SSD dock (1-bay, RAID)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-hdd-ssd-dock-1-bay-sata-dock": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO HDD/SSD dock (1-bay, SATA dock) — doky a úložné stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Doky a úložné stanice · 1-bay, SATA dock",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO HDD/SSD dock (1-bay, SATA dock)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-hdd-ssd-dock-2-bay-nas-das": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO HDD/SSD dock (2-bay, NAS/DAS) — doky a úložné stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Doky a úložné stanice · 2-bay, NAS/DAS",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO HDD/SSD dock (2-bay, NAS/DAS)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-hdd-ssd-dock-2-bay-offline-clone": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO HDD/SSD dock (2-bay, offline clone) — doky a úložné stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Doky a úložné stanice · 2-bay, offline clone",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO HDD/SSD dock (2-bay, offline clone)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-hdd-ssd-dock-2-bay-raid": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO HDD/SSD dock (2-bay, RAID) — doky a úložné stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Doky a úložné stanice · 2-bay, RAID",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO HDD/SSD dock (2-bay, RAID)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-hdd-ssd-dock-2-bay-sata-dock": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO HDD/SSD dock (2-bay, SATA dock) — doky a úložné stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Doky a úložné stanice · 2-bay, SATA dock",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO HDD/SSD dock (2-bay, SATA dock)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-hdd-ssd-dock-4-bay-nas-das": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO HDD/SSD dock (4-bay, NAS/DAS) — doky a úložné stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Doky a úložné stanice · 4-bay, NAS/DAS",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO HDD/SSD dock (4-bay, NAS/DAS)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-hdd-ssd-dock-4-bay-offline-clone": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO HDD/SSD dock (4-bay, offline clone) — doky a úložné stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Doky a úložné stanice · 4-bay, offline clone",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO HDD/SSD dock (4-bay, offline clone)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-hdd-ssd-dock-4-bay-raid": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO HDD/SSD dock (4-bay, RAID) — doky a úložné stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Doky a úložné stanice · 4-bay, RAID",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO HDD/SSD dock (4-bay, RAID)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-hdd-ssd-dock-4-bay-sata-dock": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO HDD/SSD dock (4-bay, SATA dock) — doky a úložné stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Doky a úložné stanice · 4-bay, SATA dock",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO HDD/SSD dock (4-bay, SATA dock)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-hdd-ssd-dock-5-bay-nas-das": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO HDD/SSD dock (5-bay, NAS/DAS) — doky a úložné stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Doky a úložné stanice · 5-bay, NAS/DAS",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO HDD/SSD dock (5-bay, NAS/DAS)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-hdd-ssd-dock-5-bay-offline-clone": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO HDD/SSD dock (5-bay, offline clone) — doky a úložné stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Doky a úložné stanice · 5-bay, offline clone",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO HDD/SSD dock (5-bay, offline clone)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-hdd-ssd-dock-5-bay-raid": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO HDD/SSD dock (5-bay, RAID) — doky a úložné stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Doky a úložné stanice · 5-bay, RAID",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO HDD/SSD dock (5-bay, RAID)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-hdd-ssd-dock-5-bay-sata-dock": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO HDD/SSD dock (5-bay, SATA dock) — doky a úložné stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Doky a úložné stanice · 5-bay, SATA dock",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO HDD/SSD dock (5-bay, SATA dock)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        }
+      }
+    },
+    {
+      "variantGroup": "orico-kabely",
+      "variants": {
+        "orico-kabely-thunderbolt4-1m-premium": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Kabely (Thunderbolt4 1m premium) — kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Kabely · Thunderbolt4 1m premium",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Kabely (Thunderbolt4 1m premium)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-kabely-thunderbolt4-1m-standard": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Kabely (Thunderbolt4 1m standard) — kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Kabely · Thunderbolt4 1m standard",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Kabely (Thunderbolt4 1m standard)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-kabely-usb-c-20gbps-premium": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Kabely (USB-C 20Gbps premium) — kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Kabely · USB-C 20Gbps premium",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Kabely (USB-C 20Gbps premium)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-kabely-usb-c-20gbps-standard": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Kabely (USB-C 20Gbps standard) — kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Kabely · USB-C 20Gbps standard",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Kabely (USB-C 20Gbps standard)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-kabely-usb3-2-10gbps-premium": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Kabely (USB3.2 10Gbps premium) — kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Kabely · USB3.2 10Gbps premium",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Kabely (USB3.2 10Gbps premium)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-kabely-usb3-2-10gbps-standard": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Kabely (USB3.2 10Gbps standard) — kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Kabely · USB3.2 10Gbps standard",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Kabely (USB3.2 10Gbps standard)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-kabely-usb4-40gbps-1m-premium": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Kabely (USB4 40Gbps 1m premium) — kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Kabely · USB4 40Gbps 1m premium",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Kabely (USB4 40Gbps 1m premium)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-kabely-usb4-40gbps-1m-standard": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Kabely (USB4 40Gbps 1m standard) — kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Kabely · USB4 40Gbps 1m standard",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Kabely (USB4 40Gbps 1m standard)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-kabely-usb4-40gbps-2m-premium": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Kabely (USB4 40Gbps 2m premium) — kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Kabely · USB4 40Gbps 2m premium",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Kabely (USB4 40Gbps 2m premium)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-kabely-usb4-40gbps-2m-standard": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Kabely (USB4 40Gbps 2m standard) — kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Kabely · USB4 40Gbps 2m standard",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Kabely (USB4 40Gbps 2m standard)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        }
+      }
+    },
+    {
+      "variantGroup": "orico-mini-pc",
+      "variants": {
+        "orico-mini-pc-mini-workstation-premium": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Mini PC (mini workstation premium) — mini pc ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Mini PC · mini workstation premium",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Mini PC (mini workstation premium)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-mini-pc-mini-workstation-standard": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Mini PC (mini workstation standard) — mini pc ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Mini PC · mini workstation standard",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Mini PC (mini workstation standard)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-mini-pc-n100-office-premium": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Mini PC (N100 office premium) — mini pc ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Mini PC · N100 office premium",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Mini PC (N100 office premium)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-mini-pc-n100-office-standard": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Mini PC (N100 office standard) — mini pc ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Mini PC · N100 office standard",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Mini PC (N100 office standard)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-mini-pc-ryzen-office-premium": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Mini PC (Ryzen office premium) — mini pc ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Mini PC · Ryzen office premium",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Mini PC (Ryzen office premium)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-mini-pc-ryzen-office-standard": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Mini PC (Ryzen office standard) — mini pc ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Mini PC · Ryzen office standard",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Mini PC (Ryzen office standard)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        }
+      }
+    },
+    {
+      "variantGroup": "orico-nas",
+      "variants": {
+        "orico-nas-cyberdata-2-bay-premium": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO NAS (CyberData 2-bay premium) — nas úložiště ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · NAS úložiště · CyberData 2-bay premium",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO NAS (CyberData 2-bay premium)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-nas-cyberdata-2-bay-standard": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO NAS (CyberData 2-bay standard) — nas úložiště ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · NAS úložiště · CyberData 2-bay standard",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO NAS (CyberData 2-bay standard)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-nas-cyberdata-4-bay-premium": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO NAS (CyberData 4-bay premium) — nas úložiště ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · NAS úložiště · CyberData 4-bay premium",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO NAS (CyberData 4-bay premium)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-nas-cyberdata-4-bay-standard": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO NAS (CyberData 4-bay standard) — nas úložiště ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · NAS úložiště · CyberData 4-bay standard",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO NAS (CyberData 4-bay standard)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-nas-metabox-2-bay-premium": {
+          "officialName": "ORICO MetaBox HS200 2-Bay NAS",
+          "shortDesc": "Dvoušachtový NAS ORICO MetaBox HS200 s procesorem Intel Celeron",
+          "description": "Síťové úložiště ORICO MetaBox HS200 se dvěma pozicemi pro disky slouží jako osobní cloud pro zálohu fotek a souborů. Pohání ho procesor Intel Celeron, ovládá se systémem ORICO CyberData OS.",
+          "specs": {
+            "Parametry": {
+              "Pozice pro disky": "2",
+              "Procesor": "Intel Celeron",
+              "Systém": "ORICO CyberData OS"
+            }
+          },
+          "images": [
+            "/store/img/products/orico-nas-metabox-hs200/1.webp",
+            "/store/img/products/orico-nas-metabox-hs200/2.webp",
+            "/store/img/products/orico-nas-metabox-hs200/3.webp",
+            "/store/img/products/orico-nas-metabox-hs200/4.webp",
+            "/store/img/products/orico-nas-metabox-hs200/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/orico-nas-metabox-hs200/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/lqlpjxer-grqiifnbkdnbkcwut-zkcpcyewju5vqoqvxaa-1600-1600-697af42548677.webp",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/orico-nas-metabox-hs200/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/lqlpjw7wrgfyoifnbkdnbkcwiyhbsdsierqju5vqoqvxaq-1600-1600-697af4242369f.webp",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/orico-nas-metabox-hs200/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/lqlpjxnztqbayifnbkdnbkcwo84-esrjr9kju5vqoqvxag-1600-1600-697af4279428c.webp",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/orico-nas-metabox-hs200/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/2_2490b854-ddbf-4280-a3d3-41bbff007033.jpg",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/orico-nas-metabox-hs200/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/POWERFUL.jpg",
+              "size": "1500x1500"
+            }
+          ],
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://oricotechs.com/products/orico-metabox-pro-2-bay-nas",
+              "note": "ORICO Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://oricotechs.com/products/orico-metabox-pro-2-bay-nas",
+              "note": "Fotografie: oficiální galerie výrobce (ORICO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing uvádí jen parametry (typ/rozhraní/materiál) – přiřazeno k odpovídajícímu oficiálnímu produktu ORICO; ověřit SKU u dodavatele. Rozlišení „premium/standard“ výrobce nezná."
+        },
+        "orico-nas-metabox-2-bay-standard": {
+          "officialName": "ORICO MetaBox HS200 2-Bay NAS",
+          "shortDesc": "Dvoušachtový NAS ORICO MetaBox HS200 s procesorem Intel Celeron",
+          "description": "Síťové úložiště ORICO MetaBox HS200 se dvěma pozicemi pro disky slouží jako osobní cloud pro zálohu fotek a souborů. Pohání ho procesor Intel Celeron, ovládá se systémem ORICO CyberData OS.",
+          "specs": {
+            "Parametry": {
+              "Pozice pro disky": "2",
+              "Procesor": "Intel Celeron",
+              "Systém": "ORICO CyberData OS"
+            }
+          },
+          "images": [
+            "/store/img/products/orico-nas-metabox-hs200/1.webp",
+            "/store/img/products/orico-nas-metabox-hs200/2.webp",
+            "/store/img/products/orico-nas-metabox-hs200/3.webp",
+            "/store/img/products/orico-nas-metabox-hs200/4.webp",
+            "/store/img/products/orico-nas-metabox-hs200/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/orico-nas-metabox-hs200/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/lqlpjxer-grqiifnbkdnbkcwut-zkcpcyewju5vqoqvxaa-1600-1600-697af42548677.webp",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/orico-nas-metabox-hs200/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/lqlpjw7wrgfyoifnbkdnbkcwiyhbsdsierqju5vqoqvxaq-1600-1600-697af4242369f.webp",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/orico-nas-metabox-hs200/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/lqlpjxnztqbayifnbkdnbkcwo84-esrjr9kju5vqoqvxag-1600-1600-697af4279428c.webp",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/orico-nas-metabox-hs200/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/2_2490b854-ddbf-4280-a3d3-41bbff007033.jpg",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/orico-nas-metabox-hs200/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/POWERFUL.jpg",
+              "size": "1500x1500"
+            }
+          ],
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://oricotechs.com/products/orico-metabox-pro-2-bay-nas",
+              "note": "ORICO Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://oricotechs.com/products/orico-metabox-pro-2-bay-nas",
+              "note": "Fotografie: oficiální galerie výrobce (ORICO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing uvádí jen parametry (typ/rozhraní/materiál) – přiřazeno k odpovídajícímu oficiálnímu produktu ORICO; ověřit SKU u dodavatele. Rozlišení „premium/standard“ výrobce nezná."
+        },
+        "orico-nas-metacube-4-bay-premium": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO NAS (MetaCube 4-bay premium) — nas úložiště ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · NAS úložiště · MetaCube 4-bay premium",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO NAS (MetaCube 4-bay premium)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-nas-metacube-4-bay-standard": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO NAS (MetaCube 4-bay standard) — nas úložiště ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · NAS úložiště · MetaCube 4-bay standard",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO NAS (MetaCube 4-bay standard)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-nas-metahome-premium": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO NAS (MetaHome premium) — nas úložiště ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · NAS úložiště · MetaHome premium",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO NAS (MetaHome premium)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-nas-metahome-standard": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO NAS (MetaHome standard) — nas úložiště ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · NAS úložiště · MetaHome standard",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO NAS (MetaHome standard)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        }
+      }
+    },
+    {
+      "variantGroup": "orico-orico-hub-dock",
+      "variants": {
+        "orico-orico-hub-dock-10-port-thunderbolt-4": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO ORICO HUB/Dock (10-port, Thunderbolt 4) — huby a docking stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Huby a docking stanice · 10-port, Thunderbolt 4",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO ORICO HUB/Dock (10-port, Thunderbolt 4)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-orico-hub-dock-10-port-usb-3-0": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO ORICO HUB/Dock (10-port, USB 3.0) — huby a docking stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Huby a docking stanice · 10-port, USB 3.0",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO ORICO HUB/Dock (10-port, USB 3.0)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-orico-hub-dock-10-port-usb-c": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO ORICO HUB/Dock (10-port, USB-C) — huby a docking stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Huby a docking stanice · 10-port, USB-C",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO ORICO HUB/Dock (10-port, USB-C)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-orico-hub-dock-10-port-usb4": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO ORICO HUB/Dock (10-port, USB4) — huby a docking stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Huby a docking stanice · 10-port, USB4",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO ORICO HUB/Dock (10-port, USB4)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-orico-hub-dock-12-port-thunderbolt-4": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO ORICO HUB/Dock (12-port, Thunderbolt 4) — huby a docking stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Huby a docking stanice · 12-port, Thunderbolt 4",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO ORICO HUB/Dock (12-port, Thunderbolt 4)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-orico-hub-dock-12-port-usb-3-0": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO ORICO HUB/Dock (12-port, USB 3.0) — huby a docking stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Huby a docking stanice · 12-port, USB 3.0",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO ORICO HUB/Dock (12-port, USB 3.0)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-orico-hub-dock-12-port-usb-c": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO ORICO HUB/Dock (12-port, USB-C) — huby a docking stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Huby a docking stanice · 12-port, USB-C",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO ORICO HUB/Dock (12-port, USB-C)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-orico-hub-dock-12-port-usb4": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO ORICO HUB/Dock (12-port, USB4) — huby a docking stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Huby a docking stanice · 12-port, USB4",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO ORICO HUB/Dock (12-port, USB4)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-orico-hub-dock-4-port-thunderbolt-4": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO ORICO HUB/Dock (4-port, Thunderbolt 4) — huby a docking stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Huby a docking stanice · 4-port, Thunderbolt 4",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO ORICO HUB/Dock (4-port, Thunderbolt 4)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-orico-hub-dock-4-port-usb-3-0": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO ORICO HUB/Dock (4-port, USB 3.0) — huby a docking stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Huby a docking stanice · 4-port, USB 3.0",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO ORICO HUB/Dock (4-port, USB 3.0)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-orico-hub-dock-4-port-usb-c": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO ORICO HUB/Dock (4-port, USB-C) — huby a docking stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Huby a docking stanice · 4-port, USB-C",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO ORICO HUB/Dock (4-port, USB-C)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-orico-hub-dock-4-port-usb4": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO ORICO HUB/Dock (4-port, USB4) — huby a docking stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Huby a docking stanice · 4-port, USB4",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO ORICO HUB/Dock (4-port, USB4)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-orico-hub-dock-6-port-thunderbolt-4": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO ORICO HUB/Dock (6-port, Thunderbolt 4) — huby a docking stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Huby a docking stanice · 6-port, Thunderbolt 4",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO ORICO HUB/Dock (6-port, Thunderbolt 4)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-orico-hub-dock-6-port-usb-3-0": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO ORICO HUB/Dock (6-port, USB 3.0) — huby a docking stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Huby a docking stanice · 6-port, USB 3.0",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO ORICO HUB/Dock (6-port, USB 3.0)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-orico-hub-dock-6-port-usb-c": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO ORICO HUB/Dock (6-port, USB-C) — huby a docking stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Huby a docking stanice · 6-port, USB-C",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO ORICO HUB/Dock (6-port, USB-C)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-orico-hub-dock-6-port-usb4": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO ORICO HUB/Dock (6-port, USB4) — huby a docking stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Huby a docking stanice · 6-port, USB4",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO ORICO HUB/Dock (6-port, USB4)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-orico-hub-dock-8-port-thunderbolt-4": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO ORICO HUB/Dock (8-port, Thunderbolt 4) — huby a docking stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Huby a docking stanice · 8-port, Thunderbolt 4",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO ORICO HUB/Dock (8-port, Thunderbolt 4)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-orico-hub-dock-8-port-usb-3-0": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO ORICO HUB/Dock (8-port, USB 3.0) — huby a docking stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Huby a docking stanice · 8-port, USB 3.0",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO ORICO HUB/Dock (8-port, USB 3.0)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-orico-hub-dock-8-port-usb-c": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO ORICO HUB/Dock (8-port, USB-C) — huby a docking stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Huby a docking stanice · 8-port, USB-C",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO ORICO HUB/Dock (8-port, USB-C)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-orico-hub-dock-8-port-usb4": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO ORICO HUB/Dock (8-port, USB4) — huby a docking stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Huby a docking stanice · 8-port, USB4",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO ORICO HUB/Dock (8-port, USB4)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        }
+      }
+    },
+    {
+      "variantGroup": "orico-orico-ssd",
+      "variants": {
+        "orico-orico-ssd-msata-ssd-1tb": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO ORICO SSD (mSATA SSD, 1TB) — ssd a úložiště ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · SSD a úložiště · mSATA SSD, 1TB",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO ORICO SSD (mSATA SSD, 1TB)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-orico-ssd-msata-ssd-256gb": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO ORICO SSD (mSATA SSD, 256GB) — ssd a úložiště ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · SSD a úložiště · mSATA SSD, 256GB",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO ORICO SSD (mSATA SSD, 256GB)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-orico-ssd-msata-ssd-2tb": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO ORICO SSD (mSATA SSD, 2TB) — ssd a úložiště ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · SSD a úložiště · mSATA SSD, 2TB",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO ORICO SSD (mSATA SSD, 2TB)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-orico-ssd-msata-ssd-4tb": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO ORICO SSD (mSATA SSD, 4TB) — ssd a úložiště ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · SSD a úložiště · mSATA SSD, 4TB",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO ORICO SSD (mSATA SSD, 4TB)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-orico-ssd-msata-ssd-512gb": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO ORICO SSD (mSATA SSD, 512GB) — ssd a úložiště ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · SSD a úložiště · mSATA SSD, 512GB",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO ORICO SSD (mSATA SSD, 512GB)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-orico-ssd-nvme-ssd-1tb": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO ORICO SSD (NVMe SSD, 1TB) — ssd a úložiště ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · SSD a úložiště · NVMe SSD, 1TB",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO ORICO SSD (NVMe SSD, 1TB)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-orico-ssd-nvme-ssd-256gb": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO ORICO SSD (NVMe SSD, 256GB) — ssd a úložiště ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · SSD a úložiště · NVMe SSD, 256GB",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO ORICO SSD (NVMe SSD, 256GB)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-orico-ssd-nvme-ssd-2tb": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO ORICO SSD (NVMe SSD, 2TB) — ssd a úložiště ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · SSD a úložiště · NVMe SSD, 2TB",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO ORICO SSD (NVMe SSD, 2TB)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-orico-ssd-nvme-ssd-4tb": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO ORICO SSD (NVMe SSD, 4TB) — ssd a úložiště ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · SSD a úložiště · NVMe SSD, 4TB",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO ORICO SSD (NVMe SSD, 4TB)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-orico-ssd-nvme-ssd-512gb": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO ORICO SSD (NVMe SSD, 512GB) — ssd a úložiště ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · SSD a úložiště · NVMe SSD, 512GB",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO ORICO SSD (NVMe SSD, 512GB)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-orico-ssd-portable-ssd-1tb": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO ORICO SSD (Portable SSD, 1TB) — ssd a úložiště ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · SSD a úložiště · Portable SSD, 1TB",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO ORICO SSD (Portable SSD, 1TB)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-orico-ssd-portable-ssd-256gb": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO ORICO SSD (Portable SSD, 256GB) — ssd a úložiště ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · SSD a úložiště · Portable SSD, 256GB",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO ORICO SSD (Portable SSD, 256GB)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-orico-ssd-portable-ssd-2tb": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO ORICO SSD (Portable SSD, 2TB) — ssd a úložiště ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · SSD a úložiště · Portable SSD, 2TB",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO ORICO SSD (Portable SSD, 2TB)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-orico-ssd-portable-ssd-4tb": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO ORICO SSD (Portable SSD, 4TB) — ssd a úložiště ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · SSD a úložiště · Portable SSD, 4TB",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO ORICO SSD (Portable SSD, 4TB)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-orico-ssd-portable-ssd-512gb": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO ORICO SSD (Portable SSD, 512GB) — ssd a úložiště ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · SSD a úložiště · Portable SSD, 512GB",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO ORICO SSD (Portable SSD, 512GB)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-orico-ssd-sata-ssd-1tb": {
+          "officialName": "ORICO Y20 2,5\" SATA SSD 1 TB",
+          "shortDesc": "2,5\" SATA SSD ORICO Y20 s kapacitou 512 GB až 4 TB",
+          "description": "SSD ORICO Y20 ve formátu 2,5\" s rozhraním SATA III zrychlí starší notebook či PC nebo poslouží jako velké úložiště. Podporuje S.M.A.R.T. a TRIM.",
+          "specs": {
+            "Parametry": {
+              "Formát": "2,5\"",
+              "Rozhraní": "SATA III",
+              "Funkce": "S.M.A.R.T., TRIM",
+              "Kapacita": "1 TB"
+            }
+          },
+          "images": [
+            "/store/img/products/orico-ssd-y20/1.webp",
+            "/store/img/products/orico-ssd-y20/2.webp",
+            "/store/img/products/orico-ssd-y20/3.webp",
+            "/store/img/products/orico-ssd-y20/4.webp",
+            "/store/img/products/orico-ssd-y20/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/orico-ssd-y20/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/Y-202.5SATASSD_-_-1600x2000px.webp",
+              "size": "1600x2000"
+            },
+            {
+              "file": "/store/img/products/orico-ssd-y20/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/Y-202.5SATA_-_-1600x2000px-01.webp",
+              "size": "1600x2000"
+            },
+            {
+              "file": "/store/img/products/orico-ssd-y20/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/Y-202.5SATA_-_-1600x2000px-02.webp",
+              "size": "1600x2000"
+            },
+            {
+              "file": "/store/img/products/orico-ssd-y20/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/Y-202.5SATA_-_-1600x2000px-03.webp",
+              "size": "1600x2000"
+            },
+            {
+              "file": "/store/img/products/orico-ssd-y20/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/Y-202.5SATA_-_-1600x2000px-04.webp",
+              "size": "1600x2000"
+            }
+          ],
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://oricotechs.com/products/orico-y-20-sata-ssd",
+              "note": "ORICO Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://oricotechs.com/products/orico-y-20-sata-ssd",
+              "note": "Fotografie: oficiální galerie výrobce (ORICO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing uvádí jen parametry (typ/rozhraní/materiál) – přiřazeno k odpovídajícímu oficiálnímu produktu ORICO; ověřit SKU u dodavatele."
+        },
+        "orico-orico-ssd-sata-ssd-256gb": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO ORICO SSD (SATA SSD, 256GB) — ssd a úložiště ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · SSD a úložiště · SATA SSD, 256GB",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO ORICO SSD (SATA SSD, 256GB)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-orico-ssd-sata-ssd-2tb": {
+          "officialName": "ORICO Y20 2,5\" SATA SSD 2 TB",
+          "shortDesc": "2,5\" SATA SSD ORICO Y20 s kapacitou 512 GB až 4 TB",
+          "description": "SSD ORICO Y20 ve formátu 2,5\" s rozhraním SATA III zrychlí starší notebook či PC nebo poslouží jako velké úložiště. Podporuje S.M.A.R.T. a TRIM.",
+          "specs": {
+            "Parametry": {
+              "Formát": "2,5\"",
+              "Rozhraní": "SATA III",
+              "Funkce": "S.M.A.R.T., TRIM",
+              "Kapacita": "2 TB"
+            }
+          },
+          "images": [
+            "/store/img/products/orico-ssd-y20/1.webp",
+            "/store/img/products/orico-ssd-y20/2.webp",
+            "/store/img/products/orico-ssd-y20/3.webp",
+            "/store/img/products/orico-ssd-y20/4.webp",
+            "/store/img/products/orico-ssd-y20/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/orico-ssd-y20/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/Y-202.5SATASSD_-_-1600x2000px.webp",
+              "size": "1600x2000"
+            },
+            {
+              "file": "/store/img/products/orico-ssd-y20/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/Y-202.5SATA_-_-1600x2000px-01.webp",
+              "size": "1600x2000"
+            },
+            {
+              "file": "/store/img/products/orico-ssd-y20/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/Y-202.5SATA_-_-1600x2000px-02.webp",
+              "size": "1600x2000"
+            },
+            {
+              "file": "/store/img/products/orico-ssd-y20/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/Y-202.5SATA_-_-1600x2000px-03.webp",
+              "size": "1600x2000"
+            },
+            {
+              "file": "/store/img/products/orico-ssd-y20/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/Y-202.5SATA_-_-1600x2000px-04.webp",
+              "size": "1600x2000"
+            }
+          ],
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://oricotechs.com/products/orico-y-20-sata-ssd",
+              "note": "ORICO Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://oricotechs.com/products/orico-y-20-sata-ssd",
+              "note": "Fotografie: oficiální galerie výrobce (ORICO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing uvádí jen parametry (typ/rozhraní/materiál) – přiřazeno k odpovídajícímu oficiálnímu produktu ORICO; ověřit SKU u dodavatele."
+        },
+        "orico-orico-ssd-sata-ssd-4tb": {
+          "officialName": "ORICO Y20 2,5\" SATA SSD 4 TB",
+          "shortDesc": "2,5\" SATA SSD ORICO Y20 s kapacitou 512 GB až 4 TB",
+          "description": "SSD ORICO Y20 ve formátu 2,5\" s rozhraním SATA III zrychlí starší notebook či PC nebo poslouží jako velké úložiště. Podporuje S.M.A.R.T. a TRIM.",
+          "specs": {
+            "Parametry": {
+              "Formát": "2,5\"",
+              "Rozhraní": "SATA III",
+              "Funkce": "S.M.A.R.T., TRIM",
+              "Kapacita": "4 TB"
+            }
+          },
+          "images": [
+            "/store/img/products/orico-ssd-y20/1.webp",
+            "/store/img/products/orico-ssd-y20/2.webp",
+            "/store/img/products/orico-ssd-y20/3.webp",
+            "/store/img/products/orico-ssd-y20/4.webp",
+            "/store/img/products/orico-ssd-y20/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/orico-ssd-y20/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/Y-202.5SATASSD_-_-1600x2000px.webp",
+              "size": "1600x2000"
+            },
+            {
+              "file": "/store/img/products/orico-ssd-y20/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/Y-202.5SATA_-_-1600x2000px-01.webp",
+              "size": "1600x2000"
+            },
+            {
+              "file": "/store/img/products/orico-ssd-y20/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/Y-202.5SATA_-_-1600x2000px-02.webp",
+              "size": "1600x2000"
+            },
+            {
+              "file": "/store/img/products/orico-ssd-y20/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/Y-202.5SATA_-_-1600x2000px-03.webp",
+              "size": "1600x2000"
+            },
+            {
+              "file": "/store/img/products/orico-ssd-y20/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/Y-202.5SATA_-_-1600x2000px-04.webp",
+              "size": "1600x2000"
+            }
+          ],
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://oricotechs.com/products/orico-y-20-sata-ssd",
+              "note": "ORICO Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://oricotechs.com/products/orico-y-20-sata-ssd",
+              "note": "Fotografie: oficiální galerie výrobce (ORICO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing uvádí jen parametry (typ/rozhraní/materiál) – přiřazeno k odpovídajícímu oficiálnímu produktu ORICO; ověřit SKU u dodavatele."
+        },
+        "orico-orico-ssd-sata-ssd-512gb": {
+          "officialName": "ORICO Y20 2,5\" SATA SSD 512 GB",
+          "shortDesc": "2,5\" SATA SSD ORICO Y20 s kapacitou 512 GB až 4 TB",
+          "description": "SSD ORICO Y20 ve formátu 2,5\" s rozhraním SATA III zrychlí starší notebook či PC nebo poslouží jako velké úložiště. Podporuje S.M.A.R.T. a TRIM.",
+          "specs": {
+            "Parametry": {
+              "Formát": "2,5\"",
+              "Rozhraní": "SATA III",
+              "Funkce": "S.M.A.R.T., TRIM",
+              "Kapacita": "512 GB"
+            }
+          },
+          "images": [
+            "/store/img/products/orico-ssd-y20/1.webp",
+            "/store/img/products/orico-ssd-y20/2.webp",
+            "/store/img/products/orico-ssd-y20/3.webp",
+            "/store/img/products/orico-ssd-y20/4.webp",
+            "/store/img/products/orico-ssd-y20/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/orico-ssd-y20/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/Y-202.5SATASSD_-_-1600x2000px.webp",
+              "size": "1600x2000"
+            },
+            {
+              "file": "/store/img/products/orico-ssd-y20/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/Y-202.5SATA_-_-1600x2000px-01.webp",
+              "size": "1600x2000"
+            },
+            {
+              "file": "/store/img/products/orico-ssd-y20/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/Y-202.5SATA_-_-1600x2000px-02.webp",
+              "size": "1600x2000"
+            },
+            {
+              "file": "/store/img/products/orico-ssd-y20/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/Y-202.5SATA_-_-1600x2000px-03.webp",
+              "size": "1600x2000"
+            },
+            {
+              "file": "/store/img/products/orico-ssd-y20/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/Y-202.5SATA_-_-1600x2000px-04.webp",
+              "size": "1600x2000"
+            }
+          ],
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://oricotechs.com/products/orico-y-20-sata-ssd",
+              "note": "ORICO Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://oricotechs.com/products/orico-y-20-sata-ssd",
+              "note": "Fotografie: oficiální galerie výrobce (ORICO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing uvádí jen parametry (typ/rozhraní/materiál) – přiřazeno k odpovídajícímu oficiálnímu produktu ORICO; ověřit SKU u dodavatele."
+        }
+      }
+    },
+    {
+      "variantGroup": "orico-stojany",
+      "variants": {
+        "orico-stojany-laptop-premium": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Stojany (laptop premium) — stojany a držáky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Stojany a držáky · laptop premium",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Stojany (laptop premium)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-stojany-laptop-standard": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Stojany (laptop standard) — stojany a držáky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Stojany a držáky · laptop standard",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Stojany (laptop standard)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-stojany-mac-mini-premium": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Stojany (Mac mini premium) — stojany a držáky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Stojany a držáky · Mac mini premium",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Stojany (Mac mini premium)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-stojany-mac-mini-standard": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Stojany (Mac mini standard) — stojany a držáky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Stojany a držáky · Mac mini standard",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Stojany (Mac mini standard)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-stojany-pc-premium": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Stojany (PC premium) — stojany a držáky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Stojany a držáky · PC premium",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Stojany (PC premium)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-stojany-pc-standard": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Stojany (PC standard) — stojany a držáky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Stojany a držáky · PC standard",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Stojany (PC standard)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-stojany-phone-premium": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Stojany (phone premium) — stojany a držáky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Stojany a držáky · phone premium",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Stojany (phone premium)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-stojany-phone-standard": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Stojany (phone standard) — stojany a držáky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Stojany a držáky · phone standard",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Stojany (phone standard)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-stojany-tablet-premium": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Stojany (tablet premium) — stojany a držáky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Stojany a držáky · tablet premium",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Stojany (tablet premium)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-stojany-tablet-standard": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Stojany (tablet standard) — stojany a držáky ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Stojany a držáky · tablet standard",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Stojany (tablet standard)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        }
+      }
+    },
+    {
+      "variantGroup": "orico-storage-enclosure",
+      "variants": {
+        "orico-storage-enclosure-2-5-sata-10gbps-abs": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (2.5 SATA, 10Gbps, ABS) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · 2.5 SATA, 10Gbps, ABS",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (2.5 SATA, 10Gbps, ABS)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-2-5-sata-10gbps-aluminum": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (2.5 SATA, 10Gbps, aluminum) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · 2.5 SATA, 10Gbps, aluminum",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (2.5 SATA, 10Gbps, aluminum)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-2-5-sata-10gbps-transparent": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (2.5 SATA, 10Gbps, transparent) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · 2.5 SATA, 10Gbps, transparent",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (2.5 SATA, 10Gbps, transparent)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-2-5-sata-20gbps-abs": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (2.5 SATA, 20Gbps, ABS) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · 2.5 SATA, 20Gbps, ABS",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (2.5 SATA, 20Gbps, ABS)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-2-5-sata-20gbps-aluminum": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (2.5 SATA, 20Gbps, aluminum) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · 2.5 SATA, 20Gbps, aluminum",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (2.5 SATA, 20Gbps, aluminum)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-2-5-sata-20gbps-transparent": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (2.5 SATA, 20Gbps, transparent) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · 2.5 SATA, 20Gbps, transparent",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (2.5 SATA, 20Gbps, transparent)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-2-5-sata-40gbps-abs": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (2.5 SATA, 40Gbps, ABS) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · 2.5 SATA, 40Gbps, ABS",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (2.5 SATA, 40Gbps, ABS)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-2-5-sata-40gbps-aluminum": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (2.5 SATA, 40Gbps, aluminum) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · 2.5 SATA, 40Gbps, aluminum",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (2.5 SATA, 40Gbps, aluminum)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-2-5-sata-40gbps-transparent": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (2.5 SATA, 40Gbps, transparent) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · 2.5 SATA, 40Gbps, transparent",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (2.5 SATA, 40Gbps, transparent)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-2-5-sata-5gbps-abs": {
+          "officialName": "ORICO 2,5\" USB 3.0 rámeček na disk (černý)",
+          "shortDesc": "Plastový rámeček pro 2,5\" SATA HDD/SSD s rozhraním USB 3.0",
+          "description": "Rámeček ORICO promění 2,5\" pevný disk nebo SSD s rozhraním SATA v přenosné úložiště připojené přes USB 3.0 (5 Gb/s). Instalace bez nářadí, napájení přímo z USB.",
+          "specs": {
+            "Parametry": {
+              "Podporované disky": "2,5\" SATA HDD / SSD",
+              "Rozhraní disku": "SATA III (6 Gb/s)",
+              "Připojení": "USB 3.0 (5 Gb/s)",
+              "Materiál": "plast (ABS)",
+              "Barva": "černá"
+            }
+          },
+          "images": [
+            "/store/img/products/orico-enclosure-2-5-abs/1.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/orico-enclosure-2-5-abs/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/25PW1-C3-BK-AC.jpg",
+              "size": "1600x1600"
+            }
+          ],
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://oricotechs.com/products/2-5-inch-usb-3-0-hdd-enclosure",
+              "note": "ORICO Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://oricotechs.com/products/2-5-inch-usb-3-0-hdd-enclosure",
+              "note": "Fotografie: oficiální galerie výrobce (ORICO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing uvádí jen parametry (typ/rozhraní/materiál) – přiřazeno k odpovídajícímu oficiálnímu produktu ORICO; ověřit SKU u dodavatele."
+        },
+        "orico-storage-enclosure-2-5-sata-5gbps-aluminum": {
+          "officialName": "ORICO hliníkový 2,5\" rámeček USB-C (6 Gb/s SATA)",
+          "shortDesc": "Hliníkový rámeček pro 2,5\" SATA disky s USB-C, podpora disků do 6 TB",
+          "description": "Hliníkový rámeček ORICO pro 2,5\" SATA disky a SSD s připojením USB-C (USB 3.2). Kovové tělo odvádí teplo a chrání disk, instalace bez nářadí. Podporuje disky do 6 TB.",
+          "specs": {
+            "Parametry": {
+              "Podporované disky": "2,5\" SATA HDD / SSD, do 6 TB",
+              "Rozhraní disku": "SATA III (6 Gb/s)",
+              "Připojení": "USB-C (USB 3.2)",
+              "Materiál": "hliník"
+            }
+          },
+          "images": [
+            "/store/img/products/orico-enclosure-2-5-aluminum/1.webp",
+            "/store/img/products/orico-enclosure-2-5-aluminum/2.webp",
+            "/store/img/products/orico-enclosure-2-5-aluminum/3.webp",
+            "/store/img/products/orico-enclosure-2-5-aluminum/4.webp",
+            "/store/img/products/orico-enclosure-2-5-aluminum/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/orico-enclosure-2-5-aluminum/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/DD25-U3-1.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/orico-enclosure-2-5-aluminum/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/DD25-C3-2.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/orico-enclosure-2-5-aluminum/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/DD25-C3-_8.jpg",
+              "size": "1300x1600"
+            },
+            {
+              "file": "/store/img/products/orico-enclosure-2-5-aluminum/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/DD25-C3-_9.jpg",
+              "size": "1300x1600"
+            },
+            {
+              "file": "/store/img/products/orico-enclosure-2-5-aluminum/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/DD25-C3-_5.jpg",
+              "size": "1300x1600"
+            }
+          ],
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://oricotechs.com/products/orico-2-5-inch-type-c-6gbps-aluminum-sata-hdd-ssd-enclosure",
+              "note": "ORICO Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://oricotechs.com/products/orico-2-5-inch-type-c-6gbps-aluminum-sata-hdd-ssd-enclosure",
+              "note": "Fotografie: oficiální galerie výrobce (ORICO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing uvádí jen parametry (typ/rozhraní/materiál) – přiřazeno k odpovídajícímu oficiálnímu produktu ORICO; ověřit SKU u dodavatele."
+        },
+        "orico-storage-enclosure-2-5-sata-5gbps-transparent": {
+          "officialName": "ORICO průhledný 2,5\" rámeček SATA → USB",
+          "shortDesc": "Průhledný rámeček pro 2,5\" SATA HDD/SSD, napájení z USB",
+          "description": "Průhledný rámeček ORICO pro 2,5\" disky a SSD s rozhraním SATA. Napájí se přímo z USB, disk se vkládá bez nářadí.",
+          "specs": {
+            "Parametry": {
+              "Podporované disky": "2,5\" SATA HDD / SSD",
+              "Připojení": "USB (Micro-B nebo Type-C dle verze)",
+              "Napájení": "z USB",
+              "Materiál": "průhledný plast"
+            }
+          },
+          "images": [
+            "/store/img/products/orico-enclosure-2-5-transparent/1.webp",
+            "/store/img/products/orico-enclosure-2-5-transparent/2.webp",
+            "/store/img/products/orico-enclosure-2-5-transparent/3.webp",
+            "/store/img/products/orico-enclosure-2-5-transparent/4.webp",
+            "/store/img/products/orico-enclosure-2-5-transparent/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/orico-enclosure-2-5-transparent/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/2139C3-CR-2304-1.jpg",
+              "size": "1600x1200"
+            },
+            {
+              "file": "/store/img/products/orico-enclosure-2-5-transparent/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/2139C3-CR-2304-2.jpg",
+              "size": "1600x1200"
+            },
+            {
+              "file": "/store/img/products/orico-enclosure-2-5-transparent/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/2139C3-CR-2304-3.jpg",
+              "size": "1600x1200"
+            },
+            {
+              "file": "/store/img/products/orico-enclosure-2-5-transparent/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/2139C3-CR-2304-4.jpg",
+              "size": "1600x1200"
+            },
+            {
+              "file": "/store/img/products/orico-enclosure-2-5-transparent/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/2139C3-CR-2304-5.jpg",
+              "size": "1600x1200"
+            }
+          ],
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://oricotechs.com/products/orico-2-5-inch-sata-to-usb-transparent-hdd-enclosure",
+              "note": "ORICO Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://oricotechs.com/products/orico-2-5-inch-sata-to-usb-transparent-hdd-enclosure",
+              "note": "Fotografie: oficiální galerie výrobce (ORICO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing uvádí jen parametry (typ/rozhraní/materiál) – přiřazeno k odpovídajícímu oficiálnímu produktu ORICO; ověřit SKU u dodavatele."
+        },
+        "orico-storage-enclosure-3-5-sata-10gbps-abs": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (3.5 SATA, 10Gbps, ABS) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · 3.5 SATA, 10Gbps, ABS",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (3.5 SATA, 10Gbps, ABS)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-3-5-sata-10gbps-aluminum": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (3.5 SATA, 10Gbps, aluminum) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · 3.5 SATA, 10Gbps, aluminum",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (3.5 SATA, 10Gbps, aluminum)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-3-5-sata-10gbps-transparent": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (3.5 SATA, 10Gbps, transparent) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · 3.5 SATA, 10Gbps, transparent",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (3.5 SATA, 10Gbps, transparent)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-3-5-sata-20gbps-abs": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (3.5 SATA, 20Gbps, ABS) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · 3.5 SATA, 20Gbps, ABS",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (3.5 SATA, 20Gbps, ABS)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-3-5-sata-20gbps-aluminum": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (3.5 SATA, 20Gbps, aluminum) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · 3.5 SATA, 20Gbps, aluminum",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (3.5 SATA, 20Gbps, aluminum)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-3-5-sata-20gbps-transparent": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (3.5 SATA, 20Gbps, transparent) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · 3.5 SATA, 20Gbps, transparent",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (3.5 SATA, 20Gbps, transparent)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-3-5-sata-40gbps-abs": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (3.5 SATA, 40Gbps, ABS) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · 3.5 SATA, 40Gbps, ABS",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (3.5 SATA, 40Gbps, ABS)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-3-5-sata-40gbps-aluminum": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (3.5 SATA, 40Gbps, aluminum) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · 3.5 SATA, 40Gbps, aluminum",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (3.5 SATA, 40Gbps, aluminum)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-3-5-sata-40gbps-transparent": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (3.5 SATA, 40Gbps, transparent) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · 3.5 SATA, 40Gbps, transparent",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (3.5 SATA, 40Gbps, transparent)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-3-5-sata-5gbps-abs": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (3.5 SATA, 5Gbps, ABS) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · 3.5 SATA, 5Gbps, ABS",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (3.5 SATA, 5Gbps, ABS)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-3-5-sata-5gbps-aluminum": {
+          "officialName": "ORICO hliníkový 3,5\" rámeček USB-C (6 Gb/s SATA)",
+          "shortDesc": "Hliníkový rámeček pro 3,5\" SATA disky s USB-C, podpora disků do 20 TB",
+          "description": "Hliníkový rámeček ORICO pro 3,5\" SATA disky s připojením USB-C (USB 3.2). Hliníkové tělo odvádí teplo, disk se instaluje bez nářadí. Podporuje disky do 20 TB.",
+          "specs": {
+            "Parametry": {
+              "Podporované disky": "3,5\" / 2,5\" SATA HDD / SSD, do 20 TB",
+              "Rozhraní disku": "SATA III (6 Gb/s)",
+              "Připojení": "USB-C (USB 3.2)",
+              "Materiál": "hliník"
+            }
+          },
+          "images": [
+            "/store/img/products/orico-enclosure-3-5-aluminum/1.webp",
+            "/store/img/products/orico-enclosure-3-5-aluminum/2.webp",
+            "/store/img/products/orico-enclosure-3-5-aluminum/3.webp",
+            "/store/img/products/orico-enclosure-3-5-aluminum/4.webp",
+            "/store/img/products/orico-enclosure-3-5-aluminum/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/orico-enclosure-3-5-aluminum/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/DD35-C3-1.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/orico-enclosure-3-5-aluminum/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/DD35-C3-2.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/orico-enclosure-3-5-aluminum/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/DD35-C3-3.jpg",
+              "size": "1300x1600"
+            },
+            {
+              "file": "/store/img/products/orico-enclosure-3-5-aluminum/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/DD35-C3-5.jpg",
+              "size": "1300x1600"
+            },
+            {
+              "file": "/store/img/products/orico-enclosure-3-5-aluminum/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/DD35-C3-8.jpg",
+              "size": "1300x1600"
+            }
+          ],
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://oricotechs.com/products/orico-3-5-inch-type-c-6gbps-aluminum-sata-hdd-ssd-enclosure",
+              "note": "ORICO Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://oricotechs.com/products/orico-3-5-inch-type-c-6gbps-aluminum-sata-hdd-ssd-enclosure",
+              "note": "Fotografie: oficiální galerie výrobce (ORICO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing uvádí jen parametry (typ/rozhraní/materiál) – přiřazeno k odpovídajícímu oficiálnímu produktu ORICO; ověřit SKU u dodavatele."
+        },
+        "orico-storage-enclosure-3-5-sata-5gbps-transparent": {
+          "officialName": "ORICO průhledný 3,5\" rámeček SATA → USB 3.0",
+          "shortDesc": "Průhledný rámeček pro 3,5\" SATA disky s USB 3.0 a napájecím adaptérem",
+          "description": "Průhledný rámeček ORICO pro 3,5\" (i 2,5\") SATA disky s připojením USB 3.0. Díky průhlednému krytu je vidět stav disku, disk se vkládá bez nářadí. Velké 3,5\" disky napájí přiložený síťový adaptér (pro EU s evropskou vidlicí).",
+          "specs": {
+            "Parametry": {
+              "Podporované disky": "3,5\" / 2,5\" SATA HDD / SSD",
+              "Připojení": "USB 3.0 (5 Gb/s), Micro-B",
+              "Napájení": "externí adaptér",
+              "Materiál": "průhledný plast"
+            }
+          },
+          "images": [
+            "/store/img/products/orico-enclosure-3-5-transparent/1.webp",
+            "/store/img/products/orico-enclosure-3-5-transparent/2.webp",
+            "/store/img/products/orico-enclosure-3-5-transparent/3.webp",
+            "/store/img/products/orico-enclosure-3-5-transparent/4.webp",
+            "/store/img/products/orico-enclosure-3-5-transparent/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/orico-enclosure-3-5-transparent/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/3139U3-800-7.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/orico-enclosure-3-5-transparent/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/3139U3-800-2.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/orico-enclosure-3-5-transparent/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/3139U3-800-3.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/orico-enclosure-3-5-transparent/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/3139U3-800-5.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/orico-enclosure-3-5-transparent/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/3139U3-800-9.jpg",
+              "size": "800x800"
+            }
+          ],
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://oricotechs.com/products/orico-3-5-inch-sata-to-usb-3-0-transparent-hdd-enclosure",
+              "note": "ORICO Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://oricotechs.com/products/orico-3-5-inch-sata-to-usb-3-0-transparent-hdd-enclosure",
+              "note": "Fotografie: oficiální galerie výrobce (ORICO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing uvádí jen parametry (typ/rozhraní/materiál) – přiřazeno k odpovídajícímu oficiálnímu produktu ORICO; ověřit SKU u dodavatele."
+        },
+        "orico-storage-enclosure-m-2-nvme-10gbps-abs": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (M.2 NVMe, 10Gbps, ABS) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · M.2 NVMe, 10Gbps, ABS",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (M.2 NVMe, 10Gbps, ABS)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-m-2-nvme-10gbps-aluminum": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (M.2 NVMe, 10Gbps, aluminum) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · M.2 NVMe, 10Gbps, aluminum",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (M.2 NVMe, 10Gbps, aluminum)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-m-2-nvme-10gbps-transparent": {
+          "officialName": "ORICO TXM2M průhledný rámeček M.2 NVMe 10 Gb/s",
+          "shortDesc": "Průhledný rámeček pro M.2 SSD (NVMe i SATA) s USB-C 10 Gb/s",
+          "description": "Rámeček ORICO TXM2M pro M.2 SSD s protokolem NVMe i SATA, připojení USB 10 Gb/s s podporou UASP. Montáž bez nářadí, průhledné tělo a chladicí vložka.",
+          "specs": {
+            "Parametry": {
+              "Podporované SSD": "M.2 NVMe / M.2 SATA",
+              "Připojení": "USB-C 10 Gb/s, UASP",
+              "Montáž": "bez nářadí",
+              "Materiál": "průhledný plast"
+            }
+          },
+          "images": [
+            "/store/img/products/orico-enclosure-txm2m/1.webp",
+            "/store/img/products/orico-enclosure-txm2m/2.webp",
+            "/store/img/products/orico-enclosure-txm2m/3.webp",
+            "/store/img/products/orico-enclosure-txm2m/4.webp",
+            "/store/img/products/orico-enclosure-txm2m/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/orico-enclosure-txm2m/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/TXM2M-C3-GY-1.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/orico-enclosure-txm2m/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/7_21fd2f9d-1003-43d5-823d-4b23ffffc920.jpg",
+              "size": "1300x1600"
+            },
+            {
+              "file": "/store/img/products/orico-enclosure-txm2m/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/9.jpg",
+              "size": "1300x1600"
+            },
+            {
+              "file": "/store/img/products/orico-enclosure-txm2m/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/2_35778184-4602-4cad-8de4-53f856fdfde6.jpg",
+              "size": "1300x1600"
+            },
+            {
+              "file": "/store/img/products/orico-enclosure-txm2m/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/3_09f6ef41-3bae-4650-bcec-41d2011ed83d.jpg",
+              "size": "1300x1600"
+            }
+          ],
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://oricotechs.com/products/orico-txm2m-transparent-10gbps-m-2-nvme-ssd-enclosure",
+              "note": "ORICO Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://oricotechs.com/products/orico-txm2m-transparent-10gbps-m-2-nvme-ssd-enclosure",
+              "note": "Fotografie: oficiální galerie výrobce (ORICO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing uvádí jen parametry (typ/rozhraní/materiál) – přiřazeno k odpovídajícímu oficiálnímu produktu ORICO; ověřit SKU u dodavatele."
+        },
+        "orico-storage-enclosure-m-2-nvme-20gbps-abs": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (M.2 NVMe, 20Gbps, ABS) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · M.2 NVMe, 20Gbps, ABS",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (M.2 NVMe, 20Gbps, ABS)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-m-2-nvme-20gbps-aluminum": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (M.2 NVMe, 20Gbps, aluminum) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · M.2 NVMe, 20Gbps, aluminum",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (M.2 NVMe, 20Gbps, aluminum)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-m-2-nvme-20gbps-transparent": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (M.2 NVMe, 20Gbps, transparent) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · M.2 NVMe, 20Gbps, transparent",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (M.2 NVMe, 20Gbps, transparent)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-m-2-nvme-40gbps-abs": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (M.2 NVMe, 40Gbps, ABS) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · M.2 NVMe, 40Gbps, ABS",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (M.2 NVMe, 40Gbps, ABS)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-m-2-nvme-40gbps-aluminum": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (M.2 NVMe, 40Gbps, aluminum) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · M.2 NVMe, 40Gbps, aluminum",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (M.2 NVMe, 40Gbps, aluminum)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-m-2-nvme-40gbps-transparent": {
+          "officialName": "ORICO TCM2-U4 průhledný rámeček USB4 40 Gb/s s ventilátorem",
+          "shortDesc": "Rámeček pro M.2 NVMe SSD s USB4 40 Gb/s a chladicím ventilátorem",
+          "description": "Rámeček ORICO TCM2-U4 pro M.2 NVMe SSD s rozhraním USB4 40 Gb/s. Vestavěný ventilátor udrží SSD při dlouhých přenosech chladné, výrobce uvádí rychlosti až 2 800 MB/s.",
+          "specs": {
+            "Parametry": {
+              "Podporované SSD": "M.2 NVMe",
+              "Připojení": "USB4 40 Gb/s",
+              "Chlazení": "vestavěný ventilátor",
+              "Rychlost (dle výrobce)": "až 2 800 MB/s"
+            }
+          },
+          "images": [
+            "/store/img/products/orico-enclosure-tcm2-u4/1.webp",
+            "/store/img/products/orico-enclosure-tcm2-u4/2.webp",
+            "/store/img/products/orico-enclosure-tcm2-u4/3.webp",
+            "/store/img/products/orico-enclosure-tcm2-u4/4.webp",
+            "/store/img/products/orico-enclosure-tcm2-u4/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/orico-enclosure-tcm2-u4/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/TCM2-U4-BK.jpg",
+              "size": "1200x1200"
+            },
+            {
+              "file": "/store/img/products/orico-enclosure-tcm2-u4/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/2_1a74f2f1-ce2a-4732-9dfd-abbe26a171b7.jpg",
+              "size": "1300x1600"
+            },
+            {
+              "file": "/store/img/products/orico-enclosure-tcm2-u4/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/3_fc7a1fcc-1262-4d34-a8f6-addeb0fdace5.jpg",
+              "size": "1300x1600"
+            },
+            {
+              "file": "/store/img/products/orico-enclosure-tcm2-u4/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/5_b4a6f735-2086-43fe-b7cf-5758213cc905.jpg",
+              "size": "1300x1600"
+            },
+            {
+              "file": "/store/img/products/orico-enclosure-tcm2-u4/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0745/7911/6332/files/6_954cc02c-b683-4666-acfb-7dd597f88d46.jpg",
+              "size": "1300x1600"
+            }
+          ],
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://oricotechs.com/products/orico-tcm2u4-usb4-40gbps-m-2-nvme-ssd-transparent-enclosure-with-cooling-fan",
+              "note": "ORICO Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://oricotechs.com/products/orico-tcm2u4-usb4-40gbps-m-2-nvme-ssd-transparent-enclosure-with-cooling-fan",
+              "note": "Fotografie: oficiální galerie výrobce (ORICO)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "mappingNote": "Sourcing uvádí jen parametry (typ/rozhraní/materiál) – přiřazeno k odpovídajícímu oficiálnímu produktu ORICO; ověřit SKU u dodavatele."
+        },
+        "orico-storage-enclosure-m-2-nvme-5gbps-abs": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (M.2 NVMe, 5Gbps, ABS) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · M.2 NVMe, 5Gbps, ABS",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (M.2 NVMe, 5Gbps, ABS)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-m-2-nvme-5gbps-aluminum": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (M.2 NVMe, 5Gbps, aluminum) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · M.2 NVMe, 5Gbps, aluminum",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (M.2 NVMe, 5Gbps, aluminum)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-m-2-nvme-5gbps-transparent": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (M.2 NVMe, 5Gbps, transparent) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · M.2 NVMe, 5Gbps, transparent",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (M.2 NVMe, 5Gbps, transparent)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-m-2-sata-10gbps-abs": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (M.2 SATA, 10Gbps, ABS) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · M.2 SATA, 10Gbps, ABS",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (M.2 SATA, 10Gbps, ABS)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-m-2-sata-10gbps-aluminum": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (M.2 SATA, 10Gbps, aluminum) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · M.2 SATA, 10Gbps, aluminum",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (M.2 SATA, 10Gbps, aluminum)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-m-2-sata-10gbps-transparent": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (M.2 SATA, 10Gbps, transparent) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · M.2 SATA, 10Gbps, transparent",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (M.2 SATA, 10Gbps, transparent)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-m-2-sata-20gbps-abs": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (M.2 SATA, 20Gbps, ABS) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · M.2 SATA, 20Gbps, ABS",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (M.2 SATA, 20Gbps, ABS)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-m-2-sata-20gbps-aluminum": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (M.2 SATA, 20Gbps, aluminum) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · M.2 SATA, 20Gbps, aluminum",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (M.2 SATA, 20Gbps, aluminum)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-m-2-sata-20gbps-transparent": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (M.2 SATA, 20Gbps, transparent) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · M.2 SATA, 20Gbps, transparent",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (M.2 SATA, 20Gbps, transparent)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-m-2-sata-40gbps-abs": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (M.2 SATA, 40Gbps, ABS) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · M.2 SATA, 40Gbps, ABS",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (M.2 SATA, 40Gbps, ABS)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-m-2-sata-40gbps-aluminum": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (M.2 SATA, 40Gbps, aluminum) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · M.2 SATA, 40Gbps, aluminum",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (M.2 SATA, 40Gbps, aluminum)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-m-2-sata-40gbps-transparent": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (M.2 SATA, 40Gbps, transparent) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · M.2 SATA, 40Gbps, transparent",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (M.2 SATA, 40Gbps, transparent)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-m-2-sata-5gbps-abs": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (M.2 SATA, 5Gbps, ABS) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · M.2 SATA, 5Gbps, ABS",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (M.2 SATA, 5Gbps, ABS)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-m-2-sata-5gbps-aluminum": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (M.2 SATA, 5Gbps, aluminum) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · M.2 SATA, 5Gbps, aluminum",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (M.2 SATA, 5Gbps, aluminum)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        },
+        "orico-storage-enclosure-m-2-sata-5gbps-transparent": {
+          "reset": true,
+          "resetFrom": {
+            "description": "ORICO Storage enclosure (M.2 SATA, 5Gbps, transparent) — skříňky na disky (hdd/ssd) ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "ORICO · Skříňky na disky (HDD/SSD) · M.2 SATA, 5Gbps, transparent",
+            "images": [
+              "/store/img/brand/orico.jpg"
+            ]
+          },
+          "officialName": "ORICO Storage enclosure (M.2 SATA, 5Gbps, transparent)",
+          "unresolvedReason": "Kombinace parametrů neodpovídá konkrétnímu ověřitelnému produktu ORICO (nebo neexistuje, např. 2,5\" SATA s 40 Gb/s)."
+        }
+      }
+    }
+  ]
+}
