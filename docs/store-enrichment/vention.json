@@ -1,0 +1,3793 @@
+{
+  "brand": "Vention",
+  "verified": "2026-11-13",
+  "groups": [
+    {
+      "variantGroup": "vention-10-in-1-dock",
+      "variants": {
+        "vention-10-in-1-dock-premium": {
+          "officialName": "Vention 10-in-1 USB-C dokovací stanice",
+          "shortDesc": "Dokovací stanice USB-C 10 v 1 pro notebooky",
+          "description": "Dokovací stanice Vention 10 v 1 rozšíří notebook s USB-C o deset rozhraní – obrazové výstupy, porty USB, síť a čtečku karet – jediným kabelem.\n\nHodí se pro ultrabooky a MacBooky s omezeným počtem portů.",
+          "specs": {
+            "Parametry": {
+              "Připojení": "USB-C",
+              "Počet rozhraní": "10 v 1"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/multi-function-10-in-1-usb-c-docking-station-mirrored-surface-type",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/multi-function-10-in-1-usb-c-docking-station-mirrored-surface-type",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-10-in-1-dock/1.webp",
+            "/store/img/products/vention-10-in-1-dock/2.webp",
+            "/store/img/products/vention-10-in-1-dock/3.webp",
+            "/store/img/products/vention-10-in-1-dock/4.webp",
+            "/store/img/products/vention-10-in-1-dock/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-10-in-1-dock/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/2_c76abc77-2f07-4d91-a20b-70a8ea38533a.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-10-in-1-dock/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-multi-function-10-in-1-usb-c-docking-station-mirrored-surface-type-33516835700902.jpg",
+              "size": "1071x1500"
+            },
+            {
+              "file": "/store/img/products/vention-10-in-1-dock/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-multi-function-10-in-1-usb-c-docking-station-mirrored-surface-type-33516834160806.jpg",
+              "size": "1500x1435"
+            },
+            {
+              "file": "/store/img/products/vention-10-in-1-dock/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-multi-function-10-in-1-usb-c-docking-station-mirrored-surface-type-33516837044390.jpg",
+              "size": "1187x1500"
+            },
+            {
+              "file": "/store/img/products/vention-10-in-1-dock/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-multi-function-10-in-1-usb-c-docking-station-mirrored-surface-type-33516838256806.jpg",
+              "size": "1143x1500"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        }
+      }
+    },
+    {
+      "variantGroup": "vention-4-port-usb3",
+      "variants": {
+        "vention-4-port-usb3-premium": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Vention 4-port USB3 (premium) — huby a docking stanice ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Vention · Huby a docking stanice · premium",
+            "images": [
+              "/store/img/brand/vention.jpg"
+            ]
+          },
+          "officialName": "Vention 4-port USB3 (premium)",
+          "unresolvedReason": "Vention v oficiálním obchodě nenabízí 4portový USB 3.0 hub."
+        }
+      }
+    },
+    {
+      "variantGroup": "vention-5-in-1-usb-c",
+      "variants": {
+        "vention-5-in-1-usb-c-premium": {
+          "officialName": "Vention 5-in-1 USB-C Hub",
+          "shortDesc": "Hliníkový USB-C hub 5 v 1 s porty USB 3.0",
+          "description": "Kompaktní hub Vention 5 v 1 s hliníkovým tělem rozšíří port USB-C o další porty USB pro flash disky, myš, klávesnici nebo externí disky. Kabel o délce 0,15 m.",
+          "specs": {
+            "Parametry": {
+              "Připojení": "USB-C",
+              "Počet rozhraní": "5 v 1",
+              "Délka kabelu": "0,15 m",
+              "Materiál": "hliníková slitina"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/usb-c-to-usb-3-0-4-usb-c-hub-0-15m-gray-aluminum-alloy-type",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/usb-c-to-usb-3-0-4-usb-c-hub-0-15m-gray-aluminum-alloy-type",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-5-in-1-usb-c/1.webp",
+            "/store/img/products/vention-5-in-1-usb-c/2.webp",
+            "/store/img/products/vention-5-in-1-usb-c/3.webp",
+            "/store/img/products/vention-5-in-1-usb-c/4.webp",
+            "/store/img/products/vention-5-in-1-usb-c/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-5-in-1-usb-c/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/800x800_5f858c24-e6bd-4996-9b5b-d36a92f0ba8c.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-5-in-1-usb-c/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/1_114c70cc-6ba2-4bc7-9c8c-01e9e58e28df.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-5-in-1-usb-c/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/2_1a7b8224-d148-4aa1-a3af-53154ee176d5.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-5-in-1-usb-c/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/3_f4b80f55-ed7b-4c47-b675-646f16eb7953.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-5-in-1-usb-c/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/4_82d9e83b-70fb-4a06-9801-5a07e308aab0.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        }
+      }
+    },
+    {
+      "variantGroup": "vention-6-in-1-usb-c",
+      "variants": {
+        "vention-6-in-1-usb-c-premium": {
+          "officialName": "Vention 6-in-1 USB-C dokovací stanice",
+          "shortDesc": "USB-C dokovací stanice 6 v 1 s výstupem 4K HDMI a napájením PD 100 W",
+          "description": "Dokovací stanice Vention 6 v 1 přidá k notebooku s USB-C výstup HDMI 4K@30 Hz, porty USB a průchozí napájení Power Delivery až 100 W, takže notebook nabíjíte i během práce.",
+          "specs": {
+            "Parametry": {
+              "Připojení": "USB-C",
+              "Počet rozhraní": "6 v 1",
+              "Výstup obrazu": "HDMI 4K@30 Hz (dle výrobce)",
+              "Napájení": "PD vstup až 100 W"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/vention-6-in-1-usb-c-docking-station",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/vention-6-in-1-usb-c-docking-station",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-6-in-1-usb-c/1.webp",
+            "/store/img/products/vention-6-in-1-usb-c/2.webp",
+            "/store/img/products/vention-6-in-1-usb-c/3.webp",
+            "/store/img/products/vention-6-in-1-usb-c/4.webp",
+            "/store/img/products/vention-6-in-1-usb-c/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-6-in-1-usb-c/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/1000x1000_1_2ae6ad14-6ab8-4eb7-8ca8-6ae879b84c1b.png",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/vention-6-in-1-usb-c/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/01_7f8b136a-36c0-412f-a81e-261d224d8ec4.jpg",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/vention-6-in-1-usb-c/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/02_2abbfccf-72c1-4693-a86d-a9f59a37bf94.jpg",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/vention-6-in-1-usb-c/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/03_18828b38-6991-4291-af69-c7bcfaeb9730.jpg",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/vention-6-in-1-usb-c/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/04_c85df8b0-78f9-441b-976c-73463e565885.jpg",
+              "size": "1600x1600"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        }
+      }
+    },
+    {
+      "variantGroup": "vention-8-in-1-usb-c",
+      "variants": {
+        "vention-8-in-1-usb-c-premium": {
+          "officialName": "Vention 8-in-1 USB-C dokovací stanice",
+          "shortDesc": "USB-C dok 8 v 1: HDMI, 3× USB 3.0, RJ45, SD/TF a PD",
+          "description": "Dokovací stanice Vention 8 v 1 rozšíří notebook s USB-C o výstup HDMI, tři porty USB 3.0 s přenosem až 5 Gb/s, síťový port RJ45, čtečku karet SD a TF a průchozí napájení PD. Hliníkové tělo, kabel 0,15 m.",
+          "specs": {
+            "Parametry": {
+              "Připojení": "USB-C",
+              "Porty": "HDMI, 3× USB 3.0, RJ45, SD, TF, USB-C PD",
+              "USB rychlost": "až 5 Gb/s",
+              "Délka kabelu": "0,15 m",
+              "Materiál": "hliníková slitina"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/usb-c-to-hdmi-usb-3-0-x-3-rj45-sd-tf-pd-docking-station-0-15m-gray-aluminum-alloy-type",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/usb-c-to-hdmi-usb-3-0-x-3-rj45-sd-tf-pd-docking-station-0-15m-gray-aluminum-alloy-type",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-8-in-1-usb-c/1.webp",
+            "/store/img/products/vention-8-in-1-usb-c/2.webp",
+            "/store/img/products/vention-8-in-1-usb-c/3.webp",
+            "/store/img/products/vention-8-in-1-usb-c/4.webp",
+            "/store/img/products/vention-8-in-1-usb-c/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-8-in-1-usb-c/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/b8421501ceee8ed8defa49d79fc692df_4c219fef-3f06-4e2d-8799-3f13f40bfce0.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-8-in-1-usb-c/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/1_7c6c3a44-4693-40e2-9812-c6fb06a99043.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-8-in-1-usb-c/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/2_7a84bbc0-1092-4eac-9855-cdeafa5ff2d2.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-8-in-1-usb-c/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/3_a10e49cd-38e1-440a-b1cd-d537e751b6bc.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-8-in-1-usb-c/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/4_a17ff7dc-6358-4df8-b1ec-7d54c36f768e.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        }
+      }
+    },
+    {
+      "variantGroup": "vention-aux",
+      "variants": {
+        "vention-aux-1m": {
+          "officialName": "Vention audio kabel 3,5 mm jack M/M (1 m)",
+          "shortDesc": "Audio kabel 3,5 mm jack – 3,5 mm jack (samec–samec)",
+          "description": "Stereo audio kabel Vention s konektory 3,5 mm jack na obou koncích propojí telefon, notebook nebo přehrávač s reproduktorem, autorádiem či sluchátky.",
+          "specs": {
+            "Parametry": {
+              "Konektory": "3,5 mm jack (M) – 3,5 mm jack (M)",
+              "Délka": "1 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/jack-3-5mm-aux-cable-male-to-male-3-5mm-audio-cable-jack-for-jbl-xiaomi-oneplus-headphones-speaker-cable-car-aux-cord",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/jack-3-5mm-aux-cable-male-to-male-3-5mm-audio-cable-jack-for-jbl-xiaomi-oneplus-headphones-speaker-cable-car-aux-cord",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-aux/1.webp",
+            "/store/img/products/vention-aux/2.webp",
+            "/store/img/products/vention-aux/3.webp",
+            "/store/img/products/vention-aux/4.webp",
+            "/store/img/products/vention-aux/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-aux/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/b8421501ceee8ed8defa49d79fc692df_848ac39e-a0d3-437c-b1e1-1db38c852ed5.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-aux/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention--jack-3-5mm-aux-cable-male-to-male-3-5mm-audio-cable-jack-for-jbl-xiaomi-oneplus-headphones-speaker-cable-car-aux-cord-34533508743334.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-aux/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention--jack-3-5mm-aux-cable-male-to-male-3-5mm-audio-cable-jack-for-jbl-xiaomi-oneplus-headphones-speaker-cable-car-aux-cord-34533509005478.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-aux/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention--jack-3-5mm-aux-cable-male-to-male-3-5mm-audio-cable-jack-for-jbl-xiaomi-oneplus-headphones-speaker-cable-car-aux-cord-34533509038246.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-aux/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention--jack-3-5mm-aux-cable-male-to-male-3-5mm-audio-cable-jack-for-jbl-xiaomi-oneplus-headphones-speaker-cable-car-aux-cord-34533509071014.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        },
+        "vention-aux-2m": {
+          "officialName": "Vention audio kabel 3,5 mm jack M/M (2 m)",
+          "shortDesc": "Audio kabel 3,5 mm jack – 3,5 mm jack (samec–samec)",
+          "description": "Stereo audio kabel Vention s konektory 3,5 mm jack na obou koncích propojí telefon, notebook nebo přehrávač s reproduktorem, autorádiem či sluchátky.",
+          "specs": {
+            "Parametry": {
+              "Konektory": "3,5 mm jack (M) – 3,5 mm jack (M)",
+              "Délka": "2 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/jack-3-5mm-aux-cable-male-to-male-3-5mm-audio-cable-jack-for-jbl-xiaomi-oneplus-headphones-speaker-cable-car-aux-cord",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/jack-3-5mm-aux-cable-male-to-male-3-5mm-audio-cable-jack-for-jbl-xiaomi-oneplus-headphones-speaker-cable-car-aux-cord",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-aux/1.webp",
+            "/store/img/products/vention-aux/2.webp",
+            "/store/img/products/vention-aux/3.webp",
+            "/store/img/products/vention-aux/4.webp",
+            "/store/img/products/vention-aux/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-aux/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/b8421501ceee8ed8defa49d79fc692df_848ac39e-a0d3-437c-b1e1-1db38c852ed5.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-aux/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention--jack-3-5mm-aux-cable-male-to-male-3-5mm-audio-cable-jack-for-jbl-xiaomi-oneplus-headphones-speaker-cable-car-aux-cord-34533508743334.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-aux/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention--jack-3-5mm-aux-cable-male-to-male-3-5mm-audio-cable-jack-for-jbl-xiaomi-oneplus-headphones-speaker-cable-car-aux-cord-34533509005478.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-aux/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention--jack-3-5mm-aux-cable-male-to-male-3-5mm-audio-cable-jack-for-jbl-xiaomi-oneplus-headphones-speaker-cable-car-aux-cord-34533509038246.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-aux/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention--jack-3-5mm-aux-cable-male-to-male-3-5mm-audio-cable-jack-for-jbl-xiaomi-oneplus-headphones-speaker-cable-car-aux-cord-34533509071014.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        },
+        "vention-aux-3m": {
+          "officialName": "Vention audio kabel 3,5 mm jack M/M (3 m)",
+          "shortDesc": "Audio kabel 3,5 mm jack – 3,5 mm jack (samec–samec)",
+          "description": "Stereo audio kabel Vention s konektory 3,5 mm jack na obou koncích propojí telefon, notebook nebo přehrávač s reproduktorem, autorádiem či sluchátky.",
+          "specs": {
+            "Parametry": {
+              "Konektory": "3,5 mm jack (M) – 3,5 mm jack (M)",
+              "Délka": "3 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/jack-3-5mm-aux-cable-male-to-male-3-5mm-audio-cable-jack-for-jbl-xiaomi-oneplus-headphones-speaker-cable-car-aux-cord",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/jack-3-5mm-aux-cable-male-to-male-3-5mm-audio-cable-jack-for-jbl-xiaomi-oneplus-headphones-speaker-cable-car-aux-cord",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-aux/1.webp",
+            "/store/img/products/vention-aux/2.webp",
+            "/store/img/products/vention-aux/3.webp",
+            "/store/img/products/vention-aux/4.webp",
+            "/store/img/products/vention-aux/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-aux/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/b8421501ceee8ed8defa49d79fc692df_848ac39e-a0d3-437c-b1e1-1db38c852ed5.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-aux/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention--jack-3-5mm-aux-cable-male-to-male-3-5mm-audio-cable-jack-for-jbl-xiaomi-oneplus-headphones-speaker-cable-car-aux-cord-34533508743334.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-aux/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention--jack-3-5mm-aux-cable-male-to-male-3-5mm-audio-cable-jack-for-jbl-xiaomi-oneplus-headphones-speaker-cable-car-aux-cord-34533509005478.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-aux/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention--jack-3-5mm-aux-cable-male-to-male-3-5mm-audio-cable-jack-for-jbl-xiaomi-oneplus-headphones-speaker-cable-car-aux-cord-34533509038246.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-aux/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention--jack-3-5mm-aux-cable-male-to-male-3-5mm-audio-cable-jack-for-jbl-xiaomi-oneplus-headphones-speaker-cable-car-aux-cord-34533509071014.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        }
+      }
+    },
+    {
+      "variantGroup": "vention-aux-extension",
+      "variants": {
+        "vention-aux-extension-1m": {
+          "officialName": "Vention prodlužovací audio kabel 3,5 mm M/F (1 m)",
+          "shortDesc": "Opletený prodlužovací audio kabel 3,5 mm jack samec–samice",
+          "description": "Prodlužovací kabel Vention prodlouží připojení sluchátek nebo reproduktorů s konektorem 3,5 mm. Vodič ze smaltované mědi je stíněný proti elektromagnetickému rušení, bavlněný oplet a hliníkové konektory zvyšují odolnost.",
+          "specs": {
+            "Parametry": {
+              "Konektory": "3,5 mm jack (M) – 3,5 mm jack (F)",
+              "Vodič": "smaltovaná měď, stíněný",
+              "Plášť": "bavlněný oplet",
+              "Konektory – materiál": "hliníková slitina",
+              "Délka": "1 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/cotton-braided-3-5mm-male-to-3-5mm-female-audio-extension-cable-silver-aluminum-alloy-type",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/cotton-braided-3-5mm-male-to-3-5mm-female-audio-extension-cable-silver-aluminum-alloy-type",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-aux-extension/1.webp",
+            "/store/img/products/vention-aux-extension/2.webp",
+            "/store/img/products/vention-aux-extension/3.webp",
+            "/store/img/products/vention-aux-extension/4.webp",
+            "/store/img/products/vention-aux-extension/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-aux-extension/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-cotton-braided-3-5mm-male-to-3-5mm-female-audio-extension-cable-silver-aluminum-alloy-type-35625995796646.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-aux-extension/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-cotton-braided-3-5mm-male-to-3-5mm-female-audio-extension-cable-silver-aluminum-alloy-type-35625995960486.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-aux-extension/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-cotton-braided-3-5mm-male-to-3-5mm-female-audio-extension-cable-silver-aluminum-alloy-type-35625996419238.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-aux-extension/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-cotton-braided-3-5mm-male-to-3-5mm-female-audio-extension-cable-silver-aluminum-alloy-type-35625995993254.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-aux-extension/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-cotton-braided-3-5mm-male-to-3-5mm-female-audio-extension-cable-silver-aluminum-alloy-type-35625996124326.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        },
+        "vention-aux-extension-2m": {
+          "officialName": "Vention prodlužovací audio kabel 3,5 mm M/F (2 m)",
+          "shortDesc": "Opletený prodlužovací audio kabel 3,5 mm jack samec–samice",
+          "description": "Prodlužovací kabel Vention prodlouží připojení sluchátek nebo reproduktorů s konektorem 3,5 mm. Vodič ze smaltované mědi je stíněný proti elektromagnetickému rušení, bavlněný oplet a hliníkové konektory zvyšují odolnost.",
+          "specs": {
+            "Parametry": {
+              "Konektory": "3,5 mm jack (M) – 3,5 mm jack (F)",
+              "Vodič": "smaltovaná měď, stíněný",
+              "Plášť": "bavlněný oplet",
+              "Konektory – materiál": "hliníková slitina",
+              "Délka": "2 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/cotton-braided-3-5mm-male-to-3-5mm-female-audio-extension-cable-silver-aluminum-alloy-type",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/cotton-braided-3-5mm-male-to-3-5mm-female-audio-extension-cable-silver-aluminum-alloy-type",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-aux-extension/1.webp",
+            "/store/img/products/vention-aux-extension/2.webp",
+            "/store/img/products/vention-aux-extension/3.webp",
+            "/store/img/products/vention-aux-extension/4.webp",
+            "/store/img/products/vention-aux-extension/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-aux-extension/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-cotton-braided-3-5mm-male-to-3-5mm-female-audio-extension-cable-silver-aluminum-alloy-type-35625995796646.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-aux-extension/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-cotton-braided-3-5mm-male-to-3-5mm-female-audio-extension-cable-silver-aluminum-alloy-type-35625995960486.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-aux-extension/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-cotton-braided-3-5mm-male-to-3-5mm-female-audio-extension-cable-silver-aluminum-alloy-type-35625996419238.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-aux-extension/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-cotton-braided-3-5mm-male-to-3-5mm-female-audio-extension-cable-silver-aluminum-alloy-type-35625995993254.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-aux-extension/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-cotton-braided-3-5mm-male-to-3-5mm-female-audio-extension-cable-silver-aluminum-alloy-type-35625996124326.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        },
+        "vention-aux-extension-3m": {
+          "officialName": "Vention prodlužovací audio kabel 3,5 mm M/F (3 m)",
+          "shortDesc": "Opletený prodlužovací audio kabel 3,5 mm jack samec–samice",
+          "description": "Prodlužovací kabel Vention prodlouží připojení sluchátek nebo reproduktorů s konektorem 3,5 mm. Vodič ze smaltované mědi je stíněný proti elektromagnetickému rušení, bavlněný oplet a hliníkové konektory zvyšují odolnost.",
+          "specs": {
+            "Parametry": {
+              "Konektory": "3,5 mm jack (M) – 3,5 mm jack (F)",
+              "Vodič": "smaltovaná měď, stíněný",
+              "Plášť": "bavlněný oplet",
+              "Konektory – materiál": "hliníková slitina",
+              "Délka": "3 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/cotton-braided-3-5mm-male-to-3-5mm-female-audio-extension-cable-silver-aluminum-alloy-type",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/cotton-braided-3-5mm-male-to-3-5mm-female-audio-extension-cable-silver-aluminum-alloy-type",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-aux-extension/1.webp",
+            "/store/img/products/vention-aux-extension/2.webp",
+            "/store/img/products/vention-aux-extension/3.webp",
+            "/store/img/products/vention-aux-extension/4.webp",
+            "/store/img/products/vention-aux-extension/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-aux-extension/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-cotton-braided-3-5mm-male-to-3-5mm-female-audio-extension-cable-silver-aluminum-alloy-type-35625995796646.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-aux-extension/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-cotton-braided-3-5mm-male-to-3-5mm-female-audio-extension-cable-silver-aluminum-alloy-type-35625995960486.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-aux-extension/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-cotton-braided-3-5mm-male-to-3-5mm-female-audio-extension-cable-silver-aluminum-alloy-type-35625996419238.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-aux-extension/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-cotton-braided-3-5mm-male-to-3-5mm-female-audio-extension-cable-silver-aluminum-alloy-type-35625995993254.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-aux-extension/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-cotton-braided-3-5mm-male-to-3-5mm-female-audio-extension-cable-silver-aluminum-alloy-type-35625996124326.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        }
+      }
+    },
+    {
+      "variantGroup": "vention-cat6",
+      "variants": {
+        "vention-cat6-1m": {
+          "officialName": "Vention Cat6 UTP patch kabel (1 m)",
+          "shortDesc": "Síťový kabel Cat6 UTP s konektory RJ45, gigabitová rychlost",
+          "description": "Síťový patch kabel Vention kategorie Cat6 (UTP) s konektory RJ45 pro připojení počítače, konzole, televize nebo routeru. Podporuje gigabitový Ethernet.",
+          "specs": {
+            "Parametry": {
+              "Kategorie": "Cat6 UTP",
+              "Konektory": "RJ45 – RJ45",
+              "Rychlost": "1 Gb/s",
+              "Délka": "1 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/cat6-utp-patch-cable-0-5-1-1-5-2-3-5-8-10m-black",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/cat6-utp-patch-cable-0-5-1-1-5-2-3-5-8-10m-black",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-cat6/1.webp",
+            "/store/img/products/vention-cat6/2.webp",
+            "/store/img/products/vention-cat6/3.webp",
+            "/store/img/products/vention-cat6/4.webp",
+            "/store/img/products/vention-cat6/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-cat6/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/b8421501ceee8ed8defa49d79fc692df_a8d901ae-8c83-4560-8a86-7724c29bfe3a.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-cat6/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/1_7c954d26-0557-45af-bf41-13704c4ba1e2.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-cat6/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/2_18e12cd2-9e19-476c-8e3f-fab2cec051c6.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-cat6/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/3_30edf0fe-22ba-44ae-baa0-0aa35c8b5bf9.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-cat6/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/4_8e414741-58e8-418d-ad57-ba8e85dc24ea.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        },
+        "vention-cat6-2m": {
+          "officialName": "Vention Cat6 UTP patch kabel (2 m)",
+          "shortDesc": "Síťový kabel Cat6 UTP s konektory RJ45, gigabitová rychlost",
+          "description": "Síťový patch kabel Vention kategorie Cat6 (UTP) s konektory RJ45 pro připojení počítače, konzole, televize nebo routeru. Podporuje gigabitový Ethernet.",
+          "specs": {
+            "Parametry": {
+              "Kategorie": "Cat6 UTP",
+              "Konektory": "RJ45 – RJ45",
+              "Rychlost": "1 Gb/s",
+              "Délka": "2 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/cat6-utp-patch-cable-0-5-1-1-5-2-3-5-8-10m-black",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/cat6-utp-patch-cable-0-5-1-1-5-2-3-5-8-10m-black",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-cat6/1.webp",
+            "/store/img/products/vention-cat6/2.webp",
+            "/store/img/products/vention-cat6/3.webp",
+            "/store/img/products/vention-cat6/4.webp",
+            "/store/img/products/vention-cat6/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-cat6/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/b8421501ceee8ed8defa49d79fc692df_a8d901ae-8c83-4560-8a86-7724c29bfe3a.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-cat6/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/1_7c954d26-0557-45af-bf41-13704c4ba1e2.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-cat6/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/2_18e12cd2-9e19-476c-8e3f-fab2cec051c6.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-cat6/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/3_30edf0fe-22ba-44ae-baa0-0aa35c8b5bf9.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-cat6/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/4_8e414741-58e8-418d-ad57-ba8e85dc24ea.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        },
+        "vention-cat6-3m": {
+          "officialName": "Vention Cat6 UTP patch kabel (3 m)",
+          "shortDesc": "Síťový kabel Cat6 UTP s konektory RJ45, gigabitová rychlost",
+          "description": "Síťový patch kabel Vention kategorie Cat6 (UTP) s konektory RJ45 pro připojení počítače, konzole, televize nebo routeru. Podporuje gigabitový Ethernet.",
+          "specs": {
+            "Parametry": {
+              "Kategorie": "Cat6 UTP",
+              "Konektory": "RJ45 – RJ45",
+              "Rychlost": "1 Gb/s",
+              "Délka": "3 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/cat6-utp-patch-cable-0-5-1-1-5-2-3-5-8-10m-black",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/cat6-utp-patch-cable-0-5-1-1-5-2-3-5-8-10m-black",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-cat6/1.webp",
+            "/store/img/products/vention-cat6/2.webp",
+            "/store/img/products/vention-cat6/3.webp",
+            "/store/img/products/vention-cat6/4.webp",
+            "/store/img/products/vention-cat6/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-cat6/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/b8421501ceee8ed8defa49d79fc692df_a8d901ae-8c83-4560-8a86-7724c29bfe3a.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-cat6/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/1_7c954d26-0557-45af-bf41-13704c4ba1e2.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-cat6/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/2_18e12cd2-9e19-476c-8e3f-fab2cec051c6.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-cat6/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/3_30edf0fe-22ba-44ae-baa0-0aa35c8b5bf9.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-cat6/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/4_8e414741-58e8-418d-ad57-ba8e85dc24ea.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        }
+      }
+    },
+    {
+      "variantGroup": "vention-cat6a",
+      "variants": {
+        "vention-cat6a-1m": {
+          "officialName": "Vention Cat6A S/FTP patch kabel (1 m)",
+          "shortDesc": "Stíněný síťový kabel Cat6A S/FTP, až 10 Gb/s",
+          "description": "Stíněný síťový kabel Vention kategorie Cat6A S/FTP je určen pro rychlé sítě do 10 Gb/s. Dvojité stínění omezuje rušení, proto se hodí i do průmyslového a kancelářského prostředí.",
+          "specs": {
+            "Parametry": {
+              "Kategorie": "Cat6A S/FTP",
+              "Rychlost": "až 10 Gb/s",
+              "Stínění": "dvojité",
+              "Konektory": "RJ45 – RJ45",
+              "Délka": "1 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/cat6a-sftp-ethernet-patch-cable-1",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/cat6a-sftp-ethernet-patch-cable-1",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-cat6a/1.webp",
+            "/store/img/products/vention-cat6a/2.webp",
+            "/store/img/products/vention-cat6a/3.webp",
+            "/store/img/products/vention-cat6a/4.webp",
+            "/store/img/products/vention-cat6a/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-cat6a/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/1000x1000_0_21a58410-473a-405e-96ef-85175aacb34d.jpg",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/vention-cat6a/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/01_7486b78b-3056-43ec-80c4-47fc84f766eb.jpg",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/vention-cat6a/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/02_e944761d-7bc4-48b0-b135-091c49582766.jpg",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/vention-cat6a/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/03_e70f74ed-0079-478c-8b23-c41fa2e12a11.jpg",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/vention-cat6a/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/04_8e88f133-27d5-4f43-998e-6b20839eb86c.jpg",
+              "size": "1600x1600"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        },
+        "vention-cat6a-2m": {
+          "officialName": "Vention Cat6A S/FTP patch kabel (2 m)",
+          "shortDesc": "Stíněný síťový kabel Cat6A S/FTP, až 10 Gb/s",
+          "description": "Stíněný síťový kabel Vention kategorie Cat6A S/FTP je určen pro rychlé sítě do 10 Gb/s. Dvojité stínění omezuje rušení, proto se hodí i do průmyslového a kancelářského prostředí.",
+          "specs": {
+            "Parametry": {
+              "Kategorie": "Cat6A S/FTP",
+              "Rychlost": "až 10 Gb/s",
+              "Stínění": "dvojité",
+              "Konektory": "RJ45 – RJ45",
+              "Délka": "2 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/cat6a-sftp-ethernet-patch-cable-1",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/cat6a-sftp-ethernet-patch-cable-1",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-cat6a/1.webp",
+            "/store/img/products/vention-cat6a/2.webp",
+            "/store/img/products/vention-cat6a/3.webp",
+            "/store/img/products/vention-cat6a/4.webp",
+            "/store/img/products/vention-cat6a/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-cat6a/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/1000x1000_0_21a58410-473a-405e-96ef-85175aacb34d.jpg",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/vention-cat6a/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/01_7486b78b-3056-43ec-80c4-47fc84f766eb.jpg",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/vention-cat6a/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/02_e944761d-7bc4-48b0-b135-091c49582766.jpg",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/vention-cat6a/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/03_e70f74ed-0079-478c-8b23-c41fa2e12a11.jpg",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/vention-cat6a/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/04_8e88f133-27d5-4f43-998e-6b20839eb86c.jpg",
+              "size": "1600x1600"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        },
+        "vention-cat6a-3m": {
+          "officialName": "Vention Cat6A S/FTP patch kabel (3 m)",
+          "shortDesc": "Stíněný síťový kabel Cat6A S/FTP, až 10 Gb/s",
+          "description": "Stíněný síťový kabel Vention kategorie Cat6A S/FTP je určen pro rychlé sítě do 10 Gb/s. Dvojité stínění omezuje rušení, proto se hodí i do průmyslového a kancelářského prostředí.",
+          "specs": {
+            "Parametry": {
+              "Kategorie": "Cat6A S/FTP",
+              "Rychlost": "až 10 Gb/s",
+              "Stínění": "dvojité",
+              "Konektory": "RJ45 – RJ45",
+              "Délka": "3 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/cat6a-sftp-ethernet-patch-cable-1",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/cat6a-sftp-ethernet-patch-cable-1",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-cat6a/1.webp",
+            "/store/img/products/vention-cat6a/2.webp",
+            "/store/img/products/vention-cat6a/3.webp",
+            "/store/img/products/vention-cat6a/4.webp",
+            "/store/img/products/vention-cat6a/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-cat6a/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/1000x1000_0_21a58410-473a-405e-96ef-85175aacb34d.jpg",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/vention-cat6a/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/01_7486b78b-3056-43ec-80c4-47fc84f766eb.jpg",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/vention-cat6a/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/02_e944761d-7bc4-48b0-b135-091c49582766.jpg",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/vention-cat6a/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/03_e70f74ed-0079-478c-8b23-c41fa2e12a11.jpg",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/vention-cat6a/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/04_8e88f133-27d5-4f43-998e-6b20839eb86c.jpg",
+              "size": "1600x1600"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        }
+      }
+    },
+    {
+      "variantGroup": "vention-cat7",
+      "variants": {
+        "vention-cat7-1m": {
+          "officialName": "Vention Cat7 S/FTP patch kabel (1 m)",
+          "shortDesc": "Stíněný síťový kabel Cat7 S/FTP, 10 Gb/s, 600 MHz",
+          "description": "Síťový kabel Vention Cat7 S/FTP přenáší data rychlostí až 10 Gb/s s šířkou pásma 600 MHz. Dvojité stínění minimalizuje rušení a ztrátu signálu – vhodné pro hraní, streamování ve vysokém rozlišení i přenos velkých souborů.",
+          "specs": {
+            "Parametry": {
+              "Kategorie": "Cat7 S/FTP",
+              "Rychlost": "10 Gb/s",
+              "Šířka pásma": "600 MHz",
+              "Stínění": "dvojité",
+              "Konektory": "RJ45 – RJ45",
+              "Délka": "1 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/cat-7-sftp-patch-cable-0-75-1-1-5-2-3-5-8-10-12-15-20-50m-black",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/cat-7-sftp-patch-cable-0-75-1-1-5-2-3-5-8-10-12-15-20-50m-black",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-cat7/1.webp",
+            "/store/img/products/vention-cat7/2.webp",
+            "/store/img/products/vention-cat7/3.webp",
+            "/store/img/products/vention-cat7/4.webp",
+            "/store/img/products/vention-cat7/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-cat7/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/vention-cat-7-sftp-patch-cable-0-75-1-1-5-2-3-5-8-10-12-15-20-50m-black-36188893741222.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-cat7/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/vention-cat-7-sftp-patch-cable-0-75-1-1-5-2-3-5-8-10-12-15-20-50m-black-36188893511846.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-cat7/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/vention-cat-7-sftp-patch-cable-0-75-1-1-5-2-3-5-8-10-12-15-20-50m-black-36188893479078.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-cat7/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/vention-cat-7-sftp-patch-cable-0-75-1-1-5-2-3-5-8-10-12-15-20-50m-black-36188893708454.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-cat7/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/vention-cat-7-sftp-patch-cable-0-75-1-1-5-2-3-5-8-10-12-15-20-50m-black-36188893675686.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        },
+        "vention-cat7-2m": {
+          "officialName": "Vention Cat7 S/FTP patch kabel (2 m)",
+          "shortDesc": "Stíněný síťový kabel Cat7 S/FTP, 10 Gb/s, 600 MHz",
+          "description": "Síťový kabel Vention Cat7 S/FTP přenáší data rychlostí až 10 Gb/s s šířkou pásma 600 MHz. Dvojité stínění minimalizuje rušení a ztrátu signálu – vhodné pro hraní, streamování ve vysokém rozlišení i přenos velkých souborů.",
+          "specs": {
+            "Parametry": {
+              "Kategorie": "Cat7 S/FTP",
+              "Rychlost": "10 Gb/s",
+              "Šířka pásma": "600 MHz",
+              "Stínění": "dvojité",
+              "Konektory": "RJ45 – RJ45",
+              "Délka": "2 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/cat-7-sftp-patch-cable-0-75-1-1-5-2-3-5-8-10-12-15-20-50m-black",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/cat-7-sftp-patch-cable-0-75-1-1-5-2-3-5-8-10-12-15-20-50m-black",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-cat7/1.webp",
+            "/store/img/products/vention-cat7/2.webp",
+            "/store/img/products/vention-cat7/3.webp",
+            "/store/img/products/vention-cat7/4.webp",
+            "/store/img/products/vention-cat7/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-cat7/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/vention-cat-7-sftp-patch-cable-0-75-1-1-5-2-3-5-8-10-12-15-20-50m-black-36188893741222.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-cat7/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/vention-cat-7-sftp-patch-cable-0-75-1-1-5-2-3-5-8-10-12-15-20-50m-black-36188893511846.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-cat7/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/vention-cat-7-sftp-patch-cable-0-75-1-1-5-2-3-5-8-10-12-15-20-50m-black-36188893479078.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-cat7/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/vention-cat-7-sftp-patch-cable-0-75-1-1-5-2-3-5-8-10-12-15-20-50m-black-36188893708454.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-cat7/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/vention-cat-7-sftp-patch-cable-0-75-1-1-5-2-3-5-8-10-12-15-20-50m-black-36188893675686.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        },
+        "vention-cat7-3m": {
+          "officialName": "Vention Cat7 S/FTP patch kabel (3 m)",
+          "shortDesc": "Stíněný síťový kabel Cat7 S/FTP, 10 Gb/s, 600 MHz",
+          "description": "Síťový kabel Vention Cat7 S/FTP přenáší data rychlostí až 10 Gb/s s šířkou pásma 600 MHz. Dvojité stínění minimalizuje rušení a ztrátu signálu – vhodné pro hraní, streamování ve vysokém rozlišení i přenos velkých souborů.",
+          "specs": {
+            "Parametry": {
+              "Kategorie": "Cat7 S/FTP",
+              "Rychlost": "10 Gb/s",
+              "Šířka pásma": "600 MHz",
+              "Stínění": "dvojité",
+              "Konektory": "RJ45 – RJ45",
+              "Délka": "3 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/cat-7-sftp-patch-cable-0-75-1-1-5-2-3-5-8-10-12-15-20-50m-black",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/cat-7-sftp-patch-cable-0-75-1-1-5-2-3-5-8-10-12-15-20-50m-black",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-cat7/1.webp",
+            "/store/img/products/vention-cat7/2.webp",
+            "/store/img/products/vention-cat7/3.webp",
+            "/store/img/products/vention-cat7/4.webp",
+            "/store/img/products/vention-cat7/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-cat7/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/vention-cat-7-sftp-patch-cable-0-75-1-1-5-2-3-5-8-10-12-15-20-50m-black-36188893741222.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-cat7/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/vention-cat-7-sftp-patch-cable-0-75-1-1-5-2-3-5-8-10-12-15-20-50m-black-36188893511846.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-cat7/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/vention-cat-7-sftp-patch-cable-0-75-1-1-5-2-3-5-8-10-12-15-20-50m-black-36188893479078.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-cat7/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/vention-cat-7-sftp-patch-cable-0-75-1-1-5-2-3-5-8-10-12-15-20-50m-black-36188893708454.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-cat7/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/vention-cat-7-sftp-patch-cable-0-75-1-1-5-2-3-5-8-10-12-15-20-50m-black-36188893675686.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        }
+      }
+    },
+    {
+      "variantGroup": "vention-cat8",
+      "variants": {
+        "vention-cat8-1m": {
+          "officialName": "Vention Cat8 S/FTP gaming patch kabel (1 m)",
+          "shortDesc": "Stíněný síťový kabel Cat8 S/FTP pro hraní, až 40 Gb/s",
+          "description": "Síťový kabel Vention Cat8 S/FTP je navržený pro nejrychlejší sítě a hraní bez lagů. Podporuje přenos až 40 Gb/s, plné stínění chrání signál před rušením.",
+          "specs": {
+            "Parametry": {
+              "Kategorie": "Cat8 S/FTP",
+              "Rychlost": "až 40 Gb/s",
+              "Konektory": "RJ45 – RJ45",
+              "Délka": "1 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/cat8-sftp-gaming-ethernet-patch-cable-0-5-1-1-5-2-3-5m-black",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/cat8-sftp-gaming-ethernet-patch-cable-0-5-1-1-5-2-3-5m-black",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-cat8/1.webp",
+            "/store/img/products/vention-cat8/2.webp",
+            "/store/img/products/vention-cat8/3.webp",
+            "/store/img/products/vention-cat8/4.webp",
+            "/store/img/products/vention-cat8/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-cat8/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/b8421501ceee8ed8defa49d79fc692df_5217c394-ffd0-429a-b76f-50d7afcdbde8.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-cat8/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/1_bc5eb776-4f5d-434f-ae47-2f3306c2ab14.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-cat8/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/7_aa986c21-9632-4263-b50b-479325a6e206.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-cat8/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/3_f11e3cd9-f5da-47f0-b634-3d31585b45c6.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-cat8/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/4_888b0e80-7902-411c-8de6-1c2a00bb567e.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        },
+        "vention-cat8-2m": {
+          "officialName": "Vention Cat8 S/FTP gaming patch kabel (2 m)",
+          "shortDesc": "Stíněný síťový kabel Cat8 S/FTP pro hraní, až 40 Gb/s",
+          "description": "Síťový kabel Vention Cat8 S/FTP je navržený pro nejrychlejší sítě a hraní bez lagů. Podporuje přenos až 40 Gb/s, plné stínění chrání signál před rušením.",
+          "specs": {
+            "Parametry": {
+              "Kategorie": "Cat8 S/FTP",
+              "Rychlost": "až 40 Gb/s",
+              "Konektory": "RJ45 – RJ45",
+              "Délka": "2 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/cat8-sftp-gaming-ethernet-patch-cable-0-5-1-1-5-2-3-5m-black",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/cat8-sftp-gaming-ethernet-patch-cable-0-5-1-1-5-2-3-5m-black",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-cat8/1.webp",
+            "/store/img/products/vention-cat8/2.webp",
+            "/store/img/products/vention-cat8/3.webp",
+            "/store/img/products/vention-cat8/4.webp",
+            "/store/img/products/vention-cat8/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-cat8/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/b8421501ceee8ed8defa49d79fc692df_5217c394-ffd0-429a-b76f-50d7afcdbde8.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-cat8/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/1_bc5eb776-4f5d-434f-ae47-2f3306c2ab14.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-cat8/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/7_aa986c21-9632-4263-b50b-479325a6e206.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-cat8/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/3_f11e3cd9-f5da-47f0-b634-3d31585b45c6.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-cat8/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/4_888b0e80-7902-411c-8de6-1c2a00bb567e.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        },
+        "vention-cat8-3m": {
+          "officialName": "Vention Cat8 S/FTP gaming patch kabel (3 m)",
+          "shortDesc": "Stíněný síťový kabel Cat8 S/FTP pro hraní, až 40 Gb/s",
+          "description": "Síťový kabel Vention Cat8 S/FTP je navržený pro nejrychlejší sítě a hraní bez lagů. Podporuje přenos až 40 Gb/s, plné stínění chrání signál před rušením.",
+          "specs": {
+            "Parametry": {
+              "Kategorie": "Cat8 S/FTP",
+              "Rychlost": "až 40 Gb/s",
+              "Konektory": "RJ45 – RJ45",
+              "Délka": "3 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/cat8-sftp-gaming-ethernet-patch-cable-0-5-1-1-5-2-3-5m-black",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/cat8-sftp-gaming-ethernet-patch-cable-0-5-1-1-5-2-3-5m-black",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-cat8/1.webp",
+            "/store/img/products/vention-cat8/2.webp",
+            "/store/img/products/vention-cat8/3.webp",
+            "/store/img/products/vention-cat8/4.webp",
+            "/store/img/products/vention-cat8/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-cat8/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/b8421501ceee8ed8defa49d79fc692df_5217c394-ffd0-429a-b76f-50d7afcdbde8.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-cat8/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/1_bc5eb776-4f5d-434f-ae47-2f3306c2ab14.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-cat8/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/7_aa986c21-9632-4263-b50b-479325a6e206.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-cat8/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/3_f11e3cd9-f5da-47f0-b634-3d31585b45c6.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-cat8/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/4_888b0e80-7902-411c-8de6-1c2a00bb567e.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        }
+      }
+    },
+    {
+      "variantGroup": "vention-dp-hdmi",
+      "variants": {
+        "vention-dp-hdmi-premium": {
+          "officialName": "Vention kabel DisplayPort → HDMI 4K",
+          "shortDesc": "Kabel DisplayPort na HDMI pro připojení monitoru nebo televize, 4K",
+          "description": "Kabel Vention propojí počítač s výstupem DisplayPort s monitorem, televizí nebo projektorem se vstupem HDMI. Podporuje rozlišení 4K. Signál je jednosměrný (DP → HDMI).",
+          "specs": {
+            "Parametry": {
+              "Konektory": "DisplayPort (M) → HDMI (M)",
+              "Rozlišení": "4K",
+              "Směr": "jednosměrný DP → HDMI"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/displayport-male-to-hdmi-a-male-4k-hd-cable-1-1-8-3-5m-black",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/displayport-male-to-hdmi-a-male-4k-hd-cable-1-1-8-3-5m-black",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-dp-hdmi/1.webp",
+            "/store/img/products/vention-dp-hdmi/2.webp",
+            "/store/img/products/vention-dp-hdmi/3.webp",
+            "/store/img/products/vention-dp-hdmi/4.webp",
+            "/store/img/products/vention-dp-hdmi/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-dp-hdmi/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/3034a1133efe01daba919094b70c6310_446a5574-d147-4bc4-83d4-56d4d386a949.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-dp-hdmi/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/1_43f133a4-acfb-4f71-99d1-1bbeaea12866.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-dp-hdmi/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/2_ca511048-cbf4-4713-bad9-07af17d9f092.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-dp-hdmi/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/3_f1a873ab-e1dc-4b32-8007-d79f7b6fed83.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-dp-hdmi/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/4_6430b646-8a55-4ec1-8c9b-603dbea01d7f.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        }
+      }
+    },
+    {
+      "variantGroup": "vention-dp1-4",
+      "variants": {
+        "vention-dp1-4-1m": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Vention DP1.4 (1m) — video kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Vention · Video kabely · 1m",
+            "images": [
+              "/store/img/brand/vention.jpg"
+            ]
+          },
+          "officialName": "Vention DP1.4 (1m)",
+          "unresolvedReason": "Vention nabízí DisplayPort 8K kabel jen jako optický v délkách 15–100 m; varianty 1–3 m nelze ověřit."
+        },
+        "vention-dp1-4-2m": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Vention DP1.4 (2m) — video kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Vention · Video kabely · 2m",
+            "images": [
+              "/store/img/brand/vention.jpg"
+            ]
+          },
+          "officialName": "Vention DP1.4 (2m)",
+          "unresolvedReason": "Vention nabízí DisplayPort 8K kabel jen jako optický v délkách 15–100 m; varianty 1–3 m nelze ověřit."
+        },
+        "vention-dp1-4-3m": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Vention DP1.4 (3m) — video kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Vention · Video kabely · 3m",
+            "images": [
+              "/store/img/brand/vention.jpg"
+            ]
+          },
+          "officialName": "Vention DP1.4 (3m)",
+          "unresolvedReason": "Vention nabízí DisplayPort 8K kabel jen jako optický v délkách 15–100 m; varianty 1–3 m nelze ověřit."
+        }
+      }
+    },
+    {
+      "variantGroup": "vention-flat-ethernet",
+      "variants": {
+        "vention-flat-ethernet-1m": {
+          "officialName": "Vention plochý kabel Cat6 UTP (1 m)",
+          "shortDesc": "Plochý gigabitový síťový kabel Cat6 UTP, snadno se vede pod koberec i lištou",
+          "description": "Plochý síťový kabel Vention Cat6 UTP se snadno vede pod kobercem, podél lišt nebo pod dveřmi. Osm kroucených párů omezuje rušení a zajišťuje stabilní gigabitový přenos. Konektory RJ45.",
+          "specs": {
+            "Parametry": {
+              "Kategorie": "Cat6 UTP",
+              "Tvar": "plochý",
+              "Rychlost": "1 Gb/s",
+              "Konektory": "RJ45 – RJ45",
+              "Délka": "1 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/flat-cat-6-utp-patch-cable-black",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/flat-cat-6-utp-patch-cable-black",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-flat-ethernet/1.webp",
+            "/store/img/products/vention-flat-ethernet/2.webp",
+            "/store/img/products/vention-flat-ethernet/3.webp",
+            "/store/img/products/vention-flat-ethernet/4.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-flat-ethernet/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-flat-cat-6-utp-patch-cable-black-34281735520422.png",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/vention-flat-ethernet/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-flat-cat-6-utp-patch-cable-black-34281735422118.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-flat-ethernet/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-flat-cat-6-utp-patch-cable-black-34281735454886.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-flat-ethernet/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-flat-cat-6-utp-patch-cable-black-34281735487654.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        },
+        "vention-flat-ethernet-2m": {
+          "officialName": "Vention plochý kabel Cat6 UTP (2 m)",
+          "shortDesc": "Plochý gigabitový síťový kabel Cat6 UTP, snadno se vede pod koberec i lištou",
+          "description": "Plochý síťový kabel Vention Cat6 UTP se snadno vede pod kobercem, podél lišt nebo pod dveřmi. Osm kroucených párů omezuje rušení a zajišťuje stabilní gigabitový přenos. Konektory RJ45.",
+          "specs": {
+            "Parametry": {
+              "Kategorie": "Cat6 UTP",
+              "Tvar": "plochý",
+              "Rychlost": "1 Gb/s",
+              "Konektory": "RJ45 – RJ45",
+              "Délka": "2 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/flat-cat-6-utp-patch-cable-black",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/flat-cat-6-utp-patch-cable-black",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-flat-ethernet/1.webp",
+            "/store/img/products/vention-flat-ethernet/2.webp",
+            "/store/img/products/vention-flat-ethernet/3.webp",
+            "/store/img/products/vention-flat-ethernet/4.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-flat-ethernet/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-flat-cat-6-utp-patch-cable-black-34281735520422.png",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/vention-flat-ethernet/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-flat-cat-6-utp-patch-cable-black-34281735422118.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-flat-ethernet/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-flat-cat-6-utp-patch-cable-black-34281735454886.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-flat-ethernet/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-flat-cat-6-utp-patch-cable-black-34281735487654.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        },
+        "vention-flat-ethernet-3m": {
+          "officialName": "Vention plochý kabel Cat6 UTP (3 m)",
+          "shortDesc": "Plochý gigabitový síťový kabel Cat6 UTP, snadno se vede pod koberec i lištou",
+          "description": "Plochý síťový kabel Vention Cat6 UTP se snadno vede pod kobercem, podél lišt nebo pod dveřmi. Osm kroucených párů omezuje rušení a zajišťuje stabilní gigabitový přenos. Konektory RJ45.",
+          "specs": {
+            "Parametry": {
+              "Kategorie": "Cat6 UTP",
+              "Tvar": "plochý",
+              "Rychlost": "1 Gb/s",
+              "Konektory": "RJ45 – RJ45",
+              "Délka": "3 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/flat-cat-6-utp-patch-cable-black",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/flat-cat-6-utp-patch-cable-black",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-flat-ethernet/1.webp",
+            "/store/img/products/vention-flat-ethernet/2.webp",
+            "/store/img/products/vention-flat-ethernet/3.webp",
+            "/store/img/products/vention-flat-ethernet/4.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-flat-ethernet/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-flat-cat-6-utp-patch-cable-black-34281735520422.png",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/vention-flat-ethernet/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-flat-cat-6-utp-patch-cable-black-34281735422118.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-flat-ethernet/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-flat-cat-6-utp-patch-cable-black-34281735454886.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-flat-ethernet/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-flat-cat-6-utp-patch-cable-black-34281735487654.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        }
+      }
+    },
+    {
+      "variantGroup": "vention-hdmi-vga",
+      "variants": {
+        "vention-hdmi-vga-premium": {
+          "officialName": "Vention kabel HDMI → VGA",
+          "shortDesc": "Kabel HDMI na VGA pro starší monitory a projektory, 1080p",
+          "description": "Kabel Vention převádí digitální signál HDMI na analogový VGA, takže k notebooku nebo set-top boxu připojíte starší monitor či projektor. Podporuje rozlišení 1080p.",
+          "specs": {
+            "Parametry": {
+              "Konektory": "HDMI (M) → VGA (M)",
+              "Rozlišení": "až 1080p",
+              "Směr": "jednosměrný HDMI → VGA"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/hdmi-to-vga-cable-hdmi-male-to-vga-male-cable-audio-video-converter-1080p-for-pc-tv-box-projector-vga-to-hdmi-cord",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/hdmi-to-vga-cable-hdmi-male-to-vga-male-cable-audio-video-converter-1080p-for-pc-tv-box-projector-vga-to-hdmi-cord",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-hdmi-vga/1.webp",
+            "/store/img/products/vention-hdmi-vga/2.webp",
+            "/store/img/products/vention-hdmi-vga/3.webp",
+            "/store/img/products/vention-hdmi-vga/4.webp",
+            "/store/img/products/vention-hdmi-vga/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-hdmi-vga/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention--hdmi-to-vga-cable-hdmi-male-to-vga-male-cable-audio-video-converter-1080p-for-pc-tv-box-projector-vga-to-hdmi-cord-34606640693414.png",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/vention-hdmi-vga/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention--hdmi-to-vga-cable-hdmi-male-to-vga-male-cable-audio-video-converter-1080p-for-pc-tv-box-projector-vga-to-hdmi-cord-34472537456806.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-hdmi-vga/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention--hdmi-to-vga-cable-hdmi-male-to-vga-male-cable-audio-video-converter-1080p-for-pc-tv-box-projector-vga-to-hdmi-cord-34472537489574.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-hdmi-vga/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention--hdmi-to-vga-cable-hdmi-male-to-vga-male-cable-audio-video-converter-1080p-for-pc-tv-box-projector-vga-to-hdmi-cord-34472537522342.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-hdmi-vga/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention--hdmi-to-vga-cable-hdmi-male-to-vga-male-cable-audio-video-converter-1080p-for-pc-tv-box-projector-vga-to-hdmi-cord-34472537915558.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        }
+      }
+    },
+    {
+      "variantGroup": "vention-hdmi2-0",
+      "variants": {
+        "vention-hdmi2-0-1m": {
+          "officialName": "Vention opletený HDMI kabel 4K (1 m)",
+          "shortDesc": "Opletený HDMI kabel 4K se zinkovými konektory",
+          "description": "Opletený HDMI kabel Vention pro přenos obrazu 4K a zvuku mezi počítačem, konzolí, přehrávačem a televizí či monitorem. Bavlněný oplet a konektory ze zinkové slitiny zvyšují odolnost.",
+          "specs": {
+            "Parametry": {
+              "Konektory": "HDMI (M) – HDMI (M)",
+              "Rozlišení": "4K",
+              "Plášť": "bavlněný oplet",
+              "Konektory – materiál": "zinková slitina",
+              "Délka": "1 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/cotton-braided-4k-hdmi-male-to-male-cable",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/cotton-braided-4k-hdmi-male-to-male-cable",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-hdmi2-0/1.webp",
+            "/store/img/products/vention-hdmi2-0/2.webp",
+            "/store/img/products/vention-hdmi2-0/3.webp",
+            "/store/img/products/vention-hdmi2-0/4.webp",
+            "/store/img/products/vention-hdmi2-0/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-hdmi2-0/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/1000_1f88e3c2-cda8-4a3b-9a11-05925d9c81a3.jpg",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/vention-hdmi2-0/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/1_1e3c558e-730a-4476-9a61-1c2fc3a27065.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-hdmi2-0/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/2_82721db0-f667-4109-8a3e-92e6f9e3a147.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-hdmi2-0/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/3_e74a7d46-611e-48ff-a633-be263aded8d2.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-hdmi2-0/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/4_5b32a5a3-bc00-4199-a1e0-2f2462995c77.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        },
+        "vention-hdmi2-0-2m": {
+          "officialName": "Vention opletený HDMI kabel 4K (2 m)",
+          "shortDesc": "Opletený HDMI kabel 4K se zinkovými konektory",
+          "description": "Opletený HDMI kabel Vention pro přenos obrazu 4K a zvuku mezi počítačem, konzolí, přehrávačem a televizí či monitorem. Bavlněný oplet a konektory ze zinkové slitiny zvyšují odolnost.",
+          "specs": {
+            "Parametry": {
+              "Konektory": "HDMI (M) – HDMI (M)",
+              "Rozlišení": "4K",
+              "Plášť": "bavlněný oplet",
+              "Konektory – materiál": "zinková slitina",
+              "Délka": "2 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/cotton-braided-4k-hdmi-male-to-male-cable",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/cotton-braided-4k-hdmi-male-to-male-cable",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-hdmi2-0/1.webp",
+            "/store/img/products/vention-hdmi2-0/2.webp",
+            "/store/img/products/vention-hdmi2-0/3.webp",
+            "/store/img/products/vention-hdmi2-0/4.webp",
+            "/store/img/products/vention-hdmi2-0/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-hdmi2-0/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/1000_1f88e3c2-cda8-4a3b-9a11-05925d9c81a3.jpg",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/vention-hdmi2-0/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/1_1e3c558e-730a-4476-9a61-1c2fc3a27065.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-hdmi2-0/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/2_82721db0-f667-4109-8a3e-92e6f9e3a147.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-hdmi2-0/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/3_e74a7d46-611e-48ff-a633-be263aded8d2.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-hdmi2-0/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/4_5b32a5a3-bc00-4199-a1e0-2f2462995c77.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        },
+        "vention-hdmi2-0-3m": {
+          "officialName": "Vention opletený HDMI kabel 4K (3 m)",
+          "shortDesc": "Opletený HDMI kabel 4K se zinkovými konektory",
+          "description": "Opletený HDMI kabel Vention pro přenos obrazu 4K a zvuku mezi počítačem, konzolí, přehrávačem a televizí či monitorem. Bavlněný oplet a konektory ze zinkové slitiny zvyšují odolnost.",
+          "specs": {
+            "Parametry": {
+              "Konektory": "HDMI (M) – HDMI (M)",
+              "Rozlišení": "4K",
+              "Plášť": "bavlněný oplet",
+              "Konektory – materiál": "zinková slitina",
+              "Délka": "3 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/cotton-braided-4k-hdmi-male-to-male-cable",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/cotton-braided-4k-hdmi-male-to-male-cable",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-hdmi2-0/1.webp",
+            "/store/img/products/vention-hdmi2-0/2.webp",
+            "/store/img/products/vention-hdmi2-0/3.webp",
+            "/store/img/products/vention-hdmi2-0/4.webp",
+            "/store/img/products/vention-hdmi2-0/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-hdmi2-0/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/1000_1f88e3c2-cda8-4a3b-9a11-05925d9c81a3.jpg",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/vention-hdmi2-0/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/1_1e3c558e-730a-4476-9a61-1c2fc3a27065.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-hdmi2-0/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/2_82721db0-f667-4109-8a3e-92e6f9e3a147.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-hdmi2-0/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/3_e74a7d46-611e-48ff-a633-be263aded8d2.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-hdmi2-0/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/4_5b32a5a3-bc00-4199-a1e0-2f2462995c77.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        }
+      }
+    },
+    {
+      "variantGroup": "vention-hdmi2-1",
+      "variants": {
+        "vention-hdmi2-1-1m": {
+          "officialName": "Vention HDMI kabel 8K (1 m)",
+          "shortDesc": "HDMI kabel 8K pro televize, monitory a herní konzole",
+          "description": "HDMI kabel Vention s podporou rozlišení 8K je určený pro moderní televize, monitory a herní konzole nové generace.",
+          "specs": {
+            "Parametry": {
+              "Konektory": "HDMI (M) – HDMI (M)",
+              "Rozlišení": "až 8K",
+              "Délka": "1 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/8k-hdmi-cable",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/8k-hdmi-cable",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-hdmi2-1/1.webp",
+            "/store/img/products/vention-hdmi2-1/2.webp",
+            "/store/img/products/vention-hdmi2-1/3.webp",
+            "/store/img/products/vention-hdmi2-1/4.webp",
+            "/store/img/products/vention-hdmi2-1/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-hdmi2-1/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/b8421501ceee8ed8defa49d79fc692df_7a508a0d-a1ee-4316-903b-9f8d11927930.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-hdmi2-1/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-8k-hdmi-cable-33413391122598.jpg",
+              "size": "1143x1500"
+            },
+            {
+              "file": "/store/img/products/vention-hdmi2-1/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-8k-hdmi-cable-33413390958758.jpg",
+              "size": "1143x1500"
+            },
+            {
+              "file": "/store/img/products/vention-hdmi2-1/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-8k-hdmi-cable-33413390827686.jpg",
+              "size": "1143x1500"
+            },
+            {
+              "file": "/store/img/products/vention-hdmi2-1/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-8k-hdmi-cable-33413390991526.jpg",
+              "size": "1143x1500"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        },
+        "vention-hdmi2-1-2m": {
+          "officialName": "Vention HDMI kabel 8K (2 m)",
+          "shortDesc": "HDMI kabel 8K pro televize, monitory a herní konzole",
+          "description": "HDMI kabel Vention s podporou rozlišení 8K je určený pro moderní televize, monitory a herní konzole nové generace.",
+          "specs": {
+            "Parametry": {
+              "Konektory": "HDMI (M) – HDMI (M)",
+              "Rozlišení": "až 8K",
+              "Délka": "2 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/8k-hdmi-cable",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/8k-hdmi-cable",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-hdmi2-1/1.webp",
+            "/store/img/products/vention-hdmi2-1/2.webp",
+            "/store/img/products/vention-hdmi2-1/3.webp",
+            "/store/img/products/vention-hdmi2-1/4.webp",
+            "/store/img/products/vention-hdmi2-1/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-hdmi2-1/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/b8421501ceee8ed8defa49d79fc692df_7a508a0d-a1ee-4316-903b-9f8d11927930.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-hdmi2-1/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-8k-hdmi-cable-33413391122598.jpg",
+              "size": "1143x1500"
+            },
+            {
+              "file": "/store/img/products/vention-hdmi2-1/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-8k-hdmi-cable-33413390958758.jpg",
+              "size": "1143x1500"
+            },
+            {
+              "file": "/store/img/products/vention-hdmi2-1/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-8k-hdmi-cable-33413390827686.jpg",
+              "size": "1143x1500"
+            },
+            {
+              "file": "/store/img/products/vention-hdmi2-1/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-8k-hdmi-cable-33413390991526.jpg",
+              "size": "1143x1500"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        },
+        "vention-hdmi2-1-3m": {
+          "officialName": "Vention HDMI kabel 8K (3 m)",
+          "shortDesc": "HDMI kabel 8K pro televize, monitory a herní konzole",
+          "description": "HDMI kabel Vention s podporou rozlišení 8K je určený pro moderní televize, monitory a herní konzole nové generace.",
+          "specs": {
+            "Parametry": {
+              "Konektory": "HDMI (M) – HDMI (M)",
+              "Rozlišení": "až 8K",
+              "Délka": "3 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/8k-hdmi-cable",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/8k-hdmi-cable",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-hdmi2-1/1.webp",
+            "/store/img/products/vention-hdmi2-1/2.webp",
+            "/store/img/products/vention-hdmi2-1/3.webp",
+            "/store/img/products/vention-hdmi2-1/4.webp",
+            "/store/img/products/vention-hdmi2-1/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-hdmi2-1/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/b8421501ceee8ed8defa49d79fc692df_7a508a0d-a1ee-4316-903b-9f8d11927930.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-hdmi2-1/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-8k-hdmi-cable-33413391122598.jpg",
+              "size": "1143x1500"
+            },
+            {
+              "file": "/store/img/products/vention-hdmi2-1/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-8k-hdmi-cable-33413390958758.jpg",
+              "size": "1143x1500"
+            },
+            {
+              "file": "/store/img/products/vention-hdmi2-1/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-8k-hdmi-cable-33413390827686.jpg",
+              "size": "1143x1500"
+            },
+            {
+              "file": "/store/img/products/vention-hdmi2-1/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-8k-hdmi-cable-33413390991526.jpg",
+              "size": "1143x1500"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        }
+      }
+    },
+    {
+      "variantGroup": "vention-rca",
+      "variants": {
+        "vention-rca-1m": {
+          "officialName": "Vention opletený koaxiální audio kabel RCA (1 m)",
+          "shortDesc": "Hi-Fi koaxiální kabel RCA–RCA s postříbřenými OFC vodiči",
+          "description": "Koaxiální audio kabel Vention s konektory RCA pro digitální audio (S/PDIF) i subwoofery. Postříbřené vodiče z bezkyslíkaté mědi (OFC) zajišťují čistý přenos signálu, bavlněný oplet zvyšuje odolnost.",
+          "specs": {
+            "Parametry": {
+              "Konektory": "RCA (M) – RCA (M)",
+              "Vodič": "postříbřená bezkyslíkatá měď (OFC)",
+              "Plášť": "bavlněný oplet",
+              "Délka": "1 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/cotton-braided-rca-male-to-male-coaxial-audio-cable-0-5-1-1-5-2-3-5-8-10m-green-copper-type",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/cotton-braided-rca-male-to-male-coaxial-audio-cable-0-5-1-1-5-2-3-5-8-10m-green-copper-type",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-rca/1.webp",
+            "/store/img/products/vention-rca/2.webp",
+            "/store/img/products/vention-rca/3.webp",
+            "/store/img/products/vention-rca/4.webp",
+            "/store/img/products/vention-rca/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-rca/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/b8421501ceee8ed8defa49d79fc692df_99c402a0-f74c-42be-a9bb-290efda522ec.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-rca/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/1_d1eba5bc-ff24-4754-9a06-676a25c1b2ba.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-rca/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/2_bfcc753e-8490-446f-bd74-d9169e74c4d3.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-rca/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/3_710196a2-634e-49c1-b879-b522c8dff291.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-rca/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/4_da0e9c99-6f52-4595-a04b-9c9011b1a70e.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        },
+        "vention-rca-2m": {
+          "officialName": "Vention opletený koaxiální audio kabel RCA (2 m)",
+          "shortDesc": "Hi-Fi koaxiální kabel RCA–RCA s postříbřenými OFC vodiči",
+          "description": "Koaxiální audio kabel Vention s konektory RCA pro digitální audio (S/PDIF) i subwoofery. Postříbřené vodiče z bezkyslíkaté mědi (OFC) zajišťují čistý přenos signálu, bavlněný oplet zvyšuje odolnost.",
+          "specs": {
+            "Parametry": {
+              "Konektory": "RCA (M) – RCA (M)",
+              "Vodič": "postříbřená bezkyslíkatá měď (OFC)",
+              "Plášť": "bavlněný oplet",
+              "Délka": "2 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/cotton-braided-rca-male-to-male-coaxial-audio-cable-0-5-1-1-5-2-3-5-8-10m-green-copper-type",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/cotton-braided-rca-male-to-male-coaxial-audio-cable-0-5-1-1-5-2-3-5-8-10m-green-copper-type",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-rca/1.webp",
+            "/store/img/products/vention-rca/2.webp",
+            "/store/img/products/vention-rca/3.webp",
+            "/store/img/products/vention-rca/4.webp",
+            "/store/img/products/vention-rca/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-rca/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/b8421501ceee8ed8defa49d79fc692df_99c402a0-f74c-42be-a9bb-290efda522ec.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-rca/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/1_d1eba5bc-ff24-4754-9a06-676a25c1b2ba.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-rca/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/2_bfcc753e-8490-446f-bd74-d9169e74c4d3.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-rca/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/3_710196a2-634e-49c1-b879-b522c8dff291.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-rca/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/4_da0e9c99-6f52-4595-a04b-9c9011b1a70e.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        },
+        "vention-rca-3m": {
+          "officialName": "Vention opletený koaxiální audio kabel RCA (3 m)",
+          "shortDesc": "Hi-Fi koaxiální kabel RCA–RCA s postříbřenými OFC vodiči",
+          "description": "Koaxiální audio kabel Vention s konektory RCA pro digitální audio (S/PDIF) i subwoofery. Postříbřené vodiče z bezkyslíkaté mědi (OFC) zajišťují čistý přenos signálu, bavlněný oplet zvyšuje odolnost.",
+          "specs": {
+            "Parametry": {
+              "Konektory": "RCA (M) – RCA (M)",
+              "Vodič": "postříbřená bezkyslíkatá měď (OFC)",
+              "Plášť": "bavlněný oplet",
+              "Délka": "3 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/cotton-braided-rca-male-to-male-coaxial-audio-cable-0-5-1-1-5-2-3-5-8-10m-green-copper-type",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/cotton-braided-rca-male-to-male-coaxial-audio-cable-0-5-1-1-5-2-3-5-8-10m-green-copper-type",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-rca/1.webp",
+            "/store/img/products/vention-rca/2.webp",
+            "/store/img/products/vention-rca/3.webp",
+            "/store/img/products/vention-rca/4.webp",
+            "/store/img/products/vention-rca/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-rca/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/b8421501ceee8ed8defa49d79fc692df_99c402a0-f74c-42be-a9bb-290efda522ec.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-rca/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/1_d1eba5bc-ff24-4754-9a06-676a25c1b2ba.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-rca/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/2_bfcc753e-8490-446f-bd74-d9169e74c4d3.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-rca/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/3_710196a2-634e-49c1-b879-b522c8dff291.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-rca/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/4_da0e9c99-6f52-4595-a04b-9c9011b1a70e.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        }
+      }
+    },
+    {
+      "variantGroup": "vention-toslink",
+      "variants": {
+        "vention-toslink-1m": {
+          "officialName": "Vention opletený optický audio kabel Toslink (1 m)",
+          "shortDesc": "Optický kabel Toslink s PMMA vláknem pro Dolby/DTS 5.1/7.1",
+          "description": "Optický audio kabel Vention propojí televizi, konzoli nebo přehrávač se soundbarem či receiverem. Přenáší nekomprimované 2kanálové PCM i vícekanálový zvuk DTS a Dolby 5.1/7.1. Vlákno z PMMA, pozlacené konektory, bavlněný oplet.",
+          "specs": {
+            "Parametry": {
+              "Konektory": "Toslink (S/PDIF) – Toslink",
+              "Formáty": "PCM 2.0, DTS, Dolby 5.1/7.1",
+              "Vlákno": "PMMA",
+              "Konektory – úprava": "pozlacené",
+              "Plášť": "bavlněný oplet",
+              "Délka": "1 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/cotton-braided-optical-fiber-audio-cable-1-41m-green-copper-type",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/cotton-braided-optical-fiber-audio-cable-1-41m-green-copper-type",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-toslink/1.webp",
+            "/store/img/products/vention-toslink/2.webp",
+            "/store/img/products/vention-toslink/3.webp",
+            "/store/img/products/vention-toslink/4.webp",
+            "/store/img/products/vention-toslink/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-toslink/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/b8421501ceee8ed8defa49d79fc692df_4471b8dc-ebbf-44be-924c-0149e69346a5.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-toslink/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/1_1e2b0573-bc30-49a4-bbbf-62331b43053d.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-toslink/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/3_9342bdf3-dcc7-4c93-8668-7939f4a08243.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-toslink/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/4_02a44be5-52d1-4489-8f4b-5f05bfd3e795.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-toslink/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/5_1230023c-1c51-4d87-b105-35621bf0f752.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        },
+        "vention-toslink-2m": {
+          "officialName": "Vention opletený optický audio kabel Toslink (2 m)",
+          "shortDesc": "Optický kabel Toslink s PMMA vláknem pro Dolby/DTS 5.1/7.1",
+          "description": "Optický audio kabel Vention propojí televizi, konzoli nebo přehrávač se soundbarem či receiverem. Přenáší nekomprimované 2kanálové PCM i vícekanálový zvuk DTS a Dolby 5.1/7.1. Vlákno z PMMA, pozlacené konektory, bavlněný oplet.",
+          "specs": {
+            "Parametry": {
+              "Konektory": "Toslink (S/PDIF) – Toslink",
+              "Formáty": "PCM 2.0, DTS, Dolby 5.1/7.1",
+              "Vlákno": "PMMA",
+              "Konektory – úprava": "pozlacené",
+              "Plášť": "bavlněný oplet",
+              "Délka": "2 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/cotton-braided-optical-fiber-audio-cable-1-41m-green-copper-type",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/cotton-braided-optical-fiber-audio-cable-1-41m-green-copper-type",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-toslink/1.webp",
+            "/store/img/products/vention-toslink/2.webp",
+            "/store/img/products/vention-toslink/3.webp",
+            "/store/img/products/vention-toslink/4.webp",
+            "/store/img/products/vention-toslink/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-toslink/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/b8421501ceee8ed8defa49d79fc692df_4471b8dc-ebbf-44be-924c-0149e69346a5.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-toslink/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/1_1e2b0573-bc30-49a4-bbbf-62331b43053d.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-toslink/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/3_9342bdf3-dcc7-4c93-8668-7939f4a08243.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-toslink/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/4_02a44be5-52d1-4489-8f4b-5f05bfd3e795.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-toslink/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/5_1230023c-1c51-4d87-b105-35621bf0f752.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        },
+        "vention-toslink-3m": {
+          "officialName": "Vention opletený optický audio kabel Toslink (3 m)",
+          "shortDesc": "Optický kabel Toslink s PMMA vláknem pro Dolby/DTS 5.1/7.1",
+          "description": "Optický audio kabel Vention propojí televizi, konzoli nebo přehrávač se soundbarem či receiverem. Přenáší nekomprimované 2kanálové PCM i vícekanálový zvuk DTS a Dolby 5.1/7.1. Vlákno z PMMA, pozlacené konektory, bavlněný oplet.",
+          "specs": {
+            "Parametry": {
+              "Konektory": "Toslink (S/PDIF) – Toslink",
+              "Formáty": "PCM 2.0, DTS, Dolby 5.1/7.1",
+              "Vlákno": "PMMA",
+              "Konektory – úprava": "pozlacené",
+              "Plášť": "bavlněný oplet",
+              "Délka": "3 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/cotton-braided-optical-fiber-audio-cable-1-41m-green-copper-type",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/cotton-braided-optical-fiber-audio-cable-1-41m-green-copper-type",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-toslink/1.webp",
+            "/store/img/products/vention-toslink/2.webp",
+            "/store/img/products/vention-toslink/3.webp",
+            "/store/img/products/vention-toslink/4.webp",
+            "/store/img/products/vention-toslink/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-toslink/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/b8421501ceee8ed8defa49d79fc692df_4471b8dc-ebbf-44be-924c-0149e69346a5.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-toslink/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/1_1e2b0573-bc30-49a4-bbbf-62331b43053d.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-toslink/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/3_9342bdf3-dcc7-4c93-8668-7939f4a08243.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-toslink/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/4_02a44be5-52d1-4489-8f4b-5f05bfd3e795.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-toslink/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/5_1230023c-1c51-4d87-b105-35621bf0f752.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        }
+      }
+    },
+    {
+      "variantGroup": "vention-usb-bluetooth",
+      "variants": {
+        "vention-usb-bluetooth-premium": {
+          "officialName": "Vention USB Bluetooth 5.3 adaptér",
+          "shortDesc": "Mini USB adaptér Bluetooth 5.3 pro PC a notebooky",
+          "description": "Malý USB adaptér Vention přidá počítači podporu Bluetooth 5.3 pro bezdrátová sluchátka, myši, klávesnice nebo herní ovladače.",
+          "specs": {
+            "Parametry": {
+              "Standard": "Bluetooth 5.3",
+              "Připojení": "USB-A",
+              "Provedení": "mini, černé"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/vention-usb-bluetooth-5-3-adapter-black-mini-type",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/vention-usb-bluetooth-5-3-adapter-black-mini-type",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-usb-bluetooth/1.webp",
+            "/store/img/products/vention-usb-bluetooth/2.webp",
+            "/store/img/products/vention-usb-bluetooth/3.webp",
+            "/store/img/products/vention-usb-bluetooth/4.webp",
+            "/store/img/products/vention-usb-bluetooth/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-usb-bluetooth/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/800x800_3_ea1c55ae-4147-4b69-a7d6-30b0e5881e8b.png",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-bluetooth/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/01_b66b3a48-8da9-4191-846f-5e983b5f906e.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-bluetooth/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/02_4b80439e-5162-4738-bb0b-94e81c6f0544.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-bluetooth/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/03_5f40ae86-d7d8-4cdb-9985-77d88bab90d7.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-bluetooth/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/04_5b960659-34cf-4523-8637-8f72f93ac5ac.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        }
+      }
+    },
+    {
+      "variantGroup": "vention-usb-c-3-5",
+      "variants": {
+        "vention-usb-c-3-5-premium": {
+          "officialName": "Vention adaptér USB-C → 3,5 mm jack",
+          "shortDesc": "Redukce USB-C (M) na 3,5 mm jack (F) s DAC čipem pro sluchátka",
+          "description": "Redukce Vention umožní připojit klasická sluchátka s konektorem 3,5 mm k telefonu, tabletu nebo notebooku s USB-C. Vestavěný DAC čip zajišťuje čistý zvuk.",
+          "specs": {
+            "Parametry": {
+              "Konektory": "USB-C (M) → 3,5 mm jack (F)",
+              "Převodník": "DAC čip"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/vention-usb-c-male-to-3-5mm-female-audio-adapter",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/vention-usb-c-male-to-3-5mm-female-audio-adapter",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-usb-c-3-5/1.webp",
+            "/store/img/products/vention-usb-c-3-5/2.webp",
+            "/store/img/products/vention-usb-c-3-5/3.webp",
+            "/store/img/products/vention-usb-c-3-5/4.webp",
+            "/store/img/products/vention-usb-c-3-5/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-usb-c-3-5/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/1700x1700_2_c626d21e-38b2-477c-ae6b-8baecacdcad5.jpg",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c-3-5/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/01_fd1b51e4-8ba4-4cf7-aefc-07a9653e6b07.jpg",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c-3-5/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/02_3dce62d2-3033-4d66-8e82-a907052d6650.jpg",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c-3-5/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/03_dc74fccf-af60-4f1a-b4db-20228a38ff5b.jpg",
+              "size": "1600x1600"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c-3-5/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/04_525c8197-d048-4ccb-a67f-6bf337f4ac1f.jpg",
+              "size": "1600x1600"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        }
+      }
+    },
+    {
+      "variantGroup": "vention-usb-c-audio",
+      "variants": {
+        "vention-usb-c-audio-1m": {
+          "officialName": "Vention audio kabel USB-C → 3,5 mm jack s DAC (1 m)",
+          "shortDesc": "Audio kabel USB-C na 3,5 mm jack (M) s DAC čipem",
+          "description": "Audio kabel Vention propojí telefon nebo notebook s USB-C s reproduktorem či autorádiem se vstupem 3,5 mm. Vestavěný DAC převodník zajišťuje kvalitní zvuk.",
+          "specs": {
+            "Parametry": {
+              "Konektory": "USB-C (M) → 3,5 mm jack (M)",
+              "Převodník": "DAC čip",
+              "Materiál": "ABS",
+              "Délka": "1 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/vention-usb-c-male-to-3-5mm-male-audio-cable-with-dac-adapter-abs-type",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/vention-usb-c-male-to-3-5mm-male-audio-cable-with-dac-adapter-abs-type",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-usb-c-audio/1.webp",
+            "/store/img/products/vention-usb-c-audio/2.webp",
+            "/store/img/products/vention-usb-c-audio/3.webp",
+            "/store/img/products/vention-usb-c-audio/4.webp",
+            "/store/img/products/vention-usb-c-audio/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-usb-c-audio/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/3034a1133efe01daba919094b70c6310_2fbe28d9-4f2f-465f-9790-aa3a2e6d1259.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c-audio/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/1_a97c327a-6d1d-4ba5-96e9-c1b8fa75e577.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c-audio/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/2_87722bac-9ac0-4de6-af70-f3338776b8db.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c-audio/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/3_4e9a2c86-2432-437b-8516-764a66fd3767.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c-audio/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/4_2b8f28b2-8413-47a5-a803-4dafca82acd8.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        },
+        "vention-usb-c-audio-2m": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Vention USB-C audio (2m) — audio kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Vention · Audio kabely · 2m",
+            "images": [
+              "/store/img/brand/vention.jpg"
+            ]
+          },
+          "officialName": "Vention USB-C audio (2m)",
+          "unresolvedReason": "Vention tento produkt v délce 2m nenabízí (oficiálně: 1M, 1.5M)."
+        },
+        "vention-usb-c-audio-3m": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Vention USB-C audio (3m) — audio kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Vention · Audio kabely · 3m",
+            "images": [
+              "/store/img/brand/vention.jpg"
+            ]
+          },
+          "officialName": "Vention USB-C audio (3m)",
+          "unresolvedReason": "Vention tento produkt v délce 3m nenabízí (oficiálně: 1M, 1.5M)."
+        }
+      }
+    },
+    {
+      "variantGroup": "vention-usb-c-dp",
+      "variants": {
+        "vention-usb-c-dp-1m": {
+          "officialName": "Vention kabel USB-C → DisplayPort 4K (1 m)",
+          "shortDesc": "Kabel USB-C na DisplayPort pro připojení monitoru, 4K",
+          "description": "Kabel Vention připojí notebook nebo tablet s USB-C (DisplayPort Alt Mode) přímo k monitoru se vstupem DisplayPort v rozlišení 4K.",
+          "specs": {
+            "Parametry": {
+              "Konektory": "USB-C (M) → DisplayPort (M)",
+              "Rozlišení": "4K",
+              "Požadavek": "USB-C s podporou DP Alt Mode",
+              "Délka": "1 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/usb-c-to-dp-4k-hd-cable",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/usb-c-to-dp-4k-hd-cable",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-usb-c-dp/1.webp",
+            "/store/img/products/vention-usb-c-dp/2.webp",
+            "/store/img/products/vention-usb-c-dp/3.webp",
+            "/store/img/products/vention-usb-c-dp/4.webp",
+            "/store/img/products/vention-usb-c-dp/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-usb-c-dp/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/1000_a3dcce01-72db-4e42-977a-d4949bda2c18.jpg",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c-dp/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/1_6d12f37d-4728-4cf1-b16d-28eb21fd0f12.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c-dp/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/2_1d8e5098-3a5b-420d-acdb-5daae9ed6ab0.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c-dp/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/3_3db6364f-4d7d-4822-87ca-fe960124e713.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c-dp/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/4_1dc46183-fdb7-4fc4-9635-ac4579c10d28.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        },
+        "vention-usb-c-dp-2m": {
+          "officialName": "Vention kabel USB-C → DisplayPort 4K (2 m)",
+          "shortDesc": "Kabel USB-C na DisplayPort pro připojení monitoru, 4K",
+          "description": "Kabel Vention připojí notebook nebo tablet s USB-C (DisplayPort Alt Mode) přímo k monitoru se vstupem DisplayPort v rozlišení 4K.",
+          "specs": {
+            "Parametry": {
+              "Konektory": "USB-C (M) → DisplayPort (M)",
+              "Rozlišení": "4K",
+              "Požadavek": "USB-C s podporou DP Alt Mode",
+              "Délka": "2 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/usb-c-to-dp-4k-hd-cable",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/usb-c-to-dp-4k-hd-cable",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-usb-c-dp/1.webp",
+            "/store/img/products/vention-usb-c-dp/2.webp",
+            "/store/img/products/vention-usb-c-dp/3.webp",
+            "/store/img/products/vention-usb-c-dp/4.webp",
+            "/store/img/products/vention-usb-c-dp/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-usb-c-dp/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/1000_a3dcce01-72db-4e42-977a-d4949bda2c18.jpg",
+              "size": "1000x1000"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c-dp/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/1_6d12f37d-4728-4cf1-b16d-28eb21fd0f12.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c-dp/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/2_1d8e5098-3a5b-420d-acdb-5daae9ed6ab0.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c-dp/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/3_3db6364f-4d7d-4822-87ca-fe960124e713.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c-dp/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/4_1dc46183-fdb7-4fc4-9635-ac4579c10d28.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        },
+        "vention-usb-c-dp-3m": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Vention USB-C→DP (3m) — video kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Vention · Video kabely · 3m",
+            "images": [
+              "/store/img/brand/vention.jpg"
+            ]
+          },
+          "officialName": "Vention USB-C→DP (3m)",
+          "unresolvedReason": "Vention tento produkt v délce 3m nenabízí (oficiálně: 1M, 1.5M, 2M)."
+        }
+      }
+    },
+    {
+      "variantGroup": "vention-usb-c-ethernet",
+      "variants": {
+        "vention-usb-c-ethernet-premium": {
+          "officialName": "Vention adaptér USB-C → Gigabit Ethernet",
+          "shortDesc": "Síťový adaptér USB-C na RJ45, 1000 Mb/s",
+          "description": "Adaptér Vention přidá notebooku nebo tabletu s USB-C kabelový gigabitový Ethernet pro stabilnější a rychlejší připojení než Wi-Fi.",
+          "specs": {
+            "Parametry": {
+              "Konektory": "USB-C → RJ45",
+              "Rychlost": "1000 Mb/s",
+              "Délka kabelu": "0,15 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/usb-c-to-gigabit-ethernet-adapter-0-15m-black",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/usb-c-to-gigabit-ethernet-adapter-0-15m-black",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-usb-c-ethernet/1.webp",
+            "/store/img/products/vention-usb-c-ethernet/2.webp",
+            "/store/img/products/vention-usb-c-ethernet/3.webp",
+            "/store/img/products/vention-usb-c-ethernet/4.webp",
+            "/store/img/products/vention-usb-c-ethernet/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-usb-c-ethernet/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/b8421501ceee8ed8defa49d79fc692df_06585a40-ba9e-4de4-8cfc-0ae4bc94cdab.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c-ethernet/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/vention-usb-c-to-gigabit-ethernet-adapter-0-15m-black-36192844021926.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c-ethernet/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/vention-usb-c-to-gigabit-ethernet-adapter-0-15m-black-36192844152998.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c-ethernet/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/vention-usb-c-to-gigabit-ethernet-adapter-0-15m-black-36192844644518.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c-ethernet/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/vention-usb-c-to-gigabit-ethernet-adapter-0-15m-black-36192844677286.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        }
+      }
+    },
+    {
+      "variantGroup": "vention-usb-c-hdmi",
+      "variants": {
+        "vention-usb-c-hdmi-1m": {
+          "officialName": "Vention kabel USB-C → HDMI 4K (1 m)",
+          "shortDesc": "Kabel USB-C na HDMI pro připojení k televizi či monitoru, 4K",
+          "description": "Kabel Vention připojí notebook, tablet nebo telefon s USB-C (DP Alt Mode) k televizi, monitoru či projektoru se vstupem HDMI v rozlišení 4K.",
+          "specs": {
+            "Parametry": {
+              "Konektory": "USB-C (M) → HDMI (M)",
+              "Rozlišení": "4K",
+              "Požadavek": "USB-C s podporou DP Alt Mode",
+              "Délka": "1 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/vention-usb-c-to-hdmi-a-4k-hd-cable",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/vention-usb-c-to-hdmi-a-4k-hd-cable",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-usb-c-hdmi/1.webp",
+            "/store/img/products/vention-usb-c-hdmi/2.webp",
+            "/store/img/products/vention-usb-c-hdmi/3.webp",
+            "/store/img/products/vention-usb-c-hdmi/4.webp",
+            "/store/img/products/vention-usb-c-hdmi/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-usb-c-hdmi/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/CRI.jpg",
+              "size": "720x720"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c-hdmi/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/1_f0539b19-195f-4deb-ad60-f010790a6573.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c-hdmi/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/2_a78cff92-c56f-48a7-9f6f-1ce759d17d70.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c-hdmi/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/3_0d3006a5-16ea-42aa-89b5-19d5a1133906.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c-hdmi/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/4_74537fd0-5d72-4ef0-af3f-49cb2eb4e06a.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        },
+        "vention-usb-c-hdmi-2m": {
+          "officialName": "Vention kabel USB-C → HDMI 4K (2 m)",
+          "shortDesc": "Kabel USB-C na HDMI pro připojení k televizi či monitoru, 4K",
+          "description": "Kabel Vention připojí notebook, tablet nebo telefon s USB-C (DP Alt Mode) k televizi, monitoru či projektoru se vstupem HDMI v rozlišení 4K.",
+          "specs": {
+            "Parametry": {
+              "Konektory": "USB-C (M) → HDMI (M)",
+              "Rozlišení": "4K",
+              "Požadavek": "USB-C s podporou DP Alt Mode",
+              "Délka": "2 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/vention-usb-c-to-hdmi-a-4k-hd-cable",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/vention-usb-c-to-hdmi-a-4k-hd-cable",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-usb-c-hdmi/1.webp",
+            "/store/img/products/vention-usb-c-hdmi/2.webp",
+            "/store/img/products/vention-usb-c-hdmi/3.webp",
+            "/store/img/products/vention-usb-c-hdmi/4.webp",
+            "/store/img/products/vention-usb-c-hdmi/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-usb-c-hdmi/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/CRI.jpg",
+              "size": "720x720"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c-hdmi/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/1_f0539b19-195f-4deb-ad60-f010790a6573.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c-hdmi/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/2_a78cff92-c56f-48a7-9f6f-1ce759d17d70.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c-hdmi/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/3_0d3006a5-16ea-42aa-89b5-19d5a1133906.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c-hdmi/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/4_74537fd0-5d72-4ef0-af3f-49cb2eb4e06a.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        },
+        "vention-usb-c-hdmi-3m": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Vention USB-C→HDMI (3m) — video kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Vention · Video kabely · 3m",
+            "images": [
+              "/store/img/brand/vention.jpg"
+            ]
+          },
+          "officialName": "Vention USB-C→HDMI (3m)",
+          "unresolvedReason": "Vention tento produkt v délce 3m nenabízí (oficiálně: 1M, 1.5M, 2M)."
+        }
+      }
+    },
+    {
+      "variantGroup": "vention-usb-c100w",
+      "variants": {
+        "vention-usb-c100w-1m": {
+          "officialName": "Vention kabel USB-C ↔ USB-C 5A (100 W) (1 m)",
+          "shortDesc": "Kabel USB-C na USB-C, 5 A (až 100 W), PVC",
+          "description": "Nabíjecí kabel Vention USB-C na USB-C s proudem až 5 A (100 W při 20 V) nabije i notebooky. Data přenáší rychlostí USB 2.0, plášť je z PVC.",
+          "specs": {
+            "Parametry": {
+              "Konektory": "USB-C (M) – USB-C (M)",
+              "Proud": "5 A (až 100 W)",
+              "Přenos dat": "USB 2.0 (480 Mb/s)",
+              "Plášť": "PVC, černý",
+              "Délka": "1 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/vention-usb-2-0-c-male-to-c-male-5a-cable-black-pvc-type",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/vention-usb-2-0-c-male-to-c-male-5a-cable-black-pvc-type",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-usb-c100w/1.webp",
+            "/store/img/products/vention-usb-c100w/2.webp",
+            "/store/img/products/vention-usb-c100w/3.webp",
+            "/store/img/products/vention-usb-c100w/4.webp",
+            "/store/img/products/vention-usb-c100w/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-usb-c100w/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/3034a1133efe01daba919094b70c6310_49aab3c0-5a06-4065-8e3d-80f0e2fbf437.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c100w/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/1_1b3f0e41-b803-4637-8fca-0b0f06d49744.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c100w/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/2_77a98b58-6840-4039-b6b4-648444b9e5cb.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c100w/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/3_5db42727-3f45-45a9-b035-0038b1c4b524.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c100w/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/4_40715190-221d-413e-afe6-cbcc32087ab1.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        },
+        "vention-usb-c100w-2m": {
+          "officialName": "Vention kabel USB-C ↔ USB-C 5A (100 W) (2 m)",
+          "shortDesc": "Kabel USB-C na USB-C, 5 A (až 100 W), PVC",
+          "description": "Nabíjecí kabel Vention USB-C na USB-C s proudem až 5 A (100 W při 20 V) nabije i notebooky. Data přenáší rychlostí USB 2.0, plášť je z PVC.",
+          "specs": {
+            "Parametry": {
+              "Konektory": "USB-C (M) – USB-C (M)",
+              "Proud": "5 A (až 100 W)",
+              "Přenos dat": "USB 2.0 (480 Mb/s)",
+              "Plášť": "PVC, černý",
+              "Délka": "2 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/vention-usb-2-0-c-male-to-c-male-5a-cable-black-pvc-type",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/vention-usb-2-0-c-male-to-c-male-5a-cable-black-pvc-type",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-usb-c100w/1.webp",
+            "/store/img/products/vention-usb-c100w/2.webp",
+            "/store/img/products/vention-usb-c100w/3.webp",
+            "/store/img/products/vention-usb-c100w/4.webp",
+            "/store/img/products/vention-usb-c100w/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-usb-c100w/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/3034a1133efe01daba919094b70c6310_49aab3c0-5a06-4065-8e3d-80f0e2fbf437.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c100w/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/1_1b3f0e41-b803-4637-8fca-0b0f06d49744.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c100w/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/2_77a98b58-6840-4039-b6b4-648444b9e5cb.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c100w/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/3_5db42727-3f45-45a9-b035-0038b1c4b524.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c100w/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/4_40715190-221d-413e-afe6-cbcc32087ab1.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        },
+        "vention-usb-c100w-3m": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Vention USB-C100W (3m) — datové kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Vention · Datové kabely · 3m",
+            "images": [
+              "/store/img/brand/vention.jpg"
+            ]
+          },
+          "officialName": "Vention USB-C100W (3m)",
+          "unresolvedReason": "Vention tento produkt v délce 3m nenabízí (oficiálně: 0.5M, 1M, 1.5M, 2M)."
+        }
+      }
+    },
+    {
+      "variantGroup": "vention-usb-c240w",
+      "variants": {
+        "vention-usb-c240w-1m": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Vention USB-C240W (1m) — datové kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Vention · Datové kabely · 1m",
+            "images": [
+              "/store/img/brand/vention.jpg"
+            ]
+          },
+          "officialName": "Vention USB-C240W (1m)",
+          "unresolvedReason": "Vention nemá standardní 240W kabel USB-C ↔ USB-C (jen magnetickou verzi) – nelze ověřit."
+        },
+        "vention-usb-c240w-2m": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Vention USB-C240W (2m) — datové kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Vention · Datové kabely · 2m",
+            "images": [
+              "/store/img/brand/vention.jpg"
+            ]
+          },
+          "officialName": "Vention USB-C240W (2m)",
+          "unresolvedReason": "Vention nemá standardní 240W kabel USB-C ↔ USB-C (jen magnetickou verzi) – nelze ověřit."
+        },
+        "vention-usb-c240w-3m": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Vention USB-C240W (3m) — datové kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Vention · Datové kabely · 3m",
+            "images": [
+              "/store/img/brand/vention.jpg"
+            ]
+          },
+          "officialName": "Vention USB-C240W (3m)",
+          "unresolvedReason": "Vention nemá standardní 240W kabel USB-C ↔ USB-C (jen magnetickou verzi) – nelze ověřit."
+        }
+      }
+    },
+    {
+      "variantGroup": "vention-usb-c60w",
+      "variants": {
+        "vention-usb-c60w-1m": {
+          "officialName": "Vention opletený kabel USB-C ↔ USB-C 3A (60 W) (1 m)",
+          "shortDesc": "Opletený kabel USB-C na USB-C, 3 A (až 60 W), s LED indikací",
+          "description": "Opletený nabíjecí kabel Vention USB-C na USB-C s proudem až 3 A (60 W při 20 V) a LED indikací nabíjení. Data přenáší rychlostí USB 2.0.",
+          "specs": {
+            "Parametry": {
+              "Konektory": "USB-C (M) – USB-C (M)",
+              "Proud": "3 A (až 60 W)",
+              "Přenos dat": "USB 2.0 (480 Mb/s)",
+              "Plášť": "nylonový oplet",
+              "Indikace": "LED",
+              "Délka": "1 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/nylon-braided-usb-2-0-c-male-to-c-male-3a-cable",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/nylon-braided-usb-2-0-c-male-to-c-male-3a-cable",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-usb-c60w/1.webp",
+            "/store/img/products/vention-usb-c60w/2.webp",
+            "/store/img/products/vention-usb-c60w/3.webp",
+            "/store/img/products/vention-usb-c60w/4.webp",
+            "/store/img/products/vention-usb-c60w/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-usb-c60w/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-nylon-braided-usb-2-0-c-male-to-c-male-3a-cable-35837872046246.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c60w/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-nylon-braided-usb-2-0-c-male-to-c-male-3a-cable-35837872111782.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c60w/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-nylon-braided-usb-2-0-c-male-to-c-male-3a-cable-35837871980710.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c60w/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-nylon-braided-usb-2-0-c-male-to-c-male-3a-cable-35837872144550.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c60w/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-nylon-braided-usb-2-0-c-male-to-c-male-3a-cable-35837872013478.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        },
+        "vention-usb-c60w-2m": {
+          "officialName": "Vention opletený kabel USB-C ↔ USB-C 3A (60 W) (2 m)",
+          "shortDesc": "Opletený kabel USB-C na USB-C, 3 A (až 60 W), s LED indikací",
+          "description": "Opletený nabíjecí kabel Vention USB-C na USB-C s proudem až 3 A (60 W při 20 V) a LED indikací nabíjení. Data přenáší rychlostí USB 2.0.",
+          "specs": {
+            "Parametry": {
+              "Konektory": "USB-C (M) – USB-C (M)",
+              "Proud": "3 A (až 60 W)",
+              "Přenos dat": "USB 2.0 (480 Mb/s)",
+              "Plášť": "nylonový oplet",
+              "Indikace": "LED",
+              "Délka": "2 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/nylon-braided-usb-2-0-c-male-to-c-male-3a-cable",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/nylon-braided-usb-2-0-c-male-to-c-male-3a-cable",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-usb-c60w/1.webp",
+            "/store/img/products/vention-usb-c60w/2.webp",
+            "/store/img/products/vention-usb-c60w/3.webp",
+            "/store/img/products/vention-usb-c60w/4.webp",
+            "/store/img/products/vention-usb-c60w/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-usb-c60w/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-nylon-braided-usb-2-0-c-male-to-c-male-3a-cable-35837872046246.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c60w/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-nylon-braided-usb-2-0-c-male-to-c-male-3a-cable-35837872111782.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c60w/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-nylon-braided-usb-2-0-c-male-to-c-male-3a-cable-35837871980710.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c60w/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-nylon-braided-usb-2-0-c-male-to-c-male-3a-cable-35837872144550.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c60w/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-nylon-braided-usb-2-0-c-male-to-c-male-3a-cable-35837872013478.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        },
+        "vention-usb-c60w-3m": {
+          "officialName": "Vention opletený kabel USB-C ↔ USB-C 3A (60 W) (3 m)",
+          "shortDesc": "Opletený kabel USB-C na USB-C, 3 A (až 60 W), s LED indikací",
+          "description": "Opletený nabíjecí kabel Vention USB-C na USB-C s proudem až 3 A (60 W při 20 V) a LED indikací nabíjení. Data přenáší rychlostí USB 2.0.",
+          "specs": {
+            "Parametry": {
+              "Konektory": "USB-C (M) – USB-C (M)",
+              "Proud": "3 A (až 60 W)",
+              "Přenos dat": "USB 2.0 (480 Mb/s)",
+              "Plášť": "nylonový oplet",
+              "Indikace": "LED",
+              "Délka": "3 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/nylon-braided-usb-2-0-c-male-to-c-male-3a-cable",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/nylon-braided-usb-2-0-c-male-to-c-male-3a-cable",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-usb-c60w/1.webp",
+            "/store/img/products/vention-usb-c60w/2.webp",
+            "/store/img/products/vention-usb-c60w/3.webp",
+            "/store/img/products/vention-usb-c60w/4.webp",
+            "/store/img/products/vention-usb-c60w/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-usb-c60w/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-nylon-braided-usb-2-0-c-male-to-c-male-3a-cable-35837872046246.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c60w/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-nylon-braided-usb-2-0-c-male-to-c-male-3a-cable-35837872111782.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c60w/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-nylon-braided-usb-2-0-c-male-to-c-male-3a-cable-35837871980710.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c60w/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-nylon-braided-usb-2-0-c-male-to-c-male-3a-cable-35837872144550.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb-c60w/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-nylon-braided-usb-2-0-c-male-to-c-male-3a-cable-35837872013478.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        }
+      }
+    },
+    {
+      "variantGroup": "vention-usb3-a-b",
+      "variants": {
+        "vention-usb3-a-b-1m": {
+          "officialName": "Vention kabel USB 3.0 A → B (1 m)",
+          "shortDesc": "Kabel USB 3.0 Type-A na Type-B pro tiskárny, skenery a disky",
+          "description": "Kabel Vention USB 3.0 propojí počítač s tiskárnou, skenerem, externím diskem nebo DAC s konektorem USB-B (USB 3.0).",
+          "specs": {
+            "Parametry": {
+              "Konektory": "USB-A (M) → USB-B (M)",
+              "Standard": "USB 3.0",
+              "Délka": "1 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/usb-printer-cable-usb-3-0-2-0-type-a-male-to-b-male-cable-for-canon-epson-hp-zjiang-label-printer-dac-usb-printer",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/usb-printer-cable-usb-3-0-2-0-type-a-male-to-b-male-cable-for-canon-epson-hp-zjiang-label-printer-dac-usb-printer",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-usb3-a-b/1.webp",
+            "/store/img/products/vention-usb3-a-b/2.webp",
+            "/store/img/products/vention-usb3-a-b/3.webp",
+            "/store/img/products/vention-usb3-a-b/4.webp",
+            "/store/img/products/vention-usb3-a-b/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-usb3-a-b/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/b8421501ceee8ed8defa49d79fc692df_6f57c243-62d0-4c4c-91bb-dd13f8e791a7.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb3-a-b/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention--usb-printer-cable-usb-3-0-2-0-type-a-male-to-b-male-cable-for-canon-epson-hp-zjiang-label-printer-dac-usb-printer-34472441118886.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb3-a-b/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention--usb-printer-cable-usb-3-0-2-0-type-a-male-to-b-male-cable-for-canon-epson-hp-zjiang-label-printer-dac-usb-printer-34472441151654.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb3-a-b/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention--usb-printer-cable-usb-3-0-2-0-type-a-male-to-b-male-cable-for-canon-epson-hp-zjiang-label-printer-dac-usb-printer-34472442232998.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb3-a-b/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention--usb-printer-cable-usb-3-0-2-0-type-a-male-to-b-male-cable-for-canon-epson-hp-zjiang-label-printer-dac-usb-printer-34472442200230.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        },
+        "vention-usb3-a-b-2m": {
+          "officialName": "Vention kabel USB 3.0 A → B (2 m)",
+          "shortDesc": "Kabel USB 3.0 Type-A na Type-B pro tiskárny, skenery a disky",
+          "description": "Kabel Vention USB 3.0 propojí počítač s tiskárnou, skenerem, externím diskem nebo DAC s konektorem USB-B (USB 3.0).",
+          "specs": {
+            "Parametry": {
+              "Konektory": "USB-A (M) → USB-B (M)",
+              "Standard": "USB 3.0",
+              "Délka": "2 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/usb-printer-cable-usb-3-0-2-0-type-a-male-to-b-male-cable-for-canon-epson-hp-zjiang-label-printer-dac-usb-printer",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/usb-printer-cable-usb-3-0-2-0-type-a-male-to-b-male-cable-for-canon-epson-hp-zjiang-label-printer-dac-usb-printer",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-usb3-a-b/1.webp",
+            "/store/img/products/vention-usb3-a-b/2.webp",
+            "/store/img/products/vention-usb3-a-b/3.webp",
+            "/store/img/products/vention-usb3-a-b/4.webp",
+            "/store/img/products/vention-usb3-a-b/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-usb3-a-b/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/b8421501ceee8ed8defa49d79fc692df_6f57c243-62d0-4c4c-91bb-dd13f8e791a7.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb3-a-b/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention--usb-printer-cable-usb-3-0-2-0-type-a-male-to-b-male-cable-for-canon-epson-hp-zjiang-label-printer-dac-usb-printer-34472441118886.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb3-a-b/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention--usb-printer-cable-usb-3-0-2-0-type-a-male-to-b-male-cable-for-canon-epson-hp-zjiang-label-printer-dac-usb-printer-34472441151654.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb3-a-b/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention--usb-printer-cable-usb-3-0-2-0-type-a-male-to-b-male-cable-for-canon-epson-hp-zjiang-label-printer-dac-usb-printer-34472442232998.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb3-a-b/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention--usb-printer-cable-usb-3-0-2-0-type-a-male-to-b-male-cable-for-canon-epson-hp-zjiang-label-printer-dac-usb-printer-34472442200230.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        },
+        "vention-usb3-a-b-3m": {
+          "officialName": "Vention kabel USB 3.0 A → B (3 m)",
+          "shortDesc": "Kabel USB 3.0 Type-A na Type-B pro tiskárny, skenery a disky",
+          "description": "Kabel Vention USB 3.0 propojí počítač s tiskárnou, skenerem, externím diskem nebo DAC s konektorem USB-B (USB 3.0).",
+          "specs": {
+            "Parametry": {
+              "Konektory": "USB-A (M) → USB-B (M)",
+              "Standard": "USB 3.0",
+              "Délka": "3 m"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/usb-printer-cable-usb-3-0-2-0-type-a-male-to-b-male-cable-for-canon-epson-hp-zjiang-label-printer-dac-usb-printer",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/usb-printer-cable-usb-3-0-2-0-type-a-male-to-b-male-cable-for-canon-epson-hp-zjiang-label-printer-dac-usb-printer",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-usb3-a-b/1.webp",
+            "/store/img/products/vention-usb3-a-b/2.webp",
+            "/store/img/products/vention-usb3-a-b/3.webp",
+            "/store/img/products/vention-usb3-a-b/4.webp",
+            "/store/img/products/vention-usb3-a-b/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-usb3-a-b/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/files/b8421501ceee8ed8defa49d79fc692df_6f57c243-62d0-4c4c-91bb-dd13f8e791a7.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb3-a-b/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention--usb-printer-cable-usb-3-0-2-0-type-a-male-to-b-male-cable-for-canon-epson-hp-zjiang-label-printer-dac-usb-printer-34472441118886.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb3-a-b/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention--usb-printer-cable-usb-3-0-2-0-type-a-male-to-b-male-cable-for-canon-epson-hp-zjiang-label-printer-dac-usb-printer-34472441151654.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb3-a-b/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention--usb-printer-cable-usb-3-0-2-0-type-a-male-to-b-male-cable-for-canon-epson-hp-zjiang-label-printer-dac-usb-printer-34472442232998.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb3-a-b/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention--usb-printer-cable-usb-3-0-2-0-type-a-male-to-b-male-cable-for-canon-epson-hp-zjiang-label-printer-dac-usb-printer-34472442200230.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        }
+      }
+    },
+    {
+      "variantGroup": "vention-usb4-40gbps",
+      "variants": {
+        "vention-usb4-40gbps-1m": {
+          "officialName": "Vention opletený kabel USB4 40 Gb/s, 1 m",
+          "shortDesc": "Kabel USB4 USB-C ↔ USB-C, 40 Gb/s, 5 A, opletený, 1 m",
+          "description": "Opletený kabel Vention USB4 přenáší data až 40 Gb/s, obraz až 8K a napájení s proudem až 5 A. Hodí se pro dokovací stanice, externí SSD a monitory.",
+          "specs": {
+            "Parametry": {
+              "Standard": "USB4",
+              "Přenos dat": "až 40 Gb/s",
+              "Proud": "5 A",
+              "Délka": "1 m",
+              "Plášť": "bavlněný oplet",
+              "Konektory – materiál": "hliníková slitina"
+            }
+          },
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://ventiontech.com/products/cotton-braided-usb-4-0-c-male-to-c-male-5a-cable",
+              "note": "Vention Official Store – produktová stránka",
+              "verified": "2026-11-13"
+            },
+            {
+              "type": "images",
+              "url": "https://ventiontech.com/products/cotton-braided-usb-4-0-c-male-to-c-male-5a-cable",
+              "note": "Fotografie: oficiální galerie výrobce (Vention)",
+              "verified": "2026-11-13"
+            }
+          ],
+          "images": [
+            "/store/img/products/vention-usb4-40gbps/1.webp",
+            "/store/img/products/vention-usb4-40gbps/2.webp",
+            "/store/img/products/vention-usb4-40gbps/3.webp",
+            "/store/img/products/vention-usb4-40gbps/4.webp",
+            "/store/img/products/vention-usb4-40gbps/5.webp"
+          ],
+          "imageSources": [
+            {
+              "file": "/store/img/products/vention-usb4-40gbps/1.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-cotton-braided-usb-4-0-c-male-to-c-male-5a-cable-35837862412454.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb4-40gbps/2.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-cotton-braided-usb-4-0-c-male-to-c-male-5a-cable-35837862346918.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb4-40gbps/3.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-cotton-braided-usb-4-0-c-male-to-c-male-5a-cable-35837862281382.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb4-40gbps/4.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-cotton-braided-usb-4-0-c-male-to-c-male-5a-cable-35837862379686.jpg",
+              "size": "800x800"
+            },
+            {
+              "file": "/store/img/products/vention-usb4-40gbps/5.webp",
+              "source": "https://cdn.shopify.com/s/files/1/0610/7640/6438/products/vention-cotton-braided-usb-4-0-c-male-to-c-male-5a-cable-35837862445222.jpg",
+              "size": "800x800"
+            }
+          ],
+          "mappingNote": "Sourcing neuvádí kód SKU – přiřazeno k odpovídající oficiální řadě Vention; ověřit SKU u dodavatele."
+        },
+        "vention-usb4-40gbps-2m": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Vention USB4 40Gbps (2m) — datové kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Vention · Datové kabely · 2m",
+            "images": [
+              "/store/img/brand/vention.jpg"
+            ]
+          },
+          "officialName": "Vention USB4 40Gbps (2m)",
+          "unresolvedReason": "Vention nabízí tento kabel jen v délce 1 m."
+        },
+        "vention-usb4-40gbps-3m": {
+          "reset": true,
+          "resetFrom": {
+            "description": "Vention USB4 40Gbps (3m) — datové kabely ve sortimentu VeVit Store. Uvedená cena je orientační odhad z nákupního průzkumu; produkt zatím není skladem, po ověření dodavatele a naskladnění bude cena upřesněna.",
+            "shortDesc": "Vention · Datové kabely · 3m",
+            "images": [
+              "/store/img/brand/vention.jpg"
+            ]
+          },
+          "officialName": "Vention USB4 40Gbps (3m)",
+          "unresolvedReason": "Vention nabízí tento kabel jen v délce 1 m."
+        }
+      }
+    }
+  ]
+}
