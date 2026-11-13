@@ -73,9 +73,11 @@ export type ProductDetails = {
 
 /** Doplňkové údaje pro detail produktu (kód, hmotnost, DPH) + parametry ze sloupce `specs`. */
 export async function getProductDetails(product: StoreProduct): Promise<ProductDetails> {
-  const params = new URLSearchParams({ select: "sku,weight_grams,vat_rate", id: `eq.${product.id}`, limit: "1" });
-  const [row] = await dataApi<{ sku: string | null; weight_grams: number | null; vat_rate: number | string | null }>("store_products", params);
-  const vat = Number(row?.vat_rate);
+  // select=* : sloupce weight_grams/vat_rate (migrace 202610200003) nemusí v DB existovat –
+  // pojmenovaný select by pak skončil chybou 400 a stránka by přišla i o kód produktu.
+  const params = new URLSearchParams({ select: "*", id: `eq.${product.id}`, limit: "1" });
+  const [row] = await dataApi<{ sku?: string | null; weight_grams?: number | null; vat_rate?: number | string | null }>("store_products", params);
+  const vat = row?.vat_rate == null ? Number.NaN : Number(row.vat_rate);
   return {
     sku: row?.sku ?? null,
     weight_grams: row?.weight_grams ?? null,

@@ -1,8 +1,10 @@
 {
-  "at": "2026-11-12T23:00:34.113Z",
-  "groups": 7,
-  "patched": 7,
+  "at": "2026-11-13T06:42:18.505Z",
+  "groups": 24,
+  "patched": 24,
+  "products": 40,
   "skipped": 0,
   "variantOverrides": 0,
+  "variantPatches": 40,
   "errors": []
 }
