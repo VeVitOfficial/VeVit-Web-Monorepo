@@ -1,4 +1,5 @@
 import "server-only";
+import { connection } from "next/server";
 
 export type StoreProductSource = { type?: string; url: string; note?: string; verified?: string };
 
@@ -44,10 +45,28 @@ function configuration() {
   return url && key ? { url, key } : null;
 }
 
+/**
+ * fetch do Supabase s timeoutem. Při výpadku (síť, 5xx) nikdy nevracíme prázdná data: ta by ISR na 5 min uložilo jako
+ * platnou stránku. Za běhu vyhodíme chybu (ISR ponechá poslední dobrou verzi, dynamické stránky ukážou error.tsx),
+ * při buildu přepneme routu na dynamickou, aby výpadek Supabase nezastavil deploy.
+ */
+async function supabaseFetch(url: string, init: RequestInit & { next: NextFetchRequestConfig }): Promise<Response> {
+  let response: Response | null = null;
+  try {
+    response = await fetch(url, { ...init, signal: AbortSignal.timeout(20_000) });
+  } catch {
+    // timeout / síť: řeší se níže stejně jako 5xx
+  }
+  if (response && response.status < 500) return response;
+  console.error("Supabase Data API unavailable", { url: url.split("?")[0], status: response?.status ?? "timeout" });
+  if (process.env.NEXT_PHASE === "phase-production-build") await connection();
+  throw new Error("Supabase Data API unavailable");
+}
+
 async function dataApi<T>(table: string, params: URLSearchParams, revalidate = 300): Promise<T[]> {
   const config = configuration();
   if (!config) return [];
-  const response = await fetch(`${config.url}/rest/v1/${table}?${params}`, {
+  const response = await supabaseFetch(`${config.url}/rest/v1/${table}?${params}`, {
     headers: { apikey: config.key, Accept: "application/json" },
     next: { revalidate, tags: [`store:${table}`] }
   });
@@ -227,7 +246,7 @@ export async function getCatalogStats() {
 async function countProducts() {
   const config = configuration();
   if (!config) return 0;
-  const response = await fetch(`${config.url}/rest/v1/store_products?select=id&is_active=eq.true&limit=1`, {
+  const response = await supabaseFetch(`${config.url}/rest/v1/store_products?select=id&is_active=eq.true&limit=1`, {
     headers: { apikey: config.key, Accept: "application/json", Prefer: "count=exact" },
     next: { revalidate: 300, tags: ["store:store_products"] }
   });
