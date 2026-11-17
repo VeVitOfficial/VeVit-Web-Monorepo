@@ -64,9 +64,13 @@ function isSessionToken(value: string | undefined): value is string {
 const CACHE_TTL_MS = 15_000;
 const CACHE_MAX = 500;
 const sessionCache = new Map<string, { expires: number; value: LoadedSession }>();
+// Zvýší se při každém zapomenutí. Lookup, který začal před revoke/změnou a skončil po ní,
+// svůj (už neplatný) výsledek do cache neuloží.
+let cacheGeneration = 0;
 
 /** Zapomene cachované session (všechny, nebo jen daného uživatele) — volat po odhlášení, revoke, změně hesla. */
 export function forgetCachedSessions(userId?: string) {
+  cacheGeneration++;
   if (!userId) return sessionCache.clear();
   for (const [hash, entry] of sessionCache) if (entry.value.user.id === userId) sessionCache.delete(hash);
 }
@@ -98,6 +102,7 @@ export async function loadAccountSession(rawToken: string | undefined, options: 
 
   const tokenHash = createHash("sha256").update(rawToken).digest("hex");
   const nowMs = Date.now();
+  const generationAtStart = cacheGeneration;
 
   if (options.cache) {
     const hit = sessionCache.get(tokenHash);
@@ -126,7 +131,7 @@ export async function loadAccountSession(rawToken: string | undefined, options: 
     .digest("hex");
 
   const value: LoadedSession = { user, csrfToken };
-  if (options.cache) {
+  if (options.cache && generationAtStart === cacheGeneration) {
     if (sessionCache.size >= CACHE_MAX) sessionCache.delete(sessionCache.keys().next().value as string);
     sessionCache.set(tokenHash, { expires: nowMs + CACHE_TTL_MS, value });
   }
