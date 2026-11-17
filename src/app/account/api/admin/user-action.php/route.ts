@@ -1,5 +1,6 @@
 import { handleAccountRequest } from "@/lib/account-route";
 import { accountSupabase } from "@/lib/account-auth";
+import { forgetCachedSessions } from "@/lib/account-session";
 import { audit, consoleForbidden, consoleWriteActor, int, readJson, str } from "@/lib/admin";
 
 export const runtime = "nodejs";
@@ -23,6 +24,7 @@ export async function POST(request: Request) {
     const action = str(body.action, 40);
     const userId = str(body.user_id, 64);
     if (!userId) return Response.json({ error: "Chybí uživatel." }, { status: 400 });
+    forgetCachedSessions(userId);
 
     const sb = accountSupabase();
     const { data: target } = await sb.from("users").select("id,status").eq("id", userId).limit(1).maybeSingle();

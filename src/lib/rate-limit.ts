@@ -2,6 +2,7 @@ import "server-only";
 
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { rateLimitArgsValid, rateLimitKey, type RateVerdict } from "@/lib/rate-limit-core";
+import { SUPABASE_TIMEOUT_MS, timeoutFetch } from "@/lib/supabase-fetch";
 
 export { rateLimitKey, type RateVerdict };
 
@@ -23,7 +24,10 @@ function db(): SupabaseClient {
   const url = process.env.SUPABASE_URL?.trim();
   const key = process.env.SUPABASE_SECRET_KEY?.trim();
   if (!url || !key) throw new Error("Supabase server configuration is missing");
-  client = createClient(url, key, { auth: { autoRefreshToken: false, persistSession: false } });
+  client = createClient(url, key, {
+    auth: { autoRefreshToken: false, persistSession: false },
+    global: { fetch: timeoutFetch(SUPABASE_TIMEOUT_MS) },
+  });
   return client;
 }
 

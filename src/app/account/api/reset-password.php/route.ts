@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { AccountBackendUnavailableError } from "@/lib/account-session";
+import { AccountBackendUnavailableError, forgetCachedSessions } from "@/lib/account-session";
 import { accountSupabase, checkRateLimit, clientIp, logActivity, registerPasswordError } from "@/lib/account-auth";
 import bcrypt from "bcryptjs";
 
@@ -60,6 +60,7 @@ export async function POST(request: Request) {
 
     // Revoke all sessions (force re-login everywhere) — PHP does sb_delete.
     await accountSupabase().from("sessions").delete().eq("user_id", userId);
+    forgetCachedSessions(userId);
 
     await logActivity(userId, "password_change", "Via password reset");
     return Response.json({ ok: true }, { headers: { "Cache-Control": "no-store" } });

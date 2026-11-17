@@ -3,20 +3,13 @@
 // Přihlášený uživatel pro 3D scény (profilovka na Account). Jeden sdílený fetch na stránku.
 
 import { useEffect, useState } from "react";
+import { fetchMe, peekMe, type MeUser } from "@/lib/me-client";
 
 export interface SessionUser {
   name: string;
   avatar: string;
 }
 
-interface MeUser {
-  full_name?: string;
-  nickname?: string;
-  email?: string;
-  avatar_url?: string;
-}
-
-let pending: Promise<SessionUser | null> | null = null;
 
 function avatarUrl(raw: unknown): string {
   if (typeof raw !== "string" || raw.trim() === "") return "";
@@ -30,24 +23,22 @@ function avatarUrl(raw: unknown): string {
   }
 }
 
-function load(): Promise<SessionUser | null> {
-  pending ??= fetch("/account/api/me.php", { credentials: "same-origin" })
-    .then((r) => (r.ok ? r.json() : null))
-    .then((data: { user?: MeUser } | null) => {
-      const u = data?.user;
-      if (!u) return null;
-      const name = [u.full_name, u.nickname, u.email].find((v) => typeof v === "string" && v.trim() !== "")?.trim() ?? "Account";
-      return { name, avatar: avatarUrl(u.avatar_url) };
-    })
-    .catch(() => null);
-  return pending;
+function toSessionUser(u: MeUser | null | undefined): SessionUser | null {
+  if (!u) return null;
+  const name = [u.full_name, u.nickname, u.email].find((v) => typeof v === "string" && v.trim() !== "")?.trim() ?? "Account";
+  return { name, avatar: avatarUrl(u.avatar_url) };
 }
 
 export function useSessionUser(): SessionUser | null {
   const [user, setUser] = useState<SessionUser | null>(null);
   useEffect(() => {
     let active = true;
-    load().then((u) => { if (active) setUser(u); });
+    // Okamžitě poslední známý stav ze sessionStorage, pak ověření na serveru.
+    queueMicrotask(() => {
+      const cached = peekMe();
+      if (active && cached) setUser(toSessionUser(cached));
+    });
+    fetchMe().then((u) => { if (active) setUser(toSessionUser(u)); });
     return () => { active = false; };
   }, []);
   return user;

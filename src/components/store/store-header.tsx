@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useCart } from "@/components/store/use-cart";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Icon } from "@/components/store/icon";
+import { fetchMe, peekMe, type MeUser } from "@/lib/me-client";
 
 const NAV_ITEMS = [
   { href: "/store", label: "Domů", key: "home", icon: "home" },
@@ -218,13 +219,22 @@ function StoreSessionStatus({ compact = false }: { compact?: boolean }) {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    fetch("/account/api/me.php", { credentials: "same-origin" })
-      .then((response) => (response.ok ? response.json() : null))
-      .then((data: { user?: { nickname?: string; email?: string } } | null) => {
-        if (data?.user) setUser(data.user.nickname || data.user.email || "Účet");
-        setLoaded(true);
-      })
-      .catch(() => setLoaded(true));
+    let active = true;
+    const label = (u: MeUser | null | undefined) => (u ? u.nickname || u.email || "Účet" : null);
+    // Poslední známý stav hned (bez prázdného místa v hlavičce), pak ověření na serveru.
+    // (mikroúloha: ještě před vykreslením, ale mimo tělo efektu)
+    queueMicrotask(() => {
+      const cached = peekMe();
+      if (!active || cached === undefined) return;
+      setUser(label(cached));
+      setLoaded(true);
+    });
+    fetchMe().then((u) => {
+      if (!active) return;
+      setUser(label(u));
+      setLoaded(true);
+    });
+    return () => { active = false; };
   }, []);
 
   if (!loaded) return <span aria-hidden="true" />;

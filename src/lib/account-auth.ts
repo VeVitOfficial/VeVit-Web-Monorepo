@@ -5,6 +5,7 @@ import { NextResponse } from "next/server";
 import { createHash, randomBytes } from "node:crypto";
 import bcrypt from "bcryptjs";
 import { consumeRateLimit } from "@/lib/rate-limit";
+import { timeoutFetch } from "@/lib/supabase-fetch";
 
 /**
  * Next.js-side port of the VeVit account auth (account/lib/* + shared/auth/session.php).
@@ -50,6 +51,8 @@ export function accountSupabase(): SupabaseClient {
   const { url, key } = serverConfig();
   cachedClient = createClient(url, key, {
     auth: { autoRefreshToken: false, persistSession: false },
+    // Delší limit než u kontroly session: sdílí ho i export dat a admin dotazy.
+    global: { fetch: timeoutFetch(10_000) },
   });
   return cachedClient;
 }

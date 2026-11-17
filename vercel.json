@@ -3,7 +3,7 @@
   "framework": "nextjs",
   "buildCommand": "npm run build",
   "installCommand": "npm ci",
-  "regions": ["fra1"],
+  "regions": ["dub1"],
   "functions": {
     "src/app/**/route.ts": {
       "maxDuration": 30

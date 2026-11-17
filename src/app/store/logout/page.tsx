@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { forgetMe } from "@/lib/me-client";
 
 /**
  * Port of store/logout.php — the store has no login/logout of its own; the
@@ -17,6 +18,7 @@ export default function StoreLogoutPage() {
     let cancelled = false;
     (async () => {
       try {
+        forgetMe();
         await fetch("/account/api/logout.php", { method: "POST", credentials: "same-origin" });
       } catch {
         if (!cancelled) setError("Odhlášení se nezdařilo. Přesměrujeme zpět do obchodu.");

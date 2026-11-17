@@ -12,6 +12,7 @@ import { useAccountLocale } from "./use-account-locale";
 import { Avatar } from "./ui";
 
 import { ThemeToggle } from "@/components/theme-toggle";
+import { forgetMe } from "@/lib/me-client";
 /**
  * Port of the account/index.html shell: topbar (brand + language pill + app
  * switcher + user menu), settings sidebar, mobile section picker and the
@@ -91,6 +92,7 @@ function UserMenu({ user, locale }: { user: AccountUser; locale: string }) {
 
   async function signOut() {
     try {
+      forgetMe();
       await run("logout.php", { method: "POST" });
     } catch (error) {
       console.error("Logout failed", error);

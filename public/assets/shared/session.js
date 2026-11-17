@@ -103,6 +103,8 @@ function menuLink(href, label, hint) {
 }
 
 async function logout() {
+  // Snapshot přihlášení pro React hlavičky (src/lib/me-client.ts).
+  try { sessionStorage.removeItem('vv-me'); } catch { /* ignore */ }
   try {
     await fetch('/account/api/logout.php', {
       method: 'POST',

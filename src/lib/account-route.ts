@@ -2,6 +2,7 @@ import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import {
   AccountBackendUnavailableError,
+  forgetCachedSessions,
   loadSessionFromCookies,
   type AccountSession,
 } from "@/lib/account-session";
@@ -40,7 +41,12 @@ export async function handleAccountRequest(
     }
     const session = await loadSessionFromCookies();
     if (!session) return jsonAccountError(new UnauthorizedAccountError(), 401);
-    return await handler(session);
+    try {
+      return await handler(session);
+    } finally {
+      // Handler mohl změnit profil, heslo nebo session — me.php nesmí vracet starou kopii.
+      forgetCachedSessions(session.user.id);
+    }
   } catch (error) {
     if (error instanceof AccountBackendUnavailableError) return jsonAccountError(error, 503);
     console.error("Account route failed", { message: error instanceof Error ? error.message : String(error) });
