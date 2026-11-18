@@ -20,6 +20,7 @@ import "@/styles/home/premium.css";
 import "@/styles/home/scene.css";
 
 import { ThemeToggle } from "@/components/theme-toggle";
+import { VEVIT_TIERS, VEVIT_PLATINUM } from "@/lib/premium-tiers";
 const SUPPORTED: readonly string[] = ["cs", "en", "de", "es", "uk", "fr", "sk"];
 
 async function readLocale(params: Promise<{ locale: string }>): Promise<string> {
@@ -1045,134 +1046,57 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               </div>
 
               <div className="tier-grid tier-grid--four">
-                <article className="tier-card tier-bronze" data-tier="bronze">
-                  <div className="tier-avatar-wrap">
-                    <div className="tier-avatar">B</div>
-                    <div className="tier-frame" />
-                  </div>
-                  <div className="tier-frame-label">Bronze rámeček profilu</div>
+                {VEVIT_TIERS.map((tier) => (
+                  <article
+                    className={`tier-card tier-${tier.key}`}
+                    data-tier={tier.key}
+                    key={tier.key}
+                  >
+                    {tier.pin ? (
+                      <span className="tier-pin tier-pin-gold">{tier.pin}</span>
+                    ) : null}
+                    <div className="tier-avatar-wrap">
+                      <div className="tier-avatar">{tier.name.slice(0, 1)}</div>
+                      <div className="tier-frame" />
+                    </div>
+                    <div className="tier-frame-label">
+                      {tier.name} rámeček profilu
+                    </div>
 
-                  <div className="tier-name">Bronze</div>
-                  <div className="tier-price">
-                    <span data-price-monthly="99">99</span>
-                    <span data-price-yearly="990" hidden>
-                      990
-                    </span>{" "}
-                    Kč
-                  </div>
-                  <div className="tier-price-period">
-                    <span data-period-monthly>/ měsíc</span>
-                    <span data-period-yearly hidden>
-                      / rok
-                    </span>
-                  </div>
-                  <div className="tier-price-alt">
-                    <span data-alt-monthly>nebo 990 Kč / rok</span>
-                    <span data-alt-yearly hidden>
-                      2 měsíce zdarma
-                    </span>
-                  </div>
+                    <div className="tier-name">{tier.name}</div>
+                    <div className="tier-price">
+                      <span data-price-monthly={tier.monthly}>{tier.monthly}</span>
+                      <span data-price-yearly={tier.yearly} hidden>
+                        {tier.yearlyLabel}
+                      </span>{" "}
+                      Kč
+                    </div>
+                    <div className="tier-price-period">
+                      <span data-period-monthly>/ měsíc</span>
+                      <span data-period-yearly hidden>
+                        / rok
+                      </span>
+                    </div>
+                    <div className="tier-price-alt">
+                      <span data-alt-monthly>{tier.altMonthly}</span>
+                      <span data-alt-yearly hidden>
+                        2 měsíce zdarma
+                      </span>
+                    </div>
 
-                  <div className="tier-divider" />
+                    <div className="tier-divider" />
 
-                  <ul className="tier-perks">
-                    <li>Bez reklam</li>
-                    <li>Vybrané Premium kurzy v Edu</li>
-                    <li>50 AI dotazů denně</li>
-                    <li>5 % sleva ve VeVit Store</li>
-                    <li>+10 % XP za aktivitu</li>
-                  </ul>
+                    <ul className="tier-perks">
+                      {tier.perks.map((perk) => (
+                        <li key={perk}>{perk}</li>
+                      ))}
+                    </ul>
 
-                  <a className="tier-cta" href={`${L}/account/billing`}>
-                    Vybrat Bronze
-                  </a>
-                </article>
-                <article className="tier-card tier-silver" data-tier="silver">
-                  <div className="tier-avatar-wrap">
-                    <div className="tier-avatar">S</div>
-                    <div className="tier-frame" />
-                  </div>
-                  <div className="tier-frame-label">Silver rámeček profilu</div>
-
-                  <div className="tier-name">Silver</div>
-                  <div className="tier-price">
-                    <span data-price-monthly="199">199</span>
-                    <span data-price-yearly="1990" hidden>
-                      1 990
-                    </span>{" "}
-                    Kč
-                  </div>
-                  <div className="tier-price-period">
-                    <span data-period-monthly>/ měsíc</span>
-                    <span data-period-yearly hidden>
-                      / rok
-                    </span>
-                  </div>
-                  <div className="tier-price-alt">
-                    <span data-alt-monthly>nebo 1 990 Kč / rok</span>
-                    <span data-alt-yearly hidden>
-                      2 měsíce zdarma
-                    </span>
-                  </div>
-
-                  <div className="tier-divider" />
-
-                  <ul className="tier-perks">
-                    <li>Všechny Premium kurzy v Edu</li>
-                    <li>Lekce offline a certifikáty</li>
-                    <li>200 AI dotazů denně</li>
-                    <li>10 % sleva ve VeVit Store</li>
-                    <li>Doprava ve VeVit Store zdarma</li>
-                    <li>+25 % XP za aktivitu</li>
-                  </ul>
-
-                  <a className="tier-cta" href={`${L}/account/billing`}>
-                    Vybrat Silver
-                  </a>
-                </article>
-                <article className="tier-card tier-gold" data-tier="gold">
-                  <span className="tier-pin tier-pin-gold">Nejvíc výhod</span>
-                  <div className="tier-avatar-wrap">
-                    <div className="tier-avatar">G</div>
-                    <div className="tier-frame" />
-                  </div>
-                  <div className="tier-frame-label">Gold rámeček profilu</div>
-
-                  <div className="tier-name">Gold</div>
-                  <div className="tier-price">
-                    <span data-price-monthly="399">399</span>
-                    <span data-price-yearly="3990" hidden>
-                      3 990
-                    </span>{" "}
-                    Kč
-                  </div>
-                  <div className="tier-price-period">
-                    <span data-period-monthly>/ měsíc</span>
-                    <span data-period-yearly hidden>
-                      / rok
-                    </span>
-                  </div>
-                  <div className="tier-price-alt">
-                    <span data-alt-monthly>nebo 3 990 Kč / rok</span>
-                    <span data-alt-yearly hidden>
-                      2 měsíce zdarma
-                    </span>
-                  </div>
-
-                  <div className="tier-divider" />
-
-                  <ul className="tier-perks">
-                    <li>Vše ze Silver</li>
-                    <li>AI bez denního limitu</li>
-                    <li>Prioritní podpora a beta funkce dřív</li>
-                    <li>20 % sleva ve VeVit Store</li>
-                    <li>+50 % XP za aktivitu</li>
-                  </ul>
-
-                  <a className="tier-cta" href={`${L}/account/billing`}>
-                    Vybrat Gold
-                  </a>
-                </article>
+                    <a className="tier-cta" href={`${L}/account/billing`}>
+                      Vybrat {tier.name}
+                    </a>
+                  </article>
+                ))}
 
                 {/* PLATINUM: školy a firmy, obsah a cena na domluvu */}
                 <article
@@ -1187,26 +1111,21 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                   </div>
                   <div className="tier-frame-label">Platinum rámeček profilu</div>
 
-                  <div className="tier-name">Platinum</div>
-                  <div className="tier-price">Na domluvu</div>
-                  <div className="tier-price-period">cena podle počtu licencí</div>
+                  <div className="tier-name">{VEVIT_PLATINUM.name}</div>
+                  <div className="tier-price">{VEVIT_PLATINUM.priceLabel}</div>
+                  <div className="tier-price-period">{VEVIT_PLATINUM.periodLabel}</div>
                   <div className="tier-price-alt">&nbsp;</div>
 
                   <div className="tier-divider" />
 
                   <ul className="tier-perks">
-                    <li>Vše z Gold pro celou organizaci</li>
-                    <li>Třídy, učitelé a přehled pokroku</li>
-                    <li>Vlastní kurzy a obsah na míru</li>
-                    <li>Faktura na převod, smlouva</li>
-                    <li>Vlastní kontakt a školení</li>
+                    {VEVIT_PLATINUM.perks.map((perk) => (
+                      <li key={perk}>{perk}</li>
+                    ))}
                   </ul>
 
-                  <a
-                    className="tier-cta"
-                    href="mailto:info@vevit.cz?subject=VEVIT%20Platinum%20%E2%80%93%20popt%C3%A1vka"
-                  >
-                    Napsat poptávku
+                  <a className="tier-cta" href={VEVIT_PLATINUM.ctaHref}>
+                    {VEVIT_PLATINUM.ctaLabel}
                   </a>
                 </article>
               </div>
