@@ -491,6 +491,13 @@ export function RegisterForm({ locale }: { locale: AccountLocale }) {
               <span className="button-spinner" aria-hidden="true" />
               <span className="button-label">{busy ? t("auth.register.submitting") : t("auth.register.submit")}</span>
             </button>
+            {/* Souhlas s podmínkami — odkazy na právní stránky EveryTool.cz. */}
+            <p className="register-terms">
+              {t("auth.register.termsPre")}{" "}
+              <a href={`/${locale}/tools/podminky-uziti`}>{t("auth.register.termsLink")}</a>{" "}
+              {t("auth.register.termsMid")}{" "}
+              <a href={`/${locale}/tools/ochrana-soukromi`}>{t("auth.register.privacyLink")}</a>.
+            </p>
           </form>
 
           <div className="oauth-divider" aria-hidden="true">{t("auth.common.oauthDivider")}</div>

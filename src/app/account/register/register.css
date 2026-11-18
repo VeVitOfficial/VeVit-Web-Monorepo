@@ -95,3 +95,6 @@ html[data-theme="light"] .password-toggle:hover,
 html[data-theme="light"] .password-toggle:focus-visible { background: rgba(12, 20, 28, 0.08); }
 html[data-theme="light"] .identity-mode-toggle:hover { color: #075a37; }
 
+/* Souhlas s podmínkami užití a ochranou soukromí (EveryTool.cz). */
+.register-terms { font-size:12.5px; line-height:1.5; color:var(--text-3); text-align:center; margin:10px 0 0; }
+.register-terms a { color:var(--primary); font-weight:600; }

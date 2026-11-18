@@ -1,164 +1,318 @@
-// Podmínky užití VeVit Tools (/{locale}/tools/podminky-uziti). Při změně textu zvyšte
-// TERMS_VERSION v src/lib/consent.ts — cookie lišta se pak zobrazí znovu.
-import { TERMS_VERSION } from "@/lib/consent";
+// Právní dokumenty EveryTool.cz — Podmínky užití a Ochrana soukromí
+// (obsah dle schválené makety legal.html).
+//
+// Při změně textu zvyšte TERMS_VERSION v src/lib/consent.ts — cookie lišta
+// se pak zobrazí znovu.
+//
+// ⚠ EN verze je neověřený překlad nového českého textu — před publikací
+//   nechat zkontrolovat. Česká verze je závazná.
+//
+// Placeholdery, které čekají na údaje provozovatele (nevyplňovat naslepo):
+//   [OBCHODNÍ FIRMA / JMÉNO], [IČO], [SÍDLO], [DATUM], [X] dnů / [X] dní,
+//   [POSKYTOVATEL E-MAILŮ].
 
-export interface TermsSection { h: string; p: string[] }
-export interface TermsDoc { title: string; effective: string; intro: string; sections: TermsSection[] }
+const OPERATOR = "[OBCHODNÍ FIRMA / JMÉNO], IČO [IČO], se sídlem [SÍDLO]";
 
-const [y, m, d] = TERMS_VERSION.split("-").map(Number);
+export interface LegalShort {
+  h: string;
+  t: string;
+}
 
-const CS: TermsDoc = {
-  title: "Podmínky užití nástrojů",
-  effective: `Účinné od ${d}. ${m}. ${y}`,
-  intro: "Tyto podmínky upravují používání online nástrojů VeVit Tools na webu www.vevit.cz (dále jen „nástroje“). Přečtěte si je prosím — používáním nástrojů s nimi souhlasíte.",
+/** odstavec = [tučný úvod (může být prázdný), vlastní text] */
+export type LegalParagraph = readonly [string, string];
+
+export interface LegalSection {
+  id: string;
+  h: string;
+  p: readonly LegalParagraph[];
+}
+
+export interface LegalDoc {
+  title: string;
+  effective: string;
+  intro: string;
+  short: readonly LegalShort[];
+  sections: readonly LegalSection[];
+}
+
+// ── Podmínky užití — čeština (zdroj: legal.html) ─────────────────────────
+
+const CS_TERMS: LegalDoc = {
+  title: "Podmínky užití",
+  effective: "Návrh · účinné od [DATUM]",
+  intro: "Tyto podmínky upravují používání webu EveryTool.cz, jeho online nástrojů, uživatelských účtů a placeného předplatného. Používáním webu s nimi souhlasíte, proto si je prosím přečtěte. Snažili jsme se je napsat lidsky.",
+  short: [
+    { h: "Nástroje jsou zdarma", t: "Všech {count} nástrojů můžete používat bez účtu i bez placení. Premium jen přidává vyšší limity a pohodlí." },
+    { h: "Výsledek si zkontrolujte", t: "Převody i AI se mohou splést. Před důležitým použitím výsledek vždy projděte a originál si nechte." },
+    { h: "Předplatné zrušíte kdykoli", t: "Jedním kliknutím v nastavení účtu. Premium vám poběží do konce zaplaceného období." },
+  ],
   sections: [
-    {
-      h: "1. Úvodní ustanovení",
-      p: [
-        "Nástroje provozuje VeVit (dále jen „provozovatel“ nebo „my“). Kontakt: info@vevit.cz.",
-        "Nástroje jsou poskytovány zdarma a bez registrace. Používáním kteréhokoli nástroje, nebo potvrzením v liště cookies, přijímáte tyto podmínky. Pokud s nimi nesouhlasíte, nástroje nepoužívejte.",
-      ],
-    },
-    {
-      h: "2. Kde se vaše soubory a texty zpracovávají",
-      p: [
-        "Lokálně v prohlížeči (označení „Lokálně“): většina nástrojů zpracovává soubory přímo ve vašem zařízení. Soubor ani jeho obsah se na naše servery neodesílá.",
-        "Na serveru a přes AI (označení „Na serveru“ a „Přes AI“): všechny AI nástroje a všechny nástroje zpracovávané na serveru zpracovávají vstupy na serverech Amazon Web Services (AWS); AI nástroje využívají jazykové a obrazové modely ve službě Amazon Bedrock. Vstup se přenáší šifrovaně (HTTPS) a použije se jen k vyřízení vašeho požadavku. Soubory ani texty po dokončení neukládáme; uchováváme pouze technické záznamy nezbytné pro provoz a bezpečnost (např. čas a velikost požadavku, chybová hlášení).",
-        "Třetí strana (označení „Třetí strana“): nástroj komunikuje přímo s uvedenou externí službou; u nástroje je popsáno, jaká data se odesílají.",
-        "Do nástrojů zpracovávaných na serveru nebo přes AI nevkládejte údaje, které nesmíte sdílet (např. obchodní tajemství, zdravotní údaje, hesla nebo osobní údaje třetích osob bez právního důvodu).",
-      ],
-    },
-    {
-      h: "3. Výsledky jsou bez záruky",
-      p: [
-        "Nástroje poskytujeme „tak, jak jsou“ a „jak jsou dostupné“. Nezaručujeme, že výsledek bude přesný, úplný, bezchybný nebo vhodný pro váš účel. Převod mezi formáty může změnit vzhled, písma, rozložení či kvalitu a část obsahu se může ztratit; rozpoznávání textu (OCR) a výstupy AI mohou obsahovat chyby nebo smyšlené údaje.",
-        "Každý výsledek si před použitím zkontrolujte — zejména před právním, finančním, daňovým, zdravotním nebo úředním použitím. Výstupy AI ani výpočty kalkulaček nejsou odbornou radou.",
-        "Originální soubory si vždy ponechte; nástroje je nemění, ale za ztrátu dat na vašem zařízení neodpovídáme.",
-        "Nezaručujeme nepřetržitou dostupnost. Nástroje můžeme kdykoli změnit, omezit, dočasně vypnout (např. údržba) nebo ukončit, a to i bez předchozího upozornění.",
-      ],
-    },
-    {
-      h: "4. Omezení odpovědnosti",
-      p: [
-        "V rozsahu, který připouští právní předpisy, neodpovídáme za škodu ani jinou újmu (včetně ušlého zisku, ztráty dat nebo nepřímých škod) vzniklou používáním nebo nemožností používání nástrojů či jejich výsledků.",
-        "Toto omezení se nevztahuje na škodu způsobenou úmyslně nebo z hrubé nedbalosti, na újmu na životě, zdraví či přirozených právech člověka, ani na práva spotřebitele, která nelze smluvně omezit nebo vyloučit.",
-      ],
-    },
-    {
-      h: "5. Pravidla používání",
-      p: [
-        "Zpracovávejte jen obsah, ke kterému máte potřebná práva nebo oprávnění. Za obsah, který do nástrojů vložíte, a za způsob, jakým výsledky použijete, odpovídáte vy.",
-        "Je zakázáno používat nástroje k protiprávní činnosti, k šíření škodlivého kódu, k porušování práv třetích osob (včetně autorských práv a ochrany osobních údajů), k vytváření klamavého či nenávistného obsahu, k obcházení technických omezení nebo k automatizovanému hromadnému zatěžování služby.",
-        "Při porušení podmínek můžeme omezit nebo zablokovat přístup k nástrojům.",
-      ],
-    },
-    {
-      h: "6. Práva k obsahu",
-      p: [
-        "Práva k vašim souborům, textům i výsledkům zůstávají vám. Nezískáváme k nim žádná práva kromě těch, které jsou nezbytné k jejich zpracování ve vašem požadavku.",
-        "Web, jeho design a kód nástrojů jsou chráněny právem; součásti třetích stran podléhají svým (open-source) licencím.",
-      ],
-    },
-    {
-      h: "7. Osobní údaje a cookies",
-      p: [
-        "Lokální nástroje osobní údaje nezpracovávají. Pokud vstup do serverového nebo AI nástroje obsahuje osobní údaje, zpracováváme je výhradně k vyřízení vašeho požadavku (čl. 6 odst. 1 písm. b) GDPR); AWS vystupuje jako náš zpracovatel.",
-        "Nezbytné úložiště v prohlížeči (localStorage) používáme pro motiv, jazyk, oblíbené a naposledy použité nástroje a pro uložení vaší volby v liště cookies. Anonymní měření návštěvnosti a rychlosti (Vercel Web Analytics a Speed Insights) zapínáme jen s vaším souhlasem („Přijmout vše“). Volbu můžete kdykoli změnit odkazem „Nastavení cookies“ v patičce.",
-        "Máte právo na přístup k osobním údajům, jejich opravu, výmaz, omezení zpracování a právo vznést námitku; žádosti posílejte na info@vevit.cz. Stížnost můžete podat u Úřadu pro ochranu osobních údajů (www.uoou.cz).",
-      ],
-    },
-    {
-      h: "8. Změny podmínek",
-      p: [
-        "Podmínky můžeme měnit, zejména při změně nástrojů, jejich zpracování nebo právních předpisů. Aktuální znění s datem účinnosti je vždy na této stránce; po podstatné změně vás požádáme o nové potvrzení v liště cookies.",
-      ],
-    },
-    {
-      h: "9. Závěrečná ustanovení",
-      p: [
-        "Tyto podmínky se řídí právem České republiky. Je-li uživatel spotřebitelem, nejsou tím dotčena práva, která mu dávají kogentní předpisy státu jeho bydliště.",
-        "Spotřebitel může spor řešit mimosoudně u České obchodní inspekce (www.coi.cz).",
-        "Je-li některé ustanovení neplatné nebo neúčinné, ostatní ustanovení zůstávají v platnosti.",
-      ],
-    },
+    { id: "t-uvod", h: "Úvodní ustanovení", p: [
+      ["Provozovatel. ", `EveryTool.cz provozuje ${OPERATOR}, pod značkou VeVit web studio (dále „provozovatel“ nebo „my“). Kontakt: info@vevit.cz.`],
+      ["", "Podmínky platí pro web EveryTool.cz, všechny jeho nástroje, uživatelské účty a předplatné EveryTool Premium. Pro členství VeVit Premium platí navíc obchodní podmínky VeVit; v případě rozporu mají u VeVit Premium přednost ony."],
+      ["", "Používáním kteréhokoli nástroje nebo založením účtu tyto podmínky přijímáte. Pokud s nimi nesouhlasíte, web nepoužívejte."],
+    ]},
+    { id: "t-zpracovani", h: "Kde se vaše soubory zpracovávají", p: [
+      ["Lokálně. ", "Většina nástrojů zpracovává soubory přímo ve vašem prohlížeči. Soubor ani jeho obsah se na naše servery neodesílá."],
+      ["Na serveru a přes AI. ", "Některé nástroje zpracovávají vstup na serverech Amazon Web Services; AI nástroje používají modely ve službě Amazon Bedrock. Vstup se přenáší šifrovaně a použije se jen k vyřízení vašeho požadavku. Po zpracování ho neukládáme."],
+      ["Třetí strana. ", "Nástroj komunikuje přímo s uvedenou externí službou; u nástroje vždy popíšeme, jaká data se odesílají."],
+      ["", "U každého nástroje je vidět, do které skupiny patří. Do serverových a AI nástrojů nevkládejte údaje, které nesmíte sdílet, například obchodní tajemství, zdravotní údaje, hesla nebo osobní údaje jiných lidí bez právního důvodu."],
+    ]},
+    { id: "t-ucet", h: "Uživatelský účet", p: [
+      ["", "Účet je dobrovolný. Umožní vám ukládat oblíbené nástroje a historii na všech zařízeních a koupit předplatné."],
+      ["", "Účet si může založit osoba starší 15 let. Mladší uživatelé jen se souhlasem zákonného zástupce."],
+      ["", "Uvádějte pravdivé údaje a heslo nikomu nesdělujte. Za činnost ve svém účtu odpovídáte vy. Podezření na zneužití nám prosím hned nahlaste."],
+      ["", "Účet můžete kdykoli zrušit v nastavení. My jej můžeme omezit nebo zrušit, pokud závažně porušíte tyto podmínky; o důvodu vás budeme informovat."],
+    ]},
+    { id: "t-premium", h: "Předplatné EveryTool Premium a VeVit Premium", p: [
+      ["Co získáte. ", "Aktuální výhody, limity a ceny jednotlivých tarifů najdete na stránce Premium. Ceny jsou uvedeny v Kč včetně DPH."],
+      ["Platba. ", "Předplatné se platí měsíčně nebo ročně předem. Platby zpracovává společnost Stripe; údaje o kartě se odesílají přímo jí a my je neukládáme. Doklad o platbě vám pošleme e-mailem."],
+      ["Obnovení a zrušení. ", "Předplatné se automaticky obnovuje na další období, dokud ho nezrušíte. Zrušit ho můžete kdykoli v nastavení účtu; výhody vám zůstanou do konce zaplaceného období."],
+      ["Změna ceny. ", "O změně ceny vás informujeme e-mailem nejméně 30 dní předem. Nová cena platí až od dalšího období; pokud s ní nesouhlasíte, předplatné včas zrušte."],
+      ["VeVit Premium. ", "Členství VeVit Premium (Bronze, Silver, Gold, Platinum) zahrnuje výhody napříč službami VeVit. Které výhody EveryTool obsahuje, uvádí popis tarifu."],
+    ]},
+    { id: "t-odstoupeni", h: "Odstoupení od smlouvy", p: [
+      ["", "Jste-li spotřebitel, můžete od smlouvy o předplatném odstoupit bez udání důvodu do 14 dnů od jejího uzavření, stačí napsat na info@vevit.cz."],
+      ["", "Pokud jste výslovně požádali, aby Premium začalo hned, a během lhůty odstoupíte, vrátíme vám cenu sníženou o poměrnou část za dobu, po které jste Premium využívali. Peníze vrátíme do 14 dnů stejným způsobem, jakým jste platili."],
+    ]},
+    { id: "t-zaruka", h: "Výsledky jsou bez záruky", p: [
+      ["", "Nástroje poskytujeme tak, jak jsou. Nezaručujeme, že výsledek bude vždy přesný, úplný nebo vhodný pro váš účel. Převod mezi formáty může změnit vzhled či rozložení a rozpoznávání textu (OCR) i výstupy AI mohou obsahovat chyby nebo smyšlené údaje."],
+      ["", "Výsledek si před použitím zkontrolujte, zvlášť před právním, finančním, daňovým, zdravotním nebo úředním použitím. Výstupy AI ani výpočty kalkulaček nejsou odbornou radou."],
+      ["", "Originály si vždy ponechte. Nástroje můžeme měnit, dočasně vypnout kvůli údržbě nebo ukončit. U placených funkcí vás na podstatné omezení upozorníme předem."],
+    ]},
+    { id: "t-odpovednost", h: "Omezení odpovědnosti", p: [
+      ["", "V rozsahu, který připouští zákon, neodpovídáme za škodu vzniklou používáním nebo nemožností používání nástrojů či jejich výsledků, včetně ušlého zisku a ztráty dat."],
+      ["", "Toto omezení se nevztahuje na škodu způsobenou úmyslně nebo z hrubé nedbalosti, na újmu na životě a zdraví, ani na práva spotřebitele, která nelze smluvně omezit."],
+    ]},
+    { id: "t-pravidla", h: "Pravidla používání", p: [
+      ["", "Zpracovávejte jen obsah, ke kterému máte potřebná práva. Za vložený obsah a za to, jak výsledky použijete, odpovídáte vy."],
+      ["", "Nástroje nesmíte používat k protiprávní činnosti, šíření škodlivého kódu, porušování práv jiných, vytváření klamavého nebo nenávistného obsahu, obcházení limitů ani k automatizovanému hromadnému zatěžování služby."],
+      ["Limity. ", "Kvůli férovému sdílení mají některé nástroje denní limity nebo maximální velikost souboru. Konkrétní limity závisí na tarifu a jsou uvedeny u nástroje a na stránce Premium."],
+    ]},
+    { id: "t-prava", h: "Práva k obsahu", p: [
+      ["", "Vaše soubory, texty i výsledky zůstávají vaše. Nezískáváme k nim žádná práva kromě těch, které jsou nutné k vyřízení vašeho požadavku, a nepoužíváme je k trénování AI."],
+      ["", "Web, jeho design, značka EveryTool.cz a kód nástrojů jsou chráněny právem. Součásti třetích stran podléhají svým licencím."],
+    ]},
+    { id: "t-reklamace", h: "Reklamace a stížnosti", p: [
+      ["", "Pokud placená služba nefunguje, jak má, napište nám na info@vevit.cz. Reklamaci vyřídíme bez zbytečného odkladu, nejpozději do 30 dnů."],
+      ["", "Spotřebitel může spor řešit také mimosoudně u České obchodní inspekce (www.coi.cz) nebo přes evropskou platformu pro řešení sporů online."],
+    ]},
+    { id: "t-zmeny", h: "Změny podmínek", p: [
+      ["", "Podmínky můžeme měnit, zejména při změně nástrojů, tarifů nebo zákonů. Aktuální znění je vždy na této stránce. O podstatné změně vás předem informujeme e-mailem nebo na webu; pokud nesouhlasíte, můžete účet či předplatné zrušit."],
+    ]},
+    { id: "t-zaver", h: "Závěrečná ustanovení", p: [
+      ["", "Podmínky se řídí právem České republiky. Spotřebitelům tím nejsou dotčena práva, která jim dávají kogentní předpisy státu jejich bydliště."],
+      ["", "Je-li některé ustanovení neplatné, ostatní zůstávají v platnosti."],
+    ]},
   ],
 };
 
-const EN: TermsDoc = {
+// ── Ochrana soukromí — čeština (zdroj: legal.html) ───────────────────────
+
+const CS_PRIVACY: LegalDoc = {
+  title: "Ochrana soukromí",
+  effective: "Návrh · účinné od [DATUM]",
+  intro: "Vaše soukromí bereme vážně. EveryTool.cz je postavený tak, aby o vás věděl co nejméně: většina nástrojů běží přímo ve vašem prohlížeči. Tady je přehled, jaké údaje přesto zpracováváme, proč a jak dlouho.",
+  short: [
+    { h: "Lokální nástroje nic neodesílají", t: "Soubory zpracované v prohlížeči nikdy neopustí vaše zařízení. Ani je nevidíme." },
+    { h: "Data neprodáváme", t: "Vaše údaje nikomu neprodáváme a vaše soubory nepoužíváme k trénování AI." },
+    { h: "Vaše data, vaše volba", t: "Údaje z účtu si můžete stáhnout nebo účet smazat. Analytiku zapneme jen s vaším souhlasem." },
+  ],
+  sections: [
+    { id: "p-spravce", h: "Kdo vaše údaje zpracovává", p: [
+      ["Správce. ", `${OPERATOR}, značka VeVit web studio (dále „my“).`],
+      ["Kontakt. ", "Ve všech otázkách ochrany osobních údajů nám pište na info@vevit.cz."],
+    ]},
+    { id: "p-nastroje", h: "Obsah, který vložíte do nástrojů", p: [
+      ["Lokální nástroje. ", "Zpracování probíhá ve vašem prohlížeči. Nic se k nám neodesílá, takže žádné osobní údaje nezpracováváme."],
+      ["Serverové a AI nástroje. ", "Vstup (soubor nebo text) zpracujeme jen k vyřízení vašeho požadavku a po zpracování ho neuchováváme. Právní základ: plnění smlouvy (čl. 6 odst. 1 písm. b) GDPR)."],
+    ]},
+    { id: "p-ucet", h: "Účet, předplatné a komunikace", p: [
+      ["Účet. ", "E-mail, jméno nebo přezdívka, zabezpečený otisk hesla, nastavení, oblíbené nástroje a historie. Slouží k provozu účtu. Právní základ: plnění smlouvy."],
+      ["Předplatné. ", "Zvolený tarif, období, historie plateb a fakturační údaje. Kartu zpracovává Stripe, číslo karty nevidíme. Právní základ: plnění smlouvy a zákonné povinnosti v účetnictví a daních."],
+      ["Přihlášení přes Google. ", "Pokud ho zvolíte, získáme od Googlu vaše jméno, e-mail a profilovou fotku. Nic jiného."],
+      ["Komunikace. ", "Když nám napíšete, zpracujeme vaši zprávu a kontakt, abychom mohli odpovědět. Právní základ: oprávněný zájem."],
+    ]},
+    { id: "p-technicke", h: "Technické a bezpečnostní údaje", p: [
+      ["", "Při používání webu se zpracovává IP adresa, typ prohlížeče a technické záznamy o požadavcích. Potřebujeme je k ochraně proti zneužití, k hlídání limitů nástrojů a k řešení chyb. Právní základ: oprávněný zájem na bezpečném provozu."],
+    ]},
+    { id: "p-cookies", h: "Cookies a úložiště v prohlížeči", p: [
+      ["Nezbytné. ", "V prohlížeči ukládáme motiv, jazyk, oblíbené a naposledy použité nástroje, vaši volbu cookies a u přihlášených také přihlašovací relaci. Bez nich by web nefungoval, souhlas k nim není potřeba."],
+      ["Analytické. ", "Anonymní měření návštěvnosti a rychlosti (Vercel Web Analytics a Speed Insights) zapneme jen s vaším souhlasem. Volbu můžete kdykoli změnit odkazem „Nastavení cookies“ v patičce."],
+      ["", "Reklamní ani sledovací cookies třetích stran nepoužíváme."],
+    ]},
+    { id: "p-prijemci", h: "Komu údaje předáváme", p: [
+      ["", "Údaje svěřujeme jen prověřeným zpracovatelům, kteří je smějí použít pouze pro nás:"],
+      ["Amazon Web Services ", "– servery a AI modely (Amazon Bedrock) pro serverové a AI nástroje."],
+      ["Vercel ", "– hosting webu a anonymní analytika (jen se souhlasem)."],
+      ["Supabase ", "– databáze a přihlašování k účtu."],
+      ["Stripe ", "– zpracování plateb za předplatné."],
+      ["[POSKYTOVATEL E-MAILŮ] ", "– odesílání e-mailů o účtu a platbách."],
+      ["", "Údaje neprodáváme a nepředáváme marketingovým partnerům."],
+    ]},
+    { id: "p-zahranici", h: "Předávání mimo EU", p: [
+      ["", "Někteří zpracovatelé sídlí v USA. Předání probíhá na základě rámce EU–USA pro ochranu osobních údajů (Data Privacy Framework) nebo standardních smluvních doložek schválených Evropskou komisí."],
+    ]},
+    { id: "p-doba", h: "Jak dlouho údaje uchováváme", p: [
+      ["Obsah nástrojů: ", "jen po dobu zpracování požadavku."],
+      ["Účet: ", "po dobu jeho existence; po zrušení údaje smažeme do [X] dnů."],
+      ["Platby a faktury: ", "10 let, jak ukládá zákon o DPH a účetnictví."],
+      ["Technické záznamy: ", "nejvýše [X] dní, pokud je nepotřebujeme k řešení bezpečnostního incidentu."],
+      ["Komunikace: ", "po dobu nutnou k vyřízení, nejdéle 3 roky."],
+    ]},
+    { id: "p-prava", h: "Vaše práva", p: [
+      ["", "Máte právo na přístup ke svým údajům, jejich opravu, výmaz, omezení zpracování a přenositelnost. Můžete vznést námitku proti zpracování na základě oprávněného zájmu a kdykoli odvolat souhlas."],
+      ["", "Údaje z účtu si můžete stáhnout a účet smazat přímo v nastavení. Ostatní žádosti posílejte na info@vevit.cz, vyřídíme je do 30 dnů."],
+      ["", "Stížnost můžete podat u Úřadu pro ochranu osobních údajů (www.uoou.cz)."],
+    ]},
+    { id: "p-bezpecnost", h: "Zabezpečení", p: [
+      ["", "Veškerá komunikace probíhá šifrovaně přes HTTPS. Hesla ukládáme jen jako bezpečný otisk, přístup k údajům má jen nezbytně nutný okruh lidí a pravidelně kontrolujeme zabezpečení. O případném úniku, který by vás ohrožoval, vás bez zbytečného odkladu informujeme."],
+    ]},
+    { id: "p-zmeny", h: "Změny těchto zásad", p: [
+      ["", "Zásady aktualizujeme, když se změní naše služby nebo zákony. Aktuální verze je vždy na této stránce. O podstatných změnách vás informujeme předem."],
+    ]},
+  ],
+};
+
+// ── Terms of Use — English (NEověřený překlad, nechat zkontrolovat) ──────
+
+const EN_TERMS: LegalDoc = {
   title: "Terms of Use",
-  effective: `Effective from ${y}-${String(m).padStart(2, "0")}-${String(d).padStart(2, "0")}`,
-  intro: "These terms govern the use of the VeVit Tools online tools at www.vevit.cz (the “tools”). Please read them — by using the tools you agree to them. The Czech version prevails in case of any discrepancy.",
+  effective: "Draft · effective from [DATUM]",
+  intro: "These terms govern the use of the EveryTool.cz website, its online tools, user accounts and paid subscriptions. By using the website you agree to them, so please read them. We tried to write them in plain human language.",
+  short: [
+    { h: "The tools are free", t: "All {count} tools can be used without an account and without paying. Premium only adds higher limits and comfort." },
+    { h: "Check the result", t: "Converters and AI can make mistakes. Always review the result before important use and keep the original." },
+    { h: "Cancel anytime", t: "With one click in account settings. Your Premium keeps running until the end of the paid period." },
+  ],
   sections: [
-    {
-      h: "1. Introduction",
-      p: [
-        "The tools are operated by VeVit (the “operator”, “we”). Contact: info@vevit.cz.",
-        "The tools are free and require no registration. By using any tool, or by confirming the cookie banner, you accept these terms. If you do not agree, do not use the tools.",
-      ],
-    },
-    {
-      h: "2. Where your files and texts are processed",
-      p: [
-        "Locally in your browser (label “Local”): most tools process files directly on your device. Neither the file nor its content is sent to our servers.",
-        "On the server and via AI (labels “On server” and “Via AI”): all AI tools and all server-side tools process inputs on Amazon Web Services (AWS) servers; AI tools use language and image models in Amazon Bedrock. Input is transferred encrypted (HTTPS) and used only to handle your request. We do not store files or texts after processing; we keep only technical records needed for operation and security (e.g. request time and size, error messages).",
-        "Third party (label “Third party”): the tool talks directly to the named external service; the tool describes which data is sent.",
-        "Do not enter data you are not allowed to share into server-side or AI tools (e.g. trade secrets, health data, passwords, or third-party personal data without a legal basis).",
-      ],
-    },
-    {
-      h: "3. Results come without warranty",
-      p: [
-        "The tools are provided “as is” and “as available”. We do not guarantee that a result will be accurate, complete, error-free or fit for your purpose. Format conversion may change appearance, fonts, layout or quality and some content may be lost; text recognition (OCR) and AI output may contain errors or made-up information.",
-        "Check every result before use — especially for legal, financial, tax, medical or official purposes. AI output and calculator results are not professional advice.",
-        "Always keep your original files; the tools do not modify them, but we are not liable for data loss on your device.",
-        "We do not guarantee uninterrupted availability. We may change, limit, temporarily disable (e.g. maintenance) or discontinue tools at any time, including without prior notice.",
-      ],
-    },
-    {
-      h: "4. Limitation of liability",
-      p: [
-        "To the extent permitted by law, we are not liable for any damage or loss (including lost profit, data loss or indirect damage) arising from the use of, or inability to use, the tools or their results.",
-        "This limitation does not apply to damage caused intentionally or by gross negligence, to harm to life, health or natural rights, or to consumer rights that cannot be limited or excluded by contract.",
-      ],
-    },
-    {
-      h: "5. Acceptable use",
-      p: [
-        "Only process content you have the necessary rights or permission for. You are responsible for the content you enter and for how you use the results.",
-        "You must not use the tools for unlawful activity, to spread malicious code, to infringe the rights of others (including copyright and data protection), to create deceptive or hateful content, to circumvent technical limits, or for automated bulk load on the service.",
-        "If you breach these terms, we may restrict or block access to the tools.",
-      ],
-    },
-    {
-      h: "6. Rights to content",
-      p: [
-        "Your files, texts and results remain yours. We acquire no rights to them except those necessary to process your request.",
-        "The website, its design and the tools' code are legally protected; third-party components are subject to their own (open-source) licences.",
-      ],
-    },
-    {
-      h: "7. Personal data and cookies",
-      p: [
-        "Local tools do not process personal data. If input to a server-side or AI tool contains personal data, we process it solely to handle your request (Art. 6(1)(b) GDPR); AWS acts as our processor.",
-        "We use essential browser storage (localStorage) for theme, language, favourite and recently used tools and to store your cookie choice. Anonymous traffic and speed measurement (Vercel Web Analytics and Speed Insights) runs only with your consent (“Accept all”). You can change your choice at any time via “Cookie settings” in the footer.",
-        "You have the right to access, rectify and erase your personal data, to restrict processing and to object; send requests to info@vevit.cz. You may lodge a complaint with the Czech Office for Personal Data Protection (www.uoou.cz) or your local authority.",
-      ],
-    },
-    {
-      h: "8. Changes",
-      p: [
-        "We may change these terms, in particular when the tools, their processing or the law change. The current version with its effective date is always on this page; after a material change we will ask you to confirm again in the cookie banner.",
-      ],
-    },
-    {
-      h: "9. Final provisions",
-      p: [
-        "These terms are governed by Czech law. If you are a consumer, this does not affect the mandatory rights granted to you by the law of your country of residence.",
-        "Consumers may resolve disputes out of court through the Czech Trade Inspection Authority (www.coi.cz).",
-        "If any provision is invalid or ineffective, the remaining provisions remain in force.",
-      ],
-    },
+    { id: "t-uvod", h: "Introductory provisions", p: [
+      ["Operator. ", `EveryTool.cz is operated by ${OPERATOR}, under the VeVit web studio brand (the “operator” or “we”). Contact: info@vevit.cz.`],
+      ["", "These terms apply to the EveryTool.cz website, all its tools, user accounts and the EveryTool Premium subscription. The VeVit terms additionally apply to VeVit Premium membership; in case of conflict, those prevail for VeVit Premium."],
+      ["", "By using any tool or creating an account you accept these terms. If you do not agree, do not use the website."],
+    ]},
+    { id: "t-zpracovani", h: "Where your files are processed", p: [
+      ["Locally. ", "Most tools process files directly in your browser. Neither the file nor its content is sent to our servers."],
+      ["On the server and via AI. ", "Some tools process input on Amazon Web Services servers; AI tools use models in the Amazon Bedrock service. Input is transferred encrypted and used only to handle your request. We do not store it after processing."],
+      ["Third party. ", "The tool communicates directly with the named external service; each tool always describes what data is sent."],
+      ["", "Every tool shows which group it belongs to. Do not put data you must not share into server and AI tools, such as trade secrets, health data, passwords, or other people's personal data without a legal reason."],
+    ]},
+    { id: "t-ucet", h: "User account", p: [
+      ["", "An account is optional. It lets you store favourite tools and history across devices and buy a subscription."],
+      ["", "An account can be created by a person over 15 years of age. Younger users only with the consent of a legal guardian."],
+      ["", "Provide truthful information and never share your password. You are responsible for activity in your account. Please report any suspected misuse to us immediately."],
+      ["", "You can delete your account anytime in settings. We may restrict or delete it if you seriously breach these terms; we will inform you of the reason."],
+    ]},
+    { id: "t-premium", h: "EveryTool Premium and VeVit Premium subscriptions", p: [
+      ["What you get. ", "Current benefits, limits and prices of each plan are listed on the Premium page. Prices are shown in CZK including VAT."],
+      ["Payment. ", "Subscriptions are paid monthly or yearly in advance. Payments are processed by Stripe; card details are sent directly to Stripe and we do not store them. We email you a proof of payment."],
+      ["Renewal and cancellation. ", "The subscription automatically renews for the next period until you cancel it. You can cancel anytime in account settings; benefits remain until the end of the paid period."],
+      ["Price changes. ", "We will inform you about a price change by email at least 30 days in advance. The new price applies from the next period; if you disagree, cancel in time."],
+      ["VeVit Premium. ", "VeVit Premium membership (Bronze, Silver, Gold, Platinum) includes benefits across VeVit services. The plan description states which EveryTool benefits it contains."],
+    ]},
+    { id: "t-odstoupeni", h: "Withdrawal from the contract", p: [
+      ["", "If you are a consumer, you may withdraw from the subscription contract without giving a reason within 14 days of its conclusion; just write to info@vevit.cz."],
+      ["", "If you expressly asked for Premium to start immediately and withdraw within the period, we will refund the price reduced by a proportionate part for the time you used Premium. We return the money within 14 days the same way you paid."],
+    ]},
+    { id: "t-zaruka", h: "Results come without warranty", p: [
+      ["", "The tools are provided as they are. We do not guarantee that a result will always be accurate, complete or fit for your purpose. Format conversion may change appearance or layout, and text recognition (OCR) and AI outputs may contain errors or made-up information."],
+      ["", "Check the result before use, especially before legal, financial, tax, medical or official use. AI outputs and calculator computations are not professional advice."],
+      ["", "Always keep your originals. We may change tools, temporarily disable them for maintenance, or discontinue them. For paid features we will notify you of a significant restriction in advance."],
+    ]},
+    { id: "t-odpovednost", h: "Limitation of liability", p: [
+      ["", "To the extent permitted by law, we are not liable for damage caused by using or being unable to use the tools or their results, including lost profit and data loss."],
+      ["", "This limitation does not apply to damage caused intentionally or by gross negligence, to injury to life or health, or to consumer rights that cannot be limited contractually."],
+    ]},
+    { id: "t-pravidla", h: "Rules of use", p: [
+      ["", "Only process content you have the necessary rights to. You are responsible for the content you upload and for how you use the results."],
+      ["", "You must not use the tools for illegal activity, spreading malicious code, violating others' rights, creating deceptive or hateful content, circumventing limits, or automated mass overloading of the service."],
+      ["Limits. ", "For fair sharing, some tools have daily limits or a maximum file size. Specific limits depend on the plan and are shown at the tool and on the Premium page."],
+    ]},
+    { id: "t-prava", h: "Content rights", p: [
+      ["", "Your files, texts and results remain yours. We acquire no rights to them beyond those necessary to handle your request, and we do not use them to train AI."],
+      ["", "The website, its design, the EveryTool.cz brand and tool code are protected by law. Third-party components are subject to their licenses."],
+    ]},
+    { id: "t-reklamace", h: "Complaints", p: [
+      ["", "If a paid service does not work as it should, write to info@vevit.cz. We handle complaints without undue delay, at the latest within 30 days."],
+      ["", "A consumer may also resolve a dispute out of court with the Czech Trade Inspection Authority (www.coi.cz) or through the European online dispute resolution platform."],
+    ]},
+    { id: "t-zmeny", h: "Changes to the terms", p: [
+      ["", "We may change the terms, especially when tools, plans or laws change. The current version is always on this page. We will inform you of a material change in advance by email or on the web; if you disagree, you can delete your account or subscription."],
+    ]},
+    { id: "t-zaver", h: "Final provisions", p: [
+      ["", "The terms are governed by Czech law. This does not affect rights given to consumers by mandatory rules of their country of residence."],
+      ["", "If any provision is invalid, the rest remains in force."],
+    ]},
   ],
 };
 
-export const termsFor = (locale: string): TermsDoc => (locale === "cs" || locale === "sk" ? CS : EN);
+// ── Privacy — English (NEověřený překlad, nechat zkontrolovat) ──────────
+
+const EN_PRIVACY: LegalDoc = {
+  title: "Privacy Notice",
+  effective: "Draft · effective from [DATUM]",
+  intro: "We take your privacy seriously. EveryTool.cz is built to know as little about you as possible: most tools run directly in your browser. Here is an overview of what data we still process, why, and for how long.",
+  short: [
+    { h: "Local tools send nothing", t: "Files processed in the browser never leave your device. We cannot even see them." },
+    { h: "We do not sell data", t: "We never sell your data and we do not use your files to train AI." },
+    { h: "Your data, your choice", t: "You can download your account data or delete the account. Analytics only runs with your consent." },
+  ],
+  sections: [
+    { id: "p-spravce", h: "Who processes your data", p: [
+      ["Controller. ", `${OPERATOR}, VeVit web studio brand (“we”).`],
+      ["Contact. ", "For anything about personal data protection, write to info@vevit.cz."],
+    ]},
+    { id: "p-nastroje", h: "Content you put into tools", p: [
+      ["Local tools. ", "Processing happens in your browser. Nothing is sent to us, so we process no personal data."],
+      ["Server and AI tools. ", "Input (file or text) is processed only to handle your request and is not kept after processing. Legal basis: performance of a contract (Art. 6(1)(b) GDPR)."],
+    ]},
+    { id: "p-ucet", h: "Account, subscription and communication", p: [
+      ["Account. ", "Email, name or nickname, a secure password hash, settings, favourite tools and history. Used to operate the account. Legal basis: performance of a contract."],
+      ["Subscription. ", "Chosen plan, period, payment history and billing details. The card is processed by Stripe; we never see the card number. Legal basis: contract and legal accounting and tax obligations."],
+      ["Sign in with Google. ", "If you choose it, we receive your name, email and profile picture from Google. Nothing else."],
+      ["Communication. ", "When you write to us, we process your message and contact so we can reply. Legal basis: legitimate interest."],
+    ]},
+    { id: "p-technicke", h: "Technical and security data", p: [
+      ["", "Using the website involves processing of the IP address, browser type and technical request logs. We need them for abuse protection, tool limit enforcement and debugging. Legal basis: legitimate interest in a secure operation."],
+    ]},
+    { id: "p-cookies", h: "Cookies and browser storage", p: [
+      ["Essential. ", "We store the theme, language, favourites and recently used tools, your cookie choice and, for signed-in users, the login session in your browser. The site would not work without them; no consent is needed."],
+      ["Analytics. ", "Anonymous traffic and speed measurement (Vercel Web Analytics and Speed Insights) only runs with your consent. You can change the choice anytime via “Cookie settings” in the footer."],
+      ["", "We do not use advertising or third-party tracking cookies."],
+    ]},
+    { id: "p-prijemci", h: "Who we share data with", p: [
+      ["", "We entrust data only to vetted processors who may use it solely for us:"],
+      ["Amazon Web Services ", "– servers and AI models (Amazon Bedrock) for server and AI tools."],
+      ["Vercel ", "– website hosting and anonymous analytics (consent only)."],
+      ["Supabase ", "– database and account sign-in."],
+      ["Stripe ", "– subscription payment processing."],
+      ["[POSKYTOVATEL E-MAILŮ] ", "– sending account and payment emails."],
+      ["", "We do not sell data or pass it to marketing partners."],
+    ]},
+    { id: "p-zahranici", h: "Transfers outside the EU", p: [
+      ["", "Some processors are based in the USA. Transfers rely on the EU–US Data Privacy Framework or standard contractual clauses approved by the European Commission."],
+    ]},
+    { id: "p-doba", h: "How long we keep data", p: [
+      ["Tool content: ", "only for the duration of processing the request."],
+      ["Account: ", "for its lifetime; after deletion we erase the data within [X] days."],
+      ["Payments and invoices: ", "10 years, as required by VAT and accounting law."],
+      ["Technical logs: ", "at most [X] days, unless needed to resolve a security incident."],
+      ["Communication: ", "as long as needed to handle it, at most 3 years."],
+    ]},
+    { id: "p-prava", h: "Your rights", p: [
+      ["", "You have the right to access your data, and to rectification, erasure, restriction of processing and portability. You may object to processing based on legitimate interest and withdraw consent anytime."],
+      ["", "You can download your account data and delete the account directly in settings. Send other requests to info@vevit.cz; we handle them within 30 days."],
+      ["", "You can file a complaint with the Czech Data Protection Authority (www.uoou.cz)."],
+    ]},
+    { id: "p-bezpecnost", h: "Security", p: [
+      ["", "All communication is encrypted over HTTPS. We store passwords only as a secure hash, only the necessary people can access the data, and we review security regularly. If a breach that could endanger you occurs, we will inform you without undue delay."],
+    ]},
+    { id: "p-zmeny", h: "Changes to this notice", p: [
+      ["", "We update this notice when our services or the law change. The current version is always on this page. We inform you about material changes in advance."],
+    ]},
+  ],
+};
+
+/** cs/sk → česká verze, ostatní locale → anglický (neověřený) překlad. */
+export const termsFor = (locale: string): LegalDoc => (locale === "cs" || locale === "sk" ? CS_TERMS : EN_TERMS);
+export const privacyFor = (locale: string): LegalDoc => (locale === "cs" || locale === "sk" ? CS_PRIVACY : EN_PRIVACY);

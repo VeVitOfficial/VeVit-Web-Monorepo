@@ -12,7 +12,9 @@ const STRINGS = {
     title: "Dáte si sušenku?",
     body: "Nezbytné úložiště v prohlížeči používáme, aby web fungoval (motiv, jazyk, oblíbené nástroje a tahle volba). S vaším souhlasem zapneme i anonymní měření návštěvnosti a rychlosti webu (Vercel Analytics). AI a serverové nástroje zpracovávají vstupy na serverech AWS.",
     terms_pre: "Kliknutím na kterékoli tlačítko přijímáte ",
-    terms: "Podmínky užití",
+    terms: "podmínky užití",
+    terms_mid: " a ",
+    privacy: "zásady ochrany soukromí",
     terms_post: ".",
     accept: "Přijmout vše",
     necessary: "Jen nezbytné",
@@ -23,6 +25,8 @@ const STRINGS = {
     body: "We use essential browser storage to make the site work (theme, language, favourite tools and this choice). With your consent we also turn on anonymous traffic and speed measurement (Vercel Analytics). AI and server-side tools process inputs on AWS servers.",
     terms_pre: "By clicking either button you accept the ",
     terms: "Terms of Use",
+    terms_mid: " and the ",
+    privacy: "Privacy Notice",
     terms_post: ".",
     accept: "Accept all",
     necessary: "Essential only",
@@ -52,7 +56,7 @@ export function ConsentBanner({ locale }: { locale: Locale }) {
         <h2 id="consent-title">{s.title}</h2>
         <p id="consent-body">{s.body}</p>
         <p className="consent-terms">
-          {s.terms_pre}<a href={`/${locale}/tools/podminky-uziti`}>{s.terms}</a>{s.terms_post}
+          {s.terms_pre}<a href={`/${locale}/tools/podminky-uziti`}>{s.terms}</a>{s.terms_mid}<a href={`/${locale}/tools/ochrana-soukromi`}>{s.privacy}</a>{s.terms_post}
         </p>
         <div className="consent-actions">
           <button type="button" className="consent-btn primary" onClick={() => choose(true)}>{s.accept}</button>
