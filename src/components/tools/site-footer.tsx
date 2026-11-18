@@ -1,35 +1,61 @@
-// React port sdíleného footeru nástrojů (tools/includes/footer.php).
-// ClassName totožná s legacy, aby src/styles/tools.css styl fungoval.
-import type { Locale } from "@/components/tools/registry/data";
+// Patička EveryTool.cz (redesign dle index.html): čtyři sloupce + spodní pruh.
+// Právní odkazy míří na podmínky užití a ochranu soukromí; ConsentSettingsButton
+// otvírá znovu cookie lištu („Nastavení cookies“).
+import { CATEGORY_ORDER, TOOLS, categoryLabel, type Locale } from "@/components/tools/registry/data";
+import { ET_CATEGORY_COLORS } from "@/components/tools/et-colors";
+import { termsFor, privacyFor } from "@/components/tools/terms-content";
 import { ConsentSettingsButton } from "@/components/tools/consent-banner";
-import { termsFor } from "@/components/tools/terms-content";
 
-interface Props {
-  locale: Locale;
-  strings: { back: string; privacy: string; copyright: string };
+export interface FooterStrings {
+  blurb: string;
+  categories: string;
+  everytool: string;
+  about: string;
+  premium: string;
+  studio: string;
+  websites: string;
+  contact: string;
+  copyright: string;
+  languages: string;
 }
 
-export function SiteFooter({ locale, strings }: Props) {
+export function SiteFooter({ locale, strings }: { locale: Locale; strings: FooterStrings }) {
+  const base = `/${locale}/tools`;
   return (
-    <footer className="site-footer">
-      <div className="bar">
-        <a href={`/${locale}/home`} className="hover-fg">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <path d="m12 19-7-7 7-7" /><path d="M19 12H5" />
-          </svg>{" "}
-          {strings.back}
-        </a>
-        <span className="privacy">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1Z" /><path d="m9 12 2 2 4-4" />
-          </svg>{" "}
-          {strings.privacy}
-        </span>
-        <span className="legal-links">
-          <a href={`/${locale}/tools/podminky-uziti`}>{termsFor(locale).title}</a>
-          <ConsentSettingsButton locale={locale} />
-        </span>
-        <p>{strings.copyright}</p>
+    <footer className="site-footer et-foot">
+      <div className="et-wrap">
+        <div className="et-foot-grid">
+          <div className="et-foot-brand">
+            <span className="et-foot-logo">EveryTool<span>.cz</span></span>
+            <p>{strings.blurb.replace("{count}", String(TOOLS.length))}</p>
+          </div>
+          <nav aria-label={strings.categories}>
+            <strong>{strings.categories}</strong>
+            {CATEGORY_ORDER.map((cat) => (
+              <a key={cat} href={`${base}/?category=${cat}#et-katalog`}>
+                <span className="et-dot" style={{ background: ET_CATEGORY_COLORS[cat] }} aria-hidden="true"></span>
+                {categoryLabel(cat, locale)}
+              </a>
+            ))}
+          </nav>
+          <nav aria-label={strings.everytool}>
+            <strong>{strings.everytool}</strong>
+            <a href={`${base}/`}>{strings.about}</a>
+            <a href={`${base}/#et-premium`}>{strings.premium}</a>
+            <a href={`${base}/podminky-uziti`}>{termsFor(locale).title}</a>
+            <a href={`${base}/ochrana-soukromi`}>{privacyFor(locale).title}</a>
+            <ConsentSettingsButton locale={locale} />
+          </nav>
+          <nav aria-label={strings.studio}>
+            <strong>{strings.studio}</strong>
+            <a href="https://vevit.cz" rel="noopener">{strings.websites}</a>
+            <a href="mailto:info@vevit.cz">{strings.contact}</a>
+          </nav>
+        </div>
+        <div className="et-foot-b">
+          <span>{strings.copyright}</span>
+          <span>{strings.languages}</span>
+        </div>
       </div>
     </footer>
   );

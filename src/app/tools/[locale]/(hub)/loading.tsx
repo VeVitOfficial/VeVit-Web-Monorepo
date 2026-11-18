@@ -1,37 +1,29 @@
-// Skeleton rozcestníku nástrojů (hero se statistikami, vyhledávání, mřížka karet).
+// Skeleton hubu EveryTool.cz (hero s vyhledáváním + mřížka karet).
 import { Skeleton, SkeletonGrid, SkeletonRegion, SkeletonText } from "@/components/ui/skeleton";
 import "@/styles/tools.css";
 import "../../../../../public/assets/shared/app-switcher.css";
 
 export default function ToolsHubLoading() {
   return (
-    <SkeletonRegion className="tools-hub">
-      <header className="site-header glass">
-        <div className="container bar">
-          <Skeleton width="9rem" height="2rem" />
-          <Skeleton width="6rem" height="2.25rem" />
+    <SkeletonRegion className="et-main">
+      <header className="site-header et-hdr">
+        <div className="et-wrap et-hdr-in">
+          <Skeleton width="11rem" height="2.6rem" />
+          <Skeleton width="6rem" height="2.75rem" />
         </div>
       </header>
-      <section className="hero">
-        <div className="hero-inner hub-hero-inner">
-          <div className="hub-hero-top">
-            <div className="hub-hero-copy">
-              <Skeleton width="10rem" height="0.75rem" />
-              <Skeleton width="min(30rem, 90%)" height="3rem" style={{ margin: "0.75rem 0" }} />
-              <SkeletonText lines={2} lastLineWidth="55%" style={{ maxWidth: "40rem" }} />
-            </div>
-            <div className="hub-hero-stats">
-              {[0, 1, 2].map((i) => (
-                <div className="hub-stat" key={i}><Skeleton width="3rem" height="1.9rem" /><Skeleton width="5rem" height="0.75rem" style={{ marginTop: "0.35rem" }} /></div>
-              ))}
-            </div>
-          </div>
-          <Skeleton height="3.5rem" radius="0" />
+      <section className="et-hero">
+        <div className="et-hero-in">
+          <Skeleton width="22rem" height="2rem" style={{ maxWidth: "90%" }} />
+          <Skeleton width="min(34rem, 92%)" height="4rem" style={{ margin: "1.25rem 0 0.5rem" }} />
+          <Skeleton width="9rem" height="0.75rem" style={{ margin: "0 auto 1rem" }} />
+          <SkeletonText lines={2} lastLineWidth="55%" style={{ maxWidth: "40rem", margin: "0 auto" }} />
+          <Skeleton height="4.25rem" radius="999px" style={{ margin: "1.5rem auto 0", maxWidth: "42.5rem" }} />
         </div>
       </section>
-      <main className="main container" style={{ paddingTop: "2.5rem", paddingBottom: "3rem" }}>
-        <SkeletonGrid count={9} minWidth="17rem" card={{ lines: 2 }} />
-      </main>
+      <div className="et-wrap" style={{ paddingTop: "3rem", paddingBottom: "3rem" }}>
+        <SkeletonGrid count={8} minWidth="16rem" card={{ lines: 2 }} />
+      </div>
     </SkeletonRegion>
   );
 }

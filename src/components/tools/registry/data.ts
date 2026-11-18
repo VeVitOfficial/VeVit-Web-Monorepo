@@ -478,54 +478,99 @@ export interface HubI18n {
   statuses: Partial<Record<ToolStatus, string>>;
   loc: Record<ProcessingLocation, string>;
   card_open: string;
-  hero_eyebrow: string;
+  /* hero + vyhledávání */
+  hero_badge_tag: string;
+  hero_badge_text: string;
+  hero_badge_query: string;
+  hero_title: string;
+  hero_rot_sr: string;
+  hero_rot_words: readonly string[];
+  rot_dots_label: string;
+  rot_dot_aria: string;
+  hero_lead: string;
+  search_label: string;
+  search_placeholder: string;
+  search_clear: string;
   search_cta: string;
   suggestions_label: string;
+  quick_empty: string;
+  quick_more: string;
+  quick_browse: string;
   stat_tools_label: string;
-  stat_price_label: string;
-  stat_price_value: string;
-  results_title: string;
-  results_count: string;
-  results_title_empty: string;
-  search_placeholder: string;
+  hero_stats_categories: string;
+  hero_stats_languages: string;
+  /* sekce hubu */
+  tiles_title: string;
+  tiles_sub: string;
+  popular_title: string;
+  popular_sub: string;
+  hero_pill_count: string;
+  recent_title: string;
+  recent_desc: string;
+  catalog_title: string;
+  catalog_sub: string;
+  pill_all: string;
+  adv_filters: string;
   filters_category: string;
   filters_processing: string;
   filters_status: string;
   filters_sort: string;
-  filters_only_local: string;
   filters_reset: string;
-  category_all: string;
   processing_all: string;
   status_all: string;
   sort_relevance: string;
   sort_name: string;
-  recent_title: string;
-  recent_desc: string;
+  results_title: string;
+  cancel_filter: string;
+  show_all: string;
+  show_less: string;
+  empty_title: string;
+  empty_desc: string;
+  why_title: string;
+  why1_h: string;
+  why1_t: string;
+  why2_h: string;
+  why2_t: string;
+  why3_h: string;
+  why3_t: string;
   privacy_band_title: string;
   favorite_add: string;
   favorite_remove: string;
-  hero_title_a: string;
-  hero_title_b: string;
-  hero_title_c: string;
-  hero_subtitle: string;
-  hero_pill_count: string;
-  hero_pill_local: string;
-  hero_pill_free: string;
-  hero_stats_local: string;
-  hero_stats_categories: string;
-  hero_stats_noreg: string;
-  empty_title: string;
-  empty_desc: string;
-  loading: string;
-  error: string;
-  doc_title: string;
-  doc_description: string;
-  header_categories: string;
-  header_login: string;
-  header_login_title: string;
-  footer_back: string;
-  footer_privacy: string;
-  footer_copyright: string;
+  cta_eyebrow: string;
+  cta_title: string;
+  cta_text: string;
+  cta_btn: string;
+  /* premium sekce ([CENA]/[X] % = záměrné placeholdery) */
+  prem_title: string;
+  prem_sub: string;
+  prem_period_label: string;
+  prem_month: string;
+  prem_year: string;
+  free_name: string;
+  free_sub: string;
+  free_perks: readonly string[];
+  free_cta: string;
+  pro_tag: string;
+  pro_name: string;
+  pro_sub: string;
+  pro_price_placeholder: string;
+  pro_unit_m: string;
+  pro_unit_y: string;
+  pro_save_placeholder: string;
+  pro_perks: readonly string[];
+  pro_cta: string;
+  vevit_tag: string;
+  vevit_name: string;
+  vevit_sub: string;
+  vevit_tiers_label: string;
+  vevit_2m_free: string;
+  vevit_everytool_perk: string;
+  vevit_cta: string;
+  vevit_platinum: string;
+  unit_month: string;
+  unit_year: string;
+  prem_foot: string;
+  /* konvertory */
   conv_video_title: string;
   conv_video_desc: string;
   conv_audio_title: string;
@@ -535,60 +580,129 @@ export interface HubI18n {
   conv_docs_pdfword: string;
   conv_docs_pdftxt: string;
   conv_docs_imgpdf: string;
+  /* hlavička, patička, metadata */
+  header_categories: string;
+  header_login: string;
+  header_login_title: string;
+  footer_blurb: string;
+  footer_categories: string;
+  footer_everytool: string;
+  footer_about: string;
+  footer_premium: string;
+  footer_studio: string;
+  footer_websites: string;
+  footer_contact: string;
+  footer_copyright: string;
+  footer_languages: string;
+  doc_title: string;
+  doc_description: string;
 }
 
 const HUB_CS: HubI18n = {
   statuses: { limited: "Omezeně dostupný", experimental: "Experimentální", coming_soon: "Připravujeme", broken: "Dočasně nefunkční", maintenance: "V údržbě" },
   loc: { client: "Lokálně", external_ai: "Přes AI", vevit_server: "Na serveru", external: "Třetí strana" },
-  card_open: "Otevřít →",
-  hero_eyebrow: "{count} nástrojů, zdarma, bez registrace",
+  card_open: "Otevřít nástroj",
+  hero_badge_tag: "NOVÉ",
+  hero_badge_text: "PDF → Word nově i se skeny (OCR)",
+  hero_badge_query: "pdf word",
+  hero_title: "Každý nástroj, který potřebujete.",
+  hero_rot_sr: "Zdarma, rychle, lokálně a bezpečně.",
+  hero_rot_words: ["Zdarma.", "Rychle.", "Lokálně.", "Bezpečně."],
+  rot_dots_label: "Přepínání hesel",
+  rot_dot_aria: "Zobrazit „{word}“",
+  hero_lead: "{tools} online nástrojů na PDF, obrázky, video, text i AI. Bez instalace a bez registrace. Většina běží přímo ve vašem prohlížeči, takže soubory zůstávají u vás.",
+  search_label: "Hledat nástroj",
+  search_placeholder: "Co chcete udělat? Třeba „komprese PDF“",
+  search_clear: "Vymazat hledání",
   search_cta: "Hledat",
-  suggestions_label: "Nejhledanější:",
+  suggestions_label: "Zkuste:",
+  quick_empty: "Nic jsme nenašli. Zkuste třeba „pdf“, „heslo“ nebo „video“.",
+  quick_more: "Zobrazit všech {count} výsledků v katalogu",
+  quick_browse: "Prohlédnout všechny nástroje",
   stat_tools_label: "nástrojů",
-  stat_price_label: "cena",
-  stat_price_value: "0 Kč",
-  results_title: "{count} výsledků pro „{q}“",
-  results_count: "{count} výsledků",
-  results_title_empty: "Žádné výsledky",
-  search_placeholder: "Hledat nástroj... (např. 'json', 'pdf', 'hash')",
-  filters_category: "Kategorie",
+  hero_stats_categories: "kategorií",
+  hero_stats_languages: "jazyků",
+  tiles_title: "S čím potřebujete pomoct?",
+  tiles_sub: "Vyberte kategorii a my vám ukážeme všechno, co v ní umíme.",
+  popular_title: "Začněte tady",
+  popular_sub: "Šikovné nástroje na každý den. Jedno kliknutí a jdete na věc.",
+  hero_pill_count: "{count} nástrojů",
+  recent_title: "Kde jste skončili",
+  recent_desc: "Uloženo jen ve vašem prohlížeči. Nikam se to neposílá a nepotřebuje to účet.",
+  catalog_title: "Všechny nástroje",
+  catalog_sub: "Filtrujte podle kategorie nebo hledejte výš. Každý nástroj je zdarma.",
+  pill_all: "Vše",
+  adv_filters: "Pokročilé filtry",
+  filters_category: "Filtr kategorií",
   filters_processing: "Zpracování",
   filters_status: "Stav",
   filters_sort: "Řazení",
-  filters_only_local: "Jen nástroje, které nic neodesílají",
   filters_reset: "Zrušit filtry",
-  category_all: "Všechny kategorie",
   processing_all: "Všechna místa",
   status_all: "Všechny stavy",
   sort_relevance: "Relevance",
   sort_name: "Název A–Z",
-  recent_title: "Kde jste skončili",
-  recent_desc: "Uloženo jen ve vašem prohlížeči. Nikam se to neposílá a nepotřebuje to účet.",
+  results_title: "Výsledky pro „{q}“",
+  cancel_filter: "Zrušit filtr",
+  show_all: "Zobrazit všech {count}",
+  show_less: "Zobrazit méně",
+  empty_title: "Tohle zatím neumíme",
+  empty_desc: "Zkuste jiné slovo, třeba „pdf“, „heslo“ nebo „video“. Nebo nám napište, jaký nástroj vám chybí.",
+  why_title: "Proč lidi baví EveryTool",
+  why1_h: "Soubory zůstávají u vás",
+  why1_t: "Většina nástrojů pracuje přímo v prohlížeči. U každého vidíte, jestli se něco posílá na server.",
+  why2_h: "Žádné čekání",
+  why2_t: "Bez instalace a bez účtu. Otevřete nástroj, přetáhnete soubor a máte hotovo.",
+  why3_h: "Česky a srozumitelně",
+  why3_t: "Nástroje i nápověda v češtině a dalších šesti jazycích. Žádný technický žargon.",
   privacy_band_title: "Kde se vaše data zpracovávají",
   favorite_add: "Přidat do oblíbených",
   favorite_remove: "Odebrat z oblíbených",
-  hero_title_a: "práci",
-  hero_title_b: " & ",
-  hero_title_c: "každý den.",
-  hero_subtitle: "PDF, obrázky, video, text, AI i kalkulačky. Většinu souborů zpracujeme přímo ve vašem prohlížeči, bez nahrávání na server.",
-  hero_pill_count: "{count} nástrojů",
-  hero_pill_local: "Zpracováno lokálně",
-  hero_pill_free: "Zdarma & bez registrace",
-  hero_stats_local: "běží lokálně",
-  hero_stats_categories: "kategorií",
-  hero_stats_noreg: "0 nucených registrací",
-  empty_title: "Žádný nástroj neodpovídá hledání.",
-  empty_desc: "Zkuste jiné klíčové slovo.",
-  loading: "Načítám vyhledávání…",
-  error: "Hledání se nepodařilo načíst. Kategorie níže zůstávají dostupné.",
-  doc_title: "VeVit Tools. Nástroje pro vaši práci",
-  doc_description: "Sada nástrojů pro PDF, obrázky, média, text, AI, vývoj, bezpečnost i kalkulačky. Většinu souborů zpracujeme lokálně v prohlížeči, bez nahrávání na server.",
-  header_categories: "Kategorie",
-  header_login: "Přihlásit se",
-  header_login_title: "Přihlášení k účtu VeVit je volitelné, všechny nástroje fungují i bez něj.",
-  footer_back: "Zpět na VeVit.cz",
-  footer_privacy: "Většina nástrojů běží lokálně v prohlížeči",
-  footer_copyright: "© 2026 VeVit Tools.",
+  cta_eyebrow: "OD TVŮRCŮ Z VEVIT WEB STUDIA",
+  cta_title: "Potřebujete web nebo aplikaci na míru?",
+  cta_text: "EveryTool.cz navrhlo a postavilo VeVit web studio. Stejnou péči dáme i vašemu projektu.",
+  cta_btn: "Poznat VeVit web studio",
+  prem_title: "Chcete víc? Odemkněte Premium.",
+  prem_sub: "Nástroje zůstávají zdarma pro všechny. Premium přidá vyšší limity, větší soubory a klid na práci.",
+  prem_period_label: "Fakturační období",
+  prem_month: "Měsíčně",
+  prem_year: "Ročně",
+  free_name: "Zdarma",
+  free_sub: "Na každodenní práci, bez účtu",
+  free_perks: [
+    "Všech {tools} nástrojů",
+    "Zpracování přímo v prohlížeči",
+    "Základní denní limit AI nástrojů",
+    "Soubory do běžné velikosti",
+  ],
+  free_cta: "Používat zdarma",
+  pro_tag: "DOPORUČUJEME",
+  pro_name: "Premium",
+  pro_sub: "Pro ty, kdo s nástroji pracují denně",
+  pro_price_placeholder: "[CENA] Kč",
+  pro_unit_m: "/ měsíc",
+  pro_unit_y: "/ rok",
+  pro_save_placeholder: "Ušetříte [X] %",
+  pro_perks: [
+    "Vše, co nabízí verze Zdarma",
+    "Vyšší limity AI nástrojů",
+    "Větší soubory a dávkové zpracování",
+    "Bez reklam",
+    "Oblíbené a historie na všech zařízeních",
+    "Přednostní podpora",
+  ],
+  pro_cta: "Vyzkoušet Premium",
+  vevit_tag: "CELÝ SVĚT VEVIT",
+  vevit_name: "VeVit Premium",
+  vevit_sub: "Jedno členství pro EveryTool, VeVit Edu, Store a další služby VeVit",
+  vevit_tiers_label: "Úroveň VeVit Premium",
+  vevit_2m_free: "2 měsíce zdarma",
+  vevit_everytool_perk: "EveryTool Premium v ceně",
+  vevit_cta: "Vybrat VeVit {tier}",
+  vevit_platinum: "Školy a firmy: VeVit Platinum na domluvu →",
+  unit_month: "/ měsíc",
+  unit_year: "/ rok",
+  prem_foot: "Ceny včetně DPH. Předplatné lze kdykoli zrušit v nastavení účtu.",
   conv_video_title: "Konverze videa",
   conv_video_desc: "MP4, WebM, MOV, MKV — komprese i změna formátu přímo v prohlížeči.",
   conv_audio_title: "Konverze audia",
@@ -598,60 +712,128 @@ const HUB_CS: HubI18n = {
   conv_docs_pdfword: "PDF → Word",
   conv_docs_pdftxt: "PDF → Text",
   conv_docs_imgpdf: "Obrázky → PDF",
+  header_categories: "Kategorie",
+  header_login: "Přihlásit se",
+  header_login_title: "Přihlášení k účtu je volitelné, všechny nástroje fungují i bez něj.",
+  footer_blurb: "{count} nástrojů na jednom místě. Vyrobeno s radostí ve VeVit web studiu.",
+  footer_categories: "Kategorie",
+  footer_everytool: "EveryTool",
+  footer_about: "O projektu",
+  footer_premium: "Premium",
+  footer_studio: "VeVit web studio",
+  footer_websites: "Weby na míru",
+  footer_contact: "Kontakt",
+  footer_copyright: "© 2026 EveryTool.cz by VeVit web studio",
+  footer_languages: "Čeština · English · Deutsch · Español · Français · Slovenčina · Українська",
+  doc_title: "EveryTool.cz – všechny nástroje na jednom místě",
+  doc_description: "171 online nástrojů na PDF, obrázky, video, text i AI. Bez instalace a bez registrace. Většina běží přímo ve vašem prohlížeči, takže soubory zůstávají u vás.",
 };
 
 const HUB_EN: HubI18n = {
   statuses: { limited: "Limited availability", experimental: "Experimental", coming_soon: "Coming soon", broken: "Temporarily broken", maintenance: "Under maintenance" },
   loc: { client: "Local", external_ai: "Via AI", vevit_server: "On server", external: "Third party" },
-  card_open: "Open →",
-  hero_eyebrow: "{count} tools, free, no sign-up",
+  card_open: "Open tool",
+  hero_badge_tag: "NEW",
+  hero_badge_text: "PDF → Word now with scans too (OCR)",
+  hero_badge_query: "pdf word",
+  hero_title: "Every tool you need.",
+  hero_rot_sr: "Free, fast, local and secure.",
+  hero_rot_words: ["Free.", "Fast.", "Local.", "Secure."],
+  rot_dots_label: "Switching slogans",
+  rot_dot_aria: "Show “{word}”",
+  hero_lead: "{tools} online tools for PDF, images, video, text and AI. No install, no sign-up. Most run right in your browser, so your files stay with you.",
+  search_label: "Search tools",
+  search_placeholder: "What do you want to do? Try “compress PDF”",
+  search_clear: "Clear search",
   search_cta: "Search",
-  suggestions_label: "Most searched:",
+  suggestions_label: "Try:",
+  quick_empty: "Nothing found. Try “pdf”, “password” or “video”.",
+  quick_more: "Show all {count} results in the catalog",
+  quick_browse: "Browse all tools",
   stat_tools_label: "tools",
-  stat_price_label: "price",
-  stat_price_value: "$0",
-  results_title: "{count} results for “{q}”",
-  results_count: "{count} results",
-  results_title_empty: "No results",
-  search_placeholder: "Search tools... (e.g. 'json', 'pdf', 'hash')",
-  filters_category: "Category",
+  hero_stats_categories: "categories",
+  hero_stats_languages: "languages",
+  tiles_title: "What do you need help with?",
+  tiles_sub: "Pick a category and we will show you everything we can do in it.",
+  popular_title: "Start here",
+  popular_sub: "Handy everyday tools. One click and you are off.",
+  hero_pill_count: "{count} tools",
+  recent_title: "Where you left off",
+  recent_desc: "Saved only in your browser. Nothing is sent anywhere and no account is needed.",
+  catalog_title: "All tools",
+  catalog_sub: "Filter by category or search above. Every tool is free.",
+  pill_all: "All",
+  adv_filters: "Advanced filters",
+  filters_category: "Category filter",
   filters_processing: "Processing",
   filters_status: "Status",
   filters_sort: "Sort",
-  filters_only_local: "Only tools that send nothing",
   filters_reset: "Reset filters",
-  category_all: "All categories",
   processing_all: "All locations",
   status_all: "All statuses",
   sort_relevance: "Relevance",
   sort_name: "Name A–Z",
-  recent_title: "Where you left off",
-  recent_desc: "Saved only in your browser. Nothing is sent anywhere and no account is needed.",
+  results_title: "Results for “{q}”",
+  cancel_filter: "Clear filter",
+  show_all: "Show all {count}",
+  show_less: "Show less",
+  empty_title: "We cannot do that yet",
+  empty_desc: "Try another word, like “pdf”, “password” or “video”. Or write to us about the tool you are missing.",
+  why_title: "Why people enjoy EveryTool",
+  why1_h: "Your files stay with you",
+  why1_t: "Most tools work right in the browser. Each one shows whether anything is sent to a server.",
+  why2_h: "No waiting",
+  why2_t: "No install and no account. Open a tool, drop a file and you are done.",
+  why3_h: "Clear and friendly",
+  why3_t: "Tools and help in English and six other languages. No technical jargon.",
   privacy_band_title: "Where your data is processed",
   favorite_add: "Add to favorites",
   favorite_remove: "Remove from favorites",
-  hero_title_a: "work",
-  hero_title_b: " & ",
-  hero_title_c: "every day.",
-  hero_subtitle: "PDF, images, video, text, AI and calculators. Most files are processed right in your browser, no upload to a server.",
-  hero_pill_count: "{count} tools",
-  hero_pill_local: "Processed locally",
-  hero_pill_free: "Free & no sign-up",
-  hero_stats_local: "run locally",
-  hero_stats_categories: "categories",
-  hero_stats_noreg: "0 forced sign-ups",
-  empty_title: "No tool matches your search.",
-  empty_desc: "Try a different keyword.",
-  loading: "Loading search…",
-  error: "Search could not be loaded. Categories below remain available.",
-  doc_title: "VeVit Tools. Tools for your work",
-  doc_description: "A set of tools for PDF, images, media, text, AI, development, security and calculators. Most files are processed locally in the browser, without uploading to a server.",
-  header_categories: "Categories",
-  header_login: "Sign in",
-  header_login_title: "A VeVit account is optional, all tools work without one.",
-  footer_back: "Back to VeVit.cz",
-  footer_privacy: "Most tools run locally in your browser",
-  footer_copyright: "© 2026 VeVit Tools.",
+  cta_eyebrow: "FROM THE MAKERS AT VEVIT WEB STUDIO",
+  cta_title: "Need a custom website or app?",
+  cta_text: "EveryTool.cz was designed and built by VeVit web studio. We will give your project the same care.",
+  cta_btn: "Meet VeVit web studio",
+  prem_title: "Want more? Unlock Premium.",
+  prem_sub: "The tools stay free for everyone. Premium adds higher limits, bigger files and peace of mind.",
+  prem_period_label: "Billing period",
+  prem_month: "Monthly",
+  prem_year: "Yearly",
+  free_name: "Free",
+  free_sub: "For everyday work, no account needed",
+  free_perks: [
+    "All {tools} tools",
+    "Processing right in the browser",
+    "Basic daily limit for AI tools",
+    "Files up to a regular size",
+  ],
+  free_cta: "Use for free",
+  pro_tag: "RECOMMENDED",
+  pro_name: "Premium",
+  pro_sub: "For people who work with tools every day",
+  pro_price_placeholder: "[PRICE] CZK",
+  pro_unit_m: "/ month",
+  pro_unit_y: "/ year",
+  pro_save_placeholder: "Save [X] %",
+  pro_perks: [
+    "Everything in the Free plan",
+    "Higher AI tool limits",
+    "Bigger files and batch processing",
+    "No ads",
+    "Favourites and history on all devices",
+    "Priority support",
+  ],
+  pro_cta: "Try Premium",
+  vevit_tag: "THE WHOLE VEVIT WORLD",
+  vevit_name: "VeVit Premium",
+  vevit_sub: "One membership for EveryTool, VeVit Edu, Store and other VeVit services",
+  vevit_tiers_label: "VeVit Premium level",
+  vevit_2m_free: "2 months free",
+  vevit_everytool_perk: "EveryTool Premium included",
+  vevit_cta: "Choose VeVit {tier}",
+  vevit_platinum: "Schools and companies: VeVit Platinum on request →",
+  unit_month: "/ month",
+  unit_year: "/ year",
+  prem_foot: "Prices include VAT. You can cancel the subscription anytime in account settings.",
   conv_video_title: "Video converter",
   conv_video_desc: "MP4, WebM, MOV, MKV — compress and convert right in the browser.",
   conv_audio_title: "Audio converter",
@@ -661,6 +843,21 @@ const HUB_EN: HubI18n = {
   conv_docs_pdfword: "PDF → Word",
   conv_docs_pdftxt: "PDF → Text",
   conv_docs_imgpdf: "Images → PDF",
+  header_categories: "Categories",
+  header_login: "Sign in",
+  header_login_title: "An account is optional, all tools work without one.",
+  footer_blurb: "{count} tools in one place. Made with joy at VeVit web studio.",
+  footer_categories: "Categories",
+  footer_everytool: "EveryTool",
+  footer_about: "About",
+  footer_premium: "Premium",
+  footer_studio: "VeVit web studio",
+  footer_websites: "Custom websites",
+  footer_contact: "Contact",
+  footer_copyright: "© 2026 EveryTool.cz by VeVit web studio",
+  footer_languages: "Čeština · English · Deutsch · Español · Français · Slovenčina · Українська",
+  doc_title: "EveryTool.cz – all tools in one place",
+  doc_description: "171 online tools for PDF, images, video, text and AI. No install, no sign-up. Most run right in your browser, so your files stay with you.",
 };
 
 export const HUB_I18N: Record<Locale, HubI18n> = {

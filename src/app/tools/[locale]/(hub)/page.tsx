@@ -5,8 +5,7 @@ import { HubApp } from "@/components/tools/hub-app";
 import { HUB_I18N, SUPPORTED_LOCALES, type Locale } from "@/components/tools/registry/data";
 import { toolAlternates } from "@/lib/tools-seo";
 
-// Legacy CSS — className v komponentách zůstávají totožné s legacy HTML,
-// aby src/styles/tools.css a vevit-fonts.css styl fungoval.
+// Styly nástrojů (v layoutu je navíc .tools-app wrapper s EveryTool fonty).
 import "../../../../../public/assets/fonts/vevit-fonts.css";
 import "@/styles/tools.css";
 // Přepínač aplikací (data-vevit-app-switcher) — stejné styly jako ostatní aplikace.
@@ -27,22 +26,33 @@ export default async function ToolsHubPage({ params }: { params: Promise<{ local
   const locale = await readLocale(params);
   const strings = HUB_I18N[locale] ?? HUB_I18N.cs;
   return (
-    // .tools-hub — vizuální scope pro redesign hlavní stránky nástrojů
-    // (viz tools-hub blok ve style.css). Ostatní stránky (jednotlivé nástroje)
-    // sdílejí SiteHeader/SiteFooter beze změny, tenhle wrapper je nezasahuje.
-    <div className="tools-hub">
+    <>
       <SiteHeader
         locale={locale}
         strings={{
           categories: strings.header_categories,
           login: strings.header_login,
           login_title: strings.header_login_title,
-          brand_name: "VeVit",
-          brand_suffix: "Tools",
+          brand_name: "EveryTool",
+          brand_suffix: "by VeVit web studio",
         }}
       />
       <HubApp locale={locale} strings={strings} />
-      <SiteFooter locale={locale} strings={{ back: strings.footer_back, privacy: strings.footer_privacy, copyright: strings.footer_copyright }} />
-    </div>
+      <SiteFooter
+        locale={locale}
+        strings={{
+          blurb: strings.footer_blurb,
+          categories: strings.footer_categories,
+          everytool: strings.footer_everytool,
+          about: strings.footer_about,
+          premium: strings.footer_premium,
+          studio: strings.footer_studio,
+          websites: strings.footer_websites,
+          contact: strings.footer_contact,
+          copyright: strings.footer_copyright,
+          languages: strings.footer_languages,
+        }}
+      />
+    </>
   );
 }

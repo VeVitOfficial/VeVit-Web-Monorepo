@@ -1,29 +1,25 @@
 "use client";
 
-// React port sdíleného headeru nástrojů (tools/includes/header.php).
-// Brand + Kategorie dropdown + login + language switcher + app switcher.
+// Hlavička EveryTool.cz (redesign dle index.html): logo s barevnou značkou,
+// kategorie v nav, přepínač tématu, jazyk, session slot a tlačítko Premium.
 //
-// VOLBA: Language switcher a app switcher se načítají z legacy skriptů
-//   /assets/shared/localization.js a /assets/shared/app-switcher.js
-// přes next/script (po renderu). Tyto skripty hledají v DOM elementy
-//   <span data-vevit-language> a <span data-vevit-app-switcher data-vevit-app="Tools">
-// a injektují do nich UI. Portovat je do Reactu by znamenalo duplikovat
-// cizí komplexní logiku — zůstáváme u legacy skriptů, stejně jako je proxy.ts
-// a ostatní sekce. Další batch agenti je mohou portovat centrálně.
-//
-// ClassName zůstává totožná s legacy, aby src/styles/tools.css
-// (a /assets/shared/app-switcher.css) styl fungoval beze změny.
-import { useEffect, useRef, useState } from "react";
-import { CATEGORY_COLORS, CATEGORY_ORDER, type Category, type Locale } from "@/components/tools/registry/data";
-import { categoryLabel } from "@/components/tools/registry/data";
-
+// VOLBA: Language switcher, app switcher a session.js se načítají z legacy
+//   skriptů /assets/shared/*.js přes imperativně vložené module skripty
+//   (React by <script> v JSX nespustil). Skripty hledají sloty
+//   <span data-vevit-language>, <span data-vevit-app-switcher> a
+//   <span data-vevit-session> — session.js runtime vymění fallback odkaz
+//   za menu účtu, když je uživatel přihlášený.
+import { useEffect } from "react";
+import { type Locale, categoryLabel } from "@/components/tools/registry/data";
+import { ET_CATEGORY_COLORS, ET_NAV_CATEGORIES } from "@/components/tools/et-colors";
 import { ThemeToggle } from "@/components/theme-toggle";
+
 interface Props {
   locale: Locale;
   strings: { categories: string; login: string; login_title: string; brand_name: string; brand_suffix: string };
 }
 
-const CATEGORY_DOT_LABEL: Record<Category, string> = {
+const CATEGORY_FALLBACK: Record<string, string> = {
   pdf: "PDF", image: "Obrázky", media: "Média", text: "Text", ai: "AI", dev: "Dev", security: "Bezpečnost", calc: "Kalkulačky",
 };
 
@@ -38,9 +34,6 @@ const MODULE_SCRIPTS = [
 const SESSION_CSS = "/assets/shared/session.css?v=20260928a";
 
 export function SiteHeader({ locale, strings }: Props) {
-  const [open, setOpen] = useState(false);
-  const wrapRef = useRef<HTMLDivElement | null>(null);
-
   useEffect(() => {
     if (!document.querySelector(`link[href="${SESSION_CSS}"]`)) {
       const link = document.createElement("link");
@@ -62,78 +55,45 @@ export function SiteHeader({ locale, strings }: Props) {
     };
   }, []);
 
-  useEffect(() => {
-    if (!open) return;
-    const onDoc = (e: MouseEvent) => {
-      if (wrapRef.current && !wrapRef.current.contains(e.target as Node)) setOpen(false);
-    };
-    const onEsc = (e: KeyboardEvent) => { if (e.key === "Escape") setOpen(false); };
-    document.addEventListener("mousedown", onDoc);
-    document.addEventListener("keydown", onEsc);
-    return () => { document.removeEventListener("mousedown", onDoc); document.removeEventListener("keydown", onEsc); };
-  }, [open]);
-
   const base = `/${locale}/tools`;
 
   return (
-    <header className="site-header glass">
-      <div className="container bar">
-        <div className="header-left">
-          <a className="brand" href={`${base}/`}>
-            <span className="brand-logo" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" /><path d="m3.3 7 8.7 5 8.7-5" /><path d="M12 22V12" />
-              </svg>
-            </span>
-            <span className="brand-mark">
-              <span className="brand-name">{strings.brand_name}</span>
-              <span className="brand-suffix">{strings.brand_suffix}</span>
-            </span>
-          </a>
-          <div className="cat-wrap" style={{ position: "relative" }} ref={wrapRef}>
-            <button
-              className="cat-toggle"
-              id="cat-toggle"
-              aria-expanded={open}
-              aria-haspopup="menu"
-              onClick={() => setOpen((v) => !v)}
-              type="button"
-            >
-              {strings.categories}{" "}
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="m6 9 6 6 6-6" />
-              </svg>
-            </button>
-            <div className={`cat-dropdown glass-strong${open ? "" : " hidden"}`} id="cat-menu" role="menu">
-              {CATEGORY_ORDER.map((cat) => (
-                <a key={cat} href={`${base}/?category=${cat}`} role="menuitem" onClick={() => setOpen(false)}>
-                  <span className="dot" style={{ background: CATEGORY_COLORS[cat] }}></span>{" "}
-                  {categoryLabel(cat, locale) ?? CATEGORY_DOT_LABEL[cat]}
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-        <div className="header-right vv-app-actions">
+    <header className="site-header et-hdr">
+      <div className="et-wrap et-hdr-in">
+        <a className="et-logo" href={`${base}/`} aria-label="EveryTool.cz – domů">
+          <span className="et-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          <span className="et-logo-t">
+            <b>{strings.brand_name}<span>.cz</span></b>
+            <small>{strings.brand_suffix}</small>
+          </span>
+        </a>
+        <nav className="et-nav" aria-label={strings.categories}>
+          {ET_NAV_CATEGORIES.map((cat) => (
+            <a key={cat} href={`${base}/?category=${cat}#et-katalog`}>
+              <span className="et-dot" style={{ background: ET_CATEGORY_COLORS[cat] }} aria-hidden="true"></span>
+              {categoryLabel(cat, locale) ?? CATEGORY_FALLBACK[cat]}
+            </a>
+          ))}
+        </nav>
+        <div className="et-actions">
+          <span data-vevit-language className="et-lang-slot"></span>
           <ThemeToggle />
-          <span data-vevit-language></span>
-          <span data-vevit-app-switcher data-vevit-app="Tools"></span>
+          <span data-vevit-app-switcher data-vevit-app="Tools" className="et-switcher-slot"></span>
           {/* session.js replaces the fallback with the account menu once signed in. */}
           <span data-vevit-session>
-            <a
-              className="login-btn"
-              href={`/${locale}/account/login`}
-              title={strings.login_title}
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" /><polyline points="10 17 15 12 10 7" /><line x1="15" y1="12" x2="3" y2="12" />
-              </svg>{" "}
+            <a className="et-btn et-login-btn" href={`/${locale}/account/login`} title={strings.login_title}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20 21v-1a6 6 0 0 0-6-6h-4a6 6 0 0 0-6 6v1M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" /></svg>
               {strings.login}
             </a>
           </span>
+          <a href={`${base}/#et-premium`} className="et-btn et-btn-dark">
+            <span className="et-crown" aria-hidden="true">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" aria-hidden="true"><path d="M3 8l4.5 4L12 5l4.5 7L21 8l-2 11H5z" /></svg>
+            </span>
+            Premium
+          </a>
         </div>
       </div>
-
     </header>
   );
 }

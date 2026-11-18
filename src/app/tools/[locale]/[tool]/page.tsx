@@ -33,11 +33,11 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = (await params).tool;
   const tool = getTool(slug);
-  if (!tool) return { title: "Nástroj nenalezen | VeVit Tools" };
+  if (!tool) return { title: "Nástroj nenalezen | EveryTool.cz" };
   const locale = await readLocale(params);
   const loc = localizeTool(tool, locale);
   return {
-    title: `${loc.name} | VeVit Tools`,
+    title: `${loc.name} | EveryTool.cz`,
     description: loc.description,
     alternates: toolAlternates(locale, `tools/${slug}`),
   };
@@ -90,8 +90,8 @@ export default async function ToolPage({ params }: Props) {
           categories: strings.header_categories,
           login: strings.header_login,
           login_title: strings.header_login_title,
-          brand_name: "VeVit",
-          brand_suffix: "Tools",
+          brand_name: "EveryTool",
+          brand_suffix: "by VeVit web studio",
         }}
       />
       {/* Stejná obálka jako legacy tools.php (main.main > .tool-page): okraje a max šířka. */}
@@ -177,7 +177,21 @@ export default async function ToolPage({ params }: Props) {
           </div>
         </aside>
       </main>
-      <SiteFooter locale={locale} strings={{ back: strings.footer_back, privacy: loc.title, copyright: strings.footer_copyright }} />
+      <SiteFooter
+        locale={locale}
+        strings={{
+          blurb: strings.footer_blurb,
+          categories: strings.footer_categories,
+          everytool: strings.footer_everytool,
+          about: strings.footer_about,
+          premium: strings.footer_premium,
+          studio: strings.footer_studio,
+          websites: strings.footer_websites,
+          contact: strings.footer_contact,
+          copyright: strings.footer_copyright,
+          languages: strings.footer_languages,
+        }}
+      />
     </>
   );
 }
