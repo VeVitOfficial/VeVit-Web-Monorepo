@@ -91,7 +91,6 @@ export default async function ToolPage({ params }: Props) {
           login: strings.header_login,
           login_title: strings.header_login_title,
           brand_name: "EveryTool",
-          brand_suffix: "by VeVit web studio",
         }}
       />
       {/* Stejná obálka jako legacy tools.php (main.main > .tool-page): okraje a max šířka. */}

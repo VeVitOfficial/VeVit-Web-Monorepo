@@ -64,7 +64,7 @@ export function LegalHeader({ locale }: { locale: Locale }) {
           <span className="et-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
           <span className="et-logo-t">
             <b>EveryTool<span>.cz</span></b>
-            <small>by VeVit web studio</small>
+            <small>by <span className="et-vevit">VeVit</span> web studio</small>
           </span>
         </a>
         <div className="et-actions">

@@ -16,7 +16,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 
 interface Props {
   locale: Locale;
-  strings: { categories: string; login: string; login_title: string; brand_name: string; brand_suffix: string };
+  strings: { categories: string; login: string; login_title: string; brand_name: string };
 }
 
 const CATEGORY_FALLBACK: Record<string, string> = {
@@ -64,7 +64,7 @@ export function SiteHeader({ locale, strings }: Props) {
           <span className="et-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
           <span className="et-logo-t">
             <b>{strings.brand_name}<span>.cz</span></b>
-            <small>{strings.brand_suffix}</small>
+            <small>by <span className="et-vevit">VeVit</span> web studio</small>
           </span>
         </a>
         <nav className="et-nav" aria-label={strings.categories}>

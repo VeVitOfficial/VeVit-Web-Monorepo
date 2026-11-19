@@ -34,7 +34,6 @@ export default async function ToolsHubPage({ params }: { params: Promise<{ local
           login: strings.header_login,
           login_title: strings.header_login_title,
           brand_name: "EveryTool",
-          brand_suffix: "by VeVit web studio",
         }}
       />
       <HubApp locale={locale} strings={strings} />

@@ -950,6 +950,8 @@ html[data-theme="dark"] .tools-app {
 .et-logo-t b { font-weight: 800; font-size: 23px; letter-spacing: -0.02em; }
 .et-logo-t b span { color: var(--et-accent); }
 .et-logo-t small { font-size: 11.5px; font-weight: 600; color: var(--et-muted2); margin-top: 4px; }
+/* „VeVit“ v podtitulu logu značkovou zelenou (theme-aware --green-text). */
+.et-logo-t .et-vevit { color: var(--green-text); font-weight: 700; }
 
 .et-nav { display: flex; flex-wrap: wrap; gap: 2px; flex: 1 1 auto; }
 .et-nav a {
@@ -970,9 +972,13 @@ html[data-theme="dark"] .tools-app {
 }
 .et-btn:hover { border-color: var(--et-ink); }
 .et-btn:active { transform: scale(0.96); }
-.et-btn-dark { background: var(--et-dark); color: #fff; border-color: var(--et-dark); font-weight: 800; }
-html[data-theme="dark"] .tools-app .et-btn-dark { background: var(--et-yellow); color: #1a1a2e; border-color: var(--et-yellow); }
-html[data-theme="dark"] .tools-app .et-btn-dark .et-crown { color: #1a1a2e; }
+/* Premium v hlavičce: žluté s tmavým textem a bílým obrysem (dřív velký
+   černý blob). Obrys písma = čitelnost na sytém žlutých/fialových tlačítkách. */
+.et-btn-dark {
+  background: var(--et-yellow); color: #1a1a2e; border-color: var(--et-yellow); font-weight: 800;
+  text-shadow: -2.5px -2.5px 0 #fff, 2.5px -2.5px 0 #fff, -2.5px 2.5px 0 #fff, 2.5px 2.5px 0 #fff, -2.5px 0 0 #fff, 2.5px 0 0 #fff, 0 -2.5px 0 #fff, 0 2.5px 0 #fff;
+}
+.et-btn-dark .et-crown { color: inherit; }
 .et-crown { display: flex; color: var(--et-yellow); transform-origin: 50% 100%; animation: et-crown 4s ease-in-out infinite; }
 @keyframes et-crown { 0%, 78%, 100% { transform: none; } 84% { transform: translateY(-3px) rotate(-14deg); } 90% { transform: translateY(-1px) rotate(12deg); } 95% { transform: rotate(-5deg); } }
 
@@ -1319,8 +1325,16 @@ html[data-theme="dark"] .tools-app .et-btn-dark .et-crown { color: #1a1a2e; }
 .et-big:hover { transform: scale(1.03); }
 .et-big:active { transform: scale(0.97); }
 .et-big-outline { border: 2px solid var(--et-ink); color: var(--et-ink); background: transparent; }
-.et-big-yellow { background: var(--et-yellow); color: #1a1a2e; }
-.et-big-violet { background: #6d32e0; color: #fff; }
+/* Žlutá tlačítko → tmavý text s bílým obrysem; fialová → bílý text s černým
+   obrysem (opačná barva k výplni písma), ať dobře čitelné na sytém pozadích. */
+.et-big-yellow {
+  background: var(--et-yellow); color: #1a1a2e;
+  text-shadow: -2.5px -2.5px 0 #fff, 2.5px -2.5px 0 #fff, -2.5px 2.5px 0 #fff, 2.5px 2.5px 0 #fff, -2.5px 0 0 #fff, 2.5px 0 0 #fff, 0 -2.5px 0 #fff, 0 2.5px 0 #fff;
+}
+.et-big-violet {
+  background: #6d32e0; color: #fff;
+  text-shadow: -2.5px -2.5px 0 #1a1a2e, 2.5px -2.5px 0 #1a1a2e, -2.5px 2.5px 0 #1a1a2e, 2.5px 2.5px 0 #1a1a2e, -2.5px 0 0 #1a1a2e, 2.5px 0 0 #1a1a2e, 0 -2.5px 0 #1a1a2e, 0 2.5px 0 #1a1a2e;
+}
 .et-orbit { position: absolute; right: -60px; top: -60px; width: 200px; height: 200px; border-radius: 50%; border: 3px dashed var(--et-yellow); opacity: 0.5; animation: et-spin 18s linear infinite; }
 .et-orbit::after { content: ""; position: absolute; left: 50%; top: -9px; width: 16px; height: 16px; border-radius: 50%; background: #ff5a5f; }
 .et-vorbit { position: absolute; left: -56px; bottom: -56px; width: 170px; height: 170px; border-radius: 40px; border: 3px dashed #8b5cf6; opacity: 0.35; animation: et-spin 22s linear infinite reverse; }
