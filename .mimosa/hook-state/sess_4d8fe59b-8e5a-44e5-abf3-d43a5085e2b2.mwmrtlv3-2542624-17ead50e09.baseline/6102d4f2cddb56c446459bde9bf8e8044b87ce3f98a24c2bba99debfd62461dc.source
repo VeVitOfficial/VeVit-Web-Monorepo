@@ -1,0 +1,33 @@
+name: Security preflight
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  secret-and-quality-gates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run secret-scan
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm test
+      - run: npm run test:unit
+      - run: npm run validate:aifb
+
+  # TruffleHog: hledá tajné klíče v celé historii gitu a ověřuje, zda jsou ještě platné.
+  trufflehog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: trufflesecurity/trufflehog@v3.99.8
+        with:
+          extra_args: --results=verified,unknown

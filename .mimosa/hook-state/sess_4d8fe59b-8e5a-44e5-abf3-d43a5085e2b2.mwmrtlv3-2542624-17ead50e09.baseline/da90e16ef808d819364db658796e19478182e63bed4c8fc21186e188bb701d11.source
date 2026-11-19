@@ -1,0 +1,129 @@
+import "server-only";
+
+// Serverová část AI cvičení AIFB. Poskytovatel modelu se mění na jediném místě (callProvider)
+// a výhradně přes prostředí: AIFB_AI_API_URL / AIFB_AI_API_KEY / AIFB_AI_MODEL, případně stávající
+// EDU_AI_* (stejný OpenAI-kompatibilní formát jako vyhledávání ve Wikipedii). Bez klíče se vždy
+// vrací uložená odpověď. Nic se neukládá ani nelogují se texty žáků; do odpovědi se nedostane
+// označení modelu (pravidlo R8). Osobní údaje se kontrolují i zde (R2), nikdy jen na klientu.
+
+import { toolsRateLimit } from "@/lib/tools-rate-limit";
+import { AI_LESSONS, MAX_PROMPT_CHARS, MIN_PROMPT_CHARS, truncateWords, type AiLessonConfig } from "./ai-config";
+import { getPupilLayer } from "./content";
+import { detectPersonalData } from "./pii";
+import { aiLessonAvailable } from "./pupil";
+
+export type AiResult =
+  | { status: 200; body: { ok: true; source: "live" | "stored"; text: string; plantedErrors?: string[] } }
+  | { status: 400 | 404 | 422 | 429; body: { ok: false; error: string; kind?: string } };
+
+const RATE_NAMESPACE = "aifb-ai";
+const RATE_WINDOW_SECONDS = 600;
+const RATE_MAX = 20;
+// Celkový strop živých dotazů nezávislý na IP (ochrana nákladů při obcházení limitu po IP).
+const GLOBAL_NAMESPACE = "aifb-ai-global";
+const GLOBAL_WINDOW_SECONDS = 3600;
+const GLOBAL_MAX = 300;
+
+function providerSettings() {
+  const key = (process.env.AIFB_AI_API_KEY ?? process.env.EDU_AI_API_KEY ?? "").trim();
+  if (key === "") return null;
+  return {
+    key,
+    url: (process.env.AIFB_AI_API_URL ?? process.env.EDU_AI_API_URL ?? "https://api.openai.com/v1/chat/completions").trim(),
+    model: (process.env.AIFB_AI_MODEL ?? process.env.EDU_AI_MODEL ?? "gpt-4o-mini").trim(),
+  };
+}
+
+/** Jediné místo, které mluví s poskytovatelem modelu. Vrací null při jakékoli chybě. */
+async function callProvider(config: AiLessonConfig, prompt: string): Promise<string | null> {
+  const settings = providerSettings();
+  if (!settings) return null;
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 15_000);
+  try {
+    const response = await fetch(settings.url, {
+      method: "POST",
+      signal: controller.signal,
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${settings.key}` },
+      body: JSON.stringify({
+        model: settings.model,
+        temperature: 0.4,
+        max_tokens: 500,
+        messages: [
+          { role: "system", content: config.system },
+          { role: "user", content: prompt },
+        ],
+      }),
+    });
+    if (!response.ok) return null;
+    const data = (await response.json()) as { choices?: { message?: { content?: unknown } }[] };
+    const text = data.choices?.[0]?.message?.content;
+    return typeof text === "string" && text.trim() !== "" ? truncateWords(text, config.maxWords) : null;
+  } catch {
+    return null;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+/**
+ * Konfigurace dotazu: PromptLab bere systémový prompt a uloženou odpověď z vrstvy lekce (jen server),
+ * ostatní lekce ze statické mapy. Žáci 1. stupně sem nikdy nepíšou (R1), proto se zs1 odmítá vždy.
+ */
+function configFor(lessonId: string, roundId: unknown): AiLessonConfig | null {
+  if (lessonId.startsWith("zs1-")) return null;
+  const layer = getPupilLayer(lessonId);
+  if (layer?.component === "PromptLab") {
+    const round = typeof roundId === "string" ? layer.server?.rounds?.[roundId] : undefined;
+    if (!round) return null;
+    return { kind: "prompt-rescue", system: round.system, fallback: round.fallback, maxWords: round.maxWords };
+  }
+  return AI_LESSONS[lessonId] ?? null;
+}
+
+/** `canOpen`: návštěvník smí lekci otevřít (role a odemčení učitelem); `preview`: smí vidět návrhy. */
+export async function completeLesson(input: {
+  lessonId: unknown;
+  roundId?: unknown;
+  prompt: unknown;
+  ip: string;
+  canOpen: (lessonId: string) => boolean;
+  preview: boolean;
+}): Promise<AiResult> {
+  const lessonId = typeof input.lessonId === "string" ? input.lessonId : "";
+  const config = configFor(lessonId, input.roundId);
+  if (!config || !input.canOpen(lessonId) || !aiLessonAvailable(getPupilLayer(lessonId), input.preview)) {
+    return { status: 404, body: { ok: false, error: "unknown_lesson" } };
+  }
+
+  let prompt: string;
+  if (config.fixedPrompt) {
+    prompt = config.fixedPrompt;
+  } else {
+    if (typeof input.prompt !== "string") return { status: 400, body: { ok: false, error: "prompt_required" } };
+    prompt = input.prompt.trim();
+    if (prompt.length < MIN_PROMPT_CHARS || prompt.length > MAX_PROMPT_CHARS) return { status: 400, body: { ok: false, error: "prompt_length" } };
+    const kind = detectPersonalData(prompt);
+    if (kind) return { status: 422, body: { ok: false, error: "personal_data", kind } };
+  }
+
+  const stored = (): AiResult => ({
+    status: 200,
+    body: { ok: true, source: "stored", text: config.fallback, ...(config.plantedErrors ? { plantedErrors: config.plantedErrors } : {}) },
+  });
+
+  // Bez poskytovatele se nic neomezuje (uložená odpověď nic nestojí a nic neodesílá).
+  if (!providerSettings()) return stored();
+
+  const limit = await toolsRateLimit(input.ip, RATE_NAMESPACE, RATE_WINDOW_SECONDS, RATE_MAX);
+  // Nedostupný limiter = žádný živý dotaz s náklady; žák dostane uloženou odpověď.
+  if (!limit.available) return stored();
+  if (!limit.allowed) return { status: 429, body: { ok: false, error: "rate_limited" } };
+
+  // Globální strop: po jeho vyčerpání (nebo při nedostupném úložišti) se model nevolá a vrací se uložená odpověď.
+  const budget = await toolsRateLimit("global", GLOBAL_NAMESPACE, GLOBAL_WINDOW_SECONDS, GLOBAL_MAX);
+  if (!budget.available || !budget.allowed) return stored();
+
+  const text = await callProvider(config, prompt);
+  return text ? { status: 200, body: { ok: true, source: "live", text } } : stored();
+}

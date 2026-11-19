@@ -194,6 +194,16 @@ export async function getProducts(filters: Record<string, string | undefined> = 
   return representatives;
 }
 
+/**
+ * Aktivní produkty pro XML feed srovnávačů (store/feed.xml). Na rozdíl od getProducts()
+ * bez skupinování variant: každá varianta jde do feedu samostatně (sdílí GROUP_ID),
+ * jak Heureka/Zboží.cz očekávají.
+ */
+export async function getProductsForFeed() {
+  const params = new URLSearchParams({ select: productSelect, is_active: "eq.true", order: "id.asc", limit: "1000" });
+  return dataApi<StoreProduct>("store_products", params, 3600);
+}
+
 export async function getProduct(slug: string) {
   const params = new URLSearchParams({
     select: productSelect,
