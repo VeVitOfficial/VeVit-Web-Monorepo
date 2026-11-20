@@ -554,6 +554,7 @@ export interface HubI18n {
   pro_name: string;
   pro_sub: string;
   pro_price_placeholder: string;
+  pro_price_placeholder_yearly: string;
   pro_unit_m: string;
   pro_unit_y: string;
   pro_save_placeholder: string;
@@ -674,20 +675,21 @@ const HUB_CS: HubI18n = {
     "Zpracování přímo v prohlížeči",
     "Základní denní limit AI nástrojů",
     "Soubory do běžné velikosti",
+    "Bez reklam",
   ],
   free_cta: "Používat zdarma",
   pro_tag: "DOPORUČUJEME",
   pro_name: "Premium",
   pro_sub: "Pro ty, kdo s nástroji pracují denně",
-  pro_price_placeholder: "[CENA] Kč",
+  pro_price_placeholder: "130 Kč",
+  pro_price_placeholder_yearly: "[CENA] Kč",
   pro_unit_m: "/ měsíc",
   pro_unit_y: "/ rok",
   pro_save_placeholder: "Ušetříte [X] %",
   pro_perks: [
     "Vše, co nabízí verze Zdarma",
-    "Vyšší limity AI nástrojů",
+    "200 AI dotazů denně",
     "Větší soubory a dávkové zpracování",
-    "Bez reklam",
     "Oblíbené a historie na všech zařízeních",
     "Přednostní podpora",
   ],
@@ -805,20 +807,21 @@ const HUB_EN: HubI18n = {
     "Processing right in the browser",
     "Basic daily limit for AI tools",
     "Files up to a regular size",
+    "No ads",
   ],
   free_cta: "Use for free",
   pro_tag: "RECOMMENDED",
   pro_name: "Premium",
   pro_sub: "For people who work with tools every day",
-  pro_price_placeholder: "[PRICE] CZK",
+  pro_price_placeholder: "130 CZK",
+  pro_price_placeholder_yearly: "[PRICE] CZK",
   pro_unit_m: "/ month",
   pro_unit_y: "/ year",
   pro_save_placeholder: "Save [X] %",
   pro_perks: [
     "Everything in the Free plan",
-    "Higher AI tool limits",
+    "200 AI queries per day",
     "Bigger files and batch processing",
-    "No ads",
     "Favourites and history on all devices",
     "Priority support",
   ],

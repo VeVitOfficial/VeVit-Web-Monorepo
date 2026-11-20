@@ -4,8 +4,9 @@
 // VeVit Premium. Tarify VeVit čte ze sdíleného src/lib/premium-tiers.ts
 // (stejný zdroj jako domovská stránka), takže ceny a výhody nejsou duplicitní.
 //
-// ⚠ [CENA] a [X] % u EveryTool Premium jsou záměrné placeholdery — konkrétní
-//   cena a roční sleva se doplní po rozhodnutí (viz úkoly v plánu).
+// ⚠ Roční cena EveryTool Premium a sleva ([CENA] / [X] %) jsou záměrné
+//   placeholdery — doplní se po rozhodnutí. Měsíčně 130 Kč, 200 AI dotazů
+//   denně; bez reklam má už verze Zdarma.
 import { useState } from "react";
 import { TOOLS, type HubI18n, type Locale } from "@/components/tools/registry/data";
 import { VEVIT_TIERS, VEVIT_PLATINUM } from "@/lib/premium-tiers";
@@ -75,8 +76,8 @@ export function HubPremium({ locale, strings }: { locale: Locale; strings: HubI1
             <div className="et-plan-sub">{strings.pro_sub}</div>
           </div>
           <div className="et-price et-plan-rel">
-            {/* Placeholder — cena se doplní po rozhodnutí (viz plán). */}
-            <b>{strings.pro_price_placeholder}</b>
+            {/* Měsíční cena 130 Kč; roční cena a sleva se doplní (viz plán). */}
+            <b>{yearly ? strings.pro_price_placeholder_yearly : strings.pro_price_placeholder}</b>
             <span className="et-unit">{yearly ? strings.pro_unit_y : strings.pro_unit_m}</span>
             {yearly ? <span className="et-save">{strings.pro_save_placeholder}</span> : null}
           </div>
