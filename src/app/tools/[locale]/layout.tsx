@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { ConsentBanner } from "@/components/tools/consent-banner";
 import { SUPPORTED_LOCALES, type Locale } from "@/components/tools/registry/data";
 import { etFontsClass } from "@/components/tools/fonts";
@@ -7,6 +8,18 @@ import { etFontsClass } from "@/components/tools/fonts";
 export function generateStaticParams() {
   return SUPPORTED_LOCALES.map((locale) => ({ locale }));
 }
+
+// EveryTool.cz favicon — jen pro stránky nástrojů; ostatní aplikace
+// (home/account/store) si drží sdílený src/app/favicon.ico.
+export const metadata: Metadata = {
+  icons: {
+    icon: [
+      { url: "/brand/everytool/everytool.ico", sizes: "48x48" },
+      { url: "/brand/everytool/everytool-mark.svg", type: "image/svg+xml" },
+    ],
+    apple: "/brand/everytool/apple-touch-icon.png",
+  },
+};
 
 // Společné pro všechny stránky nástrojů: lišta cookies + přijetí podmínek užití.
 export default async function ToolsLayout({ children, params }: Readonly<{ children: React.ReactNode; params: Promise<{ locale: string }> }>) {

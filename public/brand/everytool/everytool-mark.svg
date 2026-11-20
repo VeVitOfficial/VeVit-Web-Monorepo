@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="EveryTool.cz">
+  <!-- EveryTool.cz — značka (mark). Čtyři dílky v dlaždicovém rámečku:
+       přesně dle redesignu (hlavička/index.html), osově zarovnaná varianta
+       vhodná i pro favicon. Barevná verze na tmavé dlaždici #1A1A2E. -->
+  <title>EveryTool.cz</title>
+  <rect width="100" height="100" rx="31" fill="#1A1A2E"/>
+  <rect x="19" y="19" width="26.25" height="26.25" rx="9.5" fill="#FF5A5F"/>
+  <circle cx="67.875" cy="32.125" r="13.125" fill="#FFD23F"/>
+  <circle cx="32.125" cy="67.875" r="13.125" fill="#2EC4B6"/>
+  <rect x="54.75" y="54.75" width="26.25" height="26.25" rx="9.5" fill="#8B5CF6"/>
+</svg>
