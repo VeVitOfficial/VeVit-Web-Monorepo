@@ -70,7 +70,7 @@ export function HubPremium({ locale, strings }: { locale: Locale; strings: HubI1
         {/* ── EveryTool Premium ── */}
         <article className="et-plan et-plan-pro">
           <span className="et-orbit" aria-hidden="true"></span>
-          <div className="et-plan-rel">
+          <div className="et-plan-head">
             <span className="et-tag">{strings.pro_tag}</span>
             <div className="et-plan-name"><span className="et-crown" aria-hidden="true">{CROWN}</span>{strings.pro_name}</div>
             <div className="et-plan-sub">{strings.pro_sub}</div>
@@ -92,7 +92,7 @@ export function HubPremium({ locale, strings }: { locale: Locale; strings: HubI1
         {/* ── VeVit Premium ── */}
         <article className="et-plan et-plan-vevit">
           <span className="et-vorbit" aria-hidden="true"></span>
-          <div className="et-plan-rel">
+          <div className="et-plan-head">
             <span className="et-tag et-tag-violet">{strings.vevit_tag}</span>
             <div className="et-plan-name"><span className="et-vmark" aria-hidden="true">V</span>{strings.vevit_name}</div>
             <div className="et-plan-sub">{strings.vevit_sub}</div>

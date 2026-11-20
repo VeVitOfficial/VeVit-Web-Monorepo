@@ -999,7 +999,10 @@ html[data-theme="dark"] .tools-app {
 .tools-app .et-lang-slot .vv-locale, .tools-app .et-switcher-slot .vv-app-switcher { min-height: 44px; }
 
 /* ── Hero ─────────────────────────────────────────────────────────── */
-.et-hero { position: relative; overflow: hidden; background: var(--et-lilac); padding: 76px 24px 96px; }
+/* Pozor: .et-hero nesmí mít overflow:hidden — clipl by našeptávač pod
+   vyhledáváním. Dekorativní bloby mají vlastní ořezové plátno (.et-blobs). */
+.et-hero { position: relative; background: var(--et-lilac); padding: 76px 24px 96px; }
+.et-blobs { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
 .et-blob { position: absolute; transition: transform 0.2s ease-out; pointer-events: none; }
 .et-hero-in { position: relative; max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 22px; }
 .et-badge {
@@ -1138,6 +1141,8 @@ html[data-theme="dark"] .tools-app {
 .et-tile .cnt { margin-top: auto; display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; }
 .et-tile .cnt svg { transition: transform 0.2s; }
 .et-tile:hover .cnt svg { transform: translateX(5px); }
+/* název × popis: svislé rozdělení v těle karty */
+.et-tile-body, .et-pop-body { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 .et-tile::after { content: ""; position: absolute; right: -30px; bottom: -30px; width: 110px; height: 110px; border-radius: 50%; background: var(--c); opacity: 0.08; transition: transform 0.5s cubic-bezier(0.3, 1.4, 0.5, 1); }
 .et-tile:hover::after { transform: scale(1.8); }
 
@@ -1294,6 +1299,8 @@ html[data-theme="dark"] .tools-app {
 .et-plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; width: 100%; }
 .et-plan { position: relative; overflow: hidden; padding: 34px; border-radius: 32px; display: flex; flex-direction: column; gap: 22px; }
 .et-plan-rel { position: relative; }
+/* hlavička karty tarifu: štítek → název → podtitul s mezerami */
+.et-plan-head { position: relative; display: flex; flex-direction: column; gap: 6px; }
 .et-plan-free { border: 2px solid var(--et-line); background: var(--et-surface); }
 .et-plan-pro { background: var(--et-dark); color: var(--et-on-dark); transition: transform 0.3s cubic-bezier(0.3, 1.5, 0.5, 1); }
 .et-plan-pro:hover { transform: translateY(-6px) rotate(0.4deg); }

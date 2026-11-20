@@ -345,12 +345,16 @@ export function HubApp({ locale, strings }: Props) {
     <main className="et-main" suppressHydrationWarning>
       {/* ── Hero ─────────────────────────────────────────────────────── */}
       <section className="et-hero" id="et-hero">
-        <span className="et-blob" data-depth="18" aria-hidden="true" style={{ left: "7%", top: "70px", width: "64px", height: "64px", borderRadius: "50%", background: "#FFD23F" }}></span>
-        <span className="et-blob" data-depth="-24" aria-hidden="true" style={{ left: "13%", top: "300px", width: "46px", height: "46px", borderRadius: "12px", background: "#8B5CF6", rotate: "18deg" }}></span>
-        <span className="et-blob" data-depth="12" aria-hidden="true" style={{ left: "4%", top: "430px", width: "30px", height: "30px", borderRadius: "50%", border: "6px solid #FF5A5F" }}></span>
-        <span className="et-blob" data-depth="-16" aria-hidden="true" style={{ right: "8%", top: "90px", width: "52px", height: "52px", borderRadius: "14px", background: "#2EC4B6", rotate: "-14deg" }}></span>
-        <span className="et-blob" data-depth="22" aria-hidden="true" style={{ right: "5%", top: "330px", width: "74px", height: "74px", borderRadius: "50%", border: "8px solid #FFB4C6" }}></span>
-        <span className="et-blob" data-depth="-10" aria-hidden="true" style={{ right: "15%", top: "460px", width: "26px", height: "26px", borderRadius: "50%", background: "#2F6BFF" }}></span>
+        {/* Dekorativní bloby ve vlastním ořezovém plátně — hero samo musí
+            mít overflow viditelné, aby pod ním nezamizel našeptávač. */}
+        <span className="et-blobs" aria-hidden="true">
+          <span className="et-blob" data-depth="18" style={{ left: "7%", top: "70px", width: "64px", height: "64px", borderRadius: "50%", background: "#FFD23F" }}></span>
+          <span className="et-blob" data-depth="-24" style={{ left: "13%", top: "300px", width: "46px", height: "46px", borderRadius: "12px", background: "#8B5CF6", rotate: "18deg" }}></span>
+          <span className="et-blob" data-depth="12" style={{ left: "4%", top: "430px", width: "30px", height: "30px", borderRadius: "50%", border: "6px solid #FF5A5F" }}></span>
+          <span className="et-blob" data-depth="-16" style={{ right: "8%", top: "90px", width: "52px", height: "52px", borderRadius: "14px", background: "#2EC4B6", rotate: "-14deg" }}></span>
+          <span className="et-blob" data-depth="22" style={{ right: "5%", top: "330px", width: "74px", height: "74px", borderRadius: "50%", border: "8px solid #FFB4C6" }}></span>
+          <span className="et-blob" data-depth="-10" style={{ right: "15%", top: "460px", width: "26px", height: "26px", borderRadius: "50%", background: "#2F6BFF" }}></span>
+        </span>
         <div className="et-hero-in">
           <a
             href="#et-katalog"
