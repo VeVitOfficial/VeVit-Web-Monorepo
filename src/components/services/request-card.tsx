@@ -21,7 +21,7 @@ type CardRequest = {
   views: number;
 };
 
-/** Karta poptávky ve výpisu (server i klient). */
+/** Karta poptávky ve výpisu (server i klient) — podobná inzerátu na prace.cz. */
 export function RequestCard({ request, categories, base, now, distance = null, offers = 0, bookmark, preview = false }: {
   request: CardRequest;
   categories: ServicesCategory[];
@@ -36,6 +36,7 @@ export function RequestCard({ request, categories, base, now, distance = null, o
   const href = `${base}/poptavka/${request.id}`;
   const place = request.city || "Na dálku";
   const distanceText = distanceLabel(distance);
+  const isNew = now - Date.parse(request.created_at) < 24 * 3_600_000;
   return (
     <article className={`svc-rcard${request.urgent ? " svc-rcard--urgent" : ""}`}>
       <span className="svc-rcard__icon" aria-hidden="true"><SvcIcon name={categoryIcon(request.category, categories)} size={20} /></span>
@@ -43,12 +44,12 @@ export function RequestCard({ request, categories, base, now, distance = null, o
         <div className="svc-rcard__top">
           <span className="svc-rcard__cat">{categoryLabel(request.category, categories)}</span>
           {request.urgent ? <span className="svc-tag svc-tag--urgent"><SvcIcon name="zap" size={12} /> Spěchá</span> : null}
+          {isNew ? <span className="svc-tag svc-tag--new">Nová</span> : null}
           <span className="svc-rcard__age">{ago(request.created_at, now)}</span>
         </div>
         <h3 className="svc-rcard__title">{preview ? request.title : <a href={href}>{request.title}</a>}</h3>
-        <p className="svc-rcard__desc">{request.description}</p>
+        <p className="svc-rcard__pay"><SvcIcon name="banknote" size={16} /> {budgetLabel(request.budget_min, request.budget_max, request.budget_type)}</p>
         <ul className="svc-rcard__facts">
-          <li><SvcIcon name="banknote" size={14} /> {budgetLabel(request.budget_min, request.budget_max, request.budget_type)}</li>
           <li>
             <SvcIcon name={request.city ? "map-pin" : "globe"} size={14} /> {place}
             {distanceText ? <span className="svc-rcard__dist"> · {distanceText}</span> : null}
@@ -57,13 +58,14 @@ export function RequestCard({ request, categories, base, now, distance = null, o
           <li><SvcIcon name="repeat" size={14} /> {jobTypeLabel(request.job_type, true)}</li>
           {request.deadline ? <li><SvcIcon name="calendar" size={14} /> Termín {untilLabel(request.deadline, now)}</li> : null}
         </ul>
+        <p className="svc-rcard__desc">{request.description}</p>
       </div>
       <div className="svc-rcard__side">
         <span className={`svc-rcard__offers${offers === 0 ? " is-zero" : ""}`}>
           {offers === 0 ? "Zatím bez nabídek" : plural(offers, "nabídka", "nabídky", "nabídek")}
         </span>
         {bookmark ? <BookmarkButton requestId={request.id} initial={bookmark.saved} loginHref={bookmark.loginHref} compact /> : null}
-        {preview ? null : <a className="svc-btn svc-btn--sm" href={href}>Detail</a>}
+        {preview ? null : <a className="svc-rcard__more" href={href}>Detail <SvcIcon name="arrow-right" size={14} /></a>}
       </div>
     </article>
   );

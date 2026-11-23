@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "mimosa-finding-ledger-batch/v1",
+  "batchId": "stop-20261120T001508951Z-3755689-bdedff2757ab",
+  "runId": "20261120T001508951Z-3755689-bdedff2757ab",
+  "runStatus": "inconclusive",
+  "coverage": {
+    "status": "partial",
+    "reasons": [
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "src/lib/store-data.ts",
+        "detail": "spawnSync /usr/bin/node ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "src/app/store/feed.xml/route.ts",
+        "detail": "spawnSync /usr/bin/node ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "scanner_failed",
+        "stage": "scan",
+        "target": "src/app/tools/[locale]/layout.tsx",
+        "detail": "spawnSync /usr/bin/node ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "src/lib/store-data.ts",
+        "detail": "scanner_failed: spawnSync /usr/bin/node ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "src/app/store/feed.xml/route.ts",
+        "detail": "scanner_failed: spawnSync /usr/bin/node ETIMEDOUT",
+        "affectsCompletion": true
+      },
+      {
+        "code": "project_check_failed",
+        "stage": "scan",
+        "target": "src/app/tools/[locale]/layout.tsx",
+        "detail": "scanner_failed: spawnSync /usr/bin/node ETIMEDOUT",
+        "affectsCompletion": true
+      }
+    ]
+  },
+  "source": {
+    "component": "zcode-hook",
+    "operationId": "Stop"
+  },
+  "revision": "b6e643ec2681ba686b430f1a9c41b98918f97c77",
+  "diffHash": "d9667e86c1d5fb5844c15903fea99e97bf4dab0d7b2cb4dd5aed0f306cbaac16",
+  "rulesVersion": "unavailable",
+  "sessionHash": "b1c23e321c50ad2e4e500705cc52df680be86edde985c87b2b2d598b8cf78cac",
+  "reportRef": ".mimosa/reports/task-review-sess_4d8fe59b-8e5a-44e5-abf3-d43a5085e2b2-20261120T001508951Z-3755689-bdedff2757ab.json",
+  "events": [],
+  "observedFindingIds": [],
+  "verifiedFiles": [],
+  "recordedAt": "2026-11-20T00:15:11.536Z"
+}

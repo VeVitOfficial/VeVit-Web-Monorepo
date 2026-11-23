@@ -1,0 +1,55 @@
+import { headers } from "next/headers";
+import { NextResponse } from "next/server";
+import {
+  AccountBackendUnavailableError,
+  forgetCachedSessions,
+  loadSessionFromCookies,
+  type AccountSession,
+} from "@/lib/account-session";
+import { isCrossSiteRequest } from "@/lib/request-origin";
+
+/** Error results share the PHP jsonErr() shape { error: string }. */
+class UnauthorizedAccountError extends Error {}
+class ServerAccountError extends Error {}
+
+function jsonAccountError(error: Error, status: number): Response {
+  const message = status === 401
+    ? "Unauthorized"
+    : status === 503
+      ? "Service temporarily unavailable"
+      : "Chyba serveru.";
+  return NextResponse.json(
+    { error: message, ...(status === 503 ? { code: "ACCOUNT_BACKEND_UNAVAILABLE" } : {}) },
+    { status, headers: { "Cache-Control": "no-store" } },
+  );
+}
+
+/**
+ * Shared plumbing for migrated account API routes: resolves the session from
+ * the __Host-vvsession cookie, maps backend outages to 503 and unknown
+ * failures to 500 — mirroring the PHP requireAuth()/jsonErr() error shape.
+ * Requests that a browser marks as cross-site are refused before the session
+ * is read (CSRF defence in depth on top of the SameSite=Lax cookie).
+ */
+export async function handleAccountRequest(
+  handler: (session: AccountSession) => Promise<Response>,
+): Promise<Response> {
+  try {
+    const incoming = new Request("https://account.invalid/", { headers: await headers() });
+    if (isCrossSiteRequest(incoming)) {
+      return NextResponse.json({ error: "Neplatný požadavek." }, { status: 403, headers: { "Cache-Control": "no-store" } });
+    }
+    const session = await loadSessionFromCookies();
+    if (!session) return jsonAccountError(new UnauthorizedAccountError(), 401);
+    try {
+      return await handler(session);
+    } finally {
+      // Handler mohl změnit profil, heslo nebo session — me.php nesmí vracet starou kopii.
+      forgetCachedSessions(session.user.id);
+    }
+  } catch (error) {
+    if (error instanceof AccountBackendUnavailableError) return jsonAccountError(error, 503);
+    console.error("Account route failed", { message: error instanceof Error ? error.message : String(error) });
+    return jsonAccountError(new ServerAccountError(), 500);
+  }
+}

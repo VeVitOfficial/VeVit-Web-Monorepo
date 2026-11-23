@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__claude_ai_Claude_Docs__batch",
+      "mcp__plugin_supabase_supabase__execute_sql"
+    ]
+  },
+  "disabledMcpjsonServers": [
+    "21st",
+    "supabase"
+  ]
+}

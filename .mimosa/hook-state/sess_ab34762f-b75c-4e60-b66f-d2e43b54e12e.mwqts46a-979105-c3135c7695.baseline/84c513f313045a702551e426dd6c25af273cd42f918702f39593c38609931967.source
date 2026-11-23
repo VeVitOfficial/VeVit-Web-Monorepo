@@ -1,0 +1,17 @@
+<?php
+define('APP_ENV', 'beta');
+define('APP_URL', 'https://vevit.cz/store');
+define('APP_STORAGE_PATH', '/tmp/vevit-storage');
+define('DB_DSN', 'pgsql:host=127.0.0.1;port=5432;dbname=vevit_store');
+define('DB_USER', 'vitekeee');
+define('DB_PASS', 'vevit_dev_pass');
+define('SESSION_NAME', 'vevit_store_session');
+define('SESSION_COOKIE_SECURE', false);
+define('SESSION_COOKIE_SAMESITE', 'Lax');
+define('STORE_ALLOWED_ORIGINS', 'https://vevit.cz');
+define('ADMIN_PASSWORD_HASH', '');
+define('STRIPE_SECRET_KEY', '');
+define('STRIPE_WEBHOOK_SECRET', '');
+define('STRIPE_ACCOUNT_ID', '');
+define('VEVIT_ACCOUNT_ME_URL',    'https://vevit.cz/account/api/me.php');
+define('VEVIT_ACCOUNT_LOGIN_URL', 'https://vevit.cz/account/login');

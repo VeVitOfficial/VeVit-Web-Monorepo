@@ -1,0 +1,21 @@
+export const runtime = "nodejs";
+
+// Legacy cesta z WEDOS éry (.php artefakt na Next.js/Vercelu). Skutečný
+// handler žije teď v /tools/api/ai/[tool]/route.ts — sem přesměrováváme
+// 308, ať se zachová metoda i tělo požadavku (Fáze 1, bod 3 zadání).
+async function handler(request: Request): Promise<Response> {
+  let tool = "ai-chat";
+  try {
+    const body = (await request.clone().json()) as Record<string, unknown>;
+    if (typeof body?.tool === "string" && body.tool.trim() !== "") tool = body.tool.trim();
+  } catch {
+    /* tělo chybí/není JSON — použij výchozí tool */
+  }
+  const target = new URL(`/tools/api/ai/${encodeURIComponent(tool)}`, request.url);
+  return Response.redirect(target, 308);
+}
+
+export const POST = handler;
+export const GET = handler;
+export const PUT = handler;
+export const DELETE = handler;

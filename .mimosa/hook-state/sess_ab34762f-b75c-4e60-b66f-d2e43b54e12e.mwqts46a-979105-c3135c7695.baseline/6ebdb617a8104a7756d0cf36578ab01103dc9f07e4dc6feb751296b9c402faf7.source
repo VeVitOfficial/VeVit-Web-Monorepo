@@ -1,0 +1,25 @@
+@AGENTS.md
+
+Reply in the most concise form possible. Skip pleasantries,
+
+preambles, and recaps of my question. No phrases like
+
+"I'd be happy to", "Great question", or "Let me explain".
+
+Drop articles and filler words wherever the meaning stays clear.
+
+Prefer short declarative sentences. If a tool call is needed,
+
+run it first and show only the result. Do not narrate your steps.
+
+
+## Ročníková práce (AI gramotnost)
+
+Sekce AI gramotnost (`src/app/edu/ai-gramotnost`, `src/lib/edu/aifb`, `src/components/edu/aifb`, `src/content/aifb`) je předmětem ročníkové práce „Vývoj edukační webové platformy pro rozvoj AI gramotnosti“ (Word: `~/Documents/ročníková práce/2026-2027 Šablona ročníkové práce-in progres.docx`, odevzdání 16. 4. 2027).
+
+**AI gramotnost = gramotnost lidí v používání AI**, ne „gramotná AI“: pojmy (LLM, token, API, MCP, autonomní agenti), formáty (.md, .json), prompt engineering, jaký nástroj na co, kdy AI nepoužít a stačí jednodušší program (lepší a levnější), firmy a modely na trhu, jak zůstat v obraze (llm-stats.com, žebříčky). Tak o ní piš v práci i v obsahu.
+
+Když v této sekci přidáš nebo změníš funkci:
+1. Zapiš ji rovnou do Wordu: popis funkce do praktické části (kapitola 4 návrh / 5 technické řešení), a pokud mění rozsah práce, uprav i anotaci a úvod. Anotace a úvod se generují z `~/Documents/ročníková práce/nastroje/text_uvodu.py` skriptem `python3 -I nastroje/prepis_docx.py "<docx>"` (sám udělá zálohu). Píše se česky, v 1. osobě v mužském rodě, jako hotová práce.
+2. Odškrtni ji v `docs/aifb/PLAN-UCITEL.md` (funkce U1–U9, chybějící obsah O1–O6).
+3. Autorství: koncepce AIFB, teorie, lekce a cvičení jsou autorova, AI pomáhala jen s programováním. Nepiš opak.

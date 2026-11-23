@@ -172,29 +172,36 @@ export default async function RequestDetailPage({ params, searchParams }: Props)
       <div className="svc-two">
         <div className="svc-stack">
           <article className="svc-card svc-detail">
-            <div className="svc-row">
-              {parent ? <span className="svc-badge svc-badge--cat"><SvcIcon name={parent.icon} size={13} /> {child?.name_cs ?? parent.name_cs}</span> : null}
-              <StatusBadge status={request.status} />
-              {request.urgent ? <span className="svc-tag svc-tag--urgent"><SvcIcon name="zap" size={12} /> Spěchá</span> : null}
-            </div>
-            <h1 className="svc-h1 svc-detail__title">{request.title}</h1>
-            <dl className="svc-facts">
-              <div><dt><SvcIcon name="banknote" size={15} /> Rozpočet</dt><dd>{budgetLabel(request.budget_min, request.budget_max, request.budget_type)}</dd></div>
-              <div><dt><SvcIcon name="repeat" size={15} /> Typ</dt><dd>{jobTypeLabel(request.job_type)}</dd></div>
-              <div>
-                <dt><SvcIcon name={request.city ? "map-pin" : "globe"} size={15} /> Místo</dt>
-                <dd>
-                  {request.city || "Na dálku"}
-                  {request.city && request.region ? <span className="svc-small"> · {regionLabel(request.region)}</span> : null}
-                  {request.city && request.remote ? <span className="svc-small"> · lze i na dálku</span> : null}
-                </dd>
+            <div className="svc-detail__head">
+              <div className="svc-detail__headmain">
+                <div className="svc-row">
+                  {parent ? <span className="svc-badge svc-badge--cat"><SvcIcon name={parent.icon} size={13} /> {child?.name_cs ?? parent.name_cs}</span> : null}
+                  <StatusBadge status={request.status} />
+                  {request.urgent ? <span className="svc-tag svc-tag--urgent"><SvcIcon name="zap" size={12} /> Spěchá</span> : null}
+                </div>
+                <h1 className="svc-h1 svc-detail__title">{request.title}</h1>
+                <ul className="svc-detail__meta">
+                  <li>
+                    <SvcIcon name={request.city ? "map-pin" : "globe"} size={15} />
+                    {" "}{request.city || "Na dálku"}
+                    {request.city && request.region ? ` · ${regionLabel(request.region)}` : ""}
+                    {request.city && request.remote ? " · lze i na dálku" : ""}
+                  </li>
+                  <li><SvcIcon name="repeat" size={15} /> {jobTypeLabel(request.job_type)}</li>
+                  <li><SvcIcon name="clock" size={15} /> Zveřejněno {ago(request.created_at, now)}</li>
+                  <li><SvcIcon name="inbox" size={15} /> {offerTotal === 0 ? "Zatím bez nabídek" : plural(offerTotal, "nabídka", "nabídky", "nabídek")}</li>
+                </ul>
               </div>
+              <div className="svc-detail__pay">
+                <span className="svc-detail__paylabel">Rozpočet</span>
+                <strong>{budgetLabel(request.budget_min, request.budget_max, request.budget_type)}</strong>
+              </div>
+            </div>
+            <dl className="svc-facts">
               {distance !== null ? <div><dt><SvcIcon name="navigation" size={15} /> Od vás</dt><dd>{distanceLabel(distance)} vzdušnou čarou</dd></div> : null}
               <div><dt><SvcIcon name="calendar" size={15} /> Termín</dt><dd>{request.deadline ? `${dateLabel(request.deadline)} (${untilLabel(request.deadline, now)})` : "Neuveden"}</dd></div>
-              <div><dt><SvcIcon name="clock" size={15} /> Zveřejněno</dt><dd>{ago(request.created_at, now)}</dd></div>
               {request.status === "open" ? <div><dt><SvcIcon name="hourglass" size={15} /> Končí</dt><dd>{untilLabel(request.expires_at, now)}</dd></div> : null}
               <div><dt><SvcIcon name="eye" size={15} /> Zobrazení</dt><dd>{request.views}</dd></div>
-              <div><dt><SvcIcon name="inbox" size={15} /> Nabídky</dt><dd>{offerTotal === 0 ? "Zatím žádné" : offerTotal}</dd></div>
             </dl>
             <h2 className="svc-h3">Popis</h2>
             <p className="svc-pre">{request.description}</p>
@@ -295,7 +302,17 @@ export default async function RequestDetailPage({ params, searchParams }: Props)
             ) : null}
           </div>
           {!isAuthor && request.status === "open" && !ownOffer ? (
-            <a className="svc-btn svc-btn--primary" href={me ? "#nabidka" : loginHref}><SvcIcon name="send" size={15} /> Nabídnout svou práci</a>
+            <div className="svc-applycard">
+              <strong className="svc-applycard__title">Zajímá vás tato zakázka?</strong>
+              <p className="svc-small" style={{ margin: 0 }}>Pošlete nabídku se svou cenou a termínem. Zadavatel uvidí váš profil a hodnocení.</p>
+              <a className="svc-btn svc-btn--primary" href={me ? "#nabidka" : loginHref}>
+                <SvcIcon name="send" size={16} /> {me ? "Poslat nabídku" : "Přihlásit se a nabídnout"}
+              </a>
+              <ul className="svc-trustlist">
+                <li><SvcIcon name="check" size={14} /> Odeslání nabídky je zdarma</li>
+                <li><SvcIcon name="shield-check" size={14} /> Kontakt uvidíte po vybrání</li>
+              </ul>
+            </div>
           ) : null}
           <div className="svc-card svc-small">
             <strong className="svc-aside-title"><SvcIcon name="shield-check" size={15} /> Bezpečně</strong>

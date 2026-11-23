@@ -1,0 +1,115 @@
+import { handleAccountRequest } from "@/lib/account-route";
+import { accountSupabase } from "@/lib/account-auth";
+import { audit, consoleActor, consoleForbidden, consoleNotFound, consoleWriteActor, int, readJson, str } from "@/lib/admin";
+
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
+// Editable catalogues: ranks (permissions, colour), XP rules, tier benefits
+// and display prices. Reading needs console access, writing needs `*`;
+// staff rank permissions only an owner may change.
+
+const PERMISSION_RE = /^(\*|[a-z0-9_]+(\.[a-z0-9_]+)+)$/;
+const COLOR_RE = /^#[0-9a-f]{6}$/i;
+
+export async function GET() {
+  return handleAccountRequest(async (session) => {
+    if (!(await consoleActor(session))) return consoleNotFound();
+    const sb = accountSupabase();
+    const [ranks, rules, tiers, prices, catalog] = await Promise.all([
+      sb.from("ranks").select("key,kind,min_level,tier_key,priority,color,permissions").order("priority", { ascending: false }),
+      sb.from("xp_rules").select("source,amount,max_amount,daily_cap,bonus_applies,active").order("source"),
+      sb.from("tiers").select("key,sort_order,xp_bonus_pct,ai_daily_limit,store_discount_pct,is_public").order("sort_order"),
+      sb.from("tier_prices").select("tier,billing_cycle,price_czk").order("tier"),
+      sb.from("premium_price_catalog").select("tier,billing_cycle,amount_minor,active"),
+    ]);
+    return Response.json(
+      {
+        ranks: ranks.data ?? [],
+        xp_rules: rules.data ?? [],
+        tiers: tiers.data ?? [],
+        prices: prices.data ?? [],
+        stripe_catalog: catalog.data ?? [],
+      },
+      { headers: { "Cache-Control": "no-store" } },
+    );
+  });
+}
+
+export async function POST(request: Request) {
+  return handleAccountRequest(async (session) => {
+    const actor = await consoleWriteActor(request, session);
+    if (actor instanceof Response) return actor;
+    if (!actor.isAdmin) return consoleForbidden();
+    const body = await readJson(request);
+    const kind = str(body.kind, 20);
+    const sb = accountSupabase();
+    const nullableInt = (value: unknown) => (value === null || value === "" ? null : int(value));
+
+    if (kind === "xp_rule") {
+      const source = str(body.source, 60);
+      const amount = nullableInt(body.amount);
+      const dailyCap = nullableInt(body.daily_cap);
+      if ((amount !== null && amount <= 0) || (dailyCap !== null && dailyCap <= 0)) {
+        return Response.json({ error: "XP a strop musí být kladné nebo prázdné." }, { status: 400 });
+      }
+      const { error } = await sb.from("xp_rules")
+        .update({ amount, daily_cap: dailyCap, active: body.active !== false })
+        .eq("source", source);
+      if (error) return Response.json({ error: "Pravidlo se nepodařilo uložit." }, { status: 500 });
+      await audit(actor.id, "xp_rule_update", null, { source, amount, daily_cap: dailyCap, active: body.active !== false });
+      return Response.json({ ok: true });
+    }
+
+    if (kind === "tier") {
+      const key = str(body.key, 20);
+      const bonus = int(body.xp_bonus_pct);
+      const ai = nullableInt(body.ai_daily_limit);
+      const discount = int(body.store_discount_pct);
+      if (bonus === null || bonus < 0 || bonus > 200 || discount === null || discount < 0 || discount > 100 || (ai !== null && ai < 0)) {
+        return Response.json({ error: "Neplatné hodnoty tarifu." }, { status: 400 });
+      }
+      const { error } = await sb.from("tiers")
+        .update({ xp_bonus_pct: bonus, ai_daily_limit: ai, store_discount_pct: discount })
+        .eq("key", key);
+      if (error) return Response.json({ error: "Tarif se nepodařilo uložit." }, { status: 500 });
+      await audit(actor.id, "tier_update", null, { key, xp_bonus_pct: bonus, ai_daily_limit: ai, store_discount_pct: discount });
+      return Response.json({ ok: true });
+    }
+
+    if (kind === "price") {
+      const tier = str(body.tier, 20);
+      const cycle = str(body.billing_cycle, 20);
+      const price = int(body.price_czk);
+      if (!["bronze", "silver", "gold"].includes(tier) || !["monthly", "yearly"].includes(cycle) || price === null || price <= 0) {
+        return Response.json({ error: "Neplatná cena." }, { status: 400 });
+      }
+      const { error } = await sb.from("tier_prices").upsert({ tier, billing_cycle: cycle, price_czk: price }, { onConflict: "tier,billing_cycle" });
+      if (error) return Response.json({ error: "Cenu se nepodařilo uložit." }, { status: 500 });
+      await audit(actor.id, "price_update", null, { tier, billing_cycle: cycle, price_czk: price });
+      return Response.json({ ok: true, note: "Zobrazovaná cena. Cenu ve Stripe je potřeba změnit zvlášť." });
+    }
+
+    if (kind === "rank") {
+      const key = str(body.key, 40);
+      const { data: rank } = await sb.from("ranks").select("key,kind").eq("key", key).limit(1).maybeSingle();
+      if (!rank) return Response.json({ error: "Rank nenalezen." }, { status: 404 });
+      if ((rank.kind === "staff" || key === "owner") && !actor.isOwner) return consoleForbidden("Týmové ranky upravuje jen owner.");
+      const permissions = Array.isArray(body.permissions)
+        ? [...new Set((body.permissions as unknown[]).map((p) => str(p, 60)).filter((p) => PERMISSION_RE.test(p)))]
+        : null;
+      if (permissions === null) return Response.json({ error: "Chybí seznam práv." }, { status: 400 });
+      if (permissions.includes("*") && !actor.isOwner) return consoleForbidden("Právo * přiděluje jen owner.");
+      if (key === "owner" && !permissions.includes("*")) return consoleForbidden("Owner musí mít právo *.");
+      const color = str(body.color, 7);
+      const { error } = await sb.from("ranks")
+        .update({ permissions, ...(COLOR_RE.test(color) ? { color } : {}) })
+        .eq("key", key);
+      if (error) return Response.json({ error: "Rank se nepodařilo uložit." }, { status: 500 });
+      await audit(actor.id, "rank_update", null, { key, permissions });
+      return Response.json({ ok: true });
+    }
+
+    return Response.json({ error: "Neznámý typ změny." }, { status: 400 });
+  });
+}

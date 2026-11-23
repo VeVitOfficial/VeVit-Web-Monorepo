@@ -3,13 +3,13 @@ import { connection } from "next/server";
 import { bookmarkedIds, categoryCounts, expireRequests, listCategories, renderTime, viewer } from "@/lib/services";
 import { describeFilters, filterChips, filtersToQuery, hasActiveFilters, parseRequestFilters, searchRequests } from "@/lib/services-search";
 import { servicesLocale } from "@/lib/services-locale";
-import { regionLabel } from "@/components/services/constants";
 import { categoryTree } from "@/components/services/categories";
 import { SvcIcon } from "@/components/services/icons";
 import { RequestCard } from "@/components/services/request-card";
 import { FilterForm } from "@/components/services/filter-form";
+import { HeroSearch } from "@/components/services/hero-search";
 import { SaveSearchButton } from "@/components/services/interactive";
-import { SORTS, PAGE_SIZE } from "@/components/services/constants";
+import { SORTS, PAGE_SIZE, RADII, regionLabel } from "@/components/services/constants";
 import { plural } from "@/components/services/ui";
 
 type Props = { searchParams: Promise<Record<string, string | string[] | undefined>> };
@@ -48,8 +48,39 @@ export default async function RequestsPage({ searchParams }: Props) {
   const activeCount = chips.length;
   const where = filters.city ? `${filters.city.name} + ${filters.radius} km` : filters.region ? regionLabel(filters.region) : "";
 
+  // Lišta hledání nahoře zachová ostatní aktivní filtry (kat, typ, kraj…).
+  const preserved = new URLSearchParams(query);
+  ["q", "obec", "okruh", "strana"].forEach((key) => preserved.delete(key));
+  const hiddenFilters = Array.from(preserved.entries()) as Array<[string, string]>;
+
+  // Čísla stránek s výpustkou: 1 2 … 4 5 6 … 19 20.
+  const pageList: Array<number | "…"> = (() => {
+    if (pages <= 7) return Array.from({ length: pages }, (_, index) => index + 1);
+    const keep = new Set([1, 2, filters.page - 1, filters.page, filters.page + 1, pages - 1, pages]);
+    const sorted = [...keep].filter((page) => page >= 1 && page <= pages).sort((a, b) => a - b);
+    const list: Array<number | "…"> = [];
+    let previous = 0;
+    for (const page of sorted) {
+      if (page - previous > 1) list.push("…");
+      list.push(page);
+      previous = page;
+    }
+    return list;
+  })();
+
   return (
-    <div className="svc-results">
+    <>
+      <div className="svc-searchrow">
+        <HeroSearch
+          action={`${base}/poptavky`}
+          radii={[...RADII]}
+          variant="bar"
+          initialQuery={filters.q}
+          initialCity={filters.city ? { code: filters.city.code, label: filters.city.label } : null}
+          hidden={hiddenFilters}
+        />
+      </div>
+      <div className="svc-results">
       <FilterForm
         id="svc-filter-form"
         action={`${base}/poptavky`}
@@ -135,12 +166,27 @@ export default async function RequestsPage({ searchParams }: Props) {
 
         {pages > 1 ? (
           <nav className="svc-pager" aria-label="Stránkování">
-            {filters.page > 1 ? <a className="svc-btn svc-btn--sm" href={selfHref(filters.page - 1)} rel="prev"><SvcIcon name="chevron-left" size={15} /> Předchozí</a> : <span />}
-            <span className="svc-small">Strana {filters.page} z {pages}</span>
-            {filters.page < pages ? <a className="svc-btn svc-btn--sm" href={selfHref(filters.page + 1)} rel="next">Další <SvcIcon name="chevron-right" size={15} /></a> : <span />}
+            {filters.page > 1 ? (
+              <a className="svc-page svc-page--arrow" href={selfHref(filters.page - 1)} rel="prev"><SvcIcon name="chevron-left" size={15} /></a>
+            ) : (
+              <span className="svc-page svc-page--arrow is-off"><SvcIcon name="chevron-left" size={15} /></span>
+            )}
+            {pageList.map((page, index) => page === "…" ? (
+              <span key={`gap-${index}`} className="svc-page svc-page--gap">…</span>
+            ) : filters.page === page ? (
+              <span key={page} className="svc-page" aria-current="page">{page}</span>
+            ) : (
+              <a key={page} className="svc-page" href={selfHref(page)}>{page}</a>
+            ))}
+            {filters.page < pages ? (
+              <a className="svc-page svc-page--arrow" href={selfHref(filters.page + 1)} rel="next"><SvcIcon name="chevron-right" size={15} /></a>
+            ) : (
+              <span className="svc-page svc-page--arrow is-off"><SvcIcon name="chevron-right" size={15} /></span>
+            )}
           </nav>
         ) : null}
       </section>
-    </div>
+      </div>
+    </>
   );
 }

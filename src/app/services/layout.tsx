@@ -14,6 +14,13 @@ export default async function ServicesLayout({ children }: { children: ReactNode
   const unread = session ? (await unreadCounts(session.user.id).catch(() => null))?.total ?? 0 : 0;
   return (
     <div className="svc">
+      {/* Výchozí vzhled sekce je světlý (jako prace.cz) i pro uživatele s tmavým systémem.
+          Přepínač témat volbu uloží do localStorage a ta pak má přednost. */}
+      <script
+        dangerouslySetInnerHTML={{
+          __html: "try{if(!document.documentElement.getAttribute('data-theme'))document.documentElement.setAttribute('data-theme','light')}catch(e){}",
+        }}
+      />
       <ServicesHeader locale={locale} unread={unread} />
       <main className="svc-main">
         <div className="svc-container">{children}</div>

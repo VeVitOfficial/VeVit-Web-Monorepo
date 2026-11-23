@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "mimosa-hook-status/v1",
+  "recordedAt": "2026-11-21T00:24:47.456Z",
+  "sessionId": "sess_ab34762f-b75c-4e60-b66f-d2e43b54e12e",
+  "event": "PostToolUse",
+  "toolName": "Edit",
+  "file": "/home/vitekeee/Projects/vevit-everytool-wt/src/components/tools/tools/video-trim.tsx",
+  "outcome": "inconclusive",
+  "coverage": "partial",
+  "findingCount": 0,
+  "durationMs": 7,
+  "hostState": "hook_complete",
+  "reportHint": ".mimosa/reports/"
+}

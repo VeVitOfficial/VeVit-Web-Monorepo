@@ -40,14 +40,6 @@ export function FilterForm({ id, action, filters, tree, counts, activeCount, res
       <FiltersPanel count={activeCount}>
         <form id={id} action={action} method="get" className="svc-filters2" role="search">
           <div className="svc-fgroup">
-            <label className="svc-flabel" htmlFor={`${id}-q`}>Co hledáte</label>
-            <div className="svc-searchbox">
-              <SvcIcon name="search" size={16} />
-              <input id={`${id}-q`} className="svc-input svc-input--icon" type="search" name="q" defaultValue={filters.q} placeholder="Např. web, úklid, logo" maxLength={80} />
-            </div>
-          </div>
-
-          <div className="svc-fgroup">
             <span className="svc-flabel">Lokalita</span>
             <CityPicker name="obec" initial={filters.city} onChange={setCity} />
             <div className="svc-frow">
