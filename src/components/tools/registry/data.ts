@@ -31,6 +31,9 @@ export interface Tool {
   description: string;
   category: Category;
   processing_location: ProcessingLocation;
+  /** Druhé místo zpracování, když nástroj umí obojí (např. HTML → PDF:
+      serverový Chromium i lokální vykreslení). Zobrazuje se jako druhý štítek. */
+  also_location?: ProcessingLocation;
   icon: string;
   new: boolean;
   status: ToolStatus;
@@ -175,9 +178,9 @@ const RAW_TOOLS: RawTool[] = [
   // ── Média ──────────────────────────────────────────────────────────────
   ["video-convert", "Konverze videa", "Přeďte video mezi formáty MP4, WebM (ffmpeg.wasm).", "media", "client", "Video", false],
   ["video-compress", "Komprese videa", "Zmenší velikost videa (ffmpeg.wasm, nastavitelná kvalita).", "media", "client", "Shrink", false],
-  ["video-trim", "Ořez videa", "Vyberte část videa a odstraňte zbytek (ffmpeg.wasm).", "media", "client", "Scissors", false],
+  ["video-trim", "Ořez videa", "Ořízněte, rozpůlte nebo graficky ořízněte okraje videa (ffmpeg.wasm).", "media", "client", "Scissors", false],
   ["audio-convert", "Konverze audia", "Přeďte audio mezi MP3/WAV/OGG/FLAC (ffmpeg.wasm).", "media", "client", "Music", false],
-  ["video-thumbnail", "Náhled videa", "Vygeneruje náhled/snímek z videa (bez ffmpeg).", "media", "client", "Camera", true],
+  ["video-thumbnail", "Náhled videa", "Vygeneruje snímek z videa — z souboru i z odkazu (YouTube).", "media", "client", "Camera", true],
   ["audio-waveform", "Křivka audia", "Vykreslí křivku hlasitosti audia (Web Audio API).", "media", "client", "Volume2", true],
   ["video-extract-audio", "Extrakce audia", "Vytáhne zvukovou stopu z videa (ffmpeg.wasm).", "media", "client", "Music", true],
   ["video-to-gif", "Video → GIF", "Vytvoří animovaný GIF z videa (ffmpeg.wasm).", "media", "client", "Film", true],
@@ -298,6 +301,7 @@ const RAW_TOOLS: RawTool[] = [
   ["time-calc", "Časová kalkulačka", "Sčítání a odčítání časových údajů.", "calc", "client", "Clock", true],
   ["iban-converter", "Převodník IBAN", "Převede české číslo účtu na IBAN a zpět.", "calc", "client", "Banknote", true],
   ["birth-number-validator", "Validátor rodného čísla", "Ověří formát a kontrolní součet rodného čísla.", "calc", "client", "BadgeCheck", true],
+  ["email-breach-check", "Kontrola úniku e-mailu", "Ověřte, jestli vaše e-mailová adresa figuruje ve známých únicích dat.", "security", "external", "Mail", true],
 ];
 
 // ── Kanonizace (port canonical_tool + tool_policy_overrides) ────────────
@@ -332,7 +336,11 @@ function canonicalize(raw: RawTool): Tool {
   };
 }
 
-export const TOOLS: readonly Tool[] = RAW_TOOLS.map(canonicalize);
+export const TOOLS: readonly Tool[] = RAW_TOOLS.map(canonicalize).map((tool) =>
+  // HTML → PDF umí obojí: vykreslení v Chromiu na serveru i lokálně v prohlížeči
+  // (u nástroje se přepíná) — proto dva štítky místa zpracování.
+  tool.slug === "html-to-pdf" ? { ...tool, also_location: "client" } : tool,
+);
 
 // ── Překlady názvů/descriptions (override nad cs v TOOLS) ───────────────
 // Klíč = slug, hodnota = { name?, desc? } pro daný jazyk. Chybějící fallback na cs.
@@ -370,9 +378,9 @@ export const TOOL_I18N: Partial<Record<Locale, Record<string, { name?: string; d
     "meme-generator": { name: "Meme generator", desc: "Create a meme with top/bottom text (Impact)." },
     "video-convert": { name: "Video converter", desc: "Convert video between MP4, WebM (ffmpeg.wasm)." },
     "video-compress": { name: "Video compression", desc: "Reduce video size (ffmpeg.wasm, adjustable quality)." },
-    "video-trim": { name: "Video trim", desc: "Select a portion of video and remove the rest (ffmpeg.wasm)." },
+    "video-trim": { name: "Video trim & crop", desc: "Trim, split in half or graphically crop the edges of a video (ffmpeg.wasm)." },
     "audio-convert": { name: "Audio converter", desc: "Convert audio between MP3/WAV/OGG/FLAC (ffmpeg.wasm)." },
-    "video-thumbnail": { name: "Video thumbnail", desc: "Generate a thumbnail/frame from video (no ffmpeg)." },
+    "video-thumbnail": { name: "Video thumbnail", desc: "Grab a frame from a video file or a link (YouTube)." },
     "audio-waveform": { name: "Audio waveform", desc: "Render audio volume waveform (Web Audio API)." },
     "video-extract-audio": { name: "Extract audio", desc: "Extract the audio track from video (ffmpeg.wasm)." },
     "video-to-gif": { name: "Video → GIF", desc: "Create an animated GIF from video (ffmpeg.wasm)." },
@@ -428,6 +436,7 @@ export const TOOL_I18N: Partial<Record<Locale, Record<string, { name?: string; d
     "password-strength": { name: "Password strength", desc: "Estimate entropy and crack time of a password." },
     "totp-generator": { name: "TOTP generator", desc: "Generate 2FA TOTP codes (RFC 6238) from a secret." },
     "password-breach-check": { name: "Password breach check", desc: "Verify whether a password leaked (HIBP k-anonymity)." },
+    "email-breach-check": { name: "Email breach check", desc: "Check whether your email address appears in known data breaches." },
     "file-encryption": { name: "File encryption", desc: "Encrypt/decrypt a file with AES-256-GCM (Web Crypto)." },
     "token-generator": { name: "Token generator", desc: "Generate random tokens (length, character set)." },
     "percentage-calc": { name: "Percentage calculator", desc: "Quickly compute percentages, increase and decrease." },

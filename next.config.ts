@@ -29,10 +29,12 @@ const securityHeaders = [
       "style-src 'self' 'unsafe-inline'",
       "font-src 'self' data:",
       "img-src 'self' data: blob: https:",
-      "connect-src 'self' https://*.supabase.co https://api.pwnedpasswords.com https://challenges.cloudflare.com https://api.stripe.com https://*.js.stripe.com https://pay.google.com https://google.com/pay https://widget.packeta.com https://hd.widget.packeta.com",
-      "media-src 'self' blob:",
+      // Tools: pwnedpasswords (Kontrola úniku hesla), xposedornot (Kontrola úniku e-mailu), i.ytimg.com (YouTube náhledy)
+      "connect-src 'self' https://*.supabase.co https://api.pwnedpasswords.com https://api.xposedornot.com https://i.ytimg.com https://challenges.cloudflare.com https://api.stripe.com https://*.js.stripe.com https://pay.google.com https://google.com/pay https://widget.packeta.com https://hd.widget.packeta.com",
+      // media https: kvůli Náhledu videa z přímého odkazu
+      "media-src 'self' blob: https:",
       "worker-src 'self' blob:",
-      "frame-src 'self' blob: https://challenges.cloudflare.com https://js.stripe.com https://*.js.stripe.com https://hooks.stripe.com https://pay.google.com https://widget.packeta.com https://hd.widget.packeta.com https://backup.widget.packeta.com https://error-page-service-widget-errors.prod.packeta-com.codenow.com",
+      "frame-src 'self' blob: https://challenges.cloudflare.com https://js.stripe.com https://*.js.stripe.com https://hooks.stripe.com https://pay.google.com https://www.youtube-nocookie.com https://widget.packeta.com https://hd.widget.packeta.com https://backup.widget.packeta.com https://error-page-service-widget-errors.prod.packeta-com.codenow.com",
       "object-src 'none'",
       "base-uri 'self'",
       "form-action 'self'",

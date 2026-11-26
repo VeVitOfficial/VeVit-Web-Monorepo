@@ -117,6 +117,13 @@ export default async function ToolPage({ params }: Props) {
             style={{ borderColor: `color-mix(in srgb, ${color} 19%, transparent)`, color, background: `color-mix(in srgb, ${color} 6%, transparent)` }}
             title={loc.title}
           >{loc.label}</span>
+          {tool.also_location ? (
+            <span
+              className="loc-tag"
+              style={{ borderColor: `color-mix(in srgb, ${color} 19%, transparent)`, color, background: `color-mix(in srgb, ${color} 6%, transparent)` }}
+              title={locationMeta(tool.also_location, locale).title}
+            >{locationMeta(tool.also_location, locale).label}</span>
+          ) : null}
           <span className={`loc-tag ${STATUS_BADGE_CLASS[tool.status]}`}>{statusLabel(tool.status, locale)}</span>
         </div>
         <p className="tool-desc">{L.description}</p>

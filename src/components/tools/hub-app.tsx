@@ -743,12 +743,17 @@ function ToolCard({ tool, locale, strings, query, active }: { tool: Tool; locale
       </button>
       <div className="top">
         <span className="icon-box" style={{ background: `color-mix(in srgb, ${color} 10%, transparent)`, color }}><ToolIcon name={tool.icon} size={20} /></span>
-        <span className="hub-card-badges">
-          <span className={`badge ${PROCESSING_BADGE_CLASS[tool.processing_location]}`} title={loc.title}>{loc.label}</span>
-          {tool.status !== "working" ? (
-            <span className={`badge ${STATUS_BADGE_CLASS[tool.status]}`}>{statusLabel(tool.status, locale)}</span>
-          ) : null}
-        </span>
+          <span className="hub-card-badges">
+            <span className={`badge ${PROCESSING_BADGE_CLASS[tool.processing_location]}`} title={loc.title}>{loc.label}</span>
+            {tool.also_location ? (
+              <span className={`badge ${PROCESSING_BADGE_CLASS[tool.also_location]}`} title={locationMeta(tool.also_location, locale).title}>
+                {locationMeta(tool.also_location, locale).label}
+              </span>
+            ) : null}
+            {tool.status !== "working" ? (
+              <span className={`badge ${STATUS_BADGE_CLASS[tool.status]}`}>{statusLabel(tool.status, locale)}</span>
+            ) : null}
+          </span>
       </div>
       <h3 className="name">{highlight(tool.name, query)}</h3>
       <p className="desc">{highlight(tool.description, query)}</p>

@@ -18,6 +18,7 @@ import type { ToolComponent } from "@/components/tools/registry/data";
 import { ToolBodySkeleton } from "@/components/tools/tool-skeleton";
 
 const CertificateInfo = dynamic(() => import("@/components/tools/tools/certificate-info"), { loading: ToolBodySkeleton });
+const EmailBreachCheck = dynamic(() => import("@/components/tools/tools/email-breach-check"), { loading: ToolBodySkeleton });
 const EncryptDecrypt = dynamic(() => import("@/components/tools/tools/encrypt-decrypt"), { loading: ToolBodySkeleton });
 const FileEncryption = dynamic(() => import("@/components/tools/tools/file-encryption"), { loading: ToolBodySkeleton });
 const HashGen = dynamic(() => import("@/components/tools/tools/hash-gen"), { loading: ToolBodySkeleton });
@@ -30,6 +31,7 @@ const TotpGenerator = dynamic(() => import("@/components/tools/tools/totp-genera
 
 const SECURITY: Record<string, ToolComponent | undefined> = {
   "certificate-info": CertificateInfo,
+  "email-breach-check": EmailBreachCheck,
   "encrypt-decrypt": EncryptDecrypt,
   "file-encryption": FileEncryption,
   "hash-gen": HashGen,
