@@ -9,7 +9,8 @@ import { useCopy, Icon, toastSuccess } from "@/components/tools/tool-runtime";
 type GType = "linear" | "radial" | "conic";
 interface Stop { id: number; color: string; pos: number; }
 
-const PALETTE = ["#6366f1", "var(--vv-violet)", "var(--vv-warning)"];
+// Hex konstanty (ne var()) — <input type="color"> vyžaduje #rrggbb hodnotu.
+const PALETTE = ["#6366f1", "#7f5ae0", "#dd9815", "#22c1c3", "#eb4b4b", "#3fd496"];
 
 function clampP(v: number): number { return Math.max(0, Math.min(100, isNaN(v) ? 0 : v)); }
 
@@ -20,7 +21,7 @@ export default function GradientGen({ locale }: ToolComponentProps) {
   const [angle, setAngle] = useState(90);
   const [stops, setStops] = useState<Stop[]>([
     { id: 1, color: "#6366f1", pos: 0 },
-    { id: 2, color: "var(--vv-violet)", pos: 100 },
+    { id: 2, color: "#7f5ae0", pos: 100 },
   ]);
   const seqRef = useRef(2);
 
@@ -40,7 +41,19 @@ export default function GradientGen({ locale }: ToolComponentProps) {
   const removeStop = (id: number) => setStops((prev) => prev.filter((s) => s.id !== id));
   const addStop = () => {
     const id = ++seqRef.current;
-    setStops((prev) => [...prev, { id, color: PALETTE[id % 3], pos: prev.length === 0 ? 0 : 100 }]);
+    setStops((prev) => {
+      // Novou zarážku vložím doprostřed největší mezery (včetně okrajů 0/100),
+      // ať každá přidaná barva v gradientu reálně vynikne (dřív všechny
+      // přistály na 100 % a gradient zůstával dvoubarevný).
+      const pts = [0, ...prev.map((s) => s.pos).sort((a, b) => a - b), 100];
+      let pos = 50;
+      let bestGap = -1;
+      for (let i = 0; i < pts.length - 1; i++) {
+        const gap = pts[i + 1] - pts[i];
+        if (gap > bestGap) { bestGap = gap; pos = Math.round((pts[i] + pts[i + 1]) / 2); }
+      }
+      return [...prev, { id, color: PALETTE[id % PALETTE.length], pos }];
+    });
   };
 
   const onCopy = async () => { if (css) { const ok = await copy(css); if (ok) toastSuccess("CSS zkopírováno"); } };

@@ -28,7 +28,7 @@ function paragraph(): string {
 type Unit = "paragraphs" | "sentences" | "words";
 
 function generate(n: number, unit: Unit, classic: boolean): string {
-  n = Math.min(100, Math.max(1, n || 3));
+  n = Math.min(999, Math.max(1, n || 3));
   if (unit === "words") {
     const w: string[] = [];
     if (classic) w.push(...START);
@@ -69,7 +69,7 @@ export default function LoremIpsum({ locale }: ToolComponentProps) {
       <div className="row" style={{ flexWrap: "wrap", gap: "0.75rem", alignItems: "end" }}>
         <div className="stack-sm">
           <label className="field-label" htmlFor="li-count">Počet</label>
-          <input className="input" id="li-count" type="number" value={count} min={1} max={100} onChange={(e) => setCount(+e.target.value || 3)} />
+          <input className="input" id="li-count" type="number" value={count} min={1} max={999} onChange={(e) => setCount(+e.target.value || 3)} />
         </div>
         <div className="stack-sm">
           <label className="field-label" htmlFor="li-unit">Jednotka</label>
