@@ -9,14 +9,15 @@ import {
   Dropzone, FileList, Progress, ResultArea, ensureMedia, getFFmpegMedia, setToolState,
 } from "@/components/tools/tools/audio-convert";
 
-const CODECS: Record<string, string> = { mp3: "libmp3lame", wav: "pcm_s16le", ogg: "libvorbis", flac: "flac" };
-const LOSSY: Record<string, boolean> = { mp3: true, ogg: true };
+const CODECS: Record<string, string> = { mp3: "libmp3lame", wav: "pcm_s16le", ogg: "libvorbis", flac: "flac", m4a: "aac" };
+const LOSSY: Record<string, boolean> = { mp3: true, ogg: true, m4a: true };
+const MIME: Record<string, string> = { mp3: "audio/mpeg", wav: "audio/wav", ogg: "audio/ogg", flac: "audio/flac", m4a: "audio/mp4" };
 const ACCEPT = ["video/*", ".mp4", ".webm", ".mov", ".mkv", ".avi"];
 
 export default function VideoExtractAudio({ locale }: ToolComponentProps) {
   const { t } = useToolUi(locale);
   const [file, setFile] = useState<File | null>(null);
-  const [format, setFormat] = useState<"mp3" | "wav" | "ogg" | "flac">("mp3");
+  const [format, setFormat] = useState<"mp3" | "wav" | "ogg" | "flac" | "m4a">("mp3");
   const [bitrate, setBitrate] = useState(192);
   const [running, setRunning] = useState(false);
   const [progress, setProgress] = useState<{ pct: number; label: string } | null>(null);
@@ -45,16 +46,30 @@ export default function VideoExtractAudio({ locale }: ToolComponentProps) {
         file,
         inName: "in." + media.ext(file.name),
         outName: "out." + f,
-        outMime: "audio/" + f,
+        outMime: MIME[f],
         args: (inN, outN) => {
-          const a = ["-i", inN, "-vn", "-c:a", CODECS[f]];
-          if (LOSSY[f]) a.push("-b:a", String(bitrate || 192) + "k");
+          const a = ["-i", inN, "-vn"];
+          if (f === "m4a") {
+            // M4A: zkusíme rovnou zkopírovat zvuk (rychlé, beze ztráty); u AAC
+            // stop v MP4 to je běžná a nejspolehlivější cesta.
+            a.push("-c:a", "copy");
+          } else {
+            a.push("-c:a", CODECS[f]);
+            if (LOSSY[f]) a.push("-b:a", String(bitrate || 192) + "k");
+          }
           a.push(outN);
           return a;
         },
         onProgress: (p, l) => Promise.resolve().then(() => setProgress({ pct: p, label: l })),
         onError: (m) => Promise.resolve().then(() => {
-          setProgress(null); setRunning(false); setError(m); setToolState("error");
+          setProgress(null); setRunning(false);
+          // ffmpeg exit 1 nejčastěji znamená: video nemá zvukovou stopu, nebo
+          // používá kodek, který ffmpeg.wasm nedekóduje (typicky HEVC/H.265
+          // z iPhonu). M4A copy navíc selže, když zvuk není AAC.
+          setError(m + (locale === "en"
+            ? " — Check that the video has an audio track and a decodable codec (H.264/AAC, WebM/VP9; HEVC is not supported). Try the M4A or WAV format."
+            : " — Zkontrolujte, že video má zvukovou stopu a dekódovatelný kodek (H.264/AAC, WebM/VP9; HEVC není podporovaný). Zkuste formát M4A nebo WAV."));
+          setToolState("error");
         }),
         onBlob: (blob) => Promise.resolve().then(() => {
           setResult({ blob, filename: "audio." + f });
@@ -92,6 +107,7 @@ export default function VideoExtractAudio({ locale }: ToolComponentProps) {
             <label className="field-label" htmlFor="va-format">Formát audia</label>
             <select className="select" id="va-format" value={format} onChange={(e) => setFormat(e.target.value as typeof format)}>
               <option value="mp3">MP3</option>
+              <option value="m4a">M4A (zkopíruje zvuk, nejrychlejší)</option>
               <option value="wav">WAV</option>
               <option value="ogg">OGG</option>
               <option value="flac">FLAC</option>

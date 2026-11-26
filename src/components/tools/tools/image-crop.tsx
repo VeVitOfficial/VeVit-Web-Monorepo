@@ -32,6 +32,7 @@ export default function ImageCrop({ locale }: ToolComponentProps) {
   const dragRef = useRef<{ x: number; y: number } | null>(null);
 
   const [hasFile, setHasFile] = useState(false);
+  const [imgVersion, setImgVersion] = useState(0);
   const [ratio, setRatio] = useState(0);
   const [format, setFormat] = useState("image/png");
   const [error, setError] = useState("");
@@ -156,7 +157,8 @@ export default function ImageCrop({ locale }: ToolComponentProps) {
     }, fmt, 0.92);
   };
 
-  useEffect(() => { if (ratio > 0 && selRef.current && selRef.current.w) { selRef.current = clampRect({ x: selRef.current.x, y: selRef.current.y }, { x: selRef.current.x + selRef.current.w, y: selRef.current.y + selRef.current.h }); draw(); } /* eslint-disable-next-line */ }, [ratio]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- clampRect/draw jsou stabilní (useCallback bez závislostí); ref se číst má
+  useEffect(() => { if (ratio > 0 && selRef.current && selRef.current.w) { selRef.current = clampRect({ x: selRef.current.x, y: selRef.current.y }, { x: selRef.current.x + selRef.current.w, y: selRef.current.y + selRef.current.h }); draw(); } }, [ratio]);
   useEffect(() => () => { /* img url revokováno při loadu */ }, []);
 
   const pick = (list: FileList | null) => {
@@ -173,21 +175,30 @@ export default function ImageCrop({ locale }: ToolComponentProps) {
     const url = URL.createObjectURL(ok[0]);
     const img = new Image();
     img.onload = () => {
+      // Canvas se renderuje až po hasFile — rozměry a první vykreslení
+      // proto dělá efekt níže (dřív tady padalo na null canvasRef).
       imgRef.current = img;
-      const maxW = 700, maxH = 480;
-      const w = img.naturalWidth, h = img.naturalHeight;
-      const s = Math.min(maxW / w, maxH / h, 1);
-      const cv = canvasRef.current!;
-      cv.width = Math.round(w * s); cv.height = Math.round(h * s);
-      scaleRef.current = w / cv.width;
-      selRef.current = null; setCanApply(false);
-      Promise.resolve().then(() => setHasFile(true));
-      draw(); syncFields(); setShowResult(false); setCoords(t("state_ready"));
-      URL.revokeObjectURL(url);
+      setHasFile(true);
+      setImgVersion((v) => v + 1);
     };
     img.onerror = () => { URL.revokeObjectURL(url); setError(t("load_failed")); };
     img.src = url;
   };
+
+  // Po připojení canvasu (a při výměně obrázku) nastaví rozměry a vykreslí.
+  useEffect(() => {
+    if (!hasFile) return;
+    const img = imgRef.current, cv = canvasRef.current;
+    if (!img || !cv || !img.naturalWidth) return;
+    const maxW = 700, maxH = 480;
+    const s = Math.min(maxW / img.naturalWidth, maxH / img.naturalHeight, 1);
+    cv.width = Math.round(img.naturalWidth * s);
+    cv.height = Math.round(img.naturalHeight * s);
+    scaleRef.current = img.naturalWidth / cv.width;
+    selRef.current = null; setCanApply(false);
+    draw(); syncFields(); setShowResult(false); setCoords(t("state_ready"));
+    // imgVersion: každé načtení obrázku (i výměna při hasFile=true) překreslí
+  }, [hasFile, imgVersion, draw, syncFields, t]);
 
   const onDrop = (e: React.DragEvent) => { e.preventDefault(); e.stopPropagation(); (e.currentTarget as HTMLElement).classList.remove("dragover"); pick(e.dataTransfer.files); };
   const onDragOver = (e: React.DragEvent) => { e.preventDefault(); e.stopPropagation(); (e.currentTarget as HTMLElement).classList.add("dragover"); };

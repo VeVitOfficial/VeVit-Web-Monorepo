@@ -139,6 +139,7 @@ export default function MindMap({ locale }: ToolComponentProps) {
   void locale;
   const [text, setText] = useState(DEFAULT_TREE);
   const wrapRef = useRef<HTMLDivElement>(null);
+  const areaRef = useRef<HTMLTextAreaElement | null>(null);
 
   // Vykreslí SVG imperativně do wrapRef (věrně legacy render() — staví SVG DOM).
   // Staví se až v effectu: buildSvg sahá na document, který při SSR není.
@@ -165,13 +166,74 @@ export default function MindMap({ locale }: ToolComponentProps) {
 
   const onSample = useCallback(() => setText(SAMPLE), []);
 
+  /** Rychlá editace struktur: Tab/Shift+Tab odsadí či vysadí řádek, Enter
+      dědí odsazení předchozího řádku — psaní stromu jde bez sazání mezer. */
+  const onKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    const area = areaRef.current;
+    if (!area) return;
+    const before = area.value.slice(0, area.selectionStart);
+    const lineStart = before.lastIndexOf("\n") + 1;
+    const line = before.slice(lineStart);
+    const indent = (line.match(/^ */) || [""])[0];
+
+    if (e.key === "Tab") {
+      e.preventDefault();
+      const next = e.shiftKey ? indent.slice(0, Math.max(0, indent.length - 2)) : indent + "  ";
+      const selEnd = area.selectionEnd;
+      const value = area.value.slice(0, lineStart) + next + area.value.slice(lineStart + indent.length);
+      setText(value);
+      requestAnimationFrame(() => {
+        const delta = next.length - indent.length;
+        area.selectionStart = area.selectionEnd = selEnd + delta;
+      });
+      return;
+    }
+    if (e.key === "Enter" && !e.shiftKey && area.selectionStart === area.selectionEnd) {
+      e.preventDefault();
+      const sel = area.selectionStart;
+      const rest = area.value.slice(sel);
+      const value = area.value.slice(0, sel) + "\n" + indent + rest;
+      setText(value);
+      requestAnimationFrame(() => {
+        const pos = sel + 1 + indent.length;
+        area.selectionStart = area.selectionEnd = pos;
+      });
+    }
+  };
+
+  /** Přidá podřádek (poduzel) pod řádek s kurzorem a přepne na něj kurzor. */
+  const addChildNode = () => {
+    const area = areaRef.current;
+    if (!area) return;
+    const before = area.value.slice(0, area.selectionStart);
+    const lineStart = before.lastIndexOf("\n") + 1;
+    const lineEndRaw = area.value.indexOf("\n", area.selectionStart);
+    const lineEnd = lineEndRaw === -1 ? area.value.length : lineEndRaw;
+    const line = area.value.slice(lineStart, lineEnd);
+    const indent = (line.match(/^ */) || [""])[0];
+    const insert = "\n" + indent + "  " + (locale === "en" ? "New node" : "Nový uzel");
+    const value = area.value.slice(0, lineEnd) + insert + area.value.slice(lineEnd);
+    setText(value);
+    requestAnimationFrame(() => {
+      const pos = lineEnd + insert.length;
+      area.focus();
+      area.selectionStart = area.selectionEnd = pos;
+    });
+  };
+
   return (
     <div className="stack" style={{ maxWidth: "64rem", margin: "0 auto" }}>
-      <p className="muted" style={{ fontSize: "0.8rem" }}>Pište odsazený seznam (2 mezery nebo Tab na úroveň). Každý řádek = uzel. Náhled se kreslí živě jako radiální strom.</p>
+      <p className="muted" style={{ fontSize: "0.8rem" }}>
+        Pište odsazený seznam (2 mezery na úroveň) — nebo použijte <kbd>Tab</kbd>/<kbd>Shift+Tab</kbd> k odsazení řádku, <kbd>Enter</kbd> dědí úroveň a tlačítko „Přidat poduzel“ vloží uzel pod kurzor. Náhled se kreslí živě.
+      </p>
       <div className="two-col" style={{ gap: "1rem", alignItems: "start" }}>
         <div className="stack-sm">
           <label className="field-label" htmlFor="mm-in">Struktura (odsazený text)</label>
-          <textarea className="textarea mono" id="mm-in" rows={16} spellCheck={false} value={text} onChange={(e) => setText(e.target.value)} />
+          <textarea
+            ref={areaRef}
+            className="textarea mono" id="mm-in" rows={16} spellCheck={false}
+            value={text} onChange={(e) => setText(e.target.value)} onKeyDown={onKeyDown}
+          />
         </div>
         <div className="stack-sm">
           <span className="field-label">Náhled</span>
@@ -179,6 +241,10 @@ export default function MindMap({ locale }: ToolComponentProps) {
         </div>
       </div>
       <div className="row" style={{ flexWrap: "wrap", gap: "0.5rem" }}>
+        <button className="btn btn-secondary" id="mm-add-child" type="button" onClick={addChildNode}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5v14" /><path d="M5 12h14" /></svg>
+          {locale === "en" ? "Add child node" : "Přidat poduzel"}
+        </button>
         <button className="btn btn-secondary" id="mm-svg-dl" type="button" onClick={onDownload}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><path d="M7 10l5 5 5-5" /><path d="M12 15V3" /></svg>
           Stáhnout SVG
