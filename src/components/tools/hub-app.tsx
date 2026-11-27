@@ -701,7 +701,7 @@ export function HubApp({ locale, strings }: Props) {
         <HubPremium locale={locale} strings={strings} />
       </section>
 
-      {/* ── Pruh VeVit web studio ─────────────────────────────────────── */}
+      {/* ── Pruh VeVit web applications ─────────────────────────────────────── */}
       <section className="et-sec et-wrap">
         <div className="et-cta et-reveal">
           <span aria-hidden="true" style={{ position: "absolute", right: "-40px", top: "-40px", width: "180px", height: "180px", borderRadius: "50%", border: "28px solid #8B5CF6" }}></span>

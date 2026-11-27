@@ -64,7 +64,7 @@ export function LegalHeader({ locale }: { locale: Locale }) {
           <span className="et-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
           <span className="et-logo-t">
             <b>EveryTool<span>.cz</span></b>
-            <small>by <span className="et-vevit">VeVit</span> web studio</small>
+            <small>by <span className="et-vevit">VeVit</span> web applications</small>
           </span>
         </a>
         <div className="et-actions">
@@ -167,7 +167,7 @@ export function LegalDocView({ locale, doc }: { locale: Locale; doc: LegalDoc })
         </div>
       </div>
       <footer className="et-legal-foot">
-        <span><b className="et-legal-brand">EveryTool<span>.cz</span></b> · by VeVit web studio</span>
+        <span><b className="et-legal-brand">EveryTool<span>.cz</span></b> · by VeVit web applications</span>
         <span>© 2026 EveryTool.cz · <ConsentSettingsButton locale={locale} /></span>
       </footer>
     </main>

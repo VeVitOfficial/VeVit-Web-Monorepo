@@ -64,7 +64,7 @@ export function SiteHeader({ locale, strings }: Props) {
           <span className="et-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
           <span className="et-logo-t">
             <b>{strings.brand_name}<span>.cz</span></b>
-            <small>by <span className="et-vevit">VeVit</span> web studio</small>
+            <small>by <span className="et-vevit">VeVit</span> web applications</small>
           </span>
         </a>
         <nav className="et-nav" aria-label={strings.categories}>

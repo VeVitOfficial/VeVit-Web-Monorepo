@@ -1348,7 +1348,7 @@ html[data-theme="dark"] .tools-app .et-plat { color: var(--et-accent-ink); }
 .et-seg-tiers .et-seg-knob { top: 4px; bottom: 4px; left: 4px; }
 .et-seg-tiers button { flex: 1 1 0; padding: 0 8px; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 14px; }
 
-/* ── CTA pruh VeVit web studio ────────────────────────────────────── */
+/* ── CTA pruh VeVit web applications ────────────────────────────────────── */
 .et-cta {
   position: relative; overflow: hidden; border-radius: 36px; background: var(--et-dark); color: #fff;
   padding: 56px 48px; display: flex; flex-wrap: wrap; align-items: center; gap: 32px;
