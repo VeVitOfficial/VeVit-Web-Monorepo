@@ -120,7 +120,7 @@ const CS_PRIVACY: LegalDoc = {
   ],
   sections: [
     { id: "p-spravce", h: "Kdo vaše údaje zpracovává", p: [
-      ["Správce. ", `${OPERATOR} (dále „my“).`],
+      ["Správce. ", `EveryTool.cz provozuje ${OPERATOR} (dále „my“). Kontakt ve všech otázkách ochrany osobních údajů: info@vevit.cz.`],
       ["Kontakt. ", "Ve všech otázkách ochrany osobních údajů nám pište na info@vevit.cz."],
     ]},
     { id: "p-nastroje", h: "Obsah, který vložíte do nástrojů", p: [
@@ -259,7 +259,7 @@ const EN_PRIVACY: LegalDoc = {
   ],
   sections: [
     { id: "p-spravce", h: "Who processes your data", p: [
-      ["Controller. ", `${OPERATOR} (“we”).`],
+      ["Controller. ", `EveryTool.cz is operated by ${OPERATOR} (“we”). Contact for all data protection matters: info@vevit.cz.`],
       ["Contact. ", "For anything about personal data protection, write to info@vevit.cz."],
     ]},
     { id: "p-nastroje", h: "Content you put into tools", p: [
