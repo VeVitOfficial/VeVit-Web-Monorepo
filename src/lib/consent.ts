@@ -4,7 +4,7 @@
 
 export const CONSENT_KEY = "vv-consent";
 /** Verze podmínek užití — po změně podmínek se lišta zobrazí znovu. */
-export const TERMS_VERSION = "2026-11-18";
+export const TERMS_VERSION = "2026-11-27";
 const CHANGE_EVENT = "vv-consent-change";
 const OPEN_EVENT = "vv-consent-open";
 

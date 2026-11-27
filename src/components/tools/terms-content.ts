@@ -7,11 +7,11 @@
 // ⚠ EN verze je neověřený překlad nového českého textu — před publikací
 //   nechat zkontrolovat. Česká verze je závazná.
 //
-// Placeholdery, které čekají na údaje provozovatele (nevyplňovat naslepo):
-//   [OBCHODNÍ FIRMA / JMÉNO], [IČO], [SÍDLO], [DATUM], [X] dnů / [X] dní,
-//   [POSKYTOVATEL E-MAILŮ].
+// Placeholdery, které ještě čekají na údaje (nevyplňovat naslepo):
+//   [X] dnů / [X] dní, [POSKYTOVATEL E-MAILŮ].
+// Provozovatel: VeVit Technologies (bez IČO/sídla, zatím nejsou známy).
 
-const OPERATOR = "[OBCHODNÍ FIRMA / JMÉNO], IČO [IČO], se sídlem [SÍDLO]";
+const OPERATOR = "VeVit Technologies";
 
 export interface LegalShort {
   h: string;
@@ -39,7 +39,7 @@ export interface LegalDoc {
 
 const CS_TERMS: LegalDoc = {
   title: "Podmínky užití",
-  effective: "Návrh · účinné od [DATUM]",
+  effective: "Účinné od 27. 11. 2026",
   intro: "Tyto podmínky upravují používání webu EveryTool.cz, jeho online nástrojů, uživatelských účtů a placeného předplatného. Používáním webu s nimi souhlasíte, proto si je prosím přečtěte. Snažili jsme se je napsat lidsky.",
   short: [
     { h: "Nástroje jsou zdarma", t: "Všech {count} nástrojů můžete používat bez účtu i bez placení. Premium jen přidává vyšší limity a pohodlí." },
@@ -48,7 +48,7 @@ const CS_TERMS: LegalDoc = {
   ],
   sections: [
     { id: "t-uvod", h: "Úvodní ustanovení", p: [
-      ["Provozovatel. ", `EveryTool.cz provozuje ${OPERATOR}, pod značkou VeVit web studio (dále „provozovatel“ nebo „my“). Kontakt: info@vevit.cz.`],
+      ["Provozovatel. ", `EveryTool.cz provozuje ${OPERATOR} (dále „provozovatel“ nebo „my“). Kontakt: info@vevit.cz.`],
       ["", "Podmínky platí pro web EveryTool.cz, všechny jeho nástroje, uživatelské účty a předplatné EveryTool Premium. Pro členství VeVit Premium platí navíc obchodní podmínky VeVit; v případě rozporu mají u VeVit Premium přednost ony."],
       ["", "Používáním kteréhokoli nástroje nebo založením účtu tyto podmínky přijímáte. Pokud s nimi nesouhlasíte, web nepoužívejte."],
     ]},
@@ -111,7 +111,7 @@ const CS_TERMS: LegalDoc = {
 
 const CS_PRIVACY: LegalDoc = {
   title: "Ochrana soukromí",
-  effective: "Návrh · účinné od [DATUM]",
+  effective: "Účinné od 27. 11. 2026",
   intro: "Vaše soukromí bereme vážně. EveryTool.cz je postavený tak, aby o vás věděl co nejméně: většina nástrojů běží přímo ve vašem prohlížeči. Tady je přehled, jaké údaje přesto zpracováváme, proč a jak dlouho.",
   short: [
     { h: "Lokální nástroje nic neodesílají", t: "Soubory zpracované v prohlížeči nikdy neopustí vaše zařízení. Ani je nevidíme." },
@@ -120,7 +120,7 @@ const CS_PRIVACY: LegalDoc = {
   ],
   sections: [
     { id: "p-spravce", h: "Kdo vaše údaje zpracovává", p: [
-      ["Správce. ", `${OPERATOR}, značka VeVit web studio (dále „my“).`],
+      ["Správce. ", `${OPERATOR} (dále „my“).`],
       ["Kontakt. ", "Ve všech otázkách ochrany osobních údajů nám pište na info@vevit.cz."],
     ]},
     { id: "p-nastroje", h: "Obsah, který vložíte do nástrojů", p: [
@@ -178,7 +178,7 @@ const CS_PRIVACY: LegalDoc = {
 
 const EN_TERMS: LegalDoc = {
   title: "Terms of Use",
-  effective: "Draft · effective from [DATUM]",
+  effective: "Effective from November 27, 2026",
   intro: "These terms govern the use of the EveryTool.cz website, its online tools, user accounts and paid subscriptions. By using the website you agree to them, so please read them. We tried to write them in plain human language.",
   short: [
     { h: "The tools are free", t: "All {count} tools can be used without an account and without paying. Premium only adds higher limits and comfort." },
@@ -187,7 +187,7 @@ const EN_TERMS: LegalDoc = {
   ],
   sections: [
     { id: "t-uvod", h: "Introductory provisions", p: [
-      ["Operator. ", `EveryTool.cz is operated by ${OPERATOR}, under the VeVit web studio brand (the “operator” or “we”). Contact: info@vevit.cz.`],
+      ["Operator. ", `EveryTool.cz is operated by ${OPERATOR} (the “operator” or “we”). Contact: info@vevit.cz.`],
       ["", "These terms apply to the EveryTool.cz website, all its tools, user accounts and the EveryTool Premium subscription. The VeVit terms additionally apply to VeVit Premium membership; in case of conflict, those prevail for VeVit Premium."],
       ["", "By using any tool or creating an account you accept these terms. If you do not agree, do not use the website."],
     ]},
@@ -250,7 +250,7 @@ const EN_TERMS: LegalDoc = {
 
 const EN_PRIVACY: LegalDoc = {
   title: "Privacy Notice",
-  effective: "Draft · effective from [DATUM]",
+  effective: "Effective from November 27, 2026",
   intro: "We take your privacy seriously. EveryTool.cz is built to know as little about you as possible: most tools run directly in your browser. Here is an overview of what data we still process, why, and for how long.",
   short: [
     { h: "Local tools send nothing", t: "Files processed in the browser never leave your device. We cannot even see them." },
@@ -259,7 +259,7 @@ const EN_PRIVACY: LegalDoc = {
   ],
   sections: [
     { id: "p-spravce", h: "Who processes your data", p: [
-      ["Controller. ", `${OPERATOR}, VeVit web studio brand (“we”).`],
+      ["Controller. ", `${OPERATOR} (“we”).`],
       ["Contact. ", "For anything about personal data protection, write to info@vevit.cz."],
     ]},
     { id: "p-nastroje", h: "Content you put into tools", p: [

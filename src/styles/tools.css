@@ -1332,6 +1332,7 @@ html[data-theme="dark"] .tools-app {
 .et-big-outline { border: 2px solid var(--et-ink); color: var(--et-ink); background: transparent; }
 /* Žlutá tlačítka = černý text, fialová = bílý text (bez obrysu). */
 .et-big-yellow { background: var(--et-yellow); color: #1a1a2e; }
+.et-big-black { background: var(--et-dark); color: #fff; }
 .et-big-violet { background: #6d32e0; color: #fff; }
 .et-orbit { position: absolute; right: -60px; top: -60px; width: 200px; height: 200px; border-radius: 50%; border: 3px dashed var(--et-yellow); opacity: 0.5; animation: et-spin 18s linear infinite; }
 .et-orbit::after { content: ""; position: absolute; left: 50%; top: -9px; width: 16px; height: 16px; border-radius: 50%; background: #ff5a5f; }

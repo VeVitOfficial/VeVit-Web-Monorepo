@@ -711,7 +711,7 @@ export function HubApp({ locale, strings }: Props) {
             <h2>{strings.cta_title}</h2>
             <p>{strings.cta_text}</p>
           </div>
-          <a className="et-big et-big-yellow" href="https://vevit.cz" rel="noopener">{strings.cta_btn}
+          <a className="et-big et-big-black" href="https://vevit.cz" rel="noopener">{strings.cta_btn}
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
           </a>
         </div>
