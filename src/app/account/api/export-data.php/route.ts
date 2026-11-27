@@ -10,14 +10,7 @@ export const dynamic = "force-dynamic";
 
 const TABLES: Array<{ table: string; columns: string | "*"; key: string }> = [
   { table: "premium_subscriptions", columns: "*", key: "premium_subscriptions" },
-  { table: "cal_events", columns: "*", key: "cal_events" },
-  { table: "cal_reminders", columns: "*", key: "cal_reminders" },
-  { table: "certificates", columns: "*", key: "certificates" },
-  { table: "lesson_comments", columns: "*", key: "lesson_comments" },
-  { table: "games_stats", columns: "*", key: "games_stats" },
   { table: "store_orders", columns: "*", key: "store_orders" },
-  { table: "daily_bonus_log", columns: "*", key: "daily_bonus_log" },
-  { table: "ai_usage_log", columns: "*", key: "ai_usage_log" },
   { table: "sessions", columns: "id,created_at,expires_at,remember,ip_address,user_agent,last_seen_at", key: "sessions" },
   { table: "account_activity", columns: "kind,detail,created_at", key: "account_activity" },
   { table: "user_notification_prefs", columns: "security_alerts,product_updates,marketing,billing_summary", key: "user_notification_prefs" },

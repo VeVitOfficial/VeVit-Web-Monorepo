@@ -1,0 +1,148 @@
+/* OtpInput – 6 políček pro kód. Animace výsledku: políčka se seběhnou do kruhu, obíhají kolem
+   středu (dokud nepřijde odpověď serveru), splynou do středu a tam se ukáže ✓ nebo ✕.
+   Barvy přebírá z proměnných stránky (verify-2fa.css), jinak výchozí. */
+
+.wrap {
+  --otp-gap: 10px;
+  --otp-radius: 34px;
+  --otp-line: var(--line, #273029);
+  --otp-bg: #080b09;
+  --otp-text: var(--text, #f4f7f4);
+  --otp-ok: var(--green, #39e079);
+  --otp-fail: var(--red, #ff6b6b);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  gap: var(--otp-gap);
+  margin-block: 30px;
+}
+
+.box {
+  /* i = 0…5, posun ke středu skupiny v šířkách políčka (translate % = vlastní šířka) */
+  --dx: calc((2.5 - var(--i)) * (100% + var(--otp-gap)));
+  --a: calc(var(--i) * 60deg);
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 50px;
+  aspect-ratio: 5 / 6;
+  border: 1px solid var(--otp-line);
+  border-radius: 12px;
+  background: var(--otp-bg);
+  color: var(--otp-text);
+  font: inherit;
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  padding: 0;
+  caret-color: var(--otp-ok);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.box:focus {
+  outline: none;
+  border-color: var(--otp-ok);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--otp-ok) 25%, transparent);
+}
+.box:disabled { opacity: 1; }
+
+/* 1) seběhnutí do kruhu, 2) oběh dokola (opakuje se, dokud nepřijde výsledek) */
+.spin .box {
+  border-color: var(--otp-ok);
+  animation:
+    otp-gather 0.35s cubic-bezier(0.3, 0.7, 0.4, 1) forwards,
+    otp-orbit 0.8s linear 0.35s infinite;
+}
+/* 3) splynutí do středu (začíná přesně na konci otáčky → bez skoku) */
+.merge .box {
+  animation: otp-merge 0.35s cubic-bezier(0.5, 0, 0.75, 0) forwards;
+}
+.done .box { visibility: hidden; }
+
+@keyframes otp-gather {
+  from { transform: translateX(0) rotate(0deg) translateY(0) rotate(0deg) scale(1); }
+  to   { transform: translateX(var(--dx)) rotate(var(--a)) translateY(calc(-1 * var(--otp-radius))) rotate(calc(-1 * var(--a))) scale(0.62); }
+}
+@keyframes otp-orbit {
+  from { transform: translateX(var(--dx)) rotate(var(--a)) translateY(calc(-1 * var(--otp-radius))) rotate(calc(-1 * var(--a))) scale(0.62); }
+  to   { transform: translateX(var(--dx)) rotate(calc(var(--a) + 360deg)) translateY(calc(-1 * var(--otp-radius))) rotate(calc(-1 * var(--a) - 360deg)) scale(0.62); }
+}
+@keyframes otp-merge {
+  from { transform: translateX(var(--dx)) rotate(var(--a)) translateY(calc(-1 * var(--otp-radius))) rotate(calc(-1 * var(--a))) scale(0.62); opacity: 1; }
+  to   { transform: translateX(var(--dx)) rotate(calc(var(--a) + 120deg)) translateY(0) rotate(calc(-1 * var(--a) - 120deg)) scale(0.15); opacity: 0; }
+}
+
+/* 4) výsledek ve středu */
+.badge {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 64px;
+  height: 64px;
+  margin: -32px 0 0 -32px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  animation: otp-pop 0.4s cubic-bezier(0.2, 1.4, 0.4, 1) both;
+}
+.badge svg { width: 34px; height: 34px; }
+.badge path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  animation: otp-draw 0.35s ease-out 0.15s forwards;
+}
+.ok {
+  color: #041108;
+  background: var(--otp-ok);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--otp-ok) 55%, transparent);
+  animation: otp-pop 0.4s cubic-bezier(0.2, 1.4, 0.4, 1) both, otp-ring 0.9s ease-out 0.2s;
+}
+.fail {
+  color: #fff;
+  background: var(--otp-fail);
+  animation: otp-pop 0.4s cubic-bezier(0.2, 1.4, 0.4, 1) both, otp-shake 0.45s ease-in-out 0.45s;
+}
+
+@keyframes otp-pop {
+  from { transform: scale(0.2); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+@keyframes otp-draw { to { stroke-dashoffset: 0; } }
+@keyframes otp-ring { to { box-shadow: 0 0 0 18px transparent; } }
+@keyframes otp-shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-9px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-6px); }
+  80% { transform: translateX(4px); }
+}
+
+/* Návrat po chybě: políčka znovu naskočí */
+.reset .box { animation: otp-back 0.3s ease-out both; animation-delay: calc(var(--i) * 30ms); }
+@keyframes otp-back {
+  from { transform: scale(0.6); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Bez pohybu: žádné obíhání, jen jemné ztlumení a zobrazení ✓/✕ */
+@media (prefers-reduced-motion: reduce) {
+  .spin .box { animation: otp-dim 0.8s ease-in-out infinite alternate; }
+  .merge .box { animation: none; opacity: 0; transition: opacity 0.2s; }
+  .badge, .ok, .fail, .reset .box { animation: otp-fade 0.25s ease-out both; }
+  .badge path { animation: none; stroke-dashoffset: 0; }
+}
+@keyframes otp-dim { to { opacity: 0.45; } }
+@keyframes otp-fade { from { opacity: 0; } to { opacity: 1; } }
